@@ -381,7 +381,7 @@ function App() {
 
               {/* Messages */}
               <div className="space-y-6">
-                <div className="flex items-start space-x-8">
+                <div className="flex items-start" style={{gap: '48px'}}>
                   <UserAvatar />
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
@@ -392,7 +392,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-8">
+                <div className="flex items-start" style={{gap: '48px'}}>
                   <BotAvatar />
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
@@ -412,7 +412,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-8">
+                <div className="flex items-start" style={{gap: '48px'}}>
                   <UserAvatar />
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
@@ -423,7 +423,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-8">
+                <div className="flex items-start" style={{gap: '48px'}}>
                   <BotAvatar />
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
@@ -444,7 +444,7 @@ function App() {
                 </div>
 
                 {/* Typing Indicator */}
-                <div className="flex items-start space-x-8">
+                <div className="flex items-start" style={{gap: '48px'}}>
                   <BotAvatar />
                   <div className="flex items-center space-x-2">
                     <span className="text-white/60">Ask Gen está digitando</span>
