@@ -1,6 +1,10 @@
-# Professional Events Website Template
+# AI Data Engineering Brasil - Official Website
 
-A modern, responsive event website template built with React + Vite + Tailwind CSS. Perfect for conferences, networking events, workshops, and professional gatherings.
+🚀 **Website oficial da primeira comunidade brasileira dedicada à convergência entre Engenharia de Dados e Inteligência Artificial Generativa (GenAI).**
+
+## 🌐 Website Online
+- **Produção**: https://aide.manus.space/
+- **Repositório**: https://github.com/owshq-manus-ai/aide-brasil-website
 
 ## 🚀 Features
 
@@ -137,4 +141,200 @@ Contributions are welcome! Feel free to submit issues, feature requests, or impr
 ---
 
 **Ready to create amazing event websites? This template provides everything you need to get started quickly and professionally.**
+
+
+## 🛠️ Tecnologias Utilizadas
+
+### Frontend
+- **React 18** - Framework principal
+- **Vite** - Build tool e dev server
+- **Tailwind CSS** - Framework de CSS utilitário
+- **Framer Motion** - Animações e transições
+- **GSAP** - Animações de texto avançadas
+- **Three.js** - Efeitos 3D no background
+
+### Design System
+- **Glass-morphism** - Padrão de design moderno
+- **Tema escuro** - Interface sofisticada
+- **Design responsivo** - Compatível com todos os dispositivos
+- **Micro-interactions** - Experiência de usuário aprimorada
+
+## 🎨 Funcionalidades
+
+### ✅ Seções Implementadas
+- **Hero Section** - Apresentação principal com animações
+- **About** - Sobre a comunidade
+- **Ask Gen** - Demonstração do assistente de IA
+- **Numbers** - Estatísticas do mercado
+- **Benefits** - Benefícios por perfil
+- **Pricing** - Planos gratuito e premium
+- **Footer** - Links e informações
+
+### ✅ Funcionalidades Técnicas
+- **Navegação suave** - Scroll automático entre seções
+- **Avatares padronizados** - Ícones consistentes no chat
+- **Ícone Discord** - Integração visual com a comunidade
+- **Animações fluidas** - Transições e efeitos visuais
+- **SEO otimizado** - Meta tags e estrutura semântica
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+- Node.js 18+ 
+- npm ou yarn
+
+### Instalação
+```bash
+# Clone o repositório
+git clone https://github.com/owshq-manus-ai/aide-brasil-website.git
+
+# Entre no diretório
+cd aide-brasil-website
+
+# Instale as dependências
+npm install
+
+# Execute em desenvolvimento
+npm run dev
+
+# Build para produção
+npm run build
+
+# Preview da build
+npm run preview
+```
+
+## 📁 Estrutura do Projeto
+
+```
+aide-brasil-website/
+├── src/
+│   ├── components/
+│   │   └── ui/
+│   │       └── infinite-hero.jsx    # Componente do hero com animações
+│   ├── App.jsx                      # Componente principal
+│   ├── App.css                      # Estilos globais
+│   ├── index.css                    # Estilos base e Tailwind
+│   └── main.jsx                     # Entry point
+├── public/                          # Assets estáticos
+├── dist/                           # Build de produção
+├── index.html                      # Template HTML
+├── package.json                    # Dependências e scripts
+├── tailwind.config.js              # Configuração do Tailwind
+├── vite.config.js                  # Configuração do Vite
+└── README.md                       # Documentação
+```
+
+## 🎯 Componentes Principais
+
+### BaseAvatar
+Componente base para avatares padronizados:
+- Tamanho fixo (40x40px)
+- Formato circular perfeito
+- Sombras consistentes
+
+### UserAvatar
+Avatar do usuário:
+- Círculo azul/roxo
+- Ícone de pessoa branco
+
+### BotAvatar (Ask Gen)
+Avatar do assistente:
+- Círculo verde
+- Ícone de chip/processador
+- Estrela roxa no canto
+
+## 🎨 Design System
+
+### Cores Principais
+- **Primary**: Azul/Roxo (#6366f1)
+- **Secondary**: Verde (#10b981)
+- **Accent**: Roxo (#a855f7)
+- **Background**: Escuro (#0f172a)
+- **Text**: Branco/Cinza
+
+### Espaçamentos
+- **Avatares**: space-x-8 (32px)
+- **Seções**: space-y-6 (24px)
+- **Elementos**: Múltiplos de 4px
+
+## 🔧 Deploy
+
+### Manus Platform
+O website é deployado automaticamente na plataforma Manus:
+1. Build automático com `npm run build`
+2. Deploy para https://aide.manus.space/
+3. CDN global e SSL automático
+
+### Deploy Manual
+```bash
+# Build de produção
+npm run build
+
+# Deploy via Manus CLI (se disponível)
+manus deploy dist/
+```
+
+## 📱 Responsividade
+
+### Breakpoints
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1024px  
+- **Desktop**: > 1024px
+
+### Otimizações Mobile
+- Touch-friendly navigation
+- Optimized spacing
+- Compressed images
+- Fast loading
+
+## 🔍 SEO
+
+### Meta Tags Implementadas
+- Title: "aide-brasil"
+- Description: Comunidade AI Data Engineering
+- Open Graph tags
+- Twitter Card tags
+- Canonical URL
+
+### Performance
+- Lazy loading de imagens
+- Code splitting automático
+- CSS minificado
+- JavaScript otimizado
+
+## 🤝 Contribuição
+
+### Processo de Desenvolvimento
+1. Fork do repositório
+2. Criar branch feature (`git checkout -b feature/nova-funcionalidade`)
+3. Commit das mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abrir Pull Request
+
+### Padrões de Código
+- ESLint para JavaScript
+- Prettier para formatação
+- Conventional Commits
+- Componentes funcionais React
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👥 Equipe
+
+- **Desenvolvimento**: Manus AI Team
+- **Design**: AI Data Engineering Brasil
+- **Organização**: owshq-manus-ai
+
+## 📞 Contato
+
+- **Website**: https://aide.manus.space/
+- **Discord**: Comunidade AI Data Engineering Brasil
+- **GitHub**: https://github.com/owshq-manus-ai
+
+---
+
+**Feito com ❤️ pela comunidade AI Data Engineering Brasil**
 
