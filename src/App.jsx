@@ -381,18 +381,19 @@ function App() {
 
               {/* Messages */}
               <div className="space-y-6">
-                <div className="flex items-start" style={{gap: '48px'}}>
+                <div className="flex items-start" style={{gap: '36px'}}>
                   <UserAvatar />
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
                       <span className="font-semibold text-white">Data Engineer</span>
+                      <span className="bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-bold">USER</span>
                       <span className="text-gray-400 text-xs">Hoje às 14:20</span>
                     </div>
                     <p className="text-gray-300">O que são foundation models?</p>
                   </div>
                 </div>
 
-                <div className="flex items-start" style={{gap: '48px'}}>
+                <div className="flex items-start" style={{gap: '36px'}}>
                   <BotAvatar />
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
@@ -412,18 +413,19 @@ function App() {
                   </div>
                 </div>
 
-                <div className="flex items-start" style={{gap: '48px'}}>
+                <div className="flex items-start" style={{gap: '36px'}}>
                   <UserAvatar />
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
                       <span className="font-semibold text-white">Data Engineer</span>
+                      <span className="bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-bold">USER</span>
                       <span className="text-gray-400 text-xs">Hoje às 14:23</span>
                     </div>
                     <p className="text-gray-300">Qual é o papel e importância de RAG?</p>
                   </div>
                 </div>
 
-                <div className="flex items-start" style={{gap: '48px'}}>
+                <div className="flex items-start" style={{gap: '36px'}}>
                   <BotAvatar />
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
@@ -444,7 +446,7 @@ function App() {
                 </div>
 
                 {/* Typing Indicator */}
-                <div className="flex items-start" style={{gap: '48px'}}>
+                <div className="flex items-start" style={{gap: '36px'}}>
                   <BotAvatar />
                   <div className="flex items-center space-x-2">
                     <span className="text-white/60">Ask Gen está digitando</span>
