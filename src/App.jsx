@@ -145,6 +145,7 @@ function App() {
               {[
                 { label: 'Sobre', href: '#sobre' },
                 { label: 'Ask Gen', href: '#ask-gen' },
+                { label: 'Onyx', href: '#onyx' },
                 { label: 'Números', href: '#numeros' },
                 { label: 'Benefícios', href: '#beneficios' },
                 { label: 'Comunidade', href: '#comunidade' }
@@ -194,6 +195,7 @@ function App() {
               {[
                 { label: 'Sobre', href: '#sobre' },
                 { label: 'Ask Gen', href: '#ask-gen' },
+                { label: 'Onyx', href: '#onyx' },
                 { label: 'Números', href: '#numeros' },
                 { label: 'Benefícios', href: '#beneficios' },
                 { label: 'Comunidade', href: '#comunidade' }
@@ -373,116 +375,238 @@ function App() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.027zM8.68 15.464c-1.283 0-2.34-1.178-2.34-2.625s1.036-2.625 2.34-2.625c1.312 0 2.36 1.187 2.34 2.625 0 1.447-1.057 2.625-2.34 2.625zm6.64 0c-1.283 0-2.34-1.178-2.34-2.625s1.036-2.625 2.34-2.625c1.312 0 2.36 1.187 2.34 2.625 0 1.447-1.057 2.625-2.34 2.625z"/>
                   </svg>
                   <span className="text-gray-400 text-xs">1.247 membros ativos</span>
                 </div>
               </div>
 
-              {/* Messages */}
               <div className="space-y-6">
-                <div className="flex items-start" style={{gap: '36px'}}>
-                  <UserAvatar />
-                  <div className="flex-1">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <UserAvatar />
+                  </div>
+                  <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-2">
-                      <span className="font-semibold text-white">Data Engineer</span>
+                      <span className="text-purple-400 font-semibold text-sm">@Data_Engineer</span>
                       <span className="bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-bold">USER</span>
-                      <span className="text-gray-400 text-xs">Hoje às 14:20</span>
+                      <span className="text-gray-500 text-xs">Hoje às 14:20</span>
                     </div>
-                    <p className="text-gray-300">O que são foundation models?</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start" style={{gap: '36px'}}>
-                  <BotAvatar />
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <span className="font-semibold text-white">Ask Gen</span>
-                      <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-xs font-bold">BOT</span>
-                      <span className="text-gray-400 text-xs">Hoje às 14:21</span>
-                    </div>
-                    <p className="text-gray-300 mb-3">
-                      Foundation models são modelos de IA pré-treinados em grandes datasets que servem como base para diversas tarefas. 
-                      Eles democratizam o acesso à IA avançada e aceleram o desenvolvimento de aplicações específicas.
-                    </p>
-                    <div className="flex space-x-2">
-                      <span className="bg-blue-900 text-blue-300 px-2 py-1 rounded text-xs">#foundation-models</span>
-                      <span className="bg-purple-900 text-purple-300 px-2 py-1 rounded text-xs">#ai</span>
-                      <span className="bg-green-900 text-green-300 px-2 py-1 rounded text-xs">#machine-learning</span>
+                    <div className="bg-[#40444b] rounded-lg p-4">
+                      <p className="text-white text-sm">O que são foundation models?</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-start" style={{gap: '36px'}}>
-                  <UserAvatar />
-                  <div className="flex-1">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <BotAvatar />
+                  </div>
+                  <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-2">
-                      <span className="font-semibold text-white">Data Engineer</span>
+                      <span className="text-green-400 font-semibold text-sm">Ask Gen</span>
+                      <span className="bg-green-600 text-white px-2 py-0.5 rounded text-xs font-bold">BOT</span>
+                      <span className="text-gray-500 text-xs">Hoje às 14:21</span>
+                    </div>
+                    <div className="bg-[#2f3136] rounded-lg p-4 border-l-4 border-green-500">
+                      <p className="text-gray-300 text-sm mb-3">
+                        Foundation models são modelos de IA pré-treinados em grandes datasets que servem como base para diversas tarefas. Eles democratizam o acesso à IA avançada e aceleram o desenvolvimento de aplicações específicas.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">#foundation-models</span>
+                        <span className="bg-purple-600 text-white px-2 py-1 rounded text-xs">#ai</span>
+                        <span className="bg-green-600 text-white px-2 py-1 rounded text-xs">#machine-learning</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <UserAvatar />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <span className="text-purple-400 font-semibold text-sm">@Data_Engineer</span>
                       <span className="bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-bold">USER</span>
-                      <span className="text-gray-400 text-xs">Hoje às 14:23</span>
+                      <span className="text-gray-500 text-xs">Hoje às 14:23</span>
                     </div>
-                    <p className="text-gray-300">Qual é o papel e importância de RAG?</p>
+                    <div className="bg-[#40444b] rounded-lg p-4">
+                      <p className="text-white text-sm">Qual é o papel e importância de RAG?</p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-start" style={{gap: '36px'}}>
-                  <BotAvatar />
-                  <div className="flex-1">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <BotAvatar />
+                  </div>
+                  <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-2">
-                      <span className="font-semibold text-white">Ask Gen</span>
-                      <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-xs font-bold">BOT</span>
-                      <span className="text-gray-400 text-xs">Hoje às 14:24</span>
+                      <span className="text-green-400 font-semibold text-sm">Ask Gen</span>
+                      <span className="bg-green-600 text-white px-2 py-0.5 rounded text-xs font-bold">BOT</span>
+                      <span className="text-gray-500 text-xs">Hoje às 14:24</span>
                     </div>
-                    <p className="text-gray-300 mb-3">
-                      RAG (Retrieval-Augmented Generation) conecta LLMs a bases de conhecimento externas, permitindo respostas mais precisas e atualizadas. 
-                      É crucial para reduzir alucinações e personalizar respostas com dados específicos.
-                    </p>
-                    <div className="flex space-x-2">
-                      <span className="bg-orange-900 text-orange-300 px-2 py-1 rounded text-xs">#rag</span>
-                      <span className="bg-teal-900 text-teal-300 px-2 py-1 rounded text-xs">#retrieval</span>
-                      <span className="bg-pink-900 text-pink-300 px-2 py-1 rounded text-xs">#generation</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Typing Indicator */}
-                <div className="flex items-start" style={{gap: '36px'}}>
-                  <BotAvatar />
-                  <div className="flex items-center space-x-2">
-                    <span className="text-white/60">Ask Gen está digitando</span>
-                    <div className="flex space-x-1">
-                      <motion.div
-                        className="w-2 h-2 bg-white/40 rounded-full"
-                        animate={{ opacity: [0.4, 1, 0.4] }}
-                        transition={{ duration: 1.5, repeat: Infinity, delay: 0 }}
-                      />
-                      <motion.div
-                        className="w-2 h-2 bg-white/40 rounded-full"
-                        animate={{ opacity: [0.4, 1, 0.4] }}
-                        transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }}
-                      />
-                      <motion.div
-                        className="w-2 h-2 bg-white/40 rounded-full"
-                        animate={{ opacity: [0.4, 1, 0.4] }}
-                        transition={{ duration: 1.5, repeat: Infinity, delay: 0.4 }}
-                      />
+                    <div className="bg-[#2f3136] rounded-lg p-4 border-l-4 border-green-500">
+                      <p className="text-gray-300 text-sm mb-3">
+                        RAG (Retrieval-Augmented Generation) conecta LLMs a bases de conhecimento externas, permitindo respostas mais precisas e atualizadas. É crucial para reduzir alucinações e personalizar respostas com dados específicos.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="bg-orange-600 text-white px-2 py-1 rounded text-xs">#rag</span>
+                        <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">#retrieval</span>
+                        <span className="bg-pink-600 text-white px-2 py-1 rounded text-xs">#generation</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="text-center mt-8">
-              <button className="px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg font-semibold text-white hover:from-cyan-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105" style={{ fontFamily: 'Oswald, sans-serif' }}>
-                Converse no Discord da Comunidade
-              </button>
-            </div>
+            {/* Narrative Transition to Onyx */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-center mt-16"
+            >
+              <div className="max-w-4xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                  className="mb-8"
+                >
+                  <p className="text-xl text-white/80 mb-4 leading-relaxed">
+                    Ask Gen responde suas perguntas sobre AI Data Engineering em tempo real.
+                  </p>
+                  <p className="text-lg text-white/60 mb-6 leading-relaxed">
+                    Mas e se, em vez de apenas reagir às suas dúvidas, ele pudesse <strong className="text-white/80">antecipar suas necessidades</strong>?
+                    <br />
+                    E se ele soubesse exatamente o que você precisa aprender <strong className="text-white/80">antes mesmo de você perguntar</strong>?
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.9 }}
+                  className="relative"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-600/20 to-gray-800/20 rounded-2xl blur-xl"></div>
+                  <div className="relative bg-gradient-to-br from-gray-900/50 to-black/50 rounded-2xl p-8 border border-gray-700/50 backdrop-blur-sm">
+                    <div className="flex items-center justify-center mb-6">
+                      <div className="w-16 h-16 rounded-full flex items-center justify-center relative">
+                        <motion.div
+                          animate={{ 
+                            rotate: 360,
+                          }}
+                          transition={{
+                            duration: 15,
+                            repeat: Infinity,
+                            ease: "linear"
+                          }}
+                          className="w-14 h-14 rounded-full bg-gradient-to-br from-gray-900 via-black to-gray-800"
+                          style={{
+                            background: `
+                              radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.4) 0%, transparent 50%),
+                              radial-gradient(circle at 70% 70%, rgba(75, 85, 99, 0.3) 0%, transparent 50%),
+                              linear-gradient(135deg, #111827 0%, #000000 50%, #1f2937 100%)
+                            `,
+                            boxShadow: `
+                              0 0 20px rgba(156, 163, 175, 0.4),
+                              inset 0 0 20px rgba(0, 0, 0, 0.8),
+                              0 0 40px rgba(156, 163, 175, 0.2)
+                            `
+                          }}
+                        >
+                          {/* Mini Inner Glow */}
+                          <div className="absolute inset-1 rounded-full bg-gradient-to-br from-gray-700/30 via-transparent to-gray-600/20" />
+                          
+                          {/* Mini Silver Neon Edge */}
+                          <motion.div
+                            animate={{ 
+                              opacity: [0.6, 1, 0.6],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            }}
+                            className="absolute inset-0 rounded-full border border-gray-300/60"
+                          />
+                          
+                          {/* Mini Floating Particles */}
+                          {[...Array(3)].map((_, i) => (
+                            <motion.div
+                              key={i}
+                              animate={{
+                                y: [-2, 2, -2],
+                                opacity: [0.3, 0.8, 0.3],
+                              }}
+                              transition={{
+                                duration: 2 + i * 0.5,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: i * 0.3
+                              }}
+                              className="absolute w-0.5 h-0.5 bg-gray-300 rounded-full"
+                              style={{
+                                left: `${30 + i * 20}%`,
+                                top: `${25 + i * 15}%`,
+                              }}
+                            />
+                          ))}
+                        </motion.div>
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-4" style={{ fontFamily: 'Oswald, sans-serif' }}>
+                      A Evolução Chegou
+                    </h3>
+                    <p className="text-white/70 mb-6 leading-relaxed">
+                      Do reativo ao proativo. Do assistente ao mentor. Do Ask Gen ao Ask Gen Onyx.
+                      <br />
+                      <strong className="text-white/90">A inteligência que acelera sua carreira enquanto você dorme.</strong>
+                    </p>
+                    
+                    <motion.button
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 1.1 }}
+                      onClick={() => {
+                        const element = document.getElementById('onyx');
+                        if (element) {
+                          const headerHeight = 80;
+                          const elementPosition = element.offsetTop - headerHeight;
+                          window.scrollTo({
+                            top: elementPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }}
+                      className="px-8 py-4 bg-gradient-to-r from-gray-600 to-gray-800 rounded-lg font-semibold text-white hover:from-gray-700 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border border-gray-500/30 group" 
+                      style={{ fontFamily: 'Oswald, sans-serif' }}
+                    >
+                      <span className="flex items-center space-x-2">
+                        <span>Descobrir Ask Gen Onyx</span>
+                        <motion.span
+                          animate={{ x: [0, 5, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                          className="group-hover:translate-x-1 transition-transform"
+                        >
+                          →
+                        </motion.span>
+                      </span>
+                    </motion.button>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </SectionContainer>
 
-      {/* Statistics Section */}
-      <SectionContainer gradient="from-orange-500/[0.12]" id="numeros">
+      {/* Ask Gen Onyx Section */}
+      <SectionContainer gradient="from-gray-500/[0.12]" id="onyx">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -490,14 +614,407 @@ function App() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-300 to-red-300" style={{ fontFamily: 'Oswald, sans-serif' }}>
-              AI Data Engineering em Números
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-6"
+            >
+              <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Apresentando</span>
+            </motion.div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6" style={{ fontFamily: 'Oswald, sans-serif' }}>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-slate-200 to-gray-400">
+                Ask Gen{' '}
+              </span>
+              <motion.span
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="bg-clip-text text-transparent bg-gradient-to-r from-gray-200 via-white to-gray-300"
+                style={{
+                  backgroundSize: '200% 200%',
+                  textShadow: '0 0 30px rgba(255, 255, 255, 0.5)',
+                  filter: 'drop-shadow(0 0 10px rgba(156, 163, 175, 0.8))'
+                }}
+              >
+                Onyx
+              </motion.span>
             </h2>
-            <p className="text-2xl font-semibold text-white mb-4">Mercado em Expansão</p>
-            <p className="text-lg text-white/70 max-w-3xl mx-auto">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-2xl md:text-3xl font-light mb-8 text-white/90 leading-relaxed"
+            >
+              A Revolução Proativa da <span className="text-gray-300 font-medium">Inteligência Artificial</span>
+            </motion.p>
+            <div className="max-w-4xl mx-auto space-y-4">
+              <p className="text-lg text-white/70 leading-relaxed">
+                Você conheceu o Ask Gen — o assistente que responde suas perguntas.
+              </p>
+              <p className="text-xl text-white/80 leading-relaxed font-medium">
+                Agora conheça o Onyx — a inteligência que <strong className="text-white">antecipa suas necessidades</strong> e 
+                <strong className="text-white"> acelera sua carreira</strong> com precisão analítica.
+              </p>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="pt-4"
+              >
+                <p className="text-lg text-gray-400 italic">
+                  "Enquanto você aprende, Onyx já sabe o que vem depois."
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Onyx 3D Orb */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="flex justify-center"
+            >
+              <div className="relative w-80 h-80 flex items-center justify-center">
+                {/* Main Onyx Orb */}
+                <motion.div
+                  animate={{ 
+                    rotate: 360,
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="relative w-64 h-64 rounded-full bg-gradient-to-br from-gray-900 via-black to-gray-800 shadow-2xl"
+                  style={{
+                    background: `
+                      radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.3) 0%, transparent 50%),
+                      radial-gradient(circle at 70% 70%, rgba(75, 85, 99, 0.2) 0%, transparent 50%),
+                      linear-gradient(135deg, #111827 0%, #000000 50%, #1f2937 100%)
+                    `,
+                    boxShadow: `
+                      0 0 60px rgba(156, 163, 175, 0.3),
+                      inset 0 0 60px rgba(0, 0, 0, 0.8),
+                      0 0 120px rgba(156, 163, 175, 0.1)
+                    `
+                  }}
+                >
+                  {/* Inner Glow */}
+                  <div className="absolute inset-4 rounded-full bg-gradient-to-br from-gray-700/20 via-transparent to-gray-600/10" />
+                  
+                  {/* Silver Neon Edges */}
+                  <motion.div
+                    animate={{ 
+                      opacity: [0.5, 1, 0.5],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute inset-0 rounded-full border-2 border-gray-300/50"
+                    style={{
+                      boxShadow: `
+                        0 0 20px rgba(156, 163, 175, 0.8),
+                        inset 0 0 20px rgba(156, 163, 175, 0.3)
+                      `
+                    }}
+                  />
+
+                  {/* Liquid Silver Flow */}
+                  <motion.div
+                    animate={{ 
+                      rotate: -360,
+                    }}
+                    transition={{
+                      duration: 15,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                    className="absolute inset-8 rounded-full"
+                    style={{
+                      background: `conic-gradient(from 0deg, transparent 0%, rgba(156, 163, 175, 0.6) 10%, transparent 20%, rgba(156, 163, 175, 0.4) 30%, transparent 40%)`
+                    }}
+                  />
+                </motion.div>
+
+                {/* Holographic Circuits Orbiting */}
+                {[...Array(3)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    animate={{ 
+                      rotate: 360,
+                    }}
+                    transition={{
+                      duration: 10 + i * 5,
+                      repeat: Infinity,
+                      ease: "linear",
+                      delay: i * 2
+                    }}
+                    className="absolute inset-0"
+                    style={{
+                      width: `${320 + i * 40}px`,
+                      height: `${320 + i * 40}px`,
+                      left: `${-20 - i * 20}px`,
+                      top: `${-20 - i * 20}px`
+                    }}
+                  >
+                    <div 
+                      className="w-2 h-2 bg-gray-300 rounded-full absolute"
+                      style={{
+                        top: '50%',
+                        right: '0',
+                        transform: 'translateY(-50%)',
+                        boxShadow: '0 0 10px rgba(156, 163, 175, 0.8)'
+                      }}
+                    />
+                    <div 
+                      className="w-1 h-1 bg-gray-400 rounded-full absolute"
+                      style={{
+                        top: '25%',
+                        right: '25%',
+                        boxShadow: '0 0 8px rgba(156, 163, 175, 0.6)'
+                      }}
+                    />
+                    <div 
+                      className="w-1 h-1 bg-gray-400 rounded-full absolute"
+                      style={{
+                        bottom: '25%',
+                        left: '25%',
+                        boxShadow: '0 0 8px rgba(156, 163, 175, 0.6)'
+                      }}
+                    />
+                  </motion.div>
+                ))}
+
+                {/* Data Stream Particles */}
+                {[...Array(8)].map((_, i) => (
+                  <motion.div
+                    key={`particle-${i}`}
+                    animate={{ 
+                      y: [-20, -100, -20],
+                      opacity: [0, 1, 0],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      delay: i * 0.5,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute w-1 h-4 bg-gradient-to-t from-gray-400 to-transparent rounded-full"
+                    style={{
+                      left: `${20 + i * 30}px`,
+                      bottom: '50%'
+                    }}
+                  />
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Features */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="space-y-8"
+            >
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Target className="w-6 h-6 text-gray-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
+                      Análise Proativa de Perfil
+                    </h3>
+                    <p className="text-white/70">
+                      Onyx analisa seu histórico de perguntas e identifica gaps de conhecimento antes mesmo de você perceber.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Zap className="w-6 h-6 text-gray-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
+                      Recomendações Personalizadas
+                    </h3>
+                    <p className="text-white/70">
+                      Baseado nas suas interações, Onyx sugere cursos, certificações e oportunidades específicas para você.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Bot className="w-6 h-6 text-gray-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
+                      Alertas de Carreira
+                    </h3>
+                    <p className="text-white/70">
+                      Onyx monitora o mercado e te avisa sobre vagas que combinam 100% com seu perfil.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Star className="w-6 h-6 text-gray-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
+                      Mentoria Inteligente
+                    </h3>
+                    <p className="text-white/70">
+                      Onyx cria um plano de carreira personalizado e te guia passo a passo até seus objetivos.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="pt-6"
+              >
+                <button className="px-8 py-4 bg-gradient-to-r from-gray-600 to-gray-800 rounded-lg font-semibold text-white hover:from-gray-700 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105" style={{ fontFamily: 'Oswald, sans-serif' }}>
+                  Ative seu Onyx Pessoal
+                </button>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Interactive Demo */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-20 max-w-4xl mx-auto"
+          >
+            <div className="bg-gradient-to-br from-gray-900/50 to-black/50 rounded-2xl p-6 border border-gray-700/50 backdrop-blur-sm">
+              <h3 className="text-xl font-bold text-white mb-4 text-center" style={{ fontFamily: 'Oswald, sans-serif' }}>
+                Veja o Onyx em Ação
+              </h3>
+              
+              <div className="space-y-3">
+                <div className="flex items-start space-x-3">
+                  <UserAvatar />
+                  <div className="flex-1">
+                    <div className="bg-blue-600/20 rounded-lg p-3 border border-blue-500/30">
+                      <p className="text-white text-sm">"Quero me especializar em GenAI para dados"</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <div 
+                    style={{
+                      width: '32px',
+                      height: '32px',
+                      minWidth: '32px',
+                      minHeight: '32px',
+                      maxWidth: '32px',
+                      maxHeight: '32px',
+                      boxSizing: 'border-box'
+                    }}
+                    className="relative rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center shadow-lg mt-1"
+                  >
+                    <div className="w-4 h-4 text-gray-300">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                      </svg>
+                    </div>
+                    <motion.div
+                      animate={{ 
+                        scale: [1, 1.2, 1],
+                        opacity: [0.5, 1, 0.5]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      className="absolute inset-0 rounded-full border border-gray-400/50"
+                      style={{
+                        boxShadow: '0 0 8px rgba(156, 163, 175, 0.5)'
+                      }}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <div className="bg-gray-800/50 rounded-lg p-3 border border-gray-600/30">
+                      <div className="flex items-center space-x-2 mb-2">
+                        <span className="text-gray-300 font-semibold text-sm">Onyx</span>
+                        <span className="bg-gray-600 text-white px-2 py-0.5 rounded text-xs font-bold">PROATIVO</span>
+                      </div>
+                      <p className="text-gray-300 mb-2 text-sm">
+                        🔮 <strong>Analisando seu perfil...</strong> Onyx detectou:
+                      </p>
+                      <div className="space-y-1.5 text-xs">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-blue-400">🎯</span>
+                          <span className="text-gray-300">RAG + Vector Databases (próximo passo ideal)</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-green-400">💼</span>
+                          <span className="text-gray-300">5 vagas GenAI Engineer abertas (90% match)</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-purple-400">📚</span>
+                          <span className="text-gray-300">Curso LangChain + ChromaDB recomendado</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-orange-400">⚡</span>
+                          <span className="text-gray-300">Certificação AWS Bedrock disponível</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </SectionContainer>
+
+      {/* Numbers Section */}
+      <SectionContainer gradient="from-orange-500/[0.12]" id="numeros">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-300 to-red-300" 
+            style={{ fontFamily: 'Oswald, sans-serif' }}
+          >
+            AI Data Engineering em Números
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-16"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Oswald, sans-serif' }}>
+              Mercado em Expansão
+            </h3>
+            <p className="text-lg text-white/80 mb-2">
               Dados do mercado global que demonstram o crescimento exponencial
             </p>
-            <p className="text-white/60 mt-2">
+            <p className="text-white/60">
               Análise baseada em fontes confiáveis da indústria
             </p>
           </motion.div>
@@ -510,26 +1027,26 @@ function App() {
                 value: "147%",
                 description: "crescimento previsto",
                 source: "Fonte: CONSAINSIGHTS",
-                gradient: "from-blue-500/[0.15]",
-                color: "text-blue-300"
+                gradient: "from-blue-600 to-blue-800",
+                bgGradient: "from-blue-500/[0.15]"
               },
               {
                 title: "Serviços de Engenharia",
                 subtitle: "Crescimento de Receita 2025-2030",
                 value: "CAGR ~15%",
                 description: "crescimento anual",
-                source: "Fonte: Mordor",
-                gradient: "from-green-500/[0.15]",
-                color: "text-green-300"
+                source: "Fonte: Market",
+                gradient: "from-green-600 to-green-800",
+                bgGradient: "from-green-500/[0.15]"
               },
               {
                 title: "Market Share",
                 subtitle: "Infraestrutura de Dados",
                 value: "BigQuery lidera 5x",
                 description: "dominância de mercado",
-                source: "Fonte: lakeFS",
-                gradient: "from-purple-500/[0.15]",
-                color: "text-purple-300"
+                source: "Fonte: IdataS",
+                gradient: "from-purple-600 to-purple-800",
+                bgGradient: "from-purple-500/[0.15]"
               },
               {
                 title: "Impacto Econômico",
@@ -537,8 +1054,8 @@ function App() {
                 value: "$3.1T",
                 description: "impacto global",
                 source: "Fonte: SpiralMantra",
-                gradient: "from-orange-500/[0.15]",
-                color: "text-orange-300"
+                gradient: "from-orange-600 to-red-600",
+                bgGradient: "from-orange-500/[0.15]"
               },
               {
                 title: "Mercado Global de AI",
@@ -546,8 +1063,8 @@ function App() {
                 value: "800%",
                 description: "crescimento",
                 source: "Fonte: Fortune Business",
-                gradient: "from-pink-500/[0.15]",
-                color: "text-pink-300"
+                gradient: "from-pink-600 to-rose-600",
+                bgGradient: "from-pink-500/[0.15]"
               },
               {
                 title: "Performance dos Pioneiros",
@@ -555,8 +1072,8 @@ function App() {
                 value: "2x",
                 description: "mais efetivos",
                 source: "Fonte: MIT/Boston Consulting",
-                gradient: "from-cyan-500/[0.15]",
-                color: "text-cyan-300"
+                gradient: "from-cyan-600 to-teal-600",
+                bgGradient: "from-cyan-500/[0.15]"
               }
             ].map((stat, index) => (
               <motion.div
@@ -564,17 +1081,31 @@ function App() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`p-8 rounded-2xl border border-white/[0.08] bg-gradient-to-br ${stat.gradient} backdrop-blur-sm hover:border-white/[0.15] transition-all duration-300`}
+                className={`relative p-8 rounded-2xl border border-white/[0.08] bg-gradient-to-br ${stat.bgGradient} backdrop-blur-sm hover:border-white/[0.15] transition-all duration-300 group`}
               >
-                <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
-                  {stat.title}
-                </h3>
-                <p className="text-white/70 text-sm mb-4">{stat.subtitle}</p>
-                <div className={`text-4xl font-bold mb-2 ${stat.color}`} style={{ fontFamily: 'Oswald, sans-serif' }}>
-                  {stat.value}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${stat.gradient} rounded-t-2xl`} />
+                
+                <div className="text-left">
+                  <h4 className="text-lg font-bold text-white mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
+                    {stat.title}
+                  </h4>
+                  <p className="text-sm text-white/70 mb-4">
+                    {stat.subtitle}
+                  </p>
+                  
+                  <div className="mb-4">
+                    <div className="text-3xl md:text-4xl font-bold text-white mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
+                      {stat.value}
+                    </div>
+                    <p className="text-white/80 text-sm">
+                      {stat.description}
+                    </p>
+                  </div>
+                  
+                  <p className="text-xs text-white/50">
+                    {stat.source}
+                  </p>
                 </div>
-                <p className="text-white/80 font-medium mb-3">{stat.description}</p>
-                <p className="text-white/50 text-xs">{stat.source}</p>
               </motion.div>
             ))}
           </div>
@@ -585,19 +1116,18 @@ function App() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-center"
           >
-            <h3 className="text-2xl font-bold text-white mb-4" style={{ fontFamily: 'Oswald, sans-serif' }}>
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6" style={{ fontFamily: 'Oswald, sans-serif' }}>
               Seja um Early Adopter
             </h3>
-            <p className="text-lg text-white/70 max-w-3xl mx-auto">
-              Os dados mostram: quem age primeiro, conquista resultados superiores. 
-              Junte-se aos pioneiros que estão moldando o futuro do AI Data Engineering.
+            <p className="text-lg text-white/80 max-w-4xl mx-auto leading-relaxed">
+              Os dados mostram: quem age primeiro, conquista resultados superiores. Junte-se aos pioneiros que estão moldando o futuro do AI Data Engineering.
             </p>
           </motion.div>
         </div>
       </SectionContainer>
 
       {/* Benefits Section */}
-      <SectionContainer gradient="from-emerald-500/[0.12]" id="beneficios">
+      <SectionContainer gradient="from-purple-500/[0.12]" id="beneficios">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -605,14 +1135,11 @@ function App() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 to-blue-300" style={{ fontFamily: 'Oswald, sans-serif' }}>
-              Benefícios Exclusivos
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-pink-300" style={{ fontFamily: 'Oswald, sans-serif' }}>
+              Para Cada Momento da Sua Jornada
             </h2>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Para Cada Perfil, Uma Experiência Única
-            </p>
-            <p className="text-lg text-white/60 mt-4 max-w-4xl mx-auto">
-              Seja você iniciante, profissional experiente ou empresa, temos benefícios exclusivos para acelerar sua jornada no mundo dos dados.
+              Seja você iniciante, profissional experiente ou empresa, temos o caminho ideal para o seu crescimento
             </p>
           </motion.div>
 
@@ -725,7 +1252,7 @@ function App() {
                 onClick={() => setIsAnnual(false)}
                 className={`px-6 py-2 rounded-full transition-all duration-300 ${
                   !isAnnual 
-                    ? 'bg-gradient-to-r from-rose-600 to-orange-600 text-white shadow-lg' 
+                    ? 'bg-gradient-to-r from-gray-600 to-gray-800 text-white shadow-lg border border-gray-500/30' 
                     : 'text-white/60 hover:text-white'
                 }`}
                 style={{ fontFamily: 'Oswald, sans-serif' }}
@@ -736,7 +1263,7 @@ function App() {
                 onClick={() => setIsAnnual(true)}
                 className={`px-6 py-2 rounded-full transition-all duration-300 ${
                   isAnnual 
-                    ? 'bg-gradient-to-r from-rose-600 to-orange-600 text-white shadow-lg' 
+                    ? 'bg-gradient-to-r from-gray-600 to-gray-800 text-white shadow-lg border border-gray-500/30' 
                     : 'text-white/60 hover:text-white'
                 }`}
                 style={{ fontFamily: 'Oswald, sans-serif' }}
@@ -755,7 +1282,7 @@ function App() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="relative p-8 rounded-2xl border border-white/[0.08] bg-gradient-to-br from-gray-500/[0.08] to-gray-600/[0.08] backdrop-blur-sm"
+              className="relative p-8 rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/[0.08] to-cyan-500/[0.08] backdrop-blur-sm"
             >
               <h3 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
                 Nível Gratuito
@@ -780,7 +1307,7 @@ function App() {
                 ))}
               </ul>
 
-              <button className="w-full py-3 bg-white/[0.08] border border-white/[0.15] rounded-lg font-semibold text-white hover:bg-white/[0.12] transition-all duration-300" style={{ fontFamily: 'Oswald, sans-serif' }}>
+              <button className="w-full py-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg font-semibold text-white hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105" style={{ fontFamily: 'Oswald, sans-serif' }}>
                 Começar Gratuitamente
               </button>
             </motion.div>
@@ -790,20 +1317,52 @@ function App() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="relative p-8 rounded-2xl border border-orange-500/30 bg-gradient-to-br from-orange-500/[0.08] to-red-500/[0.08] backdrop-blur-sm"
+              className="relative p-8 rounded-2xl border border-gray-500/50 bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm"
+              style={{
+                boxShadow: `
+                  0 0 30px rgba(156, 163, 175, 0.2),
+                  inset 0 0 30px rgba(0, 0, 0, 0.5)
+                `
+              }}
             >
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                  🔥 Mais Popular
+                <span className="bg-gradient-to-r from-gray-600 to-gray-800 text-white px-4 py-1 rounded-full text-sm font-semibold border border-gray-500/50">
+                  ⚡ Ask Gen Onyx
                 </span>
               </div>
 
-              <h3 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
-                Nível Premium
-              </h3>
+              <div className="flex items-center space-x-3 mb-4">
+                <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'Oswald, sans-serif' }}>
+                  Nível Premium
+                </h3>
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center"
+                  style={{
+                    background: `
+                      radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.3) 0%, transparent 50%),
+                      linear-gradient(135deg, #111827 0%, #000000 50%, #1f2937 100%)
+                    `,
+                    boxShadow: `
+                      0 0 15px rgba(156, 163, 175, 0.3),
+                      inset 0 0 15px rgba(0, 0, 0, 0.8)
+                    `
+                  }}
+                >
+                  <motion.div
+                    animate={{ 
+                      opacity: [0.6, 1, 0.6],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="w-1 h-1 bg-gray-300 rounded-full"
+                  />
+                </div>
+              </div>
               <p className="text-white/70 mb-6">Para profissionais sérios em AI Data Engineering</p>
               
-                  <div className="text-4xl font-bold text-white mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
+              <div className="text-4xl font-bold text-white mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
                 {isAnnual ? 'R$ 499' : 'R$ 49,90'}
                 <span className="text-lg text-white/60 font-normal">
                   {isAnnual ? '/ano' : '/mês'}
@@ -817,22 +1376,74 @@ function App() {
 
               <ul className="space-y-3 mb-8">
                 {[
-                  "Ask Gen Ilimitado",
-                  "Acesso completo ao Discord (canais exclusivos)",
-                  "Participação nas reuniões mensais no Zoom do AIDE Labs",
-                  "Newsletter Semanal do que está mais quente no mercado",
-                  "Ask Me Anything: Mentoria em grupo mensal (1h)",
-                  "Projetos colaborativos",
-                  "Job board exclusivo"
+                  {
+                    text: "Ask Gen Onyx - Inteligência Proativa",
+                    isOnyx: true
+                  },
+                  {
+                    text: "Ask Gen Ilimitado",
+                    isOnyx: false
+                  },
+                  {
+                    text: "Acesso completo ao Discord (canais exclusivos)",
+                    isOnyx: false
+                  },
+                  {
+                    text: "Participação nas reuniões mensais no Zoom do AIDE Labs",
+                    isOnyx: false
+                  },
+                  {
+                    text: "Newsletter Semanal do que está mais quente no mercado",
+                    isOnyx: false
+                  },
+                  {
+                    text: "Ask Me Anything: Mentoria em grupo mensal (1h)",
+                    isOnyx: false
+                  },
+                  {
+                    text: "Projetos colaborativos",
+                    isOnyx: false
+                  },
+                  {
+                    text: "Job board exclusivo",
+                    isOnyx: false
+                  }
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-400" />
-                    <span className="text-white/80">{feature}</span>
+                    {feature.isOnyx ? (
+                      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center flex-shrink-0"
+                        style={{
+                          background: `
+                            radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.4) 0%, transparent 50%),
+                            linear-gradient(135deg, #111827 0%, #000000 50%, #1f2937 100%)
+                          `,
+                          boxShadow: `
+                            0 0 8px rgba(156, 163, 175, 0.3),
+                            inset 0 0 8px rgba(0, 0, 0, 0.8)
+                          `
+                        }}
+                      >
+                        <motion.div
+                          animate={{ 
+                            opacity: [0.6, 1, 0.6],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                          className="w-1 h-1 bg-gray-300 rounded-full"
+                        />
+                      </div>
+                    ) : (
+                      <CheckCircle className="w-5 h-5 text-green-400" />
+                    )}
+                    <span className="text-white/80">{feature.text}</span>
                   </li>
                 ))}
               </ul>
 
-              <button className="w-full py-3 bg-gradient-to-r from-orange-600 to-red-600 rounded-lg font-semibold text-white hover:from-orange-700 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105" style={{ fontFamily: 'Oswald, sans-serif' }}>
+              <button className="w-full py-3 bg-gradient-to-r from-gray-600 to-gray-800 rounded-lg font-semibold text-white hover:from-gray-700 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border border-gray-500/30" style={{ fontFamily: 'Oswald, sans-serif' }}>
                 Começar Premium
               </button>
             </motion.div>
