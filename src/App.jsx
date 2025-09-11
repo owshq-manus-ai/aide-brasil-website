@@ -1249,6 +1249,7 @@ function App() {
             <p className="text-lg text-white/60">
               Análise baseada em fontes confiáveis da indústria
             </p>
+            {/* Force deployment - all cards should have orange colors */}
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
