@@ -902,87 +902,195 @@ function App() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-20 max-w-4xl mx-auto"
+            className="mt-20 max-w-5xl mx-auto"
           >
-            <div className="bg-gradient-to-br from-gray-900/50 to-black/50 rounded-2xl p-6 border border-gray-700/50 backdrop-blur-sm">
-              <h3 className="text-xl font-bold text-white mb-4 text-center" style={{ fontFamily: 'Oswald, sans-serif' }}>
+            <div className="text-center mb-12">
+              <motion.h3 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="text-3xl font-bold text-white mb-4" 
+                style={{ fontFamily: 'Oswald, sans-serif' }}
+              >
                 Veja o Onyx em Ação
-              </h3>
+              </motion.h3>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.0 }}
+                className="text-white/60 text-lg"
+              >
+                Demonstração da inteligência proativa em tempo real
+              </motion.p>
+            </div>
+            
+            <div className="relative">
+              {/* Background Glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-600/10 via-gray-500/5 to-gray-600/10 rounded-3xl blur-xl" />
               
-              <div className="space-y-3">
-                <div className="flex items-start space-x-3">
-                  <UserAvatar />
-                  <div className="flex-1">
-                    <div className="bg-blue-600/20 rounded-lg p-3 border border-blue-500/30">
-                      <p className="text-white text-sm">"Quero me especializar em GenAI para dados"</p>
+              <div className="relative bg-gradient-to-br from-gray-900/80 via-black/60 to-gray-800/80 rounded-3xl p-8 border border-gray-600/30 backdrop-blur-sm"
+                style={{
+                  background: `
+                    radial-gradient(circle at 20% 20%, rgba(156, 163, 175, 0.08) 0%, transparent 50%),
+                    linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(0, 0, 0, 0.9) 50%, rgba(31, 41, 55, 0.95) 100%)
+                  `,
+                  boxShadow: `
+                    0 20px 60px rgba(0, 0, 0, 0.5),
+                    inset 0 1px 0 rgba(156, 163, 175, 0.1),
+                    0 0 0 1px rgba(156, 163, 175, 0.05)
+                  `
+                }}
+              >
+                {/* User Input */}
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 1.2 }}
+                  className="mb-8"
+                >
+                  <div className="flex items-center space-x-4 p-5 bg-gradient-to-r from-blue-600/15 to-purple-600/15 rounded-2xl border border-blue-500/20 backdrop-blur-sm">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <User className="w-6 h-6 text-white" />
                     </div>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <div 
-                    style={{
-                      width: '32px',
-                      height: '32px',
-                      minWidth: '32px',
-                      minHeight: '32px',
-                      maxWidth: '32px',
-                      maxHeight: '32px',
-                      boxSizing: 'border-box'
-                    }}
-                    className="relative rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center shadow-lg mt-1"
-                  >
-                    <div className="w-4 h-4 text-gray-300">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                      </svg>
-                    </div>
-                    <motion.div
-                      animate={{ 
-                        scale: [1, 1.2, 1],
-                        opacity: [0.5, 1, 0.5]
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                      className="absolute inset-0 rounded-full border border-gray-400/50"
-                      style={{
-                        boxShadow: '0 0 8px rgba(156, 163, 175, 0.5)'
-                      }}
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <div className="bg-gray-800/50 rounded-lg p-3 border border-gray-600/30">
-                      <div className="flex items-center space-x-2 mb-2">
-                        <span className="text-gray-300 font-semibold text-sm">Onyx</span>
-                        <span className="bg-gray-600 text-white px-2 py-0.5 rounded text-xs font-bold">PROATIVO</span>
-                      </div>
-                      <p className="text-gray-300 mb-2 text-sm">
-                        🔮 <strong>Analisando seu perfil...</strong> Onyx detectou:
+                    <div className="flex-1">
+                      <p className="text-white font-medium text-lg">
+                        "Quero me especializar em GenAI para dados"
                       </p>
-                      <div className="space-y-1.5 text-xs">
-                        <div className="flex items-center space-x-2">
-                          <span className="text-blue-400">🎯</span>
-                          <span className="text-gray-300">RAG + Vector Databases (próximo passo ideal)</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <span className="text-green-400">💼</span>
-                          <span className="text-gray-300">5 vagas GenAI Engineer abertas (90% match)</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <span className="text-purple-400">📚</span>
-                          <span className="text-gray-300">Curso LangChain + ChromaDB recomendado</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <span className="text-orange-400">⚡</span>
-                          <span className="text-gray-300">Certificação AWS Bedrock disponível</span>
-                        </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Onyx Response */}
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 1.4 }}
+                  className="mb-6"
+                >
+                  <div className="flex items-start space-x-4 p-6 bg-gradient-to-br from-gray-800/60 via-gray-900/40 to-black/60 rounded-2xl border border-gray-600/20 backdrop-blur-sm"
+                    style={{
+                      background: `
+                        radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.08) 0%, transparent 50%),
+                        linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(0, 0, 0, 0.9) 50%, rgba(17, 24, 39, 0.8) 100%)
+                      `,
+                      boxShadow: `
+                        0 10px 40px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(156, 163, 175, 0.08)
+                      `
+                    }}
+                  >
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{
+                        background: `
+                          radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.4) 0%, transparent 50%),
+                          linear-gradient(135deg, #111827 0%, #000000 50%, #1f2937 100%)
+                        `,
+                        boxShadow: `
+                          0 0 20px rgba(156, 163, 175, 0.3),
+                          inset 0 0 20px rgba(0, 0, 0, 0.8)
+                        `
+                      }}
+                    >
+                      <motion.div
+                        animate={{ 
+                          opacity: [0.6, 1, 0.6],
+                          scale: [1, 1.1, 1]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                        className="w-3 h-3 bg-gray-300 rounded-full"
+                        style={{
+                          boxShadow: '0 0 10px rgba(156, 163, 175, 0.6)'
+                        }}
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <span className="text-white font-bold text-lg">Onyx</span>
+                        <span className="px-3 py-1 bg-gradient-to-r from-gray-600 to-gray-800 text-white text-sm rounded-full border border-gray-500/30 font-semibold">
+                          PROATIVO
+                        </span>
+                      </div>
+                      
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 1.6 }}
+                        className="mb-6"
+                      >
+                        <p className="text-gray-300 text-base mb-6 flex items-center">
+                          <Zap className="w-5 h-5 text-yellow-400 mr-3" />
+                          <strong>Analisando seu perfil...</strong> Onyx detectou:
+                        </p>
+                      </motion.div>
+
+                      <div className="grid gap-4">
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 1.8 }}
+                          className="flex items-center space-x-4 p-4 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-xl border border-blue-500/20 hover:border-blue-400/30 transition-all duration-300"
+                        >
+                          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
+                            <Target className="w-5 h-5 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-white font-semibold">RAG + Vector Databases</p>
+                            <p className="text-blue-300 text-sm">próximo passo ideal</p>
+                          </div>
+                        </motion.div>
+
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 2.0 }}
+                          className="flex items-center space-x-4 p-4 bg-gradient-to-r from-green-600/10 to-emerald-600/10 rounded-xl border border-green-500/20 hover:border-green-400/30 transition-all duration-300"
+                        >
+                          <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center">
+                            <Briefcase className="w-5 h-5 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-white font-semibold">5 vagas GenAI Engineer abertas</p>
+                            <p className="text-green-300 text-sm">90% match com seu perfil</p>
+                          </div>
+                        </motion.div>
+
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 2.2 }}
+                          className="flex items-center space-x-4 p-4 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-xl border border-purple-500/20 hover:border-purple-400/30 transition-all duration-300"
+                        >
+                          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
+                            <BookOpen className="w-5 h-5 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-white font-semibold">Curso LangChain + ChromaDB</p>
+                            <p className="text-purple-300 text-sm">recomendado para você</p>
+                          </div>
+                        </motion.div>
+
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 2.4 }}
+                          className="flex items-center space-x-4 p-4 bg-gradient-to-r from-orange-600/10 to-red-600/10 rounded-xl border border-orange-500/20 hover:border-orange-400/30 transition-all duration-300"
+                        >
+                          <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-700 rounded-lg flex items-center justify-center">
+                            <Award className="w-5 h-5 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-white font-semibold">Certificação AWS Bedrock</p>
+                            <p className="text-orange-300 text-sm">disponível agora</p>
+                          </div>
+                        </motion.div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
