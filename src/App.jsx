@@ -898,14 +898,14 @@ function App() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-20 max-w-5xl mx-auto"
+            className="mt-16 max-w-4xl mx-auto"
           >
-            <div className="text-center mb-12">
+            <div className="text-center mb-8">
               <motion.h3 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
-                className="text-3xl font-bold text-white mb-4" 
+                className="text-3xl font-bold text-white mb-3" 
                 style={{ fontFamily: 'Oswald, sans-serif' }}
               >
                 Veja o Onyx em Ação
@@ -922,9 +922,9 @@ function App() {
             
             <div className="relative">
               {/* Background Glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-600/10 via-gray-500/5 to-gray-600/10 rounded-3xl blur-xl" />
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-600/10 via-gray-500/5 to-gray-600/10 rounded-2xl blur-xl" />
               
-              <div className="relative bg-gradient-to-br from-gray-900/80 via-black/60 to-gray-800/80 rounded-3xl p-8 border border-gray-600/30 backdrop-blur-sm"
+              <div className="relative bg-gradient-to-br from-gray-900/80 via-black/60 to-gray-800/80 rounded-2xl p-6 border border-gray-600/30 backdrop-blur-sm"
                 style={{
                   background: `
                     radial-gradient(circle at 20% 20%, rgba(156, 163, 175, 0.08) 0%, transparent 50%),
@@ -942,9 +942,9 @@ function App() {
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 1.2 }}
-                  className="mb-8"
+                  className="mb-6"
                 >
-                  <div className="flex items-center space-x-4 p-5 bg-gradient-to-r from-blue-600/15 to-purple-600/15 rounded-2xl border border-blue-500/20 backdrop-blur-sm">
+                  <div className="flex items-center space-x-4 p-4 bg-gradient-to-r from-blue-600/15 to-purple-600/15 rounded-xl border border-blue-500/20 backdrop-blur-sm">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 shadow-lg">
                       <Bot className="w-6 h-6 text-white" />
                     </div>
@@ -961,9 +961,9 @@ function App() {
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 1.4 }}
-                  className="mb-6"
+                  className="mb-4"
                 >
-                  <div className="flex items-start space-x-4 p-6 bg-gradient-to-br from-gray-800/60 via-gray-900/40 to-black/60 rounded-2xl border border-gray-600/20 backdrop-blur-sm"
+                  <div className="flex items-start space-x-4 p-5 bg-gradient-to-br from-gray-800/60 via-gray-900/40 to-black/60 rounded-xl border border-gray-600/20 backdrop-blur-sm"
                     style={{
                       background: `
                         radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.08) 0%, transparent 50%),
@@ -1015,20 +1015,20 @@ function App() {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 1.6 }}
-                        className="mb-6"
+                        className="mb-4"
                       >
-                        <p className="text-gray-300 text-base mb-6 flex items-center">
+                        <p className="text-gray-300 text-base mb-4 flex items-center">
                           <Zap className="w-5 h-5 text-yellow-400 mr-3" />
                           <strong>Analisando seu perfil...</strong> Onyx detectou:
                         </p>
                       </motion.div>
 
-                      <div className="grid gap-4">
+                      <div className="grid gap-3">
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 1.8 }}
-                          className="flex items-center space-x-4 p-4 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-xl border border-blue-500/20 hover:border-blue-400/30 transition-all duration-300"
+                          className="flex items-center space-x-4 p-3 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-lg border border-blue-500/20 hover:border-blue-400/30 transition-all duration-300"
                         >
                           <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
                             <Target className="w-5 h-5 text-white" />
@@ -1043,7 +1043,7 @@ function App() {
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 2.0 }}
-                          className="flex items-center space-x-4 p-4 bg-gradient-to-r from-green-600/10 to-emerald-600/10 rounded-xl border border-green-500/20 hover:border-green-400/30 transition-all duration-300"
+                          className="flex items-center space-x-4 p-3 bg-gradient-to-r from-green-600/10 to-emerald-600/10 rounded-lg border border-green-500/20 hover:border-green-400/30 transition-all duration-300"
                         >
                           <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center">
                             <Briefcase className="w-5 h-5 text-white" />
@@ -1058,7 +1058,7 @@ function App() {
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 2.2 }}
-                          className="flex items-center space-x-4 p-4 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-xl border border-purple-500/20 hover:border-purple-400/30 transition-all duration-300"
+                          className="flex items-center space-x-4 p-3 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-lg border border-purple-500/20 hover:border-purple-400/30 transition-all duration-300"
                         >
                           <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
                             <BookOpen className="w-5 h-5 text-white" />
@@ -1073,7 +1073,7 @@ function App() {
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 2.4 }}
-                          className="flex items-center space-x-4 p-4 bg-gradient-to-r from-orange-600/10 to-red-600/10 rounded-xl border border-orange-500/20 hover:border-orange-400/30 transition-all duration-300"
+                          className="flex items-center space-x-4 p-3 bg-gradient-to-r from-orange-600/10 to-red-600/10 rounded-lg border border-orange-500/20 hover:border-orange-400/30 transition-all duration-300"
                         >
                           <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-700 rounded-lg flex items-center justify-center">
                             <Award className="w-5 h-5 text-white" />
