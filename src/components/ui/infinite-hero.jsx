@@ -215,8 +215,8 @@ export default function InfiniteHero({
                 style={{ 
                   fontFamily: 'Oswald, sans-serif',
                   backgroundSize: '200% 200%',
-                  textShadow: '0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1)',
-                  filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.2))',
+                  textShadow: '0 0 8px rgba(192, 192, 192, 0.3), 0 0 16px rgba(169, 169, 169, 0.2), 0 0 24px rgba(128, 128, 128, 0.1)',
+                  filter: 'drop-shadow(0 0 6px rgba(192, 192, 192, 0.3)) drop-shadow(0 0 12px rgba(169, 169, 169, 0.2))',
                   WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.2)'
                 }}
               >

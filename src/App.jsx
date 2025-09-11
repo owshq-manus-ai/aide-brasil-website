@@ -91,8 +91,8 @@ const CyclingText = () => {
         className="text-8xl md:text-9xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-white section-title"
         style={{
           backgroundSize: '200% 200%',
-          textShadow: '0 0 12px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.2)',
-          filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))',
+          textShadow: '0 0 8px rgba(192, 192, 192, 0.3), 0 0 16px rgba(169, 169, 169, 0.2), 0 0 24px rgba(128, 128, 128, 0.1)',
+          filter: 'drop-shadow(0 0 6px rgba(192, 192, 192, 0.3)) drop-shadow(0 0 12px rgba(169, 169, 169, 0.2))',
           WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.3)'
         }}
       >
@@ -492,8 +492,8 @@ function App() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-purple-400 font-semibold text-sm">@Data_Engineer</span>
-                      <span className="bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-bold">USER</span>
+                      <span className="text-cyan-400 font-semibold text-sm">@Data_Engineer</span>
+                      <span className="bg-cyan-600 text-white px-2 py-0.5 rounded text-xs font-bold">USER</span>
                       <span className="text-gray-500 text-xs discord-text">Hoje às 14:20</span>
                     </div>
                     <div className="bg-[#40444b] rounded-lg p-4">
@@ -531,7 +531,7 @@ function App() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-cyan-400 font-semibold text-sm discord-username">@Data_Engineer</span>
+                      <span className="text-cyan-400 font-semibold text-sm discord-username">AI Data Engineer</span>
                       <span className="bg-cyan-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">USER</span>
                       <span className="text-gray-500 text-xs discord-text">Hoje às 14:23</span>
                     </div>
@@ -556,9 +556,9 @@ function App() {
                         RAG (Retrieval-Augmented Generation) conecta LLMs a bases de conhecimento externas, permitindo respostas mais precisas e atualizadas. É crucial para reduzir alucinações e personalizar respostas com dados específicos.
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        <span className="bg-cyan-600 text-white px-2 py-1 rounded text-xs">#rag</span>
-                        <span className="bg-cyan-500 text-white px-2 py-1 rounded text-xs">#retrieval</span>
-                        <span className="bg-cyan-700 text-white px-2 py-1 rounded text-xs">#generation</span>
+                        <span className="bg-cyan-700 text-white px-2 py-1 rounded text-xs">#rag</span>
+                        <span className="bg-cyan-600 text-white px-2 py-1 rounded text-xs">#retrieval</span>
+                        <span className="bg-cyan-500 text-white px-2 py-1 rounded text-xs">#generation</span>
                       </div>
                     </div>
                   </div>
@@ -725,7 +725,7 @@ function App() {
             >
               <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Apresentando</span>
             </motion.div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 section-title">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-slate-200 to-gray-400">
                 Ask Gen{' '}
               </span>
@@ -932,7 +932,7 @@ function App() {
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Target className="w-6 h-6 text-gray-300" />
+                    <User className="w-6 h-6 text-gray-300" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white mb-2 section-subtitle">
@@ -1053,7 +1053,7 @@ function App() {
                 >
                   <div className="flex items-center space-x-4 p-4 bg-gradient-to-r from-blue-600/15 to-purple-600/15 rounded-xl border border-blue-500/20 backdrop-blur-sm">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 shadow-lg">
-                      <Bot className="w-6 h-6 text-white" />
+                      <User className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
                       <p className="text-white font-medium text-lg">
@@ -1259,8 +1259,8 @@ function App() {
                 value: "147%",
                 description: "crescimento previsto",
                 source: "Fonte: CONSAINSIGHTS",
-                gradient: "from-blue-600 to-blue-800",
-                bgGradient: "from-blue-500/[0.15]"
+                gradient: "from-orange-600 to-red-600",
+                bgGradient: "from-orange-500/[0.15]"
               },
               {
                 title: "Serviços de Engenharia",
@@ -1268,8 +1268,8 @@ function App() {
                 value: "CAGR ~15%",
                 description: "crescimento anual",
                 source: "Fonte: Market",
-                gradient: "from-green-600 to-green-800",
-                bgGradient: "from-green-500/[0.15]"
+                gradient: "from-orange-600 to-red-600",
+                bgGradient: "from-orange-500/[0.15]"
               },
               {
                 title: "Market Share",
@@ -1277,8 +1277,8 @@ function App() {
                 value: "BigQuery lidera 5x",
                 description: "dominância de mercado",
                 source: "Fonte: IdataS",
-                gradient: "from-purple-600 to-purple-800",
-                bgGradient: "from-purple-500/[0.15]"
+                gradient: "from-orange-600 to-red-600",
+                bgGradient: "from-orange-500/[0.15]"
               },
               {
                 title: "Impacto Econômico",
@@ -1295,8 +1295,8 @@ function App() {
                 value: "800%",
                 description: "crescimento",
                 source: "Fonte: Fortune Business",
-                gradient: "from-pink-600 to-rose-600",
-                bgGradient: "from-pink-500/[0.15]"
+                gradient: "from-orange-600 to-red-600",
+                bgGradient: "from-orange-500/[0.15]"
               },
               {
                 title: "Performance dos Pioneiros",
@@ -1304,8 +1304,8 @@ function App() {
                 value: "2x",
                 description: "mais efetivos",
                 source: "Fonte: MIT/Boston Consulting",
-                gradient: "from-cyan-600 to-teal-600",
-                bgGradient: "from-cyan-500/[0.15]"
+                gradient: "from-orange-600 to-red-600",
+                bgGradient: "from-orange-500/[0.15]"
               }
             ].map((stat, index) => (
               <motion.div
@@ -1421,8 +1421,8 @@ function App() {
                   "Networking com profissionais",
                   "Certificações reconhecidas"
                 ],
-                gradient: "from-green-500/[0.15]",
-                headerGradient: "from-green-600 to-emerald-600",
+                gradient: "from-purple-500/[0.15]",
+                headerGradient: "from-purple-600 to-violet-600",
                 icon: Target
               },
               {
@@ -1435,8 +1435,8 @@ function App() {
                   "Networking C-level",
                   "Consultoria especializada"
                 ],
-                gradient: "from-blue-500/[0.15]",
-                headerGradient: "from-blue-600 to-indigo-600",
+                gradient: "from-purple-500/[0.15]",
+                headerGradient: "from-purple-600 to-violet-600",
                 icon: Users
               },
               {
