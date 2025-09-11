@@ -124,15 +124,17 @@ const BaseAvatar = ({ bgColor, children, hasRelative = false }) => (
 
 // Bot Avatar Component
 const BotAvatar = () => (
-  <BaseAvatar bgColor="bg-gradient-to-br from-green-400 to-green-500" hasRelative={true}>
-    {/* Modern Chip/Processor Icon */}
-    <svg style={{width: '20px', height: '20px'}} className="text-black" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M5,7H7V5A2,2 0 0,1 9,3H15A2,2 0 0,1 17,5V7H19A2,2 0 0,1 21,9V15A2,2 0 0,1 19,17H17V19A2,2 0 0,1 15,21H9A2,2 0 0,1 7,19V17H5A2,2 0 0,1 3,15V9A2,2 0 0,1 5,7M9,5V7H15V5H9M19,9H17V15H19V9M15,19V17H9V19H15M5,15H7V9H5V15M9,9V15H15V9H9M11,11H13V13H11V11Z"/>
+  <BaseAvatar bgColor="bg-gradient-to-br from-emerald-400 to-cyan-500" hasRelative={true}>
+    {/* Modern AI Brain/Neural Network Icon */}
+    <svg style={{width: '20px', height: '20px'}} className="text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 7.5V9C15 10.1 14.1 11 13 11S11 10.1 11 9V7.5L9 7.5V9C9 10.1 8.1 11 7 11S5 10.1 5 9V7.5L3 7V9C3 10.1 3.9 11 5 11C5.8 11 6.5 10.6 6.9 10H8.1C8.5 10.6 9.2 11 10 11H11V13H10C9.2 13 8.5 13.4 8.1 14H6.9C6.5 13.4 5.8 13 5 13C3.9 13 3 13.9 3 15V17L5 16.5V15C5 13.9 5.9 13 7 13S9 13.9 9 15V16.5L11 16.5V15C11 13.9 11.9 13 13 13S15 13.9 15 15V16.5L21 17V15C21 13.9 20.1 13 19 13C18.2 13 17.5 13.4 17.1 14H15.9C15.5 13.4 14.8 13 14 13H13V11H14C14.8 11 15.5 10.6 15.9 10H17.1C17.5 10.6 18.2 11 19 11C20.1 11 21 10.1 21 9Z"/>
+      {/* Central processing core */}
+      <circle cx="12" cy="12" r="2" opacity="0.8"/>
     </svg>
-    {/* Purple Star */}
-    <div style={{width: '16px', height: '16px'}} className="absolute -top-1 -right-1 rounded-full bg-gradient-to-br from-purple-400 to-purple-500 flex items-center justify-center">
+    {/* Enhanced AI Badge */}
+    <div style={{width: '16px', height: '16px'}} className="absolute -top-1 -right-1 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
       <svg style={{width: '10px', height: '10px'}} className="text-white" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.46,13.97L5.82,21L12,17.27Z"/>
+        <path d="M9.5 2C8.67 2 8 2.67 8 3.5V5.5C8 6.33 8.67 7 9.5 7S11 6.33 11 5.5V3.5C11 2.67 10.33 2 9.5 2ZM14.5 2C13.67 2 13 2.67 13 3.5V5.5C13 6.33 13.67 7 14.5 7S16 6.33 16 5.5V3.5C16 2.67 15.33 2 14.5 2ZM12 8C8.69 8 6 10.69 6 14S8.69 20 12 20 18 17.31 18 14 15.31 8 12 8ZM12 18C9.79 18 8 16.21 8 14S9.79 10 12 10 16 11.79 16 14 14.21 18 12 18ZM10 14C10 12.9 10.9 12 12 12S14 12.9 14 14 13.1 16 12 16 10 15.1 10 14Z"/>
       </svg>
     </div>
   </BaseAvatar>
@@ -140,9 +142,12 @@ const BotAvatar = () => (
 
 // User Avatar Component
 const UserAvatar = () => (
-  <BaseAvatar bgColor="bg-gradient-to-br from-blue-500 to-purple-600">
+  <BaseAvatar bgColor="bg-gradient-to-br from-cyan-500 to-blue-600">
+    {/* Modern Data Engineer Icon - Database with Analytics */}
     <svg style={{width: '20px', height: '20px'}} className="text-white" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/>
+      <path d="M12 3C16.97 3 21 4.43 21 6.1V17.9C21 19.57 16.97 21 12 21C7.03 21 3 19.57 3 17.9V6.1C3 4.43 7.03 3 12 3ZM12 5C8.13 5 5 5.9 5 6.1C5 6.3 8.13 7.2 12 7.2C15.87 7.2 19 6.3 19 6.1C19 5.9 15.87 5 12 5ZM5 8.81C6.11 9.5 8.91 10.2 12 10.2C15.09 10.2 17.89 9.5 19 8.81V11.1C19 11.3 15.87 12.2 12 12.2C8.13 12.2 5 11.3 5 11.1V8.81ZM5 13.81C6.11 14.5 8.91 15.2 12 15.2C15.09 15.2 17.89 14.5 19 13.81V17.9C19 18.1 15.87 19 12 19C8.13 19 5 18.1 5 17.9V13.81Z"/>
+      {/* Analytics overlay */}
+      <path d="M14 8L16 10L14 12M10 8L8 10L10 12" opacity="0.7"/>
     </svg>
   </BaseAvatar>
 )
@@ -429,7 +434,7 @@ function App() {
             >
               <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Converse com o</span>
             </motion.div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 section-title text-center">
               <motion.span
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
@@ -442,13 +447,13 @@ function App() {
                 className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-200 via-white to-blue-300"
                 style={{
                   backgroundSize: '200% 200%',
-                  textShadow: '0 0 30px rgba(6, 182, 212, 0.5)',
-                  filter: 'drop-shadow(0 0 10px rgba(6, 182, 212, 0.8))'
+                  textShadow: '0 0 40px rgba(6, 182, 212, 0.7)',
+                  filter: 'drop-shadow(0 0 15px rgba(6, 182, 212, 1))'
                 }}
               >
                 Ask Gen
               </motion.span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-300"> — AI Data Engineering Assistant</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-300 text-3xl md:text-5xl lg:text-6xl block mt-2"> — AI Data Engineering Assistant</span>
             </h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -492,8 +497,11 @@ function App() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-cyan-400 font-semibold text-sm">@Data_Engineer</span>
-                      <span className="bg-cyan-600 text-white px-2 py-0.5 rounded text-xs font-bold">USER</span>
+                      <span className="text-cyan-300 font-bold text-sm" style={{
+                        textShadow: '0 0 10px rgba(6, 182, 212, 0.8)',
+                        filter: 'drop-shadow(0 0 5px rgba(6, 182, 212, 0.6))'
+                      }}>@Data_Engineer</span>
+                      <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-2 py-0.5 rounded text-xs font-bold shadow-lg">USER</span>
                       <span className="text-gray-500 text-xs discord-text">Hoje às 14:20</span>
                     </div>
                     <div className="bg-[#40444b] rounded-lg p-4">
@@ -508,8 +516,11 @@ function App() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-cyan-400 font-semibold text-sm discord-username">Ask Gen</span>
-                      <span className="bg-cyan-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">BOT</span>
+                      <span className="text-cyan-300 font-bold text-sm discord-username" style={{
+                        textShadow: '0 0 10px rgba(6, 182, 212, 0.8)',
+                        filter: 'drop-shadow(0 0 5px rgba(6, 182, 212, 0.6))'
+                      }}>Ask Gen</span>
+                      <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag shadow-lg">BOT</span>
                       <span className="text-gray-500 text-xs discord-text">Hoje às 14:21</span>
                     </div>
                     <div className="bg-[#2f3136] rounded-lg p-4 border-l-4 border-cyan-500">
@@ -547,8 +558,11 @@ function App() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-cyan-400 font-semibold text-sm discord-username">Ask Gen</span>
-                      <span className="bg-cyan-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">BOT</span>
+                      <span className="text-cyan-300 font-bold text-sm discord-username" style={{
+                        textShadow: '0 0 10px rgba(6, 182, 212, 0.8)',
+                        filter: 'drop-shadow(0 0 5px rgba(6, 182, 212, 0.6))'
+                      }}>Ask Gen</span>
+                      <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag shadow-lg">BOT</span>
                       <span className="text-gray-500 text-xs discord-text">Hoje às 14:24</span>
                     </div>
                     <div className="bg-[#2f3136] rounded-lg p-4 border-l-4 border-cyan-500">
