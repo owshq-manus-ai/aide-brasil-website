@@ -1564,7 +1564,7 @@ function App() {
             >
               <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Junte-se à Comunidade</span>
             </motion.div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 section-title text-center">
               <motion.span
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
@@ -1577,13 +1577,13 @@ function App() {
                 className="bg-clip-text text-transparent bg-gradient-to-r from-rose-200 via-white to-orange-300"
                 style={{
                   backgroundSize: '200% 200%',
-                  textShadow: '0 0 30px rgba(244, 63, 94, 0.5)',
-                  filter: 'drop-shadow(0 0 10px rgba(244, 63, 94, 0.8))'
+                  textShadow: '0 0 25px rgba(244, 63, 94, 0.4)',
+                  filter: 'drop-shadow(0 0 8px rgba(244, 63, 94, 0.6))'
                 }}
               >
                 Transforme
               </motion.span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-300 to-orange-300"> sua Carreira</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-300 to-orange-300 text-3xl md:text-5xl lg:text-6xl block mt-2"> sua Carreira</span>
             </h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -1639,7 +1639,13 @@ function App() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="relative p-8 rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/[0.08] to-cyan-500/[0.08] backdrop-blur-sm"
+              className="relative p-8 rounded-2xl border border-rose-500/30 bg-gradient-to-br from-rose-500/[0.08] to-orange-500/[0.08] backdrop-blur-sm"
+              style={{
+                boxShadow: `
+                  0 0 20px rgba(244, 63, 94, 0.1),
+                  inset 0 1px 0 rgba(244, 63, 94, 0.1)
+                `
+              }}
             >
               <h3 className="text-2xl font-bold text-white mb-2 section-subtitle">
                 Nível Gratuito
@@ -1658,13 +1664,13 @@ function App() {
                   "Acesso a resumos das reuniões mensais (AIDE Labs)"
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-400" />
+                    <CheckCircle className="w-5 h-5 text-rose-400" />
                     <span className="text-white/80">{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              <button className="w-full py-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg font-semibold text-white hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105" style={{ fontFamily: 'Oswald, sans-serif' }}>
+              <button className="w-full py-3 bg-gradient-to-r from-rose-600 to-orange-600 rounded-lg font-semibold text-white hover:from-rose-700 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105" style={{ fontFamily: 'Oswald, sans-serif' }}>
                 Começar Gratuitamente
               </button>
             </motion.div>
@@ -1793,7 +1799,7 @@ function App() {
                         />
                       </div>
                     ) : (
-                      <CheckCircle className="w-5 h-5 text-green-400" />
+                      <CheckCircle className="w-5 h-5 text-gray-400" />
                     )}
                     <span className="text-white/80">{feature.text}</span>
                   </li>
@@ -1815,19 +1821,19 @@ function App() {
           >
             <div className="space-y-4">
               <div className="flex items-center justify-center space-x-3 text-white/80">
-                <CheckCircle className="w-5 h-5 text-green-400" />
+                <CheckCircle className="w-5 h-5 text-rose-400" />
                 <span className="text-lg font-medium">Mais de 2.847 profissionais já se inscreveram</span>
               </div>
               <div className="flex items-center justify-center space-x-3 text-white/80">
-                <CheckCircle className="w-5 h-5 text-green-400" />
+                <CheckCircle className="w-5 h-5 text-rose-400" />
                 <span className="text-lg font-medium">100% Gratuito para começar</span>
               </div>
               <div className="flex items-center justify-center space-x-3 text-white/80">
-                <CheckCircle className="w-5 h-5 text-green-400" />
+                <CheckCircle className="w-5 h-5 text-rose-400" />
                 <span className="text-lg font-medium">Sem spam, apenas conteúdo relevante</span>
               </div>
               <div className="flex items-center justify-center space-x-3 text-white/80">
-                <CheckCircle className="w-5 h-5 text-green-400" />
+                <CheckCircle className="w-5 h-5 text-rose-400" />
                 <span className="text-lg font-medium">Cancele quando quiser</span>
               </div>
             </div>
