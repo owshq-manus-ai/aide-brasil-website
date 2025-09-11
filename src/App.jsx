@@ -91,8 +91,8 @@ const CyclingText = () => {
         className="text-8xl md:text-9xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-white section-title"
         style={{
           backgroundSize: '200% 200%',
-          textShadow: '0 0 25px rgba(255, 255, 255, 0.9), 0 0 50px rgba(255, 255, 255, 0.6), 0 0 75px rgba(255, 255, 255, 0.4), 0 0 100px rgba(255, 255, 255, 0.3)',
-          filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.5))',
+          textShadow: '0 0 12px rgba(255, 255, 255, 0.4), 0 0 25px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.2)',
+          filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))',
           WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.3)'
         }}
       >
@@ -305,11 +305,11 @@ function App() {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="bg-clip-text text-transparent bg-gradient-to-r from-green-200 via-white to-green-300"
+                className="bg-clip-text text-transparent bg-gradient-to-r from-green-300 via-emerald-200 to-green-400"
                 style={{
                   backgroundSize: '200% 200%',
-                  textShadow: '0 0 30px rgba(34, 197, 94, 0.5)',
-                  filter: 'drop-shadow(0 0 10px rgba(34, 197, 94, 0.8))'
+                  textShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
+                  filter: 'drop-shadow(0 0 8px rgba(34, 197, 94, 0.6))'
                 }}
               >
                 Dados
@@ -323,11 +323,11 @@ function App() {
                   ease: "easeInOut",
                   delay: 1.5
                 }}
-                className="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-white to-blue-300"
+                className="bg-clip-text text-transparent bg-gradient-to-r from-green-300 via-emerald-200 to-green-400"
                 style={{
                   backgroundSize: '200% 200%',
-                  textShadow: '0 0 30px rgba(59, 130, 246, 0.5)',
-                  filter: 'drop-shadow(0 0 10px rgba(59, 130, 246, 0.8))'
+                  textShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
+                  filter: 'drop-shadow(0 0 8px rgba(34, 197, 94, 0.6))'
                 }}
               >
                 GenAI
@@ -366,19 +366,19 @@ function App() {
                 icon: Users,
                 title: "Conexões que abrem portas",
                 description: "Relacionamentos estratégicos com os melhores profissionais e empresas do setor, criando oportunidades que aceleram sua carreira.",
-                gradient: "from-blue-500/[0.15]"
+                gradient: "from-green-500/[0.15]"
               },
               {
                 icon: Zap,
                 title: "Laboratório vivo de GenAI + Dados",
                 description: "Um ecossistema colaborativo para testar ideias, criar soluções inéditas e participar de iniciativas que moldam o futuro da Engenharia de Dados e da Inteligência Artificial.",
-                gradient: "from-purple-500/[0.15]"
+                gradient: "from-green-500/[0.15]"
               },
               {
                 icon: Shield,
                 title: "Você nunca caminha sozinho",
                 description: "Mentoria, comunidade ativa e o agente exclusivo Ask Gen, prontos para apoiar sua jornada 24/7.",
-                gradient: "from-orange-500/[0.15]"
+                gradient: "from-green-500/[0.15]"
               }
             ].map((item, index) => (
               <motion.div
@@ -405,7 +405,7 @@ function App() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-16"
           >
-            <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold text-white hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-roboto">
+            <button className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg font-semibold text-white hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-roboto">
               Transforme sua carreira
             </button>
           </motion.div>
@@ -508,18 +508,18 @@ function App() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-green-400 font-semibold text-sm discord-username">Ask Gen</span>
-                      <span className="bg-green-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">BOT</span>
+                      <span className="text-cyan-400 font-semibold text-sm discord-username">Ask Gen</span>
+                      <span className="bg-cyan-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">BOT</span>
                       <span className="text-gray-500 text-xs discord-text">Hoje às 14:21</span>
                     </div>
-                    <div className="bg-[#2f3136] rounded-lg p-4 border-l-4 border-green-500">
+                    <div className="bg-[#2f3136] rounded-lg p-4 border-l-4 border-cyan-500">
                       <p className="text-gray-300 text-sm mb-3 discord-text leading-relaxed">
                         Foundation models são modelos de IA pré-treinados em grandes datasets que servem como base para diversas tarefas. Eles democratizam o acesso à IA avançada e aceleram o desenvolvimento de aplicações específicas.
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">#foundation-models</span>
-                        <span className="bg-purple-600 text-white px-2 py-1 rounded text-xs">#ai</span>
-                        <span className="bg-green-600 text-white px-2 py-1 rounded text-xs">#machine-learning</span>
+                        <span className="bg-cyan-600 text-white px-2 py-1 rounded text-xs">#foundation-models</span>
+                        <span className="bg-cyan-500 text-white px-2 py-1 rounded text-xs">#ai</span>
+                        <span className="bg-cyan-700 text-white px-2 py-1 rounded text-xs">#machine-learning</span>
                       </div>
                     </div>
                   </div>
@@ -531,8 +531,8 @@ function App() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-purple-400 font-semibold text-sm discord-username">@Data_Engineer</span>
-                      <span className="bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">USER</span>
+                      <span className="text-cyan-400 font-semibold text-sm discord-username">@Data_Engineer</span>
+                      <span className="bg-cyan-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">USER</span>
                       <span className="text-gray-500 text-xs discord-text">Hoje às 14:23</span>
                     </div>
                     <div className="bg-[#40444b] rounded-lg p-4">
@@ -547,18 +547,18 @@ function App() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-green-400 font-semibold text-sm discord-username">Ask Gen</span>
-                      <span className="bg-green-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">BOT</span>
+                      <span className="text-cyan-400 font-semibold text-sm discord-username">Ask Gen</span>
+                      <span className="bg-cyan-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">BOT</span>
                       <span className="text-gray-500 text-xs discord-text">Hoje às 14:24</span>
                     </div>
-                    <div className="bg-[#2f3136] rounded-lg p-4 border-l-4 border-green-500">
+                    <div className="bg-[#2f3136] rounded-lg p-4 border-l-4 border-cyan-500">
                       <p className="text-gray-300 text-sm mb-3 discord-text leading-relaxed">
                         RAG (Retrieval-Augmented Generation) conecta LLMs a bases de conhecimento externas, permitindo respostas mais precisas e atualizadas. É crucial para reduzir alucinações e personalizar respostas com dados específicos.
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        <span className="bg-orange-600 text-white px-2 py-1 rounded text-xs">#rag</span>
-                        <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">#retrieval</span>
-                        <span className="bg-pink-600 text-white px-2 py-1 rounded text-xs">#generation</span>
+                        <span className="bg-cyan-600 text-white px-2 py-1 rounded text-xs">#rag</span>
+                        <span className="bg-cyan-500 text-white px-2 py-1 rounded text-xs">#retrieval</span>
+                        <span className="bg-cyan-700 text-white px-2 py-1 rounded text-xs">#generation</span>
                       </div>
                     </div>
                   </div>
