@@ -363,18 +363,18 @@ function App() {
             className="max-w-4xl mx-auto"
           >
             {/* Discord-like Chat Interface */}
-            <div className="bg-[#36393f] rounded-lg p-6 font-mono text-sm">
+            <div className="bg-[#36393f] rounded-lg p-6 text-sm discord-text">
               <div className="flex items-center justify-between mb-4 pb-2 border-b border-gray-600">
                 <div className="flex items-center space-x-2">
-                  <span className="text-white font-semibold">#ask-the-expert</span>
+                  <span className="text-white font-semibold discord-username">#ask-the-expert</span>
                   <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-                  <span className="text-gray-400">Online</span>
+                  <span className="text-gray-400 discord-text">Online</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.027zM8.68 15.464c-1.283 0-2.34-1.178-2.34-2.625s1.036-2.625 2.34-2.625c1.312 0 2.36 1.187 2.34 2.625 0 1.447-1.057 2.625-2.34 2.625zm6.64 0c-1.283 0-2.34-1.178-2.34-2.625s1.036-2.625 2.34-2.625c1.312 0 2.36 1.187 2.34 2.625 0 1.447-1.057 2.625-2.34 2.625z"/>
                   </svg>
-                  <span className="text-gray-400 text-xs">1.247 membros ativos</span>
+                  <span className="text-gray-400 text-xs discord-text">1.247 membros ativos</span>
                 </div>
               </div>
 
@@ -387,10 +387,10 @@ function App() {
                     <div className="flex items-center space-x-2 mb-2">
                       <span className="text-purple-400 font-semibold text-sm">@Data_Engineer</span>
                       <span className="bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-bold">USER</span>
-                      <span className="text-gray-500 text-xs">Hoje às 14:20</span>
+                      <span className="text-gray-500 text-xs discord-text">Hoje às 14:20</span>
                     </div>
                     <div className="bg-[#40444b] rounded-lg p-4">
-                      <p className="text-white text-sm">O que são foundation models?</p>
+                      <p className="text-white text-sm discord-text">O que são foundation models?</p>
                     </div>
                   </div>
                 </div>
@@ -403,7 +403,7 @@ function App() {
                     <div className="flex items-center space-x-2 mb-2">
                       <span className="text-green-400 font-semibold text-sm discord-username">Ask Gen</span>
                       <span className="bg-green-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">BOT</span>
-                      <span className="text-gray-500 text-xs font-inter">Hoje às 14:21</span>
+                      <span className="text-gray-500 text-xs discord-text">Hoje às 14:21</span>
                     </div>
                     <div className="bg-[#2f3136] rounded-lg p-4 border-l-4 border-green-500">
                       <p className="text-gray-300 text-sm mb-3 discord-text leading-relaxed">
@@ -426,7 +426,7 @@ function App() {
                     <div className="flex items-center space-x-2 mb-2">
                       <span className="text-purple-400 font-semibold text-sm discord-username">@Data_Engineer</span>
                       <span className="bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">USER</span>
-                      <span className="text-gray-500 text-xs font-inter">Hoje às 14:23</span>
+                      <span className="text-gray-500 text-xs discord-text">Hoje às 14:23</span>
                     </div>
                     <div className="bg-[#40444b] rounded-lg p-4">
                       <p className="text-white text-sm discord-text">Qual é o papel e importância de RAG?</p>
@@ -442,7 +442,7 @@ function App() {
                     <div className="flex items-center space-x-2 mb-2">
                       <span className="text-green-400 font-semibold text-sm discord-username">Ask Gen</span>
                       <span className="bg-green-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">BOT</span>
-                      <span className="text-gray-500 text-xs font-inter">Hoje às 14:24</span>
+                      <span className="text-gray-500 text-xs discord-text">Hoje às 14:24</span>
                     </div>
                     <div className="bg-[#2f3136] rounded-lg p-4 border-l-4 border-green-500">
                       <p className="text-gray-300 text-sm mb-3 discord-text leading-relaxed">
