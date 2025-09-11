@@ -88,11 +88,12 @@ const CyclingText = () => {
             ease: "easeInOut"
           }
         }}
-        className="text-8xl md:text-9xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 section-title"
+        className="text-8xl md:text-9xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-white section-title"
         style={{
           backgroundSize: '200% 200%',
-          textShadow: '0 0 40px rgba(255, 255, 255, 0.5), 0 0 80px rgba(156, 163, 175, 0.4), 0 0 120px rgba(209, 213, 219, 0.25)',
-          filter: 'drop-shadow(0 0 18px rgba(156, 163, 175, 0.7)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.4))'
+          textShadow: '0 0 25px rgba(255, 255, 255, 0.9), 0 0 50px rgba(255, 255, 255, 0.6), 0 0 75px rgba(255, 255, 255, 0.4), 0 0 100px rgba(255, 255, 255, 0.3)',
+          filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.5))',
+          WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.3)'
         }}
       >
         {words[currentIndex]}
@@ -150,8 +151,22 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAnnual, setIsAnnual] = useState(false)
 
-  return (
-    <div className="min-h-screen bg-[#030303] text-white overflow-x-hidden">
+   return (
+    <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
+      {/* Background Image */}
+      <div 
+        className="fixed inset-0 z-0"
+        style={{
+          backgroundImage: `url('/background-option-2-geometric.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.6
+        }}
+      />
+      
+      {/* Content Overlay */}
+      <div className="relative z-10">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#030303]/80 backdrop-blur-md border-b border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-6 py-4">
@@ -1792,6 +1807,7 @@ function App() {
           </div>
         </div>
       </footer>
+      </div> {/* Close content overlay div */}
     </div>
   )
 }

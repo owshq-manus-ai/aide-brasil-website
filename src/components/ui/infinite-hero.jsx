@@ -211,12 +211,13 @@ export default function InfiniteHero({
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 mt-4 block"
+                className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-white mt-4 block"
                 style={{ 
                   fontFamily: 'Oswald, sans-serif',
                   backgroundSize: '200% 200%',
-                  textShadow: '0 0 30px rgba(255, 255, 255, 0.4), 0 0 60px rgba(156, 163, 175, 0.3), 0 0 90px rgba(209, 213, 219, 0.2)',
-                  filter: 'drop-shadow(0 0 15px rgba(156, 163, 175, 0.6)) drop-shadow(0 0 25px rgba(255, 255, 255, 0.3))'
+                  textShadow: '0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.3)',
+                  filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.4))',
+                  WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.2)'
                 }}
               >
                 Brasil
