@@ -240,23 +240,69 @@ function App() {
         />
         
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.h2 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-bold mb-6 text-white section-title"
+            className="mb-16"
           >
-            A primeira comunidade brasileira
-          </motion.h2>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-2xl md:text-4xl font-light mb-16 text-white/80"
-          >
-            onde Dados encontram
-          </motion.p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-6"
+            >
+              <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Sobre a Comunidade</span>
+            </motion.div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-300 via-emerald-200 to-green-400">
+                A primeira comunidade brasileira
+              </span>
+            </h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-2xl md:text-3xl font-light mb-8 text-white/90 leading-relaxed"
+            >
+              onde <motion.span
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="bg-clip-text text-transparent bg-gradient-to-r from-green-200 via-white to-green-300"
+                style={{
+                  backgroundSize: '200% 200%',
+                  textShadow: '0 0 30px rgba(34, 197, 94, 0.5)',
+                  filter: 'drop-shadow(0 0 10px rgba(34, 197, 94, 0.8))'
+                }}
+              >
+                Dados
+              </motion.span> encontram <motion.span
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.5
+                }}
+                className="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-white to-blue-300"
+                style={{
+                  backgroundSize: '200% 200%',
+                  textShadow: '0 0 30px rgba(59, 130, 246, 0.5)',
+                  filter: 'drop-shadow(0 0 10px rgba(59, 130, 246, 0.8))'
+                }}
+              >
+                GenAI
+              </motion.span>
+            </motion.p>
+          </motion.div>
 
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
@@ -344,14 +390,44 @@ function App() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-300 section-title">
-              Ask Gen — AI Data Engineering Assistant
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-6"
+            >
+              <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Converse com o</span>
+            </motion.div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+              <motion.span
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-200 via-white to-blue-300"
+                style={{
+                  backgroundSize: '200% 200%',
+                  textShadow: '0 0 30px rgba(6, 182, 212, 0.5)',
+                  filter: 'drop-shadow(0 0 10px rgba(6, 182, 212, 0.8))'
+                }}
+              >
+                Ask Gen
+              </motion.span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-300"> — AI Data Engineering Assistant</span>
             </h2>
-            <p className="text-xl text-white/80 mb-8">
-              Converse com o Ask Gen
-            </p>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl md:text-2xl font-light mb-8 text-white/90 leading-relaxed"
+            >
+              Demonstração do primeiro agente especializado em <span className="text-cyan-300 font-medium">AI Data Engineering</span>
+            </motion.p>
             <p className="text-lg text-white/60 max-w-3xl mx-auto">
-              Demonstração do primeiro agente especializado em AI Data Engineering.
               Junte-se ao nosso Discord para conversar diretamente com o Ask Gen.
             </p>
           </motion.div>
@@ -1096,28 +1172,50 @@ function App() {
       {/* Numbers Section */}
       <SectionContainer gradient="from-orange-500/[0.12]" id="numeros">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-300 to-red-300 section-title"
-          >
-            AI Data Engineering em Números
-          </motion.h2>
-
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8 }}
             className="mb-16"
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 section-subtitle">
-              Mercado em Expansão
-            </h3>
-            <p className="text-lg text-white/80 mb-2">
-              Dados do mercado global que demonstram o crescimento exponencial
-            </p>
-            <p className="text-white/60">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-6"
+            >
+              <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Mercado em Expansão</span>
+            </motion.div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+              <motion.span
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="bg-clip-text text-transparent bg-gradient-to-r from-orange-200 via-white to-red-300"
+                style={{
+                  backgroundSize: '200% 200%',
+                  textShadow: '0 0 30px rgba(249, 115, 22, 0.5)',
+                  filter: 'drop-shadow(0 0 10px rgba(249, 115, 22, 0.8))'
+                }}
+              >
+                AI Data Engineering
+              </motion.span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-300 to-red-300"> em Números</span>
+            </h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl md:text-2xl font-light mb-8 text-white/90 leading-relaxed"
+            >
+              Dados do mercado global que demonstram o <span className="text-orange-300 font-medium">crescimento exponencial</span>
+            </motion.p>
+            <p className="text-lg text-white/60">
               Análise baseada em fontes confiáveis da indústria
             </p>
           </motion.div>
@@ -1238,11 +1336,45 @@ function App() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-pink-300 section-title">
-              Para Cada Momento da Sua Jornada
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-6"
+            >
+              <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Sua Jornada</span>
+            </motion.div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+              <motion.span
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="bg-clip-text text-transparent bg-gradient-to-r from-purple-200 via-white to-pink-300"
+                style={{
+                  backgroundSize: '200% 200%',
+                  textShadow: '0 0 30px rgba(147, 51, 234, 0.5)',
+                  filter: 'drop-shadow(0 0 10px rgba(147, 51, 234, 0.8))'
+                }}
+              >
+                Para Cada Momento
+              </motion.span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-pink-300"> da Sua Jornada</span>
             </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Seja você iniciante, profissional experiente ou empresa, temos o caminho ideal para o seu crescimento
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl md:text-2xl font-light mb-8 text-white/90 leading-relaxed"
+            >
+              Seja você <span className="text-purple-300 font-medium">iniciante</span>, <span className="text-pink-300 font-medium">profissional experiente</span> ou <span className="text-violet-300 font-medium">empresa</span>
+            </motion.p>
+            <p className="text-lg text-white/60 max-w-3xl mx-auto">
+              Temos o caminho ideal para o seu crescimento
             </p>
           </motion.div>
 
@@ -1331,12 +1463,43 @@ function App() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-300 to-orange-300 section-title">
-              Transforme sua Carreira
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-6"
+            >
+              <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Junte-se à Comunidade</span>
+            </motion.div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+              <motion.span
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="bg-clip-text text-transparent bg-gradient-to-r from-rose-200 via-white to-orange-300"
+                style={{
+                  backgroundSize: '200% 200%',
+                  textShadow: '0 0 30px rgba(244, 63, 94, 0.5)',
+                  filter: 'drop-shadow(0 0 10px rgba(244, 63, 94, 0.8))'
+                }}
+              >
+                Transforme
+              </motion.span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-300 to-orange-300"> sua Carreira</span>
             </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
-              O Futuro dos Dados Começa Agora
-            </p>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl md:text-2xl font-light mb-8 text-white/90 leading-relaxed"
+            >
+              O Futuro dos <span className="text-rose-300 font-medium">Dados</span> Começa <span className="text-orange-300 font-medium">Agora</span>
+            </motion.p>
             <p className="text-lg text-white/60 max-w-4xl mx-auto">
               Seja parte da maior transformação tecnológica do Brasil. Conecte-se com os melhores profissionais, 
               aprenda as tecnologias mais avançadas e construa uma carreira extraordinária em AI Data Engineering.
