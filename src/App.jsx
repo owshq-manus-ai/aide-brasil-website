@@ -124,13 +124,62 @@ const BaseAvatar = ({ bgColor, children, hasRelative = false }) => (
 
 // Bot Avatar Component
 const BotAvatar = () => (
-  <BaseAvatar bgColor="bg-gradient-to-br from-emerald-400 to-cyan-500" hasRelative={true}>
-    {/* Modern AI Brain/Neural Network Icon */}
-    <svg style={{width: '20px', height: '20px'}} className="text-white" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 7.5V9C15 10.1 14.1 11 13 11S11 10.1 11 9V7.5L9 7.5V9C9 10.1 8.1 11 7 11S5 10.1 5 9V7.5L3 7V9C3 10.1 3.9 11 5 11C5.8 11 6.5 10.6 6.9 10H8.1C8.5 10.6 9.2 11 10 11H11V13H10C9.2 13 8.5 13.4 8.1 14H6.9C6.5 13.4 5.8 13 5 13C3.9 13 3 13.9 3 15V17L5 16.5V15C5 13.9 5.9 13 7 13S9 13.9 9 15V16.5L11 16.5V15C11 13.9 11.9 13 13 13S15 13.9 15 15V16.5L21 17V15C21 13.9 20.1 13 19 13C18.2 13 17.5 13.4 17.1 14H15.9C15.5 13.4 14.8 13 14 13H13V11H14C14.8 11 15.5 10.6 15.9 10H17.1C17.5 10.6 18.2 11 19 11C20.1 11 21 10.1 21 9Z"/>
-      {/* Central processing core */}
-      <circle cx="12" cy="12" r="2" opacity="0.8"/>
-    </svg>
+  <BaseAvatar bgColor="bg-transparent" hasRelative={true}>
+    {/* Mini Crystal Ball Effect (like Ask Gen Onyx) */}
+    <motion.div
+      animate={{ 
+        rotate: 360,
+      }}
+      transition={{
+        duration: 20,
+        repeat: Infinity,
+        ease: "linear"
+      }}
+      className="relative w-8 h-8 rounded-full"
+      style={{
+        background: `
+          radial-gradient(circle at 30% 30%, rgba(6, 182, 212, 0.4) 0%, transparent 50%),
+          radial-gradient(circle at 70% 70%, rgba(16, 185, 129, 0.3) 0%, transparent 50%),
+          linear-gradient(135deg, #0891b2 0%, #059669 50%, #0d9488 100%)
+        `,
+        boxShadow: `
+          0 0 20px rgba(6, 182, 212, 0.5),
+          inset 0 0 20px rgba(0, 0, 0, 0.6),
+          0 0 40px rgba(16, 185, 129, 0.3)
+        `
+      }}
+    >
+      {/* Inner Glow */}
+      <div className="absolute inset-1 rounded-full bg-gradient-to-br from-cyan-400/30 via-transparent to-emerald-400/20" />
+      
+      {/* Neon Edges */}
+      <motion.div
+        animate={{ 
+          opacity: [0.6, 1, 0.6],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="absolute inset-0 rounded-full border border-cyan-300/60"
+        style={{
+          boxShadow: `
+            0 0 10px rgba(6, 182, 212, 0.8),
+            inset 0 0 10px rgba(6, 182, 212, 0.3)
+          `
+        }}
+      />
+
+      {/* AI Core Icon */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <svg style={{width: '16px', height: '16px'}} className="text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 7.5V9C15 10.1 14.1 11 13 11S11 10.1 11 9V7.5L9 7.5V9C9 10.1 8.1 11 7 11S5 10.1 5 9V7.5L3 7V9C3 10.1 3.9 11 5 11C5.8 11 6.5 10.6 6.9 10H8.1C8.5 10.6 9.2 11 10 11H11V13H10C9.2 13 8.5 13.4 8.1 14H6.9C6.5 13.4 5.8 13 5 13C3.9 13 3 13.9 3 15V17L5 16.5V15C5 13.9 5.9 13 7 13S9 13.9 9 15V16.5L11 16.5V15C11 13.9 11.9 13 13 13S15 13.9 15 15V16.5L21 17V15C21 13.9 20.1 13 19 13C18.2 13 17.5 13.4 17.1 14H15.9C15.5 13.4 14.8 13 14 13H13V11H14C14.8 11 15.5 10.6 15.9 10H17.1C17.5 10.6 18.2 11 19 11C20.1 11 21 10.1 21 9Z"/>
+          <circle cx="12" cy="12" r="1.5" opacity="0.8"/>
+        </svg>
+      </div>
+    </motion.div>
+    
     {/* Enhanced AI Badge */}
     <div style={{width: '16px', height: '16px'}} className="absolute -top-1 -right-1 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
       <svg style={{width: '10px', height: '10px'}} className="text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -143,11 +192,9 @@ const BotAvatar = () => (
 // User Avatar Component
 const UserAvatar = () => (
   <BaseAvatar bgColor="bg-gradient-to-br from-cyan-500 to-blue-600">
-    {/* Modern Data Engineer Icon - Database with Analytics */}
+    {/* Simple User Icon */}
     <svg style={{width: '20px', height: '20px'}} className="text-white" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 3C16.97 3 21 4.43 21 6.1V17.9C21 19.57 16.97 21 12 21C7.03 21 3 19.57 3 17.9V6.1C3 4.43 7.03 3 12 3ZM12 5C8.13 5 5 5.9 5 6.1C5 6.3 8.13 7.2 12 7.2C15.87 7.2 19 6.3 19 6.1C19 5.9 15.87 5 12 5ZM5 8.81C6.11 9.5 8.91 10.2 12 10.2C15.09 10.2 17.89 9.5 19 8.81V11.1C19 11.3 15.87 12.2 12 12.2C8.13 12.2 5 11.3 5 11.1V8.81ZM5 13.81C6.11 14.5 8.91 15.2 12 15.2C15.09 15.2 17.89 14.5 19 13.81V17.9C19 18.1 15.87 19 12 19C8.13 19 5 18.1 5 17.9V13.81Z"/>
-      {/* Analytics overlay */}
-      <path d="M14 8L16 10L14 12M10 8L8 10L10 12" opacity="0.7"/>
+      <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/>
     </svg>
   </BaseAvatar>
 )
@@ -447,8 +494,8 @@ function App() {
                 className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-200 via-white to-blue-300"
                 style={{
                   backgroundSize: '200% 200%',
-                  textShadow: '0 0 40px rgba(6, 182, 212, 0.7)',
-                  filter: 'drop-shadow(0 0 15px rgba(6, 182, 212, 1))'
+                  textShadow: '0 0 20px rgba(6, 182, 212, 0.4)',
+                  filter: 'drop-shadow(0 0 8px rgba(6, 182, 212, 0.6))'
                 }}
               >
                 Ask Gen
@@ -500,7 +547,7 @@ function App() {
                       <span className="text-cyan-300 font-bold text-sm" style={{
                         textShadow: '0 0 10px rgba(6, 182, 212, 0.8)',
                         filter: 'drop-shadow(0 0 5px rgba(6, 182, 212, 0.6))'
-                      }}>@Data_Engineer</span>
+                      }}>AI Data Engineer</span>
                       <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-2 py-0.5 rounded text-xs font-bold shadow-lg">USER</span>
                       <span className="text-gray-500 text-xs discord-text">Hoje às 14:20</span>
                     </div>
