@@ -74,10 +74,26 @@ const CyclingText = () => {
       <motion.span
         key={currentIndex}
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={{ 
+          opacity: 1, 
+          y: 0,
+          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+        }}
         exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.5 }}
-        className="text-8xl md:text-9xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 section-title"
+        transition={{ 
+          duration: 0.5,
+          backgroundPosition: {
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }
+        }}
+        className="text-8xl md:text-9xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 section-title"
+        style={{
+          backgroundSize: '200% 200%',
+          textShadow: '0 0 40px rgba(255, 255, 255, 0.5), 0 0 80px rgba(156, 163, 175, 0.4), 0 0 120px rgba(209, 213, 219, 0.25)',
+          filter: 'drop-shadow(0 0 18px rgba(156, 163, 175, 0.7)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.4))'
+        }}
       >
         {words[currentIndex]}
       </motion.span>

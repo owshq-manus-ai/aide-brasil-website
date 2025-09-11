@@ -202,12 +202,25 @@ export default function InfiniteHero({
               <div className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80 mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
                 AI Data Engineer
               </div>
-              <div
-                className="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 mt-4 block"
-                style={{ fontFamily: 'Oswald, sans-serif' }}
+              <motion.div
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 mt-4 block"
+                style={{ 
+                  fontFamily: 'Oswald, sans-serif',
+                  backgroundSize: '200% 200%',
+                  textShadow: '0 0 30px rgba(255, 255, 255, 0.4), 0 0 60px rgba(156, 163, 175, 0.3), 0 0 90px rgba(209, 213, 219, 0.2)',
+                  filter: 'drop-shadow(0 0 15px rgba(156, 163, 175, 0.6)) drop-shadow(0 0 25px rgba(255, 255, 255, 0.3))'
+                }}
               >
                 Brasil
-              </div>
+              </motion.div>
             </h1>
           </motion.div>
 
