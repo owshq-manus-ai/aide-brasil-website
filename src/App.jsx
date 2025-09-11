@@ -1536,7 +1536,7 @@ function App() {
                 <div className="space-y-4">
                   {profile.benefits.map((benefit, idx) => (
                     <div key={idx} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-purple-400 flex-shrink-0" />
                       <span className="text-white/80">{benefit}</span>
                     </div>
                   ))}
