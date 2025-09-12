@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Menu, X, CheckCircle, Linkedin, Twitter, Instagram, Youtube, Bot, Zap, Users, Target, Shield, Star, User, Briefcase, BookOpen, Award } from 'lucide-react'
-import InfiniteHero from './components/ui/infinite-hero'
+import { CommunityHero } from './components/ui/community-hero'
 import './App.css'
 
 // Floating Shape Component
@@ -311,7 +311,7 @@ function App() {
       </header>
 
       {/* Hero Section */}
-      <InfiniteHero />
+      <CommunityHero />
 
       {/* About Section */}
       <SectionContainer gradient="from-green-500/[0.12]" id="sobre">
