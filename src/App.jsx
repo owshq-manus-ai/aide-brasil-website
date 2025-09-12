@@ -505,42 +505,11 @@ function App() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-2xl md:text-3xl font-light mb-8 text-white/90 leading-relaxed"
             >
-              conheça o <motion.span
-                animate={{
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400"
-                style={{
-                  backgroundSize: '200% 200%',
-                  textShadow: '0 0 20px rgba(6, 182, 212, 0.4)',
-                  filter: 'drop-shadow(0 0 8px rgba(6, 182, 212, 0.6))'
-                }}
-              >
+              conheça o <span className="text-gray-300">
                 Ask Gen
-              </motion.span> seu assistente em <motion.span
-                animate={{
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1.5
-                }}
-                className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400"
-                style={{
-                  backgroundSize: '200% 200%',
-                  textShadow: '0 0 20px rgba(6, 182, 212, 0.4)',
-                  filter: 'drop-shadow(0 0 8px rgba(6, 182, 212, 0.6))'
-                }}
-              >
+              </span> seu assistente em <span className="text-gray-300">
                 GenAI
-              </motion.span>
+              </span>
             </motion.p>
             <p className="text-lg text-white/60 max-w-3xl mx-auto">
               Junte-se ao nosso Discord para conversar diretamente com o Ask Gen.
@@ -553,25 +522,9 @@ function App() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mb-16 flex justify-center"
           >
-            <motion.span
-              animate={{
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="text-8xl md:text-9xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400 section-title"
-              style={{
-                backgroundSize: '200% 200%',
-                textShadow: '0 0 8px rgba(6, 182, 212, 0.3), 0 0 16px rgba(59, 130, 246, 0.2), 0 0 24px rgba(6, 182, 212, 0.1)',
-                filter: 'drop-shadow(0 0 6px rgba(6, 182, 212, 0.3)) drop-shadow(0 0 12px rgba(59, 130, 246, 0.2))',
-                WebkitTextStroke: '0.5px rgba(6, 182, 212, 0.3)'
-              }}
-            >
+            <span className="text-8xl md:text-9xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-400 to-gray-600 section-title">
               Ask Gen
-            </motion.span>
+            </span>
           </motion.div>
 
           <motion.p
@@ -636,24 +589,9 @@ function App() {
                       transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                       className="w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"
                     />
-                    <motion.span 
-                      animate={{
-                        backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                      className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400"
-                      style={{
-                        backgroundSize: '200% 200%',
-                        textShadow: '0 0 20px rgba(6, 182, 212, 0.3)',
-                        filter: 'drop-shadow(0 0 8px rgba(6, 182, 212, 0.4))'
-                      }}
-                    >
+                    <span className="font-bold text-lg text-gray-400">
                       #ask-the-expert
-                    </motion.span>
+                    </span>
                     <motion.span
                       animate={{ opacity: [0.5, 1, 0.5] }}
                       transition={{ duration: 2, repeat: Infinity }}
@@ -688,23 +626,17 @@ function App() {
                   </motion.div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-3 mb-3">
-                      <span className="text-cyan-300 font-bold text-sm" style={{
-                        textShadow: '0 0 10px rgba(6, 182, 212, 0.8)',
-                        filter: 'drop-shadow(0 0 5px rgba(6, 182, 212, 0.6))'
-                      }}>AI Data Engineer</span>
-                      <motion.span 
-                        whileHover={{ scale: 1.1 }}
-                        className="px-3 py-1 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full text-xs font-bold shadow-lg shadow-cyan-500/30"
-                      >
+                      <span className="text-gray-400 font-bold text-sm">AI Data Engineer</span>
+                      <span className="px-3 py-1 bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-full text-xs font-bold border border-gray-600/50">
                         USER
-                      </motion.span>
+                      </span>
                       <span className="text-gray-400 text-xs">Hoje às 14:20</span>
                     </div>
                     <motion.div 
                       whileHover={{ scale: 1.02 }}
                       className="relative group"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-gray-700/10 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+                      {/* Removed glow effect */}
                       <div className="relative bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-sm rounded-xl p-5 border border-gray-700/30">
                         <p className="text-white text-base">O que são foundation models?</p>
                       </div>
@@ -735,35 +667,12 @@ function App() {
                   </motion.div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-3 mb-3">
-                      <motion.span 
-                        animate={{
-                          textShadow: [
-                            '0 0 10px rgba(6, 182, 212, 0.8)',
-                            '0 0 20px rgba(6, 182, 212, 1)',
-                            '0 0 10px rgba(6, 182, 212, 0.8)'
-                          ]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="text-cyan-300 font-bold text-sm"
-                        style={{
-                          filter: 'drop-shadow(0 0 5px rgba(6, 182, 212, 0.6))'
-                        }}
-                      >
+                      <span className="text-gray-400 font-bold text-sm">
                         Ask Gen
-                      </motion.span>
-                      <motion.span 
-                        animate={{ rotate: [0, 360] }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                        whileHover={{ scale: 1.2 }}
-                        className="relative px-3 py-1 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-full text-xs font-bold shadow-lg shadow-cyan-500/50"
-                      >
-                        <motion.span
-                          animate={{ opacity: [0.5, 1, 0.5] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                          className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full blur-md"
-                        />
-                        <span className="relative">BOT</span>
-                      </motion.span>
+                      </span>
+                      <span className="px-3 py-1 bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-full text-xs font-bold border border-gray-600/50">
+                        BOT
+                      </span>
                       <span className="text-gray-400 text-xs">Hoje às 14:21</span>
                     </div>
                     <motion.div 
@@ -772,12 +681,7 @@ function App() {
                       transition={{ duration: 0.5, delay: 0.5 }}
                       className="relative group"
                     >
-                      {/* Glowing effect */}
-                      <motion.div 
-                        animate={{ opacity: [0.2, 0.4, 0.2] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                        className="absolute -inset-1 bg-gradient-to-r from-gray-600/10 via-cyan-500/10 to-gray-600/10 rounded-xl blur-xl"
-                      />
+                      {/* Removed glow effect */}
                       
                       {/* Message container */}
                       <div className="relative bg-gradient-to-br from-gray-900/95 via-black/95 to-gray-950/95 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/40">
