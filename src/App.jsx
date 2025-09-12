@@ -139,35 +139,35 @@ const BotAvatar = () => (
       className="relative w-8 h-8 rounded-full"
       style={{
         background: `
-          radial-gradient(circle at 30% 30%, rgba(6, 182, 212, 0.4) 0%, transparent 50%),
-          radial-gradient(circle at 70% 70%, rgba(16, 185, 129, 0.3) 0%, transparent 50%),
-          linear-gradient(135deg, #0891b2 0%, #059669 50%, #0d9488 100%)
+          radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 70% 70%, rgba(107, 114, 128, 0.3) 0%, transparent 50%),
+          linear-gradient(135deg, #374151 0%, #1f2937 50%, #111827 100%)
         `,
         boxShadow: `
-          0 0 20px rgba(6, 182, 212, 0.5),
-          inset 0 0 20px rgba(0, 0, 0, 0.6),
-          0 0 40px rgba(16, 185, 129, 0.3)
+          0 0 20px rgba(156, 163, 175, 0.3),
+          inset 0 0 20px rgba(0, 0, 0, 0.8),
+          0 0 30px rgba(6, 182, 212, 0.1)
         `
       }}
     >
       {/* Inner Glow */}
-      <div className="absolute inset-1 rounded-full bg-gradient-to-br from-cyan-400/30 via-transparent to-emerald-400/20" />
+      <div className="absolute inset-1 rounded-full bg-gradient-to-br from-gray-400/20 via-transparent to-cyan-400/10" />
       
       {/* Neon Edges */}
       <motion.div
         animate={{ 
-          opacity: [0.6, 1, 0.6],
+          opacity: [0.4, 0.8, 0.4],
         }}
         transition={{
           duration: 2,
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute inset-0 rounded-full border border-cyan-300/60"
+        className="absolute inset-0 rounded-full border border-gray-400/40"
         style={{
           boxShadow: `
-            0 0 10px rgba(6, 182, 212, 0.8),
-            inset 0 0 10px rgba(6, 182, 212, 0.3)
+            0 0 10px rgba(156, 163, 175, 0.4),
+            inset 0 0 10px rgba(6, 182, 212, 0.1)
           `
         }}
       />
@@ -574,115 +574,256 @@ function App() {
             </motion.span>
           </motion.div>
 
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-xl md:text-2xl text-white/60 max-w-4xl mx-auto mb-12 leading-relaxed"
+          >
+            <motion.span
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="text-cyan-300/80"
+            >
+              Inteligência artificial
+            </motion.span>{' '}
+            que entende seu contexto.{' '}
+            <motion.span
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+              className="text-cyan-300/80"
+            >
+              Respostas precisas
+            </motion.span>{' '}
+            para suas dúvidas técnicas.
+          </motion.p>
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-4xl mx-auto"
           >
-            {/* Discord-like Chat Interface */}
-            <div className="bg-[#36393f] rounded-lg p-6 text-sm discord-text">
-              <div className="flex items-center justify-between mb-4 pb-2 border-b border-gray-600">
-                <div className="flex items-center space-x-2">
-                  <span className="text-white font-semibold discord-username">#ask-the-expert</span>
-                  <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-                  <span className="text-gray-400 discord-text">Online</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.027zM8.68 15.464c-1.283 0-2.34-1.178-2.34-2.625s1.036-2.625 2.34-2.625c1.312 0 2.36 1.187 2.34 2.625 0 1.447-1.057 2.625-2.34 2.625zm6.64 0c-1.283 0-2.34-1.178-2.34-2.625s1.036-2.625 2.34-2.625c1.312 0 2.36 1.187 2.34 2.625 0 1.447-1.057 2.625-2.34 2.625z"/>
-                  </svg>
-                  <span className="text-gray-400 text-xs discord-text">1.247 membros ativos</span>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 mt-1">
-                    <UserAvatar />
+            {/* Modern Chat Interface */}
+            <div className="relative rounded-2xl overflow-hidden">
+              {/* Darker background with subtle cyan */}
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-950/95 via-gray-900/95 to-black/95 backdrop-blur-xl" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/[0.02] via-transparent to-gray-800/10" />
+              
+              {/* Animated border */}
+              <motion.div
+                className="absolute inset-0 rounded-2xl"
+                style={{
+                  background: 'linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.5), transparent)',
+                  backgroundSize: '200% 100%',
+                }}
+                animate={{
+                  backgroundPosition: ['0% 0%', '200% 0%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+              
+              <div className="relative p-8">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-8 pb-4 border-b border-cyan-500/20">
+                  <div className="flex items-center space-x-3">
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                      className="w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"
+                    />
+                    <motion.span 
+                      animate={{
+                        backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400"
+                      style={{
+                        backgroundSize: '200% 200%',
+                        textShadow: '0 0 20px rgba(6, 182, 212, 0.3)',
+                        filter: 'drop-shadow(0 0 8px rgba(6, 182, 212, 0.4))'
+                      }}
+                    >
+                      #ask-the-expert
+                    </motion.span>
+                    <motion.span
+                      animate={{ opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="px-3 py-1 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-full text-green-400 text-xs font-medium"
+                    >
+                      ● Online
+                    </motion.span>
                   </div>
+                  <div className="flex items-center space-x-2">
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      className="px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-lg border border-cyan-500/20"
+                    >
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-300 text-sm font-medium">1.247 membros ativos</span>
+                    </motion.div>
+                  </div>
+                </div>
+
+              <div className="space-y-8">
+                {/* User Message */}
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex items-start space-x-4"
+                >
+                  <motion.div 
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="flex-shrink-0 mt-1"
+                  >
+                    <UserAvatar />
+                  </motion.div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center space-x-2 mb-2">
+                    <div className="flex items-center space-x-3 mb-3">
                       <span className="text-cyan-300 font-bold text-sm" style={{
                         textShadow: '0 0 10px rgba(6, 182, 212, 0.8)',
                         filter: 'drop-shadow(0 0 5px rgba(6, 182, 212, 0.6))'
                       }}>AI Data Engineer</span>
-                      <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-2 py-0.5 rounded text-xs font-bold shadow-lg">USER</span>
-                      <span className="text-gray-500 text-xs discord-text">Hoje às 14:20</span>
+                      <motion.span 
+                        whileHover={{ scale: 1.1 }}
+                        className="px-3 py-1 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full text-xs font-bold shadow-lg shadow-cyan-500/30"
+                      >
+                        USER
+                      </motion.span>
+                      <span className="text-gray-400 text-xs">Hoje às 14:20</span>
                     </div>
-                    <div className="bg-[#40444b] rounded-lg p-4">
-                      <p className="text-white text-sm discord-text">O que são foundation models?</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 mt-1">
-                    <BotAvatar />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-cyan-300 font-bold text-sm discord-username" style={{
-                        textShadow: '0 0 10px rgba(6, 182, 212, 0.8)',
-                        filter: 'drop-shadow(0 0 5px rgba(6, 182, 212, 0.6))'
-                      }}>Ask Gen</span>
-                      <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag shadow-lg">BOT</span>
-                      <span className="text-gray-500 text-xs discord-text">Hoje às 14:21</span>
-                    </div>
-                    <div className="bg-[#2f3136] rounded-lg p-4 border-l-4 border-cyan-500">
-                      <p className="text-gray-300 text-sm mb-3 discord-text leading-relaxed">
-                        Foundation models são modelos de IA pré-treinados em grandes datasets que servem como base para diversas tarefas. Eles democratizam o acesso à IA avançada e aceleram o desenvolvimento de aplicações específicas.
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="bg-cyan-600 text-white px-2 py-1 rounded text-xs">#foundation-models</span>
-                        <span className="bg-cyan-500 text-white px-2 py-1 rounded text-xs">#ai</span>
-                        <span className="bg-cyan-700 text-white px-2 py-1 rounded text-xs">#machine-learning</span>
+                    <motion.div 
+                      whileHover={{ scale: 1.02 }}
+                      className="relative group"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-gray-700/10 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+                      <div className="relative bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-sm rounded-xl p-5 border border-gray-700/30">
+                        <p className="text-white text-base">O que são foundation models?</p>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 mt-1">
-                    <UserAvatar />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-cyan-400 font-semibold text-sm discord-username">AI Data Engineer</span>
-                      <span className="bg-cyan-600 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag">USER</span>
-                      <span className="text-gray-500 text-xs discord-text">Hoje às 14:23</span>
-                    </div>
-                    <div className="bg-[#40444b] rounded-lg p-4">
-                      <p className="text-white text-sm discord-text">Qual é o papel e importância de RAG?</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 mt-1">
+                {/* Ask Gen Response */}
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="flex items-start space-x-4"
+                >
+                  <motion.div 
+                    animate={{ 
+                      scale: [1, 1.05, 1],
+                      rotate: [0, 5, -5, 0]
+                    }}
+                    transition={{ 
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="flex-shrink-0 mt-1"
+                  >
                     <BotAvatar />
-                  </div>
+                  </motion.div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-cyan-300 font-bold text-sm discord-username" style={{
-                        textShadow: '0 0 10px rgba(6, 182, 212, 0.8)',
-                        filter: 'drop-shadow(0 0 5px rgba(6, 182, 212, 0.6))'
-                      }}>Ask Gen</span>
-                      <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-2 py-0.5 rounded text-xs font-bold discord-tag shadow-lg">BOT</span>
-                      <span className="text-gray-500 text-xs discord-text">Hoje às 14:24</span>
+                    <div className="flex items-center space-x-3 mb-3">
+                      <motion.span 
+                        animate={{
+                          textShadow: [
+                            '0 0 10px rgba(6, 182, 212, 0.8)',
+                            '0 0 20px rgba(6, 182, 212, 1)',
+                            '0 0 10px rgba(6, 182, 212, 0.8)'
+                          ]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="text-cyan-300 font-bold text-sm"
+                        style={{
+                          filter: 'drop-shadow(0 0 5px rgba(6, 182, 212, 0.6))'
+                        }}
+                      >
+                        Ask Gen
+                      </motion.span>
+                      <motion.span 
+                        animate={{ rotate: [0, 360] }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        whileHover={{ scale: 1.2 }}
+                        className="relative px-3 py-1 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-full text-xs font-bold shadow-lg shadow-cyan-500/50"
+                      >
+                        <motion.span
+                          animate={{ opacity: [0.5, 1, 0.5] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                          className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full blur-md"
+                        />
+                        <span className="relative">BOT</span>
+                      </motion.span>
+                      <span className="text-gray-400 text-xs">Hoje às 14:21</span>
                     </div>
-                    <div className="bg-[#2f3136] rounded-lg p-4 border-l-4 border-cyan-500">
-                      <p className="text-gray-300 text-sm mb-3 discord-text leading-relaxed">
-                        RAG (Retrieval-Augmented Generation) conecta LLMs a bases de conhecimento externas, permitindo respostas mais precisas e atualizadas. É crucial para reduzir alucinações e personalizar respostas com dados específicos.
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="bg-cyan-700 text-white px-2 py-1 rounded text-xs">#rag</span>
-                        <span className="bg-cyan-600 text-white px-2 py-1 rounded text-xs">#retrieval</span>
-                        <span className="bg-cyan-500 text-white px-2 py-1 rounded text-xs">#generation</span>
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      className="relative group"
+                    >
+                      {/* Glowing effect */}
+                      <motion.div 
+                        animate={{ opacity: [0.2, 0.4, 0.2] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className="absolute -inset-1 bg-gradient-to-r from-gray-600/10 via-cyan-500/10 to-gray-600/10 rounded-xl blur-xl"
+                      />
+                      
+                      {/* Message container */}
+                      <div className="relative bg-gradient-to-br from-gray-900/95 via-black/95 to-gray-950/95 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/40">
+                        {/* Animated border */}
+                        <motion.div
+                          className="absolute inset-0 opacity-50"
+                          style={{
+                            background: 'linear-gradient(45deg, transparent 30%, rgba(6, 182, 212, 0.1) 50%, transparent 70%)',
+                            backgroundSize: '200% 200%',
+                          }}
+                          animate={{
+                            backgroundPosition: ['0% 0%', '100% 100%'],
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "linear"
+                          }}
+                        />
+                        
+                        {/* Content */}
+                        <div className="relative p-6">
+                          <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-400 via-blue-400 to-cyan-400" />
+                          <p className="text-gray-100 text-base mb-4 leading-relaxed pl-4">
+                            Foundation models são modelos de IA pré-treinados em grandes datasets que servem como base para diversas tarefas. Eles democratizam o acesso à IA avançada e aceleram o desenvolvimento de aplicações específicas.
+                          </p>
+                          <div className="flex flex-wrap gap-2 pl-4">
+                            {['#foundation-models', '#ai', '#machine-learning'].map((tag, i) => (
+                              <motion.span
+                                key={tag}
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.7 + i * 0.1 }}
+                                whileHover={{ scale: 1.1, y: -2 }}
+                                className="px-3 py-1 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 text-cyan-300 rounded-full text-xs font-medium backdrop-blur-sm"
+                              >
+                                {tag}
+                              </motion.span>
+                            ))}
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
+              </div>
               </div>
             </div>
 
