@@ -886,113 +886,368 @@ function App() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.9 }}
+                  transition={{ duration: 1, delay: 0.9 }}
                   className="relative"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-600/20 to-gray-800/20 rounded-2xl blur-xl"></div>
-                  <div className="relative bg-gradient-to-br from-gray-900/50 to-black/50 rounded-2xl p-8 border border-gray-700/50 backdrop-blur-sm">
-                    <div className="flex items-center justify-center mb-6">
-                      <div className="w-16 h-16 rounded-full flex items-center justify-center relative">
+                  {/* Futuristic metallic backdrop */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-900/30 via-black/50 to-gray-900/30 rounded-3xl blur-2xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/10 to-transparent rounded-3xl"></div>
+                  
+                  <div className="relative bg-black/80 rounded-3xl p-12 border border-gray-800/50 backdrop-blur-xl overflow-hidden">
+                    {/* Animated grid background */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="absolute inset-0" style={{
+                        backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                        backgroundSize: '50px 50px',
+                        animation: 'grid-move 10s linear infinite'
+                      }} />
+                    </div>
+                    
+                    {/* Ask Gen Onyx - Hyperrealistic Obsidian Orb */}
+                    <div className="flex items-center justify-center mb-10">
+                      <div className="relative w-48 h-48">
+                        {/* Mystical smoke effect */}
                         <motion.div
                           animate={{ 
-                            rotate: 360,
+                            scale: [1, 1.2, 1],
+                            opacity: [0.1, 0.3, 0.1]
                           }}
                           transition={{
-                            duration: 15,
+                            duration: 8,
                             repeat: Infinity,
-                            ease: "linear"
+                            ease: "easeInOut"
                           }}
-                          className="w-14 h-14 rounded-full bg-gradient-to-br from-gray-900 via-black to-gray-800"
+                          className="absolute -inset-8 rounded-full"
                           style={{
-                            background: `
-                              radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.4) 0%, transparent 50%),
-                              radial-gradient(circle at 70% 70%, rgba(75, 85, 99, 0.3) 0%, transparent 50%),
-                              linear-gradient(135deg, #111827 0%, #000000 50%, #1f2937 100%)
-                            `,
-                            boxShadow: `
-                              0 0 20px rgba(156, 163, 175, 0.4),
-                              inset 0 0 20px rgba(0, 0, 0, 0.8),
-                              0 0 40px rgba(156, 163, 175, 0.2)
-                            `
+                            background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)',
+                            filter: 'blur(20px)'
                           }}
-                        >
-                          {/* Mini Inner Glow */}
-                          <div className="absolute inset-1 rounded-full bg-gradient-to-br from-gray-700/30 via-transparent to-gray-600/20" />
-                          
-                          {/* Mini Silver Neon Edge */}
+                        />
+                        
+                        {/* Digital holographic rings */}
+                        {[1, 1.3, 1.6].map((scale, i) => (
                           <motion.div
+                            key={i}
                             animate={{ 
-                              opacity: [0.6, 1, 0.6],
+                              rotate: i % 2 === 0 ? 360 : -360,
+                              opacity: [0.1, 0.4, 0.1]
                             }}
                             transition={{
-                              duration: 2,
+                              rotate: { duration: 30 + i * 10, repeat: Infinity, ease: "linear" },
+                              opacity: { duration: 4 + i, repeat: Infinity, ease: "easeInOut" }
+                            }}
+                            className="absolute inset-0 rounded-full border"
+                            style={{
+                              transform: `scale(${scale})`,
+                              borderColor: 'rgba(255, 255, 255, 0.2)',
+                              borderWidth: '0.5px',
+                              boxShadow: '0 0 20px rgba(255, 255, 255, 0.1)',
+                              borderStyle: i === 1 ? 'dashed' : 'solid'
+                            }}
+                          />
+                        ))}
+                        
+                        {/* Main Hyperrealistic Obsidian Orb */}
+                        <motion.div
+                          animate={{ 
+                            rotateY: 360,
+                            rotateX: 360
+                          }}
+                          transition={{
+                            rotateY: { duration: 40, repeat: Infinity, ease: "linear" },
+                            rotateX: { duration: 60, repeat: Infinity, ease: "linear" }
+                          }}
+                          className="relative w-48 h-48 rounded-full"
+                          style={{
+                            transformStyle: 'preserve-3d',
+                            background: `
+                              radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.8) 0%, transparent 15%),
+                              radial-gradient(circle at 75% 75%, rgba(192, 192, 192, 0.3) 0%, transparent 30%),
+                              radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 40%),
+                              conic-gradient(from 45deg at 50% 50%, 
+                                #000000 0deg, 
+                                #1a1a1a 45deg, 
+                                #2d2d2d 90deg, 
+                                #1a1a1a 135deg,
+                                #000000 180deg,
+                                #0d0d0d 225deg,
+                                #1a1a1a 270deg,
+                                #0d0d0d 315deg,
+                                #000000 360deg
+                              )
+                            `,
+                            boxShadow: `
+                              0 0 80px rgba(255, 255, 255, 0.4),
+                              0 0 150px rgba(255, 255, 255, 0.2),
+                              inset 0 0 60px rgba(0, 0, 0, 1),
+                              inset -30px -30px 50px rgba(255, 255, 255, 0.1),
+                              inset 30px 30px 50px rgba(0, 0, 0, 1),
+                              0 20px 40px rgba(0, 0, 0, 0.8)
+                            `,
+                          }}
+                        >
+                          {/* Swirling marble texture inside */}
+                          <motion.div
+                            animate={{ 
+                              rotate: -360,
+                            }}
+                            transition={{
+                              duration: 20,
+                              repeat: Infinity,
+                              ease: "linear"
+                            }}
+                            className="absolute inset-2 rounded-full overflow-hidden"
+                            style={{
+                              background: `
+                                radial-gradient(circle at 30% 40%, transparent 20%, rgba(169, 169, 169, 0.1) 50%, transparent 70%),
+                                radial-gradient(circle at 70% 60%, transparent 20%, rgba(192, 192, 192, 0.1) 50%, transparent 70%),
+                                radial-gradient(circle at 40% 80%, transparent 10%, rgba(128, 128, 128, 0.1) 40%, transparent 60%),
+                                conic-gradient(from 0deg at 50% 50%, 
+                                  rgba(64, 64, 64, 0.2) 0deg,
+                                  transparent 60deg,
+                                  rgba(128, 128, 128, 0.2) 120deg,
+                                  transparent 180deg,
+                                  rgba(192, 192, 192, 0.2) 240deg,
+                                  transparent 300deg,
+                                  rgba(64, 64, 64, 0.2) 360deg
+                                )
+                              `,
+                              mixBlendMode: 'screen'
+                            }}
+                          />
+                          
+                          {/* Holographic neon white edge glow */}
+                          <motion.div
+                            animate={{ 
+                              opacity: [0.3, 0.8, 0.3],
+                            }}
+                            transition={{
+                              duration: 3,
                               repeat: Infinity,
                               ease: "easeInOut"
                             }}
-                            className="absolute inset-0 rounded-full border border-gray-300/60"
+                            className="absolute inset-0 rounded-full"
+                            style={{
+                              background: 'transparent',
+                              border: '2px solid transparent',
+                              backgroundImage: `linear-gradient(black, black), 
+                                               linear-gradient(45deg, 
+                                                 transparent 30%, 
+                                                 rgba(255, 255, 255, 0.8) 50%, 
+                                                 transparent 70%)`,
+                              backgroundOrigin: 'border-box',
+                              backgroundClip: 'content-box, border-box',
+                              filter: 'blur(1px)'
+                            }}
                           />
                           
-                          {/* Mini Floating Particles */}
-                          {[...Array(3)].map((_, i) => (
+                          {/* Inner crystal core with depth */}
+                          <div className="absolute inset-6 rounded-full"
+                            style={{
+                              background: `
+                                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                                radial-gradient(circle at 50% 50%, #000000 0%, #0a0a0a 50%, #000000 100%)
+                              `,
+                              boxShadow: 'inset 0 0 30px rgba(0, 0, 0, 0.9)'
+                            }}
+                          />
+                          
+                          {/* Magical floating light particles */}
+                          {[...Array(12)].map((_, i) => (
                             <motion.div
                               key={i}
                               animate={{
-                                y: [-2, 2, -2],
-                                opacity: [0.3, 0.8, 0.3],
+                                y: [-30, 30, -30],
+                                x: [-20, 20, -20],
+                                opacity: [0, 1, 0],
+                                scale: [0.5, 1, 0.5]
                               }}
                               transition={{
-                                duration: 2 + i * 0.5,
+                                duration: 5 + i * 0.3,
                                 repeat: Infinity,
-                                ease: "easeInOut",
-                                delay: i * 0.3
+                                delay: i * 0.4,
+                                ease: "easeInOut"
                               }}
-                              className="absolute w-0.5 h-0.5 bg-gray-300 rounded-full"
+                              className="absolute w-0.5 h-0.5 bg-white rounded-full"
                               style={{
-                                left: `${30 + i * 20}%`,
-                                top: `${25 + i * 15}%`,
+                                left: `${15 + (i * 7) % 70}%`,
+                                top: `${15 + (i * 11) % 70}%`,
+                                boxShadow: '0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.5)'
                               }}
                             />
                           ))}
+                          
+                          {/* Oracle energy aura */}
+                          <motion.div
+                            animate={{ 
+                              scale: [1, 1.1, 1],
+                              opacity: [0.2, 0.5, 0.2]
+                            }}
+                            transition={{
+                              duration: 4,
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            }}
+                            className="absolute -inset-2 rounded-full"
+                            style={{
+                              background: 'radial-gradient(circle, transparent 40%, rgba(255, 255, 255, 0.1) 70%, transparent 100%)',
+                              filter: 'blur(15px)'
+                            }}
+                          />
                         </motion.div>
                       </div>
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4 section-subtitle">
-                      A Evolução Chegou
-                    </h3>
-                    <p className="text-white/70 mb-6 leading-relaxed">
-                      Do reativo ao proativo. Do assistente ao mentor. Do Ask Gen ao Ask Gen Onyx.
-                      <br />
-                      <strong className="text-white/90">A inteligência que acelera sua carreira enquanto você dorme.</strong>
-                    </p>
                     
-                    <motion.button
-                      initial={{ opacity: 0, y: 10 }}
+                    {/* Compelling copy */}
+                    <motion.h3 
+                      initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 1.1 }}
-                      onClick={() => {
-                        const element = document.getElementById('onyx');
-                        if (element) {
-                          const headerHeight = 80;
-                          const elementPosition = element.offsetTop - headerHeight;
-                          window.scrollTo({
-                            top: elementPosition,
-                            behavior: 'smooth'
-                          });
-                        }
-                      }}
-                      className="px-8 py-4 bg-gradient-to-r from-gray-600 to-gray-800 rounded-lg font-semibold text-white hover:from-gray-700 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border border-gray-500/30 group font-roboto"
+                      transition={{ duration: 0.8, delay: 1 }}
+                      className="text-4xl font-bold text-center mb-6"
                     >
-                      <span className="flex items-center space-x-2">
-                        <span>Descobrir Ask Gen Onyx</span>
-                        <motion.span
-                          animate={{ x: [0, 5, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                          className="group-hover:translate-x-1 transition-transform"
-                        >
-                          →
-                        </motion.span>
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-300 to-white">
+                        A Evolução Chegou
                       </span>
-                    </motion.button>
+                    </motion.h3>
+                    
+                    <motion.p 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 1.2 }}
+                      className="text-gray-300 text-xl mb-8 leading-relaxed text-center max-w-2xl mx-auto"
+                    >
+                      Do reativo ao <span className="text-white font-semibold">proativo</span>. 
+                      Do assistente ao <span className="text-white font-semibold">mentor</span>. 
+                      Do Ask Gen ao <span className="bg-gradient-to-r from-gray-100 to-white bg-clip-text text-transparent font-bold">Ask Gen Onyx</span>.
+                    </motion.p>
+                    
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 1.4 }}
+                      className="text-2xl font-light text-center mb-10"
+                    >
+                      <span className="bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
+                        A inteligência que acelera sua carreira enquanto você dorme.
+                      </span>
+                    </motion.p>
+                    
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.6, delay: 1.6 }}
+                      className="flex justify-center"
+                    >
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                          const element = document.getElementById('onyx');
+                          if (element) {
+                            const headerHeight = 80;
+                            const elementPosition = element.offsetTop - headerHeight;
+                            window.scrollTo({
+                              top: elementPosition,
+                              behavior: 'smooth'
+                            });
+                          }
+                        }}
+                        className="relative px-12 py-6 rounded-2xl font-bold text-lg transition-all duration-500 overflow-hidden group"
+                        style={{
+                          background: `linear-gradient(135deg, 
+                            #000000 0%, 
+                            #1a1a1a 25%, 
+                            #2d2d2d 50%, 
+                            #1a1a1a 75%, 
+                            #000000 100%)`,
+                          border: '2px solid transparent',
+                          backgroundOrigin: 'border-box',
+                          backgroundClip: 'padding-box',
+                          boxShadow: `
+                            0 0 40px rgba(255, 255, 255, 0.2),
+                            0 0 80px rgba(255, 255, 255, 0.1),
+                            inset 0 0 30px rgba(255, 255, 255, 0.05),
+                            0 10px 30px rgba(0, 0, 0, 0.8)
+                          `
+                        }}
+                      >
+                        {/* Holographic border effect */}
+                        <motion.div
+                          animate={{ 
+                            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                          }}
+                          transition={{ 
+                            duration: 4, 
+                            repeat: Infinity, 
+                            ease: "linear" 
+                          }}
+                          className="absolute inset-0 rounded-2xl"
+                          style={{
+                            background: `linear-gradient(90deg, 
+                              transparent, 
+                              rgba(255, 255, 255, 0.4), 
+                              rgba(192, 192, 192, 0.4),
+                              rgba(255, 255, 255, 0.4),
+                              transparent)`,
+                            backgroundSize: '200% 100%',
+                            opacity: 0.8,
+                            padding: '2px',
+                            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                            WebkitMaskComposite: 'xor',
+                            maskComposite: 'exclude'
+                          }}
+                        />
+                        
+                        {/* Premium shine effect */}
+                        <motion.div
+                          animate={{ 
+                            x: ['-200%', '200%'],
+                            opacity: [0, 1, 0]
+                          }}
+                          transition={{ 
+                            duration: 3, 
+                            repeat: Infinity, 
+                            repeatDelay: 2,
+                            ease: "easeInOut"
+                          }}
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
+                        />
+                        
+                        {/* Button text with gradient */}
+                        <span className="relative flex items-center space-x-3">
+                          <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent"
+                                style={{ 
+                                  backgroundSize: '200% 100%',
+                                  textShadow: '0 0 20px rgba(255, 255, 255, 0.5)'
+                                }}>
+                            Descobrir Ask Gen Onyx
+                          </span>
+                          <motion.span
+                            animate={{ 
+                              x: [0, 8, 0],
+                              opacity: [0.6, 1, 0.6]
+                            }}
+                            transition={{ 
+                              duration: 2, 
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            }}
+                            className="text-2xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
+                          >
+                            →
+                          </motion.span>
+                        </span>
+                        
+                        {/* Hover glow effect */}
+                        <motion.div
+                          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                          style={{
+                            background: 'radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 70%)',
+                            filter: 'blur(20px)'
+                          }}
+                        />
+                      </motion.button>
+                    </motion.div>
                   </div>
                 </motion.div>
               </div>
