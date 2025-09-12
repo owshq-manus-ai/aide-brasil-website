@@ -903,195 +903,387 @@ function App() {
                       }} />
                     </div>
                     
-                    {/* Ask Gen Onyx - Hyperrealistic Obsidian Orb */}
-                    <div className="flex items-center justify-center mb-10">
-                      <div className="relative w-48 h-48">
-                        {/* Mystical smoke effect */}
+                    {/* Ask Gen Onyx - Oracle-Inspired Mystical Sphere */}
+                    <div className="flex items-center justify-center py-6 mb-4 relative">
+                      <div className="relative w-24 h-24" style={{ perspective: '600px' }}>
+                        {/* Mystical Particle Field - Slow Orbiting Stars */}
+                        <div className="absolute -inset-12 pointer-events-none">
+                          {[...Array(8)].map((_, i) => {
+                            const angle = (i * 45) * Math.PI / 180;
+                            const radius = 40 + Math.random() * 15;
+                            const duration = 60 + Math.random() * 40;
+                            const delay = Math.random() * 10;
+                            
+                            return (
+                              <motion.div
+                                key={`particle-${i}`}
+                                className="absolute"
+                                style={{
+                                  left: '50%',
+                                  top: '50%',
+                                }}
+                                animate={{
+                                  x: [
+                                    Math.cos(angle) * radius,
+                                    Math.cos(angle + Math.PI) * radius,
+                                    Math.cos(angle) * radius
+                                  ],
+                                  y: [
+                                    Math.sin(angle) * radius,
+                                    Math.sin(angle + Math.PI) * radius,
+                                    Math.sin(angle) * radius
+                                  ],
+                                  scale: [1, 1.5, 1],
+                                  opacity: [0.3, 0.8, 0.3]
+                                }}
+                                transition={{
+                                  duration: duration,
+                                  repeat: Infinity,
+                                  delay: delay,
+                                  ease: "linear"
+                                }}
+                              >
+                                <div 
+                                  className="w-1 h-1 rounded-full bg-white"
+                                  style={{
+                                    boxShadow: `
+                                      0 0 10px rgba(255, 255, 255, 0.9),
+                                      0 0 20px rgba(255, 255, 255, 0.6),
+                                      0 0 30px rgba(255, 255, 255, 0.3)
+                                    `,
+                                    filter: 'blur(0.5px)'
+                                  }}
+                                />
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+                        
+                        {/* Sacred Geometry Rings - Slow Rotation */}
+                        {[0, 1, 2].map((ring) => (
+                          <motion.div
+                            key={`sacred-ring-${ring}`}
+                            className="absolute inset-0 pointer-events-none"
+                            animate={{
+                              rotateY: ring % 2 === 0 ? [0, 360] : [360, 0],
+                              rotateX: ring === 1 ? [0, 360] : 0,
+                              rotateZ: ring === 2 ? [0, 360] : 0,
+                            }}
+                            transition={{
+                              duration: 90 + ring * 30,
+                              repeat: Infinity,
+                              ease: "linear"
+                            }}
+                            style={{
+                              transformStyle: 'preserve-3d',
+                            }}
+                          >
+                            <div 
+                              className="w-full h-full rounded-full border border-white/10"
+                              style={{
+                                boxShadow: `
+                                  0 0 30px rgba(255, 255, 255, 0.2),
+                                  inset 0 0 30px rgba(255, 255, 255, 0.1)
+                                `,
+                                transform: `scale(${1.2 + ring * 0.15})`,
+                              }}
+                            />
+                          </motion.div>
+                        ))}
+                        
+                        {/* Ethereal Energy Waves - Ultra Slow */}
+                        {[0, 1, 2, 3].map((wave) => (
+                          <motion.div
+                            key={`wave-${wave}`}
+                            className="absolute inset-0"
+                            animate={{
+                              scale: [1, 2.5, 1],
+                              opacity: [0, 0.3, 0],
+                            }}
+                            transition={{
+                              duration: 12,
+                              repeat: Infinity,
+                              delay: wave * 3,
+                              ease: "easeInOut"
+                            }}
+                          >
+                            <div className="w-full h-full rounded-full"
+                                 style={{
+                                   background: `radial-gradient(circle, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%)`,
+                                   boxShadow: `
+                                     0 0 80px rgba(255, 255, 255, 0.3),
+                                     inset 0 0 60px rgba(255, 255, 255, 0.2)
+                                   `,
+                                   filter: 'blur(2px)'
+                                 }}
+                            />
+                          </motion.div>
+                        ))}
+                        
+                        {/* Mystical Light Beams - Converging to Oracle */}
+                        <div className="absolute inset-0 pointer-events-none">
+                          {[...Array(12)].map((_, i) => {
+                            const angle = (i * 30) * Math.PI / 180;
+                            const startX = 50 + Math.cos(angle) * 50;
+                            const startY = 50 + Math.sin(angle) * 50;
+                            return (
+                              <motion.div
+                                key={`beam-${i}`}
+                                className="absolute"
+                                style={{
+                                  left: `${startX}%`,
+                                  top: `${startY}%`,
+                                  width: '100px',
+                                  height: '1px',
+                                  transformOrigin: '0 50%',
+                                  transform: `rotate(${i * 30 + 180}deg)`
+                                }}
+                                animate={{
+                                  opacity: [0, 0.3, 0],
+                                  scaleX: [0, 1, 0]
+                                }}
+                                transition={{
+                                  duration: 8,
+                                  repeat: Infinity,
+                                  delay: i * 0.6,
+                                  ease: "easeInOut"
+                                }}
+                              >
+                                <div
+                                  className="absolute w-full h-full"
+                                  style={{
+                                    background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent)',
+                                    boxShadow: '0 0 15px rgba(255, 255, 255, 0.6)',
+                                    filter: 'blur(0.5px)'
+                                  }}
+                                />
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+                        
+                        {/* Oracle Placeholder - Empty Mystical Aura */}
                         <motion.div
                           animate={{ 
-                            scale: [1, 1.2, 1],
-                            opacity: [0.1, 0.3, 0.1]
+                            scale: [1, 1.1, 1],
+                            opacity: [0.3, 0.6, 0.3]
                           }}
                           transition={{
-                            duration: 8,
+                            duration: 4,
                             repeat: Infinity,
                             ease: "easeInOut"
                           }}
-                          className="absolute -inset-8 rounded-full"
+                          className="absolute inset-0 rounded-full"
                           style={{
-                            background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)',
-                            filter: 'blur(20px)'
-                          }}
-                        />
-                        
-                        {/* Digital holographic rings */}
-                        {[1, 1.3, 1.6].map((scale, i) => (
-                          <motion.div
-                            key={i}
-                            animate={{ 
-                              rotate: i % 2 === 0 ? 360 : -360,
-                              opacity: [0.1, 0.4, 0.1]
-                            }}
-                            transition={{
-                              rotate: { duration: 30 + i * 10, repeat: Infinity, ease: "linear" },
-                              opacity: { duration: 4 + i, repeat: Infinity, ease: "easeInOut" }
-                            }}
-                            className="absolute inset-0 rounded-full border"
-                            style={{
-                              transform: `scale(${scale})`,
-                              borderColor: 'rgba(255, 255, 255, 0.2)',
-                              borderWidth: '0.5px',
-                              boxShadow: '0 0 20px rgba(255, 255, 255, 0.1)',
-                              borderStyle: i === 1 ? 'dashed' : 'solid'
-                            }}
-                          />
-                        ))}
-                        
-                        {/* Main Hyperrealistic Obsidian Orb */}
-                        <motion.div
-                          animate={{ 
-                            rotateY: 360,
-                            rotateX: 360
-                          }}
-                          transition={{
-                            rotateY: { duration: 40, repeat: Infinity, ease: "linear" },
-                            rotateX: { duration: 60, repeat: Infinity, ease: "linear" }
-                          }}
-                          className="relative w-48 h-48 rounded-full"
-                          style={{
-                            transformStyle: 'preserve-3d',
                             background: `
-                              radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.8) 0%, transparent 15%),
-                              radial-gradient(circle at 75% 75%, rgba(192, 192, 192, 0.3) 0%, transparent 30%),
-                              radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 40%),
-                              conic-gradient(from 45deg at 50% 50%, 
-                                #000000 0deg, 
-                                #1a1a1a 45deg, 
-                                #2d2d2d 90deg, 
-                                #1a1a1a 135deg,
-                                #000000 180deg,
-                                #0d0d0d 225deg,
-                                #1a1a1a 270deg,
-                                #0d0d0d 315deg,
-                                #000000 360deg
-                              )
+                              radial-gradient(circle at 50% 50%, 
+                                transparent 0%,
+                                transparent 30%,
+                                rgba(255, 255, 255, 0.05) 40%,
+                                rgba(255, 255, 255, 0.1) 50%,
+                                rgba(255, 255, 255, 0.05) 60%,
+                                transparent 70%,
+                                transparent 100%)
                             `,
                             boxShadow: `
-                              0 0 80px rgba(255, 255, 255, 0.4),
-                              0 0 150px rgba(255, 255, 255, 0.2),
-                              inset 0 0 60px rgba(0, 0, 0, 1),
-                              inset -30px -30px 50px rgba(255, 255, 255, 0.1),
-                              inset 30px 30px 50px rgba(0, 0, 0, 1),
-                              0 20px 40px rgba(0, 0, 0, 0.8)
+                              0 0 60px rgba(255, 255, 255, 0.4),
+                              0 0 100px rgba(255, 255, 255, 0.2),
+                              0 0 150px rgba(255, 255, 255, 0.1)
                             `,
+                            filter: 'blur(1px)',
+                            borderRadius: '50%',
                           }}
                         >
-                          {/* Swirling marble texture inside */}
+                          {/* Aurora Borealis Color Shifts */}
                           <motion.div
                             animate={{ 
-                              rotate: -360,
+                              rotate: [0, -360],
+                              opacity: [0.2, 0.5, 0.3, 0.2],
+                            }}
+                            transition={{
+                              rotate: { duration: 80, repeat: Infinity, ease: "linear" },
+                              opacity: { duration: 10, repeat: Infinity, ease: "easeInOut" }
+                            }}
+                            className="absolute inset-1 rounded-full overflow-hidden"
+                          >
+                            <motion.div
+                              animate={{
+                                scale: [1, 1.15, 0.9, 1.1, 1],
+                                rotate: [0, 45, -30, 60, 0],
+                              }}
+                              transition={{
+                                scale: { duration: 20, repeat: Infinity, ease: "easeInOut" },
+                                rotate: { duration: 30, repeat: Infinity, ease: "easeInOut" }
+                              }}
+                              className="w-full h-full"
+                              style={{
+                                background: `
+                                  conic-gradient(from 0deg at 50% 50%,
+                                    rgba(120, 200, 255, 0.1) 0deg,
+                                    rgba(180, 120, 255, 0.05) 45deg,
+                                    transparent 90deg,
+                                    rgba(120, 255, 200, 0.08) 135deg,
+                                    transparent 180deg,
+                                    rgba(255, 120, 180, 0.06) 225deg,
+                                    rgba(200, 180, 255, 0.04) 270deg,
+                                    transparent 315deg,
+                                    rgba(120, 200, 255, 0.1) 360deg
+                                  )
+                                `,
+                                filter: 'blur(15px)',
+                                mixBlendMode: 'screen'
+                              }}
+                            />
+                          </motion.div>
+                          
+                          {/* Oracle Ethereal Glow */}
+                          <motion.div
+                            animate={{ 
+                              rotateZ: [0, 360],
+                              opacity: [0.2, 0.4, 0.2]
+                            }}
+                            transition={{
+                              rotateZ: { duration: 45, repeat: Infinity, ease: "linear" },
+                              opacity: { duration: 8, repeat: Infinity, ease: "easeInOut" }
+                            }}
+                            className="absolute inset-6 rounded-full"
+                            style={{
+                              background: `
+                                linear-gradient(135deg, 
+                                  transparent 20%,
+                                  rgba(255, 255, 255, 0.3) 35%,
+                                  rgba(255, 255, 255, 0.5) 40%,
+                                  rgba(255, 255, 255, 0.3) 45%,
+                                  transparent 60%
+                                )
+                              `,
+                              filter: 'blur(3px)'
+                            }}
+                          />
+                          
+                          {/* Oracle Inner Core - Cosmic Eye */}
+                          <motion.div
+                            animate={{
+                              scale: [0.9, 1, 0.9],
+                              opacity: [0.3, 0.8, 0.3]
+                            }}
+                            transition={{
+                              duration: 6,
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            }}
+                            className="absolute inset-20 rounded-full"
+                            style={{
+                              background: `
+                                radial-gradient(circle at 50% 50%, 
+                                  rgba(255, 255, 255, 0.9) 0%, 
+                                  rgba(255, 255, 255, 0.5) 10%,
+                                  rgba(150, 150, 150, 0.3) 30%,
+                                  rgba(0, 0, 0, 0.9) 60%,
+                                  #000000 80%
+                                )
+                              `,
+                              boxShadow: `
+                                0 0 80px rgba(255, 255, 255, 0.7),
+                                inset 0 0 50px rgba(255, 255, 255, 0.4)
+                              `,
+                              filter: 'blur(1.5px)'
+                            }}
+                          />
+                          
+                          {/* Crystalline Fractal Patterns */}
+                          <div className="absolute inset-0 rounded-full overflow-hidden">
+                            <motion.div
+                              animate={{
+                                rotate: [0, 360],
+                              }}
+                              transition={{
+                                duration: 100,
+                                repeat: Infinity,
+                                ease: "linear"
+                              }}
+                              className="absolute inset-0"
+                              style={{
+                                background: `
+                                  repeating-conic-gradient(
+                                    from 0deg at 50% 50%,
+                                    transparent 0deg,
+                                    rgba(255, 255, 255, 0.02) 3deg,
+                                    transparent 6deg,
+                                    transparent 12deg
+                                  )
+                                `,
+                                filter: 'blur(0.5px)',
+                                opacity: 0.6
+                              }}
+                            />
+                            <motion.div
+                              animate={{
+                                rotate: [360, 0],
+                                scale: [1, 1.1, 1]
+                              }}
+                              transition={{
+                                rotate: { duration: 120, repeat: Infinity, ease: "linear" },
+                                scale: { duration: 15, repeat: Infinity, ease: "easeInOut" }
+                              }}
+                              className="absolute inset-4"
+                              style={{
+                                background: `
+                                  repeating-radial-gradient(
+                                    circle at 50% 50%,
+                                    transparent 0px,
+                                    rgba(255, 255, 255, 0.03) 10px,
+                                    transparent 20px,
+                                    transparent 40px
+                                  )
+                                `,
+                                filter: 'blur(0.3px)',
+                                opacity: 0.5
+                              }}
+                            />
+                          </div>
+                          
+                          {/* Oracle Aura Field - Divine Energy */}
+                          <motion.div
+                            animate={{
+                              scale: [1, 1.2, 1],
+                              opacity: [0.05, 0.15, 0.05]
                             }}
                             transition={{
                               duration: 20,
                               repeat: Infinity,
-                              ease: "linear"
+                              ease: "easeInOut"
                             }}
-                            className="absolute inset-2 rounded-full overflow-hidden"
+                            className="absolute -inset-10 rounded-full"
                             style={{
                               background: `
-                                radial-gradient(circle at 30% 40%, transparent 20%, rgba(169, 169, 169, 0.1) 50%, transparent 70%),
-                                radial-gradient(circle at 70% 60%, transparent 20%, rgba(192, 192, 192, 0.1) 50%, transparent 70%),
-                                radial-gradient(circle at 40% 80%, transparent 10%, rgba(128, 128, 128, 0.1) 40%, transparent 60%),
-                                conic-gradient(from 0deg at 50% 50%, 
-                                  rgba(64, 64, 64, 0.2) 0deg,
-                                  transparent 60deg,
-                                  rgba(128, 128, 128, 0.2) 120deg,
-                                  transparent 180deg,
-                                  rgba(192, 192, 192, 0.2) 240deg,
-                                  transparent 300deg,
-                                  rgba(64, 64, 64, 0.2) 360deg
+                                radial-gradient(circle at 50% 50%,
+                                  transparent 20%,
+                                  rgba(255, 255, 255, 0.03) 40%,
+                                  rgba(255, 255, 255, 0.05) 50%,
+                                  transparent 80%
                                 )
                               `,
-                              mixBlendMode: 'screen'
+                              filter: 'blur(25px)',
                             }}
                           />
                           
-                          {/* Holographic neon white edge glow */}
+                          {/* Oracle Consciousness Pulse */}
                           <motion.div
-                            animate={{ 
-                              opacity: [0.3, 0.8, 0.3],
+                            animate={{
+                              opacity: [0, 0.6, 0],
+                              scale: [0.7, 1.3, 0.7]
                             }}
                             transition={{
-                              duration: 3,
+                              duration: 8,
                               repeat: Infinity,
+                              repeatDelay: 4,
                               ease: "easeInOut"
                             }}
-                            className="absolute inset-0 rounded-full"
+                            className="absolute inset-24 rounded-full"
                             style={{
-                              background: 'transparent',
-                              border: '2px solid transparent',
-                              backgroundImage: `linear-gradient(black, black), 
-                                               linear-gradient(45deg, 
-                                                 transparent 30%, 
-                                                 rgba(255, 255, 255, 0.8) 50%, 
-                                                 transparent 70%)`,
-                              backgroundOrigin: 'border-box',
-                              backgroundClip: 'content-box, border-box',
-                              filter: 'blur(1px)'
-                            }}
-                          />
-                          
-                          {/* Inner crystal core with depth */}
-                          <div className="absolute inset-6 rounded-full"
-                            style={{
-                              background: `
-                                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                                radial-gradient(circle at 50% 50%, #000000 0%, #0a0a0a 50%, #000000 100%)
-                              `,
-                              boxShadow: 'inset 0 0 30px rgba(0, 0, 0, 0.9)'
-                            }}
-                          />
-                          
-                          {/* Magical floating light particles */}
-                          {[...Array(12)].map((_, i) => (
-                            <motion.div
-                              key={i}
-                              animate={{
-                                y: [-30, 30, -30],
-                                x: [-20, 20, -20],
-                                opacity: [0, 1, 0],
-                                scale: [0.5, 1, 0.5]
-                              }}
-                              transition={{
-                                duration: 5 + i * 0.3,
-                                repeat: Infinity,
-                                delay: i * 0.4,
-                                ease: "easeInOut"
-                              }}
-                              className="absolute w-0.5 h-0.5 bg-white rounded-full"
-                              style={{
-                                left: `${15 + (i * 7) % 70}%`,
-                                top: `${15 + (i * 11) % 70}%`,
-                                boxShadow: '0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.5)'
-                              }}
-                            />
-                          ))}
-                          
-                          {/* Oracle energy aura */}
-                          <motion.div
-                            animate={{ 
-                              scale: [1, 1.1, 1],
-                              opacity: [0.2, 0.5, 0.2]
-                            }}
-                            transition={{
-                              duration: 4,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                            className="absolute -inset-2 rounded-full"
-                            style={{
-                              background: 'radial-gradient(circle, transparent 40%, rgba(255, 255, 255, 0.1) 70%, transparent 100%)',
-                              filter: 'blur(15px)'
+                              background: 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 60%)',
+                              filter: 'blur(12px)'
                             }}
                           />
                         </motion.div>
