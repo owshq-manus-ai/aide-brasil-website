@@ -1941,7 +1941,7 @@ function App() {
                 >
                   <div className="w-2 h-2 rounded-full bg-gray-300 animate-pulse" />
                   <span className="text-sm text-gray-300 font-medium tracking-wider uppercase">
-                    Demonstração ao Vivo
+                    Agentic System
                   </span>
                 </motion.div>
               </motion.div>
@@ -2196,55 +2196,160 @@ function App() {
       </section>
 
       {/* Numbers Section */}
-      <SectionContainer gradient="from-orange-500/[0.12]" id="numeros">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="relative min-h-screen bg-[#030303] overflow-hidden py-20" id="numeros">
+        {/* Orange-themed Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#030303] to-[#0f0a05]" />
+          
+          {/* Orange glow effects */}
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl" />
+          
+          {/* Animated gradient orbs */}
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.03, 0.06, 0.03],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-orange-500/5 via-transparent to-red-500/5 rounded-full blur-3xl"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="mb-16"
           >
+            {/* Metallic Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-6"
+              className="mb-8"
             >
-              <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Mercado em Expansão</span>
+              <div className="inline-flex items-center gap-3">
+                <motion.div
+                  animate={{ width: [0, 40, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="h-[1px] bg-gradient-to-r from-transparent via-orange-400 to-transparent"
+                />
+                <motion.span
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="text-sm font-medium tracking-[0.3em] uppercase px-6 py-2 rounded-full"
+                  style={{
+                    background: `linear-gradient(90deg, 
+                      rgba(251, 146, 60, 0.1) 0%, 
+                      rgba(254, 215, 170, 0.2) 25%, 
+                      rgba(255, 237, 213, 0.3) 50%, 
+                      rgba(254, 215, 170, 0.2) 75%, 
+                      rgba(251, 146, 60, 0.1) 100%)`,
+                    backgroundSize: '200% 100%',
+                    color: '#FED7AA',
+                    border: '1px solid rgba(251, 146, 60, 0.3)',
+                    boxShadow: '0 0 30px rgba(251, 146, 60, 0.2)',
+                    textShadow: '0 0 20px rgba(251, 146, 60, 0.5)'
+                  }}
+                >
+                  ⚡ Momento de Oportunidade ⚡
+                </motion.span>
+                <motion.div
+                  animate={{ width: [0, 40, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="h-[1px] bg-gradient-to-r from-transparent via-orange-400 to-transparent"
+                />
+              </div>
             </motion.div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+            
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 section-title">
               <motion.span
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 6,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "linear"
                 }}
-                className="bg-clip-text text-transparent bg-gradient-to-r from-orange-200 via-white to-red-300"
+                className="bg-clip-text text-transparent"
                 style={{
-                  backgroundSize: '200% 200%',
-                  textShadow: '0 0 30px rgba(249, 115, 22, 0.5)',
-                  filter: 'drop-shadow(0 0 10px rgba(249, 115, 22, 0.8))'
+                  backgroundImage: `linear-gradient(90deg, 
+                    #FB923C 0%, 
+                    #FED7AA 20%, 
+                    #FFFFFF 40%, 
+                    #FED7AA 60%, 
+                    #FB923C 80%, 
+                    #FED7AA 100%)`,
+                  backgroundSize: '200% 100%',
+                  filter: 'drop-shadow(0 4px 20px rgba(251, 146, 60, 0.5))',
                 }}
               >
-                AI Data Engineering
+                O Futuro
               </motion.span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-300 to-red-300"> em Números</span>
+              {' '}
+              <span className="text-white">é</span>
+              {' '}
+              <motion.span
+                animate={{
+                  textShadow: [
+                    '0 0 20px rgba(251, 146, 60, 0.8)',
+                    '0 0 40px rgba(251, 146, 60, 1)',
+                    '0 0 20px rgba(251, 146, 60, 0.8)'
+                  ]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity
+                }}
+                className="bg-gradient-to-r from-orange-400 via-orange-300 to-orange-400 bg-clip-text text-transparent"
+              >
+                Agora
+              </motion.span>
             </h2>
+            
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl font-light mb-8 text-white/90 leading-relaxed"
+              className="text-xl md:text-2xl font-light mb-4 text-white/80 leading-relaxed max-w-3xl mx-auto"
             >
-              Dados do mercado global que demonstram o <span className="text-orange-300 font-medium">crescimento exponencial</span>
+              Números que comprovam: quem domina{' '}
+              <motion.span
+                animate={{
+                  color: ['#FED7AA', '#FB923C', '#FED7AA']
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity
+                }}
+                className="font-medium"
+              >
+                AI Data Engineering
+              </motion.span>
+              {' '}hoje, lidera o mercado amanhã
             </motion.p>
-            <p className="text-lg text-white/60">
-              Análise baseada em fontes confiáveis da indústria
-            </p>
-            {/* Force deployment - all cards should have orange colors */}
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-lg text-white/50"
+            >
+              Dados compilados das maiores consultorias globais
+            </motion.p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -2344,65 +2449,200 @@ function App() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-center"
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 section-subtitle">
-              Seja um Early Adopter
-            </h3>
-            <p className="text-lg text-white/80 max-w-4xl mx-auto leading-relaxed">
-              Os dados mostram: quem age primeiro, conquista resultados superiores. Junte-se aos pioneiros que estão moldando o futuro do AI Data Engineering.
+            <motion.h3 
+              className="text-2xl md:text-3xl font-bold mb-6 section-subtitle"
+            >
+              <motion.span
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: `linear-gradient(90deg, 
+                    #FB923C 0%, 
+                    #FED7AA 20%, 
+                    #FFFFFF 40%, 
+                    #FED7AA 60%, 
+                    #FB923C 80%, 
+                    #FED7AA 100%)`,
+                  backgroundSize: '200% 100%',
+                  filter: 'drop-shadow(0 2px 10px rgba(251, 146, 60, 0.3))',
+                }}
+              >
+                Seja Pioneiro
+              </motion.span>
+              {' '}
+              <span className="text-white/90">ou Seja Substituído</span>
+            </motion.h3>
+            <p className="text-lg text-white/70 max-w-4xl mx-auto leading-relaxed">
+              Os dados são claros: empresas que adotam IA agora têm{' '}
+              <span className="text-orange-300 font-medium">2x mais chances de liderar</span>
+              {' '}seus mercados em 2025
             </p>
           </motion.div>
         </div>
-      </SectionContainer>
+      </section>
 
       {/* Benefits Section */}
-      <SectionContainer gradient="from-purple-500/[0.12]" id="beneficios">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="relative min-h-screen bg-[#030303] overflow-hidden py-20" id="beneficios">
+        {/* Purple-themed Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#030303] to-[#0a0509]" />
+          
+          {/* Purple glow effects */}
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl" />
+          
+          {/* Animated gradient orbs */}
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.03, 0.06, 0.03],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-purple-500/5 via-transparent to-violet-500/5 rounded-full blur-3xl"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
+            {/* Metallic Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-6"
+              className="mb-8"
             >
-              <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Sua Jornada</span>
+              <div className="inline-flex items-center gap-3">
+                <motion.div
+                  animate={{ width: [0, 40, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="h-[1px] bg-gradient-to-r from-transparent via-purple-400 to-transparent"
+                />
+                <motion.span
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="text-sm font-medium tracking-[0.3em] uppercase px-6 py-2 rounded-full"
+                  style={{
+                    background: `linear-gradient(90deg, 
+                      rgba(139, 69, 193, 0.1) 0%, 
+                      rgba(196, 181, 253, 0.2) 25%, 
+                      rgba(233, 213, 255, 0.3) 50%, 
+                      rgba(196, 181, 253, 0.2) 75%, 
+                      rgba(139, 69, 193, 0.1) 100%)`,
+                    backgroundSize: '200% 100%',
+                    color: '#C4B5FD',
+                    border: '1px solid rgba(139, 69, 193, 0.3)',
+                    boxShadow: '0 0 30px rgba(139, 69, 193, 0.2)',
+                    textShadow: '0 0 20px rgba(139, 69, 193, 0.5)'
+                  }}
+                >
+                  ✨ Jornada Personalizada ✨
+                </motion.span>
+                <motion.div
+                  animate={{ width: [0, 40, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="h-[1px] bg-gradient-to-r from-transparent via-purple-400 to-transparent"
+                />
+              </div>
             </motion.div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+            
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 section-title">
               <motion.span
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 6,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "linear"
                 }}
-                className="bg-clip-text text-transparent bg-gradient-to-r from-purple-200 via-white to-pink-300"
+                className="bg-clip-text text-transparent"
                 style={{
-                  backgroundSize: '200% 200%',
-                  textShadow: '0 0 30px rgba(147, 51, 234, 0.5)',
-                  filter: 'drop-shadow(0 0 10px rgba(147, 51, 234, 0.8))'
+                  backgroundImage: `linear-gradient(90deg, 
+                    #8B5CF6 0%, 
+                    #C4B5FD 20%, 
+                    #FFFFFF 40%, 
+                    #C4B5FD 60%, 
+                    #8B5CF6 80%, 
+                    #C4B5FD 100%)`,
+                  backgroundSize: '200% 100%',
+                  filter: 'drop-shadow(0 4px 20px rgba(139, 92, 246, 0.5))',
                 }}
               >
-                Para Cada Momento
+                Do Iniciante
               </motion.span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-pink-300"> da Sua Jornada</span>
+              {' '}
+              <span className="text-white">ao</span>
+              {' '}
+              <motion.span
+                animate={{
+                  textShadow: [
+                    '0 0 20px rgba(139, 92, 246, 0.8)',
+                    '0 0 40px rgba(139, 92, 246, 1)',
+                    '0 0 20px rgba(139, 92, 246, 0.8)'
+                  ]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity
+                }}
+                className="bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400 bg-clip-text text-transparent"
+              >
+                Expert
+              </motion.span>
             </h2>
+            
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl font-light mb-8 text-white/90 leading-relaxed"
+              className="text-xl md:text-2xl font-light mb-4 text-white/80 leading-relaxed max-w-4xl mx-auto"
             >
-              Seja você <span className="text-purple-300 font-medium">iniciante</span>, <span className="text-pink-300 font-medium">profissional experiente</span> ou <span className="text-violet-300 font-medium">empresa</span>
+              Cada profissional tem uma jornada única.{' '}
+              <motion.span
+                animate={{
+                  color: ['#C4B5FD', '#8B5CF6', '#C4B5FD']
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity
+                }}
+                className="font-medium"
+              >
+                Encontre a sua
+              </motion.span>
+              {' '}no AI Data Engineering
             </motion.p>
-            <p className="text-lg text-white/60 max-w-3xl mx-auto">
-              Temos o caminho ideal para o seu crescimento
-            </p>
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-lg text-white/50 max-w-3xl mx-auto"
+            >
+              Caminhos estruturados para cada nível de experiência
+            </motion.p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -2479,90 +2719,261 @@ function App() {
             ))}
           </div>
         </div>
-      </SectionContainer>
+      </section>
 
       {/* CTA Section */}
-      <SectionContainer gradient="from-rose-500/[0.12]" id="comunidade">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="relative min-h-screen bg-[#030303] overflow-hidden py-20" id="comunidade">
+        {/* Rose/Red-themed Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#030303] to-[#0a0305]" />
+          
+          {/* Rose glow effects */}
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl" />
+          
+          {/* Animated gradient orbs */}
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.03, 0.06, 0.03],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-rose-500/5 via-transparent to-red-500/5 rounded-full blur-3xl"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
+            {/* Metallic Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-6"
+              className="mb-8"
             >
-              <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Junte-se à Comunidade</span>
+              <div className="inline-flex items-center gap-3">
+                <motion.div
+                  animate={{ width: [0, 40, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="h-[1px] bg-gradient-to-r from-transparent via-rose-400 to-transparent"
+                />
+                <motion.span
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="text-sm font-medium tracking-[0.3em] uppercase px-6 py-2 rounded-full"
+                  style={{
+                    background: `linear-gradient(90deg, 
+                      rgba(244, 63, 94, 0.1) 0%, 
+                      rgba(251, 207, 232, 0.2) 25%, 
+                      rgba(253, 242, 248, 0.3) 50%, 
+                      rgba(251, 207, 232, 0.2) 75%, 
+                      rgba(244, 63, 94, 0.1) 100%)`,
+                    backgroundSize: '200% 100%',
+                    color: '#FBCFE8',
+                    border: '1px solid rgba(244, 63, 94, 0.3)',
+                    boxShadow: '0 0 30px rgba(244, 63, 94, 0.2)',
+                    textShadow: '0 0 20px rgba(244, 63, 94, 0.5)'
+                  }}
+                >
+                  🚀 Transformação Completa 🚀
+                </motion.span>
+                <motion.div
+                  animate={{ width: [0, 40, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="h-[1px] bg-gradient-to-r from-transparent via-rose-400 to-transparent"
+                />
+              </div>
             </motion.div>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 section-title text-center">
+            
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 section-title">
               <motion.span
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 6,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "linear"
                 }}
-                className="bg-clip-text text-transparent bg-gradient-to-r from-rose-200 via-white to-orange-300"
+                className="bg-clip-text text-transparent"
                 style={{
-                  backgroundSize: '200% 200%',
-                  textShadow: '0 0 25px rgba(244, 63, 94, 0.4)',
-                  filter: 'drop-shadow(0 0 8px rgba(244, 63, 94, 0.6))'
+                  backgroundImage: `linear-gradient(90deg, 
+                    #F43F5E 0%, 
+                    #FBCFE8 20%, 
+                    #FFFFFF 40%, 
+                    #FBCFE8 60%, 
+                    #F43F5E 80%, 
+                    #FBCFE8 100%)`,
+                  backgroundSize: '200% 100%',
+                  filter: 'drop-shadow(0 4px 20px rgba(244, 63, 94, 0.5))',
                 }}
               >
-                Transforme
+                Seja Elite
               </motion.span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-300 to-orange-300 text-3xl md:text-5xl lg:text-6xl block mt-2"> sua Carreira</span>
+              {' '}
+              <span className="text-white">ou</span>
+              {' '}
+              <motion.span
+                animate={{
+                  textShadow: [
+                    '0 0 20px rgba(244, 63, 94, 0.8)',
+                    '0 0 40px rgba(244, 63, 94, 1)',
+                    '0 0 20px rgba(244, 63, 94, 0.8)'
+                  ]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity
+                }}
+                className="bg-gradient-to-r from-rose-400 via-rose-300 to-rose-400 bg-clip-text text-transparent"
+              >
+                Seja Esquecido
+              </motion.span>
             </h2>
+            
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl font-light mb-8 text-white/90 leading-relaxed"
+              className="text-xl md:text-2xl font-light mb-4 text-white/80 leading-relaxed max-w-4xl mx-auto"
             >
-              O Futuro dos <span className="text-rose-300 font-medium">Dados</span> Começa <span className="text-orange-300 font-medium">Agora</span>
+              Apenas{' '}
+              <motion.span
+                animate={{
+                  color: ['#FBCFE8', '#F43F5E', '#FBCFE8']
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity
+                }}
+                className="font-medium"
+              >
+                1% dos profissionais
+              </motion.span>
+              {' '}dominarão IA em 2025. Você será um deles?
             </motion.p>
-            <p className="text-lg text-white/60 max-w-4xl mx-auto">
-              Seja parte da maior transformação tecnológica do Brasil. Conecte-se com os melhores profissionais, 
-              aprenda as tecnologias mais avançadas e construa uma carreira extraordinária em AI Data Engineering.
-            </p>
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-lg text-white/50 max-w-3xl mx-auto"
+            >
+              Junte-se à elite que está construindo o futuro agora
+            </motion.p>
           </motion.div>
 
-          {/* Pricing Toggle */}
+          {/* Premium Pricing Toggle */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex justify-center mb-12"
           >
-            <div className="bg-white/[0.05] p-1 rounded-full border border-white/[0.08]">
+            <div className="relative bg-gradient-to-r from-gray-900/50 to-black/50 p-1 rounded-full border border-gray-500/30 backdrop-blur-sm"
+              style={{
+                boxShadow: `
+                  0 0 20px rgba(156, 163, 175, 0.1),
+                  inset 0 0 20px rgba(0, 0, 0, 0.5)
+                `
+              }}
+            >
               <button
                 onClick={() => setIsAnnual(false)}
-                className={`px-6 py-2 rounded-full transition-all duration-300 font-roboto ${
+                className={`relative px-8 py-3 rounded-full transition-all duration-300 ${
                   !isAnnual 
-                    ? 'bg-gradient-to-r from-gray-600 to-gray-800 text-white shadow-lg border border-gray-500/30' 
-                    : 'text-white/60 hover:text-white'
+                    ? '' 
+                    : 'text-white/60 hover:text-white/80'
                 }`}
+                style={{ fontFamily: 'Oswald, sans-serif' }}
               >
-                Mensal
+                {!isAnnual && (
+                  <motion.div
+                    layoutId="activeToggle"
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background: `linear-gradient(90deg, 
+                        rgba(156, 163, 175, 0.1) 0%, 
+                        rgba(209, 213, 219, 0.2) 25%, 
+                        rgba(243, 244, 246, 0.3) 50%, 
+                        rgba(209, 213, 219, 0.2) 75%, 
+                        rgba(156, 163, 175, 0.1) 100%)`,
+                      border: '1px solid rgba(156, 163, 175, 0.3)',
+                      boxShadow: '0 0 15px rgba(156, 163, 175, 0.2)'
+                    }}
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <span className={`relative z-10 font-medium ${!isAnnual ? 'text-gray-200' : ''}`}>
+                  Mensal
+                </span>
               </button>
               <button
                 onClick={() => setIsAnnual(true)}
-                className={`px-6 py-2 rounded-full transition-all duration-300 font-roboto ${
+                className={`relative px-8 py-3 rounded-full transition-all duration-300 ${
                   isAnnual 
-                    ? 'bg-gradient-to-r from-gray-600 to-gray-800 text-white shadow-lg border border-gray-500/30' 
-                    : 'text-white/60 hover:text-white'
+                    ? '' 
+                    : 'text-white/60 hover:text-white/80'
                 }`}
+                style={{ fontFamily: 'Oswald, sans-serif' }}
               >
-                Anual
-                <span className="ml-2 bg-green-500 text-white px-2 py-0.5 rounded-full text-xs">
-                  -20%
-                </span>
+                {isAnnual && (
+                  <motion.div
+                    layoutId="activeToggle"
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background: `linear-gradient(90deg, 
+                        rgba(156, 163, 175, 0.1) 0%, 
+                        rgba(209, 213, 219, 0.2) 25%, 
+                        rgba(243, 244, 246, 0.3) 50%, 
+                        rgba(209, 213, 219, 0.2) 75%, 
+                        rgba(156, 163, 175, 0.1) 100%)`,
+                      border: '1px solid rgba(156, 163, 175, 0.3)',
+                      boxShadow: '0 0 15px rgba(156, 163, 175, 0.2)'
+                    }}
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <div className={`relative z-10 flex items-center gap-2 ${isAnnual ? 'text-gray-200' : ''}`}>
+                  <span className="font-medium">Anual</span>
+                  <motion.span
+                    animate={{
+                      backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                    className="px-2 py-0.5 rounded-full text-xs font-semibold"
+                    style={{
+                      background: `linear-gradient(90deg, 
+                        #10b981 0%, 
+                        #34d399 50%, 
+                        #10b981 100%)`,
+                      backgroundSize: '200% 100%',
+                      color: 'white',
+                      textShadow: '0 0 10px rgba(16, 185, 129, 0.5)'
+                    }}
+                  >
+                    -20%
+                  </motion.span>
+                </div>
               </button>
             </div>
           </motion.div>
@@ -2609,55 +3020,127 @@ function App() {
               </button>
             </motion.div>
 
-            {/* Premium Tier */}
+            {/* Premium Tier - Ask Gen Onyx Style */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="relative p-8 rounded-2xl border border-gray-500/50 bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm"
+              className="relative p-8 rounded-2xl border border-gray-500/50 bg-gradient-to-br from-gray-900/30 to-black/50 backdrop-blur-sm"
               style={{
                 boxShadow: `
-                  0 0 30px rgba(156, 163, 175, 0.2),
-                  inset 0 0 30px rgba(0, 0, 0, 0.5)
+                  0 0 40px rgba(156, 163, 175, 0.3),
+                  inset 0 0 30px rgba(0, 0, 0, 0.8),
+                  0 0 100px rgba(156, 163, 175, 0.1)
                 `
               }}
             >
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-gradient-to-r from-gray-600 to-gray-800 text-white px-4 py-1 rounded-full text-sm font-semibold border border-gray-500/50">
-                  ⚡ Ask Gen Onyx
-                </span>
+              {/* Premium Badge */}
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <motion.div
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="px-6 py-2 rounded-full text-sm font-semibold border"
+                  style={{
+                    background: `linear-gradient(90deg, 
+                      rgba(156, 163, 175, 0.1) 0%, 
+                      rgba(209, 213, 219, 0.2) 25%, 
+                      rgba(243, 244, 246, 0.3) 50%, 
+                      rgba(209, 213, 219, 0.2) 75%, 
+                      rgba(156, 163, 175, 0.1) 100%)`,
+                    backgroundSize: '200% 100%',
+                    color: '#E5E7EB',
+                    border: '1px solid rgba(156, 163, 175, 0.4)',
+                    boxShadow: '0 0 30px rgba(156, 163, 175, 0.2)',
+                    textShadow: '0 0 15px rgba(156, 163, 175, 0.6)'
+                  }}
+                >
+                  ⚡ Powered by Ask Gen Onyx
+                </motion.div>
               </div>
 
-              <div className="flex items-center space-x-3 mb-4">
-                <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'Oswald, sans-serif' }}>
-                  Nível Premium
-                </h3>
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center"
+              {/* Title with Onyx Orb */}
+              <div className="flex items-center justify-center mb-6 mt-4">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="relative w-12 h-12 mr-4"
                   style={{
                     background: `
-                      radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.3) 0%, transparent 50%),
+                      radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.4) 0%, transparent 50%),
+                      radial-gradient(circle at 70% 70%, rgba(75, 85, 99, 0.3) 0%, transparent 50%),
                       linear-gradient(135deg, #111827 0%, #000000 50%, #1f2937 100%)
                     `,
+                    borderRadius: '50%',
                     boxShadow: `
-                      0 0 15px rgba(156, 163, 175, 0.3),
-                      inset 0 0 15px rgba(0, 0, 0, 0.8)
+                      0 0 25px rgba(156, 163, 175, 0.4),
+                      inset 0 0 25px rgba(0, 0, 0, 0.9)
                     `
                   }}
                 >
+                  <div className="absolute inset-2 rounded-full bg-gradient-to-br from-gray-700/30 via-transparent to-gray-600/20" />
                   <motion.div
-                    animate={{ 
-                      opacity: [0.6, 1, 0.6],
+                    animate={{ opacity: [0.4, 1, 0.4] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0 rounded-full border border-gray-300/60"
+                    style={{
+                      boxShadow: `
+                        0 0 15px rgba(156, 163, 175, 1),
+                        inset 0 0 15px rgba(156, 163, 175, 0.4)
+                      `
                     }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className="w-1 h-1 bg-gray-300 rounded-full"
                   />
+                </motion.div>
+                <div>
+                  <motion.h3 
+                    className="text-3xl font-bold mb-1"
+                    style={{ 
+                      fontFamily: 'Oswald, sans-serif',
+                      background: `linear-gradient(90deg, 
+                        #9CA3AF 0%, 
+                        #E5E7EB 20%, 
+                        #FFFFFF 40%, 
+                        #E5E7EB 60%, 
+                        #9CA3AF 80%, 
+                        #E5E7EB 100%)`,
+                      backgroundSize: '200% 100%',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      filter: 'drop-shadow(0 2px 8px rgba(156, 163, 175, 0.4))'
+                    }}
+                  >
+                    <motion.span
+                      animate={{
+                        backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                      }}
+                      transition={{
+                        duration: 6,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    >
+                      Nível Premium
+                    </motion.span>
+                  </motion.h3>
+                  <p className="text-white/60 text-sm">Inteligência Proativa Exclusiva</p>
                 </div>
               </div>
-              <p className="text-white/70 mb-6">Para profissionais sérios em AI Data Engineering</p>
+
+              <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="text-white/70 mb-6 text-center leading-relaxed"
+              >
+                Para a elite que quer estar{' '}
+                <span className="text-gray-300 font-medium">3 passos à frente</span>
+                {' '}do mercado
+              </motion.p>
               
               <div className="text-4xl font-bold text-white mb-2" style={{ fontFamily: 'Oswald, sans-serif' }}>
                 {isAnnual ? 'R$ 499' : 'R$ 49,90'}
@@ -2675,7 +3158,7 @@ function App() {
                 {[
                   {
                     text: "Ask Gen Onyx - Inteligência Proativa",
-                    isOnyx: true
+                    isOnyx: false
                   },
                   {
                     text: "Ask Gen Ilimitado",
@@ -2773,7 +3256,7 @@ function App() {
             </div>
           </motion.div>
         </div>
-      </SectionContainer>
+      </section>
 
       {/* Footer */}
       <footer className="relative py-16 bg-[#020202] border-t border-white/[0.05]">
