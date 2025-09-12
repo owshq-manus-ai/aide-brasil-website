@@ -2963,12 +2963,13 @@ function App() {
                     className="px-2 py-0.5 rounded-full text-xs font-semibold"
                     style={{
                       background: `linear-gradient(90deg, 
-                        #10b981 0%, 
-                        #34d399 50%, 
-                        #10b981 100%)`,
+                        #F59E0B 0%, 
+                        #FCD34D 50%, 
+                        #F59E0B 100%)`,
                       backgroundSize: '200% 100%',
-                      color: 'white',
-                      textShadow: '0 0 10px rgba(16, 185, 129, 0.5)'
+                      color: '#1F2937',
+                      textShadow: '0 0 10px rgba(245, 158, 11, 0.5)',
+                      fontWeight: '700'
                     }}
                   >
                     -20%
