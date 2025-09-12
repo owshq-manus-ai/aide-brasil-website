@@ -469,8 +469,17 @@ function App() {
       </section>
 
       {/* Ask Gen Section */}
-      <SectionContainer gradient="from-cyan-500/[0.12]" id="ask-gen">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="ask-gen" className="relative min-h-screen w-full bg-[#030303] overflow-hidden py-20">
+        {/* Background gradient - matching hero with cyan colors */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5" />
+          <div className="absolute top-1/4 left-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-gradient-to-r from-cyan-500/8 to-indigo-500/8 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-gradient-to-r from-blue-500/8 to-cyan-500/8 rounded-full blur-3xl" />
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -485,8 +494,18 @@ function App() {
             >
               <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Converse com o</span>
             </motion.div>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 section-title text-center">
-              <motion.span
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400">
+                O futuro da assistência em Dados e GenAI
+              </span>
+            </h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-2xl md:text-3xl font-light mb-8 text-white/90 leading-relaxed"
+            >
+              conheça o <motion.span
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
@@ -495,7 +514,7 @@ function App() {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-200 via-white to-blue-300"
+                className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400"
                 style={{
                   backgroundSize: '200% 200%',
                   textShadow: '0 0 20px rgba(6, 182, 212, 0.4)',
@@ -503,20 +522,56 @@ function App() {
                 }}
               >
                 Ask Gen
+              </motion.span> seu assistente em <motion.span
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.5
+                }}
+                className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400"
+                style={{
+                  backgroundSize: '200% 200%',
+                  textShadow: '0 0 20px rgba(6, 182, 212, 0.4)',
+                  filter: 'drop-shadow(0 0 8px rgba(6, 182, 212, 0.6))'
+                }}
+              >
+                GenAI
               </motion.span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-300 text-3xl md:text-5xl lg:text-6xl block mt-2"> — AI Data Engineering Assistant</span>
-            </h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl font-light mb-8 text-white/90 leading-relaxed"
-            >
-              Demonstração do primeiro agente especializado em <span className="text-cyan-300 font-medium">AI Data Engineering</span>
             </motion.p>
             <p className="text-lg text-white/60 max-w-3xl mx-auto">
               Junte-se ao nosso Discord para conversar diretamente com o Ask Gen.
             </p>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mb-16 flex justify-center"
+          >
+            <motion.span
+              animate={{
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="text-8xl md:text-9xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400 section-title"
+              style={{
+                backgroundSize: '200% 200%',
+                textShadow: '0 0 8px rgba(6, 182, 212, 0.3), 0 0 16px rgba(59, 130, 246, 0.2), 0 0 24px rgba(6, 182, 212, 0.1)',
+                filter: 'drop-shadow(0 0 6px rgba(6, 182, 212, 0.3)) drop-shadow(0 0 12px rgba(59, 130, 246, 0.2))',
+                WebkitTextStroke: '0.5px rgba(6, 182, 212, 0.3)'
+              }}
+            >
+              Ask Gen
+            </motion.span>
           </motion.div>
 
           <motion.div
@@ -771,7 +826,7 @@ function App() {
             </motion.div>
           </motion.div>
         </div>
-      </SectionContainer>
+      </section>
 
       {/* Ask Gen Onyx Section */}
       <SectionContainer gradient="from-gray-500/[0.12]" id="onyx">
