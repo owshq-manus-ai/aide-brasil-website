@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, Menu, X, CheckCircle, Linkedin, Twitter, Instagram, Youtube, Bot, Zap, Users, Target, Shield, Star, User, Briefcase, BookOpen, Award, Brain, MessageCircle } from 'lucide-react'
+import { ChevronDown, Menu, X, CheckCircle, Linkedin, Twitter, Instagram, Youtube, Bot, Zap, Users, Target, Shield, Star, User, Briefcase, BookOpen, Award, Brain, MessageCircle, ChartBar, TrendingUp, Crosshair, Trophy } from 'lucide-react'
 import { CommunityHero } from './components/ui/community-hero'
 import { LogoWithText } from './components/ui/aide-logo-final'
 import './App.css'
@@ -876,571 +876,133 @@ function App() {
                       ))}
                     </div>
                   </motion.div>
-                  <p className="text-lg text-white/60 mb-6 leading-relaxed">
-                    Mas e se, em vez de apenas reagir às suas dúvidas, ele pudesse <strong className="text-white/80">antecipar suas necessidades</strong>?
-                    <br />
-                    E se ele soubesse exatamente o que você precisa aprender <strong className="text-white/80">antes mesmo de você perguntar</strong>?
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1, delay: 0.9 }}
-                  className="relative"
-                >
-                  {/* Futuristic metallic backdrop */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-900/30 via-black/50 to-gray-900/30 rounded-3xl blur-2xl"></div>
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/10 to-transparent rounded-3xl"></div>
-                  
-                  <div className="relative bg-black/80 rounded-3xl p-12 border border-gray-800/50 backdrop-blur-xl overflow-hidden">
-                    {/* Animated grid background */}
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="absolute inset-0" style={{
-                        backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-                        backgroundSize: '50px 50px',
-                        animation: 'grid-move 10s linear infinite'
-                      }} />
-                    </div>
-                    
-                    {/* Ask Gen Onyx - Oracle-Inspired Mystical Sphere */}
-                    <div className="flex items-center justify-center py-6 mb-4 relative">
-                      <div className="relative w-24 h-24" style={{ perspective: '600px' }}>
-                        {/* Mystical Particle Field - Slow Orbiting Stars */}
-                        <div className="absolute -inset-12 pointer-events-none">
-                          {[...Array(8)].map((_, i) => {
-                            const angle = (i * 45) * Math.PI / 180;
-                            const radius = 40 + Math.random() * 15;
-                            const duration = 60 + Math.random() * 40;
-                            const delay = Math.random() * 10;
-                            
-                            return (
-                              <motion.div
-                                key={`particle-${i}`}
-                                className="absolute"
-                                style={{
-                                  left: '50%',
-                                  top: '50%',
-                                }}
-                                animate={{
-                                  x: [
-                                    Math.cos(angle) * radius,
-                                    Math.cos(angle + Math.PI) * radius,
-                                    Math.cos(angle) * radius
-                                  ],
-                                  y: [
-                                    Math.sin(angle) * radius,
-                                    Math.sin(angle + Math.PI) * radius,
-                                    Math.sin(angle) * radius
-                                  ],
-                                  scale: [1, 1.5, 1],
-                                  opacity: [0.3, 0.8, 0.3]
-                                }}
-                                transition={{
-                                  duration: duration,
-                                  repeat: Infinity,
-                                  delay: delay,
-                                  ease: "linear"
-                                }}
-                              >
-                                <div 
-                                  className="w-1 h-1 rounded-full bg-white"
-                                  style={{
-                                    boxShadow: `
-                                      0 0 10px rgba(255, 255, 255, 0.9),
-                                      0 0 20px rgba(255, 255, 255, 0.6),
-                                      0 0 30px rgba(255, 255, 255, 0.3)
-                                    `,
-                                    filter: 'blur(0.5px)'
-                                  }}
-                                />
-                              </motion.div>
-                            );
-                          })}
-                        </div>
-                        
-                        {/* Sacred Geometry Rings - Slow Rotation */}
-                        {[0, 1, 2].map((ring) => (
-                          <motion.div
-                            key={`sacred-ring-${ring}`}
-                            className="absolute inset-0 pointer-events-none"
-                            animate={{
-                              rotateY: ring % 2 === 0 ? [0, 360] : [360, 0],
-                              rotateX: ring === 1 ? [0, 360] : 0,
-                              rotateZ: ring === 2 ? [0, 360] : 0,
-                            }}
-                            transition={{
-                              duration: 90 + ring * 30,
-                              repeat: Infinity,
-                              ease: "linear"
-                            }}
-                            style={{
-                              transformStyle: 'preserve-3d',
-                            }}
-                          >
-                            <div 
-                              className="w-full h-full rounded-full border border-white/10"
-                              style={{
-                                boxShadow: `
-                                  0 0 30px rgba(255, 255, 255, 0.2),
-                                  inset 0 0 30px rgba(255, 255, 255, 0.1)
-                                `,
-                                transform: `scale(${1.2 + ring * 0.15})`,
-                              }}
-                            />
-                          </motion.div>
-                        ))}
-                        
-                        {/* Ethereal Energy Waves - Ultra Slow */}
-                        {[0, 1, 2, 3].map((wave) => (
-                          <motion.div
-                            key={`wave-${wave}`}
-                            className="absolute inset-0"
-                            animate={{
-                              scale: [1, 2.5, 1],
-                              opacity: [0, 0.3, 0],
-                            }}
-                            transition={{
-                              duration: 12,
-                              repeat: Infinity,
-                              delay: wave * 3,
-                              ease: "easeInOut"
-                            }}
-                          >
-                            <div className="w-full h-full rounded-full"
-                                 style={{
-                                   background: `radial-gradient(circle, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%)`,
-                                   boxShadow: `
-                                     0 0 80px rgba(255, 255, 255, 0.3),
-                                     inset 0 0 60px rgba(255, 255, 255, 0.2)
-                                   `,
-                                   filter: 'blur(2px)'
-                                 }}
-                            />
-                          </motion.div>
-                        ))}
-                        
-                        {/* Mystical Light Beams - Converging to Oracle */}
-                        <div className="absolute inset-0 pointer-events-none">
-                          {[...Array(12)].map((_, i) => {
-                            const angle = (i * 30) * Math.PI / 180;
-                            const startX = 50 + Math.cos(angle) * 50;
-                            const startY = 50 + Math.sin(angle) * 50;
-                            return (
-                              <motion.div
-                                key={`beam-${i}`}
-                                className="absolute"
-                                style={{
-                                  left: `${startX}%`,
-                                  top: `${startY}%`,
-                                  width: '100px',
-                                  height: '1px',
-                                  transformOrigin: '0 50%',
-                                  transform: `rotate(${i * 30 + 180}deg)`
-                                }}
-                                animate={{
-                                  opacity: [0, 0.3, 0],
-                                  scaleX: [0, 1, 0]
-                                }}
-                                transition={{
-                                  duration: 8,
-                                  repeat: Infinity,
-                                  delay: i * 0.6,
-                                  ease: "easeInOut"
-                                }}
-                              >
-                                <div
-                                  className="absolute w-full h-full"
-                                  style={{
-                                    background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent)',
-                                    boxShadow: '0 0 15px rgba(255, 255, 255, 0.6)',
-                                    filter: 'blur(0.5px)'
-                                  }}
-                                />
-                              </motion.div>
-                            );
-                          })}
-                        </div>
-                        
-                        {/* Oracle Placeholder - Empty Mystical Aura */}
-                        <motion.div
-                          animate={{ 
-                            scale: [1, 1.1, 1],
-                            opacity: [0.3, 0.6, 0.3]
-                          }}
-                          transition={{
-                            duration: 4,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                          }}
-                          className="absolute inset-0 rounded-full"
-                          style={{
-                            background: `
-                              radial-gradient(circle at 50% 50%, 
-                                transparent 0%,
-                                transparent 30%,
-                                rgba(255, 255, 255, 0.05) 40%,
-                                rgba(255, 255, 255, 0.1) 50%,
-                                rgba(255, 255, 255, 0.05) 60%,
-                                transparent 70%,
-                                transparent 100%)
-                            `,
-                            boxShadow: `
-                              0 0 60px rgba(255, 255, 255, 0.4),
-                              0 0 100px rgba(255, 255, 255, 0.2),
-                              0 0 150px rgba(255, 255, 255, 0.1)
-                            `,
-                            filter: 'blur(1px)',
-                            borderRadius: '50%',
-                          }}
-                        >
-                          {/* Aurora Borealis Color Shifts */}
-                          <motion.div
-                            animate={{ 
-                              rotate: [0, -360],
-                              opacity: [0.2, 0.5, 0.3, 0.2],
-                            }}
-                            transition={{
-                              rotate: { duration: 80, repeat: Infinity, ease: "linear" },
-                              opacity: { duration: 10, repeat: Infinity, ease: "easeInOut" }
-                            }}
-                            className="absolute inset-1 rounded-full overflow-hidden"
-                          >
-                            <motion.div
-                              animate={{
-                                scale: [1, 1.15, 0.9, 1.1, 1],
-                                rotate: [0, 45, -30, 60, 0],
-                              }}
-                              transition={{
-                                scale: { duration: 20, repeat: Infinity, ease: "easeInOut" },
-                                rotate: { duration: 30, repeat: Infinity, ease: "easeInOut" }
-                              }}
-                              className="w-full h-full"
-                              style={{
-                                background: `
-                                  conic-gradient(from 0deg at 50% 50%,
-                                    rgba(120, 200, 255, 0.1) 0deg,
-                                    rgba(180, 120, 255, 0.05) 45deg,
-                                    transparent 90deg,
-                                    rgba(120, 255, 200, 0.08) 135deg,
-                                    transparent 180deg,
-                                    rgba(255, 120, 180, 0.06) 225deg,
-                                    rgba(200, 180, 255, 0.04) 270deg,
-                                    transparent 315deg,
-                                    rgba(120, 200, 255, 0.1) 360deg
-                                  )
-                                `,
-                                filter: 'blur(15px)',
-                                mixBlendMode: 'screen'
-                              }}
-                            />
-                          </motion.div>
-                          
-                          {/* Oracle Ethereal Glow */}
-                          <motion.div
-                            animate={{ 
-                              rotateZ: [0, 360],
-                              opacity: [0.2, 0.4, 0.2]
-                            }}
-                            transition={{
-                              rotateZ: { duration: 45, repeat: Infinity, ease: "linear" },
-                              opacity: { duration: 8, repeat: Infinity, ease: "easeInOut" }
-                            }}
-                            className="absolute inset-6 rounded-full"
-                            style={{
-                              background: `
-                                linear-gradient(135deg, 
-                                  transparent 20%,
-                                  rgba(255, 255, 255, 0.3) 35%,
-                                  rgba(255, 255, 255, 0.5) 40%,
-                                  rgba(255, 255, 255, 0.3) 45%,
-                                  transparent 60%
-                                )
-                              `,
-                              filter: 'blur(3px)'
-                            }}
-                          />
-                          
-                          {/* Oracle Inner Core - Cosmic Eye */}
-                          <motion.div
-                            animate={{
-                              scale: [0.9, 1, 0.9],
-                              opacity: [0.3, 0.8, 0.3]
-                            }}
-                            transition={{
-                              duration: 6,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                            className="absolute inset-20 rounded-full"
-                            style={{
-                              background: `
-                                radial-gradient(circle at 50% 50%, 
-                                  rgba(255, 255, 255, 0.9) 0%, 
-                                  rgba(255, 255, 255, 0.5) 10%,
-                                  rgba(150, 150, 150, 0.3) 30%,
-                                  rgba(0, 0, 0, 0.9) 60%,
-                                  #000000 80%
-                                )
-                              `,
-                              boxShadow: `
-                                0 0 80px rgba(255, 255, 255, 0.7),
-                                inset 0 0 50px rgba(255, 255, 255, 0.4)
-                              `,
-                              filter: 'blur(1.5px)'
-                            }}
-                          />
-                          
-                          {/* Crystalline Fractal Patterns */}
-                          <div className="absolute inset-0 rounded-full overflow-hidden">
-                            <motion.div
-                              animate={{
-                                rotate: [0, 360],
-                              }}
-                              transition={{
-                                duration: 100,
-                                repeat: Infinity,
-                                ease: "linear"
-                              }}
-                              className="absolute inset-0"
-                              style={{
-                                background: `
-                                  repeating-conic-gradient(
-                                    from 0deg at 50% 50%,
-                                    transparent 0deg,
-                                    rgba(255, 255, 255, 0.02) 3deg,
-                                    transparent 6deg,
-                                    transparent 12deg
-                                  )
-                                `,
-                                filter: 'blur(0.5px)',
-                                opacity: 0.6
-                              }}
-                            />
-                            <motion.div
-                              animate={{
-                                rotate: [360, 0],
-                                scale: [1, 1.1, 1]
-                              }}
-                              transition={{
-                                rotate: { duration: 120, repeat: Infinity, ease: "linear" },
-                                scale: { duration: 15, repeat: Infinity, ease: "easeInOut" }
-                              }}
-                              className="absolute inset-4"
-                              style={{
-                                background: `
-                                  repeating-radial-gradient(
-                                    circle at 50% 50%,
-                                    transparent 0px,
-                                    rgba(255, 255, 255, 0.03) 10px,
-                                    transparent 20px,
-                                    transparent 40px
-                                  )
-                                `,
-                                filter: 'blur(0.3px)',
-                                opacity: 0.5
-                              }}
-                            />
-                          </div>
-                          
-                          {/* Oracle Aura Field - Divine Energy */}
-                          <motion.div
-                            animate={{
-                              scale: [1, 1.2, 1],
-                              opacity: [0.05, 0.15, 0.05]
-                            }}
-                            transition={{
-                              duration: 20,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                            className="absolute -inset-10 rounded-full"
-                            style={{
-                              background: `
-                                radial-gradient(circle at 50% 50%,
-                                  transparent 20%,
-                                  rgba(255, 255, 255, 0.03) 40%,
-                                  rgba(255, 255, 255, 0.05) 50%,
-                                  transparent 80%
-                                )
-                              `,
-                              filter: 'blur(25px)',
-                            }}
-                          />
-                          
-                          {/* Oracle Consciousness Pulse */}
-                          <motion.div
-                            animate={{
-                              opacity: [0, 0.6, 0],
-                              scale: [0.7, 1.3, 0.7]
-                            }}
-                            transition={{
-                              duration: 8,
-                              repeat: Infinity,
-                              repeatDelay: 4,
-                              ease: "easeInOut"
-                            }}
-                            className="absolute inset-24 rounded-full"
-                            style={{
-                              background: 'radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 60%)',
-                              filter: 'blur(12px)'
-                            }}
-                          />
-                        </motion.div>
-                      </div>
-                    </div>
-                    
-                    {/* Compelling copy */}
-                    <motion.h3 
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 1 }}
-                      className="text-4xl font-bold text-center mb-6"
+                  {/* Metallic Chrome Questions with Dramatic Reveal */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                    className="space-y-6 mb-8"
+                  >
+                    <motion.p
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 0.7 }}
+                      className="text-2xl font-bold leading-relaxed relative"
                     >
-                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-300 to-white">
-                        A Evolução Chegou
-                      </span>
-                    </motion.h3>
-                    
-                    <motion.p 
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 1.2 }}
-                      className="text-gray-300 text-xl mb-8 leading-relaxed text-center max-w-2xl mx-auto"
-                    >
-                      Do reativo ao <span className="text-white font-semibold">proativo</span>. 
-                      Do assistente ao <span className="text-white font-semibold">mentor</span>. 
-                      Do Ask Gen ao <span className="bg-gradient-to-r from-gray-100 to-white bg-clip-text text-transparent font-bold">Ask Gen Onyx</span>.
+                      <motion.span
+                        animate={{
+                          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                        }}
+                        transition={{
+                          duration: 6,
+                          repeat: Infinity,
+                          ease: "linear"
+                        }}
+                        className="bg-clip-text text-transparent"
+                        style={{
+                          backgroundImage: `linear-gradient(90deg, 
+                            #C0C0C0 0%, 
+                            #E8E8E8 20%, 
+                            #FFFFFF 40%, 
+                            #E8E8E8 60%, 
+                            #C0C0C0 80%, 
+                            #E8E8E8 100%)`,
+                          backgroundSize: '200% 100%',
+                          filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3))',
+                          textShadow: '0 0 30px rgba(255, 255, 255, 0.5)',
+                        }}
+                      >
+                        Mas e se,
+                      </motion.span>{' '}
+                      <span className="text-white/70">em vez de apenas reagir às suas dúvidas,</span>{' '}
+                      <motion.span
+                        animate={{
+                          textShadow: [
+                            '0 0 20px rgba(255, 255, 255, 0.8)',
+                            '0 0 40px rgba(255, 255, 255, 1)',
+                            '0 0 20px rgba(255, 255, 255, 0.8)'
+                          ]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity
+                        }}
+                        className="bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent"
+                        style={{
+                          backgroundSize: '200% 100%',
+                        }}
+                      >
+                        ele pudesse antecipar suas necessidades?
+                      </motion.span>
                     </motion.p>
                     
                     <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 1.4 }}
-                      className="text-2xl font-light text-center mb-10"
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 1 }}
+                      className="text-2xl font-bold leading-relaxed relative"
                     >
-                      <span className="bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
-                        A inteligência que acelera sua carreira enquanto você dorme.
-                      </span>
-                    </motion.p>
-                    
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.6, delay: 1.6 }}
-                      className="flex justify-center"
-                    >
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => {
-                          const element = document.getElementById('onyx');
-                          if (element) {
-                            const headerHeight = 80;
-                            const elementPosition = element.offsetTop - headerHeight;
-                            window.scrollTo({
-                              top: elementPosition,
-                              behavior: 'smooth'
-                            });
-                          }
+                      <motion.span
+                        animate={{
+                          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                         }}
-                        className="relative px-12 py-6 rounded-2xl font-bold text-lg transition-all duration-500 overflow-hidden group"
+                        transition={{
+                          duration: 6,
+                          repeat: Infinity,
+                          ease: "linear",
+                          delay: 1
+                        }}
+                        className="bg-clip-text text-transparent"
                         style={{
-                          background: `linear-gradient(135deg, 
-                            #000000 0%, 
-                            #1a1a1a 25%, 
-                            #2d2d2d 50%, 
-                            #1a1a1a 75%, 
-                            #000000 100%)`,
-                          border: '2px solid transparent',
-                          backgroundOrigin: 'border-box',
-                          backgroundClip: 'padding-box',
-                          boxShadow: `
-                            0 0 40px rgba(255, 255, 255, 0.2),
-                            0 0 80px rgba(255, 255, 255, 0.1),
-                            inset 0 0 30px rgba(255, 255, 255, 0.05),
-                            0 10px 30px rgba(0, 0, 0, 0.8)
-                          `
+                          backgroundImage: `linear-gradient(90deg, 
+                            #C0C0C0 0%, 
+                            #E8E8E8 20%, 
+                            #FFFFFF 40%, 
+                            #E8E8E8 60%, 
+                            #C0C0C0 80%, 
+                            #E8E8E8 100%)`,
+                          backgroundSize: '200% 100%',
+                          filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3))',
+                          textShadow: '0 0 30px rgba(255, 255, 255, 0.5)',
                         }}
                       >
-                        {/* Holographic border effect */}
-                        <motion.div
-                          animate={{ 
-                            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-                          }}
-                          transition={{ 
-                            duration: 4, 
-                            repeat: Infinity, 
-                            ease: "linear" 
-                          }}
-                          className="absolute inset-0 rounded-2xl"
-                          style={{
-                            background: `linear-gradient(90deg, 
-                              transparent, 
-                              rgba(255, 255, 255, 0.4), 
-                              rgba(192, 192, 192, 0.4),
-                              rgba(255, 255, 255, 0.4),
-                              transparent)`,
-                            backgroundSize: '200% 100%',
-                            opacity: 0.8,
-                            padding: '2px',
-                            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                            WebkitMaskComposite: 'xor',
-                            maskComposite: 'exclude'
-                          }}
-                        />
-                        
-                        {/* Premium shine effect */}
-                        <motion.div
-                          animate={{ 
-                            x: ['-200%', '200%'],
-                            opacity: [0, 1, 0]
-                          }}
-                          transition={{ 
-                            duration: 3, 
-                            repeat: Infinity, 
-                            repeatDelay: 2,
-                            ease: "easeInOut"
-                          }}
-                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
-                        />
-                        
-                        {/* Button text with gradient */}
-                        <span className="relative flex items-center space-x-3">
-                          <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent"
-                                style={{ 
-                                  backgroundSize: '200% 100%',
-                                  textShadow: '0 0 20px rgba(255, 255, 255, 0.5)'
-                                }}>
-                            Descobrir Ask Gen Onyx
-                          </span>
-                          <motion.span
-                            animate={{ 
-                              x: [0, 8, 0],
-                              opacity: [0.6, 1, 0.6]
-                            }}
-                            transition={{ 
-                              duration: 2, 
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                            className="text-2xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
-                          >
-                            →
-                          </motion.span>
-                        </span>
-                        
-                        {/* Hover glow effect */}
-                        <motion.div
-                          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                          style={{
-                            background: 'radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 70%)',
-                            filter: 'blur(20px)'
-                          }}
-                        />
-                      </motion.button>
-                    </motion.div>
-                  </div>
+                        E se
+                      </motion.span>{' '}
+                      <span className="text-white/70">ele soubesse exatamente o que você precisa aprender</span>{' '}
+                      <motion.span
+                        animate={{
+                          textShadow: [
+                            '0 0 20px rgba(255, 255, 255, 0.8)',
+                            '0 0 40px rgba(255, 255, 255, 1)',
+                            '0 0 20px rgba(255, 255, 255, 0.8)'
+                          ]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: 0.5
+                        }}
+                        className="bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent"
+                        style={{
+                          backgroundSize: '200% 100%',
+                        }}
+                      >
+                        antes mesmo de você perguntar?
+                      </motion.span>
+                    </motion.p>
+                    
+                    {/* Chrome divider line */}
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      transition={{ duration: 1, delay: 1.3 }}
+                      className="w-full h-[2px] my-8"
+                      style={{
+                        background: 'linear-gradient(90deg, transparent, #C0C0C0, #FFFFFF, #C0C0C0, transparent)',
+                        boxShadow: '0 0 10px rgba(255, 255, 255, 0.5)'
+                      }}
+                    />
+                  </motion.div>
                 </motion.div>
               </div>
             </motion.div>
@@ -1610,7 +1172,7 @@ function App() {
         
         <div className="relative z-10 py-20">
           <div className="max-w-7xl mx-auto px-6">
-          <motion.div
+            <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -1770,10 +1332,194 @@ function App() {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="flex justify-center"
+              className="flex justify-center items-center h-full"
             >
               <div className="relative w-80 h-80 flex items-center justify-center">
-                {/* Main Onyx Orb */}
+                {/* Flowing particles from above */}
+                {[...Array(30)].map((_, i) => (
+                  <motion.div
+                    key={`particle-fall-${i}`}
+                    className="absolute w-1 h-1 bg-white/40 rounded-full"
+                    initial={{
+                      x: Math.random() * 400 - 200,
+                      y: -400,
+                      opacity: 0
+                    }}
+                    animate={{
+                      y: 400,
+                      opacity: [0, 0.6, 0],
+                    }}
+                    transition={{
+                      duration: 4 + Math.random() * 3,
+                      repeat: Infinity,
+                      delay: Math.random() * 6,
+                      ease: "linear"
+                    }}
+                    style={{
+                      boxShadow: '0 0 3px rgba(255, 255, 255, 0.4)',
+                      filter: 'blur(0.5px)'
+                    }}
+                  />
+                ))}
+                
+                {/* Mystical Particle Field from Oracle */}
+                <div className="absolute -inset-20 pointer-events-none">
+                  {[...Array(12)].map((_, i) => {
+                    const angle = (i * 30) * Math.PI / 180;
+                    const radius = 60 + Math.random() * 20;
+                    const duration = 40 + Math.random() * 30;
+                    
+                    return (
+                      <motion.div
+                        key={`mystical-particle-${i}`}
+                        className="absolute"
+                        style={{
+                          left: '50%',
+                          top: '50%',
+                        }}
+                        animate={{
+                          x: [
+                            Math.cos(angle) * radius,
+                            Math.cos(angle + Math.PI) * radius,
+                            Math.cos(angle) * radius
+                          ],
+                          y: [
+                            Math.sin(angle) * radius,
+                            Math.sin(angle + Math.PI) * radius,
+                            Math.sin(angle) * radius
+                          ],
+                          scale: [1, 1.3, 1],
+                          opacity: [0.2, 0.6, 0.2]
+                        }}
+                        transition={{
+                          duration: duration,
+                          repeat: Infinity,
+                          delay: Math.random() * 5,
+                          ease: "linear"
+                        }}
+                      >
+                        <div 
+                          className="w-1 h-1 rounded-full bg-gray-300"
+                          style={{
+                            boxShadow: `
+                              0 0 8px rgba(156, 163, 175, 0.8),
+                              0 0 16px rgba(156, 163, 175, 0.5)
+                            `,
+                            filter: 'blur(0.3px)'
+                          }}
+                        />
+                      </motion.div>
+                    );
+                  })}
+                </div>
+                
+                {/* Energy Waves */}
+                {[0, 1, 2].map((wave) => (
+                  <motion.div
+                    key={`energy-wave-${wave}`}
+                    className="absolute inset-0"
+                    animate={{
+                      scale: [1, 2, 1],
+                      opacity: [0, 0.2, 0],
+                    }}
+                    transition={{
+                      duration: 8,
+                      repeat: Infinity,
+                      delay: wave * 2.5,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <div className="w-full h-full rounded-full"
+                         style={{
+                           background: `radial-gradient(circle, transparent 30%, rgba(156, 163, 175, 0.1) 50%, transparent 70%)`,
+                           boxShadow: `
+                             0 0 60px rgba(156, 163, 175, 0.2),
+                             inset 0 0 40px rgba(156, 163, 175, 0.1)
+                           `,
+                           filter: 'blur(2px)'
+                         }}
+                    />
+                  </motion.div>
+                ))}
+                
+                {/* Silver Metallic Glow Ring */}
+                <motion.div
+                  animate={{
+                    scale: [1.3, 1.5, 1.3],
+                    opacity: [0.1, 0.3, 0.1],
+                    rotate: [0, 180, 360]
+                  }}
+                  transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background: `
+                      conic-gradient(
+                        from 0deg at 50% 50%,
+                        transparent 0deg,
+                        rgba(192, 192, 192, 0.3) 45deg,
+                        rgba(224, 224, 224, 0.5) 90deg,
+                        rgba(192, 192, 192, 0.3) 135deg,
+                        transparent 180deg,
+                        rgba(156, 163, 175, 0.2) 225deg,
+                        rgba(192, 192, 192, 0.4) 270deg,
+                        rgba(156, 163, 175, 0.2) 315deg,
+                        transparent 360deg
+                      )
+                    `,
+                    filter: 'blur(8px)',
+                  }}
+                />
+                
+                {/* Chrome Reflection Layer */}
+                <div className="absolute inset-0 rounded-full pointer-events-none"
+                     style={{
+                       background: `
+                         linear-gradient(135deg, 
+                           transparent 30%,
+                           rgba(192, 192, 192, 0.1) 40%,
+                           rgba(224, 224, 224, 0.2) 45%,
+                           rgba(192, 192, 192, 0.1) 50%,
+                           transparent 70%
+                         )
+                       `,
+                       transform: 'scale(1.2)',
+                       filter: 'blur(4px)'
+                     }}
+                />
+                
+                {/* Gray Mist Aura */}
+                <motion.div
+                  animate={{
+                    opacity: [0.05, 0.15, 0.05],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="absolute -inset-16 rounded-full"
+                  style={{
+                    background: `
+                      radial-gradient(circle at 50% 50%,
+                        rgba(156, 163, 175, 0.2) 0%,
+                        rgba(156, 163, 175, 0.15) 30%,
+                        rgba(192, 192, 192, 0.1) 50%,
+                        transparent 70%
+                      )
+                    `,
+                    boxShadow: `
+                      0 0 100px rgba(156, 163, 175, 0.4),
+                      0 0 200px rgba(192, 192, 192, 0.2)
+                    `,
+                    filter: 'blur(20px)'
+                  }}
+                />
+                
+                {/* Main Onyx Orb with Oracle influence */}
                 <motion.div
                   animate={{ 
                     rotate: 360,
@@ -2155,204 +1901,297 @@ function App() {
             </motion.div>
           </div>
 
-          {/* Interactive Demo */}
+          {/* Interactive Demo Section */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-16 max-w-4xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="mt-24 max-w-5xl mx-auto"
           >
-            <div className="text-center mb-8">
+            {/* Section Header with Metallic Effect */}
+            <div className="text-center mb-12">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="inline-block"
+              >
+                {/* Metallic Badge */}
+                <motion.div
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="inline-flex items-center gap-2 px-6 py-2 rounded-full mb-6"
+                  style={{
+                    background: `linear-gradient(90deg, 
+                      rgba(156, 163, 175, 0.1) 0%, 
+                      rgba(192, 192, 192, 0.2) 25%, 
+                      rgba(224, 224, 224, 0.3) 50%, 
+                      rgba(192, 192, 192, 0.2) 75%, 
+                      rgba(156, 163, 175, 0.1) 100%)`,
+                    backgroundSize: '200% 100%',
+                    border: '1px solid rgba(156, 163, 175, 0.3)',
+                    boxShadow: '0 0 30px rgba(156, 163, 175, 0.2)'
+                  }}
+                >
+                  <div className="w-2 h-2 rounded-full bg-gray-300 animate-pulse" />
+                  <span className="text-sm text-gray-300 font-medium tracking-wider uppercase">
+                    Demonstração ao Vivo
+                  </span>
+                </motion.div>
+              </motion.div>
+              
               <motion.h3 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="text-3xl font-bold text-white mb-3" 
+                transition={{ duration: 0.6, delay: 1 }}
+                className="text-5xl font-bold mb-4" 
                 style={{ fontFamily: 'Oswald, sans-serif' }}
               >
-                Veja o Onyx em Ação
+                <motion.span
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage: `linear-gradient(90deg, 
+                      #9CA3AF 0%, 
+                      #E5E7EB 20%, 
+                      #FFFFFF 40%, 
+                      #E5E7EB 60%, 
+                      #9CA3AF 80%, 
+                      #E5E7EB 100%)`,
+                    backgroundSize: '200% 100%',
+                    filter: 'drop-shadow(0 4px 20px rgba(255, 255, 255, 0.3))',
+                  }}
+                >
+                  Veja o Onyx
+                </motion.span>
+                {' '}
+                <span className="text-white">em</span>
+                {' '}
+                <motion.span
+                  animate={{
+                    textShadow: [
+                      '0 0 20px rgba(156, 163, 175, 0.8)',
+                      '0 0 40px rgba(156, 163, 175, 1)',
+                      '0 0 20px rgba(156, 163, 175, 0.8)'
+                    ]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity
+                  }}
+                  className="bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent"
+                >
+                  Ação
+                </motion.span>
               </motion.h3>
+              
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.0 }}
-                className="text-white/60 text-lg"
+                transition={{ duration: 0.6, delay: 1.2 }}
+                className="text-white/50 text-xl font-light"
               >
-                Demonstração da inteligência proativa em tempo real
+                Experimente a{' '}
+                <span className="text-white/70 font-medium">inteligência proativa</span>
+                {' '}que transforma sua maneira de aprender
               </motion.p>
             </div>
             
-            <div className="relative">
-              {/* Background Glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-600/10 via-gray-500/5 to-gray-600/10 rounded-2xl blur-xl" />
-              
-              <div className="relative bg-gradient-to-br from-gray-900/80 via-black/60 to-gray-800/80 rounded-2xl p-6 border border-gray-600/30 backdrop-blur-sm"
+            {/* Discord-style Chat Container */}
+            <div className="relative max-w-3xl mx-auto">
+              <div className="bg-[#1a1d21] rounded-2xl border border-gray-800/50 overflow-hidden"
                 style={{
-                  background: `
-                    radial-gradient(circle at 20% 20%, rgba(156, 163, 175, 0.08) 0%, transparent 50%),
-                    linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(0, 0, 0, 0.9) 50%, rgba(31, 41, 55, 0.95) 100%)
-                  `,
-                  boxShadow: `
-                    0 20px 60px rgba(0, 0, 0, 0.5),
-                    inset 0 1px 0 rgba(156, 163, 175, 0.1),
-                    0 0 0 1px rgba(156, 163, 175, 0.05)
-                  `
+                  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)'
                 }}
               >
-                {/* User Input */}
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 1.2 }}
-                  className="mb-6"
-                >
-                  <div className="flex items-center space-x-4 p-4 bg-gradient-to-r from-blue-600/15 to-purple-600/15 rounded-xl border border-blue-500/20 backdrop-blur-sm">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0 shadow-lg">
-                      <User className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-white font-medium text-lg">
-                        "Quero me especializar em GenAI para dados"
-                      </p>
-                    </div>
+                {/* Chat Header */}
+                <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800/50">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                    <span className="text-gray-400 text-sm font-medium">#ask-the-expert</span>
+                    <span className="text-gray-500 text-sm">• Online</span>
                   </div>
-                </motion.div>
+                  <div className="flex items-center gap-2">
+                    <Users className="w-4 h-4 text-gray-500" />
+                    <span className="text-gray-400 text-sm">1.247 membros ativos</span>
+                  </div>
+                </div>
 
-                {/* Onyx Response */}
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 1.4 }}
-                  className="mb-4"
-                >
-                  <div className="flex items-start space-x-4 p-5 bg-gradient-to-br from-gray-800/60 via-gray-900/40 to-black/60 rounded-xl border border-gray-600/20 backdrop-blur-sm"
-                    style={{
-                      background: `
-                        radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.08) 0%, transparent 50%),
-                        linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(0, 0, 0, 0.9) 50%, rgba(17, 24, 39, 0.8) 100%)
-                      `,
-                      boxShadow: `
-                        0 10px 40px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(156, 163, 175, 0.08)
-                      `
-                    }}
+                {/* Chat Messages */}
+                <div className="p-6 space-y-6">
+                  {/* User Message */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.2 }}
+                    className="flex items-start gap-4"
                   >
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-                      style={{
-                        background: `
-                          radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.4) 0%, transparent 50%),
-                          linear-gradient(135deg, #111827 0%, #000000 50%, #1f2937 100%)
-                        `,
-                        boxShadow: `
-                          0 0 20px rgba(156, 163, 175, 0.3),
-                          inset 0 0 20px rgba(0, 0, 0, 0.8)
-                        `
-                      }}
-                    >
-                      <motion.div
-                        animate={{ 
-                          opacity: [0.6, 1, 0.6],
-                          scale: [1, 1.1, 1]
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                        className="w-3 h-3 bg-gray-300 rounded-full"
-                        style={{
-                          boxShadow: '0 0 10px rgba(156, 163, 175, 0.6)'
-                        }}
-                      />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                      <User className="w-5 h-5 text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-4">
-                        <span className="text-white font-bold text-lg">Onyx</span>
-                        <span className="px-3 py-1 bg-gradient-to-r from-gray-600 to-gray-800 text-white text-sm rounded-full border border-gray-500/30 font-semibold">
-                          PROATIVO
-                        </span>
+                      <div className="flex items-baseline gap-3 mb-1">
+                        <span className="text-white font-semibold">AI Data Engineer</span>
+                        <span className="text-xs text-gray-500 uppercase tracking-wider">USER</span>
+                        <span className="text-xs text-gray-600">Hoje às 14:20</span>
+                      </div>
+                      <div className="bg-[#2a2d31] rounded-lg px-4 py-3 inline-block">
+                        <p className="text-gray-200">
+                          "Quero me especializar em GenAI para dados"
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Onyx Response */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.6 }}
+                    className="flex items-start gap-4"
+                  >
+                    {/* Onyx Avatar */}
+                    <div className="relative w-10 h-10 flex-shrink-0">
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        className="absolute inset-0 rounded-full"
+                        style={{
+                          background: `
+                            radial-gradient(circle at 30% 30%, rgba(156, 163, 175, 0.3) 0%, transparent 50%),
+                            linear-gradient(135deg, #111827 0%, #000000 50%, #1f2937 100%)
+                          `,
+                          boxShadow: '0 0 15px rgba(156, 163, 175, 0.3)'
+                        }}
+                      >
+                        <motion.div
+                          animate={{ opacity: [0.5, 1, 0.5] }}
+                          transition={{ duration: 3, repeat: Infinity }}
+                          className="absolute inset-0 rounded-full border border-gray-300/50"
+                        />
+                      </motion.div>
+                    </div>
+                    
+                    <div className="flex-1">
+                      <div className="flex items-baseline gap-3 mb-1">
+                        <span className="text-white font-semibold">Onyx</span>
+                        <span className="text-xs px-2 py-0.5 bg-gray-700/50 text-gray-300 rounded uppercase tracking-wider">PROATIVO</span>
+                        <span className="text-xs text-gray-600">Hoje às 14:21</span>
                       </div>
                       
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 1.6 }}
-                        className="mb-4"
-                      >
-                        <p className="text-gray-300 text-base mb-4 flex items-center">
-                          <Zap className="w-5 h-5 text-yellow-400 mr-3" />
-                          <strong>Analisando seu perfil...</strong> Onyx detectou:
-                        </p>
-                      </motion.div>
+                      <div className="space-y-3">
+                        {/* Analysis message */}
+                        <div className="bg-[#2a2d31] rounded-lg px-4 py-3 inline-block">
+                          <p className="text-yellow-400 flex items-center gap-2 mb-2">
+                            <Zap className="w-4 h-4" />
+                            Analisando seu perfil...
+                          </p>
+                          <p className="text-gray-300">Onyx detectou:</p>
+                        </div>
+                        
+                        {/* Recommendations as Discord embeds */}
+                        <div className="space-y-3">
+                          <motion.div
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.4, delay: 1.8 }}
+                            className="border-l-4 border-blue-500 bg-[#2a2d31] rounded px-3 py-3"
+                          >
+                            <div className="flex items-center gap-2">
+                              <Target className="w-4 h-4 text-blue-400" />
+                              <span className="text-white font-medium">RAG + Vector Databases</span>
+                            </div>
+                            <p className="text-gray-400 text-sm mt-1">próximo passo ideal para seu perfil</p>
+                            <div className="flex items-start gap-2 mt-2">
+                              <ChartBar className="w-3 h-3 text-gray-500 mt-0.5 flex-shrink-0" />
+                              <p className="text-gray-400 text-xs leading-relaxed">
+                                <span className="text-gray-300">Razão:</span> Detectamos interesse em VectorDBs e Embeddings. 
+                                Você está pronto para sistemas avançados de recuperação com RAG.
+                              </p>
+                            </div>
+                          </motion.div>
 
-                      <div className="grid gap-3">
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: 1.8 }}
-                          className="flex items-center space-x-4 p-3 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-lg border border-blue-500/20 hover:border-blue-400/30 transition-all duration-300"
-                        >
-                          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
-                            <Target className="w-5 h-5 text-white" />
-                          </div>
-                          <div className="flex-1">
-                            <p className="text-white font-semibold">RAG + Vector Databases</p>
-                            <p className="text-blue-300 text-sm">próximo passo ideal</p>
-                          </div>
-                        </motion.div>
+                          <motion.div
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.4, delay: 2.0 }}
+                            className="border-l-4 border-green-500 bg-[#2a2d31] rounded px-3 py-3"
+                          >
+                            <div className="flex items-center gap-2">
+                              <Briefcase className="w-4 h-4 text-green-400" />
+                              <span className="text-white font-medium">5 vagas GenAI Engineer abertas</span>
+                            </div>
+                            <p className="text-gray-400 text-sm mt-1">90% match com seu perfil</p>
+                            <div className="flex items-start gap-2 mt-2">
+                              <TrendingUp className="w-3 h-3 text-gray-500 mt-0.5 flex-shrink-0" />
+                              <p className="text-gray-400 text-xs leading-relaxed">
+                                <span className="text-gray-300">Match:</span> Python + LangChain + LLMs = requisitos ideais. 
+                                iFood, Nubank e Stone contratando agora.
+                              </p>
+                            </div>
+                          </motion.div>
 
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: 2.0 }}
-                          className="flex items-center space-x-4 p-3 bg-gradient-to-r from-green-600/10 to-emerald-600/10 rounded-lg border border-green-500/20 hover:border-green-400/30 transition-all duration-300"
-                        >
-                          <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center">
-                            <Briefcase className="w-5 h-5 text-white" />
-                          </div>
-                          <div className="flex-1">
-                            <p className="text-white font-semibold">5 vagas GenAI Engineer abertas</p>
-                            <p className="text-green-300 text-sm">90% match com seu perfil</p>
-                          </div>
-                        </motion.div>
+                          <motion.div
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.4, delay: 2.2 }}
+                            className="border-l-4 border-purple-500 bg-[#2a2d31] rounded px-3 py-3"
+                          >
+                            <div className="flex items-center gap-2">
+                              <BookOpen className="w-4 h-4 text-purple-400" />
+                              <span className="text-white font-medium">Curso LangChain + ChromaDB</span>
+                            </div>
+                            <p className="text-gray-400 text-sm mt-1">recomendado para você</p>
+                            <div className="flex items-start gap-2 mt-2">
+                              <Crosshair className="w-3 h-3 text-gray-500 mt-0.5 flex-shrink-0" />
+                              <p className="text-gray-400 text-xs leading-relaxed">
+                                <span className="text-gray-300">Gap identificado:</span> Integração avançada de chains e otimização de vector stores. 
+                                Curso completo para dominar GenAI.
+                              </p>
+                            </div>
+                          </motion.div>
 
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: 2.2 }}
-                          className="flex items-center space-x-4 p-3 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-lg border border-purple-500/20 hover:border-purple-400/30 transition-all duration-300"
-                        >
-                          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg flex items-center justify-center">
-                            <BookOpen className="w-5 h-5 text-white" />
-                          </div>
-                          <div className="flex-1">
-                            <p className="text-white font-semibold">Curso LangChain + ChromaDB</p>
-                            <p className="text-purple-300 text-sm">recomendado para você</p>
-                          </div>
-                        </motion.div>
-
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: 2.4 }}
-                          className="flex items-center space-x-4 p-3 bg-gradient-to-r from-orange-600/10 to-red-600/10 rounded-lg border border-orange-500/20 hover:border-orange-400/30 transition-all duration-300"
-                        >
-                          <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-700 rounded-lg flex items-center justify-center">
-                            <Award className="w-5 h-5 text-white" />
-                          </div>
-                          <div className="flex-1">
-                            <p className="text-white font-semibold">Certificação AWS Bedrock</p>
-                            <p className="text-orange-300 text-sm">disponível agora</p>
-                          </div>
-                        </motion.div>
+                          <motion.div
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.4, delay: 2.4 }}
+                            className="border-l-4 border-orange-500 bg-[#2a2d31] rounded px-3 py-3"
+                          >
+                            <div className="flex items-center gap-2">
+                              <Award className="w-4 h-4 text-orange-400" />
+                              <span className="text-white font-medium">Certificação AWS Bedrock</span>
+                            </div>
+                            <p className="text-gray-400 text-sm mt-1">disponível agora</p>
+                            <div className="flex items-start gap-2 mt-2">
+                              <Trophy className="w-3 h-3 text-gray-500 mt-0.5 flex-shrink-0" />
+                              <p className="text-gray-400 text-xs leading-relaxed">
+                                <span className="text-gray-300">Benefício:</span> 78% reportam aumento de 25% no salário. 
+                                Sua experiência cloud + IA = aprovação garantida.
+                              </p>
+                            </div>
+                          </motion.div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
               </div>
             </div>
           </motion.div>
-        </div>
+          </div>
         </div>
       </section>
 
