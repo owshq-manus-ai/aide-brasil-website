@@ -1449,8 +1449,167 @@ function App() {
       </section>
 
       {/* Ask Gen Onyx Section */}
-      <SectionContainer gradient="from-gray-500/[0.12]" id="onyx">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="relative min-h-screen bg-[#030303] overflow-hidden" id="onyx">
+        {/* Enhanced Space Background */}
+        <div className="absolute inset-0">
+          {/* Deep space gradient with subtle texture */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#030303] to-[#0f0f0f]" />
+          
+          {/* Nebula-like background effect */}
+          <div className="absolute inset-0 opacity-[0.03]">
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-gray-600 via-transparent to-transparent rounded-full blur-[120px]" />
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-gray-700 via-transparent to-transparent rounded-full blur-[100px]" />
+          </div>
+          
+          {/* Star field with varying sizes and brightness */}
+          <div className="absolute inset-0">
+            {[...Array(80)].map((_, i) => {
+              const size = Math.random() > 0.8 ? 2 : 1;
+              const brightness = Math.random() * 0.5 + 0.3;
+              return (
+                <motion.div
+                  key={`star-${i}`}
+                  animate={{
+                    opacity: [brightness, brightness * 0.3, brightness],
+                  }}
+                  transition={{
+                    duration: Math.random() * 3 + 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 2,
+                  }}
+                  className="absolute bg-white rounded-full"
+                  style={{
+                    width: `${size}px`,
+                    height: `${size}px`,
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                    boxShadow: `0 0 ${size * 2}px rgba(255, 255, 255, ${brightness})`
+                  }}
+                />
+              );
+            })}
+          </div>
+          
+          {/* Main planet with enhanced details */}
+          <div className="absolute -right-48 top-1/3 -translate-y-1/2">
+            <motion.div
+              animate={{ 
+                rotate: 360,
+              }}
+              transition={{
+                duration: 240,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              className="relative w-[700px] h-[700px]"
+            >
+              {/* Planet atmosphere glow */}
+              <div 
+                className="absolute inset-0 rounded-full opacity-20"
+                style={{
+                  background: 'radial-gradient(circle at 50% 50%, transparent 40%, rgba(156, 163, 175, 0.2) 60%, transparent 100%)',
+                  filter: 'blur(20px)',
+                }}
+              />
+              
+              {/* Planet body */}
+              <div 
+                className="absolute inset-[50px] rounded-full opacity-15"
+                style={{
+                  background: `
+                    radial-gradient(circle at 35% 35%, rgba(200, 200, 210, 0.4) 0%, transparent 35%),
+                    radial-gradient(circle at 65% 65%, rgba(100, 110, 130, 0.3) 0%, transparent 40%),
+                    radial-gradient(circle at 50% 50%, #1f1f1f 0%, #0a0a0a 60%, #000000 100%)
+                  `,
+                  boxShadow: `
+                    inset -100px -100px 150px rgba(255, 255, 255, 0.03),
+                    inset 100px 100px 150px rgba(0, 0, 0, 0.6),
+                    0 0 300px rgba(156, 163, 175, 0.08)
+                  `,
+                }}
+              />
+              
+              {/* Planet surface details */}
+              <div 
+                className="absolute inset-[50px] rounded-full opacity-10"
+                style={{
+                  background: `
+                    conic-gradient(from 0deg at 50% 50%, 
+                      transparent, 
+                      rgba(156, 163, 175, 0.1), 
+                      transparent, 
+                      rgba(75, 85, 99, 0.1), 
+                      transparent
+                    )
+                  `,
+                  mixBlendMode: 'screen',
+                }}
+              />
+            </motion.div>
+          </div>
+          
+          {/* Secondary floating moon */}
+          <motion.div
+            animate={{ 
+              y: [0, -40, 0],
+              x: [0, 30, 0],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute left-32 bottom-32"
+          >
+            <div 
+              className="w-24 h-24 rounded-full opacity-25"
+              style={{
+                background: `
+                  radial-gradient(circle at 40% 40%, rgba(220, 220, 230, 0.5) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, #2a2a2a 0%, #0a0a0a 100%)
+                `,
+                boxShadow: `
+                  0 0 40px rgba(255, 255, 255, 0.1),
+                  inset -10px -10px 20px rgba(255, 255, 255, 0.05)
+                `,
+              }}
+            />
+          </motion.div>
+          
+          {/* Cosmic dust particles */}
+          <div className="absolute inset-0 opacity-[0.02]">
+            {[...Array(30)].map((_, i) => (
+              <motion.div
+                key={`dust-${i}`}
+                animate={{
+                  x: [0, Math.random() * 100 - 50],
+                  y: [0, Math.random() * 100 - 50],
+                }}
+                transition={{
+                  duration: Math.random() * 20 + 20,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeInOut",
+                  delay: Math.random() * 10,
+                }}
+                className="absolute w-1 h-1 bg-gray-400 rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  filter: 'blur(1px)',
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Ambient light sources */}
+          <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-gradient-to-br from-gray-800/[0.02] to-transparent rounded-full blur-[150px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-gray-700/[0.02] to-transparent rounded-full blur-[120px]" />
+        </div>
+        
+        <div className="relative z-10 py-20">
+          <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1463,7 +1622,25 @@ function App() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-6"
             >
-              <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Apresentando</span>
+              <div className="inline-flex items-center gap-3">
+                <motion.div
+                  animate={{ width: [0, 40, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"
+                />
+                <span className="text-lg text-gray-400 font-medium tracking-[0.3em] uppercase"
+                      style={{ 
+                        textShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
+                        letterSpacing: '0.3em'
+                      }}>
+                  ✦ Apresentando ✦
+                </span>
+                <motion.div
+                  animate={{ width: [0, 40, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"
+                />
+              </div>
             </motion.div>
             <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 section-title">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-slate-200 to-gray-400">
@@ -1494,25 +1671,95 @@ function App() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-2xl md:text-3xl font-light mb-8 text-white/90 leading-relaxed"
             >
-              A Revolução Proativa da <span className="text-gray-300 font-medium">Inteligência Artificial</span>
+              A Revolução Proativa da Inteligência Artificial{' '}
+              <motion.span
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                  textShadow: [
+                    '0 0 30px rgba(255, 255, 255, 0.3)',
+                    '0 0 60px rgba(255, 255, 255, 0.6)',
+                    '0 0 30px rgba(255, 255, 255, 0.3)'
+                  ]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="bg-clip-text text-transparent bg-gradient-to-r from-gray-200 via-white to-gray-300 font-bold"
+                style={{
+                  backgroundSize: '200% 200%',
+                  filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.5))'
+                }}
+              >
+                Generativa
+              </motion.span>
             </motion.p>
             <div className="max-w-4xl mx-auto space-y-4">
               <p className="text-lg text-white/70 leading-relaxed">
                 Você conheceu o Ask Gen — o assistente que responde suas perguntas.
               </p>
-              <p className="text-xl text-white/80 leading-relaxed font-medium">
-                Agora conheça o Onyx — a inteligência que <strong className="text-white">antecipa suas necessidades</strong> e 
-                <strong className="text-white"> acelera sua carreira</strong> com precisão analítica.
-              </p>
+              <motion.p 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="text-2xl text-white/90 leading-relaxed font-medium"
+                style={{
+                  textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)'
+                }}
+              >
+                Agora conheça o <span className="bg-gradient-to-r from-gray-200 via-white to-gray-300 bg-clip-text text-transparent font-bold">Onyx</span> — 
+                a inteligência que{' '}
+                <motion.span
+                  animate={{ opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-white font-bold"
+                  style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.8)' }}
+                >
+                  antecipa suas necessidades
+                </motion.span>{' '}
+                e{' '}
+                <motion.span
+                  animate={{ opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                  className="text-white font-bold"
+                  style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.8)' }}
+                >
+                  acelera sua carreira
+                </motion.span>{' '}
+                com precisão analítica.
+              </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="pt-4"
               >
-                <p className="text-lg text-gray-400 italic">
-                  "Enquanto você aprende, Onyx já sabe o que vem depois."
-                </p>
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.02, 1],
+                  }}
+                  transition={{ 
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="inline-block"
+                >
+                  <p className="text-2xl text-white/80 font-light italic relative"
+                     style={{
+                       textShadow: '0 4px 20px rgba(0, 0, 0, 0.7)',
+                       letterSpacing: '0.02em'
+                     }}>
+                    <span className="text-3xl text-white/40 absolute -left-8 -top-2">"</span>
+                    Onyx não espera você perguntar.
+                    <br />
+                    <span className="bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent font-medium">
+                      Ele já tem as respostas.
+                    </span>
+                    <span className="text-3xl text-white/40 absolute -right-8 -bottom-2">"</span>
+                  </p>
+                </motion.div>
               </motion.div>
             </div>
           </motion.div>
@@ -1670,61 +1917,133 @@ function App() {
               className="space-y-8"
             >
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <User className="w-6 h-6 text-gray-300" />
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-800/20 to-gray-700/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+                  <div className="relative flex items-start space-x-4 p-4 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm">
+                    <div className="relative">
+                      <div className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0"
+                           style={{
+                             background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)',
+                             boxShadow: '0 0 30px rgba(255, 255, 255, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.05)'
+                           }}>
+                        <User className="w-7 h-7 text-white/90" />
+                      </div>
+                      <motion.div
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="absolute inset-0 rounded-xl border border-white/20 opacity-0 group-hover:opacity-100"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                        Análise Proativa de Perfil
+                      </h3>
+                      <p className="text-white/60 leading-relaxed">
+                        Onyx analisa seu histórico de perguntas e identifica gaps de conhecimento antes mesmo de você perceber.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2 section-subtitle">
-                      Análise Proativa de Perfil
-                    </h3>
-                    <p className="text-white/70">
-                      Onyx analisa seu histórico de perguntas e identifica gaps de conhecimento antes mesmo de você perceber.
-                    </p>
-                  </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Zap className="w-6 h-6 text-gray-300" />
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-800/20 to-gray-700/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+                  <div className="relative flex items-start space-x-4 p-4 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm">
+                    <div className="relative">
+                      <div className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0"
+                           style={{
+                             background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)',
+                             boxShadow: '0 0 30px rgba(255, 255, 255, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.05)'
+                           }}>
+                        <Zap className="w-7 h-7 text-white/90" />
+                      </div>
+                      <motion.div
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                        className="absolute inset-0 rounded-xl border border-white/20 opacity-0 group-hover:opacity-100"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                        Recomendações Personalizadas
+                      </h3>
+                      <p className="text-white/60 leading-relaxed">
+                        Baseado nas suas interações, Onyx sugere cursos, certificações e oportunidades específicas para você.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2 section-subtitle">
-                      Recomendações Personalizadas
-                    </h3>
-                    <p className="text-white/70">
-                      Baseado nas suas interações, Onyx sugere cursos, certificações e oportunidades específicas para você.
-                    </p>
-                  </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-6 h-6 text-gray-300" />
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-800/20 to-gray-700/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+                  <div className="relative flex items-start space-x-4 p-4 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm">
+                    <div className="relative">
+                      <div className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0"
+                           style={{
+                             background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)',
+                             boxShadow: '0 0 30px rgba(255, 255, 255, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.05)'
+                           }}>
+                        <Bot className="w-7 h-7 text-white/90" />
+                      </div>
+                      <motion.div
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                        className="absolute inset-0 rounded-xl border border-white/20 opacity-0 group-hover:opacity-100"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                        Alertas de Carreira
+                      </h3>
+                      <p className="text-white/60 leading-relaxed">
+                        Onyx monitora o mercado e te avisa sobre vagas que combinam 100% com seu perfil.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2 section-subtitle">
-                      Alertas de Carreira
-                    </h3>
-                    <p className="text-white/70">
-                      Onyx monitora o mercado e te avisa sobre vagas que combinam 100% com seu perfil.
-                    </p>
-                  </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Star className="w-6 h-6 text-gray-300" />
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-800/20 to-gray-700/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+                  <div className="relative flex items-start space-x-4 p-4 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm">
+                    <div className="relative">
+                      <div className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0"
+                           style={{
+                             background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)',
+                             boxShadow: '0 0 30px rgba(255, 255, 255, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.05)'
+                           }}>
+                        <Star className="w-7 h-7 text-white/90" />
+                      </div>
+                      <motion.div
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
+                        className="absolute inset-0 rounded-xl border border-white/20 opacity-0 group-hover:opacity-100"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                        Mentoria Inteligente
+                      </h3>
+                      <p className="text-white/60 leading-relaxed">
+                        Onyx cria um plano de carreira personalizado e te guia passo a passo até seus objetivos.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2 section-subtitle">
-                      Mentoria Inteligente
-                    </h3>
-                    <p className="text-white/70">
-                      Onyx cria um plano de carreira personalizado e te guia passo a passo até seus objetivos.
-                    </p>
-                  </div>
-                </div>
+                </motion.div>
               </div>
 
               <motion.div
@@ -1733,9 +2052,105 @@ function App() {
                 transition={{ duration: 0.6, delay: 0.8 }}
                 className="pt-6"
               >
-                <button className="px-8 py-4 bg-gradient-to-r from-gray-600 to-gray-800 rounded-lg font-semibold text-white hover:from-gray-700 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105" style={{ fontFamily: 'Oswald, sans-serif' }}>
-                  Ative seu Onyx Pessoal
-                </button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative px-12 py-6 rounded-2xl font-bold text-lg transition-all duration-500 overflow-hidden group"
+                  style={{
+                    background: `linear-gradient(135deg, 
+                      #000000 0%, 
+                      #1a1a1a 25%, 
+                      #2d2d2d 50%, 
+                      #1a1a1a 75%, 
+                      #000000 100%)`,
+                    border: '2px solid transparent',
+                    backgroundOrigin: 'border-box',
+                    backgroundClip: 'padding-box',
+                    boxShadow: `
+                      0 0 40px rgba(255, 255, 255, 0.2),
+                      0 0 80px rgba(255, 255, 255, 0.1),
+                      inset 0 0 30px rgba(255, 255, 255, 0.05),
+                      0 10px 30px rgba(0, 0, 0, 0.8)
+                    `,
+                    fontFamily: 'Oswald, sans-serif'
+                  }}
+                >
+                  {/* Holographic border effect */}
+                  <motion.div
+                    animate={{ 
+                      backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                    }}
+                    transition={{ 
+                      duration: 4, 
+                      repeat: Infinity, 
+                      ease: "linear" 
+                    }}
+                    className="absolute inset-0 rounded-2xl"
+                    style={{
+                      background: `linear-gradient(90deg, 
+                        transparent, 
+                        rgba(255, 255, 255, 0.4), 
+                        rgba(192, 192, 192, 0.4),
+                        rgba(255, 255, 255, 0.4),
+                        transparent)`,
+                      backgroundSize: '200% 100%',
+                      opacity: 0.8,
+                      padding: '2px',
+                      WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                      WebkitMaskComposite: 'xor',
+                      maskComposite: 'exclude'
+                    }}
+                  />
+                  
+                  {/* Premium shine effect */}
+                  <motion.div
+                    animate={{ 
+                      x: ['-200%', '200%'],
+                      opacity: [0, 1, 0]
+                    }}
+                    transition={{ 
+                      duration: 3, 
+                      repeat: Infinity, 
+                      repeatDelay: 2,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
+                  />
+                  
+                  {/* Button text with gradient */}
+                  <span className="relative flex items-center justify-center space-x-3">
+                    <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent"
+                          style={{ 
+                            backgroundSize: '200% 100%',
+                            textShadow: '0 0 20px rgba(255, 255, 255, 0.5)'
+                          }}>
+                      Ative seu Onyx Pessoal
+                    </span>
+                    <motion.span
+                      animate={{ 
+                        x: [0, 8, 0],
+                        opacity: [0.6, 1, 0.6]
+                      }}
+                      transition={{ 
+                        duration: 2, 
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      className="text-2xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
+                    >
+                      →
+                    </motion.span>
+                  </span>
+                  
+                  {/* Hover glow effect */}
+                  <motion.div
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: 'radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 70%)',
+                      filter: 'blur(20px)'
+                    }}
+                  />
+                </motion.button>
               </motion.div>
             </motion.div>
           </div>
@@ -1938,7 +2353,8 @@ function App() {
             </div>
           </motion.div>
         </div>
-      </SectionContainer>
+        </div>
+      </section>
 
       {/* Numbers Section */}
       <SectionContainer gradient="from-orange-500/[0.12]" id="numeros">
