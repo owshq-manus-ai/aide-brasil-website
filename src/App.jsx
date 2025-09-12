@@ -1,12 +1,12 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import TrustedBrands from '@/components/TrustedBrands';
-import Features from '@/components/Features';
-import HowItWorks from '@/components/HowItWorks';
-import Testimonials from '@/components/Testimonials';
+import CommunityIntro from '@/components/CommunityIntro';
+import AskGenDemo from '@/components/AskGenDemo';
+import AskGenOnyx from '@/components/AskGenOnyx';
+import MarketNumbers from '@/components/MarketNumbers';
+import Journey from '@/components/Journey';
 import Pricing from '@/components/Pricing';
-import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import ScrollToAnchor from '@/components/ScrollToAnchor';
 
@@ -14,16 +14,16 @@ function App() {
   return (
     <Router>
       <ScrollToAnchor />
-      <div className="min-h-screen bg-gray-900 text-white">
+      <div className="min-h-screen bg-black text-white">
         <Navigation />
         <main>
           <Hero />
-          <TrustedBrands />
-          <Features />
-          <HowItWorks />
-          <Testimonials />
+          <CommunityIntro />
+          <AskGenDemo />
+          <AskGenOnyx />
+          <MarketNumbers />
+          <Journey />
           <Pricing />
-          <FinalCTA />
         </main>
         <Footer />
       </div>
@@ -32,4 +32,3 @@ function App() {
 }
 
 export default App;
-
