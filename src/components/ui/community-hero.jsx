@@ -98,28 +98,28 @@ const CommunityHero = ({ className }) => {
     return () => clearInterval(interval)
   }, [taglines.length])
 
-  // Node positions for the network - expanded and repositioned
+  // Node positions for the network - expanded and repositioned with more spacing
   const nodes = [
-    { x: 200, y: 150, icon: Brain, name: "Ana Silva", role: "ML Engineer" },
-    { x: 500, y: 100, icon: Code, name: "João Santos", role: "Data Engineer" },
-    { x: 800, y: 150, icon: Rocket, name: "Maria Costa", role: "AI Researcher" },
-    { x: 350, y: 400, icon: Users, name: "Pedro Lima", role: "Community Lead" },
-    { x: 650, y: 450, icon: MessageCircle, name: "Carla Reis", role: "DevRel" },
-    { x: 100, y: 300, icon: Globe, name: "Lucas Souza", role: "Solutions Architect" },
-    { x: 950, y: 250, icon: Sparkles, name: "Julia Melo", role: "GenAI Expert" },
-    { x: 150, y: 500, icon: Brain, name: "Rafael Alves", role: "Data Scientist" },
-    { x: 850, y: 500, icon: Code, name: "Beatriz Lima", role: "MLOps Engineer" },
-    { x: 400, y: 50, icon: Rocket, name: "Thiago Nunes", role: "AI Product Manager" },
-    { x: 600, y: 300, icon: Users, name: "Fernanda Cruz", role: "Tech Lead" },
-    { x: 300, y: 250, icon: MessageCircle, name: "Gabriel Dias", role: "Backend Engineer" },
-    { x: 750, y: 350, icon: Globe, name: "Patricia Santos", role: "Cloud Architect" },
-    { x: 500, y: 550, icon: Sparkles, name: "Ricardo Maia", role: "LLM Specialist" },
-    { x: 1050, y: 400, icon: Brain, name: "Amanda Costa", role: "NLP Engineer" },
-    { x: 1100, y: 200, icon: Code, name: "Carlos Mendes", role: "Frontend Developer" },
-    { x: 150, y: 100, icon: Rocket, name: "Diana Oliveira", role: "Data Analyst" },
-    { x: 900, y: 80, icon: Users, name: "Eduardo Silva", role: "DevOps Engineer" },
-    { x: 1000, y: 550, icon: MessageCircle, name: "Fabiana Santos", role: "Product Designer" },
-    { x: 250, y: 600, icon: Globe, name: "Gustavo Lima", role: "Security Engineer" }
+    { x: 200, y: 220, icon: Brain, name: "Ana Silva", role: "ML Engineer" },
+    { x: 550, y: 150, icon: Code, name: "João Santos", role: "Data Engineer" },
+    { x: 900, y: 220, icon: Rocket, name: "Maria Costa", role: "AI Researcher" },
+    { x: 350, y: 500, icon: Users, name: "Pedro Lima", role: "Community Lead" },
+    { x: 720, y: 550, icon: MessageCircle, name: "Carla Reis", role: "DevRel" },
+    { x: 60, y: 360, icon: Globe, name: "Lucas Souza", role: "Solutions Architect" },
+    { x: 1050, y: 320, icon: Sparkles, name: "Julia Melo", role: "GenAI Expert" },
+    { x: 120, y: 600, icon: Brain, name: "Rafael Alves", role: "Data Scientist" },
+    { x: 950, y: 600, icon: Code, name: "Beatriz Lima", role: "MLOps Engineer" },
+    { x: 450, y: 40, icon: Rocket, name: "Thiago Nunes", role: "AI Product Manager" },
+    { x: 650, y: 370, icon: Users, name: "Fernanda Cruz", role: "Tech Lead" },
+    { x: 270, y: 320, icon: MessageCircle, name: "Gabriel Dias", role: "Backend Engineer" },
+    { x: 820, y: 420, icon: Globe, name: "Patricia Santos", role: "Cloud Architect" },
+    { x: 520, y: 660, icon: Sparkles, name: "Ricardo Maia", role: "LLM Specialist" },
+    { x: 1150, y: 500, icon: Brain, name: "Amanda Costa", role: "NLP Engineer" },
+    { x: 1180, y: 250, icon: Code, name: "Carlos Mendes", role: "Frontend Developer" },
+    { x: 90, y: 140, icon: Rocket, name: "Diana Oliveira", role: "Data Analyst" },
+    { x: 1000, y: 90, icon: Users, name: "Eduardo Silva", role: "DevOps Engineer" },
+    { x: 1100, y: 660, icon: MessageCircle, name: "Fabiana Santos", role: "Product Designer" },
+    { x: 250, y: 720, icon: Globe, name: "Gustavo Lima", role: "Security Engineer" }
   ]
 
   const connections = [
@@ -171,10 +171,10 @@ const CommunityHero = ({ className }) => {
       {/* Network visualization */}
       <div className="absolute inset-0 flex items-start justify-center opacity-30 pt-20">
         <svg
-          width="1200"
+          width="1300"
           height="800"
           className="absolute"
-          viewBox="0 0 1200 800"
+          viewBox="0 0 1300 800"
           style={{ filter: 'blur(0.3px)' }}
         >
           <defs>

@@ -317,15 +317,16 @@ function App() {
       <CommunityHero />
 
       {/* About Section */}
-      <SectionContainer gradient="from-green-500/[0.12]" id="sobre">
-        <FloatingShape
-          size="w-40 h-40"
-          position="bottom-10 right-10"
-          gradient="from-blue-500/[0.12]"
-          delay={2}
-        />
+      <section id="sobre" className="relative min-h-screen w-full bg-[#030303] overflow-hidden py-20">
+        {/* Background gradient - matching hero */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-emerald-500/5" />
+          <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-green-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-green-500/5 to-yellow-500/5 rounded-full blur-3xl" />
+        </div>
         
-        <div className="max-w-7xl mx-auto px-6 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -465,7 +466,7 @@ function App() {
             </button>
           </motion.div>
         </div>
-      </SectionContainer>
+      </section>
 
       {/* Ask Gen Section */}
       <SectionContainer gradient="from-cyan-500/[0.12]" id="ask-gen">
