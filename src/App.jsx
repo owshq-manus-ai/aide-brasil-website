@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, Menu, X, CheckCircle, Linkedin, Twitter, Instagram, Youtube, Bot, Zap, Users, Target, Shield, Star, User, Briefcase, BookOpen, Award } from 'lucide-react'
+import { ChevronDown, Menu, X, CheckCircle, Linkedin, Twitter, Instagram, Youtube, Bot, Zap, Users, Target, Shield, Star, User, Briefcase, BookOpen, Award, Brain, MessageCircle } from 'lucide-react'
 import { CommunityHero } from './components/ui/community-hero'
 import { LogoWithText } from './components/ui/aide-logo-final'
 import './App.css'
@@ -192,10 +192,10 @@ const BotAvatar = () => (
 
 // User Avatar Component
 const UserAvatar = () => (
-  <BaseAvatar bgColor="bg-gradient-to-br from-cyan-500 to-blue-600">
-    {/* Simple User Icon */}
+  <BaseAvatar bgColor="bg-gradient-to-br from-cyan-500 to-cyan-600">
+    {/* Code/Terminal Icon for Data Engineer */}
     <svg style={{width: '20px', height: '20px'}} className="text-white" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/>
+      <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
     </svg>
   </BaseAvatar>
 )
@@ -522,7 +522,7 @@ function App() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mb-16 flex justify-center"
           >
-            <span className="text-8xl md:text-9xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-400 to-gray-600 section-title">
+            <span className="text-8xl md:text-9xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400 section-title">
               Ask Gen
             </span>
           </motion.div>
@@ -563,50 +563,29 @@ function App() {
               <div className="absolute inset-0 bg-gradient-to-br from-gray-950/95 via-gray-900/95 to-black/95 backdrop-blur-xl" />
               <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/[0.02] via-transparent to-gray-800/10" />
               
-              {/* Animated border */}
-              <motion.div
-                className="absolute inset-0 rounded-2xl"
-                style={{
-                  background: 'linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.5), transparent)',
-                  backgroundSize: '200% 100%',
-                }}
-                animate={{
-                  backgroundPosition: ['0% 0%', '200% 0%'],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              />
+              {/* Static border */}
+              <div className="absolute inset-0 rounded-2xl border border-gray-800/30" />
               
               <div className="relative p-8">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8 pb-4 border-b border-cyan-500/20">
                   <div className="flex items-center space-x-3">
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                      className="w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"
-                    />
+                    <div className="w-3 h-3 bg-gray-600 rounded-full" />
                     <span className="font-bold text-lg text-gray-400">
                       #ask-the-expert
                     </span>
-                    <motion.span
-                      animate={{ opacity: [0.5, 1, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="px-3 py-1 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-full text-green-400 text-xs font-medium"
-                    >
+                    <span className="px-3 py-1 bg-gray-900/50 text-gray-400 rounded-lg text-xs font-medium border border-gray-700/50">
                       ● Online
-                    </motion.span>
+                    </span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className="px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-lg border border-cyan-500/20"
-                    >
-                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-300 text-sm font-medium">1.247 membros ativos</span>
-                    </motion.div>
+                    <div className="flex items-center space-x-2 px-4 py-2 bg-gray-900/50 rounded-lg border border-gray-700/50">
+                      {/* Discord Icon */}
+                      <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                      </svg>
+                      <span className="text-gray-400 text-sm font-medium">1.247 membros ativos</span>
+                    </div>
                   </div>
                 </div>
 
@@ -627,7 +606,7 @@ function App() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-3 mb-3">
                       <span className="text-gray-400 font-bold text-sm">AI Data Engineer</span>
-                      <span className="px-3 py-1 bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-full text-xs font-bold border border-gray-600/50">
+                      <span className="px-3 py-1 bg-gray-900/50 text-gray-400 rounded-lg text-xs font-medium border border-gray-700/50">
                         USER
                       </span>
                       <span className="text-gray-400 text-xs">Hoje às 14:20</span>
@@ -637,8 +616,8 @@ function App() {
                       className="relative group"
                     >
                       {/* Removed glow effect */}
-                      <div className="relative bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-sm rounded-xl p-5 border border-gray-700/30">
-                        <p className="text-white text-base">O que são foundation models?</p>
+                      <div className="relative inline-block bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-sm rounded-xl px-4 py-3 border border-gray-700/30">
+                        <p className="text-white text-sm">O que são foundation models?</p>
                       </div>
                     </motion.div>
                   </div>
@@ -670,7 +649,7 @@ function App() {
                       <span className="text-gray-400 font-bold text-sm">
                         Ask Gen
                       </span>
-                      <span className="px-3 py-1 bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-full text-xs font-bold border border-gray-600/50">
+                      <span className="px-3 py-1 bg-gray-900/50 text-gray-400 rounded-lg text-xs font-medium border border-gray-700/50">
                         BOT
                       </span>
                       <span className="text-gray-400 text-xs">Hoje às 14:21</span>
@@ -685,22 +664,7 @@ function App() {
                       
                       {/* Message container */}
                       <div className="relative bg-gradient-to-br from-gray-900/95 via-black/95 to-gray-950/95 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/40">
-                        {/* Animated border */}
-                        <motion.div
-                          className="absolute inset-0 opacity-50"
-                          style={{
-                            background: 'linear-gradient(45deg, transparent 30%, rgba(6, 182, 212, 0.1) 50%, transparent 70%)',
-                            backgroundSize: '200% 200%',
-                          }}
-                          animate={{
-                            backgroundPosition: ['0% 0%', '100% 100%'],
-                          }}
-                          transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "linear"
-                          }}
-                        />
+                        {/* Removed animated background */}
                         
                         {/* Content */}
                         <div className="relative p-6">
@@ -715,6 +679,114 @@ function App() {
                                 initial={{ opacity: 0, scale: 0 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 0.7 + i * 0.1 }}
+                                whileHover={{ scale: 1.1, y: -2 }}
+                                className="px-3 py-1 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 text-cyan-300 rounded-full text-xs font-medium backdrop-blur-sm"
+                              >
+                                {tag}
+                              </motion.span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+
+                {/* Second User Message */}
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                  className="flex items-start space-x-4"
+                >
+                  <motion.div 
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="flex-shrink-0 mt-1"
+                  >
+                    <UserAvatar />
+                  </motion.div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <span className="text-gray-400 font-bold text-sm">AI Data Engineer</span>
+                      <span className="px-3 py-1 bg-gray-900/50 text-gray-400 rounded-lg text-xs font-medium border border-gray-700/50">
+                        USER
+                      </span>
+                      <span className="text-gray-400 text-xs">Hoje às 14:22</span>
+                    </div>
+                    <motion.div 
+                      whileHover={{ scale: 1.02 }}
+                      className="relative group"
+                    >
+                      <div className="relative inline-block bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-sm rounded-xl px-4 py-3 border border-gray-700/30">
+                        <p className="text-white text-sm">Como posso implementar RAG com LangChain?</p>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+
+                {/* Second Ask Gen Response */}
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 1.1 }}
+                  className="flex items-start space-x-4"
+                >
+                  <motion.div 
+                    animate={{ 
+                      scale: [1, 1.05, 1],
+                      rotate: [0, 5, -5, 0]
+                    }}
+                    transition={{ 
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 2
+                    }}
+                    className="flex-shrink-0 mt-1"
+                  >
+                    <BotAvatar />
+                  </motion.div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <span className="text-gray-400 font-bold text-sm">
+                        Ask Gen
+                      </span>
+                      <span className="px-3 py-1 bg-gray-900/50 text-gray-400 rounded-lg text-xs font-medium border border-gray-700/50">
+                        BOT
+                      </span>
+                      <span className="text-gray-400 text-xs">Hoje às 14:23</span>
+                    </div>
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 1.3 }}
+                      className="relative group"
+                    >
+                      <div className="relative bg-gradient-to-br from-gray-900/95 via-black/95 to-gray-950/95 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/40">
+                        <div className="relative p-6">
+                          <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-400 via-blue-400 to-cyan-400" />
+                          <p className="text-gray-100 text-base mb-4 leading-relaxed pl-4">
+                            Para implementar RAG com LangChain, você precisa: 1) Configurar um vector store (Pinecone, Chroma), 2) Criar embeddings dos documentos, 3) Implementar a chain de retrieval com seu LLM preferido. Vou te mostrar um exemplo prático...
+                          </p>
+                          <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.5 }}
+                            className="bg-gray-800/50 rounded-lg p-3 pl-7 mb-4 border border-gray-700/30"
+                          >
+                            <code className="text-cyan-300 text-sm font-mono">
+                              from langchain.chains import RetrievalQA<br/>
+                              from langchain.embeddings import OpenAIEmbeddings<br/>
+                              from langchain.vectorstores import Chroma
+                            </code>
+                          </motion.div>
+                          <div className="flex flex-wrap gap-2 pl-4">
+                            {['#rag', '#langchain', '#vectordb', '#llm'].map((tag, i) => (
+                              <motion.span
+                                key={tag}
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 1.6 + i * 0.1 }}
                                 whileHover={{ scale: 1.1, y: -2 }}
                                 className="px-3 py-1 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 text-cyan-300 rounded-full text-xs font-medium backdrop-blur-sm"
                               >
@@ -745,9 +817,65 @@ function App() {
                   transition={{ duration: 0.8, delay: 0.7 }}
                   className="mb-8"
                 >
-                  <p className="text-xl text-white/80 mb-4 leading-relaxed">
-                    Ask Gen responde suas perguntas sobre AI Data Engineering em tempo real.
-                  </p>
+                  {/* Clean styled section matching About page */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-12"
+                  >
+                    <h3 className="text-3xl font-bold mb-8 text-center">
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400">
+                        Ask Gen em Ação
+                      </span>
+                    </h3>
+                    
+                    <p className="text-xl text-white/80 mb-10 text-center max-w-3xl mx-auto leading-relaxed">
+                      Respostas instantâneas sobre AI Data Engineering, código otimizado na hora, 
+                      melhores práticas sempre atualizadas.
+                    </p>
+                    
+                    {/* Feature cards matching About section style */}
+                    <div className="grid md:grid-cols-3 gap-6">
+                      {[
+                        {
+                          icon: Zap,
+                          title: "Tempo Real",
+                          description: "Respostas imediatas para suas dúvidas técnicas",
+                          gradient: "from-cyan-500/[0.15]"
+                        },
+                        {
+                          icon: Brain,
+                          title: "IA Avançada",
+                          description: "Powered by modelos de linguagem de última geração",
+                          gradient: "from-cyan-500/[0.15]"
+                        },
+                        {
+                          icon: MessageCircle,
+                          title: "24/7 Online",
+                          description: "Disponível a qualquer hora no Discord da comunidade",
+                          gradient: "from-cyan-500/[0.15]"
+                        }
+                      ].map((item, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 30 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
+                          whileHover={{ scale: 1.05, y: -5 }}
+                          className={`p-6 rounded-2xl border border-white/[0.08] bg-gradient-to-br ${item.gradient} backdrop-blur-sm hover:border-white/[0.15] transition-all duration-300 text-center`}
+                        >
+                          <item.icon className="w-10 h-10 text-cyan-400 mb-4 mx-auto" />
+                          <h4 className="text-lg font-bold mb-2 text-white">
+                            {item.title}
+                          </h4>
+                          <p className="text-white/60 text-sm leading-relaxed">
+                            {item.description}
+                          </p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
                   <p className="text-lg text-white/60 mb-6 leading-relaxed">
                     Mas e se, em vez de apenas reagir às suas dúvidas, ele pudesse <strong className="text-white/80">antecipar suas necessidades</strong>?
                     <br />
