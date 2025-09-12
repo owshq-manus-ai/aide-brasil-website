@@ -125,9 +125,9 @@ const CommunityHero = ({ className }) => {
     <section className={cn("relative min-h-screen w-full bg-[#030303] overflow-hidden", className)}>
       {/* Background gradient */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-emerald-500/5" />
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-emerald-500/5" data-theme-hero-gradient="true" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl" data-theme-glow="primary" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" data-theme-glow="secondary" />
       </div>
 
       {/* Network visualization */}
@@ -140,8 +140,8 @@ const CommunityHero = ({ className }) => {
         >
           <defs>
             <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#22c55e" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#10b981" stopOpacity="0.8" />
+              <stop offset="0%" stopColor="#22c55e" stopOpacity="0.8" data-theme-svg-stop="primary" />
+              <stop offset="100%" stopColor="#10b981" stopOpacity="0.8" data-theme-svg-stop="secondary" />
             </linearGradient>
           </defs>
           
@@ -206,7 +206,10 @@ const CommunityHero = ({ className }) => {
               Transforme dados em
             </span>
             <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-300 via-emerald-200 to-green-400">
+            <span 
+              className="bg-clip-text text-transparent bg-gradient-to-r from-green-300 via-emerald-200 to-green-400"
+              data-theme-text-gradient="true"
+            >
               inteligência coletiva
             </span>
           </motion.h1>
@@ -251,6 +254,7 @@ const CommunityHero = ({ className }) => {
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
               }}
               className="group px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300 hover:scale-105"
+              data-theme-button="true"
               style={{ fontFamily: 'Oswald, sans-serif' }}
             >
               <span className="flex items-center gap-2">

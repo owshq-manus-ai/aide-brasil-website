@@ -222,7 +222,25 @@ function App() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#030303]/80 backdrop-blur-md border-b border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-between">
+            {/* Logo Section */}
+            <div className="flex items-center gap-4">
+              {/* Logo Placeholder */}
+              <div className="w-[60px] h-[60px] rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-emerald-300 to-yellow-400">AI</span>
+              </div>
+              <div>
+                <h1 className="text-xl font-bold" data-theme-text-gradient>
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-300 via-emerald-200 to-green-400">
+                    AIDE
+                  </span>
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-yellow-300 to-yellow-400">
+                    {' '}Brasil
+                  </span>
+                </h1>
+                <p className="text-xs text-white/60">AI Data Engineering</p>
+              </div>
+            </div>
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
               {[
