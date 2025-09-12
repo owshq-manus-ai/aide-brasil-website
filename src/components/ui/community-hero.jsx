@@ -3,7 +3,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Users, Sparkles, Code, Brain, Rocket, MessageCircle, Globe } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "../../lib/utils"
 
 // Animated connection lines between nodes
 const ConnectionLine = ({ start, end, delay = 0 }) => (
@@ -90,23 +90,36 @@ const CommunityHero = ({ className }) => {
     }, 5000)
     return () => clearInterval(interval)
   }, [])
-
+  
   React.useEffect(() => {
     const interval = setInterval(() => {
       setTagline(prev => (prev + 1) % taglines.length)
     }, 4000)
     return () => clearInterval(interval)
-  }, [])
+  }, [taglines.length])
 
-  // Node positions for the network
+  // Node positions for the network - expanded and repositioned
   const nodes = [
-    { x: 150, y: 100, icon: Brain, name: "Ana Silva", role: "ML Engineer" },
-    { x: 300, y: 150, icon: Code, name: "João Santos", role: "Data Engineer" },
-    { x: 450, y: 100, icon: Rocket, name: "Maria Costa", role: "AI Researcher" },
-    { x: 200, y: 250, icon: Users, name: "Pedro Lima", role: "Community Lead" },
-    { x: 400, y: 250, icon: MessageCircle, name: "Carla Reis", role: "DevRel" },
-    { x: 100, y: 200, icon: Globe, name: "Lucas Souza", role: "Solutions Architect" },
-    { x: 500, y: 200, icon: Sparkles, name: "Julia Melo", role: "GenAI Expert" },
+    { x: 200, y: 150, icon: Brain, name: "Ana Silva", role: "ML Engineer" },
+    { x: 500, y: 100, icon: Code, name: "João Santos", role: "Data Engineer" },
+    { x: 800, y: 150, icon: Rocket, name: "Maria Costa", role: "AI Researcher" },
+    { x: 350, y: 400, icon: Users, name: "Pedro Lima", role: "Community Lead" },
+    { x: 650, y: 450, icon: MessageCircle, name: "Carla Reis", role: "DevRel" },
+    { x: 100, y: 300, icon: Globe, name: "Lucas Souza", role: "Solutions Architect" },
+    { x: 950, y: 250, icon: Sparkles, name: "Julia Melo", role: "GenAI Expert" },
+    { x: 150, y: 500, icon: Brain, name: "Rafael Alves", role: "Data Scientist" },
+    { x: 850, y: 500, icon: Code, name: "Beatriz Lima", role: "MLOps Engineer" },
+    { x: 400, y: 50, icon: Rocket, name: "Thiago Nunes", role: "AI Product Manager" },
+    { x: 600, y: 300, icon: Users, name: "Fernanda Cruz", role: "Tech Lead" },
+    { x: 300, y: 250, icon: MessageCircle, name: "Gabriel Dias", role: "Backend Engineer" },
+    { x: 750, y: 350, icon: Globe, name: "Patricia Santos", role: "Cloud Architect" },
+    { x: 500, y: 550, icon: Sparkles, name: "Ricardo Maia", role: "LLM Specialist" },
+    { x: 1050, y: 400, icon: Brain, name: "Amanda Costa", role: "NLP Engineer" },
+    { x: 1100, y: 200, icon: Code, name: "Carlos Mendes", role: "Frontend Developer" },
+    { x: 150, y: 100, icon: Rocket, name: "Diana Oliveira", role: "Data Analyst" },
+    { x: 900, y: 80, icon: Users, name: "Eduardo Silva", role: "DevOps Engineer" },
+    { x: 1000, y: 550, icon: MessageCircle, name: "Fabiana Santos", role: "Product Designer" },
+    { x: 250, y: 600, icon: Globe, name: "Gustavo Lima", role: "Security Engineer" }
   ]
 
   const connections = [
@@ -119,10 +132,35 @@ const CommunityHero = ({ className }) => {
     { start: nodes[6], end: nodes[2] },
     { start: nodes[1], end: nodes[3] },
     { start: nodes[1], end: nodes[4] },
+    { start: nodes[7], end: nodes[3] },
+    { start: nodes[8], end: nodes[4] },
+    { start: nodes[9], end: nodes[1] },
+    { start: nodes[10], end: nodes[3] },
+    { start: nodes[11], end: nodes[0] },
+    { start: nodes[12], end: nodes[2] },
+    { start: nodes[13], end: nodes[4] },
+    { start: nodes[14], end: nodes[6] },
+    { start: nodes[7], end: nodes[8] },
+    { start: nodes[9], end: nodes[10] },
+    { start: nodes[11], end: nodes[12] },
+    { start: nodes[13], end: nodes[14] },
+    { start: nodes[5], end: nodes[11] },
+    { start: nodes[6], end: nodes[14] },
+    { start: nodes[10], end: nodes[12] },
+    { start: nodes[15], end: nodes[6] },
+    { start: nodes[15], end: nodes[14] },
+    { start: nodes[16], end: nodes[0] },
+    { start: nodes[16], end: nodes[9] },
+    { start: nodes[17], end: nodes[2] },
+    { start: nodes[17], end: nodes[15] },
+    { start: nodes[18], end: nodes[14] },
+    { start: nodes[18], end: nodes[8] },
+    { start: nodes[19], end: nodes[7] },
+    { start: nodes[19], end: nodes[13] }
   ]
 
   return (
-    <section className={cn("relative min-h-screen w-full bg-[#030303] overflow-hidden", className)}>
+    <section className={cn("relative min-h-[120vh] w-full bg-[#030303] overflow-hidden", className)}>
       {/* Background gradient */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-emerald-500/5" data-theme-hero-gradient="true" />
@@ -131,12 +169,13 @@ const CommunityHero = ({ className }) => {
       </div>
 
       {/* Network visualization */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-30">
+      <div className="absolute inset-0 flex items-start justify-center opacity-30 pt-20">
         <svg
-          width="600"
-          height="350"
+          width="1200"
+          height="800"
           className="absolute"
-          style={{ filter: 'blur(0.5px)' }}
+          viewBox="0 0 1200 800"
+          style={{ filter: 'blur(0.3px)' }}
         >
           <defs>
             <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -171,29 +210,13 @@ const CommunityHero = ({ className }) => {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 md:px-8">
+      <div className="relative z-10 min-h-[120vh] flex flex-col items-center justify-center px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center max-w-5xl mx-auto"
         >
-          {/* Live indicator */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30 mb-8"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span className="text-sm text-green-400 font-medium">
-              {activeMembers.toLocaleString('pt-BR')} membros ativos
-            </span>
-          </motion.div>
-
           {/* Main headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

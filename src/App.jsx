@@ -222,7 +222,7 @@ function App() {
       <div className="relative z-10">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#030303]/80 backdrop-blur-md border-b border-white/[0.08]">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-6 py-2">
           <div className="flex items-center justify-between">
             {/* Logo Section */}
             <LogoWithText />
@@ -253,7 +253,7 @@ function App() {
                       }
                     }, 100);
                   }}
-                  className="px-6 py-3 text-sm font-medium text-white/90 hover:text-white transition-all duration-300 rounded-lg bg-white/[0.08] hover:bg-white/[0.12] border border-white/[0.15] hover:border-white/[0.25] backdrop-blur-sm shadow-lg hover:shadow-xl font-roboto"
+                  className="group px-6 py-3 text-sm font-medium text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 border border-green-500/20 hover:border-green-500/40 backdrop-blur-sm shadow-lg hover:shadow-green-500/20 hover:scale-105 font-roboto"
                 >
                   {item.label}
                 </a>

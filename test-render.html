@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test</title>
+</head>
+<body>
+    <div id="test">If you see this, HTML loads</div>
+    <script>
+        console.log("Script running");
+        fetch('http://localhost:5173/src/main.jsx')
+            .then(r => r.text())
+            .then(text => {
+                console.log("Main.jsx loaded, length:", text.length);
+            })
+            .catch(e => console.error("Error loading main.jsx:", e));
+    </script>
+</body>
+</html>
