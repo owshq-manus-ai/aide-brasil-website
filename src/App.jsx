@@ -52,7 +52,7 @@ const FloatingShape = memo(({ size, position, gradient, delay = 0 }) => (
 
 // Optimized Section Container with memoization
 const SectionContainer = memo(({ children, gradient, className = "", id }) => (
-  <section id={id} className={`relative py-20 bg-[#030303] overflow-hidden ${className}`}>
+  <section id={id} className={`relative py-12 sm:py-16 lg:py-20 bg-[#030303] overflow-hidden ${className}`}>
     <FloatingShape
       size="w-32 h-32"
       position="top-10 left-10"
@@ -117,7 +117,7 @@ const CyclingText = () => {
             ease: "easeInOut"
           }
         }}
-        className="text-8xl md:text-9xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-white section-title"
+        className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-white section-title"
         style={{
           backgroundSize: '200% 200%',
           textShadow: '0 0 8px rgba(192, 192, 192, 0.3), 0 0 16px rgba(169, 169, 169, 0.2), 0 0 24px rgba(128, 128, 128, 0.1)',
@@ -259,7 +259,7 @@ function App() {
       <div className="relative z-10">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#030303]/80 backdrop-blur-md border-b border-white/[0.08]">
-        <div className="max-w-7xl mx-auto px-6 py-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2">
           <div className="flex items-center justify-between">
             {/* Logo Section */}
             <LogoWithText />
@@ -290,7 +290,7 @@ function App() {
                       }
                     }, 100);
                   }}
-                  className="group px-6 py-3 text-sm font-medium text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 border border-green-500/20 hover:border-green-500/40 backdrop-blur-sm shadow-lg hover:shadow-green-500/20 hover:scale-105 font-roboto"
+                  className="group px-4 sm:px-6 py-3 text-sm font-medium text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 border border-green-500/20 hover:border-green-500/40 backdrop-blur-sm shadow-lg hover:shadow-green-500/20 hover:scale-105 font-roboto"
                 >
                   {item.label}
                 </a>
@@ -354,7 +354,7 @@ function App() {
       <CommunityHero />
 
       {/* About Section */}
-      <section id="sobre" className="relative min-h-screen w-full bg-[#030303] overflow-hidden py-20">
+      <section id="sobre" className="relative min-h-screen w-full bg-[#030303] overflow-hidden py-12 sm:py-16 lg:py-12 sm:py-16 lg:py-20">
         {/* Background gradient - matching hero */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-emerald-500/5" />
@@ -363,7 +363,7 @@ function App() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-green-500/5 to-yellow-500/5 rounded-full blur-3xl" />
         </div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -378,7 +378,7 @@ function App() {
             >
               <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Sobre a Comunidade</span>
             </motion.div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 section-title">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-300 via-emerald-200 to-green-400">
                 A primeira comunidade brasileira
               </span>
@@ -447,7 +447,7 @@ function App() {
             Aqui, profissionais e empresas constroem o futuro juntos — aprendendo, colaborando e inovando em comunidade.
           </motion.p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
               {
                 icon: Target,
@@ -506,7 +506,7 @@ function App() {
       </section>
 
       {/* Ask Gen Section */}
-      <section id="ask-gen" className="relative min-h-screen w-full bg-[#030303] overflow-hidden py-20">
+      <section id="ask-gen" className="relative min-h-screen w-full bg-[#030303] overflow-hidden py-12 sm:py-16 lg:py-20">
         {/* Background gradient - matching hero with cyan colors */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5" />
@@ -516,7 +516,7 @@ function App() {
           <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-gradient-to-r from-blue-500/8 to-cyan-500/8 rounded-full blur-3xl" />
         </div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -531,7 +531,7 @@ function App() {
             >
               <span className="text-lg text-gray-400 font-medium tracking-wider uppercase">Converse com o</span>
             </motion.div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 section-title">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 section-title">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400">
                 O futuro da assistência em Dados e GenAI
               </span>
@@ -559,7 +559,7 @@ function App() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mb-16 flex justify-center"
           >
-            <span className="text-8xl md:text-9xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400 section-title">
+            <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400 section-title">
               Ask Gen
             </span>
           </motion.div>
@@ -873,7 +873,7 @@ function App() {
                     </p>
                     
                     {/* Feature cards matching About section style */}
-                    <div className="grid md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                       {[
                         {
                           icon: Zap,
@@ -1207,8 +1207,8 @@ function App() {
           <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-gray-700/[0.02] to-transparent rounded-full blur-[120px]" />
         </div>
         
-        <div className="relative z-10 py-20">
-          <div className="max-w-7xl mx-auto px-6">
+        <div className="relative z-10 py-12 sm:py-16 lg:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1363,7 +1363,7 @@ function App() {
             </div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Onyx 3D Orb */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -1963,7 +1963,7 @@ function App() {
                     repeat: Infinity,
                     ease: "linear"
                   }}
-                  className="inline-flex items-center gap-2 px-6 py-2 rounded-full mb-6"
+                  className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 rounded-full mb-6"
                   style={{
                     background: `linear-gradient(90deg, 
                       rgba(156, 163, 175, 0.1) 0%, 
@@ -2055,7 +2055,7 @@ function App() {
                 }}
               >
                 {/* Chat Header */}
-                <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800/50">
+                <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-gray-800/50">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                     <span className="text-gray-400 text-sm font-medium">#ask-the-expert</span>
@@ -2233,7 +2233,7 @@ function App() {
       </section>
 
       {/* Numbers Section */}
-      <section className="relative min-h-screen bg-[#030303] overflow-hidden py-20" id="numeros">
+      <section className="relative min-h-screen bg-[#030303] overflow-hidden py-12 sm:py-16 lg:py-20" id="numeros">
         {/* Orange-themed Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#030303] to-[#0f0a05]" />
@@ -2257,7 +2257,7 @@ function App() {
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2286,7 +2286,7 @@ function App() {
                     repeat: Infinity,
                     ease: "linear"
                   }}
-                  className="text-sm font-medium tracking-[0.3em] uppercase px-6 py-2 rounded-full"
+                  className="text-sm font-medium tracking-[0.3em] uppercase px-4 sm:px-6 py-2 rounded-full"
                   style={{
                     background: `linear-gradient(90deg, 
                       rgba(251, 146, 60, 0.1) 0%, 
@@ -2389,7 +2389,7 @@ function App() {
             </motion.p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
             {[
               {
                 title: "Crescimento do Mercado",
@@ -2526,7 +2526,7 @@ function App() {
       </section>
 
       {/* Benefits Section */}
-      <section className="relative min-h-screen bg-[#030303] overflow-hidden py-20" id="beneficios">
+      <section className="relative min-h-screen bg-[#030303] overflow-hidden py-12 sm:py-16 lg:py-20" id="beneficios">
         {/* Purple-themed Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#030303] to-[#0a0509]" />
@@ -2550,7 +2550,7 @@ function App() {
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2579,7 +2579,7 @@ function App() {
                     repeat: Infinity,
                     ease: "linear"
                   }}
-                  className="text-sm font-medium tracking-[0.3em] uppercase px-6 py-2 rounded-full"
+                  className="text-sm font-medium tracking-[0.3em] uppercase px-4 sm:px-6 py-2 rounded-full"
                   style={{
                     background: `linear-gradient(90deg, 
                       rgba(139, 69, 193, 0.1) 0%, 
@@ -2682,7 +2682,7 @@ function App() {
             </motion.p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
                 title: "Iniciantes",
@@ -2759,7 +2759,7 @@ function App() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative min-h-screen bg-[#030303] overflow-hidden py-20" id="comunidade">
+      <section className="relative min-h-screen bg-[#030303] overflow-hidden py-12 sm:py-16 lg:py-20" id="comunidade">
         {/* Rose/Red-themed Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#030303] to-[#0a0305]" />
@@ -2783,7 +2783,7 @@ function App() {
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2812,7 +2812,7 @@ function App() {
                     repeat: Infinity,
                     ease: "linear"
                   }}
-                  className="text-sm font-medium tracking-[0.3em] uppercase px-6 py-2 rounded-full"
+                  className="text-sm font-medium tracking-[0.3em] uppercase px-4 sm:px-6 py-2 rounded-full"
                   style={{
                     background: `linear-gradient(90deg, 
                       rgba(244, 63, 94, 0.1) 0%, 
@@ -3083,7 +3083,7 @@ function App() {
                     repeat: Infinity,
                     ease: "linear"
                   }}
-                  className="px-6 py-2 rounded-full text-sm font-semibold border"
+                  className="px-4 sm:px-6 py-2 rounded-full text-sm font-semibold border"
                   style={{
                     background: `linear-gradient(90deg, 
                       rgba(156, 163, 175, 0.1) 0%, 
@@ -3298,7 +3298,7 @@ function App() {
 
       {/* Footer */}
       <footer className="relative py-16 bg-[#020202] border-t border-white/[0.05]">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-md">
             {/* Description */}
             <p className="text-white/60 mb-8 leading-relaxed">
