@@ -126,6 +126,9 @@ const Header = () => {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden p-2 rounded-lg bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm ml-auto"
+            aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -134,6 +137,9 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <motion.nav
+            id="mobile-navigation"
+            role="navigation"
+            aria-label="Menu de navegação móvel"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}

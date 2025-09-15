@@ -26,27 +26,46 @@ import {
   Trophy 
 } from 'lucide-react'
 import Header from '../components/shared/Header'
+import OptimizedBackground from '../components/shared/OptimizedBackground'
 import '../App.css'
 
 // Lazy load heavy components
 const CommunityHero = lazy(() => import('../components/ui/community-hero').then(module => ({ default: module.CommunityHero })))
 
 // Optimized Floating Shape Component with memoization
-const FloatingShape = memo(({ size, position, gradient, delay = 0 }) => (
-  <motion.div
-    className={`absolute ${position} ${size} bg-gradient-to-br ${gradient} rounded-2xl opacity-20 blur-sm`}
-    animate={{
-      y: [0, -15, 0],
-      rotate: [0, 3, -3, 0],
-    }}
-    transition={{
-      duration: 6,
-      repeat: Infinity,
-      delay: delay,
-      ease: "easeInOut"
-    }}
-  />
-))
+const FloatingShape = memo(({ size, position, gradient, delay = 0 }) => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // On mobile, render static div without animations
+  if (isMobile) {
+    return (
+      <div className={`absolute ${position} ${size} bg-gradient-to-br ${gradient} rounded-2xl opacity-10`} />
+    );
+  }
+
+  return (
+    <motion.div
+      className={`absolute ${position} ${size} bg-gradient-to-br ${gradient} rounded-2xl opacity-20 blur-sm`}
+      animate={{
+        y: [0, -15, 0],
+        rotate: [0, 3, -3, 0],
+      }}
+      transition={{
+        duration: 6,
+        repeat: Infinity,
+        delay: delay,
+        ease: "easeInOut"
+      }}
+    />
+  );
+})
 
 // Optimized Section Container with memoization
 const SectionContainer = memo(({ children, gradient, className = "", id }) => (
@@ -240,17 +259,8 @@ function HomePage() {
     <LazyMotion features={domAnimation}>
       <Suspense fallback={<LoadingSpinner />}>
         <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
-      {/* Background Image */}
-      <div 
-        className="fixed inset-0 z-0"
-        style={{
-          backgroundImage: `url('/background-option-2-geometric.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          opacity: 0.6
-        }}
-      />
+      {/* Optimized Background Image */}
+      <OptimizedBackground />
       
       {/* Content Overlay */}
       <div className="relative z-10">

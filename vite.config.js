@@ -64,10 +64,12 @@ export default defineConfig({
     sourcemap: false,
     // Inline assets smaller than 4kb
     assetsInlineLimit: 4096,
-    // Enable CSS code splitting
+    // Enable CSS code splitting  
     cssCodeSplit: true,
     // Target modern browsers
-    target: 'es2020'
+    target: 'es2020',
+    // Aggressive CSS minification
+    cssMinify: 'lightningcss'
   },
   // Optimize dependencies
   optimizeDeps: {
