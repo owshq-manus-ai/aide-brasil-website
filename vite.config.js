@@ -17,7 +17,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Split vendor chunks more granularly
+          // Split vendor chunks more granularly for optimal caching
           if (id.includes('node_modules')) {
             if (id.includes('react') || id.includes('react-dom')) {
               return 'react-vendor';
@@ -34,8 +34,15 @@ export default defineConfig({
             if (id.includes('recharts')) {
               return 'charts';
             }
+            if (id.includes('react-router')) {
+              return 'router';
+            }
             // Group other smaller dependencies
             return 'vendor';
+          }
+          // Split large components into separate chunks
+          if (id.includes('src/components/ui/community-hero')) {
+            return 'community-hero';
           }
         },
         // Use content hash for better caching
@@ -44,32 +51,56 @@ export default defineConfig({
         assetFileNames: 'assets/[name].[hash].[ext]'
       }
     },
-    // Optimize chunk size
-    chunkSizeWarningLimit: 500,
+    // Optimize chunk size for better loading
+    chunkSizeWarningLimit: 300,
     // Enable minification with terser for better compression
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info'],
-        passes: 2
+        pure_funcs: ['console.log', 'console.info', 'console.warn'],
+        passes: 2,
+        unsafe: true,
+        unsafe_comps: true,
+        unsafe_math: true,
+        dead_code: true,
+        evaluate: true,
+        hoist_funs: true,
+        hoist_props: true,
+        if_return: true,
+        join_vars: true,
+        loops: true,
+        properties: true,
+        reduce_funcs: true,
+        reduce_vars: true,
+        sequences: true,
+        side_effects: true,
+        switches: true,
+        typeofs: true,
+        unused: true
       },
-      mangle: true,
+      mangle: {
+        safari10: true
+      },
       format: {
         comments: false
       }
     },
-    // Enable source maps for production debugging
+    // Disable source maps for production
     sourcemap: false,
-    // Inline assets smaller than 4kb
-    assetsInlineLimit: 4096,
-    // Enable CSS code splitting  
+    // Inline smaller assets for fewer requests
+    assetsInlineLimit: 8192,
+    // Enable CSS code splitting for better caching
     cssCodeSplit: true,
-    // Target modern browsers
-    target: 'es2020',
+    // Target modern browsers for smaller bundles
+    target: ['es2020', 'chrome80', 'firefox78', 'safari14', 'edge88'],
     // Aggressive CSS minification
-    cssMinify: 'lightningcss'
+    cssMinify: 'lightningcss',
+    // Enable experimental features for better optimization
+    reportCompressedSize: false,
+    // Optimize for production
+    emptyOutDir: true
   },
   // Optimize dependencies
   optimizeDeps: {

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, lazy, Suspense, memo, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion'
-import { lazy, Suspense, memo, useMemo } from 'react'
 import { 
   ChevronDown, 
   CheckCircle, 
