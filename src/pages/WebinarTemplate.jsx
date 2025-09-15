@@ -7,7 +7,7 @@ import {
   Code2, Rocket, Shield, TrendingUp, Award, Bot, 
   Cpu, GitBranch, Terminal, Layers, Database,
   MessageSquare, ChevronDown, Lock, Trophy,
-  Timer, Heart, AlertCircle, Lightbulb
+  Timer, Heart, AlertCircle, Lightbulb, X, Check
 } from 'lucide-react'
 import Header from '../components/shared/Header'
 
@@ -447,10 +447,28 @@ function WebinarTemplate() {
                     'Pipelines quebrados sem saber porquê',
                     'Produtividade limitada e frustrante'
                   ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="text-red-500 mt-1">✗</span>
-                      <span className="text-white/70">{item}</span>
-                    </li>
+                    <motion.li 
+                      key={i} 
+                      className="flex items-start gap-4"
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: i * 0.1, type: "spring", stiffness: 100 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.div 
+                        className="relative flex-shrink-0 mt-0.5"
+                        whileHover={{ scale: 1.2, rotate: 90 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-rose-500 rounded-lg blur-md opacity-40" />
+                        <div className="relative w-8 h-8 bg-gradient-to-br from-red-500/30 to-rose-500/30 rounded-lg flex items-center justify-center border border-red-500/40 backdrop-blur-sm">
+                          <div className="w-6 h-6 bg-gradient-to-br from-red-500 to-rose-500 rounded flex items-center justify-center">
+                            <X className="w-4 h-4 text-white" strokeWidth={3} />
+                          </div>
+                        </div>
+                      </motion.div>
+                      <span className="text-white/80 font-medium">{item}</span>
+                    </motion.li>
                   ))}
                 </ul>
               </motion.div>
@@ -475,10 +493,35 @@ function WebinarTemplate() {
                     'Pipelines auto-recuperáveis e inteligentes',
                     'Produtividade 300% maior garantida'
                   ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="text-green-500 mt-1">✓</span>
+                    <motion.li 
+                      key={i} 
+                      className="flex items-start gap-4"
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: i * 0.1, type: "spring", stiffness: 100 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.div 
+                        className="relative flex-shrink-0 mt-0.5"
+                        initial={{ scale: 0, rotate: -180 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        whileHover={{ scale: 1.3, rotate: 360 }}
+                        transition={{ 
+                          type: "spring",
+                          stiffness: 200,
+                          damping: 15,
+                          duration: 0.6 
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-green-500 rounded-xl blur-lg opacity-50 animate-pulse" />
+                        <div className="relative w-10 h-10 bg-gradient-to-br from-emerald-500/40 to-green-500/40 rounded-xl flex items-center justify-center border-2 border-emerald-400/60 backdrop-blur-sm shadow-lg shadow-emerald-500/30">
+                          <div className="w-7 h-7 bg-gradient-to-br from-emerald-500 to-green-500 rounded-lg flex items-center justify-center shadow-inner">
+                            <Check className="w-5 h-5 text-white drop-shadow-lg" strokeWidth={4} />
+                          </div>
+                        </div>
+                      </motion.div>
                       <span className="text-white/80 font-medium">{item}</span>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               </motion.div>
@@ -639,7 +682,7 @@ function WebinarTemplate() {
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-orange-500/10 to-amber-500/10 rounded-3xl p-8 md:p-12 border-2 border-orange-500/30">
+              <div className="relative bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-3xl p-8 md:p-12 border-2 border-orange-500/40 backdrop-blur-sm">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                   {/* Photo Column */}
                   <div className="flex justify-center">
@@ -686,10 +729,13 @@ function WebinarTemplate() {
                             transition={{ duration: 0.5, delay: i * 0.1 }}
                             viewport={{ once: true }}
                           >
-                            <div className="w-8 h-8 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-orange-500/30">
-                              <Trophy className="w-4 h-4 text-orange-400" />
+                            <div className="relative w-8 h-8 flex-shrink-0">
+                              <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg opacity-20" />
+                              <div className="relative w-full h-full bg-gradient-to-br from-orange-500/30 to-amber-500/30 rounded-lg flex items-center justify-center border border-orange-500/40">
+                                <Trophy className="w-4 h-4 text-orange-500" strokeWidth={2.5} />
+                              </div>
                             </div>
-                            <span className="text-white/80">{achievement}</span>
+                            <span className="text-white/80 text-sm">{achievement}</span>
                           </motion.div>
                         ))}
                       </div>
@@ -822,7 +868,21 @@ function WebinarTemplate() {
               viewport={{ once: true }}
               className="text-center"
             >
-              <AlertCircle className="w-16 h-16 text-orange-600 mx-auto mb-6" />
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                transition={{ duration: 0.7, type: "spring", stiffness: 100 }}
+                viewport={{ once: true }}
+                className="relative inline-block mb-8"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl blur-3xl opacity-30 animate-pulse" />
+                <div className="relative w-24 h-24 bg-gradient-to-br from-orange-500/10 to-amber-500/10 rounded-2xl flex items-center justify-center border-2 border-orange-500/30 mx-auto backdrop-blur-sm">
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center shadow-lg">
+                    <AlertCircle className="w-10 h-10 text-white" strokeWidth={2.5} />
+                  </div>
+                </div>
+              </motion.div>
+              
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white relative z-10">
                 Por Que Você <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-600">Não Pode Perder</span> Isso
               </h2>
