@@ -42,10 +42,10 @@ const FloatingShape = memo(({ size, position, gradient, delay = 0 }) => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // On mobile, render static div without animations
+  // On mobile, render minimal static div without animations or blur
   if (isMobile) {
     return (
-      <div className={`absolute ${position} ${size} bg-gradient-to-br ${gradient} rounded-2xl opacity-10`} />
+      <div className={`absolute ${position} ${size} bg-gradient-to-br ${gradient} rounded-2xl opacity-5`} />
     );
   }
 

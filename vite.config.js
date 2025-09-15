@@ -100,7 +100,11 @@ export default defineConfig({
     // Enable experimental features for better optimization
     reportCompressedSize: false,
     // Optimize for production
-    emptyOutDir: true
+    emptyOutDir: true,
+    // Mobile-specific optimizations
+    modulePreload: {
+      polyfill: false // Reduce bundle size for modern browsers
+    }
   },
   // Optimize dependencies
   optimizeDeps: {

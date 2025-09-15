@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import WebinarHub from './pages/WebinarHub'
 import WebinarTemplate from './pages/WebinarTemplate'
 import './App.css'
+import './styles/mobile-optimizations.css'
 
 function App() {
   return (

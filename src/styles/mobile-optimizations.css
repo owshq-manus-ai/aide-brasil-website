@@ -1,0 +1,124 @@
+/* Mobile Performance Optimizations */
+
+/* Reduce animations on mobile for better performance */
+@media (max-width: 768px) {
+  /* Disable complex animations on mobile */
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  /* Optimize transforms for mobile */
+  .motion-safe\:animate-pulse,
+  .motion-safe\:animate-bounce,
+  .motion-safe\:animate-spin {
+    animation: none !important;
+  }
+  
+  /* Reduce blur effects on mobile */
+  .blur-sm {
+    filter: none !important;
+  }
+  
+  .blur-3xl {
+    filter: blur(20px) !important;
+  }
+  
+  /* Optimize gradients for mobile */
+  .bg-gradient-to-br,
+  .bg-gradient-to-r {
+    background: linear-gradient(135deg, var(--tw-gradient-from), var(--tw-gradient-to)) !important;
+  }
+  
+  /* Reduce opacity effects on mobile */
+  .opacity-20 {
+    opacity: 0.05 !important;
+  }
+  
+  .opacity-30 {
+    opacity: 0.1 !important;
+  }
+  
+  /* Optimize shadows for mobile */
+  .shadow-lg,
+  .shadow-xl {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Disable hover effects on mobile */
+  .hover\:scale-105:hover {
+    transform: none !important;
+  }
+  
+  .hover\:shadow-lg:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Optimize text rendering on mobile */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+  }
+  
+  /* Reduce will-change usage on mobile */
+  * {
+    will-change: auto !important;
+  }
+  
+  /* Optimize background attachments */
+  .bg-fixed {
+    background-attachment: scroll !important;
+  }
+}
+
+/* Prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Critical CSS for mobile performance */
+@media (max-width: 768px) {
+  /* Optimize hero section for mobile */
+  .hero-section {
+    min-height: 100vh;
+    background-attachment: scroll;
+  }
+  
+  /* Reduce complex layouts on mobile */
+  .grid-cols-3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+  
+  .grid-cols-2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+  
+  /* Optimize spacing for mobile */
+  .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 1rem !important;
+  }
+  
+  .space-y-12 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 1.5rem !important;
+  }
+  
+  /* Reduce padding on mobile */
+  .py-20 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .py-16 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}

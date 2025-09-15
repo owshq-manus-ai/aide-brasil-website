@@ -2,7 +2,6 @@ import { memo, useEffect, useState, useMemo } from 'react';
 
 const OptimizedBackground = memo(() => {
   const [isMobile, setIsMobile] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [webpSupported, setWebpSupported] = useState(true);
   
   // Check WebP support once
@@ -19,22 +18,13 @@ const OptimizedBackground = memo(() => {
   }, []);
   
   useEffect(() => {
-    // Optimized resize handler with debouncing
-    let timeoutId;
-    const checkMobile = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setIsMobile(window.innerWidth < 768);
-      }, 100);
-    };
+    // Simplified mobile check - no debouncing for better performance
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     
     checkMobile();
     window.addEventListener('resize', checkMobile, { passive: true });
     
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-      clearTimeout(timeoutId);
-    };
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
   
   // Memoize image URLs for better performance
@@ -59,41 +49,30 @@ const OptimizedBackground = memo(() => {
     };
   }, [isMobile, webpSupported]);
   
-  useEffect(() => {
-    // Preload the appropriate image with better error handling
-    const img = new Image();
-    
-    const handleLoad = () => {
-      setImageLoaded(true);
-    };
-    
-    const handleError = () => {
-      // Try fallback image
-      if (imageUrls.primary !== imageUrls.fallback) {
-        const fallbackImg = new Image();
-        fallbackImg.onload = handleLoad;
-        fallbackImg.onerror = () => setImageLoaded(true); // Still show something
-        fallbackImg.src = imageUrls.fallback;
-      } else {
-        setImageLoaded(true);
-      }
-    };
-    
-    img.onload = handleLoad;
-    img.onerror = handleError;
-    img.src = imageUrls.primary;
-    
-    return () => {
-      img.onload = null;
-      img.onerror = null;
-    };
-  }, [imageUrls]);
-  
   // Optimized background image string
   const backgroundImage = useMemo(() => {
     return `url('${imageUrls.primary}'), url('${imageUrls.fallback}')`;
   }, [imageUrls]);
   
+  // Mobile-optimized static background
+  if (isMobile) {
+    return (
+      <div 
+        className="fixed inset-0 z-0 opacity-50"
+        style={{
+          backgroundImage,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed', // Static background for mobile
+          transform: 'translateZ(0)', // Force hardware acceleration
+        }}
+        aria-hidden="true"
+      />
+    );
+  }
+  
+  // Desktop version with minimal effects
   return (
     <div 
       className="fixed inset-0 z-0 opacity-60"
@@ -102,9 +81,7 @@ const OptimizedBackground = memo(() => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        willChange: imageLoaded ? 'auto' : 'opacity',
         transform: 'translateZ(0)', // Force hardware acceleration
-        transition: imageLoaded ? 'opacity 0.3s ease-in-out' : 'none'
       }}
       aria-hidden="true"
     />

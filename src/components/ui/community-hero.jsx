@@ -20,34 +20,44 @@ const ConnectionLine = ({ start, end, delay = 0 }) => (
   />
 )
 
-// Floating member node
-const MemberNode = ({ x, y, delay = 0, icon: Icon, name, role }) => (
-  <motion.g
-    initial={{ scale: 0, opacity: 0 }}
-    animate={{ scale: 1, opacity: 1 }}
-    transition={{ duration: 0.5, delay }}
-  >
-    <motion.circle
-      cx={x}
-      cy={y}
-      r="30"
-      fill="#030303"
-      stroke="url(#gradient)"
-      strokeWidth="2"
-      animate={{
-        r: [30, 32, 30],
-      }}
-      transition={{
-        duration: 4,
-        repeat: Infinity,
-        delay: delay * 0.2,
-      }}
-    />
-    <foreignObject x={x - 20} y={y - 20} width="40" height="40">
-      <div className="flex items-center justify-center h-full">
-        {Icon && <Icon className="w-5 h-5 text-green-400" />}
-      </div>
-    </foreignObject>
+// Floating member node - optimized for mobile
+const MemberNode = ({ x, y, delay = 0, icon: Icon, name, role }) => {
+  const [isMobile, setIsMobile] = React.useState(false);
+  
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile, { passive: true });
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return (
+    <motion.g
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.5, delay }}
+    >
+      <motion.circle
+        cx={x}
+        cy={y}
+        r="30"
+        fill="#030303"
+        stroke="url(#gradient)"
+        strokeWidth="2"
+        animate={isMobile ? {} : {
+          r: [30, 32, 30],
+        }}
+        transition={isMobile ? {} : {
+          duration: 4,
+          repeat: Infinity,
+          delay: delay * 0.2,
+        }}
+      />
+      <foreignObject x={x - 20} y={y - 20} width="40" height="40">
+        <div className="flex items-center justify-center h-full">
+          {Icon && <Icon className="w-5 h-5 text-green-400" />}
+        </div>
+      </foreignObject>
     {name && (
       <text
         x={x}
@@ -71,7 +81,8 @@ const MemberNode = ({ x, y, delay = 0, icon: Icon, name, role }) => (
       </text>
     )}
   </motion.g>
-)
+  )
+}
 
 const CommunityHero = ({ className }) => {
   const [activeMembers, setActiveMembers] = React.useState(1247)
@@ -168,8 +179,8 @@ const CommunityHero = ({ className }) => {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" data-theme-glow="secondary" />
       </div>
 
-      {/* Network visualization */}
-      <div className="absolute inset-0 flex items-start justify-center opacity-30 pt-20">
+      {/* Network visualization - hidden on mobile for performance */}
+      <div className="absolute inset-0 flex items-start justify-center opacity-30 pt-20 hidden md:block">
         <svg
           width="1300"
           height="800"
@@ -325,12 +336,12 @@ const CommunityHero = ({ className }) => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - static on mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
