@@ -60,7 +60,7 @@ const webinars = [
     date: '25 Set 2025',
     time: '20:00',
     duration: '2h',
-    attendees: 1847,
+    attendees: 103,
     description: 'Descubra o futuro do desenvolvimento de aplicações em Dados. Aprenda a utilizar agentes para acelerar em 300% sua produtividade e garantir qualidade de entrega com dicas exclusivas das trincheiras.',
     topics: ['Claude Code', 'LLMs', 'GenAI', 'Data Engineering'],
     gradient: 'from-orange-600 to-amber-600',
@@ -147,7 +147,7 @@ function WebinarHub() {
               className="text-xl md:text-2xl text-white/60 max-w-4xl mx-auto mb-12 leading-relaxed"
             >
               Aprenda com os maiores experts em{' '}
-              <span className="text-white/80 font-semibold">AI e Data Engineering</span> do Brasil.
+              <span className="text-white/80 font-semibold">GenAI e Data Engineering</span> do Brasil.
               <br />
               Conteúdo prático, direto ao ponto, sem enrolação.
             </motion.p>
@@ -160,8 +160,8 @@ function WebinarHub() {
               className="flex flex-wrap justify-center gap-8 mb-12"
             >
               {[
-                { icon: Users, value: '10K+', label: 'Participantes' },
-                { icon: Award, value: '50+', label: 'Webinários' },
+                { icon: Users, value: '500+', label: 'Participantes' },
+                { icon: Award, value: '20+', label: 'Webinários' },
                 { icon: Star, value: '4.9', label: 'Avaliação' },
                 { icon: TrendingUp, value: '95%', label: 'Taxa de Conclusão' }
               ].map((stat, index) => (

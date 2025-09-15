@@ -7,9 +7,13 @@ import {
   Code2, Rocket, Shield, TrendingUp, Award, Bot, 
   Cpu, GitBranch, Terminal, Layers, Database,
   MessageSquare, ChevronDown, Lock, Trophy,
-  Timer, Heart, AlertCircle, Lightbulb, X, Check
+  Timer, Heart, AlertCircle, Lightbulb, X, Check, Video, Phone, Mail, User
 } from 'lucide-react'
 import Header from '../components/shared/Header'
+
+// Configuration for registration method
+const USE_TYPEFORM = false // Set to true to use Typeform instead of custom form
+const TYPEFORM_URL = 'https://your-typeform-url.typeform.com/to/YOUR_FORM_ID' // Replace with your Typeform URL
 
 // This would come from a database/API in production
 const webinarData = {
@@ -90,7 +94,9 @@ const webinarData = {
 
 function WebinarTemplate() {
   const { slug } = useParams()
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [registered, setRegistered] = useState(false)
   const [attendeeCount, setAttendeeCount] = useState(103)
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
@@ -117,12 +123,67 @@ function WebinarTemplate() {
     setMousePos({ x, y })
   }
   
+  // Format phone number as user types
+  const formatPhoneNumber = (value) => {
+    // Remove all non-digits
+    const phoneNumber = value.replace(/\D/g, '')
+    
+    // Apply Brazilian phone format: (XX) XXXXX-XXXX
+    if (phoneNumber.length <= 2) {
+      return phoneNumber
+    } else if (phoneNumber.length <= 7) {
+      return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2)}`
+    } else if (phoneNumber.length <= 11) {
+      return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7)}`
+    }
+    // Limit to 11 digits
+    return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7, 11)}`
+  }
+  
+  const handlePhoneChange = (e) => {
+    const formattedPhone = formatPhoneNumber(e.target.value)
+    setPhone(formattedPhone)
+  }
+  
   const handleRegistration = (e) => {
     e.preventDefault()
-    if (email) {
+    
+    if (USE_TYPEFORM) {
+      // Redirect to Typeform
+      window.open(TYPEFORM_URL, '_blank')
       setRegistered(true)
       setAttendeeCount(prev => prev + 1)
+    } else {
+      // Use custom form
+      if (name && email && phone) {
+        setRegistered(true)
+        setAttendeeCount(prev => prev + 1)
+        
+        // Here you would normally send this data to your backend/webhook
+        // For now, just log it to console
+        console.log('Registration data:', { name, email, phone })
+        
+        // Optional: Send to webhook
+        // fetch('YOUR_WEBHOOK_URL', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify({ name, email, phone, webinar: slug })
+        // })
+        
+        // Clear form fields after a short delay
+        setTimeout(() => {
+          setName('')
+          setEmail('')
+          setPhone('')
+        }, 100)
+      }
     }
+  }
+  
+  const handleTypeformClick = () => {
+    window.open(TYPEFORM_URL, '_blank')
+    setRegistered(true)
+    setAttendeeCount(prev => prev + 1)
   }
 
 
@@ -264,8 +325,8 @@ function WebinarTemplate() {
                     <span className="font-medium">{webinar.time}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Users className="w-5 h-5 text-orange-500" />
-                    <span className="font-medium">{webinar.attendees} inscritos</span>
+                    <Video className="w-5 h-5 text-orange-500" />
+                    <span className="font-medium">Sessão no Zoom</span>
                   </div>
                 </motion.div>
               </div>
@@ -349,14 +410,43 @@ function WebinarTemplate() {
                       </div>
                       
                       <form onSubmit={handleRegistration} className="space-y-4">
-                        <input
-                          type="email"
-                          placeholder="seu@email.com"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className="w-full px-4 py-3 bg-white/10 border-2 border-white/20 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-white placeholder-white/50"
-                          required
-                        />
+                        <div className="relative">
+                          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                          <input
+                            type="text"
+                            placeholder="Seu nome completo"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full pl-11 pr-4 py-3 bg-white/10 border-2 border-white/20 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-white placeholder-white/50"
+                            required
+                          />
+                        </div>
+                        
+                        <div className="relative">
+                          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                          <input
+                            type="email"
+                            placeholder="seu@email.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full pl-11 pr-4 py-3 bg-white/10 border-2 border-white/20 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-white placeholder-white/50"
+                            required
+                          />
+                        </div>
+                        
+                        <div className="relative">
+                          <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                          <input
+                            type="tel"
+                            placeholder="(11) 98765-4321"
+                            value={phone}
+                            onChange={handlePhoneChange}
+                            maxLength="15"
+                            className="w-full pl-11 pr-4 py-3 bg-white/10 border-2 border-white/20 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-white placeholder-white/50"
+                            required
+                          />
+                          <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-white/40">WhatsApp</span>
+                        </div>
                         
                         <button
                           type="submit"
@@ -383,9 +473,27 @@ function WebinarTemplate() {
                       <h3 className="text-2xl font-bold text-white mb-2">
                         Vaga Confirmada!
                       </h3>
-                      <p className="text-white/70">
-                        Enviamos os detalhes para {email}
-                      </p>
+                      {USE_TYPEFORM ? (
+                        <p className="text-white/70">
+                          Você será redirecionado para completar sua inscrição
+                        </p>
+                      ) : (
+                        <>
+                          <p className="text-white/70 mb-2">
+                            Enviamos os detalhes para:
+                          </p>
+                          <div className="space-y-1">
+                            <p className="text-white/80 text-sm flex items-center justify-center gap-2">
+                              <Mail className="w-4 h-4" />
+                              {email || 'seu@email.com'}
+                            </p>
+                            <p className="text-white/80 text-sm flex items-center justify-center gap-2">
+                              <Phone className="w-4 h-4" />
+                              {phone || '(00) 00000-0000'}
+                            </p>
+                          </div>
+                        </>
+                      )}
                     </div>
                   )}
                 </div>
@@ -435,9 +543,17 @@ function WebinarTemplate() {
                 viewport={{ once: true }}
                 className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
               >
-                <div className="absolute top-4 right-4 px-3 py-1 bg-gray-500 text-white text-sm font-bold rounded-full">
-                  ANTES
-                </div>
+                <motion.div 
+                  className="absolute top-4 right-4 w-10 h-10 rounded-lg overflow-hidden"
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-600 to-gray-700 opacity-90" />
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <X className="w-5 h-5 text-white/80" strokeWidth={3} />
+                  </div>
+                </motion.div>
                 <h3 className="text-2xl font-bold text-white/80 mb-6">Desenvolvimento Tradicional</h3>
                 <ul className="space-y-4">
                   {[
@@ -460,9 +576,9 @@ function WebinarTemplate() {
                         whileHover={{ scale: 1.2, rotate: 90 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-rose-500 rounded-lg blur-md opacity-40" />
-                        <div className="relative w-8 h-8 bg-gradient-to-br from-red-500/30 to-rose-500/30 rounded-lg flex items-center justify-center border border-red-500/40 backdrop-blur-sm">
-                          <div className="w-6 h-6 bg-gradient-to-br from-red-500 to-rose-500 rounded flex items-center justify-center">
+                        <div className="absolute inset-0 bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg blur-md opacity-30" />
+                        <div className="relative w-8 h-8 bg-gradient-to-br from-gray-500/20 to-gray-600/20 rounded-lg flex items-center justify-center border border-gray-500/30 backdrop-blur-sm">
+                          <div className="w-6 h-6 bg-gradient-to-br from-gray-500 to-gray-600 rounded flex items-center justify-center">
                             <X className="w-4 h-4 text-white" strokeWidth={3} />
                           </div>
                         </div>
@@ -481,9 +597,18 @@ function WebinarTemplate() {
                 viewport={{ once: true }}
                 className="relative bg-gradient-to-br from-orange-500/10 to-amber-500/10 rounded-2xl p-8 border-2 border-orange-500/30"
               >
-                <div className="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold rounded-full">
-                  DEPOIS
-                </div>
+                <motion.div 
+                  className="absolute top-4 right-4 w-10 h-10 rounded-lg overflow-hidden"
+                  initial={{ scale: 0, rotate: 180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-amber-500" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-600/20 to-amber-600/20 animate-pulse" />
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <Check className="w-5 h-5 text-white" strokeWidth={3} />
+                  </div>
+                </motion.div>
                 <h3 className="text-2xl font-bold text-white mb-6">Com Claude Code</h3>
                 <ul className="space-y-4">
                   {[
@@ -513,9 +638,9 @@ function WebinarTemplate() {
                           duration: 0.6 
                         }}
                       >
-                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-green-500 rounded-xl blur-lg opacity-50 animate-pulse" />
-                        <div className="relative w-10 h-10 bg-gradient-to-br from-emerald-500/40 to-green-500/40 rounded-xl flex items-center justify-center border-2 border-emerald-400/60 backdrop-blur-sm shadow-lg shadow-emerald-500/30">
-                          <div className="w-7 h-7 bg-gradient-to-br from-emerald-500 to-green-500 rounded-lg flex items-center justify-center shadow-inner">
+                        <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl blur-lg opacity-50 animate-pulse" />
+                        <div className="relative w-10 h-10 bg-gradient-to-br from-orange-500/40 to-amber-500/40 rounded-xl flex items-center justify-center border-2 border-orange-400/60 backdrop-blur-sm shadow-lg shadow-orange-500/30">
+                          <div className="w-7 h-7 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center shadow-inner">
                             <Check className="w-5 h-5 text-white drop-shadow-lg" strokeWidth={4} />
                           </div>
                         </div>
@@ -950,14 +1075,43 @@ function WebinarTemplate() {
                           Reserve Sua Vaga Gratuita
                         </h3>
                         <form onSubmit={handleRegistration} className="space-y-4">
-                          <input
-                            type="email"
-                            placeholder="seu@email.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-4 py-3 bg-white/10 border-2 border-white/20 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-white placeholder-white/50"
-                            required
-                          />
+                          <div className="relative">
+                            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                            <input
+                              type="text"
+                              placeholder="Seu nome completo"
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                              className="w-full pl-11 pr-4 py-3 bg-white/10 border-2 border-white/20 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-white placeholder-white/50"
+                              required
+                            />
+                          </div>
+                          
+                          <div className="relative">
+                            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                            <input
+                              type="email"
+                              placeholder="seu@email.com"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              className="w-full pl-11 pr-4 py-3 bg-white/10 border-2 border-white/20 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-white placeholder-white/50"
+                              required
+                            />
+                          </div>
+                          
+                          <div className="relative">
+                            <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                            <input
+                              type="tel"
+                              placeholder="(11) 98765-4321"
+                              value={phone}
+                              onChange={handlePhoneChange}
+                              maxLength="15"
+                              className="w-full pl-11 pr-4 py-3 bg-white/10 border-2 border-white/20 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-white placeholder-white/50"
+                              required
+                            />
+                            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-white/40">WhatsApp</span>
+                          </div>
                           <button
                             type="submit"
                             className="w-full py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-lg rounded-xl hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 hover:scale-105"
@@ -982,28 +1136,52 @@ function WebinarTemplate() {
                         <h3 className="text-2xl font-bold text-white mb-2">
                           Vaga Confirmada!
                         </h3>
-                        <p className="text-white/70">
-                          Enviamos os detalhes para {email}
-                        </p>
+                        {USE_TYPEFORM ? (
+                          <p className="text-white/70">
+                            Você será redirecionado para completar sua inscrição
+                          </p>
+                        ) : (
+                          <>
+                            <p className="text-white/70 mb-2">
+                              Enviamos os detalhes para:
+                            </p>
+                            <div className="space-y-1">
+                              <p className="text-white/80 text-sm flex items-center justify-center gap-2">
+                                <Mail className="w-4 h-4" />
+                                {email || 'seu@email.com'}
+                              </p>
+                              <p className="text-white/80 text-sm flex items-center justify-center gap-2">
+                                <Phone className="w-4 h-4" />
+                                {phone || '(00) 00000-0000'}
+                              </p>
+                            </div>
+                          </>
+                        )}
                       </div>
                     )}
                   </div>
                 </div>
               </div>
               
-              <div className="mt-8 flex justify-center gap-8 text-white/70">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-500" />
-                  <span>100% Gratuito</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-500" />
-                  <span>Certificado Incluso</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-500" />
-                  <span>Material Exclusivo</span>
-                </div>
+              <div className="mt-8 flex justify-center gap-8 text-white/70 relative z-10">
+                <motion.div 
+                  className="flex items-center gap-2"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <CheckCircle className="w-5 h-5 text-orange-500" />
+                  <span className="text-white/80">100% Gratuito</span>
+                </motion.div>
+                <motion.div 
+                  className="flex items-center gap-2"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  <CheckCircle className="w-5 h-5 text-orange-500" />
+                  <span className="text-white/80">Material Exclusivo</span>
+                </motion.div>
               </div>
             </motion.div>
           </div>
