@@ -51,26 +51,32 @@ export default defineConfig({
         assetFileNames: 'assets/[name].[hash].[ext]'
       }
     },
-    // Optimize chunk size for better loading
-    chunkSizeWarningLimit: 300,
+    // Optimize chunk size for better mobile loading
+    chunkSizeWarningLimit: 200, // Reduced for mobile performance
     // Enable minification with terser for better compression
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.warn'],
-        passes: 2,
+        pure_funcs: ['console.log', 'console.info', 'console.warn', 'console.error'],
+        passes: 3, // Increased compression passes
         unsafe: true,
         unsafe_comps: true,
         unsafe_math: true,
+        unsafe_methods: true,
+        unsafe_proto: true,
+        unsafe_regexp: true,
+        unsafe_undefined: true,
         dead_code: true,
         evaluate: true,
         hoist_funs: true,
         hoist_props: true,
+        hoist_vars: true,
         if_return: true,
         join_vars: true,
         loops: true,
+        negate_iife: true,
         properties: true,
         reduce_funcs: true,
         reduce_vars: true,
@@ -78,13 +84,27 @@ export default defineConfig({
         side_effects: true,
         switches: true,
         typeofs: true,
-        unused: true
+        unused: true,
+        conditionals: true,
+        collapse_vars: true,
+        inline: 3, // Aggressive inlining
+        keep_fargs: false,
+        keep_fnames: false,
+        toplevel: true,
+        top_retain: false
       },
       mangle: {
-        safari10: true
+        safari10: true,
+        toplevel: true,
+        properties: {
+          regex: /^_/
+        }
       },
       format: {
-        comments: false
+        comments: false,
+        ascii_only: true,
+        beautify: false,
+        semicolons: false
       }
     },
     // Disable source maps for production

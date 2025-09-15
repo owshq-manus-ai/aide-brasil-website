@@ -27,7 +27,7 @@ const OptimizedBackground = memo(() => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
   
-  // Memoize image URLs for better performance
+  // Memoize image URLs for better performance - using ultra-optimized images
   const imageUrls = useMemo(() => {
     if (!webpSupported) {
       return {
@@ -38,14 +38,14 @@ const OptimizedBackground = memo(() => {
     
     if (isMobile) {
       return {
-        primary: '/optimized/background-mobile.webp',
+        primary: '/background-mobile.webp', // 1.4KB ultra-optimized mobile version
         fallback: '/background-option-2-geometric.png'
       };
     }
     
     return {
-      primary: '/optimized/background-option-2-geometric.webp',
-      fallback: '/background-option-2-geometric.png'
+      primary: '/background-ultra-optimized.webp', // 7KB ultra-optimized desktop version
+      fallback: '/background-optimized.webp' // 10KB fallback
     };
   }, [isMobile, webpSupported]);
   
@@ -58,14 +58,15 @@ const OptimizedBackground = memo(() => {
   if (isMobile) {
     return (
       <div 
-        className="fixed inset-0 z-0 opacity-50"
+        className="fixed inset-0 z-0 opacity-40"
         style={{
           backgroundImage,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed', // Static background for mobile
+          backgroundAttachment: 'scroll', // Scroll attachment for better mobile performance
           transform: 'translateZ(0)', // Force hardware acceleration
+          willChange: 'auto', // Reduced will-change for better performance
         }}
         aria-hidden="true"
       />
