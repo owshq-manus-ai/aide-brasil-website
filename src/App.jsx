@@ -1,29 +1,57 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, Menu, X, CheckCircle, Linkedin, Twitter, Instagram, Youtube, Bot, Zap, Users, Target, Shield, Star, User, Briefcase, BookOpen, Award, Brain, MessageCircle, ChartBar, TrendingUp, Crosshair, Trophy } from 'lucide-react'
-import { CommunityHero } from './components/ui/community-hero'
-import { LogoWithText } from './components/ui/aide-logo-final'
+import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion'
+import { lazy, Suspense, memo, useMemo } from 'react'
+import { 
+  ChevronDown, 
+  Menu, 
+  X, 
+  CheckCircle, 
+  Linkedin, 
+  Twitter, 
+  Instagram, 
+  Youtube, 
+  Bot, 
+  Zap, 
+  Users, 
+  Target, 
+  Shield, 
+  Star, 
+  User, 
+  Briefcase, 
+  BookOpen, 
+  Award, 
+  Brain, 
+  MessageCircle, 
+  ChartBar, 
+  TrendingUp, 
+  Crosshair, 
+  Trophy 
+} from 'lucide-react'
 import './App.css'
 
-// Floating Shape Component
-const FloatingShape = ({ size, position, gradient, delay = 0 }) => (
+// Lazy load heavy components
+const CommunityHero = lazy(() => import('./components/ui/community-hero').then(module => ({ default: module.CommunityHero })))
+const LogoWithText = lazy(() => import('./components/ui/aide-logo-final').then(module => ({ default: module.LogoWithText })))
+
+// Optimized Floating Shape Component with memoization
+const FloatingShape = memo(({ size, position, gradient, delay = 0 }) => (
   <motion.div
-    className={`absolute ${position} ${size} bg-gradient-to-br ${gradient} rounded-2xl opacity-20 blur-xl`}
+    className={`absolute ${position} ${size} bg-gradient-to-br ${gradient} rounded-2xl opacity-20 blur-sm`}
     animate={{
-      y: [0, -20, 0],
-      rotate: [0, 5, -5, 0],
+      y: [0, -15, 0],
+      rotate: [0, 3, -3, 0],
     }}
     transition={{
-      duration: 8,
+      duration: 6,
       repeat: Infinity,
       delay: delay,
       ease: "easeInOut"
     }}
   />
-)
+))
 
-// Section Container with floating shapes
-const SectionContainer = ({ children, gradient, className = "", id }) => (
+// Optimized Section Container with memoization
+const SectionContainer = memo(({ children, gradient, className = "", id }) => (
   <section id={id} className={`relative py-20 bg-[#030303] overflow-hidden ${className}`}>
     <FloatingShape
       size="w-32 h-32"
@@ -41,22 +69,22 @@ const SectionContainer = ({ children, gradient, className = "", id }) => (
       {children}
     </div>
   </section>
-)
+))
 
-// Animated Text Component for Hero
-const AnimatedText = ({ children, delay = 0 }) => (
+// Optimized Animated Text Component with reduced effects
+const AnimatedText = memo(({ children, delay = 0 }) => (
   <motion.div
-    initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-    transition={{
-      duration: 1,
-      delay: delay,
-      ease: [0.25, 0.46, 0.45, 0.94]
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ 
+      duration: 0.6, 
+      delay,
+      ease: "easeOut"
     }}
   >
     {children}
   </motion.div>
-)
+))
 
 // Cycling Text Component for RAG
 const CyclingText = () => {
@@ -200,12 +228,21 @@ const UserAvatar = () => (
   </BaseAvatar>
 )
 
+// Loading component for Suspense
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center min-h-screen bg-[#030303]">
+    <div className="w-8 h-8 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+  </div>
+)
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAnnual, setIsAnnual] = useState(false)
 
    return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
+    <LazyMotion features={domAnimation}>
+      <Suspense fallback={<LoadingSpinner />}>
+        <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
       {/* Background Image */}
       <div 
         className="fixed inset-0 z-0"
@@ -3294,7 +3331,9 @@ function App() {
         </div>
       </footer>
       </div> {/* Close content overlay div */}
-    </div>
+        </div>
+      </Suspense>
+    </LazyMotion>
   )
 }
 
