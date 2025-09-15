@@ -7,6 +7,58 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
   const isHomePage = location.pathname === '/'
+  const isWebinarsPage = location.pathname.includes('/webinarios')
+  
+  // Determine color scheme based on current page
+  const getColorScheme = () => {
+    if (location.pathname === '/webinarios') {
+      // Webinars hub page - Purple theme
+      return {
+        from: 'from-purple-500/10',
+        to: 'to-violet-500/10',
+        hoverFrom: 'hover:from-purple-500/20',
+        hoverTo: 'hover:to-violet-500/20',
+        border: 'border-purple-500/20',
+        hoverBorder: 'hover:border-purple-500/40',
+        shadow: 'hover:shadow-purple-500/20'
+      }
+    } else if (location.pathname === '/webinarios/domine-claude-code') {
+      // Claude Code webinar - Orange theme
+      return {
+        from: 'from-orange-500/10',
+        to: 'to-amber-500/10',
+        hoverFrom: 'hover:from-orange-500/20',
+        hoverTo: 'hover:to-amber-500/20',
+        border: 'border-orange-500/20',
+        hoverBorder: 'hover:border-orange-500/40',
+        shadow: 'hover:shadow-orange-500/20'
+      }
+    } else if (location.pathname.startsWith('/webinarios/')) {
+      // Other webinar pages - default to purple
+      return {
+        from: 'from-purple-500/10',
+        to: 'to-violet-500/10',
+        hoverFrom: 'hover:from-purple-500/20',
+        hoverTo: 'hover:to-violet-500/20',
+        border: 'border-purple-500/20',
+        hoverBorder: 'hover:border-purple-500/40',
+        shadow: 'hover:shadow-purple-500/20'
+      }
+    } else {
+      // Home page - Green theme
+      return {
+        from: 'from-green-500/10',
+        to: 'to-emerald-500/10',
+        hoverFrom: 'hover:from-green-500/20',
+        hoverTo: 'hover:to-emerald-500/20',
+        border: 'border-green-500/20',
+        hoverBorder: 'hover:border-green-500/40',
+        shadow: 'hover:shadow-green-500/20'
+      }
+    }
+  }
+  
+  const colorScheme = getColorScheme()
 
   const navItems = [
     ...(isHomePage ? [
@@ -54,7 +106,7 @@ const Header = () => {
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item)}
-                  className="group px-6 py-3 text-sm font-medium text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 border border-green-500/20 hover:border-green-500/40 backdrop-blur-sm shadow-lg hover:shadow-green-500/20 hover:scale-105 font-roboto"
+                  className={`group px-6 py-3 text-sm font-medium text-white transition-all duration-300 rounded-lg bg-gradient-to-r backdrop-blur-sm shadow-lg hover:scale-105 font-roboto ${colorScheme.from} ${colorScheme.to} ${colorScheme.hoverFrom} ${colorScheme.hoverTo} border ${colorScheme.border} ${colorScheme.hoverBorder} ${colorScheme.shadow}`}
                 >
                   {item.label}
                 </a>
@@ -62,7 +114,7 @@ const Header = () => {
                 <Link
                   key={item.label}
                   to={item.href}
-                  className="group px-6 py-3 text-sm font-medium text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 border border-green-500/20 hover:border-green-500/40 backdrop-blur-sm shadow-lg hover:shadow-green-500/20 hover:scale-105 font-roboto"
+                  className={`group px-6 py-3 text-sm font-medium text-white transition-all duration-300 rounded-lg bg-gradient-to-r backdrop-blur-sm shadow-lg hover:scale-105 font-roboto ${colorScheme.from} ${colorScheme.to} ${colorScheme.hoverFrom} ${colorScheme.hoverTo} border ${colorScheme.border} ${colorScheme.hoverBorder} ${colorScheme.shadow}`}
                 >
                   {item.label}
                 </Link>
