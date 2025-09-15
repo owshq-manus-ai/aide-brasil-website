@@ -1,22 +1,85 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/main.jsx" as="script" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" as="style">
+
+    <!-- Prefetch important pages -->
+    <link rel="prefetch" href="/webinarios">
+    <link rel="prefetch" href="/comunidade">
+    
+    <!-- Optimized Google Fonts with font-display: swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Critical inline CSS for above-the-fold content -->
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Oswald', sans-serif;
+        background-color: #030303;
+        color: white;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #root { min-height: 100vh; }
+      .dark { color-scheme: dark; }
+
+      /* Critical above-the-fold styles */
+      .min-h-screen { min-height: 100vh; }
+      .bg-\[#030303\] { background-color: #030303; }
+      .text-white { color: white; }
+      .overflow-x-hidden { overflow-x: hidden; }
+
+      /* Skeleton loader for initial render */
+      .skeleton {
+        background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+        background-size: 200% 100%;
+        animation: skeleton-loading 1.5s infinite;
+      }
+
+      @keyframes skeleton-loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+    </style>
+    
     <title>AI Data Engineering Brasil - Ask Gen & Onyx</title>
-    <meta name="description" content="AI Data Engineering Brasil - A primeira comunidade brasileira dedicada à convergência entre Engenharia de Dados e Inteligência Artificial Generativa.">
-    <meta name="keywords" content="ai, data engineering, brasil, genai, artificial intelligence, dados, engenharia">
+    <meta name="description" content="AI Data Engineering Brasil - A primeira comunidade brasileira dedicada à convergência entre Engenharia de Dados e Inteligência Artificial Generativa. Aprenda com experts, participe de webinários e transforme dados em inteligência.">
+    <meta name="keywords" content="ai, data engineering, brasil, genai, artificial intelligence, dados, engenharia, machine learning, claude, openai, ask gen, onyx">
     <meta name="author" content="AI Data Engineering Brasil">
-    <meta property="og:title" content="AI Data Engineering Brasil">
-    <meta property="og:description" content="A primeira comunidade brasileira dedicada à convergência entre Engenharia de Dados e Inteligência Artificial Generativa.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://aidebrasil.com.br/">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="AI Data Engineering Brasil - Transforme Dados em Inteligência">
+    <meta property="og:description" content="A primeira comunidade brasileira dedicada à convergência entre Engenharia de Dados e Inteligência Artificial Generativa. Mais de 10.000 membros ativos.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aidebrasil.com.br/">
+    <meta property="og:image" content="https://aidebrasil.com.br/og-image.png">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="AI Data Engineering Brasil">
+    
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI Data Engineering Brasil">
-    <meta name="twitter:description" content="A primeira comunidade brasileira dedicada à convergência entre Engenharia de Dados e Inteligência Artificial Generativa.">
+    <meta name="twitter:description" content="A primeira comunidade brasileira dedicada à convergência entre Engenharia de Dados e IA Generativa.">
+    <meta name="twitter:image" content="https://aidebrasil.com.br/twitter-card.png">
+    
+    <!-- Additional Performance Hints -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#030303">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
   </head>
   <body>
     <div id="root"></div>

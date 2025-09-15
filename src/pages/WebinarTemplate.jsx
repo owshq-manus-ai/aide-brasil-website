@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import React, { useState, lazy, Suspense } from 'react'
+import { motion, LazyMotion, domAnimation, m } from 'framer-motion'
 import { useParams, Link } from 'react-router-dom'
-import { 
-  Calendar, Clock, Users, CheckCircle, Linkedin, Instagram, 
-  ArrowLeft, Zap, Target, BookOpen, Brain, Sparkles, 
-  Code2, Rocket, Shield, TrendingUp, Award, Bot, 
+import {
+  Calendar, Clock, Users, CheckCircle, Linkedin, Instagram,
+  ArrowLeft, Zap, Target, BookOpen, Brain, Sparkles,
+  Code2, Rocket, Shield, TrendingUp, Award, Bot,
   Cpu, GitBranch, Terminal, Layers, Database,
   MessageSquare, ChevronDown, Lock, Trophy,
   Timer, Heart, AlertCircle, Lightbulb, X, Check, Video, Phone, Mail, User
@@ -92,7 +92,7 @@ const webinarData = {
   }
 }
 
-function WebinarTemplate() {
+const WebinarTemplate = React.memo(() => {
   const { slug } = useParams()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -190,17 +190,19 @@ function WebinarTemplate() {
   // Special styling for Claude Code webinar
   if (isClaudeWebinar) {
     return (
+      <LazyMotion features={domAnimation}>
       <div className="min-h-screen bg-[#030303] text-white overflow-x-hidden">
-        {/* Dark Background with Orange Accents */}
+        {/* Dark Background with Orange Accents - Optimized */}
         <div className="fixed inset-0 pointer-events-none">
           <div className="absolute inset-0 bg-[#030303]" />
-          <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(rgba(251, 146, 60, 0.05) 1px, transparent 1px),
-                             linear-gradient(90deg, rgba(251, 146, 60, 0.05) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
+          <div className="absolute inset-0 opacity-50" style={{
+            backgroundImage: `linear-gradient(rgba(251, 146, 60, 0.03) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(251, 146, 60, 0.03) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px',
+            willChange: 'auto'
           }} />
-          <div className="absolute top-20 right-20 w-96 h-96 bg-orange-500/20 rounded-full filter blur-3xl" />
-          <div className="absolute bottom-20 left-20 w-96 h-96 bg-amber-500/20 rounded-full filter blur-3xl" />
+          <div className="absolute top-20 right-20 w-64 h-64 bg-orange-500/10 rounded-full filter blur-2xl" />
+          <div className="absolute bottom-20 left-20 w-64 h-64 bg-amber-500/10 rounded-full filter blur-2xl" />
         </div>
 
 
@@ -256,22 +258,16 @@ function WebinarTemplate() {
                 
                 {/* Title with Enhanced Metallic Effect */}
                 <motion.h1 
-                  className="text-5xl md:text-7xl font-bold mb-6 cursor-default select-none"
+                  className="text-5xl md:text-7xl font-bold mb-6 select-none"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  onMouseMove={handleMouseMove}
-                  whileHover={{ scale: 1.02 }}
                 >
                   <span 
-                    className="bg-clip-text text-transparent"
+                    className="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500"
                     style={{
-                      backgroundImage: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, 
-                        #FCD34D 0%, #FB923C 15%, #F97316 30%, #EA580C 45%, 
-                        #DC2626 60%, #EA580C 75%, #F97316 85%, #FB923C 95%, #FCD34D 100%)`,
-                      backgroundSize: '200% 200%',
-                      textShadow: '0 0 80px rgba(251, 146, 60, 0.5)',
-                      filter: 'drop-shadow(0 0 20px rgba(251, 146, 60, 0.3))',
+                      backgroundSize: '200% auto',
+                      animation: 'gradient 3s ease infinite'
                     }}>
                     Dominando Claude Code
                   </span>
@@ -338,47 +334,19 @@ function WebinarTemplate() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="relative lg:max-w-md"
               >
-                {/* Floating Agent Icons - Higher z-index for visibility */}
-                <motion.div
-                  className="absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center shadow-xl z-20"
-                  animate={{ 
-                    y: [0, -10, 0],
-                    rotate: [0, 5, 0]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
+                {/* Floating Agent Icons - Simplified for performance */}
+                <div className="absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center shadow-xl z-20 animate-float">
                   <Bot className="w-8 h-8 text-white" />
-                </motion.div>
-                <motion.div
-                  className="absolute -top-6 -right-6 w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-xl z-20"
-                  animate={{ 
-                    y: [0, 10, 0],
-                    rotate: [0, -5, 0]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-                >
+                </div>
+                <div className="absolute -top-6 -right-6 w-14 h-14 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-xl z-20 animate-float-delayed-1">
                   <Terminal className="w-7 h-7 text-white" />
-                </motion.div>
-                <motion.div
-                  className="absolute -bottom-6 -left-6 w-12 h-12 bg-gradient-to-br from-orange-600 to-amber-600 rounded-xl flex items-center justify-center shadow-xl z-20"
-                  animate={{ 
-                    y: [0, -8, 0],
-                    rotate: [0, -5, 0]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                >
+                </div>
+                <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-gradient-to-br from-orange-600 to-amber-600 rounded-xl flex items-center justify-center shadow-xl z-20 animate-float-delayed-2">
                   <Cpu className="w-6 h-6 text-white" />
-                </motion.div>
-                <motion.div
-                  className="absolute -bottom-6 -right-6 w-14 h-14 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center shadow-xl z-20"
-                  animate={{ 
-                    y: [0, 8, 0],
-                    rotate: [0, 5, 0]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-                >
+                </div>
+                <div className="absolute -bottom-6 -right-6 w-14 h-14 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center shadow-xl z-20 animate-float-delayed-3">
                   <Brain className="w-7 h-7 text-white" />
-                </motion.div>
+                </div>
                 
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl blur-xl opacity-30" />
                 <div className="relative bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-6 border border-orange-500/30">
@@ -1187,6 +1155,7 @@ function WebinarTemplate() {
           </div>
         </section>
       </div>
+      </LazyMotion>
     )
   }
 
@@ -1197,6 +1166,8 @@ function WebinarTemplate() {
       {/* Original template code here... */}
     </div>
   )
-}
+})
+
+WebinarTemplate.displayName = 'WebinarTemplate'
 
 export default WebinarTemplate

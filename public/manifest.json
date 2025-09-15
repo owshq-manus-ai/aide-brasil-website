@@ -1,0 +1,22 @@
+{
+  "name": "AI Data Engineering Brasil",
+  "short_name": "AIDE Brasil",
+  "description": "A primeira comunidade brasileira dedicada à convergência entre Engenharia de Dados e Inteligência Artificial Generativa",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030303",
+  "theme_color": "#030303",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
