@@ -149,9 +149,11 @@ const CyclingText = () => {
             }
           })
         }}
-        className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400"
+        className="bg-clip-text text-transparent bg-gradient-to-r from-green-300 via-emerald-200 to-green-400 text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold"
         style={{
-          backgroundSize: isMobile ? '100% 100%' : '200% 200%'
+          backgroundSize: isMobile ? '100% 100%' : '200% 200%',
+          textShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
+          filter: 'drop-shadow(0 0 8px rgba(34, 197, 94, 0.6))'
         }}
       >
         {words[currentIndex]}
