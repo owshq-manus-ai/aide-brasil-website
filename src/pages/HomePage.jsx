@@ -149,11 +149,12 @@ const CyclingText = () => {
             }
           })
         }}
-        className="bg-clip-text text-transparent bg-gradient-to-r from-green-300 via-emerald-200 to-green-400 text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold"
+        className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-white text-2xl md:text-3xl font-light"
         style={{
           backgroundSize: isMobile ? '100% 100%' : '200% 200%',
-          textShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
-          filter: 'drop-shadow(0 0 8px rgba(34, 197, 94, 0.6))'
+          textShadow: '0 0 8px rgba(192, 192, 192, 0.3), 0 0 16px rgba(169, 169, 169, 0.2), 0 0 24px rgba(128, 128, 128, 0.1)',
+          filter: 'drop-shadow(0 0 6px rgba(192, 192, 192, 0.3)) drop-shadow(0 0 12px rgba(169, 169, 169, 0.2))',
+          WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.3)'
         }}
       >
         {words[currentIndex]}
