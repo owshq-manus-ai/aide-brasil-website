@@ -97,7 +97,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#030303]/80 backdrop-blur-md border-b border-white/[0.08]">
       <div className="max-w-7xl mx-auto px-6 py-2">
-        <div className="flex items-center justify-between md:justify-center">
+        <div className="flex items-center justify-center">
           {/* Desktop Navigation - Centered */}
           <nav className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
@@ -122,10 +122,10 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Mobile menu button - Right aligned on mobile, hidden on desktop */}
+          {/* Mobile menu button - Centered on mobile, hidden on desktop */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm ml-auto"
+            className="md:hidden p-2 rounded-lg bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm"
             aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"

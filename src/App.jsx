@@ -9,6 +9,7 @@ import './utils/accessibility-fixes.css'
 import './styles/anti-flicker.css'
 import './styles/performance-fixes.css'
 import './styles/mobile-scroll-fix.css'
+import './styles/desktop-fixes.css'
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'))

@@ -73,20 +73,8 @@ const OptimizedBackground = memo(() => {
     );
   }
   
-  // Desktop version with minimal effects
-  return (
-    <div 
-      className="fixed inset-0 z-0 opacity-60"
-      style={{
-        backgroundImage,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        transform: 'translateZ(0)', // Force hardware acceleration
-      }}
-      aria-hidden="true"
-    />
-  );
+  // Desktop version - hide background to prevent overlay issues
+  return null; // No background on desktop to prevent text overlap
 });
 
 OptimizedBackground.displayName = 'OptimizedBackground';
