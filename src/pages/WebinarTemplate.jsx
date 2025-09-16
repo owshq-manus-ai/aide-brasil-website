@@ -10,6 +10,7 @@ import {
   Timer, Heart, AlertCircle, Lightbulb, X, Check, Video, Phone, Mail, User
 } from 'lucide-react'
 import Header from '../components/shared/Header'
+import EnhancedWebinarBackground from '../components/shared/EnhancedWebinarBackground'
 
 // Configuration for registration method
 const USE_TYPEFORM = false // Set to true to use Typeform instead of custom form
@@ -191,42 +192,12 @@ const WebinarTemplate = React.memo(() => {
   if (isClaudeWebinar) {
     return (
       <LazyMotion features={domAnimation}>
-      <div className="min-h-screen bg-[#030303] text-white overflow-x-hidden">
-        {/* Sophisticated Orange Metallic Background - Following Site Patterns */}
-        <div className="fixed inset-0 pointer-events-none">
-          {/* Subtle dark base with hint of orange warmth */}
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-950/20 via-black to-amber-950/15" />
-
-          {/* Floating shapes in orange theme - low opacity like main site */}
-          <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-orange-600 to-amber-600 rounded-2xl opacity-5 blur-sm" />
-          <div className="absolute top-20 right-20 w-24 h-24 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl opacity-8 blur-sm" />
-          <div className="absolute bottom-10 left-20 w-28 h-28 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl opacity-6 blur-sm" />
-          <div className="absolute bottom-20 right-10 w-20 h-20 bg-gradient-to-br from-amber-600 to-orange-600 rounded-2xl opacity-7 blur-sm" />
-
-          {/* Subtle grid pattern - very low opacity */}
-          <div className="absolute inset-0 opacity-5" style={{
-            backgroundImage: `
-              linear-gradient(rgba(251, 146, 60, 0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(251, 146, 60, 0.3) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px'
-          }} />
-
-          {/* Minimal accent orbs */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/8 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-amber-500/8 rounded-full blur-3xl" />
-
-          {/* Subtle corner highlights */}
-          <div className="absolute top-0 left-0 w-40 h-40">
-            <div className="absolute top-8 left-8 w-16 h-px bg-gradient-to-r from-orange-500/20 to-transparent" />
-            <div className="absolute top-8 left-8 h-16 w-px bg-gradient-to-b from-orange-500/20 to-transparent" />
-          </div>
-          <div className="absolute bottom-0 right-0 w-40 h-40">
-            <div className="absolute bottom-8 right-8 w-16 h-px bg-gradient-to-l from-amber-500/20 to-transparent" />
-            <div className="absolute bottom-8 right-8 h-16 w-px bg-gradient-to-t from-amber-500/20 to-transparent" />
-          </div>
+      <div className="min-h-screen text-white overflow-x-hidden relative">
+        <EnhancedWebinarBackground />
+        {/* Orange accent overlay for Claude Code webinar */}
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-950/10 via-transparent to-amber-950/5" />
         </div>
-
 
         <Header />
         
@@ -1194,7 +1165,8 @@ const WebinarTemplate = React.memo(() => {
 
   // Default template for other webinars (keeping original)
   return (
-    <div className="min-h-screen bg-[#030303] text-white">
+    <div className="min-h-screen text-white relative">
+      <EnhancedWebinarBackground />
       <Header />
       {/* Original template code here... */}
     </div>
