@@ -1,0 +1,73 @@
+/* Accessibility Fixes - Contrast Improvements */
+/* These fixes improve contrast while maintaining the visual design */
+
+/* Fix text-white/40 contrast issues */
+.text-white\/40,
+[class*="text-white/40"] {
+  color: rgba(255, 255, 255, 0.7) !important; /* Increased from 0.4 to 0.7 */
+}
+
+/* Fix text-white/60 contrast issues */
+.text-white\/60,
+[class*="text-white/60"] {
+  color: rgba(255, 255, 255, 0.8) !important; /* Increased from 0.6 to 0.8 */
+}
+
+/* Fix gray text contrast on dark backgrounds */
+.text-gray-400 {
+  color: #a8a8a8 !important; /* Lighter gray for better contrast */
+}
+
+.text-gray-500 {
+  color: #9a9a9a !important; /* Lighter gray for better contrast */
+}
+
+/* Ensure small text has sufficient contrast */
+.text-sm.text-gray-300 {
+  color: #d4d4d4 !important; /* Lighter for small text */
+}
+
+.text-sm.text-gray-400 {
+  color: #b8b8b8 !important; /* Lighter for small text */
+}
+
+/* Fix footer text contrast */
+footer .text-white\/40,
+footer [class*="text-white/40"] {
+  color: rgba(255, 255, 255, 0.85) !important; /* Higher contrast in footer */
+}
+
+/* Ensure link contrast on hover */
+a:hover {
+  opacity: 1 !important;
+}
+
+/* Fix border contrast for interactive elements */
+.border-white\/\[0\.05\],
+[class*="border-white/[0.05"] {
+  border-color: rgba(255, 255, 255, 0.15) !important; /* Increased visibility */
+}
+
+.border-white\/\[0\.08\],
+[class*="border-white/[0.08"] {
+  border-color: rgba(255, 255, 255, 0.2) !important; /* Increased visibility */
+}
+
+/* Ensure focus indicators are visible */
+*:focus-visible {
+  outline: 2px solid #60a5fa !important;
+  outline-offset: 2px !important;
+}
+
+/* Screen reader only class for accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

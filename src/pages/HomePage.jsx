@@ -2352,9 +2352,9 @@ function HomePage() {
                 <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${stat.gradient} rounded-t-2xl`} />
                 
                 <div className="text-left">
-                  <h4 className="text-lg font-bold text-white mb-2 section-subtitle">
+                  <h3 className="text-lg font-bold text-white mb-2 section-subtitle">
                     {stat.title}
-                  </h4>
+                  </h3>
                   <p className="text-sm text-white/70 mb-4">
                     {stat.subtitle}
                   </p>
@@ -3124,23 +3124,23 @@ function HomePage() {
 
             {/* Social Links */}
             <div className="flex space-x-4 mb-8">
-              <a href="#" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
+              <a href="#" aria-label="Visite nosso perfil no LinkedIn" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
                 <Linkedin size={18} />
               </a>
-              <a href="#" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
+              <a href="#" aria-label="Visite nosso perfil no Twitter" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
                 <Twitter size={18} />
               </a>
-              <a href="#" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
+              <a href="#" aria-label="Visite nosso perfil no Instagram" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
                 <Instagram size={18} />
               </a>
-              <a href="#" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
+              <a href="#" aria-label="Visite nosso canal no YouTube" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
                 <Youtube size={18} />
               </a>
             </div>
 
             {/* Copyright */}
             <div className="pt-8 border-t border-white/[0.05]">
-              <p className="text-white/40 text-sm">
+              <p className="text-white/70 text-sm">
                 © 2025 AIDE Brasil. Todos os direitos reservados.
               </p>
             </div>
