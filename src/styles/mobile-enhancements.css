@@ -1,0 +1,168 @@
+/* Mobile Experience Enhancements - Specific Fixes */
+
+@media (max-width: 768px) {
+  /* 1. Fix Discord Section Alignment */
+  /* Header alignment fix for #ask-the-expert */
+  .discord-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Ensure proper spacing for Discord elements */
+  #discord-section .flex.items-center.justify-between {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  #discord-section .flex.items-center.space-x-3 {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Fix member count display */
+  #discord-section .text-gray-400.text-sm {
+    white-space: nowrap;
+    font-size: 0.875rem;
+  }
+
+  /* 2. Disable heavy text animations on mobile */
+  /* Remove Framer Motion animations that cause lag */
+  .text-animation-container [data-framer-motion] {
+    animation: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+
+  /* Disable typewriter and fade effects on mobile */
+  .typewriter-effect,
+  .fade-in-effect {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* 3. Optimize 3D Orb for mobile */
+  /* Reduce orb complexity on mobile */
+  .orb-container {
+    transform: scale(0.8);
+    will-change: auto !important;
+  }
+
+  .orb-3d {
+    animation: simple-rotate 20s linear infinite !important;
+    transform-style: flat !important;
+  }
+
+  /* Disable complex orb animations */
+  .orb-particles,
+  .orb-glow,
+  .orb-reflection {
+    display: none !important;
+  }
+
+  /* Simple rotation only */
+  @keyframes simple-rotate {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+
+  /* 4. Performance optimizations for text sections */
+  /* Reduce motion for quote sections */
+  blockquote,
+  .quote-container {
+    animation: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+
+  /* Disable parallax effects */
+  .parallax-container {
+    transform: none !important;
+    position: relative !important;
+  }
+
+  /* 5. Button alignment fixes */
+  /* Fix "Fazer Parte da Comunidade" button */
+  .cta-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+  }
+
+  .cta-button-container button,
+  .cta-button-container a {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    white-space: normal;
+    padding: 1rem 1.5rem;
+  }
+
+  /* 6. Discord chat optimization */
+  /* Ensure messages don't overflow */
+  .discord-message {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Fix username and timestamp alignment */
+  .discord-username {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+
+  .discord-timestamp {
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+}
+
+/* iPhone-specific fixes (for notch and safe areas) */
+@supports (padding-top: env(safe-area-inset-top)) {
+  @media (max-width: 768px) {
+    .header-container {
+      padding-top: env(safe-area-inset-top);
+    }
+
+    .footer-container {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all animations */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Keep opacity transitions for smooth appearance */
+  .fade-in {
+    transition: opacity 0.3s ease !important;
+  }
+}
+
+/* Performance mode for low-end devices */
+@media (max-width: 768px) and (max-resolution: 2dppx) {
+  /* Further reduce effects for low-end phones */
+  .blur-sm,
+  .blur-md,
+  .blur-lg,
+  .blur-xl {
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Disable gradients on low-end devices */
+  .bg-gradient-to-r,
+  .bg-gradient-to-b,
+  .bg-gradient-to-br {
+    background: #030303 !important;
+  }
+}

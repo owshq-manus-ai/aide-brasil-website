@@ -3,11 +3,15 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { initPerformanceMonitoring } from './utils/performance'
+import { initMobileOptimizations } from './utils/mobile-performance'
 
 // Initialize performance monitoring
 if (import.meta.env.PROD) {
   initPerformanceMonitoring()
 }
+
+// Initialize mobile optimizations
+initMobileOptimizations()
 
 // Register service worker for PWA
 if ('serviceWorker' in navigator && import.meta.env.PROD) {

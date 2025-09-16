@@ -2,6 +2,8 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import './styles/mobile-optimizations.css'
+import './styles/mobile-enhancements.css'
+import './styles/mobile-specific-fixes.css'
 import './utils/accessibility-fixes.css'
 
 // Lazy load pages for better performance
