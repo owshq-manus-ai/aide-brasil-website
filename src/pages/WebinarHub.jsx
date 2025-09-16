@@ -7,7 +7,6 @@ import {
   BookOpen, Award, Target, CheckCircle, Monitor
 } from 'lucide-react'
 import Header from '../components/shared/Header'
-import EnhancedWebinarBackground from '../components/shared/EnhancedWebinarBackground'
 
 // Animated title with purple metallic effect
 const MetallicTitle = () => {
@@ -79,7 +78,132 @@ function WebinarHub() {
   
   return (
     <div className="min-h-screen text-white overflow-x-hidden relative">
-      <EnhancedWebinarBackground />
+      {/* SOPHISTICATED METALLIC BACKGROUND - DIRECTLY EMBEDDED */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{ zIndex: -10 }}
+      >
+        {/* Base Technical Gradient */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(135deg, #1f2937 0%, #030303 50%, #374151 100%)'
+          }}
+        />
+
+        {/* Metallic Network Pattern */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: 0.6,
+            backgroundImage: `
+              radial-gradient(circle at 20% 20%, rgba(192, 192, 192, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(169, 169, 169, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 40% 60%, rgba(156, 163, 175, 0.25) 0%, transparent 50%)
+            `
+          }}
+        />
+
+        {/* Technical Grid */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: 0.4,
+            backgroundImage: `
+              linear-gradient(30deg, rgba(192, 192, 192, 0.2) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(192, 192, 192, 0.2) 1px, transparent 1px),
+              linear-gradient(150deg, rgba(192, 192, 192, 0.2) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px, 60px 60px, 60px 60px'
+          }}
+        />
+
+        {/* Data Flow Lines */}
+        <div
+          className="absolute top-1/4 left-0 right-0 animate-pulse"
+          style={{
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(156, 163, 175, 0.6), transparent)',
+            zIndex: -9
+          }}
+        />
+        <div
+          className="absolute top-1/2 left-0 right-0 animate-pulse"
+          style={{
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(156, 163, 175, 0.5), transparent)',
+            animationDelay: '1s',
+            zIndex: -9
+          }}
+        />
+        <div
+          className="absolute top-3/4 left-0 right-0 animate-pulse"
+          style={{
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(156, 163, 175, 0.6), transparent)',
+            animationDelay: '2s',
+            zIndex: -9
+          }}
+        />
+
+        {/* Metallic Orbs */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '10%',
+            left: '20%',
+            width: '400px',
+            height: '400px',
+            background: 'radial-gradient(circle, rgba(192, 192, 192, 0.3) 0%, rgba(169, 169, 169, 0.2) 30%, transparent 70%)',
+            borderRadius: '50%',
+            filter: 'blur(40px)',
+            opacity: 0.5,
+            zIndex: -8
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '10%',
+            right: '20%',
+            width: '320px',
+            height: '320px',
+            background: 'radial-gradient(circle, rgba(156, 163, 175, 0.4) 0%, rgba(107, 114, 128, 0.2) 40%, transparent 70%)',
+            borderRadius: '50%',
+            filter: 'blur(30px)',
+            opacity: 0.4,
+            zIndex: -8
+          }}
+        />
+
+        {/* Corner Accents */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '32px',
+            left: '32px',
+            width: '96px',
+            height: '1px',
+            background: 'linear-gradient(90deg, rgba(156, 163, 175, 0.6), transparent)',
+            zIndex: -7
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: '32px',
+            left: '32px',
+            width: '1px',
+            height: '96px',
+            background: 'linear-gradient(180deg, rgba(156, 163, 175, 0.6), transparent)',
+            zIndex: -7
+          }}
+        />
+      </div>
+
       <Header />
 
       {/* Hero Section */}

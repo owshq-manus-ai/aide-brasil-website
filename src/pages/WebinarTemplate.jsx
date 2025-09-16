@@ -10,7 +10,6 @@ import {
   Timer, Heart, AlertCircle, Lightbulb, X, Check, Video, Phone, Mail, User
 } from 'lucide-react'
 import Header from '../components/shared/Header'
-import EnhancedWebinarBackground from '../components/shared/EnhancedWebinarBackground'
 
 // Configuration for registration method
 const USE_TYPEFORM = false // Set to true to use Typeform instead of custom form
@@ -193,10 +192,61 @@ const WebinarTemplate = React.memo(() => {
     return (
       <LazyMotion features={domAnimation}>
       <div className="min-h-screen text-white overflow-x-hidden relative">
-        <EnhancedWebinarBackground />
-        {/* Orange accent overlay for Claude Code webinar */}
-        <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-950/10 via-transparent to-amber-950/5" />
+        {/* SOPHISTICATED METALLIC BACKGROUND WITH ORANGE ACCENT */}
+        <div
+          className="fixed inset-0 pointer-events-none"
+          style={{ zIndex: -10 }}
+        >
+          {/* Base Technical Gradient with Orange Warmth */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, #1f2937 0%, #030303 50%, #374151 100%)'
+            }}
+          />
+
+          {/* Orange Accent Overlay */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(234, 88, 12, 0.08) 0%, transparent 50%, rgba(245, 158, 11, 0.06) 100%)'
+            }}
+          />
+
+          {/* Technical Grid with Orange Tint */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              opacity: 0.3,
+              backgroundImage: `
+                linear-gradient(30deg, rgba(251, 146, 60, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(251, 146, 60, 0.15) 1px, transparent 1px),
+                linear-gradient(150deg, rgba(251, 146, 60, 0.15) 1px, transparent 1px)
+              `,
+              backgroundSize: '60px 60px, 60px 60px, 60px 60px'
+            }}
+          />
+
+          {/* Orange Data Flow Lines */}
+          <div
+            className="absolute top-1/4 left-0 right-0 animate-pulse"
+            style={{
+              height: '1px',
+              background: 'linear-gradient(90deg, transparent, rgba(251, 146, 60, 0.4), transparent)',
+              animationDelay: '0s'
+            }}
+          />
+          <div
+            className="absolute top-3/4 left-0 right-0 animate-pulse"
+            style={{
+              height: '1px',
+              background: 'linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.4), transparent)',
+              animationDelay: '2s'
+            }}
+          />
         </div>
 
         <Header />
@@ -1163,10 +1213,35 @@ const WebinarTemplate = React.memo(() => {
     )
   }
 
-  // Default template for other webinars (keeping original)
+  // Default template for other webinars
   return (
     <div className="min-h-screen text-white relative">
-      <EnhancedWebinarBackground />
+      {/* SOPHISTICATED METALLIC BACKGROUND - DEFAULT */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{ zIndex: -10 }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(135deg, #1f2937 0%, #030303 50%, #374151 100%)'
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: 0.4,
+            backgroundImage: `
+              linear-gradient(30deg, rgba(192, 192, 192, 0.2) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(192, 192, 192, 0.2) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px, 60px 60px'
+          }}
+        />
+      </div>
+
       <Header />
       {/* Original template code here... */}
     </div>

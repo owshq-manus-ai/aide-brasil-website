@@ -6,6 +6,7 @@ const EnhancedWebinarBackground = memo(() => {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    console.log('🎨 EnhancedWebinarBackground component mounted!')
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
     checkMobile()
     window.addEventListener('resize', checkMobile, { passive: true })
@@ -24,11 +25,19 @@ const EnhancedWebinarBackground = memo(() => {
   return (
     <div
       className="fixed inset-0 pointer-events-none overflow-hidden"
-      style={{ zIndex: -1 }}
+      style={{ zIndex: -10 }}
       onMouseMove={handleMouseMove}
     >
+      {/* HIGHLY VISIBLE TEST BACKGROUND */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-red-900" />
+
+      {/* BRIGHT TEST ELEMENTS */}
+      <div className="absolute top-10 left-10 w-32 h-32 bg-red-500 opacity-80 rounded-lg" />
+      <div className="absolute bottom-10 right-10 w-32 h-32 bg-green-500 opacity-80 rounded-lg" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-yellow-500 opacity-60 rounded-full" />
+
       {/* Base Technical Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-[#030303] to-gray-800" />
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-[#030303] to-gray-800 opacity-0" />
 
       {/* Metallic Network Pattern Layer */}
       <div
