@@ -116,47 +116,42 @@ const CyclingText = () => {
   }, []);
 
   useEffect(() => {
-    // Only cycle text on desktop to prevent mobile layout issues
-    if (isMobile) return;
-    
+    // Cycle text on both desktop and mobile, but with different timing
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % words.length)
-    }, 3000) // Slower cycling for better UX
+    }, isMobile ? 4000 : 3000) // Slightly slower on mobile for better readability
     return () => clearInterval(interval)
-  }, [isMobile])
-
-  // Show static text on mobile, animated cycling on desktop
-  if (isMobile) {
-    return (
-      <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
-        AI & Data Engineering
-      </span>
-    );
-  }
+  }, [isMobile, words.length])
 
   return (
     <AnimatePresence mode="wait">
       <motion.span
         key={currentIndex}
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: isMobile ? 10 : 20 }}
         animate={{ 
           opacity: 1, 
           y: 0,
-          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+          // Reduce background animation on mobile for performance
+          ...(isMobile ? {} : {
+            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+          })
         }}
-        exit={{ opacity: 0, y: -20 }}
+        exit={{ opacity: 0, y: isMobile ? -10 : -20 }}
         transition={{ 
-          opacity: { duration: 0.3 },
-          y: { duration: 0.3 },
-          backgroundPosition: {
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }
+          opacity: { duration: isMobile ? 0.4 : 0.3 },
+          y: { duration: isMobile ? 0.4 : 0.3 },
+          // Only animate background on desktop
+          ...(isMobile ? {} : {
+            backgroundPosition: {
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }
+          })
         }}
         className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400"
         style={{
-          backgroundSize: '200% 200%'
+          backgroundSize: isMobile ? '100% 100%' : '200% 200%'
         }}
       >
         {words[currentIndex]}
