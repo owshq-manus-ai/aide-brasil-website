@@ -149,7 +149,7 @@ const CyclingText = () => {
             }
           })
         }}
-        className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-white text-2xl md:text-3xl font-light"
+        className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-white text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold"
         style={{
           backgroundSize: isMobile ? '100% 100%' : '200% 200%',
           textShadow: '0 0 8px rgba(192, 192, 192, 0.3), 0 0 16px rgba(169, 169, 169, 0.2), 0 0 24px rgba(128, 128, 128, 0.1)',
