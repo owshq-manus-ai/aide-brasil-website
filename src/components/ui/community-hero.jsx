@@ -357,4 +357,4 @@ const CommunityHero = ({ className }) => {
   )
 }
 
-export { CommunityHero }
+export default CommunityHero;

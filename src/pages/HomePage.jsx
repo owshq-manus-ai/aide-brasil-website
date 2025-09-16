@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense, memo, useMemo, useCallback } from 'react'
+import React, { useState, useEffect, memo, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion'
 import { 
   ChevronDown, 
@@ -28,8 +28,8 @@ import Header from '../components/shared/Header'
 import OptimizedBackground from '../components/shared/OptimizedBackground'
 import '../App.css'
 
-// Lazy load heavy components
-const CommunityHero = lazy(() => import('../components/ui/community-hero'))
+// Import CommunityHero directly to avoid lazy loading issues
+import CommunityHero from '../components/ui/community-hero'
 
 // Optimized Floating Shape Component with memoization
 const FloatingShape = memo(({ size, position, gradient, delay = 0 }) => {
@@ -262,32 +262,24 @@ const UserAvatar = () => (
   </BaseAvatar>
 )
 
-// Loading component for Suspense
-const LoadingSpinner = () => (
-  <div className="flex items-center justify-center min-h-screen bg-[#030303]">
-    <div className="w-8 h-8 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
-  </div>
-)
+
 
 function HomePage() {
   const [isAnnual, setIsAnnual] = useState(false)
 
-   return (
+  return (
     <LazyMotion features={domAnimation}>
-      <Suspense fallback={<LoadingSpinner />}>
-        <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
-      {/* Optimized Background Image */}
-      <OptimizedBackground />
-      
-      {/* Content Overlay */}
-      <div className="relative z-10">
-      {/* Header */}
-      <Header />
+      <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
+        {/* Optimized Background Image */}
+        <OptimizedBackground />
+        
+        {/* Content Overlay */}
+        <div className="relative z-10">
+          {/* Header */}
+          <Header />
 
-      {/* Hero Section */}
-      <Suspense fallback={<div className="min-h-screen bg-[#030303] flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
-        <CommunityHero />
-      </Suspense>
+          {/* Hero Section */}
+          <CommunityHero />
 
       {/* About Section */}
       <section id="sobre" className="relative min-h-screen w-full bg-[#030303] overflow-hidden py-12 sm:py-16 lg:py-12 sm:py-16 lg:py-20">
@@ -3266,9 +3258,8 @@ function HomePage() {
           </div>
         </div>
       </footer>
-      </div> {/* Close content overlay div */}
-        </div>
-      </Suspense>
+        </div> {/* Close content overlay div */}
+      </div>
     </LazyMotion>
   )
 }
