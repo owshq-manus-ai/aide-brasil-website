@@ -280,18 +280,18 @@ const CommunityHero = ({ className }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full"
           >
             <button
               onClick={() => {
                 const element = document.querySelector('#sobre');
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="group px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300 hover:scale-105"
+              className="group px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300 hover:scale-105 w-full sm:w-auto text-center"
               data-theme-button="true"
               style={{ fontFamily: 'Oswald, sans-serif' }}
             >
-              <span className="flex items-center gap-2">
+              <span className="flex items-center justify-center gap-2">
                 Fazer parte da comunidade
                 <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform" />
               </span>
@@ -302,7 +302,7 @@ const CommunityHero = ({ className }) => {
                 const element = document.querySelector('#beneficios');
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-all duration-300"
+              className="px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-all duration-300 w-full sm:w-auto text-center"
               style={{ fontFamily: 'Oswald, sans-serif' }}
             >
               Descobrir benefícios

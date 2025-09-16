@@ -1,0 +1,57 @@
+/* Anti-Flicker Styles for Mobile */
+
+/* Critical: Force content visibility immediately */
+html {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Prevent opacity flickering on mobile - selective approach */
+@media (max-width: 768px) {
+  /* Only target loading states, not all elements */
+  .loading,
+  .skeleton {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Prevent layout shift during lazy loading */
+  img, video, iframe {
+    aspect-ratio: 16/9;
+    background: #1a1a1a;
+  }
+
+  /* Only disable animations for reduce-motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+/* Preload critical fonts to prevent FOIT */
+@font-face {
+  font-family: 'Oswald';
+  src: local('Oswald'), url('https://fonts.gstatic.com/s/oswald/v53/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvsUZiZQ.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 400;
+}
+
+/* Ensure smooth scrolling without jank */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent content jumping during load */
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Skeleton loader for lazy components */
+.lazy-loading {
+  min-height: 100vh;
+  background: #030303;
+}

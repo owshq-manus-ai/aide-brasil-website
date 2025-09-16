@@ -5,6 +5,8 @@ import './styles/mobile-optimizations.css'
 import './styles/mobile-enhancements.css'
 import './styles/mobile-specific-fixes.css'
 import './utils/accessibility-fixes.css'
+import './styles/anti-flicker.css'
+import './styles/performance-fixes.css'
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'))

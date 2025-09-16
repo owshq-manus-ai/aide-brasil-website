@@ -1,0 +1,80 @@
+/* Performance Optimizations for Desktop and Mobile */
+
+/* Desktop: Optimize Onyx orb hover performance */
+@media (min-width: 769px) {
+  /* Disable complex animations on hover to prevent lag */
+  .onyx-orb-container:hover * {
+    animation-play-state: paused !important;
+  }
+
+  /* Use GPU acceleration for smoother animations */
+  .onyx-orb,
+  .onyx-orb * {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Reduce animation complexity */
+  .onyx-particle {
+    animation: none !important;
+  }
+}
+
+/* Mobile: Selective optimizations without breaking text */
+@media (max-width: 768px) {
+  /* Slightly reduce background intensity for readability */
+  .optimized-background {
+    opacity: 0.5 !important;
+  }
+
+  /* Optimize only the Onyx orb animations */
+  .onyx-orb-mobile {
+    pointer-events: none;
+  }
+
+  /* Disable only particle animations on mobile */
+  .onyx-particle {
+    display: none !important;
+  }
+
+  /* Simplify heavy gradient animations */
+  .onyx-orb-mobile * {
+    animation-duration: 40s !important;
+  }
+}
+
+/* Global performance improvements - Desktop focus */
+@media (min-width: 769px) {
+  /* Optimize scrolling performance on desktop */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Desktop: Optimize Onyx section specifically */
+@media (hover: hover) and (min-width: 769px) {
+  /* Desktop: Reduce complexity on hover */
+  #onyx:hover .rounded-full {
+    animation-duration: 40s !important;
+  }
+
+  /* Pause animations on hover for better performance */
+  #onyx:hover .onyx-orb-container * {
+    animation-play-state: paused !important;
+  }
+}
+
+/* Mobile: Light touch optimizations only */
+@media (max-width: 768px) {
+  /* Smooth scrolling on mobile */
+  html {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Only reduce orb rotation speed on mobile, don't disable */
+  #onyx .onyx-orb-mobile .rounded-full {
+    animation-duration: 60s !important;
+  }
+}
