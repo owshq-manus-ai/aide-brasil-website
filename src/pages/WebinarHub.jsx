@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { 
-  Calendar, Clock, Users, ArrowRight, Sparkles, 
+import {
+  Calendar, Clock, Users, ArrowRight, Sparkles,
   Brain, Zap, Code, Rocket, Star, TrendingUp,
   BookOpen, Award, Target, CheckCircle, Monitor
 } from 'lucide-react'
@@ -77,26 +77,99 @@ function WebinarHub() {
   const [hoveredCard, setHoveredCard] = useState(null)
   
   return (
-    <div className="min-h-screen bg-[#030303] text-white overflow-x-hidden">
+    <div
+      className="min-h-screen text-white overflow-x-hidden relative"
+      style={{
+        background: 'linear-gradient(135deg, #1e1b4b 0%, #030303 50%, #1e1b4b 100%)'
+      }}
+    >
       <Header />
-      
-      {/* Purple Themed Background */}
+
+      {/* Enhanced Metallic Purple Background */}
       <div className="fixed inset-0 pointer-events-none">
-        {/* Purple gradient base */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-950/20 via-black to-violet-950/20" />
-        
-        {/* Grid pattern with purple tint */}
-        <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(rgba(147, 51, 234, 0.03) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(147, 51, 234, 0.03) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px'
-        }} />
-        
-        {/* Purple gradient orbs */}
-        <div className="absolute top-20 left-20 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-violet-500/10 rounded-full filter blur-3xl" />
+        {/* Base gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/15 via-transparent to-violet-500/15" />
+
+        {/* Animated grid pattern */}
+        <div
+          className="absolute inset-0 opacity-25"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(168, 85, 247, 0.4) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(168, 85, 247, 0.4) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px',
+          }}
+        />
+
+        {/* Large grid overlay */}
+        <div
+          className="absolute inset-0 opacity-15"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(139, 92, 246, 0.5) 2px, transparent 2px),
+              linear-gradient(90deg, rgba(139, 92, 246, 0.5) 2px, transparent 2px)
+            `,
+            backgroundSize: '80px 80px',
+          }}
+        />
+
+        {/* Multiple layered glowing orbs */}
+        <div className="absolute top-10 left-10 w-[400px] h-[400px] bg-purple-600/25 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-20 left-20 w-[300px] h-[300px] bg-purple-500/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
+
+        <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-violet-600/25 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-20 right-20 w-[300px] h-[300px] bg-violet-500/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '3s' }} />
+
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-purple-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
+
+        {/* Metallic shimmer lines */}
+        <div className="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-400/40 to-transparent" />
+        <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-400/40 to-transparent" />
+        <div className="absolute top-3/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-300/40 to-transparent" />
+
+        {/* Rotating geometric shapes - desktop only */}
+        <div className="hidden md:block">
+          <div className="absolute top-40 right-40 w-28 h-28 border-2 border-purple-500/30 rotate-45" style={{ animation: 'spin 25s linear infinite' }} />
+          <div className="absolute bottom-40 left-40 w-24 h-24 border-2 border-violet-500/30" style={{ animation: 'spin 30s linear infinite reverse' }} />
+          <div className="absolute top-1/3 right-1/4 w-20 h-20 border border-purple-400/25 rotate-12 animate-pulse" />
+          <div className="absolute bottom-1/3 left-1/4 w-16 h-16 border border-violet-400/25 -rotate-12 animate-pulse" style={{ animationDelay: '2s' }} />
+        </div>
+
+        {/* Mobile optimized shapes */}
+        <div className="md:hidden">
+          <div className="absolute top-20 right-10 w-12 h-12 border border-purple-500/30 rotate-45 animate-pulse" />
+          <div className="absolute bottom-20 left-10 w-10 h-10 border border-violet-500/30 animate-pulse" style={{ animationDelay: '2s' }} />
+        </div>
+
+        {/* Corner metallic accents */}
+        <div className="absolute top-0 left-0 w-32 h-32">
+          <div className="absolute top-6 left-6 w-20 h-px bg-gradient-to-r from-purple-500/50 to-transparent" />
+          <div className="absolute top-6 left-6 h-20 w-px bg-gradient-to-b from-purple-500/50 to-transparent" />
+        </div>
+        <div className="absolute top-0 right-0 w-32 h-32">
+          <div className="absolute top-6 right-6 w-20 h-px bg-gradient-to-l from-violet-500/50 to-transparent" />
+          <div className="absolute top-6 right-6 h-20 w-px bg-gradient-to-b from-violet-500/50 to-transparent" />
+        </div>
+        <div className="absolute bottom-0 left-0 w-32 h-32">
+          <div className="absolute bottom-6 left-6 w-20 h-px bg-gradient-to-r from-purple-500/50 to-transparent" />
+          <div className="absolute bottom-6 left-6 h-20 w-px bg-gradient-to-t from-purple-500/50 to-transparent" />
+        </div>
+        <div className="absolute bottom-0 right-0 w-32 h-32">
+          <div className="absolute bottom-6 right-6 w-20 h-px bg-gradient-to-l from-violet-500/50 to-transparent" />
+          <div className="absolute bottom-6 right-6 h-20 w-px bg-gradient-to-t from-violet-500/50 to-transparent" />
+        </div>
+
+        {/* Floating particles effect */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-[20%] left-[10%] w-2 h-2 bg-purple-400/60 rounded-full animate-ping" />
+          <div className="absolute top-[60%] left-[80%] w-1 h-1 bg-violet-400/60 rounded-full animate-ping" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-[80%] left-[30%] w-1.5 h-1.5 bg-purple-300/60 rounded-full animate-ping" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-[40%] left-[70%] w-1 h-1 bg-violet-300/60 rounded-full animate-ping" style={{ animationDelay: '3s' }} />
+          <div className="absolute top-[10%] left-[60%] w-2 h-2 bg-purple-500/60 rounded-full animate-ping" style={{ animationDelay: '4s' }} />
+        </div>
       </div>
-      
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6">
         <div className="relative z-10 max-w-7xl mx-auto">

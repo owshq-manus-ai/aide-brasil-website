@@ -192,17 +192,39 @@ const WebinarTemplate = React.memo(() => {
     return (
       <LazyMotion features={domAnimation}>
       <div className="min-h-screen bg-[#030303] text-white overflow-x-hidden">
-        {/* Dark Background with Orange Accents - Optimized */}
+        {/* Sophisticated Orange Metallic Background - Following Site Patterns */}
         <div className="fixed inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[#030303]" />
-          <div className="absolute inset-0 opacity-50" style={{
-            backgroundImage: `linear-gradient(rgba(251, 146, 60, 0.03) 1px, transparent 1px),
-                             linear-gradient(90deg, rgba(251, 146, 60, 0.03) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
-            willChange: 'auto'
+          {/* Subtle dark base with hint of orange warmth */}
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-950/20 via-black to-amber-950/15" />
+
+          {/* Floating shapes in orange theme - low opacity like main site */}
+          <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-orange-600 to-amber-600 rounded-2xl opacity-5 blur-sm" />
+          <div className="absolute top-20 right-20 w-24 h-24 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl opacity-8 blur-sm" />
+          <div className="absolute bottom-10 left-20 w-28 h-28 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl opacity-6 blur-sm" />
+          <div className="absolute bottom-20 right-10 w-20 h-20 bg-gradient-to-br from-amber-600 to-orange-600 rounded-2xl opacity-7 blur-sm" />
+
+          {/* Subtle grid pattern - very low opacity */}
+          <div className="absolute inset-0 opacity-5" style={{
+            backgroundImage: `
+              linear-gradient(rgba(251, 146, 60, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(251, 146, 60, 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
           }} />
-          <div className="absolute top-20 right-20 w-64 h-64 bg-orange-500/10 rounded-full filter blur-2xl" />
-          <div className="absolute bottom-20 left-20 w-64 h-64 bg-amber-500/10 rounded-full filter blur-2xl" />
+
+          {/* Minimal accent orbs */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/8 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-amber-500/8 rounded-full blur-3xl" />
+
+          {/* Subtle corner highlights */}
+          <div className="absolute top-0 left-0 w-40 h-40">
+            <div className="absolute top-8 left-8 w-16 h-px bg-gradient-to-r from-orange-500/20 to-transparent" />
+            <div className="absolute top-8 left-8 h-16 w-px bg-gradient-to-b from-orange-500/20 to-transparent" />
+          </div>
+          <div className="absolute bottom-0 right-0 w-40 h-40">
+            <div className="absolute bottom-8 right-8 w-16 h-px bg-gradient-to-l from-amber-500/20 to-transparent" />
+            <div className="absolute bottom-8 right-8 h-16 w-px bg-gradient-to-t from-amber-500/20 to-transparent" />
+          </div>
         </div>
 
 
@@ -863,9 +885,12 @@ const WebinarTemplate = React.memo(() => {
           </div>
         </section>
         
-        {/* Numbers Section */}
-        <section className="py-20 px-6 bg-gradient-to-br from-orange-600 to-amber-600">
-          <div className="max-w-7xl mx-auto">
+        {/* Numbers Section - Fixed Design */}
+        <section className="relative py-20 px-6">
+          {/* Subtle background overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-amber-500/10 pointer-events-none" />
+
+          <div className="relative z-10 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -873,14 +898,14 @@ const WebinarTemplate = React.memo(() => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">
-                Números que <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-600">Impressionam</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Números que <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-amber-400">Impressionam</span>
               </h2>
-              <p className="text-xl text-white/80 relative z-10">
+              <p className="text-xl text-white/70">
                 Resultados reais de quem já usa Claude Code
               </p>
             </motion.div>
-            
+
             <div className="grid md:grid-cols-4 gap-6">
               {[
                 { value: '300%', label: 'Aumento de Produtividade' },
@@ -894,10 +919,18 @@ const WebinarTemplate = React.memo(() => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center"
+                  className="relative group"
                 >
-                  <div className="text-4xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-white/80">{stat.label}</div>
+                  {/* Card background with metallic effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-2xl blur-sm" />
+                  <div className="relative bg-black/40 backdrop-blur-sm rounded-2xl p-6 text-center border border-orange-500/20 hover:border-orange-500/40 transition-all duration-300">
+                    <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-amber-400 mb-2">
+                      {stat.value}
+                    </div>
+                    <div className="text-white/70 group-hover:text-white/90 transition-colors">
+                      {stat.label}
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>

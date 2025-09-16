@@ -1,5 +1,6 @@
 import React, { useState, useEffect, memo, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion'
+import { submitToWebhook, webhookConfig } from '../config/webhooks'
 import {
   ChevronDown,
   CheckCircle,
@@ -268,8 +269,11 @@ const UserAvatar = () => (
 function HomePage() {
   const [isAnnual, setIsAnnual] = useState(false)
   const [showPremiumForm, setShowPremiumForm] = useState(false)
+  const [showFreeForm, setShowFreeForm] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
+  const [freeFormData, setFreeFormData] = useState({ name: '', email: '' })
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [freeFormSubmitted, setFreeFormSubmitted] = useState(false)
   const { isMobile, isLowPerformance } = useMobileOptimizations()
 
   // Add loaded class after component mounts
@@ -297,16 +301,39 @@ function HomePage() {
     setFormData({ ...formData, phone: formattedPhone })
   }
 
-  const handlePremiumSubmit = (e) => {
+  const handlePremiumSubmit = async (e) => {
     e.preventDefault()
     if (formData.name && formData.email && formData.phone) {
-      console.log('Premium waitlist submission:', formData)
-      setFormSubmitted(true)
-      setTimeout(() => {
-        setShowPremiumForm(false)
-        setFormSubmitted(false)
-        setFormData({ name: '', email: '', phone: '' })
-      }, 3000)
+      const result = await submitToWebhook(formData, 'premium')
+
+      if (result.success) {
+        setFormSubmitted(true)
+        setTimeout(() => {
+          if (webhookConfig.behavior.closeFormOnSuccess) {
+            setShowPremiumForm(false)
+          }
+          setFormSubmitted(false)
+          setFormData({ name: '', email: '', phone: '' })
+        }, webhookConfig.behavior.successMessageDuration)
+      }
+    }
+  }
+
+  const handleFreeSubmit = async (e) => {
+    e.preventDefault()
+    if (freeFormData.name && freeFormData.email) {
+      const result = await submitToWebhook(freeFormData, 'free')
+
+      if (result.success) {
+        setFreeFormSubmitted(true)
+        setTimeout(() => {
+          if (webhookConfig.behavior.closeFormOnSuccess) {
+            setShowFreeForm(false)
+          }
+          setFreeFormSubmitted(false)
+          setFreeFormData({ name: '', email: '' })
+        }, webhookConfig.behavior.successMessageDuration)
+      }
     }
   }
 
@@ -2944,7 +2971,10 @@ function HomePage() {
                 ))}
               </ul>
 
-              <button className="w-full py-3 bg-gradient-to-r from-rose-600 to-orange-600 rounded-lg font-semibold text-white hover:from-rose-700 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105" style={{ fontFamily: 'Oswald, sans-serif' }}>
+              <button
+                onClick={() => setShowFreeForm(true)}
+                className="w-full py-3 bg-gradient-to-r from-rose-600 to-orange-600 rounded-lg font-semibold text-white hover:from-rose-700 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                style={{ fontFamily: 'Oswald, sans-serif' }}>
                 Começar Gratuitamente
               </button>
             </motion.div>
@@ -3366,6 +3396,113 @@ function HomePage() {
                       Você entrou na lista de espera. Em breve entraremos em contato!
                     </p>
                   </motion.div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Free Signup Form Modal */}
+      <AnimatePresence>
+        {showFreeForm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setShowFreeForm(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full max-w-md rounded-2xl overflow-hidden"
+              style={{
+                background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.75), inset 0 0 0 1px rgba(255, 255, 255, 0.05)'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Rose gradient border effect */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-rose-500/10 via-transparent to-orange-500/5 pointer-events-none" />
+
+              {/* Close button */}
+              <button
+                onClick={() => setShowFreeForm(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors z-10"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="relative p-8">
+                {/* Header */}
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-white mb-2 font-oswald">
+                    Começar Gratuitamente
+                  </h3>
+                  <p className="text-gray-400">
+                    Acesse conteúdo exclusivo sobre AI Data Engineering
+                  </p>
+                </div>
+
+                {!freeFormSubmitted ? (
+                  <form onSubmit={handleFreeSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
+                        Nome Completo
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={freeFormData.name}
+                        onChange={(e) => setFreeFormData({ ...freeFormData, name: e.target.value })}
+                        className="w-full px-4 py-3 rounded-lg text-white placeholder-gray-600 transition-all"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.03)',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.02)'
+                        }}
+                        onFocus={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.2)'}
+                        onBlur={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.1)'}
+                        placeholder="Seu nome"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
+                        E-mail
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={freeFormData.email}
+                        onChange={(e) => setFreeFormData({ ...freeFormData, email: e.target.value })}
+                        className="w-full px-4 py-3 rounded-lg text-white placeholder-gray-600 transition-all"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.03)',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.02)'
+                        }}
+                        onFocus={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.2)'}
+                        onBlur={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.1)'}
+                        placeholder="seu@email.com"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-rose-600 to-orange-600 hover:from-rose-700 hover:to-orange-700 transition-all duration-300 transform hover:scale-[1.02]"
+                    >
+                      Acessar Conteúdo Gratuito
+                    </button>
+                  </form>
+                ) : (
+                  <div className="text-center py-8">
+                    <CheckCircle className="w-16 h-16 text-rose-500 mx-auto mb-4" />
+                    <p className="text-xl font-semibold text-white mb-2">Cadastro realizado com sucesso!</p>
+                    <p className="text-gray-400">Você receberá em breve o acesso ao conteúdo.</p>
+                  </div>
                 )}
               </div>
             </motion.div>

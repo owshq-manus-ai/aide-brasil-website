@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "setup": "node scripts/setup-env.js",
+    "setup:vercel": "bash scripts/vercel-env.sh",
+    "setup:ci": "CI=true node scripts/setup-env.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
