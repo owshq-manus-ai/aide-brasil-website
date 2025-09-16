@@ -19,30 +19,50 @@ export default defineConfig({
         manualChunks: (id) => {
           // Split vendor chunks more granularly for optimal caching
           if (id.includes('node_modules')) {
+            // Core React
             if (id.includes('react') || id.includes('react-dom')) {
-              return 'react-vendor';
+              return 'react';
             }
+            // Animation libraries
             if (id.includes('framer-motion')) {
-              return 'motion';
+              return 'animation';
             }
+            // Icons
             if (id.includes('lucide-react')) {
               return 'icons';
             }
+            // UI Components
             if (id.includes('@radix-ui')) {
-              return 'radix-ui';
+              return 'ui';
             }
-            if (id.includes('recharts')) {
+            // Charts (lazy loaded)
+            if (id.includes('recharts') || id.includes('d3')) {
               return 'charts';
             }
+            // Router
             if (id.includes('react-router')) {
               return 'router';
+            }
+            // Date utilities
+            if (id.includes('date-fns')) {
+              return 'date';
+            }
+            // Form libraries
+            if (id.includes('react-hook-form') || id.includes('zod')) {
+              return 'forms';
             }
             // Group other smaller dependencies
             return 'vendor';
           }
-          // Split large components into separate chunks
-          if (id.includes('src/components/ui/community-hero')) {
-            return 'community-hero';
+          // Split page components
+          if (id.includes('src/pages/HomePage')) {
+            return 'home';
+          }
+          if (id.includes('src/pages/WebinarHub')) {
+            return 'webinar-hub';
+          }
+          if (id.includes('src/pages/WebinarTemplate')) {
+            return 'webinar-template';
           }
         },
         // Use content hash for better caching

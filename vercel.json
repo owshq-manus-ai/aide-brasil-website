@@ -25,5 +25,6 @@
     "silent": false,
     "autoAlias": true
   },
-  "public": true
+  "public": true,
+  "alias": ["aide-brasil.ai", "www.aide-brasil.ai"]
 }
