@@ -29,7 +29,7 @@ import OptimizedBackground from '../components/shared/OptimizedBackground'
 import '../App.css'
 
 // Lazy load heavy components
-const CommunityHero = lazy(() => import('../components/ui/community-hero').then(module => ({ default: module.CommunityHero })))
+const CommunityHero = lazy(() => import('../components/ui/community-hero'))
 
 // Optimized Floating Shape Component with memoization
 const FloatingShape = memo(({ size, position, gradient, delay = 0 }) => {
@@ -285,7 +285,9 @@ function HomePage() {
       <Header />
 
       {/* Hero Section */}
-      <CommunityHero />
+      <Suspense fallback={<div className="min-h-screen bg-[#030303] flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+        <CommunityHero />
+      </Suspense>
 
       {/* About Section */}
       <section id="sobre" className="relative min-h-screen w-full bg-[#030303] overflow-hidden py-12 sm:py-16 lg:py-12 sm:py-16 lg:py-20">
