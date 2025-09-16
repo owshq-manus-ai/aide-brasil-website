@@ -1148,11 +1148,7 @@ function HomePage() {
               className="mb-6"
             >
               <div className="inline-flex items-center gap-3">
-                <motion.div
-                  animate={{ width: [0, 40, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"
-                />
+                <div className="w-10 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent" />
                 <span className="text-lg text-gray-400 font-medium tracking-[0.3em] uppercase"
                       style={{ 
                         textShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
@@ -1160,11 +1156,7 @@ function HomePage() {
                       }}>
                   ✦ Apresentando ✦
                 </span>
-                <motion.div
-                  animate={{ width: [0, 40, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"
-                />
+                <div className="w-10 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent" />
               </div>
             </motion.div>
             <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 section-title">
@@ -2198,29 +2190,11 @@ function HomePage() {
               className="mb-8"
             >
               <div className="inline-flex items-center gap-3">
-                <motion.div
-                  animate={{ width: [0, 40, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="h-[1px] bg-gradient-to-r from-transparent via-orange-400 to-transparent"
-                />
-                <motion.span
-                  animate={{
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
+                <div className="w-10 h-[1px] bg-gradient-to-r from-transparent via-orange-400 to-transparent" />
+                <span
                   className="text-sm font-medium tracking-[0.3em] uppercase px-4 sm:px-6 py-2 rounded-full"
                   style={{
-                    background: `linear-gradient(90deg, 
-                      rgba(251, 146, 60, 0.1) 0%, 
-                      rgba(254, 215, 170, 0.2) 25%, 
-                      rgba(255, 237, 213, 0.3) 50%, 
-                      rgba(254, 215, 170, 0.2) 75%, 
-                      rgba(251, 146, 60, 0.1) 100%)`,
-                    backgroundSize: '200% 100%',
+                    background: 'rgba(255, 237, 213, 0.3)',
                     color: '#FED7AA',
                     border: '1px solid rgba(251, 146, 60, 0.3)',
                     boxShadow: '0 0 30px rgba(251, 146, 60, 0.2)',
@@ -2228,12 +2202,8 @@ function HomePage() {
                   }}
                 >
                   ⚡ Momento de Oportunidade ⚡
-                </motion.span>
-                <motion.div
-                  animate={{ width: [0, 40, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="h-[1px] bg-gradient-to-r from-transparent via-orange-400 to-transparent"
-                />
+                </span>
+                <div className="w-10 h-[1px] bg-gradient-to-r from-transparent via-orange-400 to-transparent" />
               </div>
             </motion.div>
             
@@ -2491,29 +2461,11 @@ function HomePage() {
               className="mb-8"
             >
               <div className="inline-flex items-center gap-3">
-                <motion.div
-                  animate={{ width: [0, 40, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="h-[1px] bg-gradient-to-r from-transparent via-purple-400 to-transparent"
-                />
-                <motion.span
-                  animate={{
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
+                <div className="w-10 h-[1px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
+                <span
                   className="text-sm font-medium tracking-[0.3em] uppercase px-4 sm:px-6 py-2 rounded-full"
                   style={{
-                    background: `linear-gradient(90deg, 
-                      rgba(139, 69, 193, 0.1) 0%, 
-                      rgba(196, 181, 253, 0.2) 25%, 
-                      rgba(233, 213, 255, 0.3) 50%, 
-                      rgba(196, 181, 253, 0.2) 75%, 
-                      rgba(139, 69, 193, 0.1) 100%)`,
-                    backgroundSize: '200% 100%',
+                    background: 'rgba(233, 213, 255, 0.3)',
                     color: '#C4B5FD',
                     border: '1px solid rgba(139, 69, 193, 0.3)',
                     boxShadow: '0 0 30px rgba(139, 69, 193, 0.2)',
@@ -2521,12 +2473,8 @@ function HomePage() {
                   }}
                 >
                   ✨ Jornada Personalizada ✨
-                </motion.span>
-                <motion.div
-                  animate={{ width: [0, 40, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="h-[1px] bg-gradient-to-r from-transparent via-purple-400 to-transparent"
-                />
+                </span>
+                <div className="w-10 h-[1px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
               </div>
             </motion.div>
             
@@ -2724,29 +2672,11 @@ function HomePage() {
               className="mb-8"
             >
               <div className="inline-flex items-center gap-3">
-                <motion.div
-                  animate={{ width: [0, 40, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="h-[1px] bg-gradient-to-r from-transparent via-rose-400 to-transparent"
-                />
-                <motion.span
-                  animate={{
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
+                <div className="w-10 h-[1px] bg-gradient-to-r from-transparent via-rose-400 to-transparent" />
+                <span
                   className="text-sm font-medium tracking-[0.3em] uppercase px-4 sm:px-6 py-2 rounded-full"
                   style={{
-                    background: `linear-gradient(90deg, 
-                      rgba(244, 63, 94, 0.1) 0%, 
-                      rgba(251, 207, 232, 0.2) 25%, 
-                      rgba(253, 242, 248, 0.3) 50%, 
-                      rgba(251, 207, 232, 0.2) 75%, 
-                      rgba(244, 63, 94, 0.1) 100%)`,
-                    backgroundSize: '200% 100%',
+                    background: 'rgba(253, 242, 248, 0.3)',
                     color: '#FBCFE8',
                     border: '1px solid rgba(244, 63, 94, 0.3)',
                     boxShadow: '0 0 30px rgba(244, 63, 94, 0.2)',
@@ -2754,12 +2684,8 @@ function HomePage() {
                   }}
                 >
                   🚀 Transformação Completa 🚀
-                </motion.span>
-                <motion.div
-                  animate={{ width: [0, 40, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="h-[1px] bg-gradient-to-r from-transparent via-rose-400 to-transparent"
-                />
+                </span>
+                <div className="w-10 h-[1px] bg-gradient-to-r from-transparent via-rose-400 to-transparent" />
               </div>
             </motion.div>
             
@@ -2914,29 +2840,17 @@ function HomePage() {
                 )}
                 <div className={`relative z-10 flex items-center gap-2 ${isAnnual ? 'text-gray-200' : ''}`}>
                   <span className="font-medium">Anual</span>
-                  <motion.span
-                    animate={{
-                      backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
+                  <span
                     className="px-2 py-0.5 rounded-full text-xs font-semibold"
                     style={{
-                      background: `linear-gradient(90deg, 
-                        #F59E0B 0%, 
-                        #FCD34D 50%, 
-                        #F59E0B 100%)`,
-                      backgroundSize: '200% 100%',
+                      background: '#F59E0B',
                       color: '#1F2937',
                       textShadow: '0 0 10px rgba(245, 158, 11, 0.5)',
                       fontWeight: '700'
                     }}
                   >
                     -20%
-                  </motion.span>
+                  </span>
                 </div>
               </button>
             </div>
@@ -3000,24 +2914,10 @@ function HomePage() {
             >
               {/* Premium Badge */}
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <motion.div
-                  animate={{
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
+                <div
                   className="px-4 sm:px-6 py-2 rounded-full text-sm font-semibold border"
                   style={{
-                    background: `linear-gradient(90deg, 
-                      rgba(156, 163, 175, 0.1) 0%, 
-                      rgba(209, 213, 219, 0.2) 25%, 
-                      rgba(243, 244, 246, 0.3) 50%, 
-                      rgba(209, 213, 219, 0.2) 75%, 
-                      rgba(156, 163, 175, 0.1) 100%)`,
-                    backgroundSize: '200% 100%',
+                    background: 'rgba(209, 213, 219, 0.2)',
                     color: '#E5E7EB',
                     border: '1px solid rgba(156, 163, 175, 0.4)',
                     boxShadow: '0 0 30px rgba(156, 163, 175, 0.2)',
@@ -3025,7 +2925,7 @@ function HomePage() {
                   }}
                 >
                   ⚡ Powered by Ask Gen Onyx
-                </motion.div>
+                </div>
               </div>
 
               {/* Title with Onyx Orb */}
@@ -3078,18 +2978,9 @@ function HomePage() {
                       filter: 'drop-shadow(0 2px 8px rgba(156, 163, 175, 0.4))'
                     }}
                   >
-                    <motion.span
-                      animate={{
-                        backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                      }}
-                      transition={{
-                        duration: 6,
-                        repeat: Infinity,
-                        ease: "linear"
-                      }}
-                    >
+                    <span>
                       Nível Premium
-                    </motion.span>
+                    </span>
                   </motion.h3>
                   <p className="text-white/60 text-sm">Inteligência Proativa Exclusiva</p>
                 </div>
