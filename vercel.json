@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run setup:ci && npm run build",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
   "installCommand": "npm install --legacy-peer-deps",
