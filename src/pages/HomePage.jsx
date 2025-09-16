@@ -1,28 +1,30 @@
 import React, { useState, useEffect, memo, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion'
-import { 
-  ChevronDown, 
-  CheckCircle, 
-  Linkedin, 
-  Twitter, 
-  Instagram, 
-  Youtube, 
-  Bot, 
-  Zap, 
-  Users, 
-  Target, 
-  Shield, 
-  Star, 
-  User, 
-  Briefcase, 
-  BookOpen, 
-  Award, 
-  Brain, 
-  MessageCircle, 
-  ChartBar, 
-  TrendingUp, 
-  Crosshair, 
-  Trophy 
+import {
+  ChevronDown,
+  CheckCircle,
+  Linkedin,
+  Twitter,
+  Instagram,
+  Youtube,
+  Bot,
+  Zap,
+  Users,
+  Target,
+  Shield,
+  Star,
+  User,
+  Briefcase,
+  BookOpen,
+  Award,
+  Brain,
+  MessageCircle,
+  ChartBar,
+  TrendingUp,
+  Crosshair,
+  Trophy,
+  X,
+  Check
 } from 'lucide-react'
 import Header from '../components/shared/Header'
 import OptimizedBackground from '../components/shared/OptimizedBackground'
@@ -265,6 +267,9 @@ const UserAvatar = () => (
 
 function HomePage() {
   const [isAnnual, setIsAnnual] = useState(false)
+  const [showPremiumForm, setShowPremiumForm] = useState(false)
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
+  const [formSubmitted, setFormSubmitted] = useState(false)
   const { isMobile, isLowPerformance } = useMobileOptimizations()
 
   // Add loaded class after component mounts
@@ -273,6 +278,37 @@ function HomePage() {
       document.body.classList.add('loaded');
     }
   }, [isMobile]);
+
+  // Format phone number
+  const formatPhoneNumber = (value) => {
+    const phoneNumber = value.replace(/\D/g, '')
+    if (phoneNumber.length <= 2) {
+      return phoneNumber
+    } else if (phoneNumber.length <= 7) {
+      return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2)}`
+    } else if (phoneNumber.length <= 11) {
+      return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7)}`
+    }
+    return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7, 11)}`
+  }
+
+  const handlePhoneChange = (e) => {
+    const formattedPhone = formatPhoneNumber(e.target.value)
+    setFormData({ ...formData, phone: formattedPhone })
+  }
+
+  const handlePremiumSubmit = (e) => {
+    e.preventDefault()
+    if (formData.name && formData.email && formData.phone) {
+      console.log('Premium waitlist submission:', formData)
+      setFormSubmitted(true)
+      setTimeout(() => {
+        setShowPremiumForm(false)
+        setFormSubmitted(false)
+        setFormData({ name: '', email: '', phone: '' })
+      }, 3000)
+    }
+  }
 
   return (
     <LazyMotion features={domAnimation}>
@@ -433,7 +469,14 @@ function HomePage() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-16"
           >
-            <button className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg font-semibold text-white hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-roboto">
+            <button
+              onClick={() => {
+                const element = document.getElementById('comunidade');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg font-semibold text-white hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-roboto">
               Transforme sua carreira
             </button>
           </motion.div>
@@ -1756,6 +1799,12 @@ function HomePage() {
                 className="pt-6"
               >
                 <motion.button
+                  onClick={() => {
+                    const element = document.getElementById('comunidade');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="relative px-12 py-6 rounded-2xl font-bold text-lg transition-all duration-500 overflow-hidden group"
@@ -3080,8 +3129,10 @@ function HomePage() {
                 ))}
               </ul>
 
-              <button className="w-full py-3 bg-gradient-to-r from-gray-600 to-gray-800 rounded-lg font-semibold text-white hover:from-gray-700 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border border-gray-500/30 font-roboto">
-                Começar Premium
+              <button
+                onClick={() => setShowPremiumForm(true)}
+                className="w-full py-3 bg-gradient-to-r from-gray-600 to-gray-800 rounded-lg font-semibold text-white hover:from-gray-700 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border border-gray-500/30 font-roboto">
+                Entrar na Lista de Espera
               </button>
             </motion.div>
           </div>
@@ -3121,7 +3172,7 @@ function HomePage() {
           <div className="max-w-md">
             {/* Description */}
             <p className="text-white/60 mb-8 leading-relaxed">
-              AI Data Engineering Brasil - Onde Dados encontram Inteligência Artificial Generativa
+              AI Data Engineering Brasil - Onde Dados encontram
             </p>
 
             {/* Social Links */}
@@ -3151,6 +3202,176 @@ function HomePage() {
       </footer>
         </div> {/* Close content overlay div */}
       </div>
+
+      {/* Premium Signup Form Modal */}
+      <AnimatePresence>
+        {showPremiumForm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setShowPremiumForm(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full max-w-md rounded-2xl overflow-hidden"
+              style={{
+                background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.75), inset 0 0 0 1px rgba(255, 255, 255, 0.05)'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Metallic border effect */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 via-transparent to-white/5 pointer-events-none" />
+
+              {/* Close button */}
+              <button
+                onClick={() => setShowPremiumForm(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors z-10"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="relative p-8">
+                <div className="text-center mb-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-full relative"
+                       style={{
+                         background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+                         boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 6px rgba(0,0,0,0.3)'
+                       }}>
+                    <Bot className="w-8 h-8" style={{
+                      filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
+                      background: 'linear-gradient(135deg, #e0e0e0 0%, #a0a0a0 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text'
+                    }} />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-2"
+                      style={{
+                        background: 'linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                        textShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                      }}>
+                    Lista de Espera Premium
+                  </h3>
+                  <p className="text-gray-400">
+                    Entre na lista para acesso antecipado aos recursos Premium
+                  </p>
+                </div>
+
+                {!formSubmitted ? (
+                  <form onSubmit={handlePremiumSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
+                        Nome Completo
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full px-4 py-3 rounded-lg text-white placeholder-gray-600 transition-all"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.03)',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.02)'
+                        }}
+                        onFocus={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.2)'}
+                        onBlur={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.1)'}
+                        placeholder="Seu nome"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
+                        E-mail
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full px-4 py-3 rounded-lg text-white placeholder-gray-600 transition-all"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.03)',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.02)'
+                        }}
+                        onFocus={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.2)'}
+                        onBlur={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.1)'}
+                        placeholder="seu@email.com"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
+                        WhatsApp
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: formatPhoneNumber(e.target.value) })}
+                        className="w-full px-4 py-3 rounded-lg text-white placeholder-gray-600 transition-all"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.03)',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.02)'
+                        }}
+                        onFocus={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.2)'}
+                        onBlur={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.1)'}
+                        placeholder="(11) 99999-9999"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-4 text-white font-bold rounded-lg transform hover:scale-[1.02] transition-all"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%)'
+                        e.target.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)'
+                        e.target.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                      }}
+                    >
+                      Entrar na Lista de Espera
+                    </button>
+                  </form>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-center py-8"
+                  >
+                    <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-green-500/20">
+                      <Check className="w-8 h-8 text-green-400" />
+                    </div>
+                    <h4 className="text-xl font-bold text-white mb-2">
+                      Inscrição Confirmada!
+                    </h4>
+                    <p className="text-gray-400">
+                      Você entrou na lista de espera. Em breve entraremos em contato!
+                    </p>
+                  </motion.div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </LazyMotion>
   )
 }
