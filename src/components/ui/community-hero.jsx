@@ -20,43 +20,22 @@ const ConnectionLine = ({ start, end, delay = 0 }) => (
   />
 )
 
-// Floating member node - ultra-optimized for mobile performance
-const MemberNode = React.memo(({ x, y, delay = 0, icon: Icon, name, role }) => {
+// Floating member node - optimized for mobile
+const MemberNode = ({ x, y, delay = 0, icon: Icon, name, role }) => {
   const [isMobile, setIsMobile] = React.useState(false);
   
   React.useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
-    // Passive event listener for better performance
     window.addEventListener('resize', checkMobile, { passive: true });
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  // Static rendering on mobile for performance
-  if (isMobile) {
-    return (
-      <g>
-        <circle
-          cx={x}
-          cy={y}
-          r="30"
-          fill="#030303"
-          stroke="#10b981"
-          strokeWidth="2"
-          opacity="0.8"
-        />
-        <foreignObject x={x - 12} y={y - 12} width="24" height="24">
-          <Icon size={24} className="text-green-400" />
-        </foreignObject>
-      </g>
-    );
-  }
 
   return (
     <motion.g
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.3, delay }} // Reduced duration
+      transition={{ duration: 0.5, delay }}
     >
       <motion.circle
         cx={x}
@@ -65,10 +44,10 @@ const MemberNode = React.memo(({ x, y, delay = 0, icon: Icon, name, role }) => {
         fill="#030303"
         stroke="url(#gradient)"
         strokeWidth="2"
-        animate={{
+        animate={isMobile ? {} : {
           r: [30, 32, 30],
         }}
-        transition={{
+        transition={isMobile ? {} : {
           duration: 4,
           repeat: Infinity,
           delay: delay * 0.2,
@@ -102,15 +81,12 @@ const MemberNode = React.memo(({ x, y, delay = 0, icon: Icon, name, role }) => {
       </text>
     )}
   </motion.g>
-  );
-});
-
-MemberNode.displayName = 'MemberNode';
+  )
+}
 
 const CommunityHero = ({ className }) => {
   const [activeMembers, setActiveMembers] = React.useState(1247)
   const [tagline, setTagline] = React.useState(0)
-  const [isMobile, setIsMobile] = React.useState(false)
   
   const taglines = [
     "Onde dados encontram inteligência",
@@ -119,31 +95,19 @@ const CommunityHero = ({ className }) => {
     "Unidos pela inovação em dados"
   ]
 
-  // Mobile detection for performance optimization
   React.useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile, { passive: true });
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  React.useEffect(() => {
-    // Reduce update frequency on mobile for better performance
     const interval = setInterval(() => {
       setActiveMembers(prev => prev + Math.floor(Math.random() * 3))
-    }, isMobile ? 10000 : 5000) // Slower updates on mobile
+    }, 5000)
     return () => clearInterval(interval)
-  }, [isMobile])
+  }, [])
   
   React.useEffect(() => {
-    // Disable tagline rotation on mobile for performance
-    if (isMobile) return;
-    
     const interval = setInterval(() => {
       setTagline(prev => (prev + 1) % taglines.length)
     }, 4000)
     return () => clearInterval(interval)
-  }, [taglines.length, isMobile])
+  }, [taglines.length])
 
   // Node positions for the network - expanded and repositioned with more spacing
   const nodes = [
@@ -215,9 +179,8 @@ const CommunityHero = ({ className }) => {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" data-theme-glow="secondary" />
       </div>
 
-      {/* Network visualization - conditionally rendered for performance */}
-      {!isMobile && (
-      <div className="absolute inset-0 flex items-start justify-center opacity-30 pt-20">
+      {/* Network visualization - hidden on mobile for performance */}
+      <div className="absolute inset-0 flex items-start justify-center opacity-30 pt-20 hidden md:block">
         <svg
           width="1300"
           height="800"
@@ -256,7 +219,6 @@ const CommunityHero = ({ className }) => {
           ))}
         </svg>
       </div>
-      )}
 
       {/* Main content */}
       <div className="relative z-10 min-h-[120vh] flex flex-col items-center justify-center px-4 md:px-8">

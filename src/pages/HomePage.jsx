@@ -106,13 +106,33 @@ const AnimatedText = memo(({ children, delay = 0 }) => (
 const CyclingText = () => {
   const words = ['RAG', 'AI', 'LLMs', 'GenAI', 'Vector Databases', 'Agent', 'Multi-Agent', 'GIP Architecture', 'LLMOps', 'Fundamentals', 'MCPs']
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile, { passive: true });
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Only cycle text on desktop to prevent mobile layout issues
+    if (isMobile) return;
+    
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % words.length)
-    }, 2000)
+    }, 3000) // Slower cycling for better UX
     return () => clearInterval(interval)
-  }, [])
+  }, [isMobile])
+
+  // Show static text on mobile, animated cycling on desktop
+  if (isMobile) {
+    return (
+      <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
+        AI & Data Engineering
+      </span>
+    );
+  }
 
   return (
     <AnimatePresence mode="wait">
@@ -126,19 +146,17 @@ const CyclingText = () => {
         }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ 
-          duration: 0.5,
+          opacity: { duration: 0.3 },
+          y: { duration: 0.3 },
           backgroundPosition: {
             duration: 3,
             repeat: Infinity,
             ease: "easeInOut"
           }
         }}
-        className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-white section-title"
+        className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400"
         style={{
-          backgroundSize: '200% 200%',
-          textShadow: '0 0 8px rgba(192, 192, 192, 0.3), 0 0 16px rgba(169, 169, 169, 0.2), 0 0 24px rgba(128, 128, 128, 0.1)',
-          filter: 'drop-shadow(0 0 6px rgba(192, 192, 192, 0.3)) drop-shadow(0 0 12px rgba(169, 169, 169, 0.2))',
-          WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.3)'
+          backgroundSize: '200% 200%'
         }}
       >
         {words[currentIndex]}
