@@ -1,0 +1,107 @@
+/* Mobile Scroll Flicker Fix */
+
+/* Complete animation disable for mobile */
+.mobile-no-animations *,
+.disable-framer-motion * {
+  animation: none !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition: none !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+
+/* Force visibility on mobile */
+@media (max-width: 768px) {
+  /* Optimize scroll performance */
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+  }
+
+  /* Completely disable Framer Motion animations */
+  [data-framer-appear-id],
+  [data-framer-motion-id],
+  [style*="opacity: 0"],
+  [style*="transform"],
+  [style*="will-change"] {
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Disable all motion divs */
+  div[style*="opacity"],
+  div[style*="transform"],
+  section[style*="opacity"],
+  section[style*="transform"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Optimize fixed elements */
+  .fixed {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: auto;
+  }
+
+  /* Simplify backdrop filters */
+  .backdrop-blur-xl,
+  .backdrop-blur-sm,
+  .backdrop-blur {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Disable complex blur filters */
+  .blur-3xl {
+    filter: blur(32px);
+  }
+
+  /* Smooth scroll without animations */
+  * {
+    scroll-behavior: auto;
+  }
+
+  /* Force immediate visibility */
+  [style*="visibility: hidden"] {
+    visibility: visible !important;
+  }
+}
+
+/* Disable scroll animations when class is present */
+.no-scroll-animations * {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* iOS-specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari */
+  body {
+    -webkit-transform: translateZ(0);
+  }
+
+  /* Prevent rubber-band scrolling flicker */
+  html {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Disable all animations on iOS */
+  * {
+    -webkit-animation: none !important;
+    animation: none !important;
+  }
+}

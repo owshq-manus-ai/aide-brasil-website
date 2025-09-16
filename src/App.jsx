@@ -1,5 +1,6 @@
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { disableScrollAnimations } from './utils/motionConfig'
 import './App.css'
 import './styles/mobile-optimizations.css'
 import './styles/mobile-enhancements.css'
@@ -7,6 +8,7 @@ import './styles/mobile-specific-fixes.css'
 import './utils/accessibility-fixes.css'
 import './styles/anti-flicker.css'
 import './styles/performance-fixes.css'
+import './styles/mobile-scroll-fix.css'
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'))
@@ -24,6 +26,15 @@ const PageLoader = () => (
 )
 
 function App() {
+  useEffect(() => {
+    // Check if mobile and disable animations
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+    if (isMobile) {
+      disableScrollAnimations();
+    }
+  }, [])
+
   return (
     <Router>
       <Suspense fallback={<PageLoader />}>
