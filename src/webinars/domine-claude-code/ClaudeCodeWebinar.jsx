@@ -683,23 +683,6 @@ function ClaudeCodeWebinar() {
               </div>
             </motion.div>
           </div>
-
-          {/* Call to action */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            viewport={{ once: true }}
-            className="text-center mt-16"
-          >
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-900/20 to-amber-900/10 px-8 py-4 rounded-2xl border border-orange-500/30">
-              <Zap className="w-6 h-6 text-orange-400" />
-              <p className="text-xl font-bold text-white">
-                Descubra como fazer essa transição em apenas 2 horas de webinário
-              </p>
-              <ArrowRight className="w-6 h-6 text-orange-400" />
-            </div>
-          </motion.div>
         </div>
       </section>
 
