@@ -78,15 +78,17 @@ function ClaudeCodeWebinar() {
     ],
 
     speaker: {
-      name: 'Expert em GenAI',
-      role: 'Data Engineering Lead',
+      name: 'Luan Moreno',
+      role: 'Principal Data & AI Engineer @ Pythian',
       bio: 'Especialista com anos de experiência em IA e engenharia de dados, responsável por implementações em larga escala.',
       avatar: '🤖',
+      photo1: '/images/luan-moreno-1.png',
+      photo2: '/images/luan-moreno-2.png',
       achievements: [
         '10+ anos de experiência em Data Engineering',
         'Pioneiro em implementações de Claude Code no Brasil',
         'Responsável por pipelines que processam TB de dados diariamente',
-        'Mentor de +500 profissionais em GenAI'
+        'Mentor de +10K profissionais em GenAI'
       ]
     },
 
@@ -507,7 +509,7 @@ function ClaudeCodeWebinar() {
               Pare de <span className="text-red-500 line-through decoration-4">Perder Tempo</span>
               <br />
               <span className="text-4xl md:text-6xl">Comece a </span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 text-5xl md:text-7xl">Criar com IA</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 text-5xl md:text-7xl">Desenvolver com Agentes</span>
             </h2>
             <p className="text-xl text-white/70 max-w-4xl mx-auto">
               A diferença entre desenvolvedores que lutam com código e aqueles que entregam projetos em tempo recorde
@@ -869,67 +871,120 @@ function ClaudeCodeWebinar() {
               </p>
             </div>
 
-            <div className="relative bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-3xl p-8 md:p-12 border-2 border-orange-500/40 backdrop-blur-sm">
-              <div className="grid md:grid-cols-2 gap-12 items-center">
-                {/* Photo Column */}
-                <div className="flex justify-center">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl blur-2xl opacity-30" />
-                    <div className="relative w-64 h-64 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-2xl flex items-center justify-center border-4 border-orange-500/30">
-                      <span className="text-8xl">{webinar.speaker.avatar}</span>
-                    </div>
+            {/* Enhanced Instructor Layout */}
+            <div className="relative group">
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-3xl blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border-2 border-orange-500/20 hover:border-orange-500/50 transition-all">
+                  {/* Verified Badge */}
+                  <div className="absolute -top-5 right-8 z-20">
+                    <motion.div
+                      className="relative"
+                      animate={{ y: [0, -3, 0] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 blur-xl opacity-50" />
+                      <div className="relative bg-gradient-to-r from-green-500 to-emerald-500 px-4 py-2 shadow-2xl">
+                        <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-white/80" />
+                        <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-white/80" />
+                        <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-white/80" />
+                        <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-white/80" />
+                        <span className="text-white text-xs font-bold flex items-center gap-2">
+                          <CheckCircle className="w-4 h-4" />
+                          Instrutor Verificado
+                        </span>
+                      </div>
+                    </motion.div>
                   </div>
-                </div>
 
-                {/* Info Column */}
-                <div className="text-center md:text-left relative z-10">
-                  <h3 className="text-3xl font-bold text-white mb-2">{webinar.speaker.name}</h3>
-                  <p className="text-orange-500 font-medium text-lg mb-6">{webinar.speaker.role}</p>
-                  <p className="text-white/80 mb-8 leading-relaxed text-lg relative z-10">{webinar.speaker.bio}</p>
-
-                  {webinar.speaker.achievements && (
-                    <div className="mb-8 space-y-3">
-                      {webinar.speaker.achievements.map((achievement, i) => (
-                        <motion.div
-                          key={i}
-                          className="flex items-center gap-3"
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.5, delay: i * 0.1 }}
-                          viewport={{ once: true }}
-                        >
-                          <div className="relative w-8 h-8 flex-shrink-0">
-                            <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg opacity-20" />
-                            <div className="relative w-full h-full bg-gradient-to-br from-orange-500/30 to-amber-500/30 rounded-lg flex items-center justify-center border border-orange-500/40">
-                              <Trophy className="w-4 h-4 text-orange-500" strokeWidth={2.5} />
-                            </div>
-                          </div>
-                          <span className="text-white/80 text-sm">{achievement}</span>
-                        </motion.div>
-                      ))}
+                  <div className="grid md:grid-cols-2 gap-12 items-center">
+                    {/* Photo Column */}
+                    <div className="flex justify-center">
+                      <motion.div
+                        className="relative w-full max-w-lg"
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl blur-2xl opacity-50" />
+                        <div className="relative w-full aspect-square bg-gradient-to-br from-orange-500/30 to-amber-500/30 rounded-2xl overflow-hidden border-4 border-orange-500/50 shadow-2xl group-hover:scale-105 transition-transform">
+                          <img
+                            src={webinar.speaker.photo1}
+                            alt={webinar.speaker.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </motion.div>
                     </div>
-                  )}
 
-                  {/* Social Links */}
-                  <div className="flex gap-4 justify-center md:justify-start">
-                    <motion.a
-                      href="#"
-                      className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-lg flex items-center justify-center border border-orange-500/40 hover:scale-110 transition-transform"
-                      whileHover={{ rotate: 5 }}
-                    >
-                      <Linkedin className="w-5 h-5 text-orange-500" />
-                    </motion.a>
-                    <motion.a
-                      href="#"
-                      className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-lg flex items-center justify-center border border-orange-500/40 hover:scale-110 transition-transform"
-                      whileHover={{ rotate: -5 }}
-                    >
-                      <Instagram className="w-5 h-5 text-orange-500" />
-                    </motion.a>
+                    {/* Info Column */}
+                    <div className="relative z-10">
+                      <h3 className="text-3xl font-bold text-white mb-3">{webinar.speaker.name}</h3>
+                      <p className="text-orange-400 font-medium text-xl mb-6">{webinar.speaker.role}</p>
+
+                      {/* Stats */}
+                      <div className="flex gap-6 mb-6">
+                        <div>
+                          <p className="text-2xl font-bold text-orange-400">10K</p>
+                          <p className="text-sm text-white/60">Alunos</p>
+                        </div>
+                        <div>
+                          <p className="text-2xl font-bold text-orange-400">50+</p>
+                          <p className="text-sm text-white/60">Projetos</p>
+                        </div>
+                        <div>
+                          <p className="text-2xl font-bold text-orange-400">5.0★</p>
+                          <p className="text-sm text-white/60">Avaliação</p>
+                        </div>
+                      </div>
+
+                      <p className="text-white/80 mb-8 leading-relaxed text-lg">{webinar.speaker.bio}</p>
+
+                      {webinar.speaker.achievements && (
+                        <div className="mb-8 space-y-3">
+                          {webinar.speaker.achievements.map((achievement, i) => (
+                            <motion.div
+                              key={i}
+                              className="flex items-center gap-3"
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.5, delay: i * 0.1 }}
+                              viewport={{ once: true }}
+                            >
+                              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center shadow-lg">
+                                <Trophy className="w-5 h-5 text-white" />
+                              </div>
+                              <span className="text-white/90">{achievement}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Social Links */}
+                      <div className="flex gap-4">
+                        <motion.a
+                          href="https://www.linkedin.com/in/luanmoreno/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-xl flex items-center justify-center border-2 border-orange-500/40 hover:border-orange-500/60 hover:scale-110 transition-all"
+                          whileHover={{ rotate: 5 }}
+                        >
+                          <Linkedin className="w-5 h-5 text-orange-400" />
+                        </motion.a>
+                        <motion.a
+                          href="https://www.instagram.com/luanmorenomaciel/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-xl flex items-center justify-center border-2 border-orange-500/40 hover:border-orange-500/60 hover:scale-110 transition-all"
+                          whileHover={{ rotate: -5 }}
+                        >
+                          <Instagram className="w-5 h-5 text-orange-400" />
+                        </motion.a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
           </motion.div>
         </div>
       </section>
