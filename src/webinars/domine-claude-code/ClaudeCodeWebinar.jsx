@@ -670,7 +670,7 @@ function ClaudeCodeWebinar() {
                 </div>
 
                 {/* Header with animated icon */}
-                <div className="relative z-10 mb-8 pt-6">
+                <div className="relative z-10 mb-8 pt-2">
                   <div className="flex items-center justify-between mb-4">
                     <motion.div
                       className="w-16 h-16 bg-gradient-to-br from-orange-500/30 to-amber-500/30 rounded-2xl flex items-center justify-center border-2 border-orange-500/50"
