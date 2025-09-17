@@ -192,59 +192,181 @@ const WebinarTemplate = React.memo(() => {
     return (
       <LazyMotion features={domAnimation}>
       <div className="min-h-screen text-white overflow-x-hidden relative" style={{background: "linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 15%, #16213e 30%, #2d1b69 45%, #0f3460 60%, #16213e 75%, #1a1a2e 90%, #0a0a0f 100%), radial-gradient(ellipse at 20% 30%, rgba(147, 51, 234, 0.4) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(99, 102, 241, 0.3) 0%, transparent 50%), radial-gradient(ellipse at 40% 80%, rgba(168, 85, 247, 0.35) 0%, transparent 45%), radial-gradient(circle at 15% 25%, rgba(226, 232, 240, 0.15) 0%, transparent 40%), radial-gradient(circle at 85% 15%, rgba(203, 213, 225, 0.12) 0%, transparent 35%), radial-gradient(circle at 65% 45%, rgba(148, 163, 184, 0.1) 0%, transparent 30%), radial-gradient(circle at 25% 75%, rgba(241, 245, 249, 0.08) 0%, transparent 25%), radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 20%), radial-gradient(circle at 30% 60%, rgba(124, 58, 237, 0.15) 0%, transparent 25%), radial-gradient(circle at 70% 40%, rgba(109, 40, 217, 0.18) 0%, transparent 22%)"}}>
-        {/* SOPHISTICATED METALLIC BACKGROUND WITH ORANGE ACCENT */}
+        {/* FUTURISTIC METALLIC ORANGE BACKGROUND - CLAUDE CODE THEME */}
         <div
           className="fixed inset-0 pointer-events-none"
           style={{ zIndex: -10 }}
         >
-          {/* Base Technical Gradient with Orange Warmth */}
+          {/* Deep Black to Orange Gradient Base - Metallic Effect */}
           <div
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(135deg, #1f2937 0%, #030303 50%, #374151 100%)'
+              background: `linear-gradient(135deg,
+                #000000 0%,
+                #0a0502 10%,
+                #150a02 20%,
+                #1f0f04 35%,
+                #2e1a0f 50%,
+                #1f0f04 65%,
+                #150a02 80%,
+                #0a0502 90%,
+                #000000 100%
+              )`
             }}
           />
 
-          {/* Orange Accent Overlay */}
+          {/* Metallic Orange Glow Overlays */}
           <div
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(135deg, rgba(234, 88, 12, 0.08) 0%, transparent 50%, rgba(245, 158, 11, 0.06) 100%)'
+              opacity: 0.35,
+              background: `
+                radial-gradient(ellipse at 25% 25%, rgba(251, 146, 60, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 75%, rgba(245, 158, 11, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 90%, rgba(234, 88, 12, 0.28) 0%, transparent 45%),
+                radial-gradient(circle at 60% 20%, rgba(254, 215, 170, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 10% 60%, rgba(251, 191, 36, 0.18) 0%, transparent 45%)
+              `
             }}
           />
 
-          {/* Technical Grid with Orange Tint */}
+          {/* Sophisticated Tech Grid Pattern - Orange Metallic */}
           <div
             style={{
               position: 'absolute',
               inset: 0,
-              opacity: 0.3,
+              opacity: 0.15,
               backgroundImage: `
-                linear-gradient(30deg, rgba(251, 146, 60, 0.15) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(251, 146, 60, 0.15) 1px, transparent 1px),
-                linear-gradient(150deg, rgba(251, 146, 60, 0.15) 1px, transparent 1px)
+                linear-gradient(30deg, rgba(251, 146, 60, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245, 158, 11, 0.1) 1px, transparent 1px),
+                linear-gradient(150deg, rgba(254, 215, 170, 0.08) 1px, transparent 1px)
               `,
-              backgroundSize: '60px 60px, 60px 60px, 60px 60px'
+              backgroundSize: '80px 80px, 80px 80px, 80px 80px'
             }}
           />
 
-          {/* Orange Data Flow Lines */}
+          {/* Floating Metallic Orange Spheres - Futuristic Orbs */}
           <div
-            className="absolute top-1/4 left-0 right-0 animate-pulse"
             style={{
-              height: '1px',
-              background: 'linear-gradient(90deg, transparent, rgba(251, 146, 60, 0.4), transparent)',
-              animationDelay: '0s'
+              position: 'absolute',
+              top: '8%',
+              left: '15%',
+              width: '500px',
+              height: '500px',
+              background: 'radial-gradient(circle, rgba(251, 146, 60, 0.4) 0%, rgba(245, 158, 11, 0.3) 30%, rgba(234, 88, 12, 0.15) 60%, transparent 80%)',
+              borderRadius: '50%',
+              filter: 'blur(60px)',
+              opacity: 0.7
             }}
           />
           <div
-            className="absolute top-3/4 left-0 right-0 animate-pulse"
+            style={{
+              position: 'absolute',
+              bottom: '12%',
+              right: '18%',
+              width: '380px',
+              height: '380px',
+              background: 'radial-gradient(circle, rgba(254, 215, 170, 0.35) 0%, rgba(251, 146, 60, 0.25) 35%, rgba(245, 158, 11, 0.15) 65%, transparent 85%)',
+              borderRadius: '50%',
+              filter: 'blur(45px)',
+              opacity: 0.6
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              top: '45%',
+              right: '8%',
+              width: '280px',
+              height: '280px',
+              background: 'radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, rgba(254, 215, 170, 0.2) 40%, transparent 75%)',
+              borderRadius: '50%',
+              filter: 'blur(35px)',
+              opacity: 0.6
+            }}
+          />
+
+          {/* Flowing Data Streams - Metallic Orange */}
+          <div
+            className="absolute top-1/6 left-0 right-0"
+            style={{
+              height: '2px',
+              background: 'linear-gradient(90deg, transparent, rgba(251, 146, 60, 0.2), rgba(254, 215, 170, 0.3), rgba(251, 146, 60, 0.2), transparent)'
+            }}
+          />
+          <div
+            className="absolute top-2/5 left-0 right-0"
             style={{
               height: '1px',
-              background: 'linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.4), transparent)',
-              animationDelay: '2s'
+              background: 'linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.25), rgba(234, 88, 12, 0.35), rgba(245, 158, 11, 0.25), transparent)'
+            }}
+          />
+          <div
+            className="absolute top-3/5 left-0 right-0"
+            style={{
+              height: '1px',
+              background: 'linear-gradient(90deg, transparent, rgba(254, 215, 170, 0.2), rgba(251, 191, 36, 0.3), rgba(254, 215, 170, 0.2), transparent)'
+            }}
+          />
+          <div
+            className="absolute top-4/5 left-0 right-0"
+            style={{
+              height: '1px',
+              background: 'linear-gradient(90deg, transparent, rgba(251, 146, 60, 0.15), rgba(245, 158, 11, 0.25), rgba(251, 146, 60, 0.15), transparent)'
+            }}
+          />
+
+          {/* Geometric Corner Elements - Orange Metallic Theme */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '24px',
+              left: '24px',
+              width: '120px',
+              height: '2px',
+              background: 'linear-gradient(90deg, rgba(251, 146, 60, 0.3), rgba(254, 215, 170, 0.15), transparent)'
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              top: '24px',
+              left: '24px',
+              width: '2px',
+              height: '120px',
+              background: 'linear-gradient(180deg, rgba(251, 146, 60, 0.3), rgba(254, 215, 170, 0.15), transparent)'
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '24px',
+              right: '24px',
+              width: '120px',
+              height: '2px',
+              background: 'linear-gradient(270deg, rgba(251, 146, 60, 0.3), rgba(254, 215, 170, 0.15), transparent)'
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '24px',
+              right: '24px',
+              width: '2px',
+              height: '120px',
+              background: 'linear-gradient(0deg, rgba(251, 146, 60, 0.3), rgba(254, 215, 170, 0.15), transparent)'
+            }}
+          />
+
+          {/* Subtle Noise Texture Overlay */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              opacity: 0.03,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
             }}
           />
         </div>
