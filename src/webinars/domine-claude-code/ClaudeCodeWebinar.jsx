@@ -524,7 +524,7 @@ function ClaudeCodeWebinar() {
               className="relative"
             >
               {/* Dark overlay card */}
-              <div className="bg-black/40 backdrop-blur-sm rounded-3xl p-8 border border-red-900/30 relative">
+              <div className="bg-gradient-to-br from-red-900/30 to-red-800/20 backdrop-blur-sm rounded-3xl p-8 border-2 border-red-500/30 relative">
                 {/* Background gradient effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-red-900/10 via-transparent to-red-800/10 rounded-3xl" />
 
@@ -539,7 +539,7 @@ function ClaudeCodeWebinar() {
                       Antes
                     </span>
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-2">Desenvolvimento Tradicional</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Desenvolvimento Tradicional</h3>
                   <p className="text-red-400 text-lg">O caminho lento e doloroso</p>
                 </div>
 
@@ -638,7 +638,7 @@ function ClaudeCodeWebinar() {
                       Depois
                     </span>
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-2">Com Claude Code</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Utilizando Agentic Claude Code Assistant</h3>
                   <p className="text-orange-400 text-lg font-medium">O futuro do desenvolvimento</p>
                 </div>
 
@@ -791,39 +791,58 @@ function ClaudeCodeWebinar() {
             </p>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto space-y-4">
+          <div className="max-w-4xl mx-auto space-y-6">
             {webinar.agenda.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:shadow-lg hover:border-orange-500/30 transition-all duration-300 group hover:scale-[1.02]"
+                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                className="relative group"
               >
-                <div className="flex items-start gap-4">
-                  <motion.div
-                    className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <item.icon className="w-6 h-6 text-white" />
-                  </motion.div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-orange-500 font-mono text-sm font-bold">{item.time}</span>
-                      <span className="text-white/40">•</span>
-                      <span className="text-white/60 text-sm">{webinar.duration === '2 horas' ?
-                        `${index === 0 ? 'Início' :
-                          index === webinar.agenda.length - 1 ? 'Encerramento' :
-                          `Módulo ${index}`}` : ''}</span>
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Card content */}
+                <div className="relative bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-2xl p-8 border-2 border-orange-500/20 hover:border-orange-500/50 transition-all duration-300">
+                  <div className="flex items-start gap-6">
+                    {/* Animated icon container */}
+                    <motion.div
+                      className="relative"
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{ duration: 3, repeat: Infinity, delay: index * 0.3 }}
+                    >
+                      <div className="w-16 h-16 bg-gradient-to-br from-orange-500/30 to-amber-500/30 rounded-2xl flex items-center justify-center border-2 border-orange-500/40 shadow-lg group-hover:shadow-orange-500/30">
+                        <motion.div
+                          className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center"
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.6 }}
+                        >
+                          <item.icon className="w-7 h-7 text-white" />
+                        </motion.div>
+                      </div>
+                    </motion.div>
+
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-orange-400 font-mono text-sm font-bold bg-gradient-to-r from-orange-500/20 to-amber-500/20 px-3 py-1 rounded-full border border-orange-500/30">
+                          {item.time}
+                        </span>
+                        <span className="text-white/40">•</span>
+                        <span className="text-white/60 text-sm">{webinar.duration === '2 horas' ?
+                          `${index === 0 ? 'Início' :
+                            index === webinar.agenda.length - 1 ? 'Encerramento' :
+                            `Módulo ${index}`}` : ''}</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-amber-400 transition-all duration-300">
+                        {item.topic}
+                      </h3>
+                      <p className="text-white/70 text-lg">
+                        {item.description}
+                      </p>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">
-                      {item.topic}
-                    </h3>
-                    <p className="text-white/70 leading-relaxed">
-                      {item.description}
-                    </p>
                   </div>
                 </div>
               </motion.div>
