@@ -1,0 +1,1137 @@
+import React, { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import {
+  Calendar, Clock, Users, CheckCircle, Linkedin, Instagram,
+  ArrowLeft, ArrowRight, Zap, Target, BookOpen, Brain, Sparkles,
+  Code2, Rocket, Shield, TrendingUp, Award, Bot,
+  Cpu, GitBranch, Terminal, Layers, Database,
+  MessageSquare, ChevronDown, ChevronRight, Lock, Trophy,
+  Timer, Heart, AlertCircle, Lightbulb, X, Check, Video, Phone, Mail, User,
+  Gauge, Code, Bug
+} from 'lucide-react'
+import Header from '../../components/shared/Header'
+
+// Configuration for registration method
+const USE_TYPEFORM = false
+const TYPEFORM_URL = 'https://your-typeform-url.typeform.com/to/YOUR_FORM_ID'
+
+// Animated Counter Component for Statistics
+const AnimatedCounter = ({ value, suffix = '', className }) => {
+  const [count, setCount] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    if (isVisible) {
+      const numericValue = typeof value === 'string' ? parseInt(value) : value
+      if (count < numericValue) {
+        const timer = setTimeout(() => {
+          setCount(prevCount => {
+            const increment = Math.ceil(numericValue / 30)
+            return prevCount + increment > numericValue ? numericValue : prevCount + increment
+          })
+        }, 50)
+        return () => clearTimeout(timer)
+      }
+    }
+  }, [count, value, isVisible])
+
+  return (
+    <motion.div
+      className={className}
+      initial={{ scale: 0.5, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      onViewportEnter={() => setIsVisible(true)}
+    >
+      {count}{suffix}
+    </motion.div>
+  )
+}
+
+function AutonomousAgentsWebinar() {
+  const [attendeeCount, setAttendeeCount] = useState(247)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState('')
+  const [showSuccess, setShowSuccess] = useState(false)
+
+  // Webinar data specific to Autonomous Agents
+  const webinar = {
+    title: 'Dominando Autonomous Code Agents',
+    highlightWord: 'Autonomous',
+    subtitle: 'Compare e domine os 4 principais agentes de código autônomo do mercado',
+    date: '4 Fev 2025',
+    time: '20:00 BRT',
+    duration: '2 horas',
+    gradient: 'from-purple-600 to-violet-600',
+    description: 'Descubra as técnicas secretas que os melhores profissionais do mercado estão usando para revolucionar seu workflow com agentes autônomos de IA',
+
+    whatYouLearn: [
+      'OpenAI Codex: Cloud engineering com codex-1',
+      'Claude Code: Terminal-first com MCP',
+      'Replit Agent: Full-stack no browser',
+      'Warp: Terminal turbinado para produtividade máxima',
+      'Framework de decisão para escolher o agente ideal para cada projeto'
+    ],
+
+    agenda: [
+      {
+        time: '20:00',
+        module: 'Início',
+        topic: 'OpenAI Codex Deep Dive',
+        description: 'O novo gigante da Microsoft - cloud engineering com codex-1, explorando recursos avançados e integração com VS Code',
+        icon: Terminal
+      },
+      {
+        time: '20:30',
+        module: 'Módulo 1',
+        topic: 'Claude Code Mastery',
+        description: 'Terminal-first com MCP - a abordagem Anthropic para desenvolvimento assistido com contexto completo',
+        icon: Cpu
+      },
+      {
+        time: '21:00',
+        module: 'Módulo 2',
+        topic: 'Replit Agent Unleashed',
+        description: 'Full-stack no browser - deploy instantâneo e desenvolvimento colaborativo em tempo real',
+        icon: Bot
+      },
+      {
+        time: '21:30',
+        module: 'Encerramento',
+        topic: 'Warp Workflow Revolution',
+        description: 'Terminal turbinado - produtividade máxima com AI-powered command suggestions e workflow automation',
+        icon: Rocket
+      }
+    ],
+
+    benefits: [
+      {
+        icon: Cpu,
+        title: '4 Agentes Dominados',
+        description: 'OpenAI Codex, Claude, Replit e Warp explicados em detalhes',
+        duration: '30 min',
+        level: 'Avançado'
+      },
+      {
+        icon: Layers,
+        title: 'Comparação Prática',
+        description: 'Quando usar cada agente para máxima eficiência',
+        duration: '20 min',
+        level: 'Intermediário'
+      },
+      {
+        icon: Rocket,
+        title: 'Hands-On ao Vivo',
+        description: 'Demonstração prática de cada plataforma em tempo real',
+        duration: '40 min',
+        level: 'Prático'
+      },
+      {
+        icon: Code2,
+        title: 'Código Real',
+        description: 'Exemplos práticos e casos de uso reais',
+        duration: '15 min',
+        level: 'Avançado'
+      },
+      {
+        icon: Zap,
+        title: 'Setup Rápido',
+        description: 'Configure todos os agentes em minutos',
+        duration: '10 min',
+        level: 'Iniciante'
+      },
+      {
+        icon: Trophy,
+        title: 'Best Practices',
+        description: 'Técnicas avançadas dos experts',
+        duration: '25 min',
+        level: 'Expert'
+      }
+    ],
+
+    instructor: {
+      name: 'Luan Moreno',
+      title: 'Principal AI & Autonomous Systems Engineer',
+      company: '@Pythian',
+      bio: 'Pioneiro em implementação de agentes autônomos no Brasil, com experiência prática em todas as principais plataformas de código assistido por IA. Especialista em arquitetura multi-agente e otimização de workflows de desenvolvimento.',
+      photo: '/images/luan-moreno-4.png',
+      linkedin: 'https://www.linkedin.com/in/luanmoreno/',
+      instagram: 'https://www.instagram.com/luanmorenomaciel/',
+      achievements: [
+        'Implementou sistemas com todos os 4 agentes em produção',
+        'Treinou +500 desenvolvedores em IA assistida',
+        'Autor de frameworks para integração multi-agente',
+        'Speaker em conferências internacionais sobre Autonomous Coding'
+      ]
+    },
+
+    statistics: [
+      {
+        icon: Gauge,
+        value: 3,
+        suffix: 'x',
+        label: 'Mais Rápido',
+        description: 'De 8 horas para 2 horas por feature',
+        color: 'green-500',
+        secondaryColor: 'emerald-500',
+        progress: '75%'
+      },
+      {
+        icon: Code,
+        value: 10,
+        suffix: 'x',
+        label: 'Menos Código',
+        description: 'Escreva 10x menos linhas manualmente',
+        color: 'blue-500',
+        secondaryColor: 'cyan-500',
+        progress: '90%'
+      },
+      {
+        icon: Bug,
+        value: 95,
+        suffix: '%',
+        label: 'Menos Bugs',
+        description: 'Zero bugs críticos em produção',
+        color: 'purple-500',
+        secondaryColor: 'violet-500',
+        progress: '95%'
+      },
+      {
+        icon: Users,
+        value: 2,
+        suffix: 'x',
+        label: 'Mais Entregas',
+        description: 'Dobre sua capacidade de entrega',
+        color: 'orange-500',
+        secondaryColor: 'amber-500',
+        progress: '80%'
+      }
+    ],
+
+    testimonial: {
+      quote: 'Claude Code transformou completamente minha forma de trabalhar. Em 3 meses, consegui entregar 5 projetos que antes levariam 1 ano. A qualidade do código melhorou drasticamente e o tempo de debugging praticamente desapareceu.',
+      author: 'Mateus Oliveira',
+      role: 'Data Architect @OneWaySolution'
+    },
+
+    guarantees: [
+      {
+        icon: CheckCircle,
+        title: '100% Gratuito',
+        description: 'Sem pegadinhas, sem vendas'
+      },
+      {
+        icon: Trophy,
+        title: 'Acesso Vitalício',
+        description: 'Gravação disponível por 30 dias'
+      },
+      {
+        icon: Heart,
+        title: 'Suporte Direto',
+        description: 'Tire dúvidas ao vivo comigo'
+      }
+    ]
+  }
+
+  // Simulate attendee count updates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAttendeeCount(prev => prev + Math.floor(Math.random() * 3))
+    }, 15000)
+    return () => clearInterval(interval)
+  }, [])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if (USE_TYPEFORM) {
+      window.open(TYPEFORM_URL, '_blank')
+      return
+    }
+
+    setIsSubmitting(true)
+
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setShowSuccess(true)
+      setFormData({ name: '', email: '', phone: '' })
+
+      setTimeout(() => {
+        setShowSuccess(false)
+        if (isModalOpen) setIsModalOpen(false)
+      }, 3000)
+    }, 1000)
+  }
+
+  return (
+    <div className="min-h-screen text-white overflow-x-hidden relative">
+      {/* FIXED BACKGROUND SYSTEM - CRITICAL */}
+      <div className="fixed inset-0" style={{ zIndex: -10 }}>
+        {/* Layer 1: Deep gradient base */}
+        <div
+          style={{
+            background: `linear-gradient(135deg,
+              #000000 0%,
+              #0a0a0f 15%,
+              #1a0f2a 30%,
+              #2a0f2a 45%,
+              #1a1a1a 60%,
+              #0f0a1a 75%,
+              #000000 100%)`,
+            position: 'absolute',
+            inset: 0
+          }}
+        />
+
+        {/* Layer 2: Purple metallic overlays */}
+        <div
+          style={{
+            background: `radial-gradient(circle at 20% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 70%, rgba(124, 58, 237, 0.06) 0%, transparent 50%)`,
+            position: 'absolute',
+            inset: 0
+          }}
+        />
+
+        {/* Layer 3: Subtle texture */}
+        <div
+          style={{
+            background: `repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 2px,
+              rgba(147, 51, 234, 0.01) 2px,
+              rgba(147, 51, 234, 0.01) 4px
+            )`,
+            position: 'absolute',
+            inset: 0
+          }}
+        />
+      </div>
+
+      <Header />
+
+      {/* Back Button */}
+      <div className="relative pt-24 px-6 z-10">
+        <div className="max-w-7xl mx-auto">
+          <Link
+            to="/webinars"
+            className="inline-flex items-center gap-2 text-white/70 hover:text-purple-500 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Voltar aos Webinários</span>
+          </Link>
+        </div>
+      </div>
+
+      {/* SECTION 1 - HERO SECTION (EXACT 2-COLUMN LAYOUT) */}
+      <section className="relative pt-12 pb-20 px-6">
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* LEFT COLUMN */}
+            <div>
+              {/* Online status + attendee counter */}
+              <div className="inline-flex items-center gap-4 mb-6">
+                <div className="inline-flex items-center gap-2">
+                  <div className="relative">
+                    <span className="absolute -inset-1 bg-green-500 rounded-full blur opacity-75 animate-pulse"></span>
+                    <span className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                  </div>
+                  <span className="text-green-500 text-sm font-bold">Online</span>
+                </div>
+                <div className="inline-flex items-center gap-2 text-white/80 text-sm">
+                  <Users className="w-4 h-4 text-purple-500" />
+                  <span>{attendeeCount} inscritos</span>
+                </div>
+              </div>
+
+              {/* Main title with gradient on "Autonomous" */}
+              <h1 className="text-5xl md:text-7xl font-bold mb-4 relative">
+                <span className="text-white">Dominando </span>
+                <span className="bg-gradient-to-r from-white via-purple-500/80 to-white bg-clip-text text-transparent">
+                  Autonomous
+                </span>
+                <span className="text-white"> Code Agents</span>
+              </h1>
+
+              {/* Subtitle */}
+              <h2 className="text-xl md:text-2xl text-purple-500 mb-3 font-medium">
+                {webinar.subtitle}
+              </h2>
+
+              {/* Compelling copy */}
+              <p className="text-white text-lg mb-6">
+                {webinar.description}
+              </p>
+
+              {/* 3 key feature boxes with gradient icons */}
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-violet-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Bot className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-white text-base">Domine 4 agentes diferentes em uma sessão</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-violet-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Layers className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-white text-base">Comparação prática para máxima eficiência</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-violet-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Rocket className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-white text-base">Demonstrações hands-on em tempo real</span>
+                </div>
+              </div>
+
+              {/* Date/time/platform info */}
+              <div className="flex flex-wrap gap-4 text-sm text-white/60">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-5 h-5 text-purple-500" />
+                  <span>{webinar.date}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-5 h-5 text-purple-500" />
+                  <span>{webinar.time}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Video className="w-5 h-5 text-purple-500" />
+                  <span>Sessão no Zoom</span>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN */}
+            <div className="space-y-8">
+              {/* What You'll Learn card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="bg-gradient-to-br from-purple-500/10 to-violet-500/10 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/20"
+              >
+                <div className="flex items-center gap-2 mb-4">
+                  <BookOpen className="w-5 h-5 text-purple-500" />
+                  <h3 className="text-lg font-bold text-white">O que você vai aprender:</h3>
+                </div>
+                <ul className="space-y-3">
+                  {webinar.whatYouLearn.map((item, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <CheckCircle className="w-5 h-5 text-purple-500 mt-0.5 flex-shrink-0" />
+                      <span className="text-white/80">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Registration form card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="relative bg-gradient-to-br from-purple-900/30 to-violet-900/20 backdrop-blur-sm rounded-2xl p-8 border-2 border-purple-500/30"
+              >
+                {/* 4 Floating Corner Icons with Animations */}
+                <div className="absolute -top-6 -left-6">
+                  <motion.div
+                    className="w-14 h-14 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/30"
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <Bot className="w-7 h-7 text-white" />
+                  </motion.div>
+                </div>
+                <div className="absolute -top-6 -right-6">
+                  <motion.div
+                    className="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-violet-500/30"
+                    animate={{ y: [0, -3, 0] }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  >
+                    <Terminal className="w-6 h-6 text-white" />
+                  </motion.div>
+                </div>
+                <div className="absolute -bottom-6 -left-6">
+                  <motion.div
+                    className="w-12 h-12 bg-gradient-to-br from-purple-600 to-violet-500 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/30"
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  >
+                    <Cpu className="w-6 h-6 text-white" />
+                  </motion.div>
+                </div>
+                <div className="absolute -bottom-6 -right-6">
+                  <motion.div
+                    className="w-10 h-10 bg-gradient-to-br from-violet-600 to-purple-500 rounded-lg flex items-center justify-center shadow-lg shadow-violet-500/30"
+                    animate={{ y: [0, -2, 0] }}
+                    transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                  >
+                    <Brain className="w-5 h-5 text-white" />
+                  </motion.div>
+                </div>
+
+                <h3 className="text-2xl font-bold text-white mb-6">Garanta Sua Vaga Gratuita</h3>
+
+                {/* Progress Bar */}
+                <div className="mb-6">
+                  <div className="flex items-center justify-between text-sm text-purple-400 mb-2">
+                    <span>Vagas Limitadas</span>
+                    <span>65% preenchidas</span>
+                  </div>
+                  <div className="w-full bg-gray-800 rounded-full h-2">
+                    <motion.div
+                      className="bg-gradient-to-r from-purple-500 to-violet-500 h-2 rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: "65%" }}
+                      transition={{ duration: 2, ease: "easeOut" }}
+                    />
+                  </div>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Input Fields with Icons */}
+                  <div className="relative">
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <input
+                      type="text"
+                      placeholder="Seu nome completo"
+                      className="w-full pl-12 pr-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      required
+                    />
+                  </div>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <input
+                      type="email"
+                      placeholder="Seu melhor e-mail"
+                      className="w-full pl-12 pr-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      required
+                    />
+                  </div>
+                  <div className="relative">
+                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-purple-400 font-medium">WhatsApp</span>
+                    <input
+                      type="tel"
+                      placeholder="(00) 00000-0000"
+                      className="w-full pl-12 pr-20 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-purple-500 to-violet-500 text-white font-bold py-3 rounded-lg hover:from-purple-600 hover:to-violet-600 transform transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Registrando...' : 'Quero Meu Acesso Gratuito'}
+                  </button>
+                </form>
+
+                {showSuccess && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-4 p-3 bg-green-500/20 border border-green-500 rounded-lg text-green-400 text-center"
+                  >
+                    ✅ Inscrição realizada com sucesso!
+                  </motion.div>
+                )}
+
+                <p className="text-xs text-white/50 text-center mt-4">
+                  🔒 Seus dados estão seguros. Não enviamos spam.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 2 - IMPACT/TRANSFORMATION */}
+      <section className="py-20 bg-gradient-to-b from-transparent via-purple-900/5 to-transparent px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-5xl md:text-7xl font-bold mb-6 text-white leading-tight text-center">
+            Pare de <span className="text-red-500 line-through decoration-4">Perder Tempo</span>
+            <br />
+            <span className="text-4xl md:text-6xl">Comece a </span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-violet-500 to-purple-500 text-5xl md:text-7xl">
+              Desenvolver com Agentes
+            </span>
+          </h2>
+
+          <p className="text-xl text-white/70 max-w-4xl mx-auto mb-16 text-center">
+            A diferença entre desenvolvedores que lutam com código e aqueles que entregam projetos em tempo recorde está no domínio das ferramentas certas
+          </p>
+
+          <div className="grid lg:grid-cols-2 gap-6">
+            {/* Before box - RED theme - NO BADGE */}
+            <div className="bg-gradient-to-br from-red-900/30 to-red-800/20 backdrop-blur-sm rounded-3xl p-8 border-2 border-red-500/30 relative">
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-16 h-16 bg-red-900/30 rounded-2xl flex items-center justify-center border border-red-500/20">
+                  <X className="w-8 h-8 text-red-500" />
+                </div>
+                <span className="text-white font-bold text-sm flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5" />
+                  Antes
+                </span>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Desenvolvimento Sem Agentes Autônomos</h3>
+              <p className="text-red-400 text-lg mb-6">O caminho lento e doloroso</p>
+
+              <div className="space-y-3 mb-6">
+                <div className="flex justify-between text-sm">
+                  <span className="text-white/70">Escrevendo cada linha de código manualmente</span>
+                  <span className="text-red-400 font-bold">10h/dia</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-white/70">Sem automação inteligente de tarefas</span>
+                  <span className="text-red-400 font-bold">Produtividade 1x</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-white/70">Debugging linha por linha sem assistência</span>
+                  <span className="text-red-400 font-bold">40% do tempo</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-white/70">Refatoração manual e propensa a erros</span>
+                  <span className="text-red-400 font-bold">3 dias/feature</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-white/70">Sem paralelização de desenvolvimento</span>
+                  <span className="text-red-400 font-bold">1 tarefa por vez</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-white/70">Curva de aprendizado isolada e lenta</span>
+                  <span className="text-red-400 font-bold">Meses de estudo</span>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-red-500/20">
+                <p className="text-red-400 font-semibold">Resultado: Projetos atrasados e stress constante</p>
+              </div>
+            </div>
+
+            {/* After box - WITH CYBERPUNK BADGE */}
+            <div className="relative">
+              {/* Revolutionary method badge - POSITIONED OUTSIDE */}
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+                <motion.div animate={{ y: [0, -3, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+                  <div className="relative bg-gradient-to-r from-purple-500 to-violet-500 px-5 py-2 shadow-2xl shadow-purple-500/50">
+                    {/* Cyberpunk corner brackets */}
+                    <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-white/80" />
+                    <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-white/80" />
+                    <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-white/80" />
+                    <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-white/80" />
+                    <span className="text-white font-bold text-xs flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      Método Revolucionário
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Main card */}
+              <div className="bg-gradient-to-br from-purple-900/30 to-violet-900/20 backdrop-blur-sm rounded-3xl p-8 border-2 border-purple-500/40">
+                <div className="flex items-center justify-between mb-4 pt-2">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500/30 to-violet-500/30 rounded-2xl flex items-center justify-center border-2 border-purple-500/50">
+                    <Rocket className="w-8 h-8 text-purple-500" />
+                  </div>
+                  <span className="text-white font-bold text-sm flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    Depois
+                  </span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Com Domínio dos 4 Agentes Autônomos</h3>
+                <p className="text-purple-500 text-lg font-medium mb-6">O futuro do desenvolvimento</p>
+
+                <div className="space-y-3 mb-6">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-white/70">Código gerado por IA em 4 plataformas diferentes</span>
+                    <span className="text-purple-400 font-bold">4x mais opções</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-white/70">Automação completa com o agente ideal</span>
+                    <span className="text-purple-400 font-bold">10x produtividade</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-white/70">Debug automático com múltiplas abordagens</span>
+                    <span className="text-purple-400 font-bold">Minutos</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-white/70">Refatoração inteligente cross-platform</span>
+                    <span className="text-purple-400 font-bold">1 comando</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-white/70">Execução paralela com múltiplos agentes</span>
+                    <span className="text-purple-400 font-bold">4x mais rápido</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-white/70">Domínio completo do ecossistema de IA</span>
+                    <span className="text-purple-400 font-bold">Expert em 30 dias</span>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-purple-500/20">
+                  <p className="text-purple-400 font-semibold">Resultado: Desenvolvedor 10x com arsenal completo</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3 - BENEFITS (Enhanced with gradient and badges) */}
+      <section className="py-20 bg-gradient-to-b from-transparent via-purple-900/5 to-transparent px-6">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
+            Aprenda na <span className="bg-gradient-to-r from-white via-purple-500/80 to-white bg-clip-text text-transparent">Prática</span>
+          </h2>
+          <p className="text-xl text-white/60 mb-16 text-center max-w-4xl mx-auto">
+            Dominando os 4 principais agentes de código autônomo do mercado com demonstrações ao vivo, comparações práticas e casos de uso reais.
+            Você sairá deste webinar pronto para implementar qualquer agente em seu workflow e multiplicar sua produtividade imediatamente.
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {webinar.benefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/20 hover:border-purple-500/40 transition-colors relative">
+                  {/* Duration and level badges */}
+                  <div className="absolute top-6 right-6 flex items-center gap-2">
+                    <span className="text-xs text-purple-500 bg-purple-500/10 px-2 py-1 rounded-full">
+                      {benefit.duration}
+                    </span>
+                    <span className="text-xs text-white/50 bg-white/5 px-2 py-1 rounded-full">
+                      {benefit.level}
+                    </span>
+                  </div>
+
+                  {/* Icon with gradient wrapper */}
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/30">
+                    <benefit.icon className="w-8 h-8 text-white" />
+                  </div>
+
+                  <h3 className="text-xl font-bold text-white mb-4">{benefit.title}</h3>
+                  <p className="text-white/60">{benefit.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4 - AGENDA (Enhanced with module cards) */}
+      <section className="py-20 bg-gradient-to-b from-transparent via-purple-900/5 to-transparent px-6">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-white via-purple-500/80 to-white bg-clip-text text-transparent">
+              Agenda Completa
+            </span>
+          </h2>
+          <p className="text-xl text-white/60 text-center mb-16 max-w-4xl mx-auto">
+            Uma jornada completa por todas as principais ferramentas de código autônomo do mercado.
+            Você aprenderá desde a instalação até técnicas avançadas de cada plataforma, com demonstrações
+            práticas e casos de uso reais que poderá aplicar imediatamente.
+          </p>
+
+          <div className="space-y-6 max-w-4xl mx-auto">
+            {webinar.agenda.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/20 hover:border-purple-500/40 transition-colors relative"
+              >
+                <div className="flex items-start gap-6">
+                  {/* Icon wrapper */}
+                  <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-7 h-7 text-white" />
+                  </div>
+
+                  <div className="flex-1">
+                    {/* Module label and duration */}
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-purple-500 font-bold text-sm bg-purple-500/10 px-3 py-1 rounded-full">
+                        {item.time}
+                      </span>
+                      <span className="text-white/40">•</span>
+                      <span className="text-white/60 text-sm">
+                        {item.module}
+                      </span>
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-white mb-2">{item.topic}</h3>
+                    <p className="text-white/60">{item.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5 - INSTRUCTOR (Enhanced with gradient and badge position) */}
+      <section className="py-20 bg-gradient-to-b from-transparent via-purple-900/5 to-transparent px-6">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            Seu <span className="bg-gradient-to-r from-white via-purple-500/80 to-white bg-clip-text text-transparent">Instrutor</span>
+          </h2>
+          <p className="text-xl text-white/60 text-center mb-16 max-w-3xl mx-auto">
+            Aprenda com quem já implementou todos os agentes em produção e transformou a produtividade de centenas de desenvolvedores
+          </p>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-12 border border-purple-500/20">
+              <div className="grid md:grid-cols-2 gap-12 items-center">
+                {/* Photo side */}
+                <div className="relative">
+                  <img
+                    src={webinar.instructor.photo}
+                    alt={webinar.instructor.name}
+                    className="rounded-2xl w-full"
+                  />
+                </div>
+
+                {/* Content with verified badge */}
+                <div className="relative">
+                  {/* Verified instructor badge - ON CONTENT SIDE */}
+                  <div className="absolute -top-6 -right-6 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 shadow-lg shadow-green-500/30">
+                    <CheckCircle className="w-4 h-4" />
+                    Instrutor Verificado
+                  </div>
+
+                  <h3 className="text-3xl font-bold text-white mb-2">{webinar.instructor.name}</h3>
+                  <p className="text-purple-500 font-semibold mb-1">{webinar.instructor.title}</p>
+                  <p className="text-white/60 text-sm mb-4">{webinar.instructor.company}</p>
+                  <p className="text-white/60 mb-6 text-sm">{webinar.instructor.bio}</p>
+
+                  <div className="space-y-2 mb-6">
+                    {webinar.instructor.achievements.map((achievement, index) => (
+                      <div key={index} className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-white/70 text-sm">{achievement}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex gap-4">
+                    <a
+                      href={webinar.instructor.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-purple-500 hover:text-purple-400 transition-colors"
+                    >
+                      <Linkedin className="w-5 h-5" />
+                      <span className="text-sm">LinkedIn</span>
+                    </a>
+                    <a
+                      href={webinar.instructor.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-purple-500 hover:text-purple-400 transition-colors"
+                    >
+                      <Instagram className="w-5 h-5" />
+                      <span className="text-sm">Instagram</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6 - STATISTICS (Enhanced with icons and progress bars) */}
+      <section className="py-20 bg-gradient-to-b from-transparent via-purple-900/5 to-transparent px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            Resultados <span className="bg-gradient-to-r from-purple-500 via-white to-purple-500 bg-clip-text text-transparent">Comprovados</span>
+          </h2>
+          <p className="text-xl text-white/60 text-center mb-16 max-w-3xl mx-auto">
+            Métricas reais de +500 desenvolvedores após 30 dias usando as técnicas ensinadas neste webinar.
+            Números que comprovam a transformação real na produtividade e qualidade de entrega.
+          </p>
+
+          {/* 4 stat boxes with icons and progress bars */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {webinar.statistics.map((stat, index) => {
+              // Define styles based on color
+              const getColorStyles = (color) => {
+                switch(color) {
+                  case 'green-500':
+                    return {
+                      bg: 'bg-gradient-to-br from-green-500/20 to-emerald-500/10',
+                      border: 'border-green-500/30',
+                      icon: 'bg-gradient-to-br from-green-500 to-emerald-500',
+                      text: 'text-green-500',
+                      gradient: 'linear-gradient(to right, rgb(34 197 94), rgb(16 185 129))'
+                    }
+                  case 'blue-500':
+                    return {
+                      bg: 'bg-gradient-to-br from-blue-500/20 to-cyan-500/10',
+                      border: 'border-blue-500/30',
+                      icon: 'bg-gradient-to-br from-blue-500 to-cyan-500',
+                      text: 'text-blue-500',
+                      gradient: 'linear-gradient(to right, rgb(59 130 246), rgb(6 182 212))'
+                    }
+                  case 'purple-500':
+                    return {
+                      bg: 'bg-gradient-to-br from-purple-500/20 to-violet-500/10',
+                      border: 'border-purple-500/30',
+                      icon: 'bg-gradient-to-br from-purple-500 to-violet-500',
+                      text: 'text-purple-500',
+                      gradient: 'linear-gradient(to right, rgb(168 85 247), rgb(139 92 246))'
+                    }
+                  case 'orange-500':
+                    return {
+                      bg: 'bg-gradient-to-br from-orange-500/20 to-amber-500/10',
+                      border: 'border-orange-500/30',
+                      icon: 'bg-gradient-to-br from-orange-500 to-amber-500',
+                      text: 'text-orange-500',
+                      gradient: 'linear-gradient(to right, rgb(249 115 22), rgb(245 158 11))'
+                    }
+                  default:
+                    return {
+                      bg: 'bg-gradient-to-br from-gray-500/20 to-gray-500/10',
+                      border: 'border-gray-500/30',
+                      icon: 'bg-gradient-to-br from-gray-500 to-gray-600',
+                      text: 'text-gray-500',
+                      gradient: 'linear-gradient(to right, rgb(107 114 128), rgb(75 85 99))'
+                    }
+                }
+              }
+
+              const styles = getColorStyles(stat.color)
+
+              return (
+                <motion.div
+                  key={index}
+                  className={`${styles.bg} backdrop-blur-sm rounded-2xl p-6 border ${styles.border} relative`}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  transition={{ delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  {/* Icon at top */}
+                  <div className={`w-12 h-12 ${styles.icon} rounded-xl flex items-center justify-center mb-4`}>
+                    <stat.icon className="w-6 h-6 text-white" />
+                  </div>
+
+                  {/* Large number */}
+                  <div className={`text-5xl font-bold ${styles.text} mb-2`}>
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                  </div>
+
+                  {/* Label */}
+                  <div className="text-lg font-semibold text-white mb-1">
+                    {stat.label}
+                  </div>
+
+                  {/* Sublabel */}
+                  <div className="text-sm text-white/60 mb-4">
+                    {stat.description}
+                  </div>
+
+                  {/* Progress bar */}
+                  <div className="w-full bg-gray-800 rounded-full h-1.5">
+                    <motion.div
+                      className="h-1.5 rounded-full"
+                      style={{ background: styles.gradient }}
+                      initial={{ width: 0 }}
+                      whileInView={{ width: stat.progress }}
+                      transition={{ duration: 1.5, ease: "easeOut" }}
+                      viewport={{ once: true }}
+                    />
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+
+          {/* Testimonial */}
+          <div className="bg-gradient-to-r from-purple-500/20 to-violet-500/20 p-[1px] rounded-2xl max-w-3xl mx-auto">
+            <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-8">
+              <p className="text-lg text-white/80 mb-6">"{webinar.testimonial.quote}"</p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-500 rounded-full flex items-center justify-center text-white font-bold">
+                  {webinar.testimonial.author.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div>
+                  <p className="font-bold text-white">{webinar.testimonial.author}</p>
+                  <p className="text-purple-500">{webinar.testimonial.role}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7 - GUARANTEE (Enhanced green theme with special design) */}
+      <section className="py-20 bg-gradient-to-b from-transparent via-green-900/5 to-transparent px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="relative">
+            {/* Limited spots badge */}
+            <div className="flex justify-center mb-8">
+              <div className="bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-2 rounded-full shadow-lg shadow-green-500/30">
+                <div className="flex items-center gap-2">
+                  <Lock className="w-4 h-4 text-white" />
+                  <span className="text-white font-bold">Vagas Limitadas</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Main guarantee card with shield icon */}
+            <div className="max-w-4xl mx-auto bg-gradient-to-br from-green-900/20 to-emerald-900/10 backdrop-blur-sm rounded-3xl p-12 border-2 border-green-500/30">
+              {/* Central shield icon */}
+              <div className="flex justify-center mb-8">
+                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30">
+                  <Shield className="w-10 h-10 text-white" />
+                </div>
+              </div>
+
+              {/* Title with gradient */}
+              <h2 className="text-4xl md:text-5xl font-bold text-center mb-6">
+                Sua Vaga está <span className="text-green-500">100% Garantida</span>
+              </h2>
+
+              {/* Description */}
+              <p className="text-xl text-white/70 text-center mb-12 max-w-3xl mx-auto">
+                Este webinário é <span className="text-green-400 font-semibold">completamente gratuito</span>, mas as vagas são limitadas.
+                Garantimos que você terá acesso a <span className="text-green-400 font-semibold">3 horas de conteúdo transformador</span> que vai revolucionar sua forma de desenvolver com IA.
+              </p>
+
+              {/* 3 guarantee items */}
+              <div className="grid md:grid-cols-3 gap-8">
+                {webinar.guarantees.map((item, index) => (
+                  <div key={index} className="text-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                      <item.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-white/60 text-sm">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8 - FINAL CTA (Enhanced with icons on features) */}
+      <section className="py-20 bg-gradient-to-b from-transparent via-purple-900/5 to-transparent px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-5xl md:text-6xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-purple-500 via-white to-purple-500 bg-clip-text text-transparent drop-shadow-2xl">
+              Pronto para Dominar os 4 Principais Agentes de Código?
+            </span>
+          </h2>
+          <p className="text-xl text-white/70 text-center mb-12 max-w-4xl mx-auto">
+            Reserve sua vaga gratuita agora e entre na era do desenvolvimento autônomo.
+            Vagas extremamente limitadas - apenas 500 desenvolvedores terão acesso a este
+            conteúdo exclusivo que vai transformar completamente sua forma de programar.
+          </p>
+
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-gradient-to-br from-purple-900/40 to-violet-900/30 backdrop-blur-sm rounded-3xl p-10 border-2 border-purple-500/40">
+              <h3 className="text-3xl font-bold text-white text-center mb-8">
+                Garanta Sua Vaga Gratuita Agora
+              </h3>
+
+              <form onSubmit={handleSubmit} className="space-y-4 mb-8">
+                <input
+                  type="text"
+                  placeholder="Seu nome completo"
+                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Seu melhor e-mail"
+                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                />
+                <input
+                  type="tel"
+                  placeholder="WhatsApp: (00) 00000-0000"
+                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  required
+                />
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-purple-500 to-violet-500 text-white font-bold py-4 rounded-lg hover:from-purple-600 hover:to-violet-600 transform transition-all duration-300 hover:scale-105 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? 'Registrando...' : 'Quero Meu Acesso Gratuito'}
+                </button>
+              </form>
+
+              {showSuccess && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-green-500/20 border border-green-500 rounded-lg text-green-400 text-center"
+                >
+                  ✅ Inscrição realizada com sucesso! Verifique seu e-mail.
+                </motion.div>
+              )}
+
+              {/* 3 features with icons */}
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div className="text-white/60">
+                  <CheckCircle className="w-6 h-6 text-green-500 mx-auto mb-2" />
+                  <div className="font-bold text-white mb-1">100% Gratuito</div>
+                  <div className="text-sm">Sem pegadinhas ou surpresas</div>
+                </div>
+                <div className="text-white/60">
+                  <Trophy className="w-6 h-6 text-purple-500 mx-auto mb-2" />
+                  <div className="font-bold text-white mb-1">Online</div>
+                  <div className="text-sm">Tire dúvidas em tempo real</div>
+                </div>
+                <div className="text-white/60">
+                  <Heart className="w-6 h-6 text-red-500 mx-auto mb-2" />
+                  <div className="font-bold text-white mb-1">Material Exclusivo</div>
+                  <div className="text-sm">Guia comparativo dos 4 agentes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+export default AutonomousAgentsWebinar

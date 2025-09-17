@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import {
   Calendar, Clock, Users, ArrowRight, Sparkles,
   Brain, Zap, Code, Rocket, Star, TrendingUp,
-  BookOpen, Award, Target, CheckCircle, Monitor
+  BookOpen, Award, Target, CheckCircle, Monitor, Bot
 } from 'lucide-react'
 import Header from '../components/shared/Header'
 
@@ -67,6 +67,24 @@ const webinars = [
     icon: Brain,
     level: 'Iniciante',
     spots: 200,
+    exclusive: false,
+    popular: true
+  },
+  {
+    id: 2,
+    slug: 'domine-autonomous-code-agents',
+    title: 'Dominando Autonomous Code Agents',
+    subtitle: 'Compare e domine os 4 principais agentes de código autônomo do mercado',
+    date: '4 Fev 2025',
+    time: '20:00',
+    duration: '2h',
+    attendees: 247,
+    description: 'Descubra as técnicas secretas para revolucionar seu workflow com agentes autônomos. Aprenda OpenAI Codex, Claude Code, Replit e Warp em uma sessão intensiva com demonstrações práticas.',
+    topics: ['OpenAI Codex', 'Claude Code', 'Replit', 'Warp'],
+    gradient: 'from-purple-600 to-violet-600',
+    icon: Bot,
+    level: 'Avançado',
+    spots: 500,
     exclusive: false,
     popular: true
   }

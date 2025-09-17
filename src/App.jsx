@@ -17,6 +17,7 @@ const WebinarHub = lazy(() => import('./pages/WebinarHub'))
 const WebinarTemplate = lazy(() => import('./pages/WebinarTemplate'))
 const WebinarsPage = lazy(() => import('./webinars/WebinarsPage'))
 const ClaudeCodeWebinar = lazy(() => import('./webinars/domine-claude-code/ClaudeCodeWebinar'))
+const AutonomousAgentsWebinar = lazy(() => import('./webinars/domine-autonomous-code-agents/AutonomousAgentsWebinar'))
 
 // Loading component
 const PageLoader = () => (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/webinarios/:slug" element={<WebinarTemplate />} />
           <Route path="/webinars" element={<WebinarsPage />} />
           <Route path="/webinars/domine-claude-code" element={<ClaudeCodeWebinar />} />
+          <Route path="/webinars/domine-autonomous-code-agents" element={<AutonomousAgentsWebinar />} />
           <Route path="/webinars/:slug" element={<WebinarTemplate />} />
         </Routes>
       </Suspense>
