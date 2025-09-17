@@ -1183,35 +1183,6 @@ function ClaudeCodeWebinar() {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent"
-          >
-            Por que participar?
-          </motion.h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {webinar.benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-orange-900/10 to-amber-900/5 backdrop-blur-sm rounded-lg p-6 border border-orange-500/20 hover:border-orange-500/40 transition-colors"
-              >
-                <benefit.icon className="w-10 h-10 text-orange-500 mb-4" />
-                <p className="text-white/80">{benefit.text}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Satisfaction Guarantee Section */}
       <section className="py-20 px-6">
@@ -1224,10 +1195,25 @@ function ClaudeCodeWebinar() {
             className="text-center"
           >
             <div className="bg-gradient-to-br from-green-900/20 to-emerald-900/10 backdrop-blur-sm rounded-3xl p-12 border border-green-500/20 relative">
+              {/* Cyberpunk Badge */}
               <div className="absolute -top-6 left-1/2 -translate-x-1/2">
-                <div className="bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-3 rounded-full">
-                  <span className="text-white font-bold">GARANTIA TOTAL</span>
-                </div>
+                <motion.div
+                  className="relative"
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 blur-xl opacity-50" />
+                  <div className="relative bg-gradient-to-r from-green-500 to-emerald-500 px-5 py-2 shadow-2xl">
+                    <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-white/80" />
+                    <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-white/80" />
+                    <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-white/80" />
+                    <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-white/80" />
+                    <span className="text-white text-xs font-bold flex items-center gap-2">
+                      <Lock className="w-4 h-4" />
+                      Vagas Limitadas
+                    </span>
+                  </div>
+                </motion.div>
               </div>
 
               <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -1235,36 +1221,37 @@ function ClaudeCodeWebinar() {
               </div>
 
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-                Garantia de <span className="text-green-400">Satisfação Total</span>
+                Sua Vaga está <span className="text-green-400">100% Garantida</span>
               </h2>
 
               <p className="text-xl text-white/80 mb-8 leading-relaxed">
-                Estamos tão confiantes na qualidade do nosso conteúdo que oferecemos uma
-                <strong className="text-green-400"> garantia incondicional de 30 dias</strong>.
-                Se você não ficar completamente satisfeito, devolvemos 100% do seu investimento.
+                Este webinário é <strong className="text-green-400">completamente gratuito</strong>, mas as
+                vagas são limitadas. Garantimos que você terá acesso a
+                <strong className="text-green-400"> 3 horas de conteúdo transformador</strong> que vai
+                revolucionar sua forma de desenvolver com IA.
               </p>
 
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/20">
                   <CheckCircle className="w-8 h-8 text-green-500 mx-auto mb-3" />
-                  <h3 className="font-bold text-white mb-2">Sem Riscos</h3>
-                  <p className="text-white/70 text-sm">Experimente sem preocupações</p>
+                  <h3 className="font-bold text-white mb-2">100% Gratuito</h3>
+                  <p className="text-white/70 text-sm">Sem pegadinhas, sem vendas</p>
                 </div>
                 <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/20">
                   <Trophy className="w-8 h-8 text-green-500 mx-auto mb-3" />
-                  <h3 className="font-bold text-white mb-2">Qualidade Garantida</h3>
-                  <p className="text-white/70 text-sm">Conteúdo de altíssimo nível</p>
+                  <h3 className="font-bold text-white mb-2">Acesso Vitalício</h3>
+                  <p className="text-white/70 text-sm">Gravação disponível por 30 dias</p>
                 </div>
                 <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/20">
                   <Heart className="w-8 h-8 text-green-500 mx-auto mb-3" />
-                  <h3 className="font-bold text-white mb-2">Compromisso Total</h3>
-                  <p className="text-white/70 text-sm">Seu sucesso é nossa prioridade</p>
+                  <h3 className="font-bold text-white mb-2">Suporte Direto</h3>
+                  <p className="text-white/70 text-sm">Tire dúvidas ao vivo comigo</p>
                 </div>
               </div>
 
               <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-xl p-6 border border-green-500/30">
                 <p className="text-green-400 font-bold text-lg">
-                  “Não é apenas um webinário, é um investimento no seu futuro profissional”
+                  "Apenas 200 vagas disponíveis - Garanta a sua antes que esgotem!"
                 </p>
               </div>
             </div>
