@@ -629,14 +629,21 @@ function ClaudeCodeWebinar() {
               {/* Recommended badge - positioned outside */}
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
                 <motion.div
-                  className="bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-1.5 rounded-full shadow-lg shadow-orange-500/50"
                   animate={{ y: [0, -3, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <span className="text-white font-bold text-xs flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    MÉTODO REVOLUCIONÁRIO
-                  </span>
+                  <div className="relative bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-2 shadow-2xl shadow-orange-500/50">
+                    {/* Cyberpunk corner brackets */}
+                    <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-white/80" />
+                    <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-white/80" />
+                    <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-white/80" />
+                    <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-white/80" />
+
+                    <span className="text-white font-bold text-xs flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      Método Revolucionário
+                    </span>
+                  </div>
                 </motion.div>
               </div>
 
