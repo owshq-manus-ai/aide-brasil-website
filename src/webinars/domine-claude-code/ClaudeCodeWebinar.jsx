@@ -1189,11 +1189,11 @@ function ClaudeCodeWebinar() {
               </p>
               <div className="flex items-center justify-center gap-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold">JM</span>
+                  <span className="text-white font-bold">MO</span>
                 </div>
                 <div className="text-left">
-                  <p className="text-white font-bold">João Miguel</p>
-                  <p className="text-orange-400 text-sm">Senior Data Engineer</p>
+                  <p className="text-white font-bold">Mateus Oliveira</p>
+                  <p className="text-orange-400 text-sm">Data Architect @OneWaySolution</p>
                 </div>
               </div>
             </div>
@@ -1442,7 +1442,7 @@ function ClaudeCodeWebinar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="mt-16 flex flex-wrap items-center justify-center gap-8"
+              className="mt-16 flex flex-col md:flex-row items-start justify-start md:justify-center gap-4 md:gap-8 max-w-2xl mx-auto"
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-500/20 flex items-center justify-center">
@@ -1450,7 +1450,7 @@ function ClaudeCodeWebinar() {
                 </div>
                 <div>
                   <div className="text-white font-semibold">100% Gratuito</div>
-                  <div className="text-white/50 text-xs">Sem pegadinhas</div>
+                  <div className="text-white/50 text-xs">Sem pegadinhas ou surpresas</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -1468,7 +1468,7 @@ function ClaudeCodeWebinar() {
                 </div>
                 <div>
                   <div className="text-white font-semibold">Bônus Exclusivo</div>
-                  <div className="text-white/50 text-xs">Material extra</div>
+                  <div className="text-white/50 text-xs">Material extra e exclusivo</div>
                 </div>
               </div>
             </motion.div>
