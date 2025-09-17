@@ -9,51 +9,55 @@ const Header = () => {
   const isHomePage = location.pathname === '/'
   const isWebinarsPage = location.pathname.includes('/webinarios')
   
-  // Determine color scheme based on current page
+  // Determine color scheme based on current page - matching hero sections
   const getColorScheme = () => {
     if (location.pathname === '/webinarios') {
-      // Webinars hub page - Purple theme
+      // Webinars hub page - Metallic silver/gray theme (matching the hub's metallic effect)
       return {
-        from: 'from-purple-500/10',
-        to: 'to-violet-500/10',
-        hoverFrom: 'hover:from-purple-500/20',
-        hoverTo: 'hover:to-violet-500/20',
-        border: 'border-purple-500/20',
-        hoverBorder: 'hover:border-purple-500/40',
-        shadow: 'hover:shadow-purple-500/20'
+        from: 'from-gray-400/20',
+        to: 'to-gray-300/20',
+        hoverFrom: 'hover:from-gray-400/30',
+        hoverTo: 'hover:to-gray-300/30',
+        border: 'border-gray-400/30',
+        hoverBorder: 'hover:border-gray-300/50',
+        shadow: 'hover:shadow-gray-400/30',
+        headerBg: 'bg-gradient-to-r from-gray-900/95 via-[#030303]/95 to-gray-800/95'
       }
     } else if (location.pathname === '/webinarios/domine-claude-code') {
-      // Claude Code webinar - Orange theme
+      // Claude Code webinar - Orange/amber metallic theme
       return {
-        from: 'from-orange-500/10',
-        to: 'to-amber-500/10',
-        hoverFrom: 'hover:from-orange-500/20',
-        hoverTo: 'hover:to-amber-500/20',
-        border: 'border-orange-500/20',
-        hoverBorder: 'hover:border-orange-500/40',
-        shadow: 'hover:shadow-orange-500/20'
+        from: 'from-orange-500/20',
+        to: 'to-amber-500/20',
+        hoverFrom: 'hover:from-orange-500/30',
+        hoverTo: 'hover:to-amber-500/30',
+        border: 'border-orange-500/30',
+        hoverBorder: 'hover:border-orange-500/50',
+        shadow: 'hover:shadow-orange-500/30',
+        headerBg: 'bg-gradient-to-r from-orange-900/10 via-[#030303]/95 to-amber-900/10'
       }
     } else if (location.pathname.startsWith('/webinarios/')) {
-      // Other webinar pages - default to purple
+      // Other webinar pages - default to metallic purple
       return {
-        from: 'from-purple-500/10',
-        to: 'to-violet-500/10',
-        hoverFrom: 'hover:from-purple-500/20',
-        hoverTo: 'hover:to-violet-500/20',
-        border: 'border-purple-500/20',
-        hoverBorder: 'hover:border-purple-500/40',
-        shadow: 'hover:shadow-purple-500/20'
+        from: 'from-purple-500/20',
+        to: 'to-violet-500/20',
+        hoverFrom: 'hover:from-purple-500/30',
+        hoverTo: 'hover:to-violet-500/30',
+        border: 'border-purple-500/30',
+        hoverBorder: 'hover:border-purple-500/50',
+        shadow: 'hover:shadow-purple-500/30',
+        headerBg: 'bg-gradient-to-r from-purple-900/10 via-[#030303]/95 to-violet-900/10'
       }
     } else {
-      // Home page - Green theme
+      // Home page - Metallic green theme
       return {
-        from: 'from-green-500/10',
-        to: 'to-emerald-500/10',
-        hoverFrom: 'hover:from-green-500/20',
-        hoverTo: 'hover:to-emerald-500/20',
-        border: 'border-green-500/20',
-        hoverBorder: 'hover:border-green-500/40',
-        shadow: 'hover:shadow-green-500/20'
+        from: 'from-green-500/20',
+        to: 'to-emerald-500/20',
+        hoverFrom: 'hover:from-green-500/30',
+        hoverTo: 'hover:to-emerald-500/30',
+        border: 'border-green-500/30',
+        hoverBorder: 'hover:border-green-500/50',
+        shadow: 'hover:shadow-green-500/30',
+        headerBg: 'bg-gradient-to-r from-green-900/10 via-[#030303]/95 to-emerald-900/10'
       }
     }
   }
@@ -95,7 +99,7 @@ const Header = () => {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#030303]/80 backdrop-blur-md border-b border-white/[0.08]">
+    <header className={`fixed top-0 left-0 right-0 z-50 ${colorScheme.headerBg || 'bg-[#030303]/95'} backdrop-blur-md border-b border-white/[0.08]`}>
       <div className="max-w-7xl mx-auto px-6 py-2">
         <div className="flex items-center justify-center">
           {/* Desktop Navigation - Centered */}
