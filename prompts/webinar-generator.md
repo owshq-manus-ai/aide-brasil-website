@@ -114,16 +114,34 @@ Timeline items (4-6 items):
   3. [FEATURE_3] - [FEATURE_DESC_3]
 
 ### TECHNICAL REQUIREMENTS:
-1. Use the exact same file structure as ClaudeCodeWebinar.jsx
-2. Maintain all animations (framer-motion)
-3. Keep the cyberpunk corner bracket badges
-4. Use the same glass morphism effects
-5. Implement animated counters for statistics
-6. Include the countdown timer
-7. Keep responsive breakpoints (mobile-first)
-8. Use the same form validation logic
-9. Maintain the metallic background gradient pattern
-10. Keep all hover effects and transitions
+1. **FOLDER STRUCTURE CREATION**:
+   - Create complete directory: `/src/webinars/[WEBINAR_FOLDER_NAME]/`
+   - File name: `[COMPONENT_NAME].jsx`
+   - Full path: `/src/webinars/[WEBINAR_FOLDER_NAME]/[COMPONENT_NAME].jsx`
+
+2. **COMPONENT STRUCTURE**:
+   - Use the exact same file structure as ClaudeCodeWebinar.jsx
+   - Import all required dependencies (React, framer-motion, Lucide icons)
+   - Include AnimatedCounter component inline
+   - Maintain all animations (framer-motion)
+   - Keep the cyberpunk corner bracket badges
+   - Use the same glass morphism effects
+   - Implement animated counters for statistics
+   - Include the countdown timer
+   - Keep responsive breakpoints (mobile-first)
+   - Use the same form validation logic
+   - Maintain the metallic background gradient pattern
+   - Keep all hover effects and transitions
+
+3. **ROUTING INTEGRATION**:
+   - Add lazy import to App.jsx
+   - Configure route path: `/webinars/[WEBINAR_FOLDER_NAME]`
+   - Component name: `[COMPONENT_NAME]`
+
+4. **WEBINAR LISTING INTEGRATION**:
+   - Create webinar card entry for the listing page
+   - Theme-consistent color scheme
+   - Include all relevant metadata
 
 ### COLOR REPLACEMENT RULES:
 - Replace all orange-500 with [PRIMARY_COLOR]
@@ -132,14 +150,77 @@ Timeline items (4-6 items):
 - Adjust opacity values to match the new color scheme
 - Keep white text for contrast
 
+### ADDITIONAL WEBINAR CARD FOR LISTING PAGE:
+Also create a card component to add to the webinars listing page with:
+- Title: [WEBINAR_TITLE]
+- Date: [DATE]
+- Time: [TIME]
+- Badge: [BADGE_TEXT]
+- Description: [CARD_DESCRIPTION]
+- Topics: [TOPIC_ARRAY]
+- Color scheme: [PRIMARY_COLOR]/[SECONDARY_COLOR] gradient
+- Link: "/webinars/[WEBINAR_FOLDER_NAME]"
+
 ### OUTPUT FORMAT:
 Generate the complete React component code with:
-- All imports
-- State management
-- Event handlers
-- Full JSX structure
+- All imports properly configured
+- State management for form and modal
+- Event handlers for registration
+- Full JSX structure with 8 sections
 - Tailwind classes adapted to new colors
 - Comments marking each section
+- AnimatedCounter component included
+- Countdown timer logic
+- Form submission handler
+- Registration modal
+
+### FILE NAMING:
+- Component name: `[COMPONENT_NAME]`
+- File path: `/src/webinars/[WEBINAR_FOLDER_NAME]/[COMPONENT_NAME].jsx`
+- Route path: `/webinars/[WEBINAR_FOLDER_NAME]`
+
+### ROUTE CONFIGURATION:
+Add to App.jsx:
+```jsx
+const [COMPONENT_NAME] = lazy(() => import('./webinars/[WEBINAR_FOLDER_NAME]/[COMPONENT_NAME]'))
+// In Routes:
+<Route path="/webinars/[WEBINAR_FOLDER_NAME]" element={<[COMPONENT_NAME] />} />
+```
+
+---
+
+## EXECUTION INSTRUCTIONS:
+
+### STEP 1: Generate the Component
+1. Copy this entire filled prompt
+2. Paste into Claude or ChatGPT-4
+3. Request: "Generate the complete React component based on this specification"
+
+### STEP 2: Create Folder Structure
+4. Create the folder: `/src/webinars/[WEBINAR_FOLDER_NAME]/`
+5. Create the file: `[COMPONENT_NAME].jsx`
+6. Paste the generated code into the file
+
+### STEP 3: Update Routing
+7. Open `/src/App.jsx`
+8. Add lazy import: `const [COMPONENT_NAME] = lazy(() => import('./webinars/[WEBINAR_FOLDER_NAME]/[COMPONENT_NAME]'))`
+9. Add route: `<Route path="/webinars/[WEBINAR_FOLDER_NAME]" element={<[COMPONENT_NAME] />} />`
+
+### STEP 4: Update Webinar Listing
+10. Locate the webinars listing page
+11. Add new webinar card with the specified data structure
+12. Ensure color scheme matches the webinar theme
+
+### STEP 5: Test and Deploy
+13. Test the route works: `npm run dev`
+14. Verify responsive design on mobile
+15. Check all animations function properly
+16. Test form submission
+17. Deploy!
+
+**Estimated Generation Time**: 30 seconds
+**Estimated Implementation Time**: 10 minutes
+**Total Time to Live**: ~15 minutes
 
 ---
 
@@ -149,6 +230,8 @@ For a Data Engineering webinar, you would fill:
 - PRIMARY_COLOR: "blue-500"
 - SECONDARY_COLOR: "cyan-500"
 - WEBINAR_TITLE: "Dominando Engenharia de Dados com IA"
+- WEBINAR_FOLDER_NAME: "domine-engenharia-dados"
+- COMPONENT_NAME: "DataEngineeringWebinar"
 - BEFORE_TITLE: "Pipeline de Dados Tradicional"
 - [... and so on]
 
