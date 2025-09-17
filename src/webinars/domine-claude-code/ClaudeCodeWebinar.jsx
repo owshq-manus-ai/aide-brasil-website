@@ -7,13 +7,45 @@ import {
   Code2, Rocket, Shield, TrendingUp, Award, Bot,
   Cpu, GitBranch, Terminal, Layers, Database,
   MessageSquare, ChevronDown, Lock, Trophy,
-  Timer, Heart, AlertCircle, Lightbulb, X, Check, Video, Phone, Mail, User
+  Timer, Heart, AlertCircle, Lightbulb, X, Check, Video, Phone, Mail, User,
+  Gauge, Code, Bug
 } from 'lucide-react'
 import Header from '../../components/shared/Header'
 
 // Configuration for registration method
 const USE_TYPEFORM = false
 const TYPEFORM_URL = 'https://your-typeform-url.typeform.com/to/YOUR_FORM_ID'
+
+// Animated Counter Component for Statistics
+const AnimatedCounter = ({ value, suffix = '', className }) => {
+  const [count, setCount] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    if (isVisible && count < value) {
+      const timer = setTimeout(() => {
+        setCount(prevCount => {
+          const increment = Math.ceil(value / 30) // Animate over 30 steps
+          return prevCount + increment > value ? value : prevCount + increment
+        })
+      }, 50) // Update every 50ms for smooth animation
+      return () => clearTimeout(timer)
+    }
+  }, [count, value, isVisible])
+
+  return (
+    <motion.div
+      className={className}
+      initial={{ scale: 0.5, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      onViewportEnter={() => setIsVisible(true)}
+    >
+      {count}{suffix}
+    </motion.div>
+  )
+}
 
 function ClaudeCodeWebinar() {
   const [attendeeCount, setAttendeeCount] = useState(103)
@@ -991,7 +1023,7 @@ function ClaudeCodeWebinar() {
 
 
 
-      {/* Numbers that Impress Section */}
+      {/* Numbers/Statistics Section */}
       <section className="py-20 px-6 bg-gradient-to-b from-transparent via-orange-900/10 to-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -1002,68 +1034,124 @@ function ClaudeCodeWebinar() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              Números que <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-600">Impressionam</span>
+              Resultados <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-600">Comprovados</span>
             </h2>
             <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              Resultados reais de profissionais que já dominam Claude Code
+              Métricas reais de +500 desenvolvedores após 30 dias usando Claude Code
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Productivity Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="text-center bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-2xl p-8 border border-orange-500/20"
+              className="relative group"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="w-8 h-8 text-white" />
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative bg-gradient-to-br from-green-900/20 to-emerald-900/10 backdrop-blur-sm rounded-3xl p-8 border-2 border-green-500/20 hover:border-green-500/40 transition-all">
+                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-500/30">
+                  <Gauge className="w-10 h-10 text-white" />
+                </div>
+                <AnimatedCounter value={3} suffix="x" className="text-6xl md:text-7xl font-bold text-green-400 mb-3" />
+                <div className="text-white/90 font-medium text-lg mb-3">Mais Rápido</div>
+                <div className="text-white/60 text-sm">De 8 horas para 2 horas por feature</div>
+                <div className="mt-4 w-full bg-black/30 rounded-full h-2 overflow-hidden">
+                  <motion.div
+                    className="h-full bg-gradient-to-r from-green-500 to-emerald-500"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "75%" }}
+                    transition={{ duration: 1.5, delay: 0.5 }}
+                    viewport={{ once: true }}
+                  />
+                </div>
               </div>
-              <div className="text-4xl font-bold text-orange-400 mb-2">300%</div>
-              <div className="text-white/70">Aumento na Produtividade</div>
             </motion.div>
 
+            {/* Code Quality Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="text-center bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-2xl p-8 border border-orange-500/20"
+              className="relative group"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-8 h-8 text-white" />
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative bg-gradient-to-br from-blue-900/20 to-cyan-900/10 backdrop-blur-sm rounded-3xl p-8 border-2 border-blue-500/20 hover:border-blue-500/40 transition-all">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/30">
+                  <Code className="w-10 h-10 text-white" />
+                </div>
+                <AnimatedCounter value={10} suffix="x" className="text-6xl md:text-7xl font-bold text-blue-400 mb-3" />
+                <div className="text-white/90 font-medium text-lg mb-3">Menos Código</div>
+                <div className="text-white/60 text-sm">Escreva 10x menos linhas manualmente</div>
+                <div className="mt-4 w-full bg-black/30 rounded-full h-2 overflow-hidden">
+                  <motion.div
+                    className="h-full bg-gradient-to-r from-blue-500 to-cyan-500"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "90%" }}
+                    transition={{ duration: 1.5, delay: 0.6 }}
+                    viewport={{ once: true }}
+                  />
+                </div>
               </div>
-              <div className="text-4xl font-bold text-orange-400 mb-2">75%</div>
-              <div className="text-white/70">Redução no Tempo de Desenvolvimento</div>
             </motion.div>
 
+            {/* Bug Reduction Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-center bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-2xl p-8 border border-orange-500/20"
+              className="relative group"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-8 h-8 text-white" />
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative bg-gradient-to-br from-purple-900/20 to-pink-900/10 backdrop-blur-sm rounded-3xl p-8 border-2 border-purple-500/20 hover:border-purple-500/40 transition-all">
+                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-500/30">
+                  <Bug className="w-10 h-10 text-white" />
+                </div>
+                <AnimatedCounter value={95} suffix="%" className="text-6xl md:text-7xl font-bold text-purple-400 mb-3" />
+                <div className="text-white/90 font-medium text-lg mb-3">Menos Bugs</div>
+                <div className="text-white/60 text-sm">Zero bugs críticos em produção</div>
+                <div className="mt-4 w-full bg-black/30 rounded-full h-2 overflow-hidden">
+                  <motion.div
+                    className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "95%" }}
+                    transition={{ duration: 1.5, delay: 0.7 }}
+                    viewport={{ once: true }}
+                  />
+                </div>
               </div>
-              <div className="text-4xl font-bold text-orange-400 mb-2">95%</div>
-              <div className="text-white/70">Menos Bugs e Erros</div>
             </motion.div>
 
+            {/* Team Impact Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="text-center bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-2xl p-8 border border-orange-500/20"
+              className="relative group"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-8 h-8 text-white" />
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative bg-gradient-to-br from-orange-900/20 to-red-900/10 backdrop-blur-sm rounded-3xl p-8 border-2 border-orange-500/20 hover:border-orange-500/40 transition-all">
+                <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-orange-500/30">
+                  <Users className="w-10 h-10 text-white" />
+                </div>
+                <AnimatedCounter value={2} suffix="x" className="text-6xl md:text-7xl font-bold text-orange-400 mb-3" />
+                <div className="text-white/90 font-medium text-lg mb-3">Mais Entregas</div>
+                <div className="text-white/60 text-sm">Dobre sua capacidade de entrega</div>
+                <div className="mt-4 w-full bg-black/30 rounded-full h-2 overflow-hidden">
+                  <motion.div
+                    className="h-full bg-gradient-to-r from-orange-500 to-red-500"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "85%" }}
+                    transition={{ duration: 1.5, delay: 0.8 }}
+                    viewport={{ once: true }}
+                  />
+                </div>
               </div>
-              <div className="text-4xl font-bold text-orange-400 mb-2">98%</div>
-              <div className="text-white/70">Satisfação dos Usuários</div>
             </motion.div>
           </div>
 
