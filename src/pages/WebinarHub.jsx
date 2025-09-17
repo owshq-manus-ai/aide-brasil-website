@@ -78,128 +78,186 @@ function WebinarHub() {
   
   return (
     <div className="min-h-screen text-white overflow-x-hidden relative">
-      {/* SOPHISTICATED METALLIC BACKGROUND - DIRECTLY EMBEDDED */}
+      {/* ENHANCED METALLIC BACKGROUND - MODERN DESIGN */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{ zIndex: -10 }}
       >
-        {/* Base Technical Gradient */}
+        {/* Base Deep Space Gradient */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, #1f2937 0%, #030303 50%, #374151 100%)'
+            background: 'linear-gradient(135deg, #0a0a0a 0%, #030303 25%, #111827 50%, #030303 75%, #0f172a 100%)'
           }}
         />
 
-        {/* Metallic Network Pattern */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            opacity: 0.6,
-            backgroundImage: `
-              radial-gradient(circle at 20% 20%, rgba(192, 192, 192, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 80% 80%, rgba(169, 169, 169, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 40% 60%, rgba(156, 163, 175, 0.25) 0%, transparent 50%)
-            `
-          }}
-        />
-
-        {/* Technical Grid */}
+        {/* Animated Metallic Mesh Network */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
             opacity: 0.4,
             backgroundImage: `
-              linear-gradient(30deg, rgba(192, 192, 192, 0.2) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(192, 192, 192, 0.2) 1px, transparent 1px),
-              linear-gradient(150deg, rgba(192, 192, 192, 0.2) 1px, transparent 1px)
+              radial-gradient(circle at 15% 25%, rgba(226, 232, 240, 0.15) 0%, transparent 40%),
+              radial-gradient(circle at 85% 75%, rgba(203, 213, 225, 0.12) 0%, transparent 45%),
+              radial-gradient(circle at 45% 15%, rgba(148, 163, 184, 0.08) 0%, transparent 35%),
+              radial-gradient(circle at 75% 45%, rgba(241, 245, 249, 0.1) 0%, transparent 50%)
             `,
-            backgroundSize: '60px 60px, 60px 60px, 60px 60px'
+            animation: 'metallic-pulse 8s ease-in-out infinite'
           }}
         />
 
-        {/* Data Flow Lines */}
+        {/* Dynamic Hexagonal Grid */}
         <div
-          className="absolute top-1/4 left-0 right-0 animate-pulse"
           style={{
-            height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(156, 163, 175, 0.6), transparent)',
+            position: 'absolute',
+            inset: 0,
+            opacity: 0.25,
+            backgroundImage: `
+              linear-gradient(30deg, rgba(226, 232, 240, 0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(203, 213, 225, 0.06) 1px, transparent 1px),
+              linear-gradient(150deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px)
+            `,
+            backgroundSize: '80px 80px, 80px 80px, 80px 80px',
+            animation: 'grid-shift 12s linear infinite'
+          }}
+        />
+
+        {/* Flowing Data Streams */}
+        <div
+          className="absolute top-1/6 left-0 right-0"
+          style={{
+            height: '2px',
+            background: 'linear-gradient(90deg, transparent, rgba(226, 232, 240, 0.4), rgba(203, 213, 225, 0.6), rgba(226, 232, 240, 0.4), transparent)',
+            animation: 'flow-right 6s ease-in-out infinite',
             zIndex: -9
           }}
         />
         <div
-          className="absolute top-1/2 left-0 right-0 animate-pulse"
+          className="absolute top-2/5 left-0 right-0"
           style={{
             height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(156, 163, 175, 0.5), transparent)',
-            animationDelay: '1s',
-            zIndex: -9
-          }}
-        />
-        <div
-          className="absolute top-3/4 left-0 right-0 animate-pulse"
-          style={{
-            height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(156, 163, 175, 0.6), transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.5), rgba(226, 232, 240, 0.7), rgba(148, 163, 184, 0.5), transparent)',
+            animation: 'flow-left 8s ease-in-out infinite',
             animationDelay: '2s',
             zIndex: -9
           }}
         />
-
-        {/* Metallic Orbs */}
         <div
+          className="absolute top-3/5 left-0 right-0"
           style={{
-            position: 'absolute',
-            top: '10%',
-            left: '20%',
-            width: '400px',
-            height: '400px',
-            background: 'radial-gradient(circle, rgba(192, 192, 192, 0.3) 0%, rgba(169, 169, 169, 0.2) 30%, transparent 70%)',
-            borderRadius: '50%',
-            filter: 'blur(40px)',
-            opacity: 0.5,
-            zIndex: -8
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '10%',
-            right: '20%',
-            width: '320px',
-            height: '320px',
-            background: 'radial-gradient(circle, rgba(156, 163, 175, 0.4) 0%, rgba(107, 114, 128, 0.2) 40%, transparent 70%)',
-            borderRadius: '50%',
-            filter: 'blur(30px)',
-            opacity: 0.4,
-            zIndex: -8
-          }}
-        />
-
-        {/* Corner Accents */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '32px',
-            left: '32px',
-            width: '96px',
             height: '1px',
-            background: 'linear-gradient(90deg, rgba(156, 163, 175, 0.6), transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(203, 213, 225, 0.4), rgba(241, 245, 249, 0.6), rgba(203, 213, 225, 0.4), transparent)',
+            animation: 'flow-right 10s ease-in-out infinite',
+            animationDelay: '4s',
+            zIndex: -9
+          }}
+        />
+
+        {/* Floating Metallic Spheres */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '8%',
+            left: '15%',
+            width: '500px',
+            height: '500px',
+            background: 'radial-gradient(circle, rgba(226, 232, 240, 0.15) 0%, rgba(203, 213, 225, 0.1) 30%, rgba(148, 163, 184, 0.05) 60%, transparent 80%)',
+            borderRadius: '50%',
+            filter: 'blur(60px)',
+            opacity: 0.6,
+            animation: 'float-sphere 15s ease-in-out infinite',
+            zIndex: -8
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '12%',
+            right: '18%',
+            width: '380px',
+            height: '380px',
+            background: 'radial-gradient(circle, rgba(241, 245, 249, 0.12) 0%, rgba(226, 232, 240, 0.08) 35%, rgba(203, 213, 225, 0.04) 65%, transparent 85%)',
+            borderRadius: '50%',
+            filter: 'blur(45px)',
+            opacity: 0.5,
+            animation: 'float-sphere-reverse 18s ease-in-out infinite',
+            animationDelay: '3s',
+            zIndex: -8
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: '45%',
+            right: '8%',
+            width: '280px',
+            height: '280px',
+            background: 'radial-gradient(circle, rgba(148, 163, 184, 0.1) 0%, rgba(226, 232, 240, 0.06) 40%, transparent 75%)',
+            borderRadius: '50%',
+            filter: 'blur(35px)',
+            opacity: 0.4,
+            animation: 'float-sphere 20s ease-in-out infinite',
+            animationDelay: '6s',
+            zIndex: -8
+          }}
+        />
+
+        {/* Geometric Corner Elements */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '24px',
+            left: '24px',
+            width: '120px',
+            height: '2px',
+            background: 'linear-gradient(90deg, rgba(226, 232, 240, 0.8), rgba(203, 213, 225, 0.4), transparent)',
             zIndex: -7
           }}
         />
         <div
           style={{
             position: 'absolute',
-            top: '32px',
-            left: '32px',
-            width: '1px',
-            height: '96px',
-            background: 'linear-gradient(180deg, rgba(156, 163, 175, 0.6), transparent)',
+            top: '24px',
+            left: '24px',
+            width: '2px',
+            height: '120px',
+            background: 'linear-gradient(180deg, rgba(226, 232, 240, 0.8), rgba(203, 213, 225, 0.4), transparent)',
             zIndex: -7
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '24px',
+            right: '24px',
+            width: '120px',
+            height: '2px',
+            background: 'linear-gradient(270deg, rgba(226, 232, 240, 0.8), rgba(203, 213, 225, 0.4), transparent)',
+            zIndex: -7
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '24px',
+            right: '24px',
+            width: '2px',
+            height: '120px',
+            background: 'linear-gradient(0deg, rgba(226, 232, 240, 0.8), rgba(203, 213, 225, 0.4), transparent)',
+            zIndex: -7
+          }}
+        />
+
+        {/* Subtle Noise Texture Overlay */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: 0.03,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            zIndex: -6
           }}
         />
       </div>
