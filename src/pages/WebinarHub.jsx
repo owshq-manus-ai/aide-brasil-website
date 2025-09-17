@@ -7,6 +7,7 @@ import {
   BookOpen, Award, Target, CheckCircle, Monitor
 } from 'lucide-react'
 import Header from '../components/shared/Header'
+import WebinarAnimations from '../components/WebinarAnimations'
 
 // Animated title with purple metallic effect
 const MetallicTitle = () => {
@@ -258,13 +259,20 @@ function WebinarHub() {
           }}
         />
 
+      </div>
+
+      {/* Render the new WebinarAnimations component */}
+      <WebinarAnimations />
+
+      {/* OLD ANIMATED ELEMENTS - Hidden for now */}
+      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -100, display: 'none' }}>
         {/* Animated Network Connections with CSS Animation Fallback */}
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none" style={{ zIndex: -5 }}>
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none">
           <defs>
             <linearGradient id="purple-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(147, 51, 234, 0.6)" />
-              <stop offset="50%" stopColor="rgba(168, 85, 247, 0.4)" />
-              <stop offset="100%" stopColor="rgba(196, 181, 253, 0.2)" />
+              <stop offset="0%" stopColor="rgba(147, 51, 234, 1)" />
+              <stop offset="50%" stopColor="rgba(168, 85, 247, 0.8)" />
+              <stop offset="100%" stopColor="rgba(196, 181, 253, 0.6)" />
             </linearGradient>
             <filter id="glow">
               <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -273,33 +281,6 @@ function WebinarHub() {
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
-            <style>
-              {`
-                @keyframes drawLine {
-                  from {
-                    stroke-dashoffset: 1000;
-                    opacity: 0;
-                  }
-                  to {
-                    stroke-dashoffset: 0;
-                    opacity: 0.6;
-                  }
-                }
-                .animated-line {
-                  stroke-dasharray: 1000;
-                  stroke-dashoffset: 1000;
-                  animation: drawLine 3s ease-in-out infinite alternate;
-                }
-                .animated-line-2 {
-                  animation-delay: 1s;
-                  animation-duration: 4s;
-                }
-                .animated-line-3 {
-                  animation-delay: 2s;
-                  animation-duration: 3.5s;
-                }
-              `}
-            </style>
           </defs>
 
           {/* Animated connection paths using CSS animations */}
@@ -307,7 +288,7 @@ function WebinarHub() {
             className="animated-line"
             d="M 100 200 L 300 400"
             stroke="url(#purple-gradient)"
-            strokeWidth="2"
+            strokeWidth="3"
             fill="none"
             filter="url(#glow)"
             strokeLinecap="round"
@@ -316,7 +297,7 @@ function WebinarHub() {
             className="animated-line animated-line-2"
             d="M 700 300 L 900 500"
             stroke="url(#purple-gradient)"
-            strokeWidth="2"
+            strokeWidth="3"
             fill="none"
             filter="url(#glow)"
             strokeLinecap="round"
@@ -325,7 +306,7 @@ function WebinarHub() {
             className="animated-line animated-line-3"
             d="M 400 700 L 600 900"
             stroke="url(#purple-gradient)"
-            strokeWidth="2"
+            strokeWidth="3"
             fill="none"
             filter="url(#glow)"
             strokeLinecap="round"
@@ -337,7 +318,7 @@ function WebinarHub() {
             style={{ animationDelay: '1.5s', animationDuration: '5s' }}
             d="M 200 600 Q 350 400 500 450"
             stroke="url(#purple-gradient)"
-            strokeWidth="1.5"
+            strokeWidth="2.5"
             fill="none"
             filter="url(#glow)"
             strokeLinecap="round"
@@ -347,68 +328,50 @@ function WebinarHub() {
             style={{ animationDelay: '2.5s', animationDuration: '4.5s' }}
             d="M 800 200 Q 650 350 500 300"
             stroke="url(#purple-gradient)"
-            strokeWidth="1.5"
+            strokeWidth="2.5"
             fill="none"
             filter="url(#glow)"
             strokeLinecap="round"
           />
 
           {/* Pulsing nodes with CSS animations */}
-          <style>
-            {`
-              @keyframes pulse {
-                0%, 100% {
-                  transform: scale(1);
-                  opacity: 0.8;
-                }
-                50% {
-                  transform: scale(1.5);
-                  opacity: 1;
-                }
-              }
-              .pulse-node {
-                animation: pulse 2s ease-in-out infinite;
-                transform-origin: center;
-              }
-            `}
-          </style>
           <circle
             className="pulse-node"
             cx="100" cy="200" r="4"
-            fill="rgba(147, 51, 234, 0.8)"
+            fill="rgba(147, 51, 234, 1)"
             filter="url(#glow)"
           />
           <circle
             className="pulse-node"
             style={{ animationDelay: '0.3s' }}
             cx="300" cy="400" r="4"
-            fill="rgba(168, 85, 247, 0.8)"
+            fill="rgba(168, 85, 247, 1)"
             filter="url(#glow)"
           />
           <circle
             className="pulse-node"
             style={{ animationDelay: '0.5s' }}
             cx="900" cy="500" r="4"
-            fill="rgba(147, 51, 234, 0.8)"
+            fill="rgba(147, 51, 234, 1)"
             filter="url(#glow)"
           />
           <motion.circle
             cx="100" cy="200" r="4"
-            fill="rgba(147, 51, 234, 0.8)"
+            fill="rgba(147, 51, 234, 1)"
             filter="url(#glow)"
             animate={{ scale: [1, 1.5, 1], opacity: [0.8, 1, 0.8] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
           <motion.circle
             cx="300" cy="400" r="4"
-            fill="rgba(168, 85, 247, 0.8)"
+            fill="rgba(168, 85, 247, 1)"
             filter="url(#glow)"
             animate={{ scale: [1, 1.5, 1], opacity: [0.8, 1, 0.8] }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
           />
           <motion.circle
             cx="900" cy="500" r="4"
-            fill="rgba(147, 51, 234, 0.8)"
+            fill="rgba(147, 51, 234, 1)"
             filter="url(#glow)"
             animate={{ scale: [1, 1.5, 1], opacity: [0.8, 1, 0.8] }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
@@ -417,41 +380,41 @@ function WebinarHub() {
             className="pulse-node"
             style={{ animationDelay: '0.7s' }}
             cx="700" cy="300" r="4"
-            fill="rgba(168, 85, 247, 0.8)"
+            fill="rgba(168, 85, 247, 1)"
             filter="url(#glow)"
           />
           <circle
             className="pulse-node"
             style={{ animationDelay: '1s' }}
             cx="600" cy="900" r="4"
-            fill="rgba(196, 181, 253, 0.8)"
+            fill="rgba(196, 181, 253, 1)"
             filter="url(#glow)"
           />
           <circle
             className="pulse-node"
             style={{ animationDelay: '1.2s' }}
             cx="400" cy="700" r="4"
-            fill="rgba(147, 51, 234, 0.8)"
+            fill="rgba(147, 51, 234, 1)"
             filter="url(#glow)"
           />
           <circle
             className="pulse-node"
             style={{ animationDelay: '1.5s' }}
             cx="500" cy="450" r="4"
-            fill="rgba(168, 85, 247, 0.8)"
+            fill="rgba(168, 85, 247, 1)"
             filter="url(#glow)"
           />
           <circle
             className="pulse-node"
             style={{ animationDelay: '1.7s' }}
             cx="500" cy="300" r="4"
-            fill="rgba(196, 181, 253, 0.8)"
+            fill="rgba(196, 181, 253, 1)"
             filter="url(#glow)"
           />
         </svg>
 
         {/* Animated Data Particles */}
-        <div className="absolute inset-0" style={{ zIndex: -4 }}>
+        <div className="absolute inset-0 pointer-events-none">
           {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
@@ -477,27 +440,7 @@ function WebinarHub() {
         </div>
 
         {/* Rotating Geometric Shapes with CSS Animations */}
-        <style>
-          {`
-            @keyframes rotate360 {
-              from { transform: rotate(0deg); }
-              to { transform: rotate(360deg); }
-            }
-            @keyframes rotateScale {
-              0%, 100% { transform: rotate(0deg) scale(1); }
-              25% { transform: rotate(90deg) scale(1.1); }
-              50% { transform: rotate(180deg) scale(1.2); }
-              75% { transform: rotate(270deg) scale(1.1); }
-            }
-            .rotate-shape {
-              animation: rotate360 20s linear infinite;
-            }
-            .rotate-scale-shape {
-              animation: rotateScale 20s ease-in-out infinite;
-            }
-          `}
-        </style>
-        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: -6 }}>
+        <div className="absolute inset-0 pointer-events-none">
           {/* Diamond shape */}
           <svg
             className="absolute top-20 left-20 w-32 h-32 rotate-scale-shape"
@@ -507,7 +450,7 @@ function WebinarHub() {
               points="50,10 90,50 50,90 10,50"
               fill="none"
               stroke="rgba(147, 51, 234, 0.3)"
-              strokeWidth="2"
+              strokeWidth="3"
             />
           </svg>
 
@@ -557,7 +500,7 @@ function WebinarHub() {
               points="50,15 61,35 82,35 66,51 73,72 50,57 27,72 34,51 18,35 39,35"
               fill="none"
               stroke="rgba(147, 51, 234, 0.25)"
-              strokeWidth="1.5"
+              strokeWidth="2.5"
             />
           </svg>
 
@@ -571,7 +514,7 @@ function WebinarHub() {
               points="50,20 80,80 20,80"
               fill="none"
               stroke="rgba(168, 85, 247, 0.2)"
-              strokeWidth="1.5"
+              strokeWidth="2.5"
             />
           </svg>
         </div>
