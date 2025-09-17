@@ -15,6 +15,7 @@ import './styles/desktop-fixes.css'
 const HomePage = lazy(() => import('./pages/HomePage'))
 const WebinarHub = lazy(() => import('./pages/WebinarHub'))
 const WebinarTemplate = lazy(() => import('./pages/WebinarTemplate'))
+const WebinarsPage = lazy(() => import('./webinars/WebinarsPage'))
 
 // Loading component
 const PageLoader = () => (
@@ -43,6 +44,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/webinarios" element={<WebinarHub />} />
           <Route path="/webinarios/:slug" element={<WebinarTemplate />} />
+          <Route path="/webinars" element={<WebinarsPage />} />
+          <Route path="/webinars/:slug" element={<WebinarTemplate />} />
         </Routes>
       </Suspense>
     </Router>

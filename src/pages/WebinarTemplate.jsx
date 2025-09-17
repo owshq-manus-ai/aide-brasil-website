@@ -255,7 +255,7 @@ const WebinarTemplate = React.memo(() => {
         <div className="relative pt-24 px-6 z-10">
           <div className="max-w-7xl mx-auto">
             <Link 
-              to="/webinarios" 
+              to="/webinars" 
               className="inline-flex items-center gap-2 text-white/70 hover:text-orange-500 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />

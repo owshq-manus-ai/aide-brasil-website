@@ -7,12 +7,12 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
   const isHomePage = location.pathname === '/'
-  const isWebinarsPage = location.pathname.includes('/webinarios')
-  
+  const isWebinarsPage = location.pathname.includes('/webinarios') || location.pathname.includes('/webinars')
+
   // Determine color scheme based on current page - matching hero sections
   const getColorScheme = () => {
-    if (location.pathname === '/webinarios') {
-      // Webinars hub page - Futuristic metallic purple theme
+    if (location.pathname === '/webinarios' || location.pathname === '/webinars') {
+      // Webinars pages - Futuristic metallic purple theme
       return {
         from: 'from-purple-500/20',
         to: 'to-violet-500/20',
@@ -23,7 +23,7 @@ const Header = () => {
         shadow: 'hover:shadow-purple-500/30',
         headerBg: 'bg-gradient-to-r from-purple-900/10 via-[#030303]/95 to-violet-900/10'
       }
-    } else if (location.pathname === '/webinarios/domine-claude-code') {
+    } else if (location.pathname === '/webinarios/domine-claude-code' || location.pathname === '/webinars/domine-claude-code') {
       // Claude Code webinar - Orange/amber metallic theme
       return {
         from: 'from-orange-500/20',
@@ -35,7 +35,7 @@ const Header = () => {
         shadow: 'hover:shadow-orange-500/30',
         headerBg: 'bg-gradient-to-r from-orange-900/10 via-[#030303]/95 to-amber-900/10'
       }
-    } else if (location.pathname.startsWith('/webinarios/')) {
+    } else if (location.pathname.startsWith('/webinarios/') || location.pathname.startsWith('/webinars/')) {
       // Other webinar pages - default to metallic purple
       return {
         from: 'from-purple-500/20',
@@ -75,7 +75,7 @@ const Header = () => {
     ] : [
       { label: 'Home', href: '/', isAnchor: false },
     ]),
-    { label: 'Webinários', href: '/webinarios', isAnchor: false }
+    { label: 'Webinários', href: '/webinars', isAnchor: false }
   ]
 
   const handleNavClick = (e, item) => {
