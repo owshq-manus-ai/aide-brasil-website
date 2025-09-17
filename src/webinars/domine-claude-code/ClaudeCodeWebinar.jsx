@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import {
   Calendar, Clock, Users, CheckCircle, Linkedin, Instagram,
-  ArrowLeft, Zap, Target, BookOpen, Brain, Sparkles,
+  ArrowLeft, ArrowRight, Zap, Target, BookOpen, Brain, Sparkles,
   Code2, Rocket, Shield, TrendingUp, Award, Bot,
   Cpu, GitBranch, Terminal, Layers, Database,
   MessageSquare, ChevronDown, Lock, Trophy,
@@ -494,7 +494,7 @@ function ClaudeCodeWebinar() {
       </section>
 
       {/* Revolutionary Development Comparison Section - Now Second */}
-      <section className="py-20 px-6 bg-gradient-to-b from-transparent via-orange-900/10 to-transparent">
+      <section className="py-20 px-6 bg-gradient-to-b from-transparent via-orange-900/5 to-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -503,193 +503,207 @@ function ClaudeCodeWebinar() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            {/* Impactful title */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-orange-400 font-bold text-sm uppercase tracking-wider mb-4"
-            >
-              A Revolução do Desenvolvimento
-            </motion.p>
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-              Pare de <span className="text-red-500 line-through">Perder Tempo</span>
+            <h2 className="text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
+              Pare de <span className="text-red-500 line-through decoration-4">Perder Tempo</span>
               <br />
-              Comece a <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500">Criar com IA</span>
+              <span className="text-4xl md:text-6xl">Comece a </span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 text-5xl md:text-7xl">Criar com IA</span>
             </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Descubra por que milhares de desenvolvedores estão abandonando métodos tradicionais e adotando Claude Code para multiplicar sua produtividade
+            <p className="text-xl text-white/70 max-w-4xl mx-auto">
+              A diferença entre desenvolvedores que lutam com código e aqueles que entregam projetos em tempo recorde
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* Traditional Development - Enhanced */}
+          <div className="grid lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            {/* Traditional Development - Redesigned */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-red-900/20 to-red-800/10 backdrop-blur-sm rounded-2xl p-8 border-2 border-red-500/30 relative"
+              className="relative"
             >
-              <div className="text-center mb-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-red-500/20 to-red-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border-2 border-red-500/40">
-                  <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center">
-                    <X className="w-6 h-6 text-white" strokeWidth={3} />
+              {/* Dark overlay card */}
+              <div className="bg-black/40 backdrop-blur-sm rounded-3xl p-8 border border-red-900/30 relative">
+                {/* Background gradient effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-red-900/10 via-transparent to-red-800/10 rounded-3xl" />
+
+                {/* Header with icon */}
+                <div className="relative z-10 mb-8 pt-2">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-16 h-16 bg-red-900/30 rounded-2xl flex items-center justify-center border border-red-500/20">
+                      <X className="w-8 h-8 text-red-500" strokeWidth={2} />
+                    </div>
+                    <span className="text-white font-bold text-sm flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5" />
+                      Antes
+                    </span>
                   </div>
+                  <h3 className="text-3xl font-bold text-white mb-2">Desenvolvimento Tradicional</h3>
+                  <p className="text-red-400 text-lg">O caminho lento e doloroso</p>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Desenvolvimento Tradicional</h3>
-                <p className="text-red-400 font-medium text-lg">Lento e Frustrante</p>
-              </div>
 
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-gray-600">
-                    <X className="w-5 h-5 text-gray-300" strokeWidth={2.5} />
-                  </div>
-                  <span className="text-white/90 text-base leading-relaxed">Horas escrevendo código repetitivo e boilerplate</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-gray-600">
-                    <X className="w-5 h-5 text-gray-300" strokeWidth={2.5} />
-                  </div>
-                  <span className="text-white/90 text-base leading-relaxed">Debugging manual que consome dias inteiros</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-gray-600">
-                    <X className="w-5 h-5 text-gray-300" strokeWidth={2.5} />
-                  </div>
-                  <span className="text-white/90 text-base leading-relaxed">Documentação sempre desatualizada</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-gray-600">
-                    <X className="w-5 h-5 text-gray-300" strokeWidth={2.5} />
-                  </div>
-                  <span className="text-white/90 text-base leading-relaxed">Refatoração arriscada que quebra o código</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-gray-600">
-                    <X className="w-5 h-5 text-gray-300" strokeWidth={2.5} />
-                  </div>
-                  <span className="text-white/90 text-base leading-relaxed">Testes manuais que não cobrem edge cases</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-gray-600">
-                    <X className="w-5 h-5 text-gray-300" strokeWidth={2.5} />
-                  </div>
-                  <span className="text-white/90 text-base leading-relaxed">Burnout e frustração constante</span>
-                </li>
-              </ul>
+                {/* Problems list with enhanced styling */}
+                <div className="relative z-10 space-y-3">
+                  {[
+                    { text: "Horas escrevendo código repetitivo", time: "8h/dia" },
+                    { text: "Debugging manual interminável", time: "5h/bug" },
+                    { text: "Documentação sempre desatualizada", time: "Nunca feita" },
+                    { text: "Refatoração que quebra tudo", time: "2 dias" },
+                    { text: "Testes manuais incompletos", time: "50% coverage" },
+                    { text: "Burnout e frustração constante", time: "Sempre" }
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3 + index * 0.05 }}
+                      viewport={{ once: true }}
+                      className="flex items-center justify-between p-3 bg-red-900/10 rounded-xl border border-red-900/20"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center">
+                          <X className="w-4 h-4 text-red-400" strokeWidth={2.5} />
+                        </div>
+                        <span className="text-white/80 text-sm">{item.text}</span>
+                      </div>
+                      <span className="text-red-400 text-xs font-mono bg-red-900/20 px-2 py-1 rounded">
+                        {item.time}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
 
-              <div className="mt-6 p-4 bg-gradient-to-r from-red-500/20 to-red-600/10 rounded-xl border border-red-500/30">
-                <p className="text-red-400 font-bold text-center flex items-center justify-center gap-2">
-                  <AlertCircle className="w-5 h-5" />
-                  Resultado: Projetos atrasados e stress constante
-                </p>
+                {/* Bottom warning */}
+                <div className="relative z-10 mt-6 p-4 bg-red-900/20 rounded-xl border border-red-500/30">
+                  <p className="text-red-400 font-semibold text-center flex items-center justify-center gap-2">
+                    <AlertCircle className="w-5 h-5" />
+                    Resultado: Projetos atrasados e stress
+                  </p>
+                </div>
               </div>
             </motion.div>
 
-            {/* Claude Code Development - Enhanced */}
+            {/* Claude Code Development - Redesigned */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-2xl p-8 border-2 border-orange-500/30 relative transform hover:scale-[1.02] transition-transform"
+              className="relative"
             >
-              <div className="absolute -top-5 left-1/2 -translate-x-1/2">
+              {/* Recommended badge - positioned outside */}
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
                 <motion.div
-                  className="bg-gradient-to-r from-orange-500 to-amber-500 px-6 py-2 rounded-full shadow-lg shadow-orange-500/30"
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-1.5 rounded-full shadow-lg shadow-orange-500/50"
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <span className="text-white font-bold text-sm flex items-center gap-2">
-                    <Sparkles className="w-4 h-4" />
-                    RECOMENDADO
+                  <span className="text-white font-bold text-xs flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    MÉTODO REVOLUCIONÁRIO
                   </span>
                 </motion.div>
               </div>
 
-              <div className="text-center mb-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border-2 border-orange-500/40">
-                  <motion.div
-                    className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center"
-                    animate={{ rotate: [0, 10, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <Rocket className="w-6 h-6 text-white" strokeWidth={2} />
-                  </motion.div>
+              {/* Glowing effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-amber-500/20 blur-3xl" />
+
+              {/* Main card with premium feel */}
+              <div className="relative bg-gradient-to-br from-orange-900/30 to-amber-900/20 backdrop-blur-sm rounded-3xl p-8 border-2 border-orange-500/40">
+                {/* Animated background pattern */}
+                <div className="absolute inset-0 opacity-10 rounded-3xl">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,orange_0%,transparent_50%)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,amber_0%,transparent_50%)]" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Com Claude Code</h3>
-                <p className="text-orange-400 font-medium text-lg">Rápido e Inteligente</p>
-              </div>
 
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-orange-400">
-                    <Check className="w-5 h-5 text-white" strokeWidth={3} />
+                {/* Header with animated icon */}
+                <div className="relative z-10 mb-8 pt-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <motion.div
+                      className="w-16 h-16 bg-gradient-to-br from-orange-500/30 to-amber-500/30 rounded-2xl flex items-center justify-center border-2 border-orange-500/50"
+                      animate={{
+                        boxShadow: [
+                          "0 0 20px rgba(251, 146, 60, 0.3)",
+                          "0 0 40px rgba(251, 146, 60, 0.5)",
+                          "0 0 20px rgba(251, 146, 60, 0.3)"
+                        ]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <Rocket className="w-8 h-8 text-orange-400" />
+                    </motion.div>
+                    <span className="text-white font-bold text-sm flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      Depois
+                    </span>
                   </div>
-                  <span className="text-white text-base leading-relaxed font-medium">Código gerado instantaneamente com qualidade senior</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-orange-400">
-                    <Check className="w-5 h-5 text-white" strokeWidth={3} />
-                  </div>
-                  <span className="text-white text-base leading-relaxed font-medium">Debug automático com IA encontra bugs em segundos</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-orange-400">
-                    <Check className="w-5 h-5 text-white" strokeWidth={3} />
-                  </div>
-                  <span className="text-white text-base leading-relaxed font-medium">Documentação sempre atualizada automaticamente</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-orange-400">
-                    <Check className="w-5 h-5 text-white" strokeWidth={3} />
-                  </div>
-                  <span className="text-white text-base leading-relaxed font-medium">Refatoração segura com garantia de funcionamento</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-orange-400">
-                    <Check className="w-5 h-5 text-white" strokeWidth={3} />
-                  </div>
-                  <span className="text-white text-base leading-relaxed font-medium">Testes completos gerados com 100% de cobertura</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg border border-orange-400">
-                    <Check className="w-5 h-5 text-white" strokeWidth={3} />
-                  </div>
-                  <span className="text-white text-base leading-relaxed font-medium">Produtividade 300% maior e mais tempo para o que importa</span>
-                </li>
-              </ul>
+                  <h3 className="text-3xl font-bold text-white mb-2">Com Claude Code</h3>
+                  <p className="text-orange-400 text-lg font-medium">O futuro do desenvolvimento</p>
+                </div>
 
-              <div className="mt-6 p-4 bg-gradient-to-r from-orange-500/20 to-amber-500/10 rounded-xl border border-orange-500/30">
-                <p className="text-orange-400 font-bold text-center flex items-center justify-center gap-2">
-                  <Trophy className="w-5 h-5" />
-                  Resultado: Entregas rápidas e vida equilibrada
-                </p>
+                {/* Benefits list with enhanced styling */}
+                <div className="relative z-10 space-y-3">
+                  {[
+                    { text: "Código gerado com qualidade senior", time: "Segundos" },
+                    { text: "Debug automático com IA", time: "Instantâneo" },
+                    { text: "Documentação sempre atualizada", time: "Automático" },
+                    { text: "Refatoração segura e inteligente", time: "1 clique" },
+                    { text: "Testes com 100% de cobertura", time: "Gerados" },
+                    { text: "Produtividade e vida equilibrada", time: "300% +" }
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: 10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.5 + index * 0.05 }}
+                      viewport={{ once: true }}
+                      className="flex items-center justify-between p-3 bg-gradient-to-r from-orange-900/20 to-amber-900/10 rounded-xl border border-orange-500/30 hover:border-orange-500/50 transition-all"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center shadow-md">
+                          <Check className="w-4 h-4 text-white" strokeWidth={3} />
+                        </div>
+                        <span className="text-white font-medium text-sm">{item.text}</span>
+                      </div>
+                      <span className="text-orange-400 text-xs font-mono font-bold bg-gradient-to-r from-orange-500/20 to-amber-500/20 px-2 py-1 rounded border border-orange-500/30">
+                        {item.time}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Bottom success message */}
+                <div className="relative z-10 mt-6 p-4 bg-gradient-to-r from-orange-500/20 to-amber-500/20 rounded-xl border border-orange-500/40">
+                  <p className="text-orange-400 font-bold text-center flex items-center justify-center gap-2">
+                    <Trophy className="w-5 h-5" />
+                    Resultado: Entregas rápidas com qualidade
+                  </p>
+                </div>
               </div>
             </motion.div>
           </div>
 
+          {/* Call to action */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
             viewport={{ once: true }}
-            className="text-center mt-12"
+            className="text-center mt-16"
           >
-            <p className="text-2xl font-bold text-white mb-4">
-              🚀 Junte-se aos desenvolvedores que já fizeram a transição
-            </p>
-            <p className="text-orange-400 text-lg">
-              No webinário, você aprenderá exatamente como implementar essas técnicas revolucionárias do zero
-            </p>
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-900/20 to-amber-900/10 px-8 py-4 rounded-2xl border border-orange-500/30">
+              <Zap className="w-6 h-6 text-orange-400" />
+              <p className="text-xl font-bold text-white">
+                Descubra como fazer essa transição em apenas 2 horas de webinário
+              </p>
+              <ArrowRight className="w-6 h-6 text-orange-400" />
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Learn in Practice Section - Enhanced with Hero Style */}
+      {/* Learn in Practice Section */}
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -699,70 +713,31 @@ function ClaudeCodeWebinar() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center">
-                <BookOpen className="w-6 h-6 text-white" />
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white">
-                O que você vai aprender
-              </h2>
-            </div>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+              Aprenda na <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-600">Prática</span>
+            </h2>
+            <p className="text-xl text-white/70 max-w-3xl mx-auto">
               Metodologia hands-on com exemplos reais que você aplicará durante o webinário.
-              Cada conceito será demonstrado ao vivo com casos práticos da indústria.
+              Cada conceito será demonstrado ao vivo com casos práticos da indústria,
+              garantindo que você saia pronto para implementar Claude Code em seus projetos imediatamente.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
-            {[
-              {
-                icon: Terminal,
-                title: 'Setup Profissional',
-                desc: 'Configure o Claude Code do zero com as melhores práticas do mercado'
-              },
-              {
-                icon: Cpu,
-                title: 'Model Context Protocol',
-                desc: 'Elimine alucinações e garanta respostas precisas sempre'
-              },
-              {
-                icon: Bot,
-                title: 'Frota de Agentes',
-                desc: 'Crie agentes especializados para cada tipo de tarefa'
-              },
-              {
-                icon: GitBranch,
-                title: 'Workflow Otimizado',
-                desc: 'Integre Claude Code no seu fluxo de desenvolvimento'
-              },
-              {
-                icon: Database,
-                title: 'Data Engineering com IA',
-                desc: 'Automatize pipelines complexos com agentes inteligentes'
-              },
-              {
-                icon: Zap,
-                title: 'Performance Máxima',
-                desc: 'Técnicas avançadas para extrair o máximo da ferramenta'
-              }
-            ].map((item, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {webinar.features.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-br from-gray-900/40 to-gray-800/30 backdrop-blur-sm rounded-xl p-5 border border-gray-700/30 hover:border-orange-500/30 transition-all group"
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/10 hover:border-orange-500/50 hover:shadow-xl transition-all duration-300 group"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-green-500/30 group-hover:scale-110 transition-transform">
-                    <Check className="w-5 h-5 text-green-500" strokeWidth={3} />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-white font-semibold text-base mb-1">{item.title}</h3>
-                    <p className="text-white/60 text-sm leading-relaxed">{item.desc}</p>
-                  </div>
+                <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <item.icon className="w-7 h-7 text-white" />
                 </div>
+                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-white/70">{item.description}</p>
               </motion.div>
             ))}
           </div>
