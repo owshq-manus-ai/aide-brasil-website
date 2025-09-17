@@ -77,50 +77,58 @@ function WebinarHub() {
   const [hoveredCard, setHoveredCard] = useState(null)
   
   return (
-    <div className="min-h-screen text-white overflow-x-hidden relative" style={{background: "linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 15%, #16213e 30%, #2d1b69 45%, #0f3460 60%, #16213e 75%, #1a1a2e 90%, #0a0a0f 100%), radial-gradient(ellipse at 20% 30%, rgba(147, 51, 234, 0.4) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(99, 102, 241, 0.3) 0%, transparent 50%), radial-gradient(ellipse at 40% 80%, rgba(168, 85, 247, 0.35) 0%, transparent 45%), radial-gradient(circle at 15% 25%, rgba(226, 232, 240, 0.15) 0%, transparent 40%), radial-gradient(circle at 85% 15%, rgba(203, 213, 225, 0.12) 0%, transparent 35%), radial-gradient(circle at 65% 45%, rgba(148, 163, 184, 0.1) 0%, transparent 30%), radial-gradient(circle at 25% 75%, rgba(241, 245, 249, 0.08) 0%, transparent 25%), radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 20%), radial-gradient(circle at 30% 60%, rgba(124, 58, 237, 0.15) 0%, transparent 25%), radial-gradient(circle at 70% 40%, rgba(109, 40, 217, 0.18) 0%, transparent 22%)"}}>
-      {/* ENHANCED METALLIC BACKGROUND - MODERN DESIGN */}
+    <div className="min-h-screen text-white overflow-x-hidden relative">
+      {/* FUTURISTIC METALLIC PURPLE BACKGROUND */}
       <div
-        className="fixed inset-0 pointer-events-none"
+        className="fixed inset-0"
         style={{ zIndex: -10 }}
       >
-        {/* Base Deep Space Gradient */}
+        {/* Base Deep Black Gradient with Subtle Purple Accents */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, #0a0a0a 0%, #030303 25%, #111827 50%, #030303 75%, #0f172a 100%)'
+            background: `
+              linear-gradient(135deg,
+                #000000 0%,
+                #0a0a0f 15%,
+                #0f0817 30%,
+                #1a0f2e 45%,
+                #1a0f2e 60%,
+                #0f0817 75%,
+                #0a0a0f 90%,
+                #000000 100%
+              )`
           }}
         />
 
-        {/* Animated Metallic Mesh Network */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            opacity: 0.4,
-            backgroundImage: `
-              radial-gradient(circle at 15% 25%, rgba(226, 232, 240, 0.15) 0%, transparent 40%),
-              radial-gradient(circle at 85% 75%, rgba(203, 213, 225, 0.12) 0%, transparent 45%),
-              radial-gradient(circle at 45% 15%, rgba(148, 163, 184, 0.08) 0%, transparent 35%),
-              radial-gradient(circle at 75% 45%, rgba(241, 245, 249, 0.1) 0%, transparent 50%)
-            `,
-            animation: 'metallic-pulse 8s ease-in-out infinite'
-          }}
-        />
-
-        {/* Dynamic Hexagonal Grid */}
+        {/* Subtle Purple Metallic Orbs */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
             opacity: 0.25,
             backgroundImage: `
-              linear-gradient(30deg, rgba(226, 232, 240, 0.08) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(203, 213, 225, 0.06) 1px, transparent 1px),
-              linear-gradient(150deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px)
+              radial-gradient(ellipse at 20% 30%, rgba(147, 51, 234, 0.2) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at 40% 80%, rgba(168, 85, 247, 0.18) 0%, transparent 45%),
+              radial-gradient(circle at 60% 40%, rgba(196, 181, 253, 0.1) 0%, transparent 40%)
+            `
+          }}
+        />
+
+        {/* Subtle Grid Pattern */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: 0.15,
+            backgroundImage: `
+              linear-gradient(30deg, rgba(147, 51, 234, 0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(139, 92, 246, 0.06) 1px, transparent 1px),
+              linear-gradient(150deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px)
             `,
-            backgroundSize: '80px 80px, 80px 80px, 80px 80px',
-            animation: 'grid-shift 12s linear infinite'
+            backgroundSize: '80px 80px, 80px 80px, 80px 80px'
           }}
         />
 
@@ -129,7 +137,7 @@ function WebinarHub() {
           className="absolute top-1/6 left-0 right-0"
           style={{
             height: '2px',
-            background: 'linear-gradient(90deg, transparent, rgba(226, 232, 240, 0.4), rgba(203, 213, 225, 0.6), rgba(226, 232, 240, 0.4), transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(147, 51, 234, 0.2), rgba(196, 181, 253, 0.3), rgba(147, 51, 234, 0.2), transparent)',
             animation: 'flow-right 6s ease-in-out infinite',
             zIndex: -9
           }}
@@ -138,7 +146,7 @@ function WebinarHub() {
           className="absolute top-2/5 left-0 right-0"
           style={{
             height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.5), rgba(226, 232, 240, 0.7), rgba(148, 163, 184, 0.5), transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.25), rgba(168, 85, 247, 0.35), rgba(139, 92, 246, 0.25), transparent)',
             animation: 'flow-left 8s ease-in-out infinite',
             animationDelay: '2s',
             zIndex: -9
@@ -148,7 +156,7 @@ function WebinarHub() {
           className="absolute top-3/5 left-0 right-0"
           style={{
             height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(203, 213, 225, 0.4), rgba(241, 245, 249, 0.6), rgba(203, 213, 225, 0.4), transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(196, 181, 253, 0.2), rgba(221, 214, 254, 0.3), rgba(196, 181, 253, 0.2), transparent)',
             animation: 'flow-right 10s ease-in-out infinite',
             animationDelay: '4s',
             zIndex: -9
@@ -163,10 +171,10 @@ function WebinarHub() {
             left: '15%',
             width: '500px',
             height: '500px',
-            background: 'radial-gradient(circle, rgba(226, 232, 240, 0.15) 0%, rgba(203, 213, 225, 0.1) 30%, rgba(148, 163, 184, 0.05) 60%, transparent 80%)',
+            background: 'radial-gradient(circle, rgba(147, 51, 234, 0.4) 0%, rgba(139, 92, 246, 0.3) 30%, rgba(168, 85, 247, 0.15) 60%, transparent 80%)',
             borderRadius: '50%',
             filter: 'blur(60px)',
-            opacity: 0.6,
+            opacity: 0.7,
             animation: 'float-sphere 15s ease-in-out infinite',
             zIndex: -8
           }}
@@ -178,10 +186,10 @@ function WebinarHub() {
             right: '18%',
             width: '380px',
             height: '380px',
-            background: 'radial-gradient(circle, rgba(241, 245, 249, 0.12) 0%, rgba(226, 232, 240, 0.08) 35%, rgba(203, 213, 225, 0.04) 65%, transparent 85%)',
+            background: 'radial-gradient(circle, rgba(196, 181, 253, 0.35) 0%, rgba(168, 85, 247, 0.25) 35%, rgba(147, 51, 234, 0.15) 65%, transparent 85%)',
             borderRadius: '50%',
             filter: 'blur(45px)',
-            opacity: 0.5,
+            opacity: 0.6,
             animation: 'float-sphere-reverse 18s ease-in-out infinite',
             animationDelay: '3s',
             zIndex: -8
@@ -194,10 +202,10 @@ function WebinarHub() {
             right: '8%',
             width: '280px',
             height: '280px',
-            background: 'radial-gradient(circle, rgba(148, 163, 184, 0.1) 0%, rgba(226, 232, 240, 0.06) 40%, transparent 75%)',
+            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(196, 181, 253, 0.2) 40%, transparent 75%)',
             borderRadius: '50%',
             filter: 'blur(35px)',
-            opacity: 0.4,
+            opacity: 0.6,
             animation: 'float-sphere 20s ease-in-out infinite',
             animationDelay: '6s',
             zIndex: -8
@@ -212,7 +220,7 @@ function WebinarHub() {
             left: '24px',
             width: '120px',
             height: '2px',
-            background: 'linear-gradient(90deg, rgba(226, 232, 240, 0.8), rgba(203, 213, 225, 0.4), transparent)',
+            background: 'linear-gradient(90deg, rgba(147, 51, 234, 0.3), rgba(196, 181, 253, 0.15), transparent)',
             zIndex: -7
           }}
         />
@@ -223,7 +231,7 @@ function WebinarHub() {
             left: '24px',
             width: '2px',
             height: '120px',
-            background: 'linear-gradient(180deg, rgba(226, 232, 240, 0.8), rgba(203, 213, 225, 0.4), transparent)',
+            background: 'linear-gradient(180deg, rgba(147, 51, 234, 0.3), rgba(196, 181, 253, 0.15), transparent)',
             zIndex: -7
           }}
         />
@@ -234,7 +242,7 @@ function WebinarHub() {
             right: '24px',
             width: '120px',
             height: '2px',
-            background: 'linear-gradient(270deg, rgba(226, 232, 240, 0.8), rgba(203, 213, 225, 0.4), transparent)',
+            background: 'linear-gradient(270deg, rgba(147, 51, 234, 0.3), rgba(196, 181, 253, 0.15), transparent)',
             zIndex: -7
           }}
         />
@@ -245,10 +253,328 @@ function WebinarHub() {
             right: '24px',
             width: '2px',
             height: '120px',
-            background: 'linear-gradient(0deg, rgba(226, 232, 240, 0.8), rgba(203, 213, 225, 0.4), transparent)',
+            background: 'linear-gradient(0deg, rgba(147, 51, 234, 0.3), rgba(196, 181, 253, 0.15), transparent)',
             zIndex: -7
           }}
         />
+
+        {/* Animated Network Connections with CSS Animation Fallback */}
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none" style={{ zIndex: -5 }}>
+          <defs>
+            <linearGradient id="purple-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="rgba(147, 51, 234, 0.6)" />
+              <stop offset="50%" stopColor="rgba(168, 85, 247, 0.4)" />
+              <stop offset="100%" stopColor="rgba(196, 181, 253, 0.2)" />
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <style>
+              {`
+                @keyframes drawLine {
+                  from {
+                    stroke-dashoffset: 1000;
+                    opacity: 0;
+                  }
+                  to {
+                    stroke-dashoffset: 0;
+                    opacity: 0.6;
+                  }
+                }
+                .animated-line {
+                  stroke-dasharray: 1000;
+                  stroke-dashoffset: 1000;
+                  animation: drawLine 3s ease-in-out infinite alternate;
+                }
+                .animated-line-2 {
+                  animation-delay: 1s;
+                  animation-duration: 4s;
+                }
+                .animated-line-3 {
+                  animation-delay: 2s;
+                  animation-duration: 3.5s;
+                }
+              `}
+            </style>
+          </defs>
+
+          {/* Animated connection paths using CSS animations */}
+          <path
+            className="animated-line"
+            d="M 100 200 L 300 400"
+            stroke="url(#purple-gradient)"
+            strokeWidth="2"
+            fill="none"
+            filter="url(#glow)"
+            strokeLinecap="round"
+          />
+          <path
+            className="animated-line animated-line-2"
+            d="M 700 300 L 900 500"
+            stroke="url(#purple-gradient)"
+            strokeWidth="2"
+            fill="none"
+            filter="url(#glow)"
+            strokeLinecap="round"
+          />
+          <path
+            className="animated-line animated-line-3"
+            d="M 400 700 L 600 900"
+            stroke="url(#purple-gradient)"
+            strokeWidth="2"
+            fill="none"
+            filter="url(#glow)"
+            strokeLinecap="round"
+          />
+
+          {/* Additional curved connection paths with CSS animation */}
+          <path
+            className="animated-line"
+            style={{ animationDelay: '1.5s', animationDuration: '5s' }}
+            d="M 200 600 Q 350 400 500 450"
+            stroke="url(#purple-gradient)"
+            strokeWidth="1.5"
+            fill="none"
+            filter="url(#glow)"
+            strokeLinecap="round"
+          />
+          <path
+            className="animated-line"
+            style={{ animationDelay: '2.5s', animationDuration: '4.5s' }}
+            d="M 800 200 Q 650 350 500 300"
+            stroke="url(#purple-gradient)"
+            strokeWidth="1.5"
+            fill="none"
+            filter="url(#glow)"
+            strokeLinecap="round"
+          />
+
+          {/* Pulsing nodes with CSS animations */}
+          <style>
+            {`
+              @keyframes pulse {
+                0%, 100% {
+                  transform: scale(1);
+                  opacity: 0.8;
+                }
+                50% {
+                  transform: scale(1.5);
+                  opacity: 1;
+                }
+              }
+              .pulse-node {
+                animation: pulse 2s ease-in-out infinite;
+                transform-origin: center;
+              }
+            `}
+          </style>
+          <circle
+            className="pulse-node"
+            cx="100" cy="200" r="4"
+            fill="rgba(147, 51, 234, 0.8)"
+            filter="url(#glow)"
+          />
+          <circle
+            className="pulse-node"
+            style={{ animationDelay: '0.3s' }}
+            cx="300" cy="400" r="4"
+            fill="rgba(168, 85, 247, 0.8)"
+            filter="url(#glow)"
+          />
+          <circle
+            className="pulse-node"
+            style={{ animationDelay: '0.5s' }}
+            cx="900" cy="500" r="4"
+            fill="rgba(147, 51, 234, 0.8)"
+            filter="url(#glow)"
+          />
+          <motion.circle
+            cx="100" cy="200" r="4"
+            fill="rgba(147, 51, 234, 0.8)"
+            filter="url(#glow)"
+            animate={{ scale: [1, 1.5, 1], opacity: [0.8, 1, 0.8] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+          <motion.circle
+            cx="300" cy="400" r="4"
+            fill="rgba(168, 85, 247, 0.8)"
+            filter="url(#glow)"
+            animate={{ scale: [1, 1.5, 1], opacity: [0.8, 1, 0.8] }}
+            transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
+          />
+          <motion.circle
+            cx="900" cy="500" r="4"
+            fill="rgba(147, 51, 234, 0.8)"
+            filter="url(#glow)"
+            animate={{ scale: [1, 1.5, 1], opacity: [0.8, 1, 0.8] }}
+            transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+          />
+          <circle
+            className="pulse-node"
+            style={{ animationDelay: '0.7s' }}
+            cx="700" cy="300" r="4"
+            fill="rgba(168, 85, 247, 0.8)"
+            filter="url(#glow)"
+          />
+          <circle
+            className="pulse-node"
+            style={{ animationDelay: '1s' }}
+            cx="600" cy="900" r="4"
+            fill="rgba(196, 181, 253, 0.8)"
+            filter="url(#glow)"
+          />
+          <circle
+            className="pulse-node"
+            style={{ animationDelay: '1.2s' }}
+            cx="400" cy="700" r="4"
+            fill="rgba(147, 51, 234, 0.8)"
+            filter="url(#glow)"
+          />
+          <circle
+            className="pulse-node"
+            style={{ animationDelay: '1.5s' }}
+            cx="500" cy="450" r="4"
+            fill="rgba(168, 85, 247, 0.8)"
+            filter="url(#glow)"
+          />
+          <circle
+            className="pulse-node"
+            style={{ animationDelay: '1.7s' }}
+            cx="500" cy="300" r="4"
+            fill="rgba(196, 181, 253, 0.8)"
+            filter="url(#glow)"
+          />
+        </svg>
+
+        {/* Animated Data Particles */}
+        <div className="absolute inset-0" style={{ zIndex: -4 }}>
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-purple-400 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                filter: 'blur(1px)',
+              }}
+              initial={{ y: '100vh', opacity: 0 }}
+              animate={{
+                y: '-100vh',
+                opacity: [0, 1, 1, 0],
+                x: [0, Math.random() * 100 - 50, Math.random() * 100 - 50, 0]
+              }}
+              transition={{
+                duration: 10 + Math.random() * 10,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+                ease: "linear"
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Rotating Geometric Shapes with CSS Animations */}
+        <style>
+          {`
+            @keyframes rotate360 {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(360deg); }
+            }
+            @keyframes rotateScale {
+              0%, 100% { transform: rotate(0deg) scale(1); }
+              25% { transform: rotate(90deg) scale(1.1); }
+              50% { transform: rotate(180deg) scale(1.2); }
+              75% { transform: rotate(270deg) scale(1.1); }
+            }
+            .rotate-shape {
+              animation: rotate360 20s linear infinite;
+            }
+            .rotate-scale-shape {
+              animation: rotateScale 20s ease-in-out infinite;
+            }
+          `}
+        </style>
+        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: -6 }}>
+          {/* Diamond shape */}
+          <svg
+            className="absolute top-20 left-20 w-32 h-32 rotate-scale-shape"
+            viewBox="0 0 100 100"
+          >
+            <polygon
+              points="50,10 90,50 50,90 10,50"
+              fill="none"
+              stroke="rgba(147, 51, 234, 0.3)"
+              strokeWidth="2"
+            />
+          </svg>
+
+          {/* Square shape */}
+          <svg
+            className="absolute bottom-32 right-32 w-24 h-24 rotate-shape"
+            style={{ animationDirection: 'reverse', animationDuration: '15s' }}
+            viewBox="0 0 100 100"
+          >
+            <rect
+              x="20"
+              y="20"
+              width="60"
+              height="60"
+              fill="none"
+              stroke="rgba(168, 85, 247, 0.2)"
+              strokeWidth="1"
+            />
+          </svg>
+
+          {/* Octagon shape */}
+          <svg
+            className="absolute w-40 h-40 rotate-shape"
+            viewBox="0 0 100 100"
+            style={{
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              animationDuration: '30s'
+            }}
+          >
+            <polygon
+              points="30,10 70,10 90,30 90,70 70,90 30,90 10,70 10,30"
+              fill="none"
+              stroke="rgba(196, 181, 253, 0.15)"
+              strokeWidth="1"
+            />
+          </svg>
+
+          {/* Additional geometric elements */}
+          <svg
+            className="absolute top-1/3 right-1/4 w-20 h-20 rotate-scale-shape"
+            viewBox="0 0 100 100"
+            style={{ animationDuration: '25s', animationDirection: 'reverse' }}
+          >
+            <polygon
+              points="50,15 61,35 82,35 66,51 73,72 50,57 27,72 34,51 18,35 39,35"
+              fill="none"
+              stroke="rgba(147, 51, 234, 0.25)"
+              strokeWidth="1.5"
+            />
+          </svg>
+
+          {/* Triangle */}
+          <svg
+            className="absolute bottom-1/4 left-1/3 w-28 h-28 rotate-shape"
+            viewBox="0 0 100 100"
+            style={{ animationDuration: '18s' }}
+          >
+            <polygon
+              points="50,20 80,80 20,80"
+              fill="none"
+              stroke="rgba(168, 85, 247, 0.2)"
+              strokeWidth="1.5"
+            />
+          </svg>
+        </div>
 
         {/* Subtle Noise Texture Overlay */}
         <div
@@ -349,34 +675,6 @@ function WebinarHub() {
         </div>
       </section>
 
-      {/* Filter Tabs */}
-      <section className="px-6 pb-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-wrap justify-center gap-4"
-          >
-            {['all', 'beginner', 'intermediate', 'advanced', 'expert'].map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
-                  selectedCategory === category
-                    ? 'bg-gradient-to-r from-gray-500 to-gray-400 text-white shadow-lg shadow-gray-500/25'
-                    : 'bg-gray-900/50 text-white/60 hover:text-white hover:bg-gray-800/50'
-                }`}
-              >
-                {category === 'all' ? 'Todos' : 
-                 category === 'beginner' ? 'Iniciante' :
-                 category === 'intermediate' ? 'Intermediário' :
-                 category === 'advanced' ? 'Avançado' : 'Expert'}
-              </button>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
       {/* Premium Webinar Cards */}
       <section className="px-6 pb-20">

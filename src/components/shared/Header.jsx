@@ -12,16 +12,16 @@ const Header = () => {
   // Determine color scheme based on current page - matching hero sections
   const getColorScheme = () => {
     if (location.pathname === '/webinarios') {
-      // Webinars hub page - Metallic silver/gray theme (matching the hub's metallic effect)
+      // Webinars hub page - Futuristic metallic purple theme
       return {
-        from: 'from-gray-400/20',
-        to: 'to-gray-300/20',
-        hoverFrom: 'hover:from-gray-400/30',
-        hoverTo: 'hover:to-gray-300/30',
-        border: 'border-gray-400/30',
-        hoverBorder: 'hover:border-gray-300/50',
-        shadow: 'hover:shadow-gray-400/30',
-        headerBg: 'bg-gradient-to-r from-gray-900/95 via-[#030303]/95 to-gray-800/95'
+        from: 'from-purple-500/20',
+        to: 'to-violet-500/20',
+        hoverFrom: 'hover:from-purple-500/30',
+        hoverTo: 'hover:to-violet-500/30',
+        border: 'border-purple-500/30',
+        hoverBorder: 'hover:border-purple-500/50',
+        shadow: 'hover:shadow-purple-500/30',
+        headerBg: 'bg-gradient-to-r from-purple-900/10 via-[#030303]/95 to-violet-900/10'
       }
     } else if (location.pathname === '/webinarios/domine-claude-code') {
       // Claude Code webinar - Orange/amber metallic theme
