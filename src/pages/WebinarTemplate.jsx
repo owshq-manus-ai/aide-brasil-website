@@ -191,7 +191,7 @@ const WebinarTemplate = React.memo(() => {
   if (isClaudeWebinar) {
     return (
       <LazyMotion features={domAnimation}>
-      <div className="min-h-screen text-white overflow-x-hidden relative">
+      <div className="min-h-screen text-white overflow-x-hidden relative" style={{background: "linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 15%, #16213e 30%, #2d1b69 45%, #0f3460 60%, #16213e 75%, #1a1a2e 90%, #0a0a0f 100%), radial-gradient(ellipse at 20% 30%, rgba(147, 51, 234, 0.4) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(99, 102, 241, 0.3) 0%, transparent 50%), radial-gradient(ellipse at 40% 80%, rgba(168, 85, 247, 0.35) 0%, transparent 45%), radial-gradient(circle at 15% 25%, rgba(226, 232, 240, 0.15) 0%, transparent 40%), radial-gradient(circle at 85% 15%, rgba(203, 213, 225, 0.12) 0%, transparent 35%), radial-gradient(circle at 65% 45%, rgba(148, 163, 184, 0.1) 0%, transparent 30%), radial-gradient(circle at 25% 75%, rgba(241, 245, 249, 0.08) 0%, transparent 25%), radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 20%), radial-gradient(circle at 30% 60%, rgba(124, 58, 237, 0.15) 0%, transparent 25%), radial-gradient(circle at 70% 40%, rgba(109, 40, 217, 0.18) 0%, transparent 22%)"}}>
         {/* SOPHISTICATED METALLIC BACKGROUND WITH ORANGE ACCENT */}
         <div
           className="fixed inset-0 pointer-events-none"
@@ -1215,7 +1215,7 @@ const WebinarTemplate = React.memo(() => {
 
   // Default template for other webinars
   return (
-    <div className="min-h-screen text-white relative">
+    <div className="min-h-screen text-white relative" style={{background: "linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 15%, #16213e 30%, #2d1b69 45%, #0f3460 60%, #16213e 75%, #1a1a2e 90%, #0a0a0f 100%), radial-gradient(ellipse at 20% 30%, rgba(147, 51, 234, 0.4) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(99, 102, 241, 0.3) 0%, transparent 50%), radial-gradient(ellipse at 40% 80%, rgba(168, 85, 247, 0.35) 0%, transparent 45%), radial-gradient(circle at 15% 25%, rgba(226, 232, 240, 0.15) 0%, transparent 40%), radial-gradient(circle at 85% 15%, rgba(203, 213, 225, 0.12) 0%, transparent 35%), radial-gradient(circle at 65% 45%, rgba(148, 163, 184, 0.1) 0%, transparent 30%), radial-gradient(circle at 25% 75%, rgba(241, 245, 249, 0.08) 0%, transparent 25%), radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 20%), radial-gradient(circle at 30% 60%, rgba(124, 58, 237, 0.15) 0%, transparent 25%), radial-gradient(circle at 70% 40%, rgba(109, 40, 217, 0.18) 0%, transparent 22%)"}}>
       {/* SOPHISTICATED METALLIC BACKGROUND - DEFAULT */}
       <div
         className="fixed inset-0 pointer-events-none"
