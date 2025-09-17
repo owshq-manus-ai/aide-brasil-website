@@ -621,7 +621,7 @@ function ClaudeCodeWebinar() {
 
                 {/* Bottom warning */}
                 <div className="relative z-10 mt-6 p-4 bg-red-900/20 rounded-xl border border-red-500/30">
-                  <p className="text-red-400 font-semibold text-center flex items-center justify-center gap-2">
+                  <p className="text-red-400 font-bold text-center flex items-center justify-center gap-2">
                     <AlertCircle className="w-5 h-5" />
                     Resultado: Projetos atrasados e stress
                   </p>
@@ -1272,47 +1272,7 @@ function ClaudeCodeWebinar() {
       </section>
 
       {/* Final CTA Section - Form Embedded Style */}
-      <section className="relative py-32 overflow-hidden">
-        {/* Simple metallic background matching hero */}
-        <div style={{
-          background: `
-            radial-gradient(circle at 30% 80%, #2a1a0f 0%, transparent 50%),
-            radial-gradient(circle at 70% 20%, #1a0f0f 0%, transparent 50%),
-            linear-gradient(180deg,
-            #000000 0%,
-            #0a0505 15%,
-            #1a0f0f 30%,
-            #2a1a0f 45%,
-            #1a1a1a 60%,
-            #0f0a0a 75%,
-            #000000 100%)
-          `,
-          position: 'absolute',
-          inset: 0
-        }} />
-
-        {/* Orange Metallic Overlays */}
-        <div style={{
-          background: `radial-gradient(circle at 20% 20%, rgba(255, 165, 0, 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.08) 0%, transparent 50%),
-                      radial-gradient(circle at 40% 70%, rgba(255, 69, 0, 0.06) 0%, transparent 50%)
-          `,
-          position: 'absolute',
-          inset: 0
-        }} />
-
-        {/* Subtle Texture */}
-        <div style={{
-          background: `repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 2px,
-            rgba(255, 165, 0, 0.01) 2px,
-            rgba(255, 165, 0, 0.01) 4px
-          )`,
-          position: 'absolute',
-          inset: 0
-        }} />
+      <section className="relative py-32 overflow-hidden bg-transparent">
 
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <motion.div
@@ -1498,7 +1458,7 @@ function ClaudeCodeWebinar() {
                   <Zap className="w-5 h-5 text-orange-400" />
                 </div>
                 <div>
-                  <div className="text-white font-semibold">Ao Vivo</div>
+                  <div className="text-white font-semibold">Online Presencial</div>
                   <div className="text-white/50 text-xs">Tire dúvidas em tempo real</div>
                 </div>
               </div>
