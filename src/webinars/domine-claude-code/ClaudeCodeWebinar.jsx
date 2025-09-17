@@ -6,7 +6,7 @@ import {
   ArrowLeft, ArrowRight, Zap, Target, BookOpen, Brain, Sparkles,
   Code2, Rocket, Shield, TrendingUp, Award, Bot,
   Cpu, GitBranch, Terminal, Layers, Database,
-  MessageSquare, ChevronDown, Lock, Trophy,
+  MessageSquare, ChevronDown, ChevronRight, Lock, Trophy,
   Timer, Heart, AlertCircle, Lightbulb, X, Check, Video, Phone, Mail, User,
   Gauge, Code, Bug
 } from 'lucide-react'
@@ -1255,18 +1255,126 @@ function ClaudeCodeWebinar() {
                   <p className="text-white/70 text-sm">Tire dúvidas ao vivo comigo</p>
                 </div>
               </div>
-
-              <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-xl p-6 border border-green-500/30">
-                <p className="text-green-400 font-bold text-lg">
-                  "Apenas 200 vagas disponíveis - Garanta a sua antes que esgotem!"
-                </p>
-              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
+      {/* Final CTA Section */}
+      <section className="relative py-24 overflow-hidden">
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {/* Background glow */}
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-amber-500/20 blur-3xl" />
 
+            {/* Main CTA container with cyberpunk design */}
+            <div className="relative bg-gradient-to-br from-orange-900/30 to-amber-900/20 backdrop-blur-sm rounded-3xl p-12 border-2 border-orange-500/40">
+              {/* Animated circuit pattern background */}
+              <div className="absolute inset-0 opacity-10 rounded-3xl">
+                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <pattern id="circuit-final" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <rect width="1" height="10" fill="#FFA500" opacity="0.5">
+                      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" />
+                    </rect>
+                    <rect x="5" y="5" width="10" height="1" fill="#FFB84D" opacity="0.5">
+                      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.5s" repeatCount="indefinite" />
+                    </rect>
+                    <circle cx="5" cy="5" r="1" fill="#FFA500" />
+                    <circle cx="15" cy="10" r="1" fill="#FFB84D" />
+                  </pattern>
+                  <rect width="100" height="100" fill="url(#circuit-final)" />
+                </svg>
+              </div>
+
+              {/* CTA Badge */}
+              <div className="text-center mb-6">
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="inline-block"
+                >
+                  <div className="relative bg-gradient-to-r from-orange-500 to-amber-500 px-6 py-3 shadow-2xl">
+                    {/* Cyberpunk corner brackets */}
+                    <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-white/80" />
+                    <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-white/80" />
+                    <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-white/80" />
+                    <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-white/80" />
+
+                    <span className="text-white font-bold text-sm flex items-center gap-2">
+                      <Clock className="w-4 h-4" />
+                      ÚLTIMA CHAMADA
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Main CTA Content */}
+              <div className="text-center">
+                <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                  <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+                    Pronto para Dominar o Claude Code?
+                  </span>
+                </h2>
+
+                <p className="text-white/80 text-lg mb-8">
+                  Entre no webinário gratuito e descubra como transformar sua forma de programar com IA
+                </p>
+
+                {/* Features grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+                  <div className="bg-black/30 rounded-xl p-4 border border-orange-500/20">
+                    <Sparkles className="w-6 h-6 text-orange-400 mx-auto mb-2" />
+                    <div className="text-white/90 font-medium">100% Gratuito</div>
+                    <div className="text-white/60 text-sm">Sem taxas ocultas</div>
+                  </div>
+                  <div className="bg-black/30 rounded-xl p-4 border border-orange-500/20">
+                    <Trophy className="w-6 h-6 text-orange-400 mx-auto mb-2" />
+                    <div className="text-white/90 font-medium">Certificado</div>
+                    <div className="text-white/60 text-sm">Após conclusão</div>
+                  </div>
+                  <div className="bg-black/30 rounded-xl p-4 border border-orange-500/20">
+                    <Zap className="w-6 h-6 text-orange-400 mx-auto mb-2" />
+                    <div className="text-white/90 font-medium">Ao Vivo</div>
+                    <div className="text-white/60 text-sm">Interativo e prático</div>
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <motion.button
+                  onClick={() => setIsModalOpen(true)}
+                  className="relative group"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl blur group-hover:blur-xl transition-all" />
+                  <div className="relative bg-gradient-to-r from-orange-500 to-amber-500 px-12 py-5 rounded-xl font-bold text-white text-lg shadow-2xl flex items-center gap-3">
+                    <Rocket className="w-6 h-6" />
+                    GARANTIR MINHA VAGA AGORA
+                    <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </motion.button>
+
+                {/* Timer */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                  className="mt-8 flex items-center justify-center gap-2 text-orange-300"
+                >
+                  <Clock className="w-4 h-4" />
+                  <span className="text-sm">Vagas limitadas • Inscrições se encerram em breve</span>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Registration Modal */}
       {isModalOpen && !USE_TYPEFORM && (
