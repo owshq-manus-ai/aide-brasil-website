@@ -115,7 +115,7 @@ function ClaudeCodeWebinar() {
       role: 'Principal Data & AI Engineer @ Pythian',
       bio: 'Especialista com anos de experiência em IA e engenharia de dados, responsável por implementações em larga escala.',
       avatar: '🤖',
-      photo1: '/images/luan-moreno-1.png',
+      photo1: '/images/luan-moreno-4.png',
       photo2: '/images/luan-moreno-2.png',
       achievements: [
         '10+ anos de experiência em Data Engineering',
@@ -1495,11 +1495,11 @@ function ClaudeCodeWebinar() {
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-500/20 flex items-center justify-center">
-                  <Trophy className="w-5 h-5 text-orange-400" />
+                  <Zap className="w-5 h-5 text-orange-400" />
                 </div>
                 <div>
-                  <div className="text-white font-semibold">Certificado</div>
-                  <div className="text-white/50 text-xs">De conclusão</div>
+                  <div className="text-white font-semibold">Ao Vivo</div>
+                  <div className="text-white/50 text-xs">Tire dúvidas em tempo real</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
