@@ -706,21 +706,63 @@ function ClaudeCodeWebinar() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {webinar.features.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/10 hover:border-orange-500/50 hover:shadow-xl transition-all duration-300 group"
+                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                className="relative group"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <item.icon className="w-7 h-7 text-white" />
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Card content */}
+                <div className="relative bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-2xl p-8 border-2 border-orange-500/20 hover:border-orange-500/50 transition-all duration-300 h-full">
+                  {/* Animated icon container */}
+                  <motion.div
+                    className="relative mb-6"
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: index * 0.3 }}
+                  >
+                    <div className="w-16 h-16 bg-gradient-to-br from-orange-500/30 to-amber-500/30 rounded-2xl flex items-center justify-center border-2 border-orange-500/40 shadow-lg group-hover:shadow-orange-500/30">
+                      <motion.div
+                        className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <item.icon className="w-7 h-7 text-white" />
+                      </motion.div>
+                    </div>
+                  </motion.div>
+
+                  {/* Title with gradient on hover */}
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-amber-400 transition-all duration-300">
+                    {item.title}
+                  </h3>
+
+                  {/* Enhanced description */}
+                  <p className="text-white/70 text-lg mb-4">
+                    {item.description}
+                  </p>
+
+                  {/* Time to master indicator */}
+                  <div className="flex items-center gap-2 mt-auto">
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-orange-400" />
+                      <span className="text-xs text-orange-400 font-mono">
+                        {index === 0 ? '15 min' : index === 1 ? '20 min' : index === 2 ? '25 min' : index === 3 ? '30 min' : index === 4 ? '15 min' : '10 min'}
+                      </span>
+                    </div>
+                    <span className="text-white/30">•</span>
+                    <span className="text-xs text-white/50 font-sans">
+                      {index < 2 ? 'Essencial' : index < 4 ? 'Avançado' : 'Pro'}
+                    </span>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-white/70">{item.description}</p>
               </motion.div>
             ))}
           </div>
