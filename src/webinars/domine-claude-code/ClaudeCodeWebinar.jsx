@@ -57,6 +57,7 @@ function ClaudeCodeWebinar() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
+  const [showSuccess, setShowSuccess] = useState(false)
 
   // Webinar data specific to Claude Code
   const webinar = {
@@ -185,6 +186,14 @@ function ClaudeCodeWebinar() {
     return () => clearInterval(interval)
   }, [])
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -195,12 +204,14 @@ function ClaudeCodeWebinar() {
 
     setSubmitMessage('🎉 Inscrição realizada com sucesso! Verifique seu email.')
     setIsSubmitting(false)
+    setShowSuccess(true)
 
     setTimeout(() => {
       setIsModalOpen(false)
       setSubmitMessage('')
       setFormData({ name: '', email: '', phone: '' })
-    }, 2000)
+      setShowSuccess(false)
+    }, 3000)
   }
 
   const handleTypeformRegistration = () => {
@@ -1260,118 +1271,247 @@ function ClaudeCodeWebinar() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="relative py-24 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6">
+      {/* Final CTA Section - Form Embedded Style */}
+      <section className="relative py-32 overflow-hidden">
+        {/* Simple metallic background matching hero */}
+        <div style={{
+          background: `
+            radial-gradient(circle at 30% 80%, #2a1a0f 0%, transparent 50%),
+            radial-gradient(circle at 70% 20%, #1a0f0f 0%, transparent 50%),
+            linear-gradient(180deg,
+            #000000 0%,
+            #0a0505 15%,
+            #1a0f0f 30%,
+            #2a1a0f 45%,
+            #1a1a1a 60%,
+            #0f0a0a 75%,
+            #000000 100%)
+          `,
+          position: 'absolute',
+          inset: 0
+        }} />
+
+        {/* Orange Metallic Overlays */}
+        <div style={{
+          background: `radial-gradient(circle at 20% 20%, rgba(255, 165, 0, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.08) 0%, transparent 50%),
+                      radial-gradient(circle at 40% 70%, rgba(255, 69, 0, 0.06) 0%, transparent 50%)
+          `,
+          position: 'absolute',
+          inset: 0
+        }} />
+
+        {/* Subtle Texture */}
+        <div style={{
+          background: `repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 165, 0, 0.01) 2px,
+            rgba(255, 165, 0, 0.01) 4px
+          )`,
+          position: 'absolute',
+          inset: 0
+        }} />
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="relative"
+            className="text-center"
           >
-            {/* Background glow */}
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-amber-500/20 blur-3xl" />
+            {/* Main headline */}
+            <h2 className="text-5xl md:text-7xl font-bold mb-6">
+              <span className="text-white">Pronto para </span>
+              <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+                Dominar
+              </span>
+              <span className="text-white"> o</span>
+              <br />
+              <span className="text-white">Claude Code?</span>
+            </h2>
 
-            {/* Main CTA container with cyberpunk design */}
-            <div className="relative bg-gradient-to-br from-orange-900/30 to-amber-900/20 backdrop-blur-sm rounded-3xl p-12 border-2 border-orange-500/40">
-              {/* Animated circuit pattern background */}
-              <div className="absolute inset-0 opacity-10 rounded-3xl">
-                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <pattern id="circuit-final" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <rect width="1" height="10" fill="#FFA500" opacity="0.5">
-                      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" />
-                    </rect>
-                    <rect x="5" y="5" width="10" height="1" fill="#FFB84D" opacity="0.5">
-                      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.5s" repeatCount="indefinite" />
-                    </rect>
-                    <circle cx="5" cy="5" r="1" fill="#FFA500" />
-                    <circle cx="15" cy="10" r="1" fill="#FFB84D" />
-                  </pattern>
-                  <rect width="100" height="100" fill="url(#circuit-final)" />
-                </svg>
-              </div>
+            <p className="text-white/60 text-lg md:text-xl mb-12 max-w-3xl mx-auto">
+              Reserve sua vaga gratuita e aprenda a criar aplicações completas com IA em tempo recorde
+            </p>
 
-              {/* CTA Badge */}
-              <div className="text-center mb-6">
-                <motion.div
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="inline-block"
-                >
-                  <div className="relative bg-gradient-to-r from-orange-500 to-amber-500 px-6 py-3 shadow-2xl">
-                    {/* Cyberpunk corner brackets */}
-                    <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-white/80" />
-                    <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-white/80" />
-                    <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-white/80" />
-                    <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-white/80" />
+            {/* Registration Form Card */}
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="max-w-xl mx-auto"
+            >
+              <div className="relative">
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-amber-500/20 blur-3xl" />
 
-                    <span className="text-white font-bold text-sm flex items-center gap-2">
-                      <Clock className="w-4 h-4" />
-                      ÚLTIMA CHAMADA
-                    </span>
+                {/* Simplified form container */}
+                <div className="relative bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-orange-500/30">
+
+                  {/* Form header with badge */}
+                  <div className="relative mb-8">
+                    <motion.div
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className="inline-block mb-4"
+                    >
+                      <div className="relative bg-gradient-to-r from-orange-500 to-amber-500 px-5 py-2 shadow-2xl">
+                        {/* Cyberpunk corner brackets */}
+                        <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-white/80" />
+                        <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-white/80" />
+                        <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-white/80" />
+                        <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-white/80" />
+
+                        <span className="text-white text-xs font-bold flex items-center gap-2">
+                          <Zap className="w-4 h-4" />
+                          Vagas Limitadas
+                        </span>
+                      </div>
+                    </motion.div>
+
+                    <h3 className="text-2xl font-bold text-white">
+                      Garanta Sua Vaga Gratuita Agora
+                    </h3>
                   </div>
-                </motion.div>
-              </div>
 
-              {/* Main CTA Content */}
-              <div className="text-center">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                  <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
-                    Pronto para Dominar o Claude Code?
-                  </span>
-                </h2>
+                  {/* Registration Form */}
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* Name field */}
+                    <div className="relative group">
+                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-orange-400/60 group-focus-within:text-orange-400 transition-colors" />
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Seu nome completo"
+                        required
+                        className="w-full bg-black/20 border border-orange-500/20 rounded-xl px-12 py-4 text-white placeholder:text-white/40 focus:outline-none focus:border-orange-500/40 focus:bg-black/30 transition-all"
+                      />
+                    </div>
 
-                <p className="text-white/80 text-lg mb-8">
-                  Entre no webinário gratuito e descubra como transformar sua forma de programar com IA
-                </p>
+                    {/* Email field */}
+                    <div className="relative group">
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-orange-400/60 group-focus-within:text-orange-400 transition-colors" />
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="seu@email.com"
+                        required
+                        className="w-full bg-black/20 border border-orange-500/20 rounded-xl px-12 py-4 text-white placeholder:text-white/40 focus:outline-none focus:border-orange-500/40 focus:bg-black/30 transition-all"
+                      />
+                    </div>
 
-                {/* Features grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-                  <div className="bg-black/30 rounded-xl p-4 border border-orange-500/20">
-                    <Sparkles className="w-6 h-6 text-orange-400 mx-auto mb-2" />
-                    <div className="text-white/90 font-medium">100% Gratuito</div>
-                    <div className="text-white/60 text-sm">Sem taxas ocultas</div>
-                  </div>
-                  <div className="bg-black/30 rounded-xl p-4 border border-orange-500/20">
-                    <Trophy className="w-6 h-6 text-orange-400 mx-auto mb-2" />
-                    <div className="text-white/90 font-medium">Certificado</div>
-                    <div className="text-white/60 text-sm">Após conclusão</div>
-                  </div>
-                  <div className="bg-black/30 rounded-xl p-4 border border-orange-500/20">
-                    <Zap className="w-6 h-6 text-orange-400 mx-auto mb-2" />
-                    <div className="text-white/90 font-medium">Ao Vivo</div>
-                    <div className="text-white/60 text-sm">Interativo e prático</div>
-                  </div>
+                    {/* Phone field */}
+                    <div className="relative group">
+                      <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-orange-400/60 group-focus-within:text-orange-400 transition-colors" />
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="(11) 98765-4321"
+                        required
+                        className="w-full bg-black/20 border border-orange-500/20 rounded-xl px-12 py-4 text-white placeholder:text-white/40 focus:outline-none focus:border-orange-500/40 focus:bg-black/30 transition-all"
+                      />
+                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-orange-400/60">
+                        WhatsApp
+                      </span>
+                    </div>
+
+                    {/* Submit button */}
+                    <motion.button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full relative group overflow-hidden"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div className="relative bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl py-4 px-6 font-bold text-white text-lg shadow-2xl">
+                        {/* Shimmer effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+
+                        <span className="relative flex items-center justify-center gap-3">
+                          {isSubmitting ? (
+                            <>
+                              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                              Reservando sua vaga...
+                            </>
+                          ) : (
+                            <>
+                              <Rocket className="w-5 h-5" />
+                              Quero Minha Vaga Gratuita
+                              <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </>
+                          )}
+                        </span>
+                      </div>
+                    </motion.button>
+
+                    {/* Privacy notice */}
+                    <p className="text-white/40 text-xs mt-4">
+                      Ao se inscrever, você concorda em receber comunicações sobre o evento.
+                    </p>
+                  </form>
+
+                  {/* Success message */}
+                  {showSuccess && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-6 p-4 bg-green-500/20 border border-green-500/30 rounded-xl"
+                    >
+                      <p className="text-green-400 font-semibold flex items-center justify-center gap-2">
+                        <CheckCircle className="w-5 h-5" />
+                        Vaga reservada com sucesso! Verifique seu e-mail.
+                      </p>
+                    </motion.div>
+                  )}
                 </div>
-
-                {/* CTA Button */}
-                <motion.button
-                  onClick={() => setIsModalOpen(true)}
-                  className="relative group"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl blur group-hover:blur-xl transition-all" />
-                  <div className="relative bg-gradient-to-r from-orange-500 to-amber-500 px-12 py-5 rounded-xl font-bold text-white text-lg shadow-2xl flex items-center gap-3">
-                    <Rocket className="w-6 h-6" />
-                    GARANTIR MINHA VAGA AGORA
-                    <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </motion.button>
-
-                {/* Timer */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
-                  className="mt-8 flex items-center justify-center gap-2 text-orange-300"
-                >
-                  <Clock className="w-4 h-4" />
-                  <span className="text-sm">Vagas limitadas • Inscrições se encerram em breve</span>
-                </motion.div>
               </div>
-            </div>
+            </motion.div>
+
+            {/* Bottom features simplified */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="mt-16 flex flex-wrap items-center justify-center gap-8"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-500/20 flex items-center justify-center">
+                  <Shield className="w-5 h-5 text-orange-400" />
+                </div>
+                <div>
+                  <div className="text-white font-semibold">100% Gratuito</div>
+                  <div className="text-white/50 text-xs">Sem pegadinhas</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-500/20 flex items-center justify-center">
+                  <Trophy className="w-5 h-5 text-orange-400" />
+                </div>
+                <div>
+                  <div className="text-white font-semibold">Certificado</div>
+                  <div className="text-white/50 text-xs">De conclusão</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-500/20 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-orange-400" />
+                </div>
+                <div>
+                  <div className="text-white font-semibold">Bônus Exclusivo</div>
+                  <div className="text-white/50 text-xs">Material extra</div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
