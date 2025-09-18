@@ -1,23 +1,110 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <title>Engenharia de Dados Academy - A Plataforma Mais Completa do Brasil</title>
-    <meta name="description" content="Do primeiro passo até o nível especialista, guiamos sua jornada como Engenheiro de Dados com metodologia exclusiva, prática e validada em projetos globais.">
-    <meta name="keywords" content="engenharia de dados, data engineering, spark, databricks, lakehouse, AI, GenAI, curso, bootcamp, brasil">
-    <meta property="og:title" content="Engenharia de Dados Academy - A Plataforma Mais Completa do Brasil">
-    <meta property="og:description" content="Transforme sua carreira em meses, não em anos. Metodologia PRIME exclusiva com instrutores globais.">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Preload critical font -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" as="style">
+
+    <!-- Async load non-critical CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
+    
+    <!-- Critical inline CSS for above-the-fold content -->
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Oswald', sans-serif;
+        background-color: #030303;
+        color: white;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #root { min-height: 100vh; }
+      .dark { color-scheme: dark; }
+
+      /* Critical above-the-fold styles */
+      .min-h-screen { min-height: 100vh; }
+      .bg-\[#030303\] { background-color: #030303; }
+      .bg-black { background-color: #000000; }
+      .text-white { color: white; }
+      .overflow-x-hidden { overflow-x: hidden; }
+      .relative { position: relative; }
+      .absolute { position: absolute; }
+      .fixed { position: fixed; }
+      .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+      .z-0 { z-index: 0; }
+      .z-10 { z-index: 10; }
+      .flex { display: flex; }
+      .items-center { align-items: center; }
+      .justify-center { justify-content: center; }
+      .text-center { text-align: center; }
+      .opacity-60 { opacity: 0.6; }
+      .opacity-10 { opacity: 0.1; }
+      
+      /* Critical layout styles */
+      .font-bold { font-weight: 700; }
+      .mb-4 { margin-bottom: 1rem; }
+      .mb-6 { margin-bottom: 1.5rem; }
+      .mb-8 { margin-bottom: 2rem; }
+      .pt-24 { padding-top: 6rem; }
+      .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .max-w-7xl { max-width: 80rem; }
+      .mx-auto { margin-left: auto; margin-right: auto; }
+      
+
+      /* Skeleton loader for initial render */
+      .skeleton {
+        background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+        background-size: 200% 100%;
+        animation: skeleton-loading 1.5s infinite;
+      }
+
+      @keyframes skeleton-loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+    </style>
+    
+    <title>AI Data Engineering Brasil - Ask Gen & Onyx</title>
+    <meta name="description" content="AI Data Engineering Brasil - A primeira comunidade brasileira dedicada à convergência entre Engenharia de Dados e Inteligência Artificial Generativa. Aprenda com experts, participe de webinários e transforme dados em inteligência.">
+    <meta name="keywords" content="ai, data engineering, brasil, genai, artificial intelligence, dados, engenharia, machine learning, claude, openai, ask gen, onyx">
+    <meta name="author" content="AI Data Engineering Brasil">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://aidebrasil.com.br/">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="AI Data Engineering Brasil - Transforme Dados em Inteligência">
+    <meta property="og:description" content="A primeira comunidade brasileira dedicada à convergência entre Engenharia de Dados e Inteligência Artificial Generativa. Mais de 10.000 membros ativos.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aidebrasil.com.br/">
+    <meta property="og:image" content="https://aidebrasil.com.br/og-image.png">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="AI Data Engineering Brasil">
+    
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Engenharia de Dados Academy">
-    <meta name="twitter:description" content="A plataforma pioneira em ensino de Engenharia de Dados no Brasil.">
+    <meta name="twitter:title" content="AI Data Engineering Brasil">
+    <meta name="twitter:description" content="A primeira comunidade brasileira dedicada à convergência entre Engenharia de Dados e IA Generativa.">
+    <meta name="twitter:image" content="https://aidebrasil.com.br/twitter-card.png">
+    
+    <!-- Additional Performance Hints -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#030303">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
   </head>
   <body>
+    <script src="/anti-flicker.js"></script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
