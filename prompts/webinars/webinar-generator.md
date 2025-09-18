@@ -126,11 +126,25 @@ Create a high-converting webinar landing page using the EXACT structure and desi
 
 ### WEBINAR CONFIGURATION:
 
+**Background Image:**
+- Background Image Path: [BACKGROUND_IMAGE_PATH] (e.g., "/images/background-domine-autonomous-agents-2.png")
+- **IMPORTANT**: This same image will be used in:
+  - Hero section right column background (30% opacity)
+  - Instructor section background (15% opacity)
+  - Instructor photo replacement (100% opacity with effects)
+  - Testimonial background (8% opacity)
+
 **Theme Colors:**
 - Primary Color: [PRIMARY_COLOR] (e.g., "purple-500")
 - Secondary Color: [SECONDARY_COLOR] (e.g., "violet-500")
 - Metallic Background Hex: [METALLIC_HEX_1], [METALLIC_HEX_2] (e.g., "#1a0f2a, #0f0f1a")
 - Dark Colors: [DARK_COLOR_1], [DARK_COLOR_2] (e.g., "#1a0f2a, #0f0a1a")
+- RGBA Values for overlays:
+  - [PRIMARY_COLOR_RGBA_20]: rgba(147, 51, 234, 0.2) format
+  - [PRIMARY_COLOR_RGBA_40]: rgba(147, 51, 234, 0.4) format
+  - [SECONDARY_COLOR_RGBA_10]: rgba(139, 92, 246, 0.1) format
+  - [SECONDARY_COLOR_RGBA_20]: rgba(139, 92, 246, 0.2) format
+  - [PRIMARY_COLOR_RGBA_30]: rgba(147, 51, 234, 0.3) format
 
 **Basic Information:**
 - Webinar Title: [WEBINAR_TITLE]
@@ -645,6 +659,154 @@ Create a high-converting webinar landing page using the EXACT structure and desi
 </div>
 ```
 
+### BACKGROUND IMAGE IMPLEMENTATION (NEW REQUIREMENT):
+
+**CRITICAL**: All webinars must include a consistent background image theme throughout the page.
+
+#### BACKGROUND IMAGE SETUP:
+
+1. **Hero Section - Right Column Background**:
+```jsx
+{/* RIGHT COLUMN */}
+<div className="space-y-8 relative">
+  {/* Background image positioned behind the content */}
+  <div
+    className="absolute inset-0"
+    style={{
+      backgroundImage: 'url([BACKGROUND_IMAGE_PATH])',
+      backgroundSize: 'contain',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      opacity: 0.3,
+      filter: 'brightness(0.7) contrast(1.3)',
+      maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 80%)',
+      WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 80%)',
+      zIndex: 0
+    }}
+  />
+
+  {/* Color overlay for better blending */}
+  <div
+    className="absolute inset-0"
+    style={{
+      background: 'radial-gradient(ellipse at center, [PRIMARY_COLOR_RGBA_20] 0%, [SECONDARY_COLOR_RGBA_10] 50%, transparent 80%)',
+      zIndex: 1,
+      pointerEvents: 'none'
+    }}
+  />
+
+  {/* What You'll Learn card - ADD relative and zIndex */}
+  <motion.div
+    className="bg-gradient-to-br from-[PRIMARY_COLOR]/10 to-[SECONDARY_COLOR]/10 backdrop-blur-sm rounded-2xl p-8 border border-[PRIMARY_COLOR]/20 relative"
+    style={{ zIndex: 2 }}
+  >
+
+  {/* Registration form card - ADD zIndex */}
+  <motion.div
+    className="relative bg-gradient-to-br from-[PRIMARY_COLOR_900]/30 to-[SECONDARY_COLOR_900]/20 backdrop-blur-sm rounded-2xl p-8 border-2 border-[PRIMARY_COLOR]/30"
+    style={{ zIndex: 2 }}
+  >
+</div>
+```
+
+2. **Instructor Section - Complete Background Implementation**:
+```jsx
+<div className="max-w-4xl mx-auto">
+  <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-12 border border-[PRIMARY_COLOR]/20 relative overflow-hidden">
+    {/* Background image layer */}
+    <div
+      className="absolute inset-0"
+      style={{
+        backgroundImage: 'url([BACKGROUND_IMAGE_PATH])',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        opacity: 0.15,
+        filter: 'brightness(0.6) contrast(1.2)',
+        zIndex: 0
+      }}
+    />
+
+    {/* Color overlay for blending */}
+    <div
+      className="absolute inset-0"
+      style={{
+        background: 'linear-gradient(135deg, [PRIMARY_COLOR_RGBA_40] 0%, [SECONDARY_COLOR_RGBA_20] 50%, [PRIMARY_COLOR_RGBA_30] 100%)',
+        zIndex: 1,
+        pointerEvents: 'none'
+      }}
+    />
+
+    <div className="grid md:grid-cols-2 gap-12 items-center relative" style={{ zIndex: 2 }}>
+      {/* Photo side with cyberpunk enhancements */}
+      <div className="relative">
+        {/* Animated glow behind photo */}
+        <div className="absolute -inset-4 bg-gradient-to-r from-[PRIMARY_COLOR] to-[SECONDARY_COLOR] rounded-2xl opacity-30 blur-xl animate-pulse" />
+
+        {/* Main photo with effects - USE SAME BACKGROUND IMAGE AS INSTRUCTOR PHOTO */}
+        <div className="relative overflow-hidden rounded-2xl">
+          <img
+            src="[BACKGROUND_IMAGE_PATH]"
+            alt={webinar.instructor.name}
+            className="w-full relative z-1"
+            style={{
+              filter: 'contrast(1.1) saturate(0.9)',
+              objectFit: 'cover',
+              objectPosition: 'center'
+            }}
+          />
+
+          {/* Color gradient overlay for cyberpunk effect */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[PRIMARY_COLOR_900]/40 via-transparent to-[SECONDARY_COLOR_900]/20 mix-blend-multiply" />
+        </div>
+
+        {/* Corner accent decorations */}
+        <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[PRIMARY_COLOR] rounded-tl-2xl" />
+        <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[PRIMARY_COLOR] rounded-tr-2xl" />
+        <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[PRIMARY_COLOR] rounded-bl-2xl" />
+        <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-[PRIMARY_COLOR] rounded-br-2xl" />
+
+        {/* Tech badge overlay */}
+        <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-[PRIMARY_COLOR]/50">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-[PRIMARY_COLOR] rounded-full animate-pulse" />
+            <span className="text-xs text-[PRIMARY_COLOR_400] font-mono">LIVE SYSTEM</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Content side remains the same */}
+    </div>
+  </div>
+</div>
+```
+
+3. **Testimonial Section - Subtle Background**:
+```jsx
+{/* Testimonial with background image */}
+<div className="bg-gradient-to-r from-[PRIMARY_COLOR]/20 to-[SECONDARY_COLOR]/20 p-[1px] rounded-2xl max-w-3xl mx-auto">
+  <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-8 relative overflow-hidden">
+    {/* Background image for testimonial */}
+    <div
+      className="absolute inset-0"
+      style={{
+        backgroundImage: 'url([BACKGROUND_IMAGE_PATH])',
+        backgroundSize: 'cover',
+        backgroundPosition: 'right center',
+        backgroundRepeat: 'no-repeat',
+        opacity: 0.08,
+        filter: 'brightness(0.5) contrast(1.1)',
+        zIndex: 0
+      }}
+    />
+    <div className="relative" style={{ zIndex: 1 }}>
+      <p className="text-lg text-white/80 mb-6">"{testimonial.quote}"</p>
+      {/* Rest of testimonial content */}
+    </div>
+  </div>
+</div>
+```
+
 ### COLOR REPLACEMENT MAPPING:
 
 **Critical color replacements:**
@@ -704,10 +866,15 @@ const [attendeeCount, setAttendeeCount] = useState([INITIAL_COUNT])
 ✅ Attendee counter with Users icon
 ✅ Metallic shine effect on title
 ✅ 3 key feature boxes with gradient icons
-✅ "What You'll Learn" card in right column
-✅ Registration form below learn card
+✅ "What You'll Learn" card in right column with background image
+✅ Registration form below learn card with proper z-index
+✅ Background image in hero right column (30% opacity)
+✅ Background image in instructor section (15% opacity)
+✅ Instructor photo replaced with background image
+✅ Cyberpunk effects on instructor photo (glow, corners, badge)
+✅ Background image in testimonial (8% opacity)
 ✅ All subsequent sections with bg-transparent
-✅ Proper color theme replacement
+✅ Proper color theme replacement with RGBA overlays
 ✅ All animations and interactions
 ✅ Back button with proper styling
 

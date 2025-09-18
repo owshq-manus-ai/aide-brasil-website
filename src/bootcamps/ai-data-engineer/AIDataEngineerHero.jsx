@@ -590,25 +590,29 @@ const AIDataEngineerHero = () => {
           >
             {/* Character Image Layer - Behind the Card */}
             <div
-              className="absolute -inset-x-20 -inset-y-32 lg:-inset-x-40 lg:-inset-y-40"
+              className="absolute -inset-x-20 lg:-inset-x-40"
               style={{
+                top: '10%',
+                bottom: '-20%',
                 backgroundImage: 'url(/images/background-domine-autonomous-agents-2.png)',
                 backgroundSize: 'contain',
-                backgroundPosition: 'center bottom',
+                backgroundPosition: 'center center',
                 backgroundRepeat: 'no-repeat',
                 opacity: 0.25,
                 filter: 'brightness(1.1) contrast(1.2)',
                 maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 70%)',
                 WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 70%)',
                 zIndex: -1,
-                transform: 'scale(1.2)',
+                transform: 'scale(1.1)',
               }}
             />
 
             {/* Purple Glow Effect Around Character */}
             <div
-              className="absolute -inset-x-20 -inset-y-32 lg:-inset-x-40 lg:-inset-y-40"
+              className="absolute -inset-x-20 lg:-inset-x-40"
               style={{
+                top: '10%',
+                bottom: '-20%',
                 background: 'radial-gradient(ellipse at center, rgba(168, 85, 247, 0.2) 0%, rgba(139, 92, 246, 0.1) 40%, transparent 70%)',
                 zIndex: -1,
                 pointerEvents: 'none',
