@@ -222,7 +222,7 @@ function ClaudeCodeWebinar() {
     <div className="min-h-screen text-white overflow-x-hidden relative">
       {/* ORANGE METALLIC BACKGROUND */}
       <div className="fixed inset-0" style={{ zIndex: -10 }}>
-        {/* Deep Black to Orange Gradient Base */}
+        {/* Layer 1: Deep Black to Orange Gradient Base */}
         <div style={{
           background: `linear-gradient(135deg,
             #000000 0%,
@@ -237,7 +237,7 @@ function ClaudeCodeWebinar() {
           inset: 0
         }} />
 
-        {/* Orange Metallic Overlays */}
+        {/* Layer 2: Orange Metallic Overlays */}
         <div style={{
           background: `radial-gradient(circle at 20% 20%, rgba(255, 165, 0, 0.1) 0%, transparent 50%),
                       radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.08) 0%, transparent 50%),
@@ -247,7 +247,7 @@ function ClaudeCodeWebinar() {
           inset: 0
         }} />
 
-        {/* Subtle Texture */}
+        {/* Layer 3: Subtle Texture */}
         <div style={{
           background: `repeating-linear-gradient(
             45deg,
@@ -398,13 +398,39 @@ function ClaudeCodeWebinar() {
             </div>
 
             {/* Right Column - Registration Form and Learn Section */}
-            <div className="space-y-8">
+            <div className="space-y-8 relative">
+              {/* Background image positioned behind the content */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: 'url(/images/luan-moreno-4.png)',
+                  backgroundSize: 'contain',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  opacity: 0.25,
+                  filter: 'brightness(0.7) contrast(1.3)',
+                  maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 80%)',
+                  WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 80%)',
+                  zIndex: 0
+                }}
+              />
+
+              {/* Orange overlay for better blending */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: 'radial-gradient(ellipse at center, rgba(255, 165, 0, 0.2) 0%, rgba(255, 140, 0, 0.1) 50%, transparent 80%)',
+                  zIndex: 1,
+                  pointerEvents: 'none'
+                }}
+              />
               {/* What You'll Learn Card - Aligned with header */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.7 }}
-                className="bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-xl p-6 border border-orange-500/20 max-w-md ml-auto"
+                className="bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-xl p-6 border border-orange-500/20 max-w-md ml-auto relative"
+                style={{ zIndex: 2 }}
               >
                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-orange-500" />
@@ -432,6 +458,7 @@ function ClaudeCodeWebinar() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.9 }}
                 className="bg-gradient-to-br from-orange-900/30 to-amber-900/20 backdrop-blur-sm rounded-2xl p-5 border border-orange-500/30 relative"
+                style={{ zIndex: 2 }}
               >
                 {/* Floating corner icons - positioned on edges */}
                 <div className="absolute -top-6 -left-6">
@@ -926,7 +953,30 @@ function ClaudeCodeWebinar() {
                 {/* Glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-3xl blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="relative bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border-2 border-orange-500/20 hover:border-orange-500/50 transition-all">
+                <div className="relative bg-gradient-to-br from-orange-900/20 to-amber-900/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border-2 border-orange-500/20 hover:border-orange-500/50 transition-all overflow-hidden">
+                  {/* Background agent image */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: 'url(/images/luan-moreno-4.png)',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat',
+                      opacity: 0.15,
+                      filter: 'brightness(0.6) contrast(1.2)',
+                      zIndex: 0
+                    }}
+                  />
+
+                  {/* Orange overlay for blending */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(255, 165, 0, 0.4) 0%, rgba(255, 140, 0, 0.2) 50%, rgba(255, 165, 0, 0.3) 100%)',
+                      zIndex: 1,
+                      pointerEvents: 'none'
+                    }}
+                  />
                   {/* Verified Badge */}
                   <div className="absolute -top-5 right-8 z-20">
                     <motion.div
@@ -948,7 +998,7 @@ function ClaudeCodeWebinar() {
                     </motion.div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-12 items-center">
+                  <div className="grid md:grid-cols-2 gap-12 items-center relative" style={{ zIndex: 2 }}>
                     {/* Photo Column */}
                     <div className="flex justify-center">
                       <motion.div

@@ -417,13 +417,39 @@ function AutonomousAgentsWebinar() {
             </div>
 
             {/* RIGHT COLUMN */}
-            <div className="space-y-8">
+            <div className="space-y-8 relative">
+              {/* Background image positioned behind the content */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: 'url(/images/background-domine-autonomous-agents-2.png)',
+                  backgroundSize: 'contain',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  opacity: 0.3,
+                  filter: 'brightness(0.7) contrast(1.3)',
+                  maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 80%)',
+                  WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 80%)',
+                  zIndex: 0
+                }}
+              />
+
+              {/* Purple overlay for better blending */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: 'radial-gradient(ellipse at center, rgba(147, 51, 234, 0.2) 0%, rgba(139, 92, 246, 0.1) 50%, transparent 80%)',
+                  zIndex: 1,
+                  pointerEvents: 'none'
+                }}
+              />
               {/* What You'll Learn card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="bg-gradient-to-br from-purple-500/10 to-violet-500/10 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/20"
+                className="bg-gradient-to-br from-purple-500/10 to-violet-500/10 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/20 relative"
+                style={{ zIndex: 2 }}
               >
                 <div className="flex items-center gap-2 mb-4">
                   <BookOpen className="w-5 h-5 text-purple-500" />
@@ -445,6 +471,7 @@ function AutonomousAgentsWebinar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
                 className="relative bg-gradient-to-br from-purple-900/30 to-violet-900/20 backdrop-blur-sm rounded-2xl p-8 border-2 border-purple-500/30"
+                style={{ zIndex: 2 }}
               >
                 {/* 4 Floating Corner Icons with Animations */}
                 <div className="absolute -top-6 -left-6">
@@ -807,15 +834,67 @@ function AutonomousAgentsWebinar() {
           </p>
 
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-12 border border-purple-500/20">
-              <div className="grid md:grid-cols-2 gap-12 items-center">
-                {/* Photo side */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-12 border border-purple-500/20 relative overflow-hidden">
+              {/* Background agent image */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: 'url(/images/background-domine-autonomous-agents-2.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  opacity: 0.15,
+                  filter: 'brightness(0.6) contrast(1.2)',
+                  zIndex: 0
+                }}
+              />
+
+              {/* Purple overlay for blending */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(147, 51, 234, 0.4) 0%, rgba(139, 92, 246, 0.2) 50%, rgba(147, 51, 234, 0.3) 100%)',
+                  zIndex: 1,
+                  pointerEvents: 'none'
+                }}
+              />
+
+              <div className="grid md:grid-cols-2 gap-12 items-center relative" style={{ zIndex: 2 }}>
+                {/* Photo side with cyberpunk enhancements */}
                 <div className="relative">
-                  <img
-                    src={webinar.instructor.photo}
-                    alt={webinar.instructor.name}
-                    className="rounded-2xl w-full"
-                  />
+                  {/* Animated purple glow behind photo */}
+                  <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-violet-600 rounded-2xl opacity-30 blur-xl animate-pulse" />
+
+                  {/* Main photo with effects */}
+                  <div className="relative overflow-hidden rounded-2xl">
+                    <img
+                      src="/images/background-domine-autonomous-agents-2.png"
+                      alt={webinar.instructor.name}
+                      className="w-full relative z-1"
+                      style={{
+                        filter: 'contrast(1.1) saturate(0.9)',
+                        objectFit: 'cover',
+                        objectPosition: 'center'
+                      }}
+                    />
+
+                    {/* Purple gradient overlay for cyberpunk effect */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 via-transparent to-violet-900/20 mix-blend-multiply" />
+                  </div>
+
+                  {/* Corner accent decorations */}
+                  <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-purple-500 rounded-tl-2xl" />
+                  <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-purple-500 rounded-tr-2xl" />
+                  <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-purple-500 rounded-bl-2xl" />
+                  <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-purple-500 rounded-br-2xl" />
+
+                  {/* Tech badge overlay */}
+                  <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-purple-500/50">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
+                      <span className="text-xs text-purple-400 font-mono">LIVE SYSTEM</span>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Content with verified badge */}
@@ -976,7 +1055,21 @@ function AutonomousAgentsWebinar() {
 
           {/* Testimonial */}
           <div className="bg-gradient-to-r from-purple-500/20 to-violet-500/20 p-[1px] rounded-2xl max-w-3xl mx-auto">
-            <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-8">
+            <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-8 relative overflow-hidden">
+              {/* Background agent image for testimonial */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: 'url(/images/background-domine-autonomous-agents-2.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'right center',
+                  backgroundRepeat: 'no-repeat',
+                  opacity: 0.08,
+                  filter: 'brightness(0.5) contrast(1.1)',
+                  zIndex: 0
+                }}
+              />
+              <div className="relative" style={{ zIndex: 1 }}>
               <p className="text-lg text-white/80 mb-6">"{webinar.testimonial.quote}"</p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-500 rounded-full flex items-center justify-center text-white font-bold">
@@ -986,6 +1079,7 @@ function AutonomousAgentsWebinar() {
                   <p className="font-bold text-white">{webinar.testimonial.author}</p>
                   <p className="text-purple-500">{webinar.testimonial.role}</p>
                 </div>
+              </div>
               </div>
             </div>
           </div>
