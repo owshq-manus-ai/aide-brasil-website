@@ -324,7 +324,7 @@ const AIDataEngineerHero = () => {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: 'url(/images/background-domine-autonomous-agents-2.png)',
+          backgroundImage: 'url(/images/backgrounds/background-domine-autonomous-agents.png)',
           backgroundSize: '80% auto',
           backgroundPosition: 'right center',
           backgroundRepeat: 'no-repeat',

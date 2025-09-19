@@ -115,8 +115,8 @@ function ClaudeCodeWebinar() {
       role: 'Principal Data & AI Engineer @ Pythian',
       bio: 'Especialista com anos de experiência em IA e engenharia de dados, responsável por implementações em larga escala.',
       avatar: '🤖',
-      photo1: '/images/luan-moreno-4.png',
-      photo2: '/images/luan-moreno-2.png',
+      photo1: '/images/team/luan-moreno-4.png',
+      photo2: '/images/team/luan-moreno-2.png',
       achievements: [
         '10+ anos de experiência em Data Engineering',
         'Pioneiro em implementações de Claude Code no Brasil',
@@ -403,7 +403,7 @@ function ClaudeCodeWebinar() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url(/images/luan-moreno-4.png)',
+                  backgroundImage: 'url(/images/team/luan-moreno-4.png)',
                   backgroundSize: 'contain',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
@@ -958,7 +958,7 @@ function ClaudeCodeWebinar() {
                   <div
                     className="absolute inset-0"
                     style={{
-                      backgroundImage: 'url(/images/luan-moreno-4.png)',
+                      backgroundImage: 'url(/images/team/luan-moreno-4.png)',
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       backgroundRepeat: 'no-repeat',

@@ -3,7 +3,7 @@ import React from 'react';
 // Final AIDE Brasil Logo Component
 export const AIDELogo = ({ size = 60 }) => (
   <img 
-    src="/logo-aide-brasil.png" 
+    src="/images/logos/logo-aide-brasil.png" 
     alt="AIDE Brasil"
     style={{
       height: size,

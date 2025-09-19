@@ -162,7 +162,7 @@ function AutonomousAgentsWebinar() {
       title: 'Principal AI & Autonomous Systems Engineer',
       company: '@Pythian',
       bio: 'Pioneiro em implementação de agentes autônomos no Brasil, com experiência prática em todas as principais plataformas de código assistido por IA. Especialista em arquitetura multi-agente e otimização de workflows de desenvolvimento.',
-      photo: '/images/luan-moreno-4.png',
+      photo: '/images/team/luan-moreno-4.png',
       linkedin: 'https://www.linkedin.com/in/luanmoreno/',
       instagram: 'https://www.instagram.com/luanmorenomaciel/',
       achievements: [
@@ -422,7 +422,7 @@ function AutonomousAgentsWebinar() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url(/images/background-domine-autonomous-agents-2.png)',
+                  backgroundImage: 'url(/images/backgrounds/background-domine-autonomous-agents.png)',
                   backgroundSize: 'contain',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
@@ -839,7 +839,7 @@ function AutonomousAgentsWebinar() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url(/images/background-domine-autonomous-agents-2.png)',
+                  backgroundImage: 'url(/images/backgrounds/background-domine-autonomous-agents.png)',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
@@ -868,7 +868,7 @@ function AutonomousAgentsWebinar() {
                   {/* Main photo with effects */}
                   <div className="relative overflow-hidden rounded-2xl">
                     <img
-                      src="/images/background-domine-autonomous-agents-2.png"
+                      src="/images/backgrounds/background-domine-autonomous-agents.png"
                       alt={webinar.instructor.name}
                       className="w-full relative z-1"
                       style={{
@@ -1060,7 +1060,7 @@ function AutonomousAgentsWebinar() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url(/images/background-domine-autonomous-agents-2.png)',
+                  backgroundImage: 'url(/images/backgrounds/background-domine-autonomous-agents.png)',
                   backgroundSize: 'cover',
                   backgroundPosition: 'right center',
                   backgroundRepeat: 'no-repeat',
