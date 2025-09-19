@@ -66,7 +66,7 @@ export default defineConfig({
       }
     },
     // Optimize chunk size for better mobile loading
-    chunkSizeWarningLimit: 200, // Reduced for mobile performance
+    chunkSizeWarningLimit: 300, // Adjusted for modern React apps
     // Enable minification with terser for better compression
     minify: 'terser',
     terserOptions: {

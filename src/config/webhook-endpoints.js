@@ -61,7 +61,9 @@ export const webhookEndpoints = {
   // Webinar Pages - ALL require name, email, and phone
   webinars: {
     'domine-autonomous-code-agents': {
-      url: import.meta.env.VITE_WEBHOOK_WEBINAR_AGENTS || 'https://primary-production-1ebc.up.railway.app/webhook/webinar-agents',
+      url: import.meta.env.VITE_WEBHOOK_WEBINAR_AGENTS ||
+           import.meta.env.VITE_N8N_WEBHOOK_URL ||
+           'https://primary-production-1ebc.up.railway.app/webhook-test/3a20f09c-24f1-4052-ae9c-a3617cf9ec57',
       fields: ['name', 'email', 'phone'], // Mandatory fields
       metadata: {
         type: 'webinar',
@@ -71,7 +73,9 @@ export const webhookEndpoints = {
       }
     },
     'domine-claude-code': {
-      url: import.meta.env.VITE_WEBHOOK_WEBINAR_CLAUDE || 'https://primary-production-1ebc.up.railway.app/webhook/webinar-claude',
+      url: import.meta.env.VITE_WEBHOOK_WEBINAR_CLAUDE ||
+           import.meta.env.VITE_N8N_WEBHOOK_URL ||
+           'https://primary-production-1ebc.up.railway.app/webhook-test/3a20f09c-24f1-4052-ae9c-a3617cf9ec57',
       fields: ['name', 'email', 'phone'], // Mandatory fields
       metadata: {
         type: 'webinar',

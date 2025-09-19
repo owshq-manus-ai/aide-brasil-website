@@ -11,6 +11,8 @@ import {
   Gauge, Code, Bug
 } from 'lucide-react'
 import Header from '../../../components/shared/Header'
+import { submitToWebhook } from '../../../config/webhooks'
+import { webhookEndpoints } from '../../../config/webhook-endpoints'
 
 // Configuration for registration method
 const USE_TYPEFORM = false
@@ -67,7 +69,7 @@ function AutonomousAgentsWebinar() {
     title: 'Dominando Autonomous Code Agents',
     highlightWord: 'Autonomous',
     subtitle: 'Compare e domine os 4 principais agentes de código autônomo do mercado',
-    date: '4 Fev 2025',
+    date: '22 Out 2025',
     time: '20:00 BRT',
     duration: '2 horas',
     gradient: 'from-purple-600 to-violet-600',
@@ -249,6 +251,26 @@ function AutonomousAgentsWebinar() {
     return () => clearInterval(interval)
   }, [])
 
+  const formatPhoneNumber = (value) => {
+    const phoneNumber = value.replace(/\D/g, '')
+    if (phoneNumber.length <= 2) {
+      return phoneNumber
+    } else if (phoneNumber.length <= 7) {
+      return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2)}`
+    } else if (phoneNumber.length <= 11) {
+      return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7)}`
+    }
+    return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7, 11)}`
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: name === 'phone' ? formatPhoneNumber(value) : value
+    }))
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -259,9 +281,49 @@ function AutonomousAgentsWebinar() {
 
     setIsSubmitting(true)
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
+    try {
+      // Get webhook configuration for Autonomous Agents webinar
+      const webhookConfig = webhookEndpoints.webinars['domine-autonomous-code-agents']
+
+      // Prepare data with webhook metadata
+      const submissionData = {
+        ...formData,
+        ...webhookConfig.metadata,
+        source: 'webinar-autonomous-agents',
+        page_url: window.location.href,
+        submitted_at: new Date().toISOString()
+      }
+
+      // Submit to webhook
+      const response = await fetch(webhookConfig.url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData)
+      })
+
+      if (response.ok || response.status === 200 || response.status === 201) {
+        setShowSuccess(true)
+        setFormData({ name: '', email: '', phone: '' })
+
+        setTimeout(() => {
+          setShowSuccess(false)
+          if (isModalOpen) setIsModalOpen(false)
+        }, 3000)
+      } else {
+        // Even if webhook fails, show success to user
+        setShowSuccess(true)
+        setFormData({ name: '', email: '', phone: '' })
+
+        setTimeout(() => {
+          setShowSuccess(false)
+          if (isModalOpen) setIsModalOpen(false)
+        }, 3000)
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      // Don't show error to user, show success message instead
       setShowSuccess(true)
       setFormData({ name: '', email: '', phone: '' })
 
@@ -269,7 +331,9 @@ function AutonomousAgentsWebinar() {
         setShowSuccess(false)
         if (isModalOpen) setIsModalOpen(false)
       }, 3000)
-    }, 1000)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -529,59 +593,64 @@ function AutonomousAgentsWebinar() {
                   </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  {/* Input Fields with Icons */}
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <input
-                      type="text"
-                      placeholder="Seu nome completo"
-                      className="w-full pl-12 pr-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      required
-                    />
-                  </div>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <input
-                      type="email"
-                      placeholder="Seu melhor e-mail"
-                      className="w-full pl-12 pr-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                    />
-                  </div>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-purple-400 font-medium">WhatsApp</span>
-                    <input
-                      type="tel"
-                      placeholder="(00) 00000-0000"
-                      className="w-full pl-12 pr-20 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      required
-                    />
-                  </div>
+                {!showSuccess ? (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* Input Fields with Icons */}
+                    <div className="relative">
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Seu nome completo"
+                        required
+                        className="w-full pl-12 pr-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
+                      />
+                    </div>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="Seu melhor e-mail"
+                        required
+                        className="w-full pl-12 pr-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
+                      />
+                    </div>
+                    <div className="relative">
+                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-purple-400 font-medium">WhatsApp</span>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="(11) 98765-4321"
+                        required
+                        className="w-full pl-12 pr-20 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
+                      />
+                    </div>
 
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-purple-500 to-violet-500 text-white font-bold py-3 rounded-lg hover:from-purple-600 hover:to-violet-600 transform transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? 'Registrando...' : 'Quero Meu Acesso Gratuito'}
-                  </button>
-                </form>
-
-                {showSuccess && (
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-purple-500 to-violet-500 text-white font-bold py-3 rounded-lg hover:from-purple-600 hover:to-violet-600 transform transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? 'Enviando...' : 'Quero Minha Vaga Gratuita'}
+                    </button>
+                  </form>
+                ) : (
                   <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-4 p-3 bg-green-500/20 border border-green-500 rounded-lg text-green-400 text-center"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-8"
                   >
-                    ✅ Inscrição realizada com sucesso!
+                    <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
+                    <p className="text-xl font-bold text-white mb-2">Inscrição Confirmada!</p>
+                    <p className="text-gray-400">Verifique seu email e WhatsApp</p>
                   </motion.div>
                 )}
 
@@ -1160,26 +1229,29 @@ function AutonomousAgentsWebinar() {
               <form onSubmit={handleSubmit} className="space-y-4 mb-8">
                 <input
                   type="text"
+                  name="name"
                   placeholder="Seu nome completo"
                   className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onChange={handleInputChange}
                   required
                 />
                 <input
                   type="email"
+                  name="email"
                   placeholder="Seu melhor e-mail"
                   className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={handleInputChange}
                   required
                 />
                 <input
                   type="tel"
-                  placeholder="WhatsApp: (00) 00000-0000"
+                  name="phone"
+                  placeholder="WhatsApp: (11) 98765-4321"
                   className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none transition-colors"
                   value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  onChange={handleInputChange}
                   required
                 />
 

@@ -8,7 +8,7 @@ import {
 } from 'lucide-react'
 import Header from '../../../components/shared/Header'
 
-// Animated title with purple metallic effect
+// Animated title with silver/gray metallic effect - Onyx Style
 const MetallicTitle = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 
@@ -28,20 +28,21 @@ const MetallicTitle = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      {/* Main Title with Purple Metallic */}
+      {/* Main Title with Silver/Gray Metallic */}
       <motion.h1 className="relative text-6xl md:text-8xl lg:text-9xl font-bold mb-6">
         <span
           className="bg-clip-text text-transparent relative inline-block"
           style={{
             backgroundImage: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%,
-              #E9D5FF 0%,
-              #C084FC 20%,
-              #9333EA 40%,
-              #7E22CE 60%,
-              #9333EA 80%,
-              #C084FC 100%)`,
-            textShadow: '0 0 80px rgba(147, 51, 234, 0.5)',
-            filter: 'drop-shadow(0 0 40px rgba(147, 51, 234, 0.8))',
+              #ffffff 0%,
+              #e5e5e5 20%,
+              #c0c0c0 40%,
+              #808080 60%,
+              #c0c0c0 80%,
+              #e5e5e5 100%)`,
+            textShadow: '0 0 60px rgba(255, 255, 255, 0.15)',
+            filter: 'drop-shadow(0 0 30px rgba(192, 192, 192, 0.4))',
+            WebkitTextStroke: '1px transparent',
           }}
         >
           Webinários
@@ -57,7 +58,7 @@ const webinars = [
     slug: 'domine-claude-code',
     title: 'Dominando Claude Code',
     subtitle: 'Aprenda a configurar e aplicar as melhores práticas para trabalhar com uma frota de Agentes',
-    date: '25 Set 2025',
+    date: '1 Out 2025',
     time: '20:00',
     duration: '2h',
     attendees: 103,
@@ -66,7 +67,7 @@ const webinars = [
     gradient: 'from-orange-600 to-amber-600',
     icon: Brain,
     level: 'Iniciante',
-    spots: 200,
+    spots: 500,
     exclusive: false,
     popular: true
   },
@@ -75,7 +76,7 @@ const webinars = [
     slug: 'domine-autonomous-code-agents',
     title: 'Dominando Autonomous Code Agents',
     subtitle: 'Compare e domine os 4 principais agentes de código autônomo do mercado',
-    date: '4 Fev 2025',
+    date: '22 Out 2025',
     time: '20:00',
     duration: '2h',
     attendees: 247,
@@ -96,34 +97,47 @@ function WebinarsPage() {
 
   return (
     <div className="min-h-screen text-white overflow-x-hidden relative">
-      {/* STATIC PURPLE GRADIENT BACKGROUND - MATCHING HERO PAGES */}
+      {/* METALLIC BLACK/GRAY BACKGROUND - ONYX STYLE */}
       <div className="fixed inset-0" style={{ zIndex: -10 }}>
-        {/* Deep Black to Purple Gradient Base */}
+        {/* Layer 1: Deep gradient base - Gray version */}
         <div
-          className="absolute inset-0"
           style={{
             background: `linear-gradient(135deg,
               #000000 0%,
-              #0a0a0f 15%,
-              #0f0817 30%,
-              #1a0f2e 45%,
-              #1a0f2e 60%,
-              #0f0817 75%,
-              #0a0a0f 90%,
-              #000000 100%
-            )`
+              #0a0a0a 15%,
+              #0f0f0f 30%,
+              #1a1a1a 45%,
+              #151515 60%,
+              #0a0a0a 75%,
+              #000000 100%)`,
+            position: 'absolute',
+            inset: 0
           }}
         />
 
-        {/* Subtle Purple Glow Overlays */}
+        {/* Layer 2: Silver metallic overlays */}
         <div
-          className="absolute inset-0"
           style={{
-            opacity: 0.3,
-            background: `radial-gradient(ellipse at 20% 30%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                        radial-gradient(ellipse at 40% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 45%),
-                        radial-gradient(circle at 60% 40%, rgba(196, 181, 253, 0.08) 0%, transparent 40%)`
+            background: `radial-gradient(circle at 20% 20%, rgba(192, 192, 192, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(160, 160, 160, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 70%, rgba(128, 128, 128, 0.06) 0%, transparent 50%)`,
+            position: 'absolute',
+            inset: 0
+          }}
+        />
+
+        {/* Layer 3: Subtle texture */}
+        <div
+          style={{
+            background: `repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 2px,
+              rgba(192, 192, 192, 0.01) 2px,
+              rgba(192, 192, 192, 0.01) 4px
+            )`,
+            position: 'absolute',
+            inset: 0
           }}
         />
       </div>
@@ -159,7 +173,7 @@ function WebinarsPage() {
                   <Sparkles className="w-5 h-5 text-gray-400" />
                 </motion.div>
                 <span className="text-sm font-bold uppercase tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300">
-                  CONTEÚDO EXCLUSIVO • VAGAS LIMITADAS
+                  Conteúdo Exclusivo
                 </span>
                 <motion.div
                   animate={{ rotate: -360 }}
@@ -202,8 +216,8 @@ function WebinarsPage() {
                   whileHover={{ scale: 1.05 }}
                   className="flex flex-col items-center group"
                 >
-                  <div className="w-12 h-12 mb-2 rounded-lg bg-gradient-to-br from-purple-500/20 to-violet-500/20 flex items-center justify-center border border-purple-500/20 group-hover:border-purple-500/40 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-purple-500/20">
-                    <stat.icon className="w-6 h-6 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                  <div className="w-12 h-12 mb-2 rounded-lg bg-gradient-to-br from-gray-500/20 to-gray-400/20 flex items-center justify-center border border-gray-500/20 group-hover:border-gray-400/40 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-gray-400/20">
+                    <stat.icon className="w-6 h-6 text-gray-400 group-hover:text-gray-300 transition-colors" />
                   </div>
                   <div className="text-2xl font-bold bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent">
                     {stat.value}
@@ -235,7 +249,7 @@ function WebinarsPage() {
                     className="relative h-full bg-gradient-to-br from-gray-900/90 via-gray-900/50 to-black/50 backdrop-blur-xl rounded-2xl border border-gray-800/50 overflow-hidden"
                     style={{
                       boxShadow: hoveredCard === webinar.id
-                        ? `0 20px 60px rgba(147, 51, 234, 0.3), inset 0 0 60px rgba(147, 51, 234, 0.05)`
+                        ? `0 20px 60px rgba(192, 192, 192, 0.2), inset 0 0 60px rgba(255, 255, 255, 0.02)`
                         : '0 10px 30px rgba(0, 0, 0, 0.5)'
                     }}
                   >
@@ -313,6 +327,8 @@ function WebinarsPage() {
                         <span className={`px-3 py-1 rounded-full text-xs font-medium border ${
                           webinar.slug === 'domine-claude-code'
                             ? 'bg-orange-500/10 text-orange-400 border-orange-500/30'
+                            : webinar.slug === 'domine-autonomous-code-agents'
+                            ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
                             : 'bg-green-500/10 text-green-400 border-green-500/30'
                         }`}>
                           {webinar.spots} vagas

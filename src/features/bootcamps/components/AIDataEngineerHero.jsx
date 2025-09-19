@@ -278,7 +278,7 @@ const AIDataEngineerHero = () => {
 
   // Log to verify component is mounting
   useEffect(() => {
-    console.log('AIDataEngineerHero component mounted')
+    // Component mounted - production ready
   }, [])
 
   return (
@@ -503,11 +503,11 @@ const AIDataEngineerHero = () => {
               transition={{ delay: 1.4, duration: 0.5 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <NeonButton primary onClick={() => console.log('Start clicked')}>
+              <NeonButton primary onClick={() => {}}>
                 <Sparkles className="w-5 h-5" />
                 COMEÇAR AGORA
               </NeonButton>
-              <NeonButton onClick={() => console.log('Program clicked')}>
+              <NeonButton onClick={() => {}}>
                 Ver Programa Completo
               </NeonButton>
             </motion.div>

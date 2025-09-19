@@ -2,8 +2,8 @@
 
 @media (max-width: 768px) {
   /* Fix 1: Discord Section Header Alignment */
-  /* Target the Discord header specifically */
-  div:has(> span:contains("#ask-the-expert")) {
+  /* Target the Discord header by its container structure */
+  .flex.items-center.justify-between.px-4.py-4.border-b {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
@@ -25,9 +25,11 @@
   }
 
   /* Fix 2: "Fazer Parte da Comunidade" Button */
-  /* Community button container */
-  button:contains("Comunidade"),
-  a:contains("Comunidade") {
+  /* Community button styling */
+  .bg-gradient-to-r.from-green-600.to-emerald-600 button,
+  .bg-gradient-to-r.from-green-600.to-emerald-600 a,
+  button[class*="green"],
+  a[class*="green"] {
     width: calc(100% - 2rem) !important;
     max-width: 320px !important;
     margin-left: auto !important;
@@ -160,9 +162,11 @@
 
 /* Fix for the Onyx text lag */
 @media (max-width: 768px) {
-  /* Specific text that causes lag */
-  h2:contains("Onyx não espera"),
-  h3:contains("Ele já tem as respostas") {
+  /* Target Onyx section text by structure */
+  #onyx h2,
+  #onyx h3,
+  section[id="onyx"] h2,
+  section[id="onyx"] h3 {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

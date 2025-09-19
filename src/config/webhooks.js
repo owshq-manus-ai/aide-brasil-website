@@ -58,7 +58,7 @@ export async function submitToWebhook(data, webhookType = 'premium') {
   const config = webhookConfig.n8n[webhookType]
 
   if (!config || !config.enabled) {
-    console.log(`Webhook ${webhookType} is disabled`)
+    // Webhook disabled
     return { success: true, skipped: true }
   }
 
@@ -106,7 +106,7 @@ export async function submitToWebhook(data, webhookType = 'premium') {
       })
     }
 
-    console.log(`${webhookType} submission successful:`, data)
+    // Webhook submission successful
     return { success: true, data: enrichedData }
 
   } catch (error) {
@@ -117,7 +117,7 @@ export async function submitToWebhook(data, webhookType = 'premium') {
     // Handle error based on configuration
     if (webhookConfig.errorHandling.fallbackBehavior === 'retry') {
       // Implement retry logic if needed
-      console.log('Retrying submission...')
+      // Retrying submission
     }
 
     return {

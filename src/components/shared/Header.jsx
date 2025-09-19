@@ -7,21 +7,20 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
   const isHomePage = location.pathname === '/'
-  const isWebinarsPage = location.pathname.includes('/webinars')
 
   // Determine color scheme based on current page - matching hero sections
   const getColorScheme = () => {
     if (location.pathname === '/webinars') {
-      // Webinars pages - Futuristic metallic purple theme
+      // Webinars pages - Metallic gray/silver Onyx theme
       return {
-        from: 'from-purple-500/20',
-        to: 'to-violet-500/20',
-        hoverFrom: 'hover:from-purple-500/30',
-        hoverTo: 'hover:to-violet-500/30',
-        border: 'border-purple-500/30',
-        hoverBorder: 'hover:border-purple-500/50',
-        shadow: 'hover:shadow-purple-500/30',
-        headerBg: 'bg-gradient-to-r from-purple-900/10 via-[#030303]/95 to-violet-900/10'
+        from: 'from-gray-500/20',
+        to: 'to-gray-400/20',
+        hoverFrom: 'hover:from-gray-500/30',
+        hoverTo: 'hover:to-gray-400/30',
+        border: 'border-gray-500/30',
+        hoverBorder: 'hover:border-gray-400/50',
+        shadow: 'hover:shadow-gray-400/30',
+        headerBg: 'bg-gradient-to-r from-gray-900/10 via-[#030303]/95 to-gray-800/10'
       }
     } else if (location.pathname === '/webinars/domine-claude-code') {
       // Claude Code webinar - Orange/amber metallic theme

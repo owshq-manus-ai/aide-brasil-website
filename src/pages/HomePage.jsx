@@ -153,12 +153,15 @@ const CyclingText = () => {
             }
           })
         }}
-        className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-white text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold"
+        className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-white text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold inline-block"
         style={{
           backgroundSize: isMobile ? '100% 100%' : '200% 200%',
           textShadow: '0 0 8px rgba(192, 192, 192, 0.3), 0 0 16px rgba(169, 169, 169, 0.2), 0 0 24px rgba(128, 128, 128, 0.1)',
           filter: 'drop-shadow(0 0 6px rgba(192, 192, 192, 0.3)) drop-shadow(0 0 12px rgba(169, 169, 169, 0.2))',
-          WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.3)'
+          WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.3)',
+          lineHeight: '1.2',
+          display: 'inline-block',
+          paddingBottom: '0.2em'
         }}
       >
         {words[currentIndex]}
@@ -271,7 +274,7 @@ function HomePage() {
   const [showPremiumForm, setShowPremiumForm] = useState(false)
   const [showFreeForm, setShowFreeForm] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
-  const [freeFormData, setFreeFormData] = useState({ name: '', email: '' })
+  const [freeFormData, setFreeFormData] = useState({ name: '', email: '', phone: '' })
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [freeFormSubmitted, setFreeFormSubmitted] = useState(false)
   const { isMobile, isLowPerformance } = useMobileOptimizations()
@@ -321,7 +324,7 @@ function HomePage() {
 
   const handleFreeSubmit = async (e) => {
     e.preventDefault()
-    if (freeFormData.name && freeFormData.email) {
+    if (freeFormData.name && freeFormData.email && freeFormData.phone) {
       const result = await submitToWebhook(freeFormData, 'free')
 
       if (result.success) {
@@ -331,7 +334,7 @@ function HomePage() {
             setShowFreeForm(false)
           }
           setFreeFormSubmitted(false)
-          setFreeFormData({ name: '', email: '' })
+          setFreeFormData({ name: '', email: '', phone: '' })
         }, webhookConfig.behavior.successMessageDuration)
       }
     }
@@ -404,33 +407,16 @@ function HomePage() {
                 }}
               >
                 Dados
-              </motion.span> encontram <motion.span
-                animate={{
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1.5
-                }}
-                className="bg-clip-text text-transparent bg-gradient-to-r from-green-300 via-emerald-200 to-green-400"
-                style={{
-                  backgroundSize: '200% 200%',
-                  textShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
-                  filter: 'drop-shadow(0 0 8px rgba(34, 197, 94, 0.6))'
-                }}
-              >
-                GenAI
-              </motion.span>
+              </motion.span> encontram
             </motion.p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-16 flex justify-center"
+            className="mb-16 flex justify-center overflow-visible"
+            style={{ minHeight: '150px', paddingBottom: '20px' }}
           >
             <CyclingText />
           </motion.div>
@@ -3113,10 +3099,6 @@ function HomePage() {
                     isOnyx: false
                   },
                   {
-                    text: "Ask Me Anything: Mentoria em grupo mensal (1h)",
-                    isOnyx: false
-                  },
-                  {
                     text: "Projetos colaborativos",
                     isOnyx: false
                   },
@@ -3487,6 +3469,27 @@ function HomePage() {
                         onFocus={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.2)'}
                         onBlur={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.1)'}
                         placeholder="seu@email.com"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-400 mb-2">
+                        WhatsApp
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        value={freeFormData.phone}
+                        onChange={(e) => setFreeFormData({ ...freeFormData, phone: formatPhoneNumber(e.target.value) })}
+                        className="w-full px-4 py-3 rounded-lg text-white placeholder-gray-600 transition-all"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.03)',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.02)'
+                        }}
+                        onFocus={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.2)'}
+                        onBlur={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.1)'}
+                        placeholder="(11) 99999-9999"
                       />
                     </div>
 

@@ -6,7 +6,7 @@ const EnhancedWebinarBackground = memo(() => {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    console.log('🎨 EnhancedWebinarBackground component mounted!')
+    // Enhanced webinar background initialized
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
     checkMobile()
     window.addEventListener('resize', checkMobile, { passive: true })
