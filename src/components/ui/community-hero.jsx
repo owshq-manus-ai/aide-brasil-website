@@ -5,88 +5,12 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Users, Sparkles, Code, Brain, Rocket, MessageCircle, Globe } from "lucide-react"
 import { cn } from "../../lib/utils"
 
-// Animated connection lines between nodes
-const ConnectionLine = ({ start, end, delay = 0 }) => (
-  <motion.line
-    x1={start.x}
-    y1={start.y}
-    x2={end.x}
-    y2={end.y}
-    stroke="url(#gradient)"
-    strokeWidth="1"
-    initial={{ pathLength: 0, opacity: 0 }}
-    animate={{ pathLength: 1, opacity: 0.3 }}
-    transition={{ duration: 1.5, delay, ease: "easeInOut" }}
-  />
-)
-
-// Floating member node - optimized for mobile
-const MemberNode = ({ x, y, delay = 0, icon: Icon, name, role }) => {
-  const [isMobile, setIsMobile] = React.useState(false);
-  
-  React.useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile, { passive: true });
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  return (
-    <motion.g
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.5, delay }}
-    >
-      <motion.circle
-        cx={x}
-        cy={y}
-        r="30"
-        fill="#030303"
-        stroke="url(#gradient)"
-        strokeWidth="2"
-        animate={isMobile ? {} : {
-          r: [30, 32, 30],
-        }}
-        transition={isMobile ? {} : {
-          duration: 4,
-          repeat: Infinity,
-          delay: delay * 0.2,
-        }}
-      />
-      <foreignObject x={x - 20} y={y - 20} width="40" height="40">
-        <div className="flex items-center justify-center h-full">
-          {Icon && <Icon className="w-5 h-5 text-green-400" />}
-        </div>
-      </foreignObject>
-    {name && (
-      <text
-        x={x}
-        y={y + 45}
-        textAnchor="middle"
-        className="fill-white/60 text-xs"
-        style={{ fontFamily: 'Oswald, sans-serif' }}
-      >
-        {name}
-      </text>
-    )}
-    {role && (
-      <text
-        x={x}
-        y={y + 58}
-        textAnchor="middle"
-        className="fill-white/40 text-[10px]"
-        style={{ fontFamily: 'Oswald, sans-serif' }}
-      >
-        {role}
-      </text>
-    )}
-  </motion.g>
-  )
-}
+// Removed network visualization components - replaced with modern abstract effects
 
 const CommunityHero = ({ className }) => {
   const [activeMembers, setActiveMembers] = React.useState(1247)
   const [tagline, setTagline] = React.useState(0)
+  const [backgroundIndex, setBackgroundIndex] = React.useState(0)
   
   const taglines = [
     "Onde dados encontram inteligência",
@@ -94,6 +18,47 @@ const CommunityHero = ({ className }) => {
     "Conhecimento compartilhado, crescimento exponencial",
     "Unidos pela inovação em dados"
   ]
+
+  // Background configurations for different Freepik images
+  const backgrounds = [
+    {
+      name: "Original (No Image)",
+      image: null,
+      opacity: 0,
+      blend: "normal",
+      filter: "none"
+    },
+    {
+      name: "Metallic Data Streams",
+      image: "/images/backgrounds/hero-bg-1.jpg", // Replace with your image name
+      opacity: 0.25,
+      blend: "screen",
+      filter: "contrast(1.3) brightness(1.1) hue-rotate(10deg)"
+    },
+    {
+      name: "Neural Network",
+      image: "/images/backgrounds/hero-bg-2.jpg", // Replace with your image name
+      opacity: 0.20,
+      blend: "luminosity",
+      filter: "contrast(1.4) saturate(1.2)"
+    },
+    {
+      name: "Circuit Garden",
+      image: "/images/backgrounds/hero-bg-3.jpg", // Replace with your image name
+      opacity: 0.15,
+      blend: "color-dodge",
+      filter: "brightness(0.9) contrast(1.5)"
+    },
+    {
+      name: "Data Pipeline",
+      image: "/images/backgrounds/hero-bg-4.jpg", // Replace with your image name
+      opacity: 0.30,
+      blend: "overlay",
+      filter: "contrast(1.2) hue-rotate(-5deg)"
+    }
+  ]
+
+  const currentBg = backgrounds[backgroundIndex]
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -109,66 +74,6 @@ const CommunityHero = ({ className }) => {
     return () => clearInterval(interval)
   }, [taglines.length])
 
-  // Node positions for the network - expanded and repositioned with more spacing
-  const nodes = [
-    { x: 200, y: 220, icon: Brain, name: "Ana Silva", role: "ML Engineer" },
-    { x: 550, y: 150, icon: Code, name: "João Santos", role: "Data Engineer" },
-    { x: 900, y: 220, icon: Rocket, name: "Maria Costa", role: "AI Researcher" },
-    { x: 350, y: 500, icon: Users, name: "Pedro Lima", role: "Community Lead" },
-    { x: 720, y: 550, icon: MessageCircle, name: "Carla Reis", role: "DevRel" },
-    { x: 60, y: 360, icon: Globe, name: "Lucas Souza", role: "Solutions Architect" },
-    { x: 1050, y: 320, icon: Sparkles, name: "Julia Melo", role: "GenAI Expert" },
-    { x: 120, y: 600, icon: Brain, name: "Rafael Alves", role: "Data Scientist" },
-    { x: 950, y: 600, icon: Code, name: "Beatriz Lima", role: "MLOps Engineer" },
-    { x: 450, y: 40, icon: Rocket, name: "Thiago Nunes", role: "AI Product Manager" },
-    { x: 650, y: 370, icon: Users, name: "Fernanda Cruz", role: "Tech Lead" },
-    { x: 270, y: 320, icon: MessageCircle, name: "Gabriel Dias", role: "Backend Engineer" },
-    { x: 820, y: 420, icon: Globe, name: "Patricia Santos", role: "Cloud Architect" },
-    { x: 520, y: 660, icon: Sparkles, name: "Ricardo Maia", role: "LLM Specialist" },
-    { x: 1150, y: 500, icon: Brain, name: "Amanda Costa", role: "NLP Engineer" },
-    { x: 1180, y: 250, icon: Code, name: "Carlos Mendes", role: "Frontend Developer" },
-    { x: 90, y: 140, icon: Rocket, name: "Diana Oliveira", role: "Data Analyst" },
-    { x: 1000, y: 90, icon: Users, name: "Eduardo Silva", role: "DevOps Engineer" },
-    { x: 1100, y: 660, icon: MessageCircle, name: "Fabiana Santos", role: "Product Designer" },
-    { x: 250, y: 720, icon: Globe, name: "Gustavo Lima", role: "Security Engineer" }
-  ]
-
-  const connections = [
-    { start: nodes[0], end: nodes[1] },
-    { start: nodes[1], end: nodes[2] },
-    { start: nodes[3], end: nodes[4] },
-    { start: nodes[0], end: nodes[3] },
-    { start: nodes[2], end: nodes[4] },
-    { start: nodes[5], end: nodes[0] },
-    { start: nodes[6], end: nodes[2] },
-    { start: nodes[1], end: nodes[3] },
-    { start: nodes[1], end: nodes[4] },
-    { start: nodes[7], end: nodes[3] },
-    { start: nodes[8], end: nodes[4] },
-    { start: nodes[9], end: nodes[1] },
-    { start: nodes[10], end: nodes[3] },
-    { start: nodes[11], end: nodes[0] },
-    { start: nodes[12], end: nodes[2] },
-    { start: nodes[13], end: nodes[4] },
-    { start: nodes[14], end: nodes[6] },
-    { start: nodes[7], end: nodes[8] },
-    { start: nodes[9], end: nodes[10] },
-    { start: nodes[11], end: nodes[12] },
-    { start: nodes[13], end: nodes[14] },
-    { start: nodes[5], end: nodes[11] },
-    { start: nodes[6], end: nodes[14] },
-    { start: nodes[10], end: nodes[12] },
-    { start: nodes[15], end: nodes[6] },
-    { start: nodes[15], end: nodes[14] },
-    { start: nodes[16], end: nodes[0] },
-    { start: nodes[16], end: nodes[9] },
-    { start: nodes[17], end: nodes[2] },
-    { start: nodes[17], end: nodes[15] },
-    { start: nodes[18], end: nodes[14] },
-    { start: nodes[18], end: nodes[8] },
-    { start: nodes[19], end: nodes[7] },
-    { start: nodes[19], end: nodes[13] }
-  ]
 
   return (
     <section className={cn("relative min-h-[120vh] w-full bg-[#030303] overflow-hidden", className)}>
@@ -179,45 +84,127 @@ const CommunityHero = ({ className }) => {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" data-theme-glow="secondary" />
       </div>
 
-      {/* Network visualization - hidden on mobile for performance */}
-      <div className="absolute inset-0 flex items-start justify-center opacity-30 pt-20 hidden md:block">
-        <svg
-          width="1300"
-          height="800"
-          className="absolute"
-          viewBox="0 0 1300 800"
-          style={{ filter: 'blur(0.3px)' }}
-        >
-          <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#22c55e" stopOpacity="0.8" data-theme-svg-stop="primary" />
-              <stop offset="100%" stopColor="#10b981" stopOpacity="0.8" data-theme-svg-stop="secondary" />
-            </linearGradient>
-          </defs>
-          
-          {/* Connection lines */}
-          {connections.map((conn, i) => (
-            <ConnectionLine
-              key={i}
-              start={conn.start}
-              end={conn.end}
-              delay={i * 0.1}
+      {/* Modern Abstract Background Effects - Cleaner and more performant */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* AI-Generated Background Image - Dynamic */}
+        {currentBg.image && (
+          <motion.div
+            key={backgroundIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: currentBg.opacity }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url('${currentBg.image}')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              filter: currentBg.filter,
+              mixBlendMode: currentBg.blend
+            }}
+          />
+        )}
+
+        {/* Animated Gradient Mesh Overlay */}
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(34, 197, 94, 0.08) 0%, transparent 50%)`
+          }}
+          animate={{
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+
+
+        {/* Subtle Particle Effect */}
+        <div className="absolute inset-0">
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={`particle-${i}`}
+              className="absolute w-1 h-1 bg-green-400/20 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [-20, -80],
+                opacity: [0, 0.5, 0],
+                scale: [0, 1.5, 0]
+              }}
+              transition={{
+                duration: Math.random() * 8 + 4,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+                ease: "easeOut"
+              }}
             />
           ))}
-          
-          {/* Member nodes */}
-          {nodes.map((node, i) => (
-            <MemberNode
-              key={i}
-              x={node.x}
-              y={node.y}
-              delay={i * 0.15}
-              icon={node.icon}
-              name={node.name}
-              role={node.role}
-            />
+        </div>
+
+        {/* Premium Glow Effects */}
+        <motion.div
+          className="absolute top-1/3 -left-32 w-96 h-96 bg-green-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.2, 0.1],
+            x: [0, 50, 0]
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/3 -right-32 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.1, 0.25, 0.1],
+            x: [0, -50, 0]
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 3
+          }}
+        />
+      </div>
+
+      {/* Background Switcher - DEV MODE ONLY (Remove in production) */}
+      <div className="fixed top-4 right-4 z-50 bg-black/80 backdrop-blur-sm rounded-lg p-4 border border-green-500/30">
+        <div className="text-white text-sm font-semibold mb-2">🎨 Background Tester</div>
+        <div className="space-y-2">
+          {backgrounds.map((bg, index) => (
+            <button
+              key={index}
+              onClick={() => setBackgroundIndex(index)}
+              className={`block w-full text-left px-3 py-2 rounded text-xs transition-all ${
+                backgroundIndex === index
+                  ? 'bg-green-500/30 text-green-300 border border-green-500/50'
+                  : 'bg-white/5 text-white/70 hover:bg-white/10 border border-transparent'
+              }`}
+            >
+              {bg.name}
+              {backgroundIndex === index && ' ✓'}
+            </button>
           ))}
-        </svg>
+        </div>
+        <div className="mt-3 pt-3 border-t border-white/10">
+          <div className="text-xs text-white/50">
+            Opacity: {(currentBg.opacity * 100).toFixed(0)}%<br/>
+            Blend: {currentBg.blend}<br/>
+            Filter: Active
+          </div>
+        </div>
       </div>
 
       {/* Main content */}
