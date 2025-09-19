@@ -10,55 +10,13 @@ import { cn } from "../../lib/utils"
 const CommunityHero = ({ className }) => {
   const [activeMembers, setActiveMembers] = React.useState(1247)
   const [tagline, setTagline] = React.useState(0)
-  const [backgroundIndex, setBackgroundIndex] = React.useState(0)
-  
+
   const taglines = [
     "Onde dados encontram inteligência",
     "Construindo o futuro com IA",
     "Conhecimento compartilhado, crescimento exponencial",
     "Unidos pela inovação em dados"
   ]
-
-  // Background configurations for different Freepik images
-  const backgrounds = [
-    {
-      name: "Original (No Image)",
-      image: null,
-      opacity: 0,
-      blend: "normal",
-      filter: "none"
-    },
-    {
-      name: "Metallic Data Streams",
-      image: "/images/backgrounds/hero-bg-1.jpg", // Replace with your image name
-      opacity: 0.25,
-      blend: "screen",
-      filter: "contrast(1.3) brightness(1.1) hue-rotate(10deg)"
-    },
-    {
-      name: "Neural Network",
-      image: "/images/backgrounds/hero-bg-2.jpg", // Replace with your image name
-      opacity: 0.20,
-      blend: "luminosity",
-      filter: "contrast(1.4) saturate(1.2)"
-    },
-    {
-      name: "Circuit Garden",
-      image: "/images/backgrounds/hero-bg-3.jpg", // Replace with your image name
-      opacity: 0.15,
-      blend: "color-dodge",
-      filter: "brightness(0.9) contrast(1.5)"
-    },
-    {
-      name: "Data Pipeline",
-      image: "/images/backgrounds/hero-bg-4.jpg", // Replace with your image name
-      opacity: 0.30,
-      blend: "overlay",
-      filter: "contrast(1.2) hue-rotate(-5deg)"
-    }
-  ]
-
-  const currentBg = backgrounds[backgroundIndex]
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -86,24 +44,7 @@ const CommunityHero = ({ className }) => {
 
       {/* Modern Abstract Background Effects - Cleaner and more performant */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* AI-Generated Background Image - Dynamic */}
-        {currentBg.image && (
-          <motion.div
-            key={backgroundIndex}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: currentBg.opacity }}
-            transition={{ duration: 1 }}
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url('${currentBg.image}')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              filter: currentBg.filter,
-              mixBlendMode: currentBg.blend
-            }}
-          />
-        )}
+        {/* Simple gradient background - no image */}
 
         {/* Animated Gradient Mesh Overlay */}
         <motion.div
@@ -179,33 +120,6 @@ const CommunityHero = ({ className }) => {
         />
       </div>
 
-      {/* Background Switcher - DEV MODE ONLY (Remove in production) */}
-      <div className="fixed top-4 right-4 z-50 bg-black/80 backdrop-blur-sm rounded-lg p-4 border border-green-500/30">
-        <div className="text-white text-sm font-semibold mb-2">🎨 Background Tester</div>
-        <div className="space-y-2">
-          {backgrounds.map((bg, index) => (
-            <button
-              key={index}
-              onClick={() => setBackgroundIndex(index)}
-              className={`block w-full text-left px-3 py-2 rounded text-xs transition-all ${
-                backgroundIndex === index
-                  ? 'bg-green-500/30 text-green-300 border border-green-500/50'
-                  : 'bg-white/5 text-white/70 hover:bg-white/10 border border-transparent'
-              }`}
-            >
-              {bg.name}
-              {backgroundIndex === index && ' ✓'}
-            </button>
-          ))}
-        </div>
-        <div className="mt-3 pt-3 border-t border-white/10">
-          <div className="text-xs text-white/50">
-            Opacity: {(currentBg.opacity * 100).toFixed(0)}%<br/>
-            Blend: {currentBg.blend}<br/>
-            Filter: Active
-          </div>
-        </div>
-      </div>
 
       {/* Main content */}
       <div className="relative z-10 min-h-[120vh] flex flex-col items-center justify-center px-4 md:px-8">
