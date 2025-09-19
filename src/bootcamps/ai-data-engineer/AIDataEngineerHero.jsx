@@ -283,111 +283,80 @@ const AIDataEngineerHero = () => {
 
   return (
     <section className="relative min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
-      {/* Enhanced 3D Background System */}
+      {/* Simplified Consistent Background */}
       <div className="absolute inset-0">
-        {/* Layer 1: Deep gradient base with metallic sheen */}
+        {/* Base gradient */}
         <div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(135deg,
-              #000000 0%,
-              #0a0a0f 10%,
-              #1a0f2a 20%,
-              #2a0f3a 35%,
-              #3a1f4a 50%,
-              #2a0f3a 65%,
-              #1a0f2a 80%,
-              #0a0a0f 90%,
-              #000000 100%)`,
+            background: `linear-gradient(180deg,
+              #0a0a0a 0%,
+              #1a0f2a 50%,
+              #0a0a0a 100%)`,
           }}
         />
 
-        {/* Layer 2: 3D gradient orbs */}
+        {/* Purple gradient orbs */}
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 800px 400px at 20% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),
-              radial-gradient(ellipse 600px 300px at 80% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 40%),
-              radial-gradient(ellipse 500px 250px at 50% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
-              radial-gradient(ellipse 700px 350px at 30% 70%, rgba(147, 51, 234, 0.08) 0%, transparent 45%),
-              radial-gradient(ellipse 400px 200px at 70% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 40%)`,
-            filter: 'blur(40px)',
-            opacity: 0.8
+              radial-gradient(ellipse 800px 400px at 20% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 40%),
+              radial-gradient(ellipse 600px 300px at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%)`,
+            filter: 'blur(60px)',
           }}
         />
 
-        {/* Layer 3: Static gradient mesh */}
+        {/* Grid pattern */}
         <div
-          className="absolute inset-0"
-          style={{
-            background: `
-              conic-gradient(from 0deg at 30% 30%, transparent, rgba(168, 85, 247, 0.05), transparent),
-              conic-gradient(from 180deg at 70% 70%, transparent, rgba(139, 92, 246, 0.05), transparent)`,
-            opacity: 0.3
-          }}
-        />
-
-        {/* Layer 4: Grid pattern for depth */}
-        <div
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px)`,
+              linear-gradient(rgba(168, 85, 247, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px)`,
             backgroundSize: '50px 50px',
-            transform: 'perspective(500px) rotateX(60deg)',
-            transformOrigin: 'center center',
-            opacity: 0.3
           }}
         />
-
-        {/* Layer 5: Floating particles with glow */}
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-purple-400 rounded-full"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-              opacity: Math.random() * 0.5 + 0.5
-            }}
-            animate={{
-              y: [null, -30, null],
-              opacity: [null, 0.8, 0.3, 0.8, null]
-            }}
-            transition={{
-              duration: 10 + Math.random() * 10,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "easeInOut"
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              filter: 'blur(1px)',
-              boxShadow: '0 0 10px rgba(168, 85, 247, 0.8)'
-            }}
-          />
-        ))}
-
-        {/* Layer 6: Data Streams */}
-        <DataStreams />
       </div>
 
+
+      {/* Character Image - Behind Everything with Webinar Config */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'url(/images/background-domine-autonomous-agents-2.png)',
+          backgroundSize: '80% auto',
+          backgroundPosition: 'right center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.15,
+          filter: 'brightness(0.7) contrast(1.3)',
+          maskImage: 'radial-gradient(ellipse at 70% 50%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 80%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at 70% 50%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 80%)',
+          zIndex: 1
+        }}
+      />
+
+      {/* Purple overlay for blending */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to right, transparent, rgba(139, 92, 246, 0.05) 60%, rgba(168, 85, 247, 0.08) 80%)',
+          zIndex: 2
+        }}
+      />
 
       {/* Content Container - Reduced padding */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 pt-20 pb-12">
 
         <div className="grid lg:grid-cols-2 gap-12 items-start relative">
 
-          {/* Left Content with Character Background */}
+          {/* Left Content */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8 relative"
+            className="space-y-8 relative z-20"
           >
-            {/* Character Image moved to content container for right positioning */}
             {/* Simplified Status Badge */}
             <div className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-full px-4 py-2 mb-4">
               <div className="relative">
@@ -548,7 +517,7 @@ const AIDataEngineerHero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8, duration: 0.5 }}
-              className="flex flex-wrap gap-6 pt-4"
+              className="flex flex-wrap gap-6 pt-2"
             >
               <div className="flex items-center gap-3">
                 <Gauge className="w-5 h-5 text-purple-400" />
@@ -560,7 +529,7 @@ const AIDataEngineerHero = () => {
               <div className="flex items-center gap-3">
                 <Star className="w-5 h-5 text-purple-400" />
                 <div>
-                  <div className="text-white font-bold font-oswald">4.9/5</div>
+                  <div className="text-white font-bold font-oswald">5</div>
                   <div className="text-gray-400 text-sm">2.5k+ alunos</div>
                 </div>
               </div>
@@ -586,39 +555,8 @@ const AIDataEngineerHero = () => {
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="relative"
+            className="relative z-20"
           >
-            {/* Character Image Layer - Behind the Card */}
-            <div
-              className="absolute -inset-x-20 lg:-inset-x-40"
-              style={{
-                top: '10%',
-                bottom: '-20%',
-                backgroundImage: 'url(/images/background-domine-autonomous-agents-2.png)',
-                backgroundSize: 'contain',
-                backgroundPosition: 'center center',
-                backgroundRepeat: 'no-repeat',
-                opacity: 0.25,
-                filter: 'brightness(1.1) contrast(1.2)',
-                maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 70%)',
-                WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 70%)',
-                zIndex: -1,
-                transform: 'scale(1.1)',
-              }}
-            />
-
-            {/* Purple Glow Effect Around Character */}
-            <div
-              className="absolute -inset-x-20 lg:-inset-x-40"
-              style={{
-                top: '10%',
-                bottom: '-20%',
-                background: 'radial-gradient(ellipse at center, rgba(168, 85, 247, 0.2) 0%, rgba(139, 92, 246, 0.1) 40%, transparent 70%)',
-                zIndex: -1,
-                pointerEvents: 'none',
-                filter: 'blur(40px)',
-              }}
-            />
 
             {/* What You'll Learn Card */}
             <motion.div

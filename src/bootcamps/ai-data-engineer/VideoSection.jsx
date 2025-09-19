@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Play, Brain, Sparkles, ChevronRight, BookOpen, X } from 'lucide-react'
+import { Play, Brain, Sparkles, ChevronRight, BookOpen, X, Zap } from 'lucide-react'
 
 const VideoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -15,69 +15,128 @@ const VideoSection = () => {
   }
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-[#0a0a0a] via-[#1a0f2a] to-[#0a0a0a] py-20 overflow-hidden">
-      {/* Smooth Transition Gradient from Hero */}
-      <div
-        className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#1a0f2a]/50"
-        style={{ marginTop: '-2rem' }}
-      />
-
-      {/* Background Effects */}
+    <section className="relative min-h-screen bg-[#0a0a0a] py-20 overflow-hidden">
+      {/* Simplified Consistent Background - Same as Hero */}
       <div className="absolute inset-0">
-        {/* Neural Network Grid */}
+        {/* Base gradient */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(180deg,
+              #0a0a0a 0%,
+              #1a0f2a 50%,
+              #0a0a0a 100%)`,
+          }}
+        />
+
+        {/* Purple gradient orbs */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(ellipse 800px 400px at 20% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 40%),
+              radial-gradient(ellipse 600px 300px at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%)`,
+            filter: 'blur(60px)',
+          }}
+        />
+
+        {/* Grid pattern */}
         <div
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `
-              linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px),
-              linear-gradient(180deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px)
-            `,
+              linear-gradient(rgba(168, 85, 247, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px)`,
             backgroundSize: '50px 50px',
           }}
         />
-
-        {/* Floating Particles */}
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-purple-400/50 rounded-full"
-            initial={{
-              x: Math.random() * 100 + '%',
-              y: Math.random() * 100 + '%',
-            }}
-            animate={{
-              y: [null, '-20px', null],
-              opacity: [0.5, 1, 0.5]
-            }}
-            transition={{
-              duration: 10 + Math.random() * 10,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-            }}
-          />
-        ))}
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8">
-        {/* Section Header */}
+        {/* Section Header with Metallic Effects */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            Descubra como você pode aprender as tecnologias{' '}
+          {/* Eyebrow Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 rounded-full px-4 py-2 mb-6"
+          >
+            <Sparkles className="w-4 h-4 text-purple-400" />
+            <span className="text-purple-400 text-sm font-medium uppercase tracking-wider">Aula Exclusiva</span>
+          </motion.div>
+
+          <h2 className="text-4xl md:text-6xl font-oswald font-bold text-white mb-6">
+            <span className="block text-3xl md:text-4xl text-white/80 mb-2">Descubra o Método que</span>
             <span
-              className="bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent"
+              className="inline-block bg-clip-text text-transparent"
               style={{
-                filter: 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.5))',
+                backgroundImage: `linear-gradient(90deg,
+                  #a855f7 0%,
+                  #c084fc 25%,
+                  #e9d5ff 50%,
+                  #c084fc 75%,
+                  #a855f7 100%)`,
+                backgroundSize: '200% 100%',
+                animation: 'subtle-metallic 6s ease-in-out infinite',
+                filter: 'drop-shadow(0 0 30px rgba(168, 85, 247, 0.5))',
               }}
             >
-              mais valorizadas do mercado
+              Transforma Dados
+            </span>
+            {' '}em{' '}
+            <span
+              className="inline-block bg-clip-text text-transparent"
+              style={{
+                backgroundImage: `linear-gradient(90deg,
+                  #f97316 0%,
+                  #fb923c 25%,
+                  #fed7aa 50%,
+                  #fb923c 75%,
+                  #f97316 100%)`,
+                backgroundSize: '200% 100%',
+                animation: 'subtle-metallic 6s ease-in-out infinite 1s',
+                filter: 'drop-shadow(0 0 30px rgba(249, 115, 22, 0.5))',
+              }}
+            >
+              Inteligência
             </span>
           </h2>
+
+          {/* Compelling Description */}
+          <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+            Em apenas <span className="text-purple-400 font-bold">37 minutos</span>, você vai descobrir como os
+            melhores engenheiros de dados estão usando <span className="text-violet-400 font-bold">AI e automação</span> para
+            construir pipelines que processam <span className="text-orange-400 font-bold">milhões de dados em segundos</span> e
+            ganhar salários de <span className="text-green-400 font-bold">R$ 15.000 a R$ 35.000</span> por mês.
+          </p>
+
+          {/* Video Stats */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex items-center justify-center gap-6 mt-6"
+          >
+            <div className="flex items-center gap-2">
+              <Play className="w-4 h-4 text-purple-400" />
+              <span className="text-white/60 text-sm">37 min de conteúdo</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Brain className="w-4 h-4 text-purple-400" />
+              <span className="text-white/60 text-sm">100% prático</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Zap className="w-4 h-4 text-purple-400" />
+              <span className="text-white/60 text-sm">Resultados imediatos</span>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Video Container */}
@@ -99,58 +158,30 @@ const VideoSection = () => {
                 className="absolute inset-0 cursor-pointer group"
                 onClick={() => setIsPlaying(true)}
               >
-                {/* Premium Dark Background with Tech Grid */}
+                {/* Video Cover Background */}
                 <div className="absolute inset-0">
-                  {/* Deep dark gradient background */}
+                  {/* Gradient background matching the course theme */}
                   <div
                     className="absolute inset-0"
                     style={{
                       background: `
                         radial-gradient(circle at 50% 50%,
-                          rgba(88, 28, 135, 0.15) 0%,
-                          rgba(30, 10, 60, 0.4) 40%,
-                          rgba(10, 10, 10, 0.95) 100%),
-                        linear-gradient(180deg, #0a0a0a 0%, #1a0f2a 50%, #0a0a0a 100%)
+                          rgba(168, 85, 247, 0.2) 0%,
+                          rgba(139, 92, 246, 0.15) 20%,
+                          rgba(88, 28, 135, 0.3) 40%,
+                          rgba(10, 10, 10, 0.95) 80%),
+                        linear-gradient(135deg, #1a0f2a 0%, #2a0f3a 50%, #1a0f2a 100%)
                       `,
                     }}
                   />
 
-                  {/* Tech Grid Pattern */}
+                  {/* Simplified overlay for better visibility */}
                   <div
-                    className="absolute inset-0 opacity-20"
+                    className="absolute inset-0"
                     style={{
-                      backgroundImage: `
-                        linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px),
-                        linear-gradient(180deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px),
-                        linear-gradient(45deg, transparent 48%, rgba(168, 85, 247, 0.05) 49%, rgba(168, 85, 247, 0.05) 51%, transparent 52%)
-                      `,
-                      backgroundSize: '40px 40px, 40px 40px, 80px 80px',
+                      background: 'linear-gradient(to bottom, transparent 0%, rgba(10, 10, 10, 0.3) 50%, rgba(10, 10, 10, 0.6) 100%)',
                     }}
                   />
-
-                  {/* Binary/Matrix Rain Effect */}
-                  <div className="absolute inset-0 overflow-hidden opacity-10">
-                    {[...Array(15)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="absolute text-purple-400 font-mono text-xs"
-                        style={{
-                          left: `${i * 7}%`,
-                          fontSize: '10px',
-                        }}
-                        initial={{ y: -100 }}
-                        animate={{ y: '100vh' }}
-                        transition={{
-                          duration: 8 + Math.random() * 4,
-                          repeat: Infinity,
-                          delay: Math.random() * 5,
-                          ease: "linear"
-                        }}
-                      >
-                        {'01101001010'}
-                      </motion.div>
-                    ))}
-                  </div>
                 </div>
 
                 {/* 3D Brain Visual Container */}
@@ -341,6 +372,22 @@ const VideoSection = () => {
                   </motion.div>
                 </div>
 
+                {/* Video Title Overlay */}
+                <div className="absolute top-0 left-0 right-0 p-8 text-center">
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <h3 className="text-2xl md:text-3xl font-oswald font-bold text-white mb-2">
+                      Masterclass: AI Data Engineering
+                    </h3>
+                    <p className="text-white/70 text-lg">
+                      O futuro da engenharia de dados com Inteligência Artificial
+                    </p>
+                  </motion.div>
+                </div>
+
                 {/* Play Button with Circular Text */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div
@@ -367,23 +414,35 @@ const VideoSection = () => {
                     </svg>
 
                     {/* Play Button */}
-                    <div className="relative w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30 group-hover:bg-white/20 transition-all duration-300">
-                      <Play className="w-8 h-8 text-white ml-1" fill="white" />
+                    <div className="relative w-24 h-24 bg-gradient-to-r from-purple-500/80 to-violet-500/80 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30 group-hover:from-purple-600 group-hover:to-violet-600 transition-all duration-300 shadow-2xl">
+                      <Play className="w-10 h-10 text-white ml-1" fill="white" />
                       <div className="absolute inset-0 rounded-full bg-white/20 animate-ping" />
                     </div>
                   </motion.div>
                 </div>
 
-                {/* Bottom Text */}
+                {/* Bottom Info */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="absolute bottom-8 left-0 right-0 text-center"
+                  className="absolute bottom-8 left-0 right-0"
                 >
-                  <p className="text-white text-xl font-oswald">
-                    Assista o vídeo e seguir
-                  </p>
+                  <div className="text-center mb-4">
+                    <p className="text-white text-xl font-oswald mb-2">
+                      Assista o vídeo completo
+                    </p>
+                    <div className="flex items-center justify-center gap-4 text-white/60 text-sm">
+                      <span className="flex items-center gap-1">
+                        <Play className="w-4 h-4" />
+                        37 minutos
+                      </span>
+                      <span>•</span>
+                      <span>Aula Gratuita</span>
+                      <span>•</span>
+                      <span>HD Quality</span>
+                    </div>
+                  </div>
                 </motion.div>
               </motion.div>
             )}
@@ -417,7 +476,7 @@ const VideoSection = () => {
           )}
         </motion.div>
 
-        {/* CTA Button */}
+        {/* CTA Button - Styled to Match Page Design */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -426,18 +485,22 @@ const VideoSection = () => {
           className="flex justify-center mt-12"
         >
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="group relative px-12 py-5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full font-oswald font-bold text-white text-lg uppercase tracking-wider shadow-lg overflow-hidden"
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 0 40px rgba(168, 85, 247, 0.8), 0 0 80px rgba(139, 92, 246, 0.5)"
+            }}
+            whileTap={{ scale: 0.98 }}
+            className="group relative px-10 py-4 rounded-lg font-oswald font-bold uppercase tracking-wider
+                     bg-gradient-to-r from-purple-500 to-violet-500 text-white transition-all duration-300 overflow-hidden"
             style={{
-              boxShadow: '0 0 30px rgba(16, 185, 129, 0.5), 0 0 60px rgba(16, 185, 129, 0.3)',
+              boxShadow: `0 0 30px rgba(168, 85, 247, 0.5), 0 0 60px rgba(139, 92, 246, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)`
             }}
           >
-            {/* Button Shine Effect */}
+            {/* Animated Shine Effect */}
             <motion.div
               className="absolute inset-0 opacity-30"
               style={{
-                background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.7) 50%, transparent 60%)',
+                background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.5) 50%, transparent 60%)',
                 backgroundSize: '200% 200%',
               }}
               animate={{
@@ -450,11 +513,15 @@ const VideoSection = () => {
               }}
             />
 
-            <span className="relative flex items-center gap-3">
+            {/* Button Content */}
+            <span className="relative z-10 flex items-center gap-3 text-lg">
               <BookOpen className="w-5 h-5" />
-              Conferir Ementa
+              Conferir Ementa Completa
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </span>
+
+            {/* Glow on Hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-violet-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </motion.button>
         </motion.div>
       </div>
