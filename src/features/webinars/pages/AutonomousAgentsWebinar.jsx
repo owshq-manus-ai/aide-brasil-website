@@ -251,6 +251,27 @@ function AutonomousAgentsWebinar() {
     return () => clearInterval(interval)
   }, [])
 
+  // Convert Brazilian date format to ISO datetime
+  const convertToISODateTime = (dateStr, timeStr) => {
+    const months = {
+      'Jan': '01', 'Fev': '02', 'Mar': '03', 'Abr': '04',
+      'Mai': '05', 'Jun': '06', 'Jul': '07', 'Ago': '08',
+      'Set': '09', 'Out': '10', 'Nov': '11', 'Dez': '12'
+    }
+
+    // Parse date "22 Out 2025"
+    const [day, monthBr, year] = dateStr.split(' ')
+    const month = months[monthBr]
+
+    // Parse time "20:00 BRT"
+    const time = timeStr.replace(' BRT', '')
+    const [hours, minutes] = time.split(':')
+
+    // Create ISO datetime string (Brazil is UTC-3)
+    const isoDate = `${year}-${month}-${day.padStart(2, '0')}T${hours}:${minutes}:00-03:00`
+    return isoDate
+  }
+
   const formatPhoneNumber = (value) => {
     const phoneNumber = value.replace(/\D/g, '')
     if (phoneNumber.length <= 2) {
@@ -291,7 +312,8 @@ function AutonomousAgentsWebinar() {
         ...webhookConfig.metadata,
         source: 'webinar-autonomous-agents',
         page_url: window.location.href,
-        submitted_at: new Date().toISOString()
+        submitted_at: new Date().toISOString(),
+        webinar_datetime: convertToISODateTime(webinar.date, webinar.time)
       }
 
       // Submit to webhook

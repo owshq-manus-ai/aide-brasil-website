@@ -307,7 +307,13 @@ function HomePage() {
   const handlePremiumSubmit = async (e) => {
     e.preventDefault()
     if (formData.name && formData.email && formData.phone) {
-      const result = await submitToWebhook(formData, 'premium')
+      // Include billing plan in the form data
+      const premiumData = {
+        ...formData,
+        billing_plan: isAnnual ? 'annual' : 'monthly',
+        price: isAnnual ? 'R$ 499/ano' : 'R$ 49,90/mês'
+      }
+      const result = await submitToWebhook(premiumData, 'premium')
 
       if (result.success) {
         setFormSubmitted(true)
