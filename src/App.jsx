@@ -13,10 +13,14 @@ import './styles/desktop-fixes.css'
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'))
-const WebinarsPage = lazy(() => import('./webinars/WebinarsPage'))
-const ClaudeCodeWebinar = lazy(() => import('./webinars/domine-claude-code/ClaudeCodeWebinar'))
-const AutonomousAgentsWebinar = lazy(() => import('./webinars/domine-autonomous-code-agents/AutonomousAgentsWebinar'))
-const AIDataEngineerBootcamp = lazy(() => import('./bootcamps/ai-data-engineer/AIDataEngineerBootcamp'))
+
+// Feature: Webinars
+const WebinarsListPage = lazy(() => import('./features/webinars/pages/WebinarsListPage'))
+const ClaudeCodeWebinar = lazy(() => import('./features/webinars/pages/ClaudeCodeWebinar'))
+const AutonomousAgentsWebinar = lazy(() => import('./features/webinars/pages/AutonomousAgentsWebinar'))
+
+// Feature: Bootcamps
+const AIDataEngineerBootcamp = lazy(() => import('./features/bootcamps/pages/AIDataEngineerBootcamp'))
 
 // Loading component
 const PageLoader = () => (
@@ -43,7 +47,7 @@ function App() {
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/webinars" element={<WebinarsPage />} />
+          <Route path="/webinars" element={<WebinarsListPage />} />
           <Route path="/webinars/domine-claude-code" element={<ClaudeCodeWebinar />} />
           <Route path="/webinars/domine-autonomous-code-agents" element={<AutonomousAgentsWebinar />} />
           <Route path="/bootcamp/ai-data-engineer" element={<AIDataEngineerBootcamp />} />

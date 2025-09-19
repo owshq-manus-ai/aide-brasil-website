@@ -6,7 +6,7 @@ import {
   Brain, Zap, Code, Rocket, Star, TrendingUp,
   BookOpen, Award, Target, CheckCircle, Monitor, Bot
 } from 'lucide-react'
-import Header from '../components/shared/Header'
+import Header from '../../../components/shared/Header'
 
 // Animated title with purple metallic effect
 const MetallicTitle = () => {

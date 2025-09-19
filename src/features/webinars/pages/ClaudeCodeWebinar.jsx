@@ -10,7 +10,7 @@ import {
   Timer, Heart, AlertCircle, Lightbulb, X, Check, Video, Phone, Mail, User,
   Gauge, Code, Bug
 } from 'lucide-react'
-import Header from '../../components/shared/Header'
+import Header from '../../../components/shared/Header'
 
 // Configuration for registration method
 const USE_TYPEFORM = false

@@ -1,6 +1,6 @@
 import React from 'react'
-import AIDataEngineerHero from './AIDataEngineerHero'
-import VideoSection from './VideoSection'
+import AIDataEngineerHero from '../components/AIDataEngineerHero'
+import VideoSection from '../components/VideoSection'
 
 const AIDataEngineerBootcamp = () => {
   return (
