@@ -13,8 +13,6 @@ import './styles/desktop-fixes.css'
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'))
-const WebinarHub = lazy(() => import('./pages/WebinarHub'))
-const WebinarTemplate = lazy(() => import('./pages/WebinarTemplate'))
 const WebinarsPage = lazy(() => import('./webinars/WebinarsPage'))
 const ClaudeCodeWebinar = lazy(() => import('./webinars/domine-claude-code/ClaudeCodeWebinar'))
 const AutonomousAgentsWebinar = lazy(() => import('./webinars/domine-autonomous-code-agents/AutonomousAgentsWebinar'))
@@ -45,12 +43,9 @@ function App() {
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/webinarios" element={<WebinarHub />} />
-          <Route path="/webinarios/:slug" element={<WebinarTemplate />} />
           <Route path="/webinars" element={<WebinarsPage />} />
           <Route path="/webinars/domine-claude-code" element={<ClaudeCodeWebinar />} />
           <Route path="/webinars/domine-autonomous-code-agents" element={<AutonomousAgentsWebinar />} />
-          <Route path="/webinars/:slug" element={<WebinarTemplate />} />
           <Route path="/bootcamp/ai-data-engineer" element={<AIDataEngineerBootcamp />} />
         </Routes>
       </Suspense>

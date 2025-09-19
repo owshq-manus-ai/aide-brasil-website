@@ -58,12 +58,6 @@ export default defineConfig({
           if (id.includes('src/pages/HomePage')) {
             return 'home';
           }
-          if (id.includes('src/pages/WebinarHub')) {
-            return 'webinar-hub';
-          }
-          if (id.includes('src/pages/WebinarTemplate')) {
-            return 'webinar-template';
-          }
         },
         // Use content hash for better caching
         entryFileNames: 'assets/[name].[hash].js',
