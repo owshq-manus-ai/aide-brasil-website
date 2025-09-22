@@ -159,7 +159,7 @@ const CommunityHero = ({ className }) => {
                   <img
                     src="/images/logos/engenharia-dados-academy.png"
                     alt="Engenharia de Dados Academy"
-                    className="h-7 opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                    className="h-7 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                     style={{
                       filter: 'brightness(1.1) contrast(1.1)',
                     }}
@@ -229,14 +229,14 @@ const CommunityHero = ({ className }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center w-full max-w-md mx-auto sm:max-w-none"
           >
             <button
               onClick={() => {
                 const element = document.querySelector('#sobre');
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="group px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300 hover:scale-105 w-full sm:w-auto text-center"
+              className="group px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300 hover:scale-105 w-full sm:w-auto text-center min-h-[56px]"
               data-theme-button="true"
               style={{ fontFamily: 'Oswald, sans-serif' }}
             >
@@ -245,13 +245,13 @@ const CommunityHero = ({ className }) => {
                 <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform" />
               </span>
             </button>
-            
+
             <button
               onClick={() => {
                 const element = document.querySelector('#beneficios');
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-all duration-300 w-full sm:w-auto text-center"
+              className="px-6 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-all duration-300 w-full sm:w-auto text-center min-h-[56px]"
               style={{ fontFamily: 'Oswald, sans-serif' }}
             >
               Descobrir benefícios
