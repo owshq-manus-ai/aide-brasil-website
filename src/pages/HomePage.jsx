@@ -2953,8 +2953,8 @@ function HomePage() {
                 {[
                   "Acesso ao Discord (canais básicos)",
                   "Ask Gen - 30 créditos por mês",
-                  "Conteúdo introdutório (Fundamentos de GenAI)",
-                  "Acesso a resumos das reuniões mensais (AIDE Labs)"
+                  "Acesso a resumos das reuniões mensais (AIDE Labs)",
+                  "Newsletter Semanal do que está mais quente no mercado"
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-rose-400" />
@@ -3097,11 +3097,11 @@ function HomePage() {
                     isOnyx: false
                   },
                   {
-                    text: "Participação nas reuniões mensais no Zoom do AIDE Labs",
+                    text: "Conteúdo introdutório (Fundamentos de GenAI)",
                     isOnyx: false
                   },
                   {
-                    text: "Newsletter Semanal do que está mais quente no mercado",
+                    text: "Participação nas reuniões mensais no Zoom do AIDE Labs",
                     isOnyx: false
                   },
                   {
@@ -3195,16 +3195,16 @@ function HomePage() {
 
             {/* Social Links */}
             <div className="flex space-x-4 mb-8">
-              <a href="#" aria-label="Visite nosso perfil no LinkedIn" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
+              <a href="https://www.linkedin.com/in/luanmoreno/" target="_blank" rel="noopener noreferrer" aria-label="Visite nosso perfil no LinkedIn" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
                 <Linkedin size={18} />
               </a>
-              <a href="#" aria-label="Visite nosso perfil no Twitter" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
+              <a href="https://x.com/luansql" target="_blank" rel="noopener noreferrer" aria-label="Visite nosso perfil no Twitter" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
                 <Twitter size={18} />
               </a>
-              <a href="#" aria-label="Visite nosso perfil no Instagram" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
+              <a href="https://www.instagram.com/engenhariadedados" target="_blank" rel="noopener noreferrer" aria-label="Visite nosso perfil no Instagram" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
                 <Instagram size={18} />
               </a>
-              <a href="#" aria-label="Visite nosso canal no YouTube" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
+              <a href="https://www.youtube.com/@LuanMorenoMMaciel" target="_blank" rel="noopener noreferrer" aria-label="Visite nosso canal no YouTube" className="w-10 h-10 bg-white/[0.05] border border-white/[0.08] rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300">
                 <Youtube size={18} />
               </a>
             </div>

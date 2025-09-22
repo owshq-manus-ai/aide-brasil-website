@@ -129,6 +129,54 @@ const CommunityHero = ({ className }) => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-5xl mx-auto"
         >
+          {/* Engenharia de Dados Academy Attribution */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="inline-block mb-12"
+          >
+            <a
+              href="https://engenhariadadosacademy.com.br/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block cursor-pointer"
+            >
+              {/* Sleek modern container */}
+              <div className="flex items-center gap-4 px-2 py-1">
+                {/* Text with subtle line */}
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-white/40 uppercase tracking-[0.3em] font-light group-hover:text-white/60 transition-colors duration-300">Apresentado por</span>
+                  <div className="h-px w-8 bg-gradient-to-r from-white/20 to-transparent group-hover:from-white/40 transition-all duration-300" />
+                </div>
+
+                {/* Logo with subtle treatment */}
+                <motion.div
+                  className="relative"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <img
+                    src="/images/logos/engenharia-dados-academy.png"
+                    alt="Engenharia de Dados Academy"
+                    className="h-7 opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      filter: 'brightness(1.1) contrast(1.1)',
+                    }}
+                  />
+                </motion.div>
+              </div>
+
+              {/* Subtle bottom accent */}
+              <motion.div
+                className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/20 to-transparent group-hover:via-green-500/40 transition-all duration-300"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              />
+            </a>
+          </motion.div>
+
           {/* Main headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
