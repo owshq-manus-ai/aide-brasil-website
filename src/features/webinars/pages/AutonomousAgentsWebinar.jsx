@@ -108,7 +108,7 @@ const AnimatedCounter = ({ value, suffix = '', className }) => {
       }}
     >
       {count}{suffix}
-    </motion.div>
+    </div>
   )
 }
 
