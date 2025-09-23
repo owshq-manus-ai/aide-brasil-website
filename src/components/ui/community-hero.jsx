@@ -253,7 +253,7 @@ const CommunityHero = ({ className }) => {
                 const element = document.querySelector('#beneficios');
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-6 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-all duration-300 w-full sm:w-auto text-center min-h-[56px]"
+              className="px-6 py-4 border-2 border-white/30 text-white font-medium rounded-lg hover:bg-white/5 hover:border-white/40 transition-all duration-300 w-full sm:w-auto text-center min-h-[56px] flex items-center justify-center"
               style={{ fontFamily: 'Oswald, sans-serif' }}
             >
               Descobrir benefícios

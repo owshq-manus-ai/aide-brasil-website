@@ -22,78 +22,93 @@ const TYPEFORM_URL = 'https://your-typeform-url.typeform.com/to/YOUR_FORM_ID'
 const AnimatedCounter = ({ value, suffix = '', className }) => {
   const [count, setCount] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
+  const [hasAnimated, setHasAnimated] = useState(false)
   const ref = useRef(null)
 
-  // Improved viewport detection for mobile
+  // Detect if mobile device
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+                   ('ontouchstart' in window) ||
+                   (navigator.maxTouchPoints > 0)
+
   useEffect(() => {
-    const element = ref.current
-    if (!element) return
-
-    // Use Intersection Observer for better mobile support
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !isVisible) {
-            setIsVisible(true)
-            // Force trigger on mobile if needed
-            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-              setTimeout(() => {
-                if (count === 0) {
-                  setIsVisible(true)
-                }
-              }, 100)
-            }
-          }
-        })
-      },
-      {
-        threshold: 0.1, // Trigger when 10% visible
-        rootMargin: '50px' // Start animation slightly before element is in view
-      }
-    )
-
-    observer.observe(element)
-
-    // Fallback for mobile: trigger after a short delay if in viewport
-    const checkMobileViewport = setTimeout(() => {
-      const rect = element.getBoundingClientRect()
-      const isInViewport = rect.top < window.innerHeight && rect.bottom > 0
-      if (isInViewport && !isVisible) {
+    // For mobile, start animation immediately after mount
+    if (isMobile && !hasAnimated) {
+      const mobileTimer = setTimeout(() => {
         setIsVisible(true)
-      }
-    }, 500)
+        setHasAnimated(true)
+      }, 800) // Small delay to ensure component is rendered
 
-    return () => {
-      observer.disconnect()
-      clearTimeout(checkMobileViewport)
+      return () => clearTimeout(mobileTimer)
     }
-  }, [isVisible, count])
 
+    // Desktop viewport detection
+    if (!isMobile) {
+      const element = ref.current
+      if (!element) return
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !hasAnimated) {
+              setIsVisible(true)
+              setHasAnimated(true)
+            }
+          })
+        },
+        {
+          threshold: 0.05, // Very low threshold
+          rootMargin: '100px' // Large margin
+        }
+      )
+
+      observer.observe(element)
+      return () => observer.disconnect()
+    }
+  }, [isMobile, hasAnimated])
+
+  // Animation logic
   useEffect(() => {
     if (isVisible) {
       const numericValue = typeof value === 'string' ? parseInt(value) : value
-      if (count < numericValue) {
-        const timer = setTimeout(() => {
-          setCount(prevCount => {
-            const increment = Math.ceil(numericValue / 30)
-            return prevCount + increment > numericValue ? numericValue : prevCount + increment
-          })
-        }, 50)
-        return () => clearTimeout(timer)
+
+      // Start animation
+      let startTime = null
+      const duration = 1500 // 1.5 seconds animation
+
+      const animate = (currentTime) => {
+        if (!startTime) startTime = currentTime
+        const elapsed = currentTime - startTime
+        const progress = Math.min(elapsed / duration, 1)
+
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4)
+        const currentCount = Math.floor(easeOutQuart * numericValue)
+
+        setCount(currentCount)
+
+        if (progress < 1) {
+          requestAnimationFrame(animate)
+        } else {
+          setCount(numericValue) // Ensure we reach exact value
+        }
       }
+
+      requestAnimationFrame(animate)
     }
-  }, [count, value, isVisible])
+  }, [isVisible, value])
 
   return (
-    <motion.div
+    <div
       ref={ref}
       className={className}
-      initial={{ scale: 0.5, opacity: 0 }}
-      animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'scale(1)' : 'scale(0.8)',
+        transition: 'all 0.5s ease-out'
+      }}
     >
       {count}{suffix}
-    </motion.div>
+    </div>
   )
 }
 

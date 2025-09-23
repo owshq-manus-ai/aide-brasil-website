@@ -183,9 +183,17 @@
   /* Force visibility for counter elements */
   div[class*="text-5xl"],
   div[class*="text-4xl"],
-  div[class*="text-3xl"] {
+  div[class*="text-3xl"],
+  div[class*="font-bold"] {
     opacity: 1 !important;
     visibility: visible !important;
+    transform: scale(1) !important;
+  }
+
+  /* Specific fix for webinar number sections */
+  section div[class*="grid"] div[class*="font-bold"] {
+    opacity: 1 !important;
+    transform: scale(1) !important;
   }
 
   /* Ensure Intersection Observer works on mobile */
