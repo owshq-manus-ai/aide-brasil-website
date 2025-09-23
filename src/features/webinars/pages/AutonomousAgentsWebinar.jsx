@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import {
@@ -22,6 +22,52 @@ const TYPEFORM_URL = 'https://your-typeform-url.typeform.com/to/YOUR_FORM_ID'
 const AnimatedCounter = ({ value, suffix = '', className }) => {
   const [count, setCount] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
+  const ref = useRef(null)
+
+  // Improved viewport detection for mobile
+  useEffect(() => {
+    const element = ref.current
+    if (!element) return
+
+    // Use Intersection Observer for better mobile support
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isVisible) {
+            setIsVisible(true)
+            // Force trigger on mobile if needed
+            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+              setTimeout(() => {
+                if (count === 0) {
+                  setIsVisible(true)
+                }
+              }, 100)
+            }
+          }
+        })
+      },
+      {
+        threshold: 0.1, // Trigger when 10% visible
+        rootMargin: '50px' // Start animation slightly before element is in view
+      }
+    )
+
+    observer.observe(element)
+
+    // Fallback for mobile: trigger after a short delay if in viewport
+    const checkMobileViewport = setTimeout(() => {
+      const rect = element.getBoundingClientRect()
+      const isInViewport = rect.top < window.innerHeight && rect.bottom > 0
+      if (isInViewport && !isVisible) {
+        setIsVisible(true)
+      }
+    }, 500)
+
+    return () => {
+      observer.disconnect()
+      clearTimeout(checkMobileViewport)
+    }
+  }, [isVisible, count])
 
   useEffect(() => {
     if (isVisible) {
@@ -40,12 +86,11 @@ const AnimatedCounter = ({ value, suffix = '', className }) => {
 
   return (
     <motion.div
+      ref={ref}
       className={className}
       initial={{ scale: 0.5, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
+      animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }}
       transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-      onViewportEnter={() => setIsVisible(true)}
     >
       {count}{suffix}
     </motion.div>

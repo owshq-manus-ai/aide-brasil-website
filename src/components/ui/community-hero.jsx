@@ -159,9 +159,11 @@ const CommunityHero = ({ className }) => {
                   <img
                     src="/images/logos/engenharia-dados-academy.png"
                     alt="Engenharia de Dados Academy"
-                    className="h-7 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                    className="h-7 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 rounded-full"
                     style={{
                       filter: 'brightness(1.1) contrast(1.1)',
+                      background: 'transparent',
+                      isolation: 'isolate'
                     }}
                   />
                 </motion.div>

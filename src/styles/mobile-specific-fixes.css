@@ -178,4 +178,29 @@
   [class*="typewriter"] {
     animation: none !important;
   }
+
+  /* Fix for AnimatedCounter on mobile devices */
+  /* Force visibility for counter elements */
+  div[class*="text-5xl"],
+  div[class*="text-4xl"],
+  div[class*="text-3xl"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Ensure Intersection Observer works on mobile */
+  .grid.grid-cols-2,
+  .grid.grid-cols-3 {
+    will-change: auto !important;
+    transform: translateZ(0) !important;
+  }
+
+  /* Force counter animation trigger on mobile */
+  @supports (-webkit-touch-callout: none) {
+    /* iOS Safari specific */
+    motion\:div[class*="font-bold"] {
+      opacity: 1 !important;
+      transform: scale(1) !important;
+    }
+  }
 }
