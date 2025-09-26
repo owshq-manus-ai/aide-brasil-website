@@ -119,10 +119,10 @@ function CrewAIWebinar() {
   const webinar = {
     title: 'Dominando CrewAI Agents',
     subtitle: 'Construa e orquestre sistemas multi-agentes em produção com o framework usado por 60% das Fortune 500',
-    date: '5 de Novembro',
+    date: '12 de Novembro',
     time: '20:00',
     duration: '2 horas',
-    platform: 'YouTube Live',
+    platform: 'Sessão no Zoom',
     highlightWord: 'CrewAI',
     gradient: 'from-red-600 to-red-500',
     accentColor: 'red',
@@ -413,8 +413,13 @@ function CrewAIWebinar() {
         />
       </div>
 
-      {/* Header */}
-      <Header />
+      {/* Header with red theme overlay */}
+      <div className="relative z-50" style={{
+        background: 'linear-gradient(to bottom, rgba(239, 68, 68, 0.05) 0%, transparent 100%)',
+        borderBottom: '1px solid rgba(239, 68, 68, 0.1)'
+      }}>
+        <Header />
+      </div>
 
       {/* Back Button */}
       <div className="relative pt-24 px-6 z-10">
@@ -602,6 +607,17 @@ function CrewAIWebinar() {
                 Comece a Orquestrar Multi-Agentes
               </span>
             </h3>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-white/60 text-center max-w-3xl mx-auto mt-6"
+            >
+              Descubra como sistemas multi-agentes revolucionam o desenvolvimento,
+              transformando tarefas complexas em processos automatizados e escaláveis.
+            </motion.p>
           </motion.div>
 
           {/* Before/After Comparison */}
@@ -734,6 +750,17 @@ function CrewAIWebinar() {
             </span>
           </motion.h2>
 
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-xl text-white/60 text-center max-w-3xl mx-auto mb-12"
+          >
+            Domine os conceitos essenciais do CrewAI através de exemplos práticos e demonstrações ao vivo.
+            Aprenda a criar, configurar e orquestrar agentes especializados.
+          </motion.p>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
@@ -835,6 +862,17 @@ function CrewAIWebinar() {
               Agenda Completa
             </span>
           </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-xl text-white/60 text-center max-w-3xl mx-auto mb-12"
+          >
+            Duas horas intensas de conteúdo prático e direto ao ponto.
+            Do básico ao avançado, você sairá pronto para implementar sistemas multi-agentes em produção.
+          </motion.p>
 
           <div className="space-y-4">
             {[
@@ -1077,6 +1115,11 @@ function CrewAIWebinar() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Satisfação <span className="text-green-400">100% Garantida</span>
             </h2>
+
+            <p className="text-xl text-white/60 max-w-3xl mx-auto mb-8">
+              Tenha acesso a todo o material exclusivo, suporte direto com instrutores
+              e certificado de conclusão. Sua jornada com CrewAI começa aqui.
+            </p>
 
             <div className="grid md:grid-cols-3 gap-6 mt-8">
               <div className="text-center">
