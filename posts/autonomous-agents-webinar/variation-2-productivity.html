@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, height=627">
+    <title>Autonomous Agents Webinar - Variation 2 - 10X Productivity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1200px;
+            height: 627px;
+            font-family: 'Oswald', sans-serif;
+            background: #030303;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Purple gradient background */
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #030303 0%, #0a0303 25%, #150320 50%, #0a0303 75%, #030303 100%);
+        }
+
+        /* Animated speed lines */
+        .speed-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+            opacity: 0.3;
+            animation: speedLine 3s infinite linear;
+        }
+
+        .speed-line:nth-child(2) { top: 100px; animation-delay: 0s; }
+        .speed-line:nth-child(3) { top: 200px; animation-delay: 0.5s; }
+        .speed-line:nth-child(4) { top: 300px; animation-delay: 1s; }
+        .speed-line:nth-child(5) { top: 400px; animation-delay: 1.5s; }
+        .speed-line:nth-child(6) { top: 500px; animation-delay: 2s; }
+
+        @keyframes speedLine {
+            0% { left: -100%; width: 0%; }
+            50% { width: 100%; }
+            100% { left: 100%; width: 0%; }
+        }
+
+        /* Floating productivity numbers */
+        .productivity-number {
+            position: absolute;
+            font-size: 120px;
+            font-weight: 700;
+            color: rgba(139, 92, 246, 0.1);
+            animation: floatNumber 6s infinite ease-in-out;
+        }
+
+        .productivity-number:nth-child(7) {
+            top: 50px;
+            right: 200px;
+            animation-delay: 0s;
+        }
+
+        .productivity-number:nth-child(8) {
+            bottom: 150px;
+            left: 100px;
+            font-size: 80px;
+            animation-delay: 2s;
+        }
+
+        @keyframes floatNumber {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+            50% { transform: translateY(-20px) rotate(5deg); opacity: 0.3; }
+        }
+
+        /* Content container */
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            justify-content: space-between;
+        }
+
+        /* Left side content */
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .left-side {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .productivity-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: #030303;
+            padding: 8px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .big-number {
+            font-size: 140px;
+            font-weight: 700;
+            color: #8b5cf6;
+            line-height: 0.8;
+            margin-bottom: 10px;
+            text-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .productivity-text {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .subtitle-large {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .speed-stats {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .speed-stat {
+            text-align: center;
+        }
+
+        .speed-stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #a855f7;
+            line-height: 1;
+        }
+
+        .speed-stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Instructor photo */
+        .instructor-photo {
+            width: 400px;
+            height: 500px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow:
+                0 0 80px rgba(139, 92, 246, 0.4),
+                0 0 160px rgba(168, 85, 247, 0.2);
+            border: 3px solid rgba(139, 92, 246, 0.6);
+            background: url('../../public/images/team/luan-moreno-3.png') center/cover;
+            position: relative;
+        }
+
+        .instructor-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                transparent 0%,
+                transparent 60%,
+                rgba(139, 92, 246, 0.3) 100%);
+        }
+
+        /* Bottom section */
+        .bottom-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .event-details {
+            display: flex;
+            gap: 25px;
+        }
+
+        .detail-item {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 10px 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .detail-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+
+        .detail-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #a855f7;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: #030303;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow:
+                0 15px 40px rgba(139, 92, 246, 0.4),
+                inset 0 2px 5px rgba(255, 255, 255, 0.2);
+            animation: ctaPulse 3s infinite ease-in-out;
+        }
+
+        @keyframes ctaPulse {
+            0%, 100% { box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4), inset 0 2px 5px rgba(255, 255, 255, 0.2); }
+            50% { box-shadow: 0 20px 50px rgba(139, 92, 246, 0.6), inset 0 2px 5px rgba(255, 255, 255, 0.3); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background elements -->
+    <div class="background"></div>
+    <div class="speed-line"></div>
+    <div class="speed-line"></div>
+    <div class="speed-line"></div>
+    <div class="speed-line"></div>
+    <div class="speed-line"></div>
+    <div class="productivity-number">10X</div>
+    <div class="productivity-number">2H</div>
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="main-content">
+            <!-- Left side content -->
+            <div class="left-side">
+                <div class="productivity-badge">Acelere Sua Carreira</div>
+
+                <div class="big-number">10X</div>
+                <div class="productivity-text">MAIS PRODUTIVIDADE</div>
+
+                <div class="subtitle-large">
+                    Domine 4 Autonomous Code Agents<br>
+                    e transforme seu workflow
+                </div>
+
+                <div class="speed-stats">
+                    <div class="speed-stat">
+                        <div class="speed-stat-number">4</div>
+                        <div class="speed-stat-label">Agentes</div>
+                    </div>
+                    <div class="speed-stat">
+                        <div class="speed-stat-number">90%</div>
+                        <div class="speed-stat-label">Menos Tempo</div>
+                    </div>
+                    <div class="speed-stat">
+                        <div class="speed-stat-number">∞</div>
+                        <div class="speed-stat-label">Possibilidades</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructor photo -->
+            <div class="instructor-photo"></div>
+        </div>
+
+        <!-- Bottom section -->
+        <div class="bottom-section">
+            <div class="event-details">
+                <div class="detail-item">
+                    <div class="detail-label">Data</div>
+                    <div class="detail-value">22 OUT</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Horário</div>
+                    <div class="detail-value">20:00 BRT</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Duração</div>
+                    <div class="detail-value">2 HORAS</div>
+                </div>
+            </div>
+
+            <div class="cta">
+                ACELERE AGORA →
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, height=627">
+    <title>Autonomous Agents Webinar - Variation 1 - 4 Agents Comparison</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1200px;
+            height: 627px;
+            font-family: 'Oswald', sans-serif;
+            background: #030303;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Purple gradient background for Autonomous theme */
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #030303 0%, #0a0303 25%, #150320 50%, #0a0303 75%, #030303 100%);
+        }
+
+        /* Animated purple orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            top: -150px;
+            right: -100px;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -12s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Grid overlay */
+        .grid-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+
+        /* Content container */
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 50px;
+            justify-content: space-between;
+        }
+
+        /* Header with VS battle style */
+        .header {
+            text-align: center;
+        }
+
+        .battle-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #a855f7;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .main-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .vs-text {
+            color: #8b5cf6;
+            font-size: 36px;
+            margin: 0 15px;
+        }
+
+        /* Agents comparison grid */
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .agent-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(139, 92, 246, 0.2),
+                transparent);
+            animation: sweep 4s infinite;
+            animation-delay: calc(var(--index) * 0.5s);
+        }
+
+        @keyframes sweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .agent-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 12px;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .agent-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .agent-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.3;
+        }
+
+        .agent-highlight {
+            font-size: 11px;
+            color: #a855f7;
+            margin-top: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Instructor photo */
+        .instructor-photo {
+            position: absolute;
+            right: 50px;
+            bottom: 100px;
+            width: 320px;
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow:
+                0 0 60px rgba(139, 92, 246, 0.4),
+                0 0 120px rgba(168, 85, 247, 0.2);
+            border: 3px solid rgba(139, 92, 246, 0.5);
+            background: url('../../public/images/team/luan-moreno-4.png') center/cover;
+            z-index: 15;
+            opacity: 0.95;
+        }
+
+        .instructor-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                transparent 0%,
+                transparent 50%,
+                rgba(139, 92, 246, 0.2) 100%);
+        }
+
+        /* Bottom section */
+        .bottom-section {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 380px;
+        }
+
+        .event-details {
+            display: flex;
+            gap: 20px;
+        }
+
+        .detail-item {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 8px 18px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .detail-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #a855f7;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: #030303;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow:
+                0 10px 30px rgba(139, 92, 246, 0.4),
+                inset 0 2px 5px rgba(255, 255, 255, 0.2);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body style="--index: 0;">
+    <!-- Background elements -->
+    <div class="background"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Main content -->
+    <div class="content">
+        <!-- Header -->
+        <div class="header">
+            <div class="battle-badge">Comparação Definitiva</div>
+            <h1 class="main-title">
+                4 AGENTES <span class="vs-text">VS</span> 1 ESCOLHA CERTA
+            </h1>
+            <p class="subtitle">
+                Descubra qual agente autônomo é ideal para seu projeto
+            </p>
+        </div>
+
+        <!-- Agents comparison -->
+        <div class="agents-grid">
+            <div class="agent-card" style="--index: 0;">
+                <div class="agent-icon">🤖</div>
+                <div class="agent-name">OpenAI Codex</div>
+                <div class="agent-desc">Cloud engineering com codex-1</div>
+                <div class="agent-highlight">Microsoft Power</div>
+            </div>
+
+            <div class="agent-card" style="--index: 1;">
+                <div class="agent-icon">⚡</div>
+                <div class="agent-name">Claude Code</div>
+                <div class="agent-desc">Terminal-first com MCP</div>
+                <div class="agent-highlight">Anthropic Tech</div>
+            </div>
+
+            <div class="agent-card" style="--index: 2;">
+                <div class="agent-icon">🚀</div>
+                <div class="agent-name">Replit Agent</div>
+                <div class="agent-desc">Full-stack no browser</div>
+                <div class="agent-highlight">Deploy Instant</div>
+            </div>
+
+            <div class="agent-card" style="--index: 3;">
+                <div class="agent-icon">💻</div>
+                <div class="agent-name">Warp</div>
+                <div class="agent-desc">Terminal turbinado AI</div>
+                <div class="agent-highlight">Produtividade Max</div>
+            </div>
+        </div>
+
+        <!-- Instructor photo -->
+        <div class="instructor-photo"></div>
+
+        <!-- Bottom section -->
+        <div class="bottom-section">
+            <div class="event-details">
+                <div class="detail-item">
+                    <div class="detail-label">Data</div>
+                    <div class="detail-value">22 OUT</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Horário</div>
+                    <div class="detail-value">20:00 BRT</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Duração</div>
+                    <div class="detail-value">2 HORAS</div>
+                </div>
+            </div>
+
+            <div class="cta">
+                WEBINAR GRATUITO →
+            </div>
+        </div>
+    </div>
+</body>
+</html>

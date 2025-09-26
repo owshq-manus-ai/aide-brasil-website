@@ -83,6 +83,18 @@ export const webhookEndpoints = {
         duration: '60 minutes',
         format: 'live'
       }
+    },
+    'dominando-crewai-agents': {
+      url: import.meta.env.VITE_WEBHOOK_WEBINAR_CREWAI ||
+           import.meta.env.VITE_N8N_WEBHOOK_URL ||
+           'https://primary-production-1ebc.up.railway.app/webhook-test/3a20f09c-24f1-4052-ae9c-a3617cf9ec57',
+      fields: ['name', 'email', 'phone'], // Mandatory fields
+      metadata: {
+        type: 'webinar',
+        product: 'crewai-multi-agents',
+        duration: '120 minutes',
+        format: 'live'
+      }
     }
   },
 

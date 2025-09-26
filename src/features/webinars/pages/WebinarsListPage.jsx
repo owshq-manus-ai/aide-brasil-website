@@ -88,6 +88,24 @@ const webinars = [
     spots: 500,
     exclusive: false,
     popular: true
+  },
+  {
+    id: 3,
+    slug: 'dominando-crewai-agents',
+    title: 'Dominando CrewAI Agents',
+    subtitle: 'Orquestre sistemas multi-agentes em produção com o framework usado por 60% das Fortune 500',
+    date: '5 Nov 2025',
+    time: '20:00',
+    duration: '2h',
+    attendees: 185,
+    description: 'Descubra como criar sistemas multi-agentes complexos que resolvem problemas empresariais reais. Aprenda a orquestrar agentes especializados e escalar soluções de IA com CrewAI.',
+    topics: ['CrewAI', 'Multi-Agents', 'Enterprise AI', 'Python'],
+    gradient: 'from-red-600 to-red-500',
+    icon: Brain,
+    level: 'Intermediário',
+    spots: 500,
+    exclusive: false,
+    popular: true
   }
 ]
 

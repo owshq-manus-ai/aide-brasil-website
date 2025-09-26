@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, height=627">
+    <title>Claude Code Webinar - Variation 2 - Problem/Solution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1200px;
+            height: 627px;
+            font-family: 'Oswald', sans-serif;
+            background: #030303;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Dark gradient background with problem/solution split */
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #030303 0%, #0a0a0a 50%, #030303 100%);
+        }
+
+        /* Problem side (left) - darker */
+        .problem-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.05), transparent);
+            z-index: 1;
+        }
+
+        /* Solution side (right) - brighter */
+        .solution-bg {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(255, 170, 0, 0.05));
+            z-index: 1;
+        }
+
+        /* Animated orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .orb-problem {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #ff0000, #ff4444);
+            top: 100px;
+            left: -100px;
+        }
+
+        .orb-solution {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #ff6b00, #ffaa00);
+            bottom: 50px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Content container */
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 40px 60px 80px 60px;
+        }
+
+        /* Instructor photo */
+        .instructor-photo {
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(50%, -50%);
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow:
+                0 0 100px rgba(255, 107, 0, 0.5),
+                0 0 200px rgba(255, 107, 0, 0.2);
+            border: 5px solid rgba(255, 107, 0, 0.5);
+            background: url('../../public/images/team/luan-moreno-4.png') center/cover;
+            z-index: 15;
+        }
+
+        .instructor-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle,
+                transparent 0%,
+                transparent 60%,
+                rgba(3, 3, 3, 0.4) 100%);
+        }
+
+        /* Split content layout */
+        .split-content {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: 350px;
+        }
+
+        /* Problem side */
+        .problem-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .problem-label {
+            font-size: 18px;
+            color: #ff4444;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .problem-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .problem-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .problem-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+        }
+
+        .problem-icon {
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 68, 68, 0.2);
+            border: 1px solid #ff4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .problem-icon::after {
+            content: '✗';
+            color: #ff4444;
+            font-size: 12px;
+        }
+
+        /* Solution side */
+        .solution-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .solution-label {
+            font-size: 18px;
+            color: #ffaa00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .solution-title {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff6b00, #ffaa00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .solution-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .solution-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .solution-icon {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #ff6b00, #ffaa00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .solution-icon::after {
+            content: '✓';
+            color: #030303;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Divider arrow */
+        .divider-arrow {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 12;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .arrow-circle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b00, #ffaa00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(255, 107, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        .arrow-circle::after {
+            content: '→';
+            color: #030303;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 25px;
+            left: 60px;
+            right: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            z-index: 20;
+        }
+
+        .footer-badge {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.2), rgba(255, 170, 0, 0.1));
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            color: #ff9900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ff6b00, #ffaa00);
+            color: #030303;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow:
+                0 10px 30px rgba(255, 107, 0, 0.4),
+                inset 0 2px 5px rgba(255, 255, 255, 0.2);
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4); }
+            50% { box-shadow: 0 10px 40px rgba(255, 107, 0, 0.6); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background elements -->
+    <div class="background"></div>
+    <div class="problem-bg"></div>
+    <div class="solution-bg"></div>
+    <div class="orb orb-problem"></div>
+    <div class="orb orb-solution"></div>
+
+    <!-- Main content -->
+    <div class="content">
+        <!-- Split content -->
+        <div class="split-content">
+            <!-- Problem side -->
+            <div class="problem-side">
+                <div class="problem-label">Seus Problemas</div>
+                <h2 class="problem-title">Ainda Desenvolvendo<br>Manualmente?</h2>
+                <div class="problem-list">
+                    <div class="problem-item">
+                        <div class="problem-icon"></div>
+                        <span>Horas debugando código</span>
+                    </div>
+                    <div class="problem-item">
+                        <div class="problem-icon"></div>
+                        <span>Tarefas repetitivas</span>
+                    </div>
+                    <div class="problem-item">
+                        <div class="problem-icon"></div>
+                        <span>Pipelines lentos</span>
+                    </div>
+                    <div class="problem-item">
+                        <div class="problem-icon"></div>
+                        <span>Entregas atrasadas</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Solution side -->
+            <div class="solution-side">
+                <div class="solution-label">Sua Solução</div>
+                <h2 class="solution-title">Claude Code<br>+ Agentes IA</h2>
+                <div class="solution-list">
+                    <div class="solution-item">
+                        <div class="solution-icon"></div>
+                        <span>Debug automático</span>
+                    </div>
+                    <div class="solution-item">
+                        <div class="solution-icon"></div>
+                        <span>Zero tarefas manuais</span>
+                    </div>
+                    <div class="solution-item">
+                        <div class="solution-icon"></div>
+                        <span>300% mais rápido</span>
+                    </div>
+                    <div class="solution-item">
+                        <div class="solution-icon"></div>
+                        <span>Entrega contínua</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center divider with arrow -->
+        <div class="divider-arrow">
+            <div class="arrow-circle"></div>
+        </div>
+
+        <!-- Instructor photo in center -->
+        <div class="instructor-photo"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-badge">1 OUT | 20:00 BRT</div>
+        <div class="cta-button">Aprenda Grátis →</div>
+        <div class="footer-badge">2 Horas AO VIVO</div>
+    </div>
+</body>
+</html>
