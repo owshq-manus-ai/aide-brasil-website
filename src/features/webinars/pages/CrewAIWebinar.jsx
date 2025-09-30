@@ -196,9 +196,9 @@ function CrewAIWebinar() {
       setIsSubmitting(false)
     } else {
       try {
-        const webhookUrl = webhookEndpoints.webinars['dominando-crewai-agents']
+        const webhookConfig = webhookEndpoints.webinars['dominando-crewai-agents']
 
-        if (!webhookUrl) {
+        if (!webhookConfig || !webhookConfig.url) {
           throw new Error('Webhook URL não configurada')
         }
 
@@ -211,7 +211,7 @@ function CrewAIWebinar() {
           timestamp: new Date().toISOString()
         }
 
-        const result = await submitToWebhook(webhookUrl, payload)
+        const result = await submitToWebhook(webhookConfig.url, payload)
 
         if (result.success) {
           setShowSuccess(true)

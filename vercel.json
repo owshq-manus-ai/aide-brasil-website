@@ -6,6 +6,18 @@
   "framework": "vite",
   "rewrites": [
     {
+      "source": "/webinars/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/bootcamp/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/academy/:path*",
+      "destination": "/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

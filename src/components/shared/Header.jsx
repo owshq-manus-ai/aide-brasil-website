@@ -34,6 +34,19 @@ const Header = () => {
         shadow: 'hover:shadow-orange-500/30',
         headerBg: 'bg-gradient-to-r from-orange-900/10 via-[#030303]/95 to-amber-900/10'
       }
+    } else if (location.pathname === '/webinars/dominando-crewai-agents') {
+      // CrewAI webinar - Red/coral metallic theme with sheen
+      return {
+        from: 'from-red-600/25',
+        to: 'to-red-500/25',
+        hoverFrom: 'hover:from-red-600/40',
+        hoverTo: 'hover:to-red-500/40',
+        border: 'border-red-500/40',
+        hoverBorder: 'hover:border-red-400/60',
+        shadow: 'hover:shadow-red-500/40',
+        headerBg: 'bg-gradient-to-r from-red-900/15 via-[#030303]/95 to-red-800/15',
+        metallic: 'bg-gradient-to-t from-red-600/30 via-red-500/20 to-red-400/30'
+      }
     } else if (location.pathname.startsWith('/webinars/')) {
       // Other webinar pages - default to metallic purple
       return {
@@ -109,7 +122,7 @@ const Header = () => {
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item)}
-                  className={`group px-6 py-3 text-sm font-medium text-white transition-all duration-300 rounded-lg bg-gradient-to-r backdrop-blur-sm shadow-lg hover:scale-105 font-roboto ${colorScheme.from} ${colorScheme.to} ${colorScheme.hoverFrom} ${colorScheme.hoverTo} border ${colorScheme.border} ${colorScheme.hoverBorder} ${colorScheme.shadow}`}
+                  className={`group px-6 py-3 text-sm font-medium text-white transition-all duration-300 rounded-lg bg-gradient-to-r backdrop-blur-sm shadow-lg hover:scale-105 font-roboto ${colorScheme.from} ${colorScheme.to} ${colorScheme.hoverFrom} ${colorScheme.hoverTo} border ${colorScheme.border} ${colorScheme.hoverBorder} ${colorScheme.shadow} ${location.pathname === '/webinars/dominando-crewai-agents' ? 'relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-red-300/10 before:to-transparent before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700' : ''}`}
                 >
                   {item.label}
                 </a>
@@ -117,7 +130,7 @@ const Header = () => {
                 <Link
                   key={item.label}
                   to={item.href}
-                  className={`group px-6 py-3 text-sm font-medium text-white transition-all duration-300 rounded-lg bg-gradient-to-r backdrop-blur-sm shadow-lg hover:scale-105 font-roboto ${colorScheme.from} ${colorScheme.to} ${colorScheme.hoverFrom} ${colorScheme.hoverTo} border ${colorScheme.border} ${colorScheme.hoverBorder} ${colorScheme.shadow}`}
+                  className={`group px-6 py-3 text-sm font-medium text-white transition-all duration-300 rounded-lg bg-gradient-to-r backdrop-blur-sm shadow-lg hover:scale-105 font-roboto ${colorScheme.from} ${colorScheme.to} ${colorScheme.hoverFrom} ${colorScheme.hoverTo} border ${colorScheme.border} ${colorScheme.hoverBorder} ${colorScheme.shadow} ${location.pathname === '/webinars/dominando-crewai-agents' ? 'relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-red-300/10 before:to-transparent before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700' : ''}`}
                 >
                   {item.label}
                 </Link>
