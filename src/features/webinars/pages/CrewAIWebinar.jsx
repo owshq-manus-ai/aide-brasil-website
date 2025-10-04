@@ -98,9 +98,17 @@ const AnimatedCounter = ({ value, suffix = '', className }) => {
   }, [isVisible, value])
 
   return (
-    <span ref={ref} className={className}>
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'scale(1)' : 'scale(0.8)',
+        transition: 'all 0.5s ease-out'
+      }}
+    >
       {count}{suffix}
-    </span>
+    </div>
   )
 }
 
