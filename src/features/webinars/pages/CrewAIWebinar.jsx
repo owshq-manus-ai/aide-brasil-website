@@ -373,9 +373,9 @@ function CrewAIWebinar() {
   )
 
   return (
-    <div className="min-h-screen text-white overflow-x-hidden relative">
+    <div className="min-h-screen text-white overflow-x-hidden relative bg-black">
       {/* CORAL/RED BACKGROUND SYSTEM - 3 Layers */}
-      <div className="fixed inset-0" style={{ zIndex: -10 }}>
+      <div className="fixed inset-0" style={{ zIndex: 0 }}>
         {/* Layer 1: Deep gradient base */}
         <div
           style={{
@@ -388,7 +388,8 @@ function CrewAIWebinar() {
               #0a0a0a 75%,
               #000000 100%)`,
             position: 'absolute',
-            inset: 0
+            inset: 0,
+            zIndex: 0
           }}
         />
 
@@ -430,7 +431,7 @@ function CrewAIWebinar() {
       </div>
 
       {/* Back Button */}
-      <div className="relative pt-24 px-6 z-10">
+      <div className="relative pt-24 px-6 z-20">
         <div className="max-w-7xl mx-auto">
           <Link
             to="/webinars"
@@ -443,7 +444,7 @@ function CrewAIWebinar() {
       </div>
 
       {/* SECTION 1 - HERO SECTION */}
-      <section className="relative pt-12 pb-20 px-6">
+      <section className="relative pt-12 pb-20 px-6 z-10">
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left Column - Main Content */}
@@ -585,7 +586,7 @@ function CrewAIWebinar() {
       </section>
 
       {/* SECTION 2 - TRANSFORMATION */}
-      <section className="py-20 bg-gradient-to-b from-transparent via-red-900/5 to-transparent px-6">
+      <section className="relative py-20 bg-gradient-to-b from-transparent via-red-900/5 to-transparent px-6 z-10">
         <div className="max-w-6xl mx-auto">
           {/* Heading */}
           <motion.div
@@ -731,7 +732,7 @@ function CrewAIWebinar() {
       </section>
 
       {/* SECTION 3 - BENEFITS */}
-      <section className="py-20 px-6">
+      <section className="relative py-20 px-6 z-10">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -844,7 +845,7 @@ function CrewAIWebinar() {
       </section>
 
       {/* SECTION 4 - AGENDA */}
-      <section className="py-20 bg-gradient-to-b from-transparent via-red-900/5 to-transparent px-6">
+      <section className="relative py-20 bg-gradient-to-b from-transparent via-red-900/5 to-transparent px-6 z-10">
         <div className="max-w-4xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -961,7 +962,7 @@ function CrewAIWebinar() {
       </section>
 
       {/* SECTION 5 - INSTRUCTOR */}
-      <section className="py-20 px-6">
+      <section className="relative py-20 px-6 z-10">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1047,7 +1048,7 @@ function CrewAIWebinar() {
       </section>
 
       {/* SECTION 6 - STATISTICS */}
-      <section className="py-20 bg-gradient-to-b from-transparent via-red-900/5 to-transparent px-6">
+      <section className="relative py-20 bg-gradient-to-b from-transparent via-red-900/5 to-transparent px-6 z-10">
         <div className="max-w-6xl mx-auto">
           {/* Stats Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -1108,7 +1109,7 @@ function CrewAIWebinar() {
       </section>
 
       {/* SECTION 7 - GUARANTEE */}
-      <section className="py-20 px-6">
+      <section className="relative py-20 px-6 z-10">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1151,7 +1152,7 @@ function CrewAIWebinar() {
       </section>
 
       {/* SECTION 8 - FINAL CTA */}
-      <section className="py-20 px-6">
+      <section className="relative py-20 px-6 z-10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
