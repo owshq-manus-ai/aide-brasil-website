@@ -53,8 +53,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/webinars" element={<WebinarsListPage />} />
-          <Route path="/webinars/domine-claude-code" element={<ClaudeCodeWebinar />} />
-          <Route path="/webinars/domine-autonomous-code-agents" element={<AutonomousAgentsWebinar />} />
+          <Route path="/webinars/dominando-claude-code" element={<ClaudeCodeWebinar />} />
+          <Route path="/webinars/dominando-autonomous-code-agents" element={<AutonomousAgentsWebinar />} />
           <Route path="/webinars/dominando-crewai-agents" element={<CrewAIWebinar />} />
           <Route path="/webinars/dominando-chatgpt-agent-builder" element={<ChatGPTAgentBuilderWebinar />} />
           <Route path="/bootcamp/ai-data-engineer" element={<AIDataEngineerBootcamp />} />

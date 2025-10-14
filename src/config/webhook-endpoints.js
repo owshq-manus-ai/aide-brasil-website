@@ -60,7 +60,7 @@ export const webhookEndpoints = {
 
   // Webinar Pages - ALL require name, email, and phone
   webinars: {
-    'domine-autonomous-code-agents': {
+    'dominando-autonomous-code-agents': {
       url: import.meta.env.VITE_WEBHOOK_WEBINAR_AGENTS ||
            import.meta.env.VITE_N8N_WEBHOOK_URL ||
            'https://primary-production-1ebc.up.railway.app/webhook-test/3a20f09c-24f1-4052-ae9c-a3617cf9ec57',
@@ -72,7 +72,7 @@ export const webhookEndpoints = {
         format: 'live'
       }
     },
-    'domine-claude-code': {
+    'dominando-claude-code': {
       url: import.meta.env.VITE_WEBHOOK_WEBINAR_CLAUDE ||
            import.meta.env.VITE_N8N_WEBHOOK_URL ||
            'https://primary-production-1ebc.up.railway.app/webhook-test/3a20f09c-24f1-4052-ae9c-a3617cf9ec57',

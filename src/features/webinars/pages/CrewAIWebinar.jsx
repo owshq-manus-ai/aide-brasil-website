@@ -540,13 +540,40 @@ function CrewAIWebinar() {
             </motion.div>
 
             {/* Right Column - Forms and What You'll Learn */}
-            <div className="space-y-6">
+            <div className="space-y-6 relative">
+              {/* Background image positioned behind the content */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: 'url(/images/backgrounds/background-dominando-crewai-agents.png)',
+                  backgroundSize: 'contain',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  opacity: 0.3,
+                  filter: 'brightness(0.7) contrast(1.3)',
+                  maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 80%)',
+                  WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 80%)',
+                  zIndex: 0
+                }}
+              />
+
+              {/* Red overlay for better blending */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: 'radial-gradient(ellipse at center, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.1) 50%, transparent 80%)',
+                  zIndex: 1,
+                  pointerEvents: 'none'
+                }}
+              />
+
               {/* What You'll Learn Card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-red-500/20"
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-red-500/20 relative"
+                style={{ zIndex: 2 }}
               >
                 <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-red-400" />
@@ -563,17 +590,10 @@ function CrewAIWebinar() {
               </motion.div>
 
               {/* Registration Form */}
-              <RegistrationForm />
+              <div className="relative" style={{ zIndex: 2 }}>
+                <RegistrationForm />
+              </div>
             </div>
-          </div>
-        </div>
-
-        {/* Background Agent Image */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-full opacity-10">
-          <div className="relative w-full h-full">
-            <Bot className="absolute top-1/4 right-1/4 w-32 h-32 text-red-500/20" />
-            <GitBranch className="absolute bottom-1/4 right-1/3 w-24 h-24 text-red-500/15" />
-            <Rocket className="absolute top-1/2 right-1/2 w-28 h-28 text-red-500/10" />
           </div>
         </div>
       </section>

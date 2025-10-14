@@ -1,9 +1,9 @@
-# Dominando ChatGPT Agent Builder - Webinar Content
+# Domine ChatGPT Agent Builder - Webinar Content
 
 ## 📋 Basic Information
 
 ### Essential Data
-- **Title**: Dominando ChatGPT Agent Builder
+- **Title**: Domine ChatGPT Agent Builder
 - **Highlight Word**: "Agent Builder"
 - **Subtitle**: Crie, orquestre e implante agentes inteligentes em produção com o framework AgentKit da OpenAI
 - **Date**: January 23, 2025
@@ -13,13 +13,13 @@
 - **Platform**: YouTube Live + Discord
 
 ### Visual Identity
-- **Primary Color**: #a855f7 (Purple)
-- **Secondary Color**: #8b5cf6 (Violet)
-- **Accent Color**: #c084fc (Light Purple)
-- **Dark Hex 1**: #1a0f2a
-- **Dark Hex 2**: #0f0a1a
-- **Gradient**: from-purple-600 to-violet-600
-- **Theme Style**: AI/Tech/Innovation
+- **Primary Color**: #f97316 (Orange)
+- **Secondary Color**: #f59e0b (Amber)
+- **Accent Color**: #fb923c (Light Orange)
+- **Dark Hex 1**: #2a1a0f
+- **Dark Hex 2**: #1a0f0a
+- **Gradient**: from-orange-600 to-amber-600
+- **Theme Style**: Energy/Action/Innovation (ChatGPT/OpenAI)
 
 ---
 

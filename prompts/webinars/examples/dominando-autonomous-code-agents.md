@@ -164,8 +164,8 @@ Create a high-converting webinar landing page using the EXACT structure and desi
 ### MANDATORY TECHNICAL REQUIREMENTS:
 
 **Component name:** `AutonomousAgentsWebinar`
-**File path:** `/src/webinars/domine-autonomous-code-agents/AutonomousAgentsWebinar.jsx`
-**Route path:** `/webinars/domine-autonomous-code-agents`
+**File path:** `/src/features/webinars/pages/AutonomousAgentsWebinar.jsx`
+**Route path:** `/webinars/dominando-autonomous-code-agents`
 
 ### COLOR REPLACEMENT RULES:
 - `orange-500` → `purple-500`

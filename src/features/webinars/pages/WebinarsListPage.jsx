@@ -55,8 +55,8 @@ const MetallicTitle = () => {
 const webinars = [
   {
     id: 1,
-    slug: 'domine-claude-code',
-    title: 'Dominando Claude Code',
+    slug: 'dominando-claude-code',
+    title: 'Domine Claude Code',
     subtitle: 'Aprenda a configurar e aplicar as melhores práticas para trabalhar com uma frota de Agentes',
     date: '1 Out 2025',
     time: '20:00',
@@ -73,8 +73,8 @@ const webinars = [
   },
   {
     id: 2,
-    slug: 'domine-autonomous-code-agents',
-    title: 'Dominando Autonomous Code Agents',
+    slug: 'dominando-autonomous-code-agents',
+    title: 'Domine Autonomous Code Agents',
     subtitle: 'Compare e domine os 4 principais agentes de código autônomo do mercado',
     date: '22 Out 2025',
     time: '20:00',
@@ -92,7 +92,7 @@ const webinars = [
   {
     id: 3,
     slug: 'dominando-crewai-agents',
-    title: 'Dominando CrewAI Agents',
+    title: 'Domine CrewAI Agents',
     subtitle: 'Orquestre sistemas multi-agentes em produção com o framework usado por 60% das Fortune 500',
     date: '12 Nov 2025',
     time: '20:00',
@@ -106,6 +106,24 @@ const webinars = [
     spots: 500,
     exclusive: false,
     popular: true
+  },
+  {
+    id: 4,
+    slug: 'dominando-chatgpt-agent-builder',
+    title: 'Domine ChatGPT Agent Builder',
+    subtitle: 'Crie, orquestre e implante agentes inteligentes em produção com o framework AgentKit da OpenAI',
+    date: '23 Jan 2025',
+    time: '20:00',
+    duration: '2h',
+    attendees: 142,
+    description: 'Aprenda a dominar o ChatGPT Agent Builder da OpenAI e crie sistemas de agentes inteligentes que resolvem problemas complexos de negócio. Descubra como usar o AgentKit para orquestrar múltiplos agentes.',
+    topics: ['ChatGPT', 'AgentKit', 'OpenAI', 'Multi-Agent'],
+    gradient: 'from-orange-600 to-amber-600',
+    icon: Bot,
+    level: 'Intermediário',
+    spots: 500,
+    exclusive: false,
+    popular: false
   }
 ]
 
@@ -330,10 +348,14 @@ function WebinarsPage() {
                       {/* Level Badge */}
                       <div className="flex items-center gap-2 mb-4">
                         <span className={`px-3 py-1 rounded-full text-xs font-medium border ${
-                          webinar.slug === 'domine-claude-code'
-                            ? 'bg-orange-500/10 text-orange-400 border-orange-500/30'
+                          webinar.slug === 'dominando-claude-code'
+                            ? 'bg-blue-500/10 text-blue-400 border-blue-500/30'
+                            : webinar.slug === 'dominando-autonomous-code-agents'
+                            ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
                             : webinar.slug === 'dominando-crewai-agents'
                             ? 'bg-red-500/10 text-red-400 border-red-500/30'
+                            : webinar.slug === 'dominando-chatgpt-agent-builder'
+                            ? 'bg-orange-500/10 text-orange-400 border-orange-500/30'
                             : webinar.level === 'Expert'
                             ? 'bg-red-500/10 text-red-400 border-red-500/30'
                             : webinar.level === 'Avançado'
@@ -345,12 +367,14 @@ function WebinarsPage() {
                           {webinar.level}
                         </span>
                         <span className={`px-3 py-1 rounded-full text-xs font-medium border ${
-                          webinar.slug === 'domine-claude-code'
-                            ? 'bg-orange-500/10 text-orange-400 border-orange-500/30'
-                            : webinar.slug === 'domine-autonomous-code-agents'
+                          webinar.slug === 'dominando-claude-code'
+                            ? 'bg-blue-500/10 text-blue-400 border-blue-500/30'
+                            : webinar.slug === 'dominando-autonomous-code-agents'
                             ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
                             : webinar.slug === 'dominando-crewai-agents'
                             ? 'bg-red-500/10 text-red-400 border-red-500/30'
+                            : webinar.slug === 'dominando-chatgpt-agent-builder'
+                            ? 'bg-orange-500/10 text-orange-400 border-orange-500/30'
                             : 'bg-green-500/10 text-green-400 border-green-500/30'
                         }`}>
                           {webinar.spots} vagas
@@ -364,12 +388,14 @@ function WebinarsPage() {
                       </h3>
 
                       <p className={`text-sm font-medium mb-4 ${
-                        webinar.slug === 'domine-claude-code'
-                          ? 'text-orange-400'
+                        webinar.slug === 'dominando-claude-code'
+                          ? 'text-blue-400'
+                          : webinar.slug === 'dominando-autonomous-code-agents'
+                          ? 'text-purple-400'
                           : webinar.slug === 'dominando-crewai-agents'
                           ? 'text-red-400'
-                          : webinar.slug === 'domine-autonomous-code-agents'
-                          ? 'text-purple-400'
+                          : webinar.slug === 'dominando-chatgpt-agent-builder'
+                          ? 'text-orange-400'
                           : 'text-gray-400'
                       }`}>
                         {webinar.subtitle}
@@ -383,44 +409,54 @@ function WebinarsPage() {
                       <div className="space-y-3 mb-6">
                         <div className="flex items-center gap-3 text-sm">
                           <Calendar className={`w-4 h-4 ${
-                            webinar.slug === 'domine-claude-code'
-                              ? 'text-orange-400'
+                            webinar.slug === 'dominando-claude-code'
+                              ? 'text-blue-400'
+                              : webinar.slug === 'dominando-autonomous-code-agents'
+                              ? 'text-purple-400'
                               : webinar.slug === 'dominando-crewai-agents'
                               ? 'text-red-400'
-                              : webinar.slug === 'domine-autonomous-code-agents'
-                              ? 'text-purple-400'
+                              : webinar.slug === 'dominando-chatgpt-agent-builder'
+                              ? 'text-orange-400'
                               : 'text-gray-400'
                           }`} />
                           <span className="text-white/70">{webinar.date}</span>
                         </div>
                         <div className="flex items-center gap-3 text-sm">
                           <Clock className={`w-4 h-4 ${
-                            webinar.slug === 'domine-claude-code'
-                              ? 'text-orange-400'
+                            webinar.slug === 'dominando-claude-code'
+                              ? 'text-blue-400'
+                              : webinar.slug === 'dominando-autonomous-code-agents'
+                              ? 'text-purple-400'
                               : webinar.slug === 'dominando-crewai-agents'
                               ? 'text-red-400'
-                              : webinar.slug === 'domine-autonomous-code-agents'
-                              ? 'text-purple-400'
+                              : webinar.slug === 'dominando-chatgpt-agent-builder'
+                              ? 'text-orange-400'
                               : 'text-gray-400'
                           }`} />
                           <span className="text-white/70">{webinar.time} • {webinar.duration}</span>
                         </div>
                         <div className="flex items-center gap-3 text-sm">
                           <Users className={`w-4 h-4 ${
-                            webinar.slug === 'domine-claude-code'
-                              ? 'text-orange-400'
+                            webinar.slug === 'dominando-claude-code'
+                              ? 'text-blue-400'
+                              : webinar.slug === 'dominando-autonomous-code-agents'
+                              ? 'text-purple-400'
                               : webinar.slug === 'dominando-crewai-agents'
                               ? 'text-red-400'
-                              : webinar.slug === 'domine-autonomous-code-agents'
-                              ? 'text-purple-400'
+                              : webinar.slug === 'dominando-chatgpt-agent-builder'
+                              ? 'text-orange-400'
                               : 'text-gray-400'
                           }`} />
                           <span className="text-white/70">
                             <span className={`font-semibold ${
-                              webinar.slug === 'domine-claude-code'
-                                ? 'text-orange-400'
+                              webinar.slug === 'dominando-claude-code'
+                                ? 'text-blue-400'
+                              : webinar.slug === 'dominando-autonomous-code-agents'
+                                ? 'text-purple-400'
                                 : webinar.slug === 'dominando-crewai-agents'
                                 ? 'text-red-400'
+                                : webinar.slug === 'dominando-chatgpt-agent-builder'
+                                ? 'text-orange-400'
                                 : 'text-white'
                             }`}>{webinar.attendees}</span> inscritos
                           </span>

@@ -62,11 +62,16 @@ INSTRUCTOR_NAME: "Luan Moreno" (default)
 INSTRUCTOR_ROLE: "Senior AI Engineer"
 ```
 
-**Theme Selection Logic:**
-- AI/ML/Automation → `purple` (#a855f7)
-- Data/Cloud/Professional → `blue` (#0ea5e9)
-- Career/Growth/Money → `green` (#10b981)
-- Workshops/Sales/Energy → `orange` (#f97316)
+**Theme Selection Logic (IMPORTANT: Use Different Colors for Each Webinar):**
+- Autonomous Agents/AI Orchestration → `purple` (#a855f7, #8b5cf6, #1a0f2a, #0f0a1a)
+- Data Engineering/Cloud/APIs → `blue` (#0ea5e9, #06b6d4, #0a1a2a, #0a0f1a)
+- Career Growth/Productivity → `green` (#10b981, #22c55e, #0a2a1a, #0f1a0a)
+- ChatGPT/OpenAI/Agent Builder → `orange` (#f97316, #f59e0b, #2a1a0f, #1a0f0a)
+- CrewAI/Multi-Agent Systems → `coral/red` (#FF5A50, #ff7b5f, #2a0f0a, #1a0a0a)
+
+**CRITICAL RULE**: Check existing webinars before generating and select a DIFFERENT color theme to maintain visual distinction between webinars.
+
+**Title Pattern**: ALWAYS use "Domine [TECHNOLOGY]" format (e.g., "Domine ChatGPT Agent Builder", "Domine Autonomous Code Agents")
 
 **Date Generation Logic:**
 - If no date specified → Use next Thursday at 20:00 (typical webinar day)
@@ -303,11 +308,36 @@ const [ComponentName] = lazy(() =>
    npm run dev
    Visit: http://localhost:5173/webinars/[slug]
 
-📋 Next Steps:
-   1. Review content in component file
-   2. Test form submission at /webhook-test
-   3. Customize instructor bio if needed
-   4. Deploy when ready: npm run build
+📋 Webinar Card for WebinarsListPage.jsx:
+   Copy this into the webinars array in /src/features/webinars/pages/WebinarsListPage.jsx:
+
+   ```javascript
+   {
+     id: [next-id],
+     slug: '[slug]',
+     title: '[title]',
+     subtitle: '[subtitle]',
+     date: '[date]',
+     time: '[time]',
+     duration: '[duration]',
+     attendees: [count],
+     description: '[description]',
+     topics: ['Topic1', 'Topic2', 'Topic3', 'Topic4'],
+     gradient: 'from-[color]-600 to-[color2]-600',
+     icon: [IconComponent],
+     level: '[Iniciante|Intermediário|Avançado]',
+     spots: 500,
+     exclusive: false,
+     popular: false
+   }
+   ```
+
+🎯 Next Steps:
+   1. Add the card above to WebinarsListPage.jsx webinars array
+   2. Review content in component file
+   3. Test form submission at /webhook-test
+   4. Customize instructor bio if needed
+   5. Deploy when ready: npm run build
 ```
 
 ## 🎨 Color Theme System

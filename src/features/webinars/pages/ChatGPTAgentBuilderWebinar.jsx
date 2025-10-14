@@ -438,12 +438,12 @@ function ChatGPTAgentBuilderWebinar() {
           }}
         />
 
-        {/* Layer 2: Purple metallic overlays */}
+        {/* Layer 2: Orange metallic overlays */}
         <div
           style={{
-            background: `radial-gradient(circle at 20% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 70%, rgba(124, 58, 237, 0.06) 0%, transparent 50%)`,
+            background: `radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 70%, rgba(251, 146, 60, 0.06) 0%, transparent 50%)`,
             position: 'absolute',
             inset: 0
           }}
@@ -456,8 +456,8 @@ function ChatGPTAgentBuilderWebinar() {
               45deg,
               transparent,
               transparent 2px,
-              rgba(147, 51, 234, 0.01) 2px,
-              rgba(147, 51, 234, 0.01) 4px
+              rgba(249, 115, 22, 0.01) 2px,
+              rgba(249, 115, 22, 0.01) 4px
             )`,
             position: 'absolute',
             inset: 0
@@ -1018,7 +1018,7 @@ function ChatGPTAgentBuilderWebinar() {
                   {/* Main photo with effects */}
                   <div className="relative overflow-hidden rounded-2xl">
                     <img
-                      src="/images/backgrounds/background-chatgpt-agent-builder.png"
+                      src="/images/backgrounds/background-domine-autonomous-agents.png"
                       alt={webinar.instructor.name}
                       className="w-full relative z-1"
                       style={{
