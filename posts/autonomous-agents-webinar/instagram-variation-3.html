@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1080">
+    <title>Autonomous Agents Webinar - Instagram Variation 3 - 4 Agents Grid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1080px;
+            height: 1080px;
+            font-family: 'Oswald', sans-serif;
+            background: #030303;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Purple gradient background */
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #030303 0%, #0a0303 25%, #150320 50%, #0a0303 75%, #030303 100%);
+        }
+
+        /* Animated purple orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            top: -150px;
+            right: -100px;
+        }
+
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Grid overlay */
+        .grid-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+        }
+
+        /* Content container */
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 60px;
+        }
+
+        /* Top badge */
+        .top-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 16px;
+            color: #a855f7;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            align-self: center;
+            margin-bottom: 30px;
+        }
+
+        /* Main title */
+        .main-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title-text {
+            font-size: 52px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .title-highlight {
+            color: #a855f7;
+            display: block;
+            font-size: 48px;
+            margin-top: 8px;
+        }
+
+        /* Agents grid - 2x2 */
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+            flex: 1;
+        }
+
+        .agent-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(168, 85, 247, 0.08));
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(139, 92, 246, 0.2),
+                transparent);
+            animation: sweep 4s infinite;
+            animation-delay: calc(var(--index) * 0.5s);
+        }
+
+        @keyframes sweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .agent-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .agent-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .agent-desc {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.3;
+        }
+
+        .agent-tag {
+            font-size: 13px;
+            color: #a855f7;
+            margin-top: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Instructor photo - floating */
+        .instructor-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .instructor-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow:
+                0 0 60px rgba(139, 92, 246, 0.5),
+                0 0 100px rgba(168, 85, 247, 0.3);
+            border: 4px solid rgba(139, 92, 246, 0.6);
+            background: url('../../public/images/team/luan-moreno-4.png') center/cover;
+            flex-shrink: 0;
+        }
+
+        .instructor-text {
+            text-align: left;
+        }
+
+        .instructor-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .instructor-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 3px;
+        }
+
+        .instructor-role {
+            font-size: 16px;
+            color: #a855f7;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            padding: 12px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .date-icon {
+            width: 24px;
+            height: 24px;
+            color: #a855f7;
+        }
+
+        .date-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #a855f7;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: #030303;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow:
+                0 15px 40px rgba(139, 92, 246, 0.5),
+                inset 0 2px 5px rgba(255, 255, 255, 0.2);
+            flex: 1;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background elements -->
+    <div class="background"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Main content -->
+    <div class="content">
+        <!-- Top badge -->
+        <div class="top-badge">WEBINAR GRATUITO</div>
+
+        <!-- Main title -->
+        <div class="main-title">
+            <div class="title-text">
+                4 AGENTES
+                <span class="title-highlight">1 ESCOLHA CERTA</span>
+            </div>
+        </div>
+
+        <!-- Agents grid -->
+        <div class="agents-grid">
+            <div class="agent-card" style="--index: 0;">
+                <div class="agent-icon">🤖</div>
+                <div class="agent-name">OpenAI<br>Codex</div>
+                <div class="agent-desc">Cloud engineering</div>
+                <div class="agent-tag">Microsoft</div>
+            </div>
+
+            <div class="agent-card" style="--index: 1;">
+                <div class="agent-icon">⚡</div>
+                <div class="agent-name">Claude<br>Code</div>
+                <div class="agent-desc">Terminal + MCP</div>
+                <div class="agent-tag">Anthropic</div>
+            </div>
+
+            <div class="agent-card" style="--index: 2;">
+                <div class="agent-icon">🚀</div>
+                <div class="agent-name">Replit<br>Agent</div>
+                <div class="agent-desc">Full-stack instant</div>
+                <div class="agent-tag">Browser-Based</div>
+            </div>
+
+            <div class="agent-card" style="--index: 3;">
+                <div class="agent-icon">💻</div>
+                <div class="agent-name">Warp</div>
+                <div class="agent-desc">AI-powered terminal</div>
+                <div class="agent-tag">Productivity</div>
+            </div>
+        </div>
+
+        <!-- Instructor section -->
+        <div class="instructor-section">
+            <div class="instructor-photo"></div>
+            <div class="instructor-text">
+                <div class="instructor-label">Com</div>
+                <div class="instructor-name">Luan Moreno</div>
+                <div class="instructor-role">Data Engineering Expert</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="event-date">
+                <svg class="date-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                </svg>
+                <span class="date-text">22 OUT | 20:00</span>
+            </div>
+            <div class="cta">INSCREVA-SE →</div>
+        </div>
+    </div>
+</body>
+</html>

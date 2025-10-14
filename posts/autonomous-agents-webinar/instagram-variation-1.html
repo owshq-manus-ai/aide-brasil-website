@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1080">
+    <title>Autonomous Agents Webinar - Instagram Variation 1 - 10X Productivity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1080px;
+            height: 1080px;
+            font-family: 'Oswald', sans-serif;
+            background: #030303;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Purple gradient background */
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #030303 0%, #0a0303 25%, #150320 50%, #0a0303 75%, #030303 100%);
+        }
+
+        /* Animated purple orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            top: -150px;
+            right: -100px;
+        }
+
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Grid pattern overlay */
+        .grid-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+        }
+
+        /* Content container */
+        .content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 60px;
+            justify-content: space-between;
+        }
+
+        /* Top badge */
+        .top-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 18px;
+            color: #a855f7;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            align-self: flex-start;
+            margin-bottom: 20px;
+        }
+
+        /* Instructor photo */
+        .instructor-photo {
+            width: 420px;
+            height: 420px;
+            margin: 0 auto 30px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow:
+                0 0 80px rgba(139, 92, 246, 0.5),
+                0 0 150px rgba(168, 85, 247, 0.3);
+            border: 4px solid rgba(139, 92, 246, 0.6);
+            opacity: 0.95;
+            background: url('../../public/images/team/luan-moreno-4.png') center/cover;
+            position: relative;
+        }
+
+        .instructor-photo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                transparent 0%,
+                transparent 50%,
+                rgba(139, 92, 246, 0.2) 100%);
+        }
+
+        /* Main content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+        }
+
+        /* Big number emphasis */
+        .big-stat {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .stat-number {
+            font-size: 140px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 0.85;
+            animation: pulse 2s infinite;
+        }
+
+        .stat-label {
+            font-size: 42px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        .title-highlight {
+            color: #a855f7;
+            display: block;
+            font-size: 54px;
+            margin-top: 8px;
+        }
+
+        /* Bullet points */
+        .benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #ffffff;
+            font-size: 22px;
+            text-align: left;
+        }
+
+        .benefit-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .benefit-icon::after {
+            content: '🤖';
+            font-size: 18px;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: auto;
+            padding-top: 30px;
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            padding: 14px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .date-icon {
+            width: 28px;
+            height: 28px;
+            color: #a855f7;
+        }
+
+        .date-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #a855f7;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: #030303;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 26px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow:
+                0 15px 40px rgba(139, 92, 246, 0.5),
+                inset 0 2px 5px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Speed lines */
+        .speed-lines {
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 400px;
+            opacity: 0.08;
+            z-index: 1;
+        }
+
+        .speed-line {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #a855f7, transparent);
+            animation: speed 3s infinite linear;
+        }
+
+        .speed-line:nth-child(1) { top: 20%; width: 150px; left: 0; animation-delay: 0s; }
+        .speed-line:nth-child(2) { top: 40%; width: 200px; left: 0; animation-delay: 0.5s; }
+        .speed-line:nth-child(3) { top: 60%; width: 180px; left: 0; animation-delay: 1s; }
+        .speed-line:nth-child(4) { top: 80%; width: 220px; left: 0; animation-delay: 1.5s; }
+
+        @keyframes speed {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(800px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background elements -->
+    <div class="background"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Speed lines -->
+    <div class="speed-lines">
+        <div class="speed-line"></div>
+        <div class="speed-line"></div>
+        <div class="speed-line"></div>
+        <div class="speed-line"></div>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+        <!-- Top badge -->
+        <div class="top-badge">WEBINAR GRATUITO</div>
+
+        <!-- Instructor photo -->
+        <div class="instructor-photo"></div>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <!-- Big stat emphasis -->
+            <div class="big-stat">
+                <span class="stat-number">10X</span>
+                <span class="stat-label">Mais<br>Produtivo</span>
+            </div>
+
+            <h1 class="title">
+                Domine os 4 principais
+                <span class="title-highlight">AGENTES AUTÔNOMOS</span>
+            </h1>
+
+            <div class="benefits">
+                <div class="benefit">
+                    <div class="benefit-icon"></div>
+                    <span>Compare OpenAI, Claude, Replit e Warp</span>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon"></div>
+                    <span>Framework de decisão para escolher o ideal</span>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon"></div>
+                    <span>Hands-on ao vivo com casos reais</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="event-date">
+                <svg class="date-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                </svg>
+                <span class="date-text">22 OUT | 20:00 BRT</span>
+            </div>
+
+            <div class="cta">GARANTA SUA VAGA →</div>
+        </div>
+    </div>
+</body>
+</html>
