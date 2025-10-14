@@ -111,7 +111,8 @@ export default defineConfig({
         safari10: true,
         toplevel: true,
         properties: {
-          regex: /^_/
+          regex: /^_/,
+          reserved: ['__html']
         }
       },
       format: {

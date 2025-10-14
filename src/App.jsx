@@ -19,6 +19,7 @@ const WebinarsListPage = lazy(() => import('./features/webinars/pages/WebinarsLi
 const ClaudeCodeWebinar = lazy(() => import('./features/webinars/pages/ClaudeCodeWebinar'))
 const AutonomousAgentsWebinar = lazy(() => import('./features/webinars/pages/AutonomousAgentsWebinar'))
 const CrewAIWebinar = lazy(() => import('./features/webinars/pages/CrewAIWebinar'))
+const ChatGPTAgentBuilderWebinar = lazy(() => import('./features/webinars/pages/ChatGPTAgentBuilderWebinar'))
 
 // Feature: Bootcamps
 const AIDataEngineerBootcamp = lazy(() => import('./features/bootcamps/pages/AIDataEngineerBootcamp'))
@@ -55,6 +56,7 @@ function App() {
           <Route path="/webinars/domine-claude-code" element={<ClaudeCodeWebinar />} />
           <Route path="/webinars/domine-autonomous-code-agents" element={<AutonomousAgentsWebinar />} />
           <Route path="/webinars/dominando-crewai-agents" element={<CrewAIWebinar />} />
+          <Route path="/webinars/dominando-chatgpt-agent-builder" element={<ChatGPTAgentBuilderWebinar />} />
           <Route path="/bootcamp/ai-data-engineer" element={<AIDataEngineerBootcamp />} />
           <Route path="/academy" element={<AcademyLandingPage />} />
         </Routes>
