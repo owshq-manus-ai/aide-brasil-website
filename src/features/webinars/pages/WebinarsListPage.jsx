@@ -64,7 +64,7 @@ const webinars = [
     attendees: 103,
     description: 'Descubra o futuro do desenvolvimento de aplicações em Dados. Aprenda a utilizar agentes para acelerar em 300% sua produtividade e garantir qualidade de entrega com dicas exclusivas das trincheiras.',
     topics: ['Claude Code', 'LLMs', 'GenAI', 'Data Engineering'],
-    gradient: 'from-sky-600 to-cyan-600',
+    gradient: 'from-orange-600 to-amber-600',
     icon: Brain,
     level: 'Iniciante',
     spots: 500,
@@ -349,7 +349,7 @@ function WebinarsPage() {
                       <div className="flex items-center gap-2 mb-4">
                         <span className={`px-3 py-1 rounded-full text-xs font-medium border ${
                           webinar.slug === 'dominando-claude-code'
-                            ? 'bg-blue-500/10 text-blue-400 border-blue-500/30'
+                            ? 'bg-orange-500/10 text-orange-400 border-orange-500/30'
                             : webinar.slug === 'dominando-autonomous-code-agents'
                             ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
                             : webinar.slug === 'dominando-crewai-agents'
@@ -368,7 +368,7 @@ function WebinarsPage() {
                         </span>
                         <span className={`px-3 py-1 rounded-full text-xs font-medium border ${
                           webinar.slug === 'dominando-claude-code'
-                            ? 'bg-blue-500/10 text-blue-400 border-blue-500/30'
+                            ? 'bg-orange-500/10 text-orange-400 border-orange-500/30'
                             : webinar.slug === 'dominando-autonomous-code-agents'
                             ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
                             : webinar.slug === 'dominando-crewai-agents'
@@ -389,7 +389,7 @@ function WebinarsPage() {
 
                       <p className={`text-sm font-medium mb-4 ${
                         webinar.slug === 'dominando-claude-code'
-                          ? 'text-blue-400'
+                          ? 'text-orange-400'
                           : webinar.slug === 'dominando-autonomous-code-agents'
                           ? 'text-purple-400'
                           : webinar.slug === 'dominando-crewai-agents'
@@ -410,7 +410,7 @@ function WebinarsPage() {
                         <div className="flex items-center gap-3 text-sm">
                           <Calendar className={`w-4 h-4 ${
                             webinar.slug === 'dominando-claude-code'
-                              ? 'text-blue-400'
+                              ? 'text-orange-400'
                               : webinar.slug === 'dominando-autonomous-code-agents'
                               ? 'text-purple-400'
                               : webinar.slug === 'dominando-crewai-agents'
@@ -424,7 +424,7 @@ function WebinarsPage() {
                         <div className="flex items-center gap-3 text-sm">
                           <Clock className={`w-4 h-4 ${
                             webinar.slug === 'dominando-claude-code'
-                              ? 'text-blue-400'
+                              ? 'text-orange-400'
                               : webinar.slug === 'dominando-autonomous-code-agents'
                               ? 'text-purple-400'
                               : webinar.slug === 'dominando-crewai-agents'
@@ -438,7 +438,7 @@ function WebinarsPage() {
                         <div className="flex items-center gap-3 text-sm">
                           <Users className={`w-4 h-4 ${
                             webinar.slug === 'dominando-claude-code'
-                              ? 'text-blue-400'
+                              ? 'text-orange-400'
                               : webinar.slug === 'dominando-autonomous-code-agents'
                               ? 'text-purple-400'
                               : webinar.slug === 'dominando-crewai-agents'

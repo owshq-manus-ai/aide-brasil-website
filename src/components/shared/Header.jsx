@@ -22,7 +22,7 @@ const Header = () => {
         shadow: 'hover:shadow-gray-400/30',
         headerBg: 'bg-gradient-to-r from-gray-900/10 via-[#030303]/95 to-gray-800/10'
       }
-    } else if (location.pathname === '/webinars/domine-claude-code') {
+    } else if (location.pathname === '/webinars/dominando-claude-code') {
       // Claude Code webinar - Orange/amber metallic theme
       return {
         from: 'from-orange-500/20',
@@ -33,6 +33,18 @@ const Header = () => {
         hoverBorder: 'hover:border-orange-500/50',
         shadow: 'hover:shadow-orange-500/30',
         headerBg: 'bg-gradient-to-r from-orange-900/10 via-[#030303]/95 to-amber-900/10'
+      }
+    } else if (location.pathname === '/webinars/dominando-autonomous-code-agents') {
+      // Autonomous Code Agents webinar - Purple/violet metallic theme
+      return {
+        from: 'from-purple-500/20',
+        to: 'to-violet-500/20',
+        hoverFrom: 'hover:from-purple-500/30',
+        hoverTo: 'hover:to-violet-500/30',
+        border: 'border-purple-500/30',
+        hoverBorder: 'hover:border-purple-500/50',
+        shadow: 'hover:shadow-purple-500/30',
+        headerBg: 'bg-gradient-to-r from-purple-900/10 via-[#030303]/95 to-violet-900/10'
       }
     } else if (location.pathname === '/webinars/dominando-crewai-agents') {
       // CrewAI webinar - Red/coral metallic theme with sheen
@@ -47,17 +59,29 @@ const Header = () => {
         headerBg: 'bg-gradient-to-r from-red-900/15 via-[#030303]/95 to-red-800/15',
         metallic: 'bg-gradient-to-t from-red-600/30 via-red-500/20 to-red-400/30'
       }
-    } else if (location.pathname.startsWith('/webinars/')) {
-      // Other webinar pages - default to metallic purple
+    } else if (location.pathname === '/webinars/dominando-chatgpt-agent-builder') {
+      // ChatGPT Agent Builder webinar - Orange/amber metallic theme (same as Claude Code)
       return {
-        from: 'from-purple-500/20',
-        to: 'to-violet-500/20',
-        hoverFrom: 'hover:from-purple-500/30',
-        hoverTo: 'hover:to-violet-500/30',
-        border: 'border-purple-500/30',
-        hoverBorder: 'hover:border-purple-500/50',
-        shadow: 'hover:shadow-purple-500/30',
-        headerBg: 'bg-gradient-to-r from-purple-900/10 via-[#030303]/95 to-violet-900/10'
+        from: 'from-orange-500/20',
+        to: 'to-amber-500/20',
+        hoverFrom: 'hover:from-orange-500/30',
+        hoverTo: 'hover:to-amber-500/30',
+        border: 'border-orange-500/30',
+        hoverBorder: 'hover:border-orange-500/50',
+        shadow: 'hover:shadow-orange-500/30',
+        headerBg: 'bg-gradient-to-r from-orange-900/10 via-[#030303]/95 to-amber-900/10'
+      }
+    } else if (location.pathname.startsWith('/webinars/')) {
+      // Other webinar pages - default to metallic gray
+      return {
+        from: 'from-gray-500/20',
+        to: 'to-gray-400/20',
+        hoverFrom: 'hover:from-gray-500/30',
+        hoverTo: 'hover:to-gray-400/30',
+        border: 'border-gray-500/30',
+        hoverBorder: 'hover:border-gray-400/50',
+        shadow: 'hover:shadow-gray-400/30',
+        headerBg: 'bg-gradient-to-r from-gray-900/10 via-[#030303]/95 to-gray-800/10'
       }
     } else {
       // Home page - Metallic green theme

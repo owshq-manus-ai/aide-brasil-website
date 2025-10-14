@@ -76,23 +76,33 @@ prompts/webinars/
 
 ## ✅ Production Webinars Using This System
 
-### Domine Autonomous Code Agents
+### Dominando Autonomous Code Agents
 - **Created**: Using this system
 - **Time**: ~5 minutes generation
 - **Lines**: 1,384
 - **Status**: ✅ Live in production
+- **Route**: /webinars/dominando-autonomous-code-agents
 
 ### Dominando CrewAI Agents
 - **Created**: Using this system
 - **Time**: ~5 minutes generation
 - **Lines**: 1,260
 - **Status**: ✅ Live in production
+- **Route**: /webinars/dominando-crewai-agents
 
-### Domine Claude Code
+### Dominando Claude Code
 - **Created**: Using this system
 - **Time**: ~5 minutes generation
 - **Lines**: 1,788
 - **Status**: ✅ Live in production
+- **Route**: /webinars/dominando-claude-code
+
+### Dominando ChatGPT Agent Builder
+- **Created**: Using this system
+- **Time**: ~5 minutes generation
+- **Lines**: 1,384
+- **Status**: ✅ Live in production
+- **Route**: /webinars/dominando-chatgpt-agent-builder
 
 ---
 

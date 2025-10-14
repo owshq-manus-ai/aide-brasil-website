@@ -219,23 +219,29 @@ prompts/
 
 ## ✅ Production Webinars (References)
 
-### Domine Autonomous Code Agents
+### Dominando Autonomous Code Agents
 - **File**: [AutonomousAgentsWebinar.jsx](../src/features/webinars/pages/AutonomousAgentsWebinar.jsx)
-- **Route**: `/webinars/domine-autonomous-code-agents`
-- **Theme**: Purple
+- **Route**: `/webinars/dominando-autonomous-code-agents`
+- **Theme**: Purple (#a855f7 / #8b5cf6)
 - **Lines**: 1,384
 
 ### Dominando CrewAI Agents
 - **File**: [CrewAIWebinar.jsx](../src/features/webinars/pages/CrewAIWebinar.jsx)
 - **Route**: `/webinars/dominando-crewai-agents`
-- **Theme**: Coral/Red
+- **Theme**: Coral/Red (#FF5A50 / #ff7b5f)
 - **Lines**: 1,260
 
-### Domine Claude Code
+### Dominando Claude Code
 - **File**: [ClaudeCodeWebinar.jsx](../src/features/webinars/pages/ClaudeCodeWebinar.jsx)
-- **Route**: `/webinars/domine-claude-code`
-- **Theme**: Purple
+- **Route**: `/webinars/dominando-claude-code`
+- **Theme**: Orange (#f97316 / #f59e0b) - Matches header gradient
 - **Lines**: 1,788
+
+### Dominando ChatGPT Agent Builder
+- **File**: [ChatGPTAgentBuilderWebinar.jsx](../src/features/webinars/pages/ChatGPTAgentBuilderWebinar.jsx)
+- **Route**: `/webinars/dominando-chatgpt-agent-builder`
+- **Theme**: Orange (#f97316 / #f59e0b) - Matches header gradient
+- **Lines**: 1,384
 
 ---
 

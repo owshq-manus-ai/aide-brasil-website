@@ -276,6 +276,25 @@ const [ComponentName] = lazy(() =>
 <Route path="/webinars/[slug]" element={<[ComponentName] />} />
 ```
 
+**Header Color Configuration** (`src/components/shared/Header.jsx`):
+```javascript
+// Add color scheme for this webinar's header (matches hero gradient)
+} else if (location.pathname === '/webinars/[slug]') {
+  // [Webinar Name] - [Color] theme
+  return {
+    from: 'from-[color]-500/20',
+    to: 'to-[color2]-500/20',
+    hoverFrom: 'hover:from-[color]-500/30',
+    hoverTo: 'hover:to-[color2]-500/30',
+    border: 'border-[color]-500/30',
+    hoverBorder: 'hover:border-[color]-500/50',
+    shadow: 'hover:shadow-[color]-500/30',
+    headerBg: 'bg-gradient-to-r from-[color]-900/10 via-[#030303]/95 to-[color2]-900/10'
+  }
+```
+
+**CRITICAL**: Header colors must match the hero section gradient to maintain visual consistency!
+
 ### Step 5: Validation & Reporting
 
 **Quality Checklist (Auto-verify):**
@@ -334,10 +353,11 @@ const [ComponentName] = lazy(() =>
 
 🎯 Next Steps:
    1. Add the card above to WebinarsListPage.jsx webinars array
-   2. Review content in component file
-   3. Test form submission at /webhook-test
-   4. Customize instructor bio if needed
-   5. Deploy when ready: npm run build
+   2. Add header color scheme to Header.jsx (matching hero gradient)
+   3. Review content in component file
+   4. Test form submission at /webhook-test
+   5. Customize instructor bio if needed
+   6. Deploy when ready: npm run build
 ```
 
 ## 🎨 Color Theme System

@@ -1,7 +1,7 @@
 # 🎯 MASTER WEBINAR TEMPLATE - Production Ready
 ## Based on AutonomousAgentsWebinar.jsx Implementation
 
-This is the definitive template for generating new webinar pages. It follows the EXACT structure of the working implementation at `/webinars/domine-autonomous-code-agents`.
+This is the definitive template for generating new webinar pages. It follows the EXACT structure of the working implementation at `/webinars/dominando-autonomous-code-agents`.
 
 ---
 
@@ -264,7 +264,7 @@ Replace these variables when generating:
 [DATE] = Webinar date
 [TIME] = Webinar time
 [DURATION] = Duration (e.g., "2 horas")
-[WEBINAR_SLUG] = URL slug (e.g., "domine-autonomous-agents")
+[WEBINAR_SLUG] = URL slug (e.g., "dominando-autonomous-agents", "dominando-claude-code")
 [COLOR_THEME] = purple/green/blue/orange
 [DARK_HEX_1] = First dark color hex
 [DARK_HEX_2] = Second dark color hex
