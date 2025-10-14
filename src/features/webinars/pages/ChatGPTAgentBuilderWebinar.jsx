@@ -126,7 +126,7 @@ function ChatGPTAgentBuilderWebinar() {
 
   // Webinar data specific to ChatGPT Agent Builder
   const webinar = {
-    title: 'Domine ChatGPT Agent Builder',
+    title: 'Dominando ChatGPT Agent Builder',
     highlightWord: 'Agent Builder',
     subtitle: 'Crie, implante e escale agentes personalizados com AgentKit da OpenAI',
     date: '23 Jan 2025',

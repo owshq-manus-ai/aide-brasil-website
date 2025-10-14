@@ -71,7 +71,7 @@ INSTRUCTOR_ROLE: "Senior AI Engineer"
 
 **CRITICAL RULE**: Check existing webinars before generating and select a DIFFERENT color theme to maintain visual distinction between webinars.
 
-**Title Pattern**: ALWAYS use "Domine [TECHNOLOGY]" format (e.g., "Domine ChatGPT Agent Builder", "Domine Autonomous Code Agents")
+**Title Pattern**: ALWAYS use "Dominando [TECHNOLOGY]" format (e.g., "Dominando ChatGPT Agent Builder", "Dominando Autonomous Code Agents", "Dominando Claude Code")
 
 **Date Generation Logic:**
 - If no date specified → Use next Thursday at 20:00 (typical webinar day)
@@ -388,8 +388,7 @@ const themes = {
 ### Title Generation
 ```
 Templates:
-- "Dominando [TECHNOLOGY]"
-- "Domine [SKILL/TOOL]"
+- "Dominando [TECHNOLOGY]" (PRIMARY - use this pattern)
 - "Criando [PROJECT] com [TOOL]"
 - "Do Zero ao Avançado em [SKILL]"
 - "[NUMBER] Estratégias para [GOAL]"

@@ -1,9 +1,9 @@
-# Domine ChatGPT Agent Builder - Webinar Content
+# Dominando ChatGPT Agent Builder - Webinar Content
 
 ## 📋 Basic Information
 
 ### Essential Data
-- **Title**: Domine ChatGPT Agent Builder
+- **Title**: Dominando ChatGPT Agent Builder
 - **Highlight Word**: "Agent Builder"
 - **Subtitle**: Crie, orquestre e implante agentes inteligentes em produção com o framework AgentKit da OpenAI
 - **Date**: January 23, 2025

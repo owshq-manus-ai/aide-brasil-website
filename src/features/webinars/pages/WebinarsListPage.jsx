@@ -56,7 +56,7 @@ const webinars = [
   {
     id: 1,
     slug: 'dominando-claude-code',
-    title: 'Domine Claude Code',
+    title: 'Dominando Claude Code',
     subtitle: 'Aprenda a configurar e aplicar as melhores práticas para trabalhar com uma frota de Agentes',
     date: '1 Out 2025',
     time: '20:00',
@@ -64,7 +64,7 @@ const webinars = [
     attendees: 103,
     description: 'Descubra o futuro do desenvolvimento de aplicações em Dados. Aprenda a utilizar agentes para acelerar em 300% sua produtividade e garantir qualidade de entrega com dicas exclusivas das trincheiras.',
     topics: ['Claude Code', 'LLMs', 'GenAI', 'Data Engineering'],
-    gradient: 'from-orange-600 to-amber-600',
+    gradient: 'from-sky-600 to-cyan-600',
     icon: Brain,
     level: 'Iniciante',
     spots: 500,
@@ -74,7 +74,7 @@ const webinars = [
   {
     id: 2,
     slug: 'dominando-autonomous-code-agents',
-    title: 'Domine Autonomous Code Agents',
+    title: 'Dominando Autonomous Code Agents',
     subtitle: 'Compare e domine os 4 principais agentes de código autônomo do mercado',
     date: '22 Out 2025',
     time: '20:00',
@@ -92,7 +92,7 @@ const webinars = [
   {
     id: 3,
     slug: 'dominando-crewai-agents',
-    title: 'Domine CrewAI Agents',
+    title: 'Dominando CrewAI Agents',
     subtitle: 'Orquestre sistemas multi-agentes em produção com o framework usado por 60% das Fortune 500',
     date: '12 Nov 2025',
     time: '20:00',
@@ -110,7 +110,7 @@ const webinars = [
   {
     id: 4,
     slug: 'dominando-chatgpt-agent-builder',
-    title: 'Domine ChatGPT Agent Builder',
+    title: 'Dominando ChatGPT Agent Builder',
     subtitle: 'Crie, orquestre e implante agentes inteligentes em produção com o framework AgentKit da OpenAI',
     date: '23 Jan 2025',
     time: '20:00',
