@@ -108,7 +108,7 @@ Agent Actions:
 
 ## Form Implementation Patterns
 
-### Inline Form (Preferred for Webinars)
+### Inline Form (Preferred for Webinars) - STANDARD PATTERN
 ```jsx
 const [formData, setFormData] = useState({
   name: '',
@@ -118,20 +118,91 @@ const [formData, setFormData] = useState({
 const [isSubmitting, setIsSubmitting] = useState(false)
 const [showSuccess, setShowSuccess] = useState(false)
 
+// Convert Brazilian date format to ISO datetime
+const convertToISODateTime = (dateStr, timeStr) => {
+  const months = {
+    'Jan': '01', 'Fev': '02', 'Mar': '03', 'Abr': '04',
+    'Mai': '05', 'Jun': '06', 'Jul': '07', 'Ago': '08',
+    'Set': '09', 'Out': '10', 'Nov': '11', 'Dez': '12'
+  }
+
+  // Parse various date formats
+  const dateParts = dateStr.split(' ')
+  const day = dateParts[0]
+  const monthName = dateParts.length > 2 ? dateParts[2] : dateParts[1]
+  const year = dateParts[dateParts.length - 1] || new Date().getFullYear()
+  const month = months[monthName.substring(0, 3)] || '01'
+
+  // Parse time "20:00 BRT" or "20:00"
+  const time = timeStr.replace(' BRT', '')
+  const [hours, minutes] = time.split(':')
+
+  // Create ISO datetime string (Brazil is UTC-3)
+  const isoDate = `${year}-${month}-${day.padStart(2, '0')}T${hours}:${minutes}:00-03:00`
+  return isoDate
+}
+
 const handleSubmit = async (e) => {
   e.preventDefault()
+
+  if (USE_TYPEFORM) {
+    window.open(TYPEFORM_URL, '_blank')
+    return
+  }
+
   setIsSubmitting(true)
 
-  // Simulate submission
-  setTimeout(() => {
-    setIsSubmitting(false)
+  try {
+    // Get webhook configuration
+    const webhookConfig = webhookEndpoints.webinars['dominando-your-webinar-name']
+
+    // Prepare data with webhook metadata - THIS IS THE STANDARD
+    const submissionData = {
+      ...formData,                              // User input: name, email, phone
+      ...webhookConfig.metadata,                // Metadata: type, product, duration, format
+      source: 'webinar-your-name',              // Page identifier
+      page_url: window.location.href,           // Full page URL
+      submitted_at: new Date().toISOString(),   // Submission timestamp
+      webinar_datetime: convertToISODateTime(webinar.date, webinar.time) // Event datetime
+    }
+
+    // Submit to webhook
+    const response = await fetch(webhookConfig.url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(submissionData)
+    })
+
+    if (response.ok || response.status === 200 || response.status === 201) {
+      setShowSuccess(true)
+      setFormData({ name: '', email: '', phone: '' })
+
+      setTimeout(() => {
+        setShowSuccess(false)
+      }, 3000)
+    } else {
+      // Even if webhook fails, show success to user (graceful degradation)
+      setShowSuccess(true)
+      setFormData({ name: '', email: '', phone: '' })
+
+      setTimeout(() => {
+        setShowSuccess(false)
+      }, 3000)
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error)
+    // Don't show error to user, show success message instead
     setShowSuccess(true)
     setFormData({ name: '', email: '', phone: '' })
 
     setTimeout(() => {
       setShowSuccess(false)
     }, 3000)
-  }, 1000)
+  } finally {
+    setIsSubmitting(false)
+  }
 }
 ```
 
@@ -263,15 +334,34 @@ if (!validation.isValid) {
 )}
 ```
 
+## Current Webinar Webhook Keys (REFERENCE)
+
+```javascript
+// These are the EXACT keys used in webhook-endpoints.js
+webinars: {
+  'dominando-autonomous-code-agents': { ... },
+  'dominando-claude-code': { ... },
+  'dominando-crewai-agents': { ... },
+  'dominando-chatgpt-agent-builder': { ... }
+}
+```
+
+**CRITICAL**: Always use the exact webhook key from `webhook-endpoints.js` when calling:
+```javascript
+const webhookConfig = webhookEndpoints.webinars['dominando-your-webinar-name']
+```
+
 ## Important Notes
 
 1. **PREFER** inline form handling for webinars
 2. **ALWAYS** validate Brazilian phone numbers
 3. **INCLUDE** all three fields (name, email, phone) for webinars
-4. **TEST** webhook connectivity before deployment
-5. **SANITIZE** form data before submission
-6. **PROVIDE** clear error messages in Portuguese
-7. **IMPLEMENT** proper loading states
+4. **USE EXACT** webhook keys from webhook-endpoints.js
+5. **TEST** webhook connectivity before deployment
+6. **SANITIZE** form data before submission
+7. **PROVIDE** clear error messages in Portuguese
+8. **IMPLEMENT** proper loading states
+9. **GRACEFUL DEGRADATION** - always show success to user even if webhook fails
 
 ## Testing Webhooks
 

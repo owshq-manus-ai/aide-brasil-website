@@ -129,7 +129,7 @@ function ChatGPTAgentBuilderWebinar() {
     title: 'Dominando ChatGPT Agent Builder',
     highlightWord: 'Agent Builder',
     subtitle: 'Crie, implante e escale agentes personalizados com AgentKit da OpenAI',
-    date: '23 Jan 2025',
+    date: '5 de Novembro, 2025',
     time: '20:00 BRT',
     duration: '2 horas',
     gradient: 'from-orange-600 to-amber-600',
@@ -149,7 +149,7 @@ function ChatGPTAgentBuilderWebinar() {
         module: 'Início',
         topic: 'AgentKit Architecture Deep Dive',
         description: 'Entenda a arquitetura revolucionária do AgentKit - como a OpenAI estruturou o framework para construção de agentes autônomos escaláveis e confiáveis',
-        icon: Network
+        icon: Cpu
       },
       {
         time: '20:30',
@@ -223,15 +223,15 @@ function ChatGPTAgentBuilderWebinar() {
       name: 'Luan Moreno',
       title: 'Principal AI & Autonomous Systems Engineer',
       company: '@Pythian',
-      bio: 'Especialista em sistemas de agentes autônomos e arquitetura de IA em produção. Pioneiro na implementação de AgentKit no Brasil, com experiência prática construindo e escalando agentes para ambientes enterprise.',
-      photo: '/images/team/luan-moreno-4.png',
+      bio: 'Pioneiro em implementação de agentes autônomos no Brasil, com experiência prática em todas as principais plataformas de código assistido por IA. Especialista em arquitetura multi-agente e otimização de workflows de desenvolvimento.',
+      photo: '/images/team/luan-moreno-5.png',
       linkedin: 'https://www.linkedin.com/in/luanmoreno/',
       instagram: 'https://www.instagram.com/luanmorenomaciel/',
       achievements: [
-        'Implementou sistemas AgentKit em 5 empresas Fortune 500',
-        'Certificado oficial OpenAI Agent Builder',
-        'Autor de framework de orquestração multi-agente open source',
-        'Treinou +800 desenvolvedores em arquitetura de agentes'
+        'Implementou sistemas com todos os 4 agentes em produção',
+        'Treinou +500 desenvolvedores em IA assistida',
+        'Autor de frameworks para integração multi-agente',
+        'Speaker em conferências internacionais sobre Autonomous Coding'
       ]
     },
 
@@ -257,7 +257,7 @@ function ChatGPTAgentBuilderWebinar() {
         progress: '90%'
       },
       {
-        icon: Network,
+        icon: Award,
         value: 98,
         suffix: '%',
         label: 'Taxa de Sucesso',
@@ -280,8 +280,8 @@ function ChatGPTAgentBuilderWebinar() {
 
     testimonial: {
       quote: 'O AgentKit da OpenAI é sem dúvida a ferramenta mais poderosa para construir agentes que já vi. Com as técnicas do Luan, consegui colocar 5 agentes em produção em apenas 2 semanas. A automação que conseguimos é impressionante.',
-      author: 'Rafael Santos',
-      role: 'Tech Lead @iFood'
+      author: 'Mateus Oliveira',
+      role: 'Data Architect @OneWaySolution'
     },
 
     guarantees: [
@@ -527,7 +527,7 @@ function ChatGPTAgentBuilderWebinar() {
               <div className="space-y-4 mb-8">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Network className="w-5 h-5 text-white" />
+                    <Code2 className="w-5 h-5 text-white" />
                   </div>
                   <span className="text-white text-base">Domine o framework AgentKit oficial da OpenAI</span>
                 </div>
@@ -568,7 +568,7 @@ function ChatGPTAgentBuilderWebinar() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url(/images/backgrounds/background-chatgpt-agent-builder.png)',
+                  backgroundImage: 'url(/images/backgrounds/dominando-chatgpt-agent-builder.png)',
                   backgroundSize: 'contain',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
@@ -580,11 +580,11 @@ function ChatGPTAgentBuilderWebinar() {
                 }}
               />
 
-              {/* Purple overlay for better blending */}
+              {/* Orange overlay for better blending */}
               <div
                 className="absolute inset-0"
                 style={{
-                  background: 'radial-gradient(ellipse at center, rgba(147, 51, 234, 0.2) 0%, rgba(139, 92, 246, 0.1) 50%, transparent 80%)',
+                  background: 'radial-gradient(ellipse at center, rgba(249, 115, 22, 0.2) 0%, rgba(245, 158, 11, 0.1) 50%, transparent 80%)',
                   zIndex: 1,
                   pointerEvents: 'none'
                 }}
@@ -635,7 +635,7 @@ function ChatGPTAgentBuilderWebinar() {
                     animate={{ y: [0, -3, 0] }}
                     transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                   >
-                    <Network className="w-6 h-6 text-white" />
+                    <Zap className="w-6 h-6 text-white" />
                   </motion.div>
                 </div>
                 <div className="absolute -bottom-6 -left-6">
@@ -1018,7 +1018,7 @@ function ChatGPTAgentBuilderWebinar() {
                   {/* Main photo with effects */}
                   <div className="relative overflow-hidden rounded-2xl">
                     <img
-                      src="/images/backgrounds/background-domine-autonomous-agents.png"
+                      src="/images/backgrounds/dominando-chatgpt-agent-builder.png"
                       alt={webinar.instructor.name}
                       className="w-full relative z-1"
                       style={{

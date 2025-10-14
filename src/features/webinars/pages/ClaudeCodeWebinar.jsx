@@ -299,7 +299,7 @@ function ClaudeCodeWebinar() {
 
     try {
       // Get webhook configuration for Claude Code webinar
-      const webhookConfig = webhookEndpoints.webinars['domine-claude-code']
+      const webhookConfig = webhookEndpoints.webinars['dominando-claude-code']
 
       // Prepare data with webhook metadata
       const submissionData = {

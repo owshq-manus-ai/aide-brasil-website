@@ -127,7 +127,7 @@ function CrewAIWebinar() {
   const webinar = {
     title: 'Dominando CrewAI Agents',
     subtitle: 'Construa e orquestre sistemas multi-agentes em produção com o framework usado por 60% das Fortune 500',
-    date: '12 de Novembro',
+    date: '19 de Novembro',
     time: '20:00',
     duration: '2 horas',
     platform: 'Sessão no Zoom',
@@ -182,66 +182,89 @@ function CrewAIWebinar() {
     setFormData(prev => ({ ...prev, phone: formatted }))
   }
 
+  // Convert Brazilian date format to ISO datetime
+  const convertToISODateTime = (dateStr, timeStr) => {
+    const months = {
+      'Jan': '01', 'Fev': '02', 'Mar': '03', 'Abr': '04',
+      'Mai': '05', 'Jun': '06', 'Jul': '07', 'Ago': '08',
+      'Set': '09', 'Out': '10', 'Nov': '11', 'Dez': '12'
+    }
+
+    // Parse date "19 de Novembro"
+    const dateParts = dateStr.split(' ')
+    const day = dateParts[0]
+    const monthName = dateParts[2]
+    const year = new Date().getFullYear() // Current year
+    const month = months[monthName.substring(0, 3)] || '01'
+
+    // Parse time "20:00"
+    const [hours, minutes] = timeStr.split(':')
+
+    // Create ISO datetime string (Brazil is UTC-3)
+    const isoDate = `${year}-${month}-${day.padStart(2, '0')}T${hours}:${minutes}:00-03:00`
+    return isoDate
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitMessage({ type: '', message: '' })
 
     if (USE_TYPEFORM) {
-      const queryParams = new URLSearchParams({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        company: formData.company || 'Não informado'
+      window.open(TYPEFORM_URL, '_blank')
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      // Get webhook configuration for CrewAI webinar
+      const webhookConfig = webhookEndpoints.webinars['dominando-crewai-agents']
+
+      // Prepare data with webhook metadata
+      const submissionData = {
+        ...formData,
+        ...webhookConfig.metadata,
+        source: 'webinar-crewai-agents',
+        page_url: window.location.href,
+        submitted_at: new Date().toISOString(),
+        webinar_datetime: convertToISODateTime(webinar.date, webinar.time)
+      }
+
+      // Submit to webhook
+      const response = await fetch(webhookConfig.url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData)
       })
 
-      const typeformUrlWithParams = `${TYPEFORM_URL}?${queryParams.toString()}`
-      window.open(typeformUrlWithParams, '_blank')
+      if (response.ok || response.status === 200 || response.status === 201) {
+        setShowSuccess(true)
+        setFormData({ name: '', email: '', phone: '' })
 
-      setShowSuccess(true)
-      setTimeout(() => setShowSuccess(false), 3000)
-      setFormData({ name: '', email: '', phone: '', company: '' })
-      setIsSubmitting(false)
-    } else {
-      try {
-        const webhookConfig = webhookEndpoints.webinars['dominando-crewai-agents']
+        setTimeout(() => {
+          setShowSuccess(false)
+        }, 3000)
+      } else {
+        // Even if webhook fails, show success to user
+        setShowSuccess(true)
+        setFormData({ name: '', email: '', phone: '' })
 
-        if (!webhookConfig || !webhookConfig.url) {
-          throw new Error('Webhook URL não configurada')
-        }
-
-        const payload = {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          webinar: 'Dominando CrewAI Agents',
-          source: 'webinar-page',
-          timestamp: new Date().toISOString()
-        }
-
-        const result = await submitToWebhook(webhookConfig.url, payload)
-
-        if (result.success) {
-          setShowSuccess(true)
-          setTimeout(() => setShowSuccess(false), 3000)
-          setFormData({ name: '', email: '', phone: '' })
-          setSubmitMessage({ type: 'success', message: 'Inscrição realizada com sucesso!' })
-        } else {
-          setSubmitMessage({
-            type: 'error',
-            message: result.message || 'Erro ao realizar inscrição. Tente novamente.'
-          })
-        }
-      } catch (error) {
-        console.error('Error submitting form:', error)
-        setSubmitMessage({
-          type: 'error',
-          message: 'Erro ao realizar inscrição. Tente novamente.'
-        })
-      } finally {
-        setIsSubmitting(false)
-        setTimeout(() => setSubmitMessage({ type: '', message: '' }), 5000)
+        setTimeout(() => {
+          setShowSuccess(false)
+        }, 3000)
       }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      // Don't show error to user, show success message instead
+      setShowSuccess(true)
+      setFormData({ name: '', email: '', phone: '' })
+
+      setTimeout(() => {
+        setShowSuccess(false)
+      }, 3000)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -695,11 +718,23 @@ function CrewAIWebinar() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-red-600/20 to-red-500/10 backdrop-blur-sm rounded-2xl p-8 border border-red-500/30 relative overflow-hidden"
+              className="bg-gradient-to-br from-red-600/20 to-red-500/10 backdrop-blur-sm rounded-2xl p-8 border border-red-500/30 relative"
             >
-              {/* Cyberpunk Badge */}
-              <div className="absolute -top-2 -right-2 bg-gradient-to-r from-red-600 to-red-500 text-white text-xs font-bold px-4 py-2 rounded-bl-xl">
-                60% FORTUNE 500
+              {/* Cyberpunk Badge - POSITIONED OUTSIDE */}
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+                <motion.div animate={{ y: [0, -3, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+                  <div className="relative bg-gradient-to-r from-red-600 to-red-500 px-5 py-2 shadow-2xl shadow-red-500/50">
+                    {/* Cyberpunk corner brackets */}
+                    <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-white/80" />
+                    <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-white/80" />
+                    <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-white/80" />
+                    <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-white/80" />
+                    <span className="text-white font-bold text-xs flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      60% FORTUNE 500
+                    </span>
+                  </div>
+                </motion.div>
               </div>
 
               <div className="flex items-center gap-3 mb-6">
@@ -754,18 +789,17 @@ function CrewAIWebinar() {
             className="text-3xl md:text-4xl font-bold text-center text-white mb-12"
           >
             <span
+              className="text-transparent bg-clip-text"
               style={{
                 backgroundImage: `linear-gradient(135deg,
-                  #ffffff 0%,
-                  #e5e5e5 20%,
-                  #cccccc 40%,
-                  #ffffff 60%,
-                  #f5f5f5 80%,
-                  #ffffff 100%)`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                textShadow: '0 0 30px rgba(255, 255, 255, 0.1)',
+                  #ef4444 0%,
+                  #dc2626 20%,
+                  #b91c1c 40%,
+                  #ef4444 60%,
+                  #f87171 80%,
+                  #fca5a5 100%)`,
+                textShadow: '0 0 60px rgba(239, 68, 68, 0.15)',
+                filter: 'drop-shadow(0 0 30px rgba(239, 68, 68, 0.4))',
               }}
             >
               Aprenda na Prática
@@ -867,18 +901,17 @@ function CrewAIWebinar() {
             className="text-3xl md:text-4xl font-bold text-center text-white mb-12"
           >
             <span
+              className="text-transparent bg-clip-text"
               style={{
                 backgroundImage: `linear-gradient(135deg,
-                  #ffffff 0%,
-                  #e5e5e5 20%,
-                  #cccccc 40%,
-                  #ffffff 60%,
-                  #f5f5f5 80%,
-                  #ffffff 100%)`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                textShadow: '0 0 30px rgba(255, 255, 255, 0.1)',
+                  #ef4444 0%,
+                  #dc2626 20%,
+                  #b91c1c 40%,
+                  #ef4444 60%,
+                  #f87171 80%,
+                  #fca5a5 100%)`,
+                textShadow: '0 0 60px rgba(239, 68, 68, 0.15)',
+                filter: 'drop-shadow(0 0 30px rgba(239, 68, 68, 0.4))',
               }}
             >
               Agenda Completa
@@ -983,39 +1016,80 @@ function CrewAIWebinar() {
             viewport={{ once: true }}
             className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-red-500/20 relative overflow-hidden"
           >
-            {/* Background Image */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute top-10 right-10 w-64 h-64">
-                <Bot className="w-full h-full text-red-500" />
-              </div>
-            </div>
+            {/* Background agent image */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: 'url(/images/backgrounds/background-dominando-crewai-agents.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.15,
+                filter: 'brightness(0.6) contrast(1.2)',
+                zIndex: 0
+              }}
+            />
+
+            {/* Red overlay for blending */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.4) 0%, rgba(220, 38, 38, 0.2) 50%, rgba(239, 68, 68, 0.3) 100%)',
+                zIndex: 1,
+                pointerEvents: 'none'
+              }}
+            />
 
             <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
               {/* Instructor Photo */}
               <div className="relative">
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-red-600/20 to-red-500/20 p-1">
-                  <div className="w-full h-full rounded-2xl bg-black/50 backdrop-blur-sm flex items-center justify-center relative overflow-hidden">
-                    {/* Cyberpunk effect overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-red-500/20 via-transparent to-red-600/20" />
-                    <div className="text-center">
-                      <Bot className="w-32 h-32 text-red-500/30 mx-auto mb-4" />
-                      <p className="text-white/60 font-bold text-xl">Luan Moreno</p>
-                      <p className="text-red-400 text-sm">CrewAI Expert</p>
-                    </div>
+                {/* Animated red glow behind photo */}
+                <div className="absolute -inset-4 bg-gradient-to-r from-red-600 to-red-500 rounded-2xl opacity-30 blur-xl animate-pulse" />
+
+                {/* Main photo with effects */}
+                <div className="relative overflow-hidden rounded-2xl">
+                  <img
+                    src="/images/backgrounds/background-dominando-crewai-agents.png"
+                    alt="Luan Moreno"
+                    className="w-full relative z-1"
+                    style={{
+                      filter: 'contrast(1.1) saturate(0.9)',
+                      objectFit: 'cover',
+                      objectPosition: 'center'
+                    }}
+                  />
+
+                  {/* Red gradient overlay for cyberpunk effect */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-red-900/40 via-transparent to-red-900/20 mix-blend-multiply" />
+                </div>
+
+                {/* Corner accent decorations */}
+                <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-red-500 rounded-tl-2xl" />
+                <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-red-500 rounded-tr-2xl" />
+                <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-red-500 rounded-bl-2xl" />
+                <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-red-500 rounded-br-2xl" />
+
+                {/* Tech badge overlay */}
+                <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-red-500/50">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                    <span className="text-xs text-red-400 font-mono">CREWAI CERTIFIED</span>
                   </div>
                 </div>
               </div>
 
               {/* Instructor Info */}
-              <div className="space-y-6">
+              <div className="space-y-6 relative">
+                {/* Verified instructor badge */}
+                <div className="absolute -top-6 -right-6 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 shadow-lg shadow-green-500/30">
+                  <CheckCircle className="w-4 h-4" />
+                  Instrutor Certificado
+                </div>
+
                 <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <h3 className="text-3xl font-bold text-white">Luan Moreno</h3>
-                    <div className="bg-blue-500 rounded-full p-1">
-                      <Check className="w-4 h-4 text-white" />
-                    </div>
-                  </div>
-                  <p className="text-red-400 font-medium">Especialista em Multi-Agent Systems</p>
+                  <h3 className="text-3xl font-bold text-white mb-2">Luan Moreno</h3>
+                  <p className="text-red-400 font-semibold mb-1">Especialista em Multi-Agent Systems</p>
+                  <p className="text-white/60 text-sm">Principal AI & Autonomous Systems Engineer @Pythian</p>
                 </div>
 
                 <p className="text-white/70">

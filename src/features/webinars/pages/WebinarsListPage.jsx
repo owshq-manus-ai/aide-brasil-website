@@ -91,28 +91,10 @@ const webinars = [
   },
   {
     id: 3,
-    slug: 'dominando-crewai-agents',
-    title: 'Dominando CrewAI Agents',
-    subtitle: 'Orquestre sistemas multi-agentes em produção com o framework usado por 60% das Fortune 500',
-    date: '12 Nov 2025',
-    time: '20:00',
-    duration: '2h',
-    attendees: 185,
-    description: 'Descubra como criar sistemas multi-agentes complexos que resolvem problemas empresariais reais. Aprenda a orquestrar agentes especializados e escalar soluções de IA com CrewAI.',
-    topics: ['CrewAI', 'Multi-Agents', 'Fleet', 'Python'],
-    gradient: 'from-red-600 to-red-500',
-    icon: Rocket,
-    level: 'Intermediário',
-    spots: 500,
-    exclusive: false,
-    popular: true
-  },
-  {
-    id: 4,
     slug: 'dominando-chatgpt-agent-builder',
     title: 'Dominando ChatGPT Agent Builder',
     subtitle: 'Crie, orquestre e implante agentes inteligentes em produção com o framework AgentKit da OpenAI',
-    date: '23 Jan 2025',
+    date: '5 Nov 2025',
     time: '20:00',
     duration: '2h',
     attendees: 142,
@@ -124,6 +106,24 @@ const webinars = [
     spots: 500,
     exclusive: false,
     popular: false
+  },
+  {
+    id: 4,
+    slug: 'dominando-crewai-agents',
+    title: 'Dominando CrewAI Agents',
+    subtitle: 'Orquestre sistemas multi-agentes em produção com o framework usado por 60% das Fortune 500',
+    date: '19 Nov 2025',
+    time: '20:00',
+    duration: '2h',
+    attendees: 185,
+    description: 'Descubra como criar sistemas multi-agentes complexos que resolvem problemas empresariais reais. Aprenda a orquestrar agentes especializados e escalar soluções de IA com CrewAI.',
+    topics: ['CrewAI', 'Multi-Agents', 'Fleet', 'Python'],
+    gradient: 'from-red-600 to-red-500',
+    icon: Rocket,
+    level: 'Intermediário',
+    spots: 500,
+    exclusive: false,
+    popular: true
   }
 ]
 
@@ -450,7 +450,7 @@ function WebinarsPage() {
                           <span className="text-white/70">
                             <span className={`font-semibold ${
                               webinar.slug === 'dominando-claude-code'
-                                ? 'text-blue-400'
+                                ? 'text-orange-400'
                               : webinar.slug === 'dominando-autonomous-code-agents'
                                 ? 'text-purple-400'
                                 : webinar.slug === 'dominando-crewai-agents'

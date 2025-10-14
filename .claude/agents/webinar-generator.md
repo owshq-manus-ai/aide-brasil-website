@@ -436,29 +436,55 @@ Base schedule:
 
 ## 🚨 Critical Rules (NEVER VIOLATE)
 
+### ⚠️ BANNED ICONS - CRITICAL!
+
+**NEVER USE `Network` ICON - IT DOES NOT RENDER!**
+
+The `Network` icon from lucide-react v0.510.0 creates empty boxes.
+
+```jsx
+// ❌ BANNED - DO NOT USE:
+import { Network } from 'lucide-react'  // DON'T IMPORT!
+icon: Network  // WON'T RENDER!
+<Network className="..." />  // CREATES EMPTY BOX!
+```
+
+**✅ USE THESE INSTEAD:**
+- Architecture/System → `Cpu` (processor icon)
+- Framework/Code → `Code2` (code brackets `</>`)
+- Speed/Energy → `Zap` (lightning bolt)
+- Success/Achievement → `Award` (trophy)
+- Connections → `GitBranch` or `Layers`
+
+**Reference:** See `ChatGPTAgentBuilderWebinar.jsx` for correct implementation.
+
+---
+
 ### ✅ ALWAYS:
-1. Use inline form handling (copy pattern from reference files)
-2. Include 3-layer background with inline styles and theme hex colors
-3. Add AnimatedCounter component (copy full implementation)
-4. Use Brazilian phone format: `(XX) XXXXX-XXXX`
-5. Place component in `/src/features/webinars/pages/`
-6. Use lazy loading for routes
-7. Include all 8 sections in exact order
-8. Use `.jsx` extension (NOT `.tsx`)
-9. Import 20+ icons from lucide-react
-10. Add webhook config AND route
+1. **NEVER use Network icon** - use Cpu, Code2, Zap, or Award instead
+2. Use inline form handling (copy pattern from reference files)
+3. Include 3-layer background with inline styles and theme hex colors
+4. Add AnimatedCounter component (copy full implementation)
+5. Use Brazilian phone format: `(XX) XXXXX-XXXX`
+6. Place component in `/src/features/webinars/pages/`
+7. Use lazy loading for routes
+8. Include all 8 sections in exact order
+9. Use `.jsx` extension (NOT `.tsx`)
+10. Import 20+ icons from lucide-react (verify all render in browser!)
+11. Add webhook config AND route
 
 ### ❌ NEVER:
-1. Use WebhookForm component (use inline form)
-2. Skip any of the 8 sections
-3. Center the hero section (must be 2-column)
-4. Hardcode webhook URLs (use env vars)
-5. Forget to add AnimatedCounter
-6. Use wrong directory structure
-7. Skip phone validation
-8. Use TypeScript
-9. Forget lazy loading
-10. Skip quality validation
+1. **Use Network icon** (BANNED - creates empty boxes!)
+2. Use WebhookForm component (use inline form)
+3. Skip any of the 8 sections
+4. Center the hero section (must be 2-column)
+5. Hardcode webhook URLs (use env vars)
+6. Forget to add AnimatedCounter
+7. Use wrong directory structure
+8. Skip phone validation
+9. Use TypeScript
+10. Forget lazy loading
+11. Skip quality validation
 
 ## 🎯 Example Interactions
 

@@ -364,7 +364,7 @@ function AutonomousAgentsWebinar() {
 
     try {
       // Get webhook configuration for Autonomous Agents webinar
-      const webhookConfig = webhookEndpoints.webinars['domine-autonomous-code-agents']
+      const webhookConfig = webhookEndpoints.webinars['dominando-autonomous-code-agents']
 
       // Prepare data with webhook metadata
       const submissionData = {
