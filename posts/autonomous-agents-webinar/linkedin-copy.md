@@ -10,7 +10,7 @@ Cansado de perder tempo testando diferentes agentes de código autônomo sem sab
 
 **O que você vai dominar em 2 horas:**
 
-🔥 **OpenAI Codex** - O novo gigante da Microsoft para cloud engineering
+🔥 **ChatGPT Codex** - Advanced Code Intelligence da OpenAI
 ⚡ **Claude Code** - Terminal-first com MCP da Anthropic
 🚀 **Replit Agent** - Full-stack no browser com deploy instantâneo
 💻 **Warp** - Terminal turbinado com AI-powered suggestions
@@ -48,9 +48,9 @@ Isso é exatamente o que acontece quando você domina os principais agentes de c
 
 Vou revelar na prática como usar:
 
-**1️⃣ OpenAI Codex**
-→ Cloud engineering automatizado
-→ Integração perfeita com VS Code
+**1️⃣ ChatGPT Codex**
+→ Advanced Code Intelligence
+→ Contexto profundo e análise inteligente
 
 **2️⃣ Claude Code**
 → Terminal-first approach
@@ -92,7 +92,7 @@ Vou revelar na prática como usar:
 📅 **Webinar GRATUITO: 22 de Outubro, 20h**
 
 **Comparação completa e ao vivo:**
-🔍 OpenAI Codex - Quando usar
+🔍 ChatGPT Codex - Quando usar
 🔍 Claude Code - Pontos fortes
 🔍 Replit Agent - Casos ideais
 🔍 Warp - Diferenciais únicos
@@ -116,7 +116,7 @@ Inscreva-se agora → [Link]
 🏆 **Aprenda com quem já testou TODOS os agentes do mercado**
 
 Nos últimos 12 meses, testei profundamente:
-• OpenAI Codex em 50+ projetos
+• ChatGPT Codex em 50+ projetos
 • Claude Code em produção diária
 • Replit Agent para MVPs rápidos
 • Warp como terminal principal
@@ -161,7 +161,7 @@ O webinar que vai mudar como você desenvolve software está chegando...
 
 **🤖 4 AGENTES. 2 HORAS. 1 DECISÃO QUE VAI MUDAR SEU JOGO.**
 
-✓ OpenAI Codex - O futuro segundo a Microsoft
+✓ ChatGPT Codex - Advanced Code Intelligence da OpenAI
 ✓ Claude Code - A revolução da Anthropic
 ✓ Replit Agent - Deploy em segundos
 ✓ Warp - Terminal do futuro
@@ -202,7 +202,7 @@ Não seja o único da sua equipe que não participou.
 🔔 **AMANHÃ: O webinar mais esperado sobre Agentes Autônomos!**
 
 Última chance de aprender:
-• OpenAI Codex - Cloud engineering
+• ChatGPT Codex - Advanced Code Intelligence
 • Claude Code - Terminal-first
 • Replit Agent - Full-stack instant
 • Warp - AI-powered terminal

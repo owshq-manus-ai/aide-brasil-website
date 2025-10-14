@@ -28,13 +28,25 @@ async function generateLinkedInVariation(browser, variationName, imagePath) {
   const base64Image = `data:image/png;base64,${imageBuffer.toString('base64')}`;
 
   // Replace the background URL with the base64 encoded image
-  // Try both image references
+  // Try all image references (old and new photos)
   htmlContent = htmlContent.replace(
     "background: url('../../public/images/team/luan-moreno-3.png') center/cover;",
     `background: url('${base64Image}') center/cover;`
   );
   htmlContent = htmlContent.replace(
     "background: url('../../public/images/team/luan-moreno-4.png') center/cover;",
+    `background: url('${base64Image}') center/cover;`
+  );
+  htmlContent = htmlContent.replace(
+    "background: url('../../public/images/team/luan-moreno-5.png') center/cover;",
+    `background: url('${base64Image}') center/cover;`
+  );
+  htmlContent = htmlContent.replace(
+    "background: url('../../public/images/team/luan-moreno-6.png') center/cover;",
+    `background: url('${base64Image}') center/cover;`
+  );
+  htmlContent = htmlContent.replace(
+    "background: url('../../public/images/team/luan-moreno-7.png') center/cover;",
     `background: url('${base64Image}') center/cover;`
   );
 
@@ -84,19 +96,27 @@ async function generateInstagramVariation(browser, variationNumber, imagePath) {
   const base64Image = `data:image/png;base64,${imageBuffer.toString('base64')}`;
 
   // Replace the background URL with the base64 encoded image
-  // For variation 1 and 3, use luan-moreno-4.png
-  // For variation 2, use luan-moreno-3.png
-  if (variationNumber === 1 || variationNumber === 3) {
-    htmlContent = htmlContent.replace(
-      "background: url('../../public/images/team/luan-moreno-4.png') center/cover;",
-      `background: url('${base64Image}') center/cover;`
-    );
-  } else {
-    htmlContent = htmlContent.replace(
-      "background: url('../../public/images/team/luan-moreno-3.png') center/cover;",
-      `background: url('${base64Image}') center/cover;`
-    );
-  }
+  // Replace ALL possible photo references
+  htmlContent = htmlContent.replace(
+    "background: url('../../public/images/team/luan-moreno-3.png') center/cover;",
+    `background: url('${base64Image}') center/cover;`
+  );
+  htmlContent = htmlContent.replace(
+    "background: url('../../public/images/team/luan-moreno-4.png') center/cover;",
+    `background: url('${base64Image}') center/cover;`
+  );
+  htmlContent = htmlContent.replace(
+    "background: url('../../public/images/team/luan-moreno-5.png') center/cover;",
+    `background: url('${base64Image}') center/cover;`
+  );
+  htmlContent = htmlContent.replace(
+    "background: url('../../public/images/team/luan-moreno-6.png') center/cover;",
+    `background: url('${base64Image}') center/cover;`
+  );
+  htmlContent = htmlContent.replace(
+    "background: url('../../public/images/team/luan-moreno-7.png') center/cover;",
+    `background: url('${base64Image}') center/cover;`
+  );
 
   // Set content
   await page.setContent(htmlContent, {
@@ -149,27 +169,27 @@ async function generateCompleteMarketingSuite() {
     const linkedinVariations = [
       {
         name: 'variation-1-comparison',
-        image: path.join(__dirname, '../../public/images/team/luan-moreno-4.png'),
+        image: path.join(__dirname, '../../public/images/team/luan-moreno-5.png'),
         description: '4 Agents VS Battle - Comparison Grid'
       },
       {
         name: 'variation-2-productivity',
-        image: path.join(__dirname, '../../public/images/team/luan-moreno-3.png'),
+        image: path.join(__dirname, '../../public/images/team/luan-moreno-6.png'),
         description: '10X Productivity - Big Numbers Focus'
       },
       {
         name: 'variation-3-decision-matrix',
-        image: path.join(__dirname, '../../public/images/team/luan-moreno-4.png'),
+        image: path.join(__dirname, '../../public/images/team/luan-moreno-5.png'),
         description: 'Decision Matrix - When to Use Each'
       },
       {
         name: 'variation-4-problem-solution',
-        image: path.join(__dirname, '../../public/images/team/luan-moreno-3.png'),
+        image: path.join(__dirname, '../../public/images/team/luan-moreno-6.png'),
         description: 'Problem/Solution - Split Screen'
       },
       {
         name: 'variation-5-journey',
-        image: path.join(__dirname, '../../public/images/team/luan-moreno-4.png'),
+        image: path.join(__dirname, '../../public/images/team/luan-moreno-7.png'),
         description: 'Learning Journey - Step by Step'
       }
     ];
@@ -189,17 +209,17 @@ async function generateCompleteMarketingSuite() {
     const instagramVariations = [
       {
         number: 1,
-        image: path.join(__dirname, '../../public/images/team/luan-moreno-4.png'),
+        image: path.join(__dirname, '../../public/images/team/luan-moreno-5.png'),
         description: '10X Productivity Focus'
       },
       {
         number: 2,
-        image: path.join(__dirname, '../../public/images/team/luan-moreno-3.png'),
+        image: path.join(__dirname, '../../public/images/team/luan-moreno-6.png'),
         description: 'Problem/Solution Split'
       },
       {
         number: 3,
-        image: path.join(__dirname, '../../public/images/team/luan-moreno-4.png'),
+        image: path.join(__dirname, '../../public/images/team/luan-moreno-7.png'),
         description: '4 Agents Grid'
       }
     ];

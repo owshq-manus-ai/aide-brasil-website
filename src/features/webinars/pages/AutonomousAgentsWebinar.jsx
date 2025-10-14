@@ -136,7 +136,7 @@ function AutonomousAgentsWebinar() {
     description: 'Descubra as técnicas secretas que os melhores profissionais do mercado estão usando para revolucionar seu workflow com agentes autônomos de IA',
 
     whatYouLearn: [
-      'OpenAI Codex: Cloud engineering com codex-1',
+      'ChatGPT Codex: Advanced Code Intelligence da OpenAI',
       'Claude Code: Terminal-first com MCP',
       'Replit Agent: Full-stack no browser',
       'Warp: Terminal turbinado para produtividade máxima',
@@ -147,8 +147,8 @@ function AutonomousAgentsWebinar() {
       {
         time: '20:00',
         module: 'Início',
-        topic: 'OpenAI Codex Deep Dive',
-        description: 'O novo gigante da Microsoft - cloud engineering com codex-1, explorando recursos avançados e integração com VS Code',
+        topic: 'ChatGPT Codex Deep Dive',
+        description: 'Inteligência de código avançada da OpenAI - domine o ChatGPT Codex para desenvolvimento acelerado com análise contextual profunda',
         icon: Terminal
       },
       {
@@ -178,7 +178,7 @@ function AutonomousAgentsWebinar() {
       {
         icon: Cpu,
         title: '4 Agentes Dominados',
-        description: 'OpenAI Codex, Claude, Replit e Warp explicados em detalhes',
+        description: 'ChatGPT Codex, Claude, Replit e Warp explicados em detalhes',
         duration: '30 min',
         level: 'Avançado'
       },
