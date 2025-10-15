@@ -146,3 +146,8 @@ export {
   monitorDataLayer,
   testGTM
 } from './debug'
+export {
+  storeLeadData,
+  clearLeadData,
+  getStoredLeadData
+} from './cookies'
