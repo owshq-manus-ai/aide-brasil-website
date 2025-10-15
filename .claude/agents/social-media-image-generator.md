@@ -329,6 +329,39 @@ ls -lh /posts/${slug}/*.png
 
 ## 🎨 HTML Template Best Practices
 
+### CRITICAL: Proper Layer Stacking
+**Background layers must NEVER overlap content. Follow this z-index hierarchy:**
+```css
+/* Z-Index Hierarchy (NEVER DEVIATE) */
+.grid-overlay { z-index: 1; }        /* Lowest - grid pattern */
+.purple-glow { z-index: 2; }         /* Background glows */
+.content { z-index: 10; }            /* Main content layer */
+.instructor-photo { z-index: 20; }   /* Top layer elements */
+```
+
+### CRITICAL: Fixed Dimensions
+**All templates MUST use exact pixel dimensions:**
+```css
+body {
+  width: 1200px;  /* LinkedIn */
+  height: 627px;
+  min-width: 1200px;  /* Prevent shrinking */
+  max-width: 1200px;  /* Prevent growing */
+  min-height: 627px;
+  max-height: 627px;
+  overflow: hidden;   /* Clip overflow */
+}
+```
+
+### CRITICAL: Content Padding
+**Always use adequate padding to prevent edge clipping:**
+```css
+.content {
+  padding: 50px 60px;  /* Minimum safe zone */
+  box-sizing: border-box;
+}
+```
+
 ### 1. Embedded Fonts
 ```html
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -357,22 +390,27 @@ ls -lh /posts/${slug}/*.png
 ### 4. Grid Background Pattern
 ```css
 .grid-overlay {
+  position: absolute;
+  inset: 0;
   background-image:
     linear-gradient(rgba(${themeRGB}, 0.04) 1.5px, transparent 1.5px),
     linear-gradient(90deg, rgba(${themeRGB}, 0.04) 1.5px, transparent 1.5px);
   background-size: 50px 50px;
+  z-index: 1;  /* CRITICAL: Must be lowest */
+  pointer-events: none;  /* Don't interfere with content */
 }
 ```
 
 ### 5. Instructor Photo
 ```css
 .instructor-photo {
-  width: 120px;
-  height: 120px;
+  width: 100px;    /* Reduced from 120px for better fit */
+  height: 100px;
   border-radius: 50%;
   border: 4px solid ${themeColor};
   box-shadow: 0 8px 32px rgba(${themeRGB}, 0.4);
   background: url('PLACEHOLDER') center/cover;
+  flex-shrink: 0;  /* Prevent compression */
 }
 ```
 
@@ -418,6 +456,11 @@ const emojiIcons = {
 8. Use high contrast text (white on dark)
 9. Add subtle grid background pattern
 10. Include event date prominently
+11. **TEST FONT SIZES** - LinkedIn max headline: 52px, Instagram max: 72px
+12. **SAFE PADDING** - Minimum 50px on all sides
+13. **PREVENT OVERLAP** - Use `flex-shrink: 0` on fixed-size elements
+14. **Z-INDEX HIERARCHY** - Background (1-2), Content (10), Top elements (20)
+15. **BOX-SIZING** - Always use `box-sizing: border-box`
 
 ### ❌ NEVER:
 1. Use external CSS files (embed all styles)
