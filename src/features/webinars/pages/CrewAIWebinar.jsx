@@ -162,24 +162,25 @@ function CrewAIWebinar() {
     return () => clearInterval(timer)
   }, [])
 
+  // STANDARD PATTERN: Phone formatting integrated into handleInputChange
+  const formatPhoneNumber = (value) => {
+    const phoneNumber = value.replace(/\D/g, '')
+    if (phoneNumber.length <= 2) {
+      return phoneNumber
+    } else if (phoneNumber.length <= 7) {
+      return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2)}`
+    } else if (phoneNumber.length <= 11) {
+      return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7)}`
+    }
+    return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7, 11)}`
+  }
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const formatPhoneNumber = (value) => {
-    const numbers = value.replace(/\D/g, '')
-    if (numbers.length <= 11) {
-      return numbers.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')
-        .replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3')
-        .replace(/(\d{2})(\d{4})/, '($1) $2')
-    }
-    return value
-  }
-
-  const handlePhoneChange = (e) => {
-    const formatted = formatPhoneNumber(e.target.value)
-    setFormData(prev => ({ ...prev, phone: formatted }))
+    setFormData(prev => ({
+      ...prev,
+      [name]: name === 'phone' ? formatPhoneNumber(value) : value
+    }))
   }
 
   // Convert Brazilian date format to ISO datetime
@@ -360,7 +361,7 @@ function CrewAIWebinar() {
               type="tel"
               name="phone"
               value={formData.phone}
-              onChange={handlePhoneChange}
+              onChange={handleInputChange}
               placeholder="(11) 98765-4321"
               required
               className="w-full pl-12 pr-20 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none transition-colors"
