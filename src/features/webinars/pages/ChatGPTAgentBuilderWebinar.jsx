@@ -129,7 +129,7 @@ function ChatGPTAgentBuilderWebinar() {
     title: 'Dominando ChatGPT Agent Builder',
     highlightWord: 'Agent Builder',
     subtitle: 'Crie, implante e escale agentes personalizados com AgentKit da OpenAI',
-    date: '5 de Novembro, 2025',
+    date: '5 Nov 2025',
     time: '20:00 BRT',
     duration: '2 horas',
     gradient: 'from-orange-600 to-amber-600',

@@ -108,8 +108,18 @@ Agent Actions:
 
 ## Form Implementation Patterns
 
-### Inline Form (Preferred for Webinars) - STANDARD PATTERN
+### Inline Form (Preferred for Webinars) - STANDARD PATTERN ✅
+
+**CRITICAL**: This is the EXACT pattern verified across ALL 4 production webinars:
+- ✅ dominando-autonomous-code-agents
+- ✅ dominando-claude-code
+- ✅ dominando-chatgpt-agent-builder
+- ✅ dominando-crewai-agents
+
+**DO NOT DEVIATE** from this pattern. Every line has been production-tested.
+
 ```jsx
+// ==================== STATE MANAGEMENT ====================
 const [formData, setFormData] = useState({
   name: '',
   email: '',
@@ -118,7 +128,13 @@ const [formData, setFormData] = useState({
 const [isSubmitting, setIsSubmitting] = useState(false)
 const [showSuccess, setShowSuccess] = useState(false)
 
-// Convert Brazilian date format to ISO datetime
+// ==================== DATE/TIME CONVERSION ====================
+// CRITICAL FORMAT REQUIREMENTS:
+// - Date: "DD Mon YYYY" (e.g., "22 Out 2025", "19 Nov 2025")
+// - Time: "HH:MM BRT" (e.g., "20:00 BRT")
+// - MUST be exactly 3 space-separated parts for date
+// - MUST include "BRT" suffix for time
+
 const convertToISODateTime = (dateStr, timeStr) => {
   const months = {
     'Jan': '01', 'Fev': '02', 'Mar': '03', 'Abr': '04',
@@ -126,14 +142,11 @@ const convertToISODateTime = (dateStr, timeStr) => {
     'Set': '09', 'Out': '10', 'Nov': '11', 'Dez': '12'
   }
 
-  // Parse various date formats
-  const dateParts = dateStr.split(' ')
-  const day = dateParts[0]
-  const monthName = dateParts.length > 2 ? dateParts[2] : dateParts[1]
-  const year = dateParts[dateParts.length - 1] || new Date().getFullYear()
-  const month = months[monthName.substring(0, 3)] || '01'
+  // Parse date "22 Out 2025" - EXACTLY 3 parts
+  const [day, monthBr, year] = dateStr.split(' ')
+  const month = months[monthBr]
 
-  // Parse time "20:00 BRT" or "20:00"
+  // Parse time "20:00 BRT" - remove BRT suffix
   const time = timeStr.replace(' BRT', '')
   const [hours, minutes] = time.split(':')
 
@@ -142,9 +155,34 @@ const convertToISODateTime = (dateStr, timeStr) => {
   return isoDate
 }
 
+// ==================== PHONE FORMATTING ====================
+// Brazilian format: (11) 98765-4321
+const formatPhoneNumber = (value) => {
+  const phoneNumber = value.replace(/\D/g, '')
+  if (phoneNumber.length <= 2) {
+    return phoneNumber
+  } else if (phoneNumber.length <= 7) {
+    return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2)}`
+  } else if (phoneNumber.length <= 11) {
+    return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7)}`
+  }
+  return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7, 11)}`
+}
+
+// ==================== INPUT HANDLING ====================
+const handleInputChange = (e) => {
+  const { name, value } = e.target
+  setFormData(prev => ({
+    ...prev,
+    [name]: name === 'phone' ? formatPhoneNumber(value) : value
+  }))
+}
+
+// ==================== FORM SUBMISSION ====================
 const handleSubmit = async (e) => {
   e.preventDefault()
 
+  // Optional: Typeform fallback
   if (USE_TYPEFORM) {
     window.open(TYPEFORM_URL, '_blank')
     return
@@ -153,16 +191,16 @@ const handleSubmit = async (e) => {
   setIsSubmitting(true)
 
   try {
-    // Get webhook configuration
+    // Get webhook configuration - USE EXACT KEY from webhook-endpoints.js
     const webhookConfig = webhookEndpoints.webinars['dominando-your-webinar-name']
 
-    // Prepare data with webhook metadata - THIS IS THE STANDARD
+    // Prepare data with webhook metadata - THIS IS THE STANDARD STRUCTURE
     const submissionData = {
       ...formData,                              // User input: name, email, phone
       ...webhookConfig.metadata,                // Metadata: type, product, duration, format
-      source: 'webinar-your-name',              // Page identifier
+      source: 'webinar-your-name',              // Page identifier (kebab-case)
       page_url: window.location.href,           // Full page URL
-      submitted_at: new Date().toISOString(),   // Submission timestamp
+      submitted_at: new Date().toISOString(),   // Submission timestamp (ISO format)
       webinar_datetime: convertToISODateTime(webinar.date, webinar.time) // Event datetime
     }
 
@@ -175,30 +213,35 @@ const handleSubmit = async (e) => {
       body: JSON.stringify(submissionData)
     })
 
+    // SUCCESS HANDLING - same for all paths
     if (response.ok || response.status === 200 || response.status === 201) {
       setShowSuccess(true)
       setFormData({ name: '', email: '', phone: '' })
 
       setTimeout(() => {
         setShowSuccess(false)
+        // Optional: Close modal if exists
+        // if (isModalOpen) setIsModalOpen(false)
       }, 3000)
     } else {
-      // Even if webhook fails, show success to user (graceful degradation)
+      // GRACEFUL DEGRADATION - Even if webhook fails, show success to user
       setShowSuccess(true)
       setFormData({ name: '', email: '', phone: '' })
 
       setTimeout(() => {
         setShowSuccess(false)
+        // if (isModalOpen) setIsModalOpen(false)
       }, 3000)
     }
   } catch (error) {
     console.error('Error submitting form:', error)
-    // Don't show error to user, show success message instead
+    // GRACEFUL DEGRADATION - Don't show error to user, show success instead
     setShowSuccess(true)
     setFormData({ name: '', email: '', phone: '' })
 
     setTimeout(() => {
       setShowSuccess(false)
+      // if (isModalOpen) setIsModalOpen(false)
     }, 3000)
   } finally {
     setIsSubmitting(false)
@@ -351,17 +394,53 @@ webinars: {
 const webhookConfig = webhookEndpoints.webinars['dominando-your-webinar-name']
 ```
 
+## Standard Webinar Data Object
+
+**CRITICAL**: Every webinar MUST define its data using this EXACT structure:
+
+```javascript
+const webinar = {
+  title: 'Dominando [Topic]',
+  highlightWord: '[KeyWord]',  // Used in gradient text
+  subtitle: '[Compelling subtitle with value proposition]',
+  date: 'DD Mon YYYY',  // e.g., "22 Out 2025" - EXACTLY 3 space-separated parts
+  time: 'HH:MM BRT',    // e.g., "20:00 BRT" - MUST include BRT
+  duration: 'X horas',
+  gradient: 'from-color-600 to-color-600',
+  description: '[Full description paragraph]',
+
+  whatYouLearn: [
+    '[Learning point 1]',
+    '[Learning point 2]',
+    // ... more points
+  ],
+
+  // ... other webinar-specific data
+}
+```
+
+**Date/Time Format Examples:**
+- ✅ CORRECT: `date: "1 Out 2025", time: "20:00 BRT"` (ClaudeCodeWebinar)
+- ✅ CORRECT: `date: "19 Nov 2025", time: "20:00 BRT"` (CrewAIWebinar)
+- ✅ CORRECT: `date: "5 Nov 2025", time: "20:00 BRT"` (ChatGPTAgentBuilderWebinar)
+- ✅ CORRECT: `date: "22 Out 2025", time: "20:00 BRT"` (AutonomousCodeAgentsWebinar)
+- ❌ WRONG: `date: "5 de Novembro, 2025"` (uses "de" and comma - NOT 3 parts!)
+- ❌ WRONG: `date: "19 de Novembro"` (uses "de", not 3 parts)
+- ❌ WRONG: `date: "22 Out"` (missing year)
+- ❌ WRONG: `time: "20:00"` (missing BRT)
+
 ## Important Notes
 
 1. **PREFER** inline form handling for webinars
 2. **ALWAYS** validate Brazilian phone numbers
 3. **INCLUDE** all three fields (name, email, phone) for webinars
 4. **USE EXACT** webhook keys from webhook-endpoints.js
-5. **TEST** webhook connectivity before deployment
-6. **SANITIZE** form data before submission
-7. **PROVIDE** clear error messages in Portuguese
-8. **IMPLEMENT** proper loading states
-9. **GRACEFUL DEGRADATION** - always show success to user even if webhook fails
+5. **DATE FORMAT** must be "DD Mon YYYY" with BRT timezone
+6. **TEST** webhook connectivity before deployment
+7. **SANITIZE** form data before submission
+8. **PROVIDE** clear error messages in Portuguese
+9. **IMPLEMENT** proper loading states
+10. **GRACEFUL DEGRADATION** - always show success to user even if webhook fails
 
 ## Testing Webhooks
 

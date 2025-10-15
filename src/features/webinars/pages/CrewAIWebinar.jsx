@@ -127,8 +127,8 @@ function CrewAIWebinar() {
   const webinar = {
     title: 'Dominando CrewAI Agents',
     subtitle: 'Construa e orquestre sistemas multi-agentes em produção com o framework usado por 60% das Fortune 500',
-    date: '19 de Novembro',
-    time: '20:00',
+    date: '19 Nov 2025',
+    time: '20:00 BRT',
     duration: '2 horas',
     platform: 'Sessão no Zoom',
     highlightWord: 'CrewAI',
@@ -190,15 +190,13 @@ function CrewAIWebinar() {
       'Set': '09', 'Out': '10', 'Nov': '11', 'Dez': '12'
     }
 
-    // Parse date "19 de Novembro"
-    const dateParts = dateStr.split(' ')
-    const day = dateParts[0]
-    const monthName = dateParts[2]
-    const year = new Date().getFullYear() // Current year
-    const month = months[monthName.substring(0, 3)] || '01'
+    // Parse date "22 Out 2025"
+    const [day, monthBr, year] = dateStr.split(' ')
+    const month = months[monthBr]
 
-    // Parse time "20:00"
-    const [hours, minutes] = timeStr.split(':')
+    // Parse time "20:00 BRT"
+    const time = timeStr.replace(' BRT', '')
+    const [hours, minutes] = time.split(':')
 
     // Create ISO datetime string (Brazil is UTC-3)
     const isoDate = `${year}-${month}-${day.padStart(2, '0')}T${hours}:${minutes}:00-03:00`
