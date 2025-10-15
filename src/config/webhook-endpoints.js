@@ -107,6 +107,18 @@ export const webhookEndpoints = {
         duration: '120 minutes',
         format: 'live'
       }
+    },
+    'dominando-dify-ai': {
+      url: import.meta.env.VITE_WEBHOOK_WEBINAR_DIFY ||
+           import.meta.env.VITE_N8N_WEBHOOK_URL ||
+           'https://primary-production-1ebc.up.railway.app/webhook-test/3a20f09c-24f1-4052-ae9c-a3617cf9ec57',
+      fields: ['name', 'email', 'phone'], // Mandatory fields
+      metadata: {
+        type: 'webinar',
+        product: 'dify-ai-llmops',
+        duration: '120 minutes',
+        format: 'live'
+      }
     }
   },
 

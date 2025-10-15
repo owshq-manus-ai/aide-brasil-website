@@ -41,6 +41,36 @@ CONTENT EXAMPLES:
 
 ## 🤖 Autonomous Workflow
 
+### Step 0: Pattern Analysis (CRITICAL FIRST STEP)
+
+**BEFORE generating any webinar, ALWAYS:**
+
+1. **Read ALL existing webinar implementations** to understand current patterns:
+   ```bash
+   - ChatGPTAgentBuilderWebinar.jsx (reference for structure)
+   - AutonomousAgentsWebinar.jsx (reference for animations)
+   - CrewAIWebinar.jsx (reference for styling)
+   - ClaudeCodeWebinar.jsx (reference for latest patterns)
+   ```
+
+2. **Extract and document patterns**:
+   - Exact component structure (AnimatedCounter placement, state management)
+   - Section ordering (Hero → Transformation → Benefits → Agenda → Instructor → Stats → Guarantee → CTA)
+   - Background layer system (3 layers with specific z-index and inline styles)
+   - Typography hierarchy (text-5xl/7xl for H1, text-4xl/5xl for H2)
+   - Gradient patterns (bg-gradient-to-r from-X via-Y to-Z)
+   - Form implementation (inline with 4 floating corner icons)
+   - Animation timings (2s, 2.5s, 2.2s, 1.8s for floating icons)
+   - Card layouts and hover effects
+   - Icon sizes and positioning
+
+3. **Identify used color themes** to select a DIFFERENT one:
+   - Check what colors are already used in existing webinars
+   - Select a distinct color to maintain visual differentiation
+   - NEVER use the same color as the most recent webinar
+
+**WHY THIS MATTERS**: This ensures 100% pattern consistency across all webinars. Every new webinar should look like it was designed by the same designer, just with different colors and content.
+
 ### Step 1: Topic Analysis & Variable Generation
 
 From user input like **"Create a webinar about Python AI"**, intelligently infer:
@@ -64,10 +94,12 @@ INSTRUCTOR_ROLE: "Senior AI Engineer"
 
 **Theme Selection Logic (IMPORTANT: Use Different Colors for Each Webinar):**
 - Autonomous Agents/AI Orchestration → `purple` (#a855f7, #8b5cf6, #1a0f2a, #0f0a1a)
-- Data Engineering/Cloud/APIs → `blue` (#0ea5e9, #06b6d4, #0a1a2a, #0a0f1a)
+- LLMOps/Cloud/Enterprise AI → `blue/cyan` (#0ea5e9, #06b6d4, #0a1a2a, #0a0f1a)
 - Career Growth/Productivity → `green` (#10b981, #22c55e, #0a2a1a, #0f1a0a)
 - ChatGPT/OpenAI/Agent Builder → `orange` (#f97316, #f59e0b, #2a1a0f, #1a0f0a)
 - CrewAI/Multi-Agent Systems → `coral/red` (#FF5A50, #ff7b5f, #2a0f0a, #1a0a0a)
+
+**CRITICAL**: Before selecting a theme, READ existing webinars to check what colors are already in use. Select a theme that creates clear visual distinction.
 
 **CRITICAL RULE**: Check existing webinars before generating and select a DIFFERENT color theme to maintain visual distinction between webinars.
 
@@ -222,9 +254,22 @@ function [ComponentName]Webinar() {
     <div className="relative min-h-screen overflow-hidden">
       {/* 3-LAYER BACKGROUND SYSTEM (MANDATORY) */}
       <div className="fixed inset-0" style={{ zIndex: -10 }}>
-        {/* Layer 1: Deep gradient with theme hex colors */}
-        {/* Layer 2: Radial overlays with rgba */}
-        {/* Layer 3: Texture pattern */}
+        {/* Layer 1: Deep gradient base with theme-specific hex colors */}
+        <div className="absolute inset-0" style={{
+          background: 'linear-gradient(to bottom, #0a1a2a 0%, #0a0f1a 100%)'
+        }} />
+
+        {/* Layer 2: Radial overlays with rgba for depth */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
+        </div>
+
+        {/* Layer 3: Subtle texture pattern */}
+        <div className="absolute inset-0 opacity-30" style={{
+          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)'
+        }} />
       </div>
 
       <Header />
@@ -299,18 +344,33 @@ const [ComponentName] = lazy(() =>
 
 **Quality Checklist (Auto-verify):**
 ```
-✅ Component file created in correct location
-✅ All 8 sections implemented
-✅ 3-layer background with correct hex colors
-✅ AnimatedCounter component included
-✅ Inline form (NOT WebhookForm)
-✅ Phone validation with Brazilian format
-✅ Webhook configuration added
-✅ Route added with lazy loading
-✅ All imports correct
-✅ No TypeScript (.jsx not .tsx)
-✅ Mobile responsive
-✅ ~1,300 lines of production code
+✅ PATTERN MATCHING:
+  - Read existing webinars and documented patterns
+  - Component structure matches references exactly
+  - Section ordering identical (Hero → Transformation → Benefits → Agenda → Instructor → Stats → Guarantee → CTA)
+  - Typography sizes match (text-5xl/7xl, text-4xl/5xl, text-lg)
+  - Spacing/padding consistent with references
+  - Animation timings match (2s, 2.5s, 2.2s, 1.8s)
+  - Gradient patterns use same syntax (bg-gradient-to-r from-X via-Y to-Z)
+  - Card layouts and hover effects identical
+  - Form structure matches (4 floating icons, progress bar, WhatsApp label)
+
+✅ TECHNICAL REQUIREMENTS:
+  - Component file created in /src/features/webinars/pages/
+  - All 8 sections implemented in correct order
+  - 3-layer background with inline styles and theme hex colors
+  - AnimatedCounter component included (full ~85 line implementation)
+  - Inline form (NOT WebhookForm component)
+  - Phone validation with Brazilian format (XX) XXXXX-XXXX
+  - Webhook configuration added to webhook-endpoints.js
+  - Route added with lazy loading to App.jsx
+  - Header color scheme added to Header.jsx
+  - All imports correct (20+ icons from lucide-react)
+  - NO Network icon used (use Cpu, Code2, Zap, Award instead)
+  - No TypeScript (.jsx not .tsx)
+  - Mobile responsive (inherits from reference patterns)
+  - ~1,300-1,800 lines of production code
+  - Build passes with no errors
 ```
 
 **Final Report to User:**
@@ -541,7 +601,8 @@ Agent: *Analyzing request*
 
 ## 🔄 Iterative Improvement
 
-If user requests changes:
+### Scenario 1: Minor Changes
+If user requests small changes:
 ```
 User: "Change the theme to orange and make it more energetic"
 
@@ -552,6 +613,25 @@ Agent:
 4. Update title if needed
 5. Regenerate background layers
 6. Report changes
+```
+
+### Scenario 2: Pattern Mismatch - Rebuild Required
+If user says "rebuild to match exact patterns" or "start from scratch":
+```
+User: "Rebuild this webinar to exactly match the patterns of other webinars"
+
+Agent MUST execute this workflow:
+1. Read ALL existing reference webinars (ChatGPT, Autonomous, CrewAI, etc.)
+2. Document EVERY pattern (structure, spacing, typography, animations, etc.)
+3. Delete or overwrite the existing component completely
+4. Rebuild from scratch using documented patterns as template
+5. Preserve the topic/content but match structure 100%
+6. Validate every pattern against references
+7. Test build to ensure no errors
+8. Report all changes made to achieve pattern consistency
+
+CRITICAL: When rebuilding, prioritize pattern matching over preserving existing code.
+The goal is 100% visual and structural consistency with other webinars.
 ```
 
 ## 📊 Performance Metrics

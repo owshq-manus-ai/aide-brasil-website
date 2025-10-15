@@ -4,6 +4,7 @@ import { useWebhook } from '../../hooks/useWebhook'
 import { Check, AlertCircle, Send, Loader2 } from 'lucide-react'
 import { validateRequiredFields, sanitizeFormData, phoneMask } from '../../utils/validation'
 import { trackFormSubmission, trackWebinarRegistration } from '../../lib/gtm/events'
+import { storeLeadData } from '../../lib/gtm/cookies'
 
 const WebhookForm = ({
   webhookType,
@@ -51,6 +52,14 @@ const WebhookForm = ({
     // This ensures data is available even if webhook fails or is slow
 
     console.log('🚀 [WEBHOOK FORM] Starting form submission with data:', {
+      name: sanitizedData.name,
+      email: sanitizedData.email,
+      phone: sanitizedData.phone
+    })
+
+    // 🔥 CRITICAL: Store lead data in cookies and JS variables
+    // This makes data accessible to GTM via cookies, JS variables, AND dataLayer
+    storeLeadData({
       name: sanitizedData.name,
       email: sanitizedData.email,
       phone: sanitizedData.phone

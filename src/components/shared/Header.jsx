@@ -71,6 +71,18 @@ const Header = () => {
         shadow: 'hover:shadow-orange-500/30',
         headerBg: 'bg-gradient-to-r from-orange-900/10 via-[#030303]/95 to-amber-900/10'
       }
+    } else if (location.pathname === '/webinars/dominando-dify-ai') {
+      // Dify.ai webinar - Blue/cyan metallic theme
+      return {
+        from: 'from-blue-500/20',
+        to: 'to-cyan-500/20',
+        hoverFrom: 'hover:from-blue-500/30',
+        hoverTo: 'hover:to-cyan-500/30',
+        border: 'border-blue-500/30',
+        hoverBorder: 'hover:border-blue-500/50',
+        shadow: 'hover:shadow-blue-500/30',
+        headerBg: 'bg-gradient-to-r from-blue-900/10 via-[#030303]/95 to-cyan-900/10'
+      }
     } else if (location.pathname.startsWith('/webinars/')) {
       // Other webinar pages - default to metallic gray
       return {
