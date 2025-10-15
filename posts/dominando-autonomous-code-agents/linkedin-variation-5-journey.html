@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200, height=627">
+  <title>Dominando Autonomous Code Agents - LinkedIn V5</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      width: 1200px;
+      height: 627px;
+      min-width: 1200px;
+      max-width: 1200px;
+      min-height: 627px;
+      max-height: 627px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Layer 1: Background (z-index: 1-2) */
+    .background {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(135deg,
+        #0a0a0f 0%,
+        #1a0f2a 25%,
+        #2a0f2a 50%,
+        #1a0f2a 75%,
+        #0a0a0f 100%);
+    }
+
+    .background-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(168, 85, 247, 0.12) 0%, transparent 50%);
+    }
+
+    .grid-pattern {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background-image:
+        linear-gradient(rgba(139, 92, 246, 0.05) 1.5px, transparent 1.5px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1.5px, transparent 1.5px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    /* Layer 2: Content (z-index: 10) */
+    .content-container {
+      position: relative;
+      z-index: 10;
+      width: 1200px;
+      height: 627px;
+      min-width: 1200px;
+      max-width: 1200px;
+      min-height: 627px;
+      max-height: 627px;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(139, 92, 246, 0.2);
+      border: 1.5px solid rgba(139, 92, 246, 0.4);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #a855f7;
+      margin-bottom: 16px;
+    }
+
+    .headline {
+      font-size: 50px;
+      font-weight: 900;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .headline-highlight {
+      background: linear-gradient(135deg, #fff 0%, #a855f7 50%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subheadline {
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Journey Timeline */
+    .journey-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      max-width: 1100px;
+      margin: 20px auto;
+    }
+
+    .journey-step {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(139, 92, 246, 0.2);
+      border-radius: 16px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      min-height: 200px;
+      max-height: 200px;
+      flex-shrink: 0;
+    }
+
+    .journey-step::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #8b5cf6 0%, #a855f7 100%);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 900;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: white;
+      line-height: 1.2;
+    }
+
+    .step-description {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.4;
+    }
+
+    /* Footer Section */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .event-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .event-date {
+      font-size: 18px;
+      font-weight: 700;
+      color: #a855f7;
+    }
+
+    .event-cta {
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Layer 3: Instructor Photo (z-index: 20) */
+    .instructor-photo {
+      width: 120px;
+      height: 120px;
+      min-width: 120px;
+      max-width: 120px;
+      min-height: 120px;
+      max-height: 120px;
+      border-radius: 50%;
+      border: 4px solid #8b5cf6;
+      box-shadow: 0 8px 32px rgba(139, 92, 246, 0.5);
+      background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+      position: relative;
+      z-index: 20;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 900;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-purple {
+      color: #a855f7;
+    }
+  </style>
+</head>
+<body>
+  <!-- Layer 1: Background -->
+  <div class="background"></div>
+  <div class="background-overlay"></div>
+  <div class="grid-pattern"></div>
+
+  <!-- Layer 2: Content -->
+  <div class="content-container">
+    <!-- Header -->
+    <div class="header">
+      <div class="badge">🎓 Jornada Completa de Aprendizado</div>
+      <h1 class="headline">
+        Da teoria à prática com <span class="headline-highlight">4 agentes</span>
+      </h1>
+      <p class="subheadline">Um webinar que transforma sua forma de programar</p>
+    </div>
+
+    <!-- Journey Timeline -->
+    <div class="journey-container">
+      <div class="journey-step">
+        <div class="step-number">1</div>
+        <div class="step-title">ChatGPT Codex Deep Dive</div>
+        <div class="step-description">
+          Domine a inteligência avançada da OpenAI para desenvolvimento acelerado com análise contextual profunda
+        </div>
+      </div>
+
+      <div class="journey-step">
+        <div class="step-number">2</div>
+        <div class="step-title">Claude Code Mastery</div>
+        <div class="step-description">
+          Terminal-first com MCP - a abordagem Anthropic para desenvolvimento assistido com contexto completo
+        </div>
+      </div>
+
+      <div class="journey-step">
+        <div class="step-number">3</div>
+        <div class="step-title">Replit Agent Unleashed</div>
+        <div class="step-description">
+          Full-stack no browser com deploy instantâneo e desenvolvimento colaborativo em tempo real
+        </div>
+      </div>
+
+      <div class="journey-step">
+        <div class="step-number">4</div>
+        <div class="step-title">Warp Workflow Revolution</div>
+        <div class="step-description">
+          Terminal turbinado com AI-powered command suggestions e workflow automation completa
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="event-info">
+        <div class="event-date">📅 22 Out 2025 • 20:00 BRT • 2 horas de conteúdo</div>
+        <div class="event-cta">Participe gratuitamente → aide.com.br/webinars</div>
+        <div class="logo"><span class="logo-purple">AIDE</span> Brasil</div>
+      </div>
+      <!-- Layer 3: Photo - Will be replaced by Puppeteer -->
+      <img src="INSTRUCTOR_PHOTO_PLACEHOLDER" alt="Luan Moreno" class="instructor-photo">
+    </div>
+  </div>
+</body>
+</html>

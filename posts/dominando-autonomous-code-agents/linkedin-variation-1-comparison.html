@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200, height=627">
+  <title>Dominando Autonomous Code Agents - LinkedIn V1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      width: 1200px;
+      height: 627px;
+      min-width: 1200px;
+      max-width: 1200px;
+      min-height: 627px;
+      max-height: 627px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Layer 1: Background (z-index: 1-2) */
+    .background {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(135deg,
+        #0a0a0f 0%,
+        #1a0f2a 25%,
+        #2a0f2a 50%,
+        #1a0f2a 75%,
+        #0a0a0f 100%);
+    }
+
+    .background-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 50%);
+    }
+
+    /* Grid pattern with pointer-events: none */
+    .grid-pattern {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background-image:
+        linear-gradient(rgba(139, 92, 246, 0.05) 1.5px, transparent 1.5px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1.5px, transparent 1.5px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    /* Layer 2: Content (z-index: 10) */
+    .content-container {
+      position: relative;
+      z-index: 10;
+      width: 1200px;
+      height: 627px;
+      min-width: 1200px;
+      max-width: 1200px;
+      min-height: 627px;
+      max-height: 627px;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Header Section */
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(139, 92, 246, 0.2);
+      border: 1.5px solid rgba(139, 92, 246, 0.4);
+      padding: 8px 16px;
+      border-radius: 8px;
+      width: fit-content;
+      font-size: 14px;
+      font-weight: 700;
+      color: #a855f7;
+    }
+
+    .headline {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1.1;
+      color: white;
+      max-width: 1100px;
+    }
+
+    .headline-highlight {
+      background: linear-gradient(135deg, #fff 0%, #a855f7 50%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Comparison Grid */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .agent-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(139, 92, 246, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      min-height: 140px;
+      max-height: 140px;
+      flex-shrink: 0;
+    }
+
+    .agent-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .agent-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: white;
+      text-align: center;
+    }
+
+    .agent-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: #a855f7;
+      text-align: center;
+    }
+
+    /* Footer Section */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .event-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .event-date {
+      font-size: 18px;
+      font-weight: 700;
+      color: #a855f7;
+    }
+
+    .event-cta {
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Layer 3: Instructor Photo (z-index: 20) */
+    .instructor-photo {
+      width: 120px;
+      height: 120px;
+      min-width: 120px;
+      max-width: 120px;
+      min-height: 120px;
+      max-height: 120px;
+      border-radius: 50%;
+      border: 4px solid #8b5cf6;
+      box-shadow: 0 8px 32px rgba(139, 92, 246, 0.5);
+      background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+      position: relative;
+      z-index: 20;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 900;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-purple {
+      color: #a855f7;
+    }
+  </style>
+</head>
+<body>
+  <!-- Layer 1: Background -->
+  <div class="background"></div>
+  <div class="background-overlay"></div>
+  <div class="grid-pattern"></div>
+
+  <!-- Layer 2: Content -->
+  <div class="content-container">
+    <!-- Header -->
+    <div class="header">
+      <div class="badge">
+        🎯 Webinar Gratuito
+      </div>
+      <h1 class="headline">
+        Qual agente de código <span class="headline-highlight">autônomo</span> usar em cada projeto?
+      </h1>
+    </div>
+
+    <!-- Comparison Grid -->
+    <div class="comparison-grid">
+      <div class="agent-card">
+        <div class="agent-icon">💬</div>
+        <div class="agent-name">ChatGPT Codex</div>
+        <div class="agent-tag">OpenAI Intelligence</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-icon">🧠</div>
+        <div class="agent-name">Claude Code</div>
+        <div class="agent-tag">Terminal-First MCP</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-icon">⚡</div>
+        <div class="agent-name">Replit Agent</div>
+        <div class="agent-tag">Full-Stack Browser</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-icon">🚀</div>
+        <div class="agent-name">Warp</div>
+        <div class="agent-tag">AI Terminal Pro</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="event-info">
+        <div class="event-date">📅 22 Out 2025 • 20:00 BRT</div>
+        <div class="event-cta">Inscreva-se gratuitamente → aide.com.br/webinars</div>
+        <div class="logo"><span class="logo-purple">AIDE</span> Brasil</div>
+      </div>
+      <!-- Layer 3: Photo - Will be replaced by Puppeteer -->
+      <img src="INSTRUCTOR_PHOTO_PLACEHOLDER" alt="Luan Moreno" class="instructor-photo">
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, height=1080">
+  <title>Dominando Autonomous Code Agents - Instagram V1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      width: 1080px;
+      height: 1080px;
+      min-width: 1080px;
+      max-width: 1080px;
+      min-height: 1080px;
+      max-height: 1080px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Layer 1: Background (z-index: 1-2) */
+    .background {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(135deg,
+        #0a0a0f 0%,
+        #1a0f2a 25%,
+        #2a0f2a 50%,
+        #1a0f2a 75%,
+        #0a0a0f 100%);
+    }
+
+    .background-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(139, 92, 246, 0.25) 0%, transparent 60%),
+        radial-gradient(circle at 50% 70%, rgba(168, 85, 247, 0.20) 0%, transparent 60%);
+    }
+
+    .grid-pattern {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background-image:
+        linear-gradient(rgba(139, 92, 246, 0.05) 1.5px, transparent 1.5px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1.5px, transparent 1.5px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+
+    /* Layer 2: Content (z-index: 10) */
+    .content-container {
+      position: relative;
+      z-index: 10;
+      width: 1080px;
+      height: 1080px;
+      min-width: 1080px;
+      max-width: 1080px;
+      min-height: 1080px;
+      max-height: 1080px;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Top Badge */
+    .top-badge {
+      background: rgba(139, 92, 246, 0.2);
+      border: 1.5px solid rgba(139, 92, 246, 0.4);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #a855f7;
+    }
+
+    /* Center Content */
+    .center-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .productivity-number {
+      font-size: 200px;
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, #ffffff 0%, #a855f7 50%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 120px rgba(168, 85, 247, 0.6);
+    }
+
+    .headline {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1.1;
+      color: white;
+      max-width: 900px;
+    }
+
+    .headline-highlight {
+      color: #a855f7;
+    }
+
+    /* Bullet Points */
+    .benefits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 800px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(139, 92, 246, 0.2);
+      border-radius: 16px;
+      padding: 20px 24px;
+    }
+
+    .benefit-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    /* Bottom Section */
+    .bottom-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .date-badge {
+      background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+      padding: 16px 32px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(139, 92, 246, 0.5);
+    }
+
+    .date-text {
+      font-size: 20px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .cta-text {
+      font-size: 16px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Layer 3: Instructor Photo (z-index: 20) */
+    .instructor-photo {
+      width: 80px;
+      height: 80px;
+      min-width: 80px;
+      max-width: 80px;
+      min-height: 80px;
+      max-height: 80px;
+      border-radius: 50%;
+      border: 3px solid #8b5cf6;
+      box-shadow: 0 8px 32px rgba(139, 92, 246, 0.5);
+      background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+      position: relative;
+      z-index: 20;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-purple {
+      color: #a855f7;
+    }
+  </style>
+</head>
+<body>
+  <!-- Layer 1: Background -->
+  <div class="background"></div>
+  <div class="background-overlay"></div>
+  <div class="grid-pattern"></div>
+
+  <!-- Layer 2: Content -->
+  <div class="content-container">
+    <!-- Top Badge -->
+    <div class="top-badge">🎓 Webinar Gratuito</div>
+
+    <!-- Center Content -->
+    <div class="center-content">
+      <div class="productivity-number">10X</div>
+      <h1 class="headline">
+        Domine <span class="headline-highlight">4 Agentes</span> Autônomos
+      </h1>
+
+      <!-- Benefits -->
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <span class="benefit-icon">💬</span>
+          <span>ChatGPT Codex</span>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🧠</span>
+          <span>Claude Code</span>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">⚡</span>
+          <span>Replit Agent</span>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🚀</span>
+          <span>Warp Terminal</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="bottom-section">
+      <div class="date-badge">
+        <div class="date-text">📅 22 Out • 20:00 BRT</div>
+      </div>
+      <div class="cta-text">aide.com.br/webinars</div>
+      <div class="footer">
+        <!-- Layer 3: Photo - Will be replaced by Puppeteer -->
+        <img src="INSTRUCTOR_PHOTO_PLACEHOLDER" alt="Luan Moreno" class="instructor-photo">
+        <div class="logo"><span class="logo-purple">AIDE</span> Brasil</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
