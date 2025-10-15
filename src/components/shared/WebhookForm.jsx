@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useWebhook } from '../../hooks/useWebhook'
 import { Check, AlertCircle, Send, Loader2 } from 'lucide-react'
 import { validateRequiredFields, sanitizeFormData, phoneMask } from '../../utils/validation'
+import { trackFormSubmission, trackWebinarRegistration } from '../../lib/gtm/events'
 
 const WebhookForm = ({
   webhookType,
@@ -47,8 +48,30 @@ const WebhookForm = ({
     const sanitizedData = sanitizeFormData(formData)
     const result = await submit(sanitizedData)
 
-    if (result.success && onSuccess) {
-      onSuccess(result.data)
+    if (result.success) {
+      // Track form submission in GTM
+      trackFormSubmission({
+        formId: webhookType,
+        formName: `Webhook Form - ${webhookType}`,
+        formType: 'lead',
+        formLocation: window.location.pathname,
+        ...sanitizedData
+      })
+
+      // If this is a webinar registration, track it specifically
+      if (window.location.pathname.includes('/webinar')) {
+        trackWebinarRegistration({
+          webinarId: window.location.pathname.split('/').pop(),
+          webinarTitle: document.title,
+          userEmail: sanitizedData.email,
+          userPhone: sanitizedData.phone,
+          userName: sanitizedData.name,
+        })
+      }
+
+      if (onSuccess) {
+        onSuccess(result.data)
+      }
     }
   }
 

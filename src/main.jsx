@@ -4,6 +4,10 @@ import './index.css'
 import App from './App.jsx'
 import { initPerformanceMonitoring } from './utils/performance'
 import { initMobileOptimizations } from './utils/mobile-performance'
+import { initGTM } from './lib/gtm'
+
+// Initialize Google Tag Manager
+initGTM()
 
 // Initialize performance monitoring
 if (import.meta.env.PROD) {

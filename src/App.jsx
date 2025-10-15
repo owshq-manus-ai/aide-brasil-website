@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { disableScrollAnimations } from './utils/motionConfig'
+import { usePageTracking } from './hooks/useGTMTracking'
 import './App.css'
 import './styles/mobile-optimizations.css'
 import './styles/mobile-enhancements.css'
@@ -37,7 +38,10 @@ const PageLoader = () => (
   </div>
 )
 
-function App() {
+// Page tracking component (must be inside Router)
+const AppContent = () => {
+  usePageTracking() // Track page views on route changes
+
   useEffect(() => {
     // Check if mobile and disable animations
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
@@ -48,19 +52,26 @@ function App() {
   }, [])
 
   return (
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/webinars" element={<WebinarsListPage />} />
+        <Route path="/webinars/dominando-claude-code" element={<ClaudeCodeWebinar />} />
+        <Route path="/webinars/dominando-autonomous-code-agents" element={<AutonomousAgentsWebinar />} />
+        <Route path="/webinars/dominando-crewai-agents" element={<CrewAIWebinar />} />
+        <Route path="/webinars/dominando-chatgpt-agent-builder" element={<ChatGPTAgentBuilderWebinar />} />
+        <Route path="/bootcamp/ai-data-engineer" element={<AIDataEngineerBootcamp />} />
+        <Route path="/academy" element={<AcademyLandingPage />} />
+      </Routes>
+    </Suspense>
+  )
+}
+
+function App() {
+
+  return (
     <Router>
-      <Suspense fallback={<PageLoader />}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/webinars" element={<WebinarsListPage />} />
-          <Route path="/webinars/dominando-claude-code" element={<ClaudeCodeWebinar />} />
-          <Route path="/webinars/dominando-autonomous-code-agents" element={<AutonomousAgentsWebinar />} />
-          <Route path="/webinars/dominando-crewai-agents" element={<CrewAIWebinar />} />
-          <Route path="/webinars/dominando-chatgpt-agent-builder" element={<ChatGPTAgentBuilderWebinar />} />
-          <Route path="/bootcamp/ai-data-engineer" element={<AIDataEngineerBootcamp />} />
-          <Route path="/academy" element={<AcademyLandingPage />} />
-        </Routes>
-      </Suspense>
+      <AppContent />
     </Router>
   )
 }
