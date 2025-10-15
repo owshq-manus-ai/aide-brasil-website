@@ -112,6 +112,141 @@ const AnimatedCounter = ({ value, suffix = '', className }) => {
   )
 }
 
+// Registration Form Component (extracted to prevent remounting on parent re-renders)
+const RegistrationForm = ({
+  className = '',
+  formData,
+  showSuccess,
+  isSubmitting,
+  handleInputChange,
+  handleSubmit
+}) => (
+  <div className={`relative bg-gradient-to-br from-red-900/30 to-red-800/20 backdrop-blur-sm rounded-2xl p-8 border-2 border-red-500/30 ${className}`}>
+    {/* 4 Floating Corner Icons with Animations */}
+    <div className="absolute -top-6 -left-6">
+      <motion.div
+        className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30"
+        animate={{ y: [0, -5, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Bot className="w-7 h-7 text-white" />
+      </motion.div>
+    </div>
+    <div className="absolute -top-6 -right-6">
+      <motion.div
+        className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-500 rounded-xl flex items-center justify-center shadow-lg shadow-red-500/30"
+        animate={{ y: [0, -3, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      >
+        <GitBranch className="w-6 h-6 text-white" />
+      </motion.div>
+    </div>
+    <div className="absolute -bottom-6 -left-6">
+      <motion.div
+        className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-500/30"
+        animate={{ y: [0, -4, 0] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      >
+        <Rocket className="w-6 h-6 text-white" />
+      </motion.div>
+    </div>
+    <div className="absolute -bottom-6 -right-6">
+      <motion.div
+        className="w-10 h-10 bg-gradient-to-br from-red-600 to-red-500 rounded-lg flex items-center justify-center shadow-lg shadow-red-500/30"
+        animate={{ y: [0, -2, 0] }}
+        transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+      >
+        <Brain className="w-5 h-5 text-white" />
+      </motion.div>
+    </div>
+
+    {/* Progress Bar */}
+    <div className="mb-6">
+      <div className="flex items-center justify-between text-sm text-red-400 mb-2">
+        <span>Vagas Limitadas</span>
+        <span>37% preenchidas</span>
+      </div>
+      <div className="w-full bg-gray-800 rounded-full h-2">
+        <motion.div
+          className="bg-gradient-to-r from-red-500 to-red-600 h-2 rounded-full"
+          initial={{ width: 0 }}
+          animate={{ width: "37%" }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        />
+      </div>
+    </div>
+
+    <h3 className="text-2xl font-bold text-white mb-6">Garanta Sua Vaga Gratuita</h3>
+
+    {!showSuccess ? (
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Input Fields with Icons */}
+        <div className="relative">
+          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            placeholder="Seu nome completo"
+            required
+            className="w-full pl-12 pr-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none transition-colors"
+          />
+        </div>
+
+        <div className="relative">
+          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            placeholder="Seu melhor e-mail"
+            required
+            className="w-full pl-12 pr-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none transition-colors"
+          />
+        </div>
+
+        <div className="relative">
+          <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-red-400 font-medium">WhatsApp</span>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+            placeholder="(11) 98765-4321"
+            required
+            className="w-full pl-12 pr-20 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none transition-colors"
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-3 rounded-lg hover:from-red-600 hover:to-red-700 transform transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isSubmitting ? 'Enviando...' : 'Quero Minha Vaga Gratuita'}
+        </button>
+      </form>
+    ) : (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="text-center py-8"
+      >
+        <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
+        <p className="text-xl font-bold text-white mb-2">Inscrição Confirmada!</p>
+        <p className="text-gray-400">Verifique seu email e WhatsApp</p>
+      </motion.div>
+    )}
+
+    <p className="text-xs text-white/50 text-center mt-4">
+      🔒 Seus dados estão seguros. Não enviamos spam.
+    </p>
+  </div>
+)
+
 function CrewAIWebinar() {
   const [attendeeCount, setAttendeeCount] = useState(185)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -266,133 +401,6 @@ function CrewAIWebinar() {
       setIsSubmitting(false)
     }
   }
-
-  const RegistrationForm = ({ className = '' }) => (
-    <div className={`relative bg-gradient-to-br from-red-900/30 to-red-800/20 backdrop-blur-sm rounded-2xl p-8 border-2 border-red-500/30 ${className}`}>
-      {/* 4 Floating Corner Icons with Animations */}
-      <div className="absolute -top-6 -left-6">
-        <motion.div
-          className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30"
-          animate={{ y: [0, -5, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Bot className="w-7 h-7 text-white" />
-        </motion.div>
-      </div>
-      <div className="absolute -top-6 -right-6">
-        <motion.div
-          className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-500 rounded-xl flex items-center justify-center shadow-lg shadow-red-500/30"
-          animate={{ y: [0, -3, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        >
-          <GitBranch className="w-6 h-6 text-white" />
-        </motion.div>
-      </div>
-      <div className="absolute -bottom-6 -left-6">
-        <motion.div
-          className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-500/30"
-          animate={{ y: [0, -4, 0] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        >
-          <Rocket className="w-6 h-6 text-white" />
-        </motion.div>
-      </div>
-      <div className="absolute -bottom-6 -right-6">
-        <motion.div
-          className="w-10 h-10 bg-gradient-to-br from-red-600 to-red-500 rounded-lg flex items-center justify-center shadow-lg shadow-red-500/30"
-          animate={{ y: [0, -2, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-        >
-          <Brain className="w-5 h-5 text-white" />
-        </motion.div>
-      </div>
-
-      {/* Progress Bar */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between text-sm text-red-400 mb-2">
-          <span>Vagas Limitadas</span>
-          <span>37% preenchidas</span>
-        </div>
-        <div className="w-full bg-gray-800 rounded-full h-2">
-          <motion.div
-            className="bg-gradient-to-r from-red-500 to-red-600 h-2 rounded-full"
-            initial={{ width: 0 }}
-            animate={{ width: "37%" }}
-            transition={{ duration: 2, ease: "easeOut" }}
-          />
-        </div>
-      </div>
-
-      <h3 className="text-2xl font-bold text-white mb-6">Garanta Sua Vaga Gratuita</h3>
-
-      {!showSuccess ? (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Input Fields with Icons */}
-          <div className="relative">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Seu nome completo"
-              required
-              className="w-full pl-12 pr-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none transition-colors"
-            />
-          </div>
-
-          <div className="relative">
-            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="Seu melhor e-mail"
-              required
-              className="w-full pl-12 pr-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none transition-colors"
-            />
-          </div>
-
-          <div className="relative">
-            <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-red-400 font-medium">WhatsApp</span>
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              placeholder="(11) 98765-4321"
-              required
-              className="w-full pl-12 pr-20 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none transition-colors"
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-3 rounded-lg hover:from-red-600 hover:to-red-700 transform transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? 'Enviando...' : 'Quero Minha Vaga Gratuita'}
-          </button>
-        </form>
-      ) : (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center py-8"
-        >
-          <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-          <p className="text-xl font-bold text-white mb-2">Inscrição Confirmada!</p>
-          <p className="text-gray-400">Verifique seu email e WhatsApp</p>
-        </motion.div>
-      )}
-
-      <p className="text-xs text-white/50 text-center mt-4">
-        🔒 Seus dados estão seguros. Não enviamos spam.
-      </p>
-    </div>
-  )
 
   return (
     <div className="min-h-screen text-white overflow-x-hidden relative">
@@ -613,7 +621,13 @@ function CrewAIWebinar() {
 
               {/* Registration Form */}
               <div className="relative" style={{ zIndex: 2 }}>
-                <RegistrationForm />
+                <RegistrationForm
+                  formData={formData}
+                  showSuccess={showSuccess}
+                  isSubmitting={isSubmitting}
+                  handleInputChange={handleInputChange}
+                  handleSubmit={handleSubmit}
+                />
               </div>
             </div>
           </div>
@@ -1277,7 +1291,13 @@ function CrewAIWebinar() {
 
           {/* Final Registration Form */}
           <div className="max-w-md mx-auto">
-            <RegistrationForm />
+            <RegistrationForm
+              formData={formData}
+              showSuccess={showSuccess}
+              isSubmitting={isSubmitting}
+              handleInputChange={handleInputChange}
+              handleSubmit={handleSubmit}
+            />
           </div>
 
           {/* Feature Icons */}
