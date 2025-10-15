@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import {
   Calendar, Clock, Users, ArrowRight, Sparkles,
   Brain, Zap, Code, Rocket, Star, TrendingUp,
-  BookOpen, Award, Target, CheckCircle, Monitor, Bot
+  BookOpen, Award, Target, CheckCircle, Monitor, Bot, Database
 } from 'lucide-react'
 import Header from '../../../components/shared/Header'
 
@@ -120,6 +120,24 @@ const webinars = [
     topics: ['CrewAI', 'Multi-Agents', 'Fleet', 'Python'],
     gradient: 'from-red-600 to-red-500',
     icon: Rocket,
+    level: 'Intermediário',
+    spots: 500,
+    exclusive: false,
+    popular: true
+  },
+  {
+    id: 5,
+    slug: 'dominando-dify-ai',
+    title: 'Dominando Dify.ai',
+    subtitle: 'Plataforma LLMOps open-source para construir e escalar agentes de produção',
+    date: '10 Dez 2025',
+    time: '20:00',
+    duration: '2h',
+    attendees: 278,
+    description: 'Aprenda a construir aplicações de IA production-ready com o framework LLMOps usado por Volvo, Ricoh e empresas globais. Do workflow visual até deploy escalável.',
+    topics: ['LLMOps Architecture', 'Visual Workflows', 'RAG Pipelines'],
+    gradient: 'from-blue-600 to-cyan-600',
+    icon: Database,
     level: 'Intermediário',
     spots: 500,
     exclusive: false,
@@ -290,13 +308,6 @@ function WebinarsPage() {
                     }}
                   >
                     {/* Badge - Exclusive only */}
-                    {webinar.exclusive && (
-                      <div className="absolute top-4 right-4 z-10">
-                        <div className="px-3 py-1 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full border border-yellow-500/30">
-                          <span className="text-xs font-bold text-yellow-400">EXCLUSIVO</span>
-                        </div>
-                      </div>
-                    )}
 
                     {/* Premium Gradient Header with Metallic Effect */}
                     <div className={`h-32 bg-gradient-to-br ${webinar.gradient} relative overflow-hidden`}>
@@ -356,6 +367,8 @@ function WebinarsPage() {
                             ? 'bg-red-500/10 text-red-400 border-red-500/30'
                             : webinar.slug === 'dominando-chatgpt-agent-builder'
                             ? 'bg-orange-500/10 text-orange-400 border-orange-500/30'
+                            : webinar.slug === 'dominando-dify-ai'
+                            ? 'bg-blue-500/10 text-blue-400 border-blue-500/30'
                             : webinar.level === 'Expert'
                             ? 'bg-red-500/10 text-red-400 border-red-500/30'
                             : webinar.level === 'Avançado'
@@ -375,6 +388,8 @@ function WebinarsPage() {
                             ? 'bg-red-500/10 text-red-400 border-red-500/30'
                             : webinar.slug === 'dominando-chatgpt-agent-builder'
                             ? 'bg-orange-500/10 text-orange-400 border-orange-500/30'
+                            : webinar.slug === 'dominando-dify-ai'
+                            ? 'bg-blue-500/10 text-blue-400 border-blue-500/30'
                             : 'bg-green-500/10 text-green-400 border-green-500/30'
                         }`}>
                           {webinar.spots} vagas
@@ -396,6 +411,8 @@ function WebinarsPage() {
                           ? 'text-red-400'
                           : webinar.slug === 'dominando-chatgpt-agent-builder'
                           ? 'text-orange-400'
+                          : webinar.slug === 'dominando-dify-ai'
+                          ? 'text-blue-400'
                           : 'text-gray-400'
                       }`}>
                         {webinar.subtitle}
@@ -417,6 +434,8 @@ function WebinarsPage() {
                               ? 'text-red-400'
                               : webinar.slug === 'dominando-chatgpt-agent-builder'
                               ? 'text-orange-400'
+                              : webinar.slug === 'dominando-dify-ai'
+                              ? 'text-blue-400'
                               : 'text-gray-400'
                           }`} />
                           <span className="text-white/70">{webinar.date}</span>
@@ -431,6 +450,8 @@ function WebinarsPage() {
                               ? 'text-red-400'
                               : webinar.slug === 'dominando-chatgpt-agent-builder'
                               ? 'text-orange-400'
+                              : webinar.slug === 'dominando-dify-ai'
+                              ? 'text-blue-400'
                               : 'text-gray-400'
                           }`} />
                           <span className="text-white/70">{webinar.time} • {webinar.duration}</span>
@@ -445,6 +466,8 @@ function WebinarsPage() {
                               ? 'text-red-400'
                               : webinar.slug === 'dominando-chatgpt-agent-builder'
                               ? 'text-orange-400'
+                              : webinar.slug === 'dominando-dify-ai'
+                              ? 'text-blue-400'
                               : 'text-gray-400'
                           }`} />
                           <span className="text-white/70">
@@ -457,6 +480,8 @@ function WebinarsPage() {
                                 ? 'text-red-400'
                                 : webinar.slug === 'dominando-chatgpt-agent-builder'
                                 ? 'text-orange-400'
+                                : webinar.slug === 'dominando-dify-ai'
+                                ? 'text-blue-400'
                                 : 'text-white'
                             }`}>{webinar.attendees}</span> inscritos
                           </span>

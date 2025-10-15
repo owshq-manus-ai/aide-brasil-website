@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { disableScrollAnimations } from './utils/motionConfig'
 import { usePageTracking } from './hooks/useGTMTracking'
+import ScrollToTop from './components/shared/ScrollToTop'
 import './App.css'
 import './styles/mobile-optimizations.css'
 import './styles/mobile-enhancements.css'
@@ -53,19 +54,22 @@ const AppContent = () => {
   }, [])
 
   return (
-    <Suspense fallback={<PageLoader />}>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/webinars" element={<WebinarsListPage />} />
-        <Route path="/webinars/dominando-claude-code" element={<ClaudeCodeWebinar />} />
-        <Route path="/webinars/dominando-autonomous-code-agents" element={<AutonomousAgentsWebinar />} />
-        <Route path="/webinars/dominando-crewai-agents" element={<CrewAIWebinar />} />
-        <Route path="/webinars/dominando-chatgpt-agent-builder" element={<ChatGPTAgentBuilderWebinar />} />
-        <Route path="/webinars/dominando-dify-ai" element={<DifyAIWebinar />} />
-        <Route path="/bootcamp/ai-data-engineer" element={<AIDataEngineerBootcamp />} />
-        <Route path="/academy" element={<AcademyLandingPage />} />
-      </Routes>
-    </Suspense>
+    <>
+      <ScrollToTop />
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/webinars" element={<WebinarsListPage />} />
+          <Route path="/webinars/dominando-claude-code" element={<ClaudeCodeWebinar />} />
+          <Route path="/webinars/dominando-autonomous-code-agents" element={<AutonomousAgentsWebinar />} />
+          <Route path="/webinars/dominando-crewai-agents" element={<CrewAIWebinar />} />
+          <Route path="/webinars/dominando-chatgpt-agent-builder" element={<ChatGPTAgentBuilderWebinar />} />
+          <Route path="/webinars/dominando-dify-ai" element={<DifyAIWebinar />} />
+          <Route path="/bootcamp/ai-data-engineer" element={<AIDataEngineerBootcamp />} />
+          <Route path="/academy" element={<AcademyLandingPage />} />
+        </Routes>
+      </Suspense>
+    </>
   )
 }
 

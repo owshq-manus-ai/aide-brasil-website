@@ -129,7 +129,7 @@ function DifyAIWebinar() {
     title: 'Dominando Dify.ai',
     highlightWord: 'Dify.ai',
     subtitle: 'Plataforma LLMOps open-source para construir e escalar agentes de produção',
-    date: '28 Nov 2025',
+    date: '10 Dez 2025',
     time: '20:00 BRT',
     duration: '2 horas',
     gradient: 'from-blue-600 to-cyan-600',
