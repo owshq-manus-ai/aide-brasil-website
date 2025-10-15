@@ -46,32 +46,50 @@ const WebhookForm = ({
 
     // Sanitize data before submission
     const sanitizedData = sanitizeFormData(formData)
+
+    // 🔥 IMPORTANT: Track GTM events BEFORE webhook submission
+    // This ensures data is available even if webhook fails or is slow
+
+    console.log('🚀 [WEBHOOK FORM] Starting form submission with data:', {
+      name: sanitizedData.name,
+      email: sanitizedData.email,
+      phone: sanitizedData.phone
+    })
+
+    // Track form submission in GTM (happens immediately)
+    trackFormSubmission({
+      formId: webhookType,
+      formName: `Webhook Form - ${webhookType}`,
+      formType: 'lead',
+      formLocation: window.location.pathname,
+      ...sanitizedData
+    })
+
+    // If this is a webinar registration, track it specifically
+    if (window.location.pathname.includes('/webinar')) {
+      trackWebinarRegistration({
+        webinarId: window.location.pathname.split('/').pop(),
+        webinarTitle: document.title,
+        userEmail: sanitizedData.email,
+        userPhone: sanitizedData.phone,
+        userName: sanitizedData.name,
+        name: sanitizedData.name,
+        email: sanitizedData.email,
+        phone: sanitizedData.phone,
+      })
+    }
+
+    // Now submit to webhook
     const result = await submit(sanitizedData)
 
     if (result.success) {
-      // Track form submission in GTM
-      trackFormSubmission({
-        formId: webhookType,
-        formName: `Webhook Form - ${webhookType}`,
-        formType: 'lead',
-        formLocation: window.location.pathname,
-        ...sanitizedData
-      })
-
-      // If this is a webinar registration, track it specifically
-      if (window.location.pathname.includes('/webinar')) {
-        trackWebinarRegistration({
-          webinarId: window.location.pathname.split('/').pop(),
-          webinarTitle: document.title,
-          userEmail: sanitizedData.email,
-          userPhone: sanitizedData.phone,
-          userName: sanitizedData.name,
-        })
-      }
+      console.log('✅ [WEBHOOK FORM] Webhook submission successful')
 
       if (onSuccess) {
         onSuccess(result.data)
       }
+    } else {
+      console.error('❌ [WEBHOOK FORM] Webhook submission failed:', result)
     }
   }
 

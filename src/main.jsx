@@ -4,10 +4,26 @@ import './index.css'
 import App from './App.jsx'
 import { initPerformanceMonitoring } from './utils/performance'
 import { initMobileOptimizations } from './utils/mobile-performance'
-import { initGTM } from './lib/gtm'
+import { initGTM, testGTM, debugDataLayer, checkLeadData, monitorDataLayer } from './lib/gtm'
 
 // Initialize Google Tag Manager
 initGTM()
+
+// Make GTM debug tools available globally
+if (typeof window !== 'undefined') {
+  window.gtmDebug = {
+    test: testGTM,
+    debug: debugDataLayer,
+    checkLeads: checkLeadData,
+    monitor: monitorDataLayer
+  }
+
+  console.log('🔧 GTM Debug Tools Available:')
+  console.log('  - window.gtmDebug.test() - Run GTM integration test')
+  console.log('  - window.gtmDebug.debug() - Show full dataLayer')
+  console.log('  - window.gtmDebug.checkLeads() - Check lead data')
+  console.log('  - window.gtmDebug.monitor() - Monitor new events')
+}
 
 // Initialize performance monitoring
 if (import.meta.env.PROD) {

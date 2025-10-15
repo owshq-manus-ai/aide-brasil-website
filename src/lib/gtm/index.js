@@ -140,3 +140,9 @@ export {
   trackNewsletterSignup,
   trackEngagement
 } from './events'
+export {
+  debugDataLayer,
+  checkLeadData,
+  monitorDataLayer,
+  testGTM
+} from './debug'
