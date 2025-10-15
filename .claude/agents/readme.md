@@ -83,6 +83,20 @@ After the frontmatter, the markdown content provides the agent's instructions an
 "Review the recent changes for security and performance issues"
 ```
 
+### 11. social-media-image-generator
+**Purpose**: Create LinkedIn and Instagram images from webinar data
+```bash
+# Generate complete image suite
+"Create social media images for the CrewAI webinar"
+```
+
+### 12. social-media-copywriter
+**Purpose**: Write conversion-focused Portuguese BR social posts
+```bash
+# Generate all copy variations
+"Write social media posts for the Autonomous Agents webinar"
+```
+
 ## 🚀 Using Agents in Claude Code
 
 Agents are invoked using Claude Code's Task tool. When you need specialized work done:
@@ -108,6 +122,7 @@ Agents are invoked using Claude Code's Task tool. When you need specialized work
 
 For complex features, agents work together:
 
+### Webinar Launch Pipeline
 ```
 1. webinar-generator → Creates the page structure
 2. content-optimizer → Writes Portuguese content
@@ -117,6 +132,21 @@ For complex features, agents work together:
 6. mobile-experience → Optimizes for mobile
 7. performance-guardian → Final optimization
 8. code-reviewer → Reviews code quality and security
+```
+
+### Social Media Marketing Pipeline
+```
+1. social-media-image-generator → Creates LinkedIn (1200x627) and Instagram (1080x1080) images
+   • Generates 5 LinkedIn HTML templates (comparison, productivity, decision, problem/solution, journey)
+   • Generates 3 Instagram HTML templates (bold stats, split, grid)
+   • Uses Puppeteer to render HTML → PNG
+   • Output: 8 high-quality images ready for posting
+
+2. social-media-copywriter → Writes conversion-focused Portuguese BR posts
+   • 5 LinkedIn variations (different psychological angles)
+   • 3 Instagram captions (emoji-heavy, mobile-optimized)
+   • Story snippets, carousel copy, Reels scripts
+   • Output: Complete copy library with A/B testing variations
 ```
 
 ## 🛠️ Creating New Agents
