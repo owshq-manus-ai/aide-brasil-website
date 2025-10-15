@@ -21,10 +21,23 @@ export const trackEvent = (eventName, eventData = {}) => {
  */
 export const trackFormSubmission = (formData) => {
   trackEvent('form_submission', {
+    // Form metadata
     form_id: formData.formId || 'unknown',
     form_name: formData.formName || 'unknown',
     form_type: formData.formType || 'lead',
     form_location: window.location.pathname,
+
+    // Lead data (explicitly named for GTM variables)
+    lead_name: formData.name || '',
+    lead_email: formData.email || '',
+    lead_phone: formData.phone || '',
+    lead_company: formData.company || '',
+    lead_experience_level: formData.experience_level || '',
+    lead_current_role: formData.current_role || '',
+    lead_interest: formData.interest || '',
+    lead_message: formData.message || '',
+
+    // Include all other fields
     ...formData,
   })
 }
@@ -34,12 +47,23 @@ export const trackFormSubmission = (formData) => {
  */
 export const trackWebinarRegistration = (webinarData) => {
   trackEvent('webinar_registration', {
+    // Webinar metadata
     webinar_id: webinarData.webinarId,
     webinar_title: webinarData.webinarTitle,
     webinar_date: webinarData.webinarDate,
-    user_email: webinarData.userEmail,
-    user_phone: webinarData.userPhone,
     registration_source: window.location.pathname,
+
+    // Lead data (explicitly named for GTM variables)
+    lead_name: webinarData.userName || webinarData.name || '',
+    lead_email: webinarData.userEmail || webinarData.email || '',
+    lead_phone: webinarData.userPhone || webinarData.phone || '',
+
+    // Legacy field names (for backward compatibility)
+    user_email: webinarData.userEmail || webinarData.email || '',
+    user_phone: webinarData.userPhone || webinarData.phone || '',
+    user_name: webinarData.userName || webinarData.name || '',
+
+    // Include all other fields
     ...webinarData,
   })
 }

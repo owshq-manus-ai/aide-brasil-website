@@ -22,6 +22,18 @@ export const pushToDataLayer = (data) => {
     if (GTM_CONFIG.debug) {
       console.log('[GTM] Data pushed to dataLayer:', data)
     }
+
+    // Always log lead data for debugging (even in production)
+    if (data.event === 'form_submission' || data.event === 'webinar_registration') {
+      console.log('📊 [GTM LEAD DATA]', {
+        event: data.event,
+        lead_name: data.lead_name,
+        lead_email: data.lead_email,
+        lead_phone: data.lead_phone,
+        form_id: data.form_id || data.webinar_id,
+        timestamp: new Date().toISOString()
+      })
+    }
   } catch (error) {
     console.error('[GTM] Error pushing to dataLayer:', error)
   }
