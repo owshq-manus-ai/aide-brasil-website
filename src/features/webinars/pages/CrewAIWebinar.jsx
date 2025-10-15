@@ -11,7 +11,6 @@ import {
   Gauge, Code, Bug
 } from 'lucide-react'
 import Header from '../../../components/shared/Header'
-import { submitToWebhook } from '../../../config/webhooks'
 import { webhookEndpoints } from '../../../config/webhook-endpoints'
 
 // Configuration for registration method

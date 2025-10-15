@@ -11,7 +11,6 @@ import {
   Gauge, Code, Bug, Settings, Workflow
 } from 'lucide-react'
 import Header from '../../../components/shared/Header'
-import { submitToWebhook } from '../../../config/webhooks'
 import { webhookEndpoints } from '../../../config/webhook-endpoints'
 
 // Configuration for registration method
@@ -567,7 +566,7 @@ function DifyAIWebinar() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url(/images/backgrounds/background-dify-ai.png)',
+                  backgroundImage: 'url(/images/backgrounds/background-dominando-dify.png)',
                   backgroundSize: 'contain',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
@@ -988,7 +987,7 @@ function DifyAIWebinar() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url(/images/backgrounds/background-dify-ai.png)',
+                  backgroundImage: 'url(/images/backgrounds/background-dominando-dify.png)',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
@@ -1017,7 +1016,7 @@ function DifyAIWebinar() {
                   {/* Main photo with effects */}
                   <div className="relative overflow-hidden rounded-2xl">
                     <img
-                      src="/images/backgrounds/background-dify-ai.png"
+                      src="/images/backgrounds/background-dominando-dify.png"
                       alt={webinar.instructor.name}
                       className="w-full relative z-1"
                       style={{
@@ -1209,7 +1208,7 @@ function DifyAIWebinar() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url(/images/backgrounds/background-dify-ai.png)',
+                  backgroundImage: 'url(/images/backgrounds/background-dominando-dify.png)',
                   backgroundSize: 'cover',
                   backgroundPosition: 'right center',
                   backgroundRepeat: 'no-repeat',

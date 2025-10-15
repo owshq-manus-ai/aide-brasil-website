@@ -1,6 +1,9 @@
 // Centralized webhook configuration
 // Easily manage all integration endpoints and settings
 
+import { storeLeadData } from '../lib/gtm/cookies'
+import { trackFormSubmission } from '../lib/gtm/events'
+
 export const webhookConfig = {
   // n8n Webhook Endpoints
   n8n: {
@@ -97,12 +100,24 @@ export async function submitToWebhook(data, webhookType = 'premium') {
       throw new Error(`Webhook submission failed: ${response.status}`)
     }
 
-    // Track event if analytics is enabled
-    if (webhookConfig.analytics.trackEvents && window.gtag) {
-      window.gtag('event', 'form_submit', {
-        event_category: 'engagement',
-        event_label: config.source,
-        value: 1
+    // Store lead data in GTM (cookies + JS variables + dataLayer)
+    if (webhookConfig.analytics.trackEvents) {
+      storeLeadData({
+        name: data.name || '',
+        email: data.email || '',
+        phone: data.phone || ''
+      })
+
+      // Track form submission with new GTM implementation
+      trackFormSubmission({
+        formId: `${webhookType}-form`,
+        formName: config.source,
+        formType: 'lead',
+        name: data.name || '',
+        email: data.email || '',
+        phone: data.phone || '',
+        billing_plan: data.billing_plan || '',
+        price: data.price || ''
       })
     }
 
