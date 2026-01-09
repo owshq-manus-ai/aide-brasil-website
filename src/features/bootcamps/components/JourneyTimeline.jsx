@@ -103,24 +103,25 @@ const STEPS = [
 const chevronAnimation = { rotate: 180 }
 
 // StepCard component - memoized
+// Mobile: touch-optimized with proper sizing
 const StepCard = memo(({ step, index, isExpanded, onToggle }) => {
   const Icon = step.icon
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
       viewport={{ once: true }}
       className={`relative ${index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'}`}
     >
       <div
         className={`
-          relative bg-gradient-to-br from-white/[0.05] to-white/[0.02] backdrop-blur-sm rounded-2xl p-6
-          border transition-all duration-300 cursor-pointer
+          relative bg-gradient-to-br from-white/[0.05] to-white/[0.02] backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6
+          border transition-all duration-300 cursor-pointer min-h-[44px]
           ${step.isCore
             ? 'border-[#E07A5F]/40 shadow-lg shadow-[#E07A5F]/10'
-            : 'border-white/10 hover:border-[#E07A5F]/30'
+            : 'border-white/10 hover:border-[#E07A5F]/30 active:border-[#E07A5F]/40'
           }
         `}
         onClick={onToggle}
@@ -135,11 +136,11 @@ const StepCard = memo(({ step, index, isExpanded, onToggle }) => {
           </div>
         )}
 
-        {/* Header */}
-        <div className="flex items-start gap-4">
+        {/* Header - Mobile: smaller elements, better spacing */}
+        <div className="flex items-start gap-3 sm:gap-4">
           {/* Step Number */}
           <div
-            className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 font-oswald font-bold text-xl"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 font-oswald font-bold text-lg sm:text-xl"
             style={step.isCore
               ? { background: 'linear-gradient(135deg, #E07A5F, #F0A090)', color: 'white' }
               : { backgroundColor: 'rgba(224, 122, 95, 0.2)', color: '#E07A5F', border: '1px solid rgba(224, 122, 95, 0.3)' }
@@ -149,20 +150,20 @@ const StepCard = memo(({ step, index, isExpanded, onToggle }) => {
           </div>
 
           {/* Title & Subtitle */}
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-white mb-1">{step.title}</h3>
-            <p className="text-sm font-medium" style={{ color: '#E07A5F' }}>{step.subtitle}</p>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-base sm:text-xl font-bold text-white mb-0.5 sm:mb-1 leading-tight">{step.title}</h3>
+            <p className="text-xs sm:text-sm font-medium truncate sm:whitespace-normal" style={{ color: '#E07A5F' }}>{step.subtitle}</p>
           </div>
 
-          {/* Icon & Expand */}
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
+          {/* Icon & Expand - Combined on mobile */}
+          <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+            <div className="hidden sm:flex w-10 h-10 rounded-lg bg-white/5 items-center justify-center">
               <Icon className="w-5 h-5" style={{ color: '#E07A5F' }} />
             </div>
             <motion.div
               animate={isExpanded ? chevronAnimation : { rotate: 0 }}
               transition={{ duration: 0.3 }}
-              className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"
+              className="w-9 h-9 sm:w-8 sm:h-8 min-w-[36px] min-h-[36px] rounded-full bg-white/5 flex items-center justify-center"
             >
               <ChevronDown className="w-4 h-4 text-white/60" />
             </motion.div>
@@ -271,7 +272,7 @@ const JourneyTimeline = memo(() => {
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>Sua Jornada em 4 Dias</span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
             8 Passos Para{' '}
             <span
               className="inline-block bg-clip-text text-transparent"
@@ -286,9 +287,9 @@ const JourneyTimeline = memo(() => {
             {' '}e Entregar em Produção
           </h2>
 
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto px-2 sm:px-0">
             <span className="text-white font-semibold">Não é teoria.</span> Cada passo termina com algo funcionando —você vai do requisito ao deploy, construindo junto.
-            <span className="block mt-2 font-medium" style={{ color: '#E07A5F' }}>Clique em cada passo para ver os detalhes.</span>
+            <span className="block mt-2 font-medium text-sm sm:text-base" style={{ color: '#E07A5F' }}>Toque em cada passo para ver os detalhes.</span>
           </p>
         </motion.div>
 

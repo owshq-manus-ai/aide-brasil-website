@@ -150,8 +150,8 @@ const BootcampVideoSection = memo(() => {
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>Veja em 3 Minutos</span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl font-oswald font-bold text-white mb-6">
-            <span className="block text-2xl md:text-3xl text-white/70 mb-2">Pare de Adivinhar.</span>
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-oswald font-bold text-white mb-6">
+            <span className="block text-xl sm:text-2xl md:text-3xl text-white/70 mb-2">Pare de Adivinhar.</span>
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
@@ -188,7 +188,8 @@ const BootcampVideoSection = memo(() => {
           </h2>
 
           {/* Aggressive Copy - Transformation promise */}
-          <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+          {/* Mobile: smaller text for readability */}
+          <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
             <span style={{ color: '#E07A5F' }} className="font-bold">Não é tutorial. Não é demo.</span>{' '}
             É o processo completo para <span className="text-white font-bold">transformar requisitos em código de produção</span> —com agentes que <span style={{ color: '#E07A5F' }} className="font-bold">executam, não sugerem</span>.
           </p>
@@ -331,9 +332,10 @@ const BootcampVideoSection = memo(() => {
                 loading="lazy"
               />
 
+              {/* Close button: min 44x44px for touch targets */}
               <button
                 onClick={handleCloseClick}
-                className="absolute top-4 right-4 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 w-11 h-11 min-w-[44px] min-h-[44px] bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -349,6 +351,7 @@ const BootcampVideoSection = memo(() => {
           viewport={{ once: true }}
           className="flex justify-center mt-12"
         >
+          {/* CTA Button: mobile-optimized padding, min touch target */}
           <motion.button
             onClick={handlePricingClick}
             whileHover={{
@@ -356,7 +359,7 @@ const BootcampVideoSection = memo(() => {
               boxShadow: "0 0 40px rgba(224, 122, 95, 0.8), 0 0 80px rgba(224, 122, 95, 0.5)"
             }}
             whileTap={{ scale: 0.98 }}
-            className="group relative px-10 py-4 rounded-lg font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 overflow-hidden"
+            className="group relative px-6 sm:px-10 py-3.5 sm:py-4 min-h-[44px] rounded-lg font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 overflow-hidden"
             style={{
               background: 'linear-gradient(135deg, #E07A5F 0%, #C96A50 100%)',
               boxShadow: '0 0 30px rgba(224, 122, 95, 0.5), 0 0 60px rgba(224, 122, 95, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)'
@@ -372,10 +375,11 @@ const BootcampVideoSection = memo(() => {
               transition={shimmerTransition}
             />
 
-            <span className="relative z-10 flex items-center gap-3 text-lg">
-              <Sparkles className="w-5 h-5" />
-              GARANTIR MINHA VAGA
-              <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <span className="relative z-10 flex items-center gap-2 sm:gap-3 text-sm sm:text-lg">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">GARANTIR MINHA VAGA</span>
+              <span className="sm:hidden">GARANTIR VAGA</span>
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </span>
           </motion.button>
         </motion.div>

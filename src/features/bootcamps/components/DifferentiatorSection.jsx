@@ -156,7 +156,7 @@ const DifferentiatorSection = memo(() => {
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>O Que Faz a Diferença</span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
             6 Razões Para{' '}
             <span
               className="inline-block bg-clip-text text-transparent"
@@ -171,34 +171,34 @@ const DifferentiatorSection = memo(() => {
             {' '}Fazer Curso de Prompt
           </h2>
 
-          <p className="text-xl text-white/70 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto px-2 sm:px-0">
             <span style={{ color: '#E07A5F' }} className="font-bold">Tutoriais te dão teoria.</span>{' '}
             Aqui você sai com um <span className="text-white font-semibold">sistema funcionando em produção</span> —e a metodologia para replicar em qualquer projeto.
           </p>
         </motion.div>
 
-        {/* Differentiators Grid - Same style as AudienceSection */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Differentiators Grid - Mobile: single column */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {differentiators.map((item, index) => (
             <DifferentiatorCard key={item.title} item={item} index={index} />
           ))}
         </div>
 
-        {/* Bottom Statement */}
+        {/* Bottom Statement - Mobile: smaller padding and text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
-          className="mt-16 text-center"
+          className="mt-10 sm:mt-16 text-center"
         >
-          <div className="inline-block rounded-2xl px-8 py-6" style={{ background: 'linear-gradient(90deg, rgba(224, 122, 95, 0.1) 0%, rgba(224, 122, 95, 0.05) 100%)', border: '1px solid rgba(224, 122, 95, 0.2)' }}>
-            <p className="text-2xl font-oswald text-white mb-2">
+          <div className="inline-block rounded-xl sm:rounded-2xl px-4 sm:px-8 py-4 sm:py-6 mx-2 sm:mx-0" style={{ background: 'linear-gradient(90deg, rgba(224, 122, 95, 0.1) 0%, rgba(224, 122, 95, 0.05) 100%)', border: '1px solid rgba(224, 122, 95, 0.2)' }}>
+            <p className="text-lg sm:text-2xl font-oswald text-white mb-1 sm:mb-2">
               <span className="text-white/60">Outros ensinam</span>{' '}
               <span className="text-red-400 line-through">ferramentas</span>.
             </p>
-            <p className="text-xl text-white/80">
-              Nós ensinamos a <span style={{ color: '#E07A5F' }} className="font-bold">construir e operar sistemas</span> com elas.
+            <p className="text-base sm:text-xl text-white/80">
+              Nós ensinamos a <span style={{ color: '#E07A5F' }} className="font-bold">construir sistemas</span> com elas.
             </p>
           </div>
         </motion.div>

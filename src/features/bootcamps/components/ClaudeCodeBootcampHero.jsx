@@ -90,12 +90,13 @@ const shimmerTransition = {
 }
 
 // Neon Button Component - optimized with stable animation configs
+// Mobile: proper touch targets with balanced padding
 const NeonButton = memo(({ children, primary = false, onClick, className = "" }) => (
   <motion.button
     onClick={onClick}
     className={`
-      px-6 py-3 rounded-lg font-oswald font-bold uppercase tracking-wider
-      transition-all duration-300 relative overflow-hidden whitespace-nowrap
+      px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-oswald font-bold uppercase tracking-wider
+      transition-all duration-300 relative overflow-hidden whitespace-nowrap text-sm sm:text-base
       ${primary
         ? 'text-white'
         : 'bg-white/5 backdrop-blur-sm text-white'
@@ -214,10 +215,11 @@ const ClaudeCodeBootcampHero = memo(() => {
             className="space-y-6"
           >
             {/* Status Badges - Online + Inscritos + Agentes */}
+            {/* Mobile: smaller gaps, better wrapping */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-4 flex-wrap"
+              className="inline-flex items-center gap-2 sm:gap-4 flex-wrap"
             >
               {/* Tag 1: Online */}
               <div className="flex items-center gap-2">
@@ -254,7 +256,7 @@ const ClaudeCodeBootcampHero = memo(() => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-oswald font-bold mb-3 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-oswald font-bold mb-3 leading-tight">
                 <span className="text-white">Do Zero a Produção </span>
                 <span
                   className="inline-block bg-clip-text text-transparent"
@@ -275,11 +277,12 @@ const ClaudeCodeBootcampHero = memo(() => {
             </motion.div>
 
             {/* Subtitle - Transformation promise with contrast */}
+            {/* Mobile: smaller text for readability */}
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-xl md:text-2xl font-medium leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl font-medium leading-relaxed"
               style={{ color: '#E07A5F' }}
             >
               Use Claude Code{' '}
@@ -332,36 +335,39 @@ const ClaudeCodeBootcampHero = memo(() => {
             </motion.div>
 
             {/* Date/Time Info */}
+            {/* Mobile: wrap on small screens, smaller gaps */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.5 }}
-              className="flex items-center gap-6 pt-2 text-white/60 text-sm"
+              className="flex flex-wrap items-center gap-3 sm:gap-6 pt-2 text-white/60 text-xs sm:text-sm"
             >
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span>28-31 Jan 2026</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span>20:00 BRT</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Video className="w-4 h-4" />
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span>Online ao vivo</span>
               </div>
             </motion.div>
 
             {/* CTA Buttons */}
+            {/* Mobile: stack vertically on very small screens, then row */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.5 }}
-              className="flex flex-row gap-4 pt-2"
+              className="flex flex-col xs:flex-row gap-3 sm:gap-4 pt-2"
             >
               <NeonButton primary onClick={handlePricingClick}>
                 <Sparkles className="w-4 h-4" />
-                GARANTIR MINHA VAGA
+                <span className="hidden xs:inline">GARANTIR MINHA VAGA</span>
+                <span className="xs:hidden">GARANTIR VAGA</span>
               </NeonButton>
               <NeonButton onClick={handleJourneyClick}>
                 <Play className="w-4 h-4" />

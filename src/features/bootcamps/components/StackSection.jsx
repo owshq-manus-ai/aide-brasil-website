@@ -233,7 +233,7 @@ const StackSection = memo(() => {
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>Seu Toolkit de Produção</span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
             A Stack que{' '}
             <span
               className="inline-block bg-clip-text text-transparent"
@@ -248,37 +248,37 @@ const StackSection = memo(() => {
             {' '}— Não Tutoriais
           </h2>
 
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto px-2 sm:px-0">
             <span style={{ color: '#E07A5F' }} className="font-bold">Ferramentas de Fortune 500.</span>{' '}
             GCP na prática, mas com arquitetura portável —migre para AWS ou Azure quando quiser.
           </p>
         </motion.div>
 
-        {/* Stack Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Stack Grid - Mobile: single column */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {categories.map((category, index) => (
             <StackCard key={category.category} category={category} index={index} />
           ))}
         </div>
 
-        {/* Architecture Note */}
+        {/* Architecture Note - Mobile: stacked layout */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-12 text-center"
+          className="mt-8 sm:mt-12 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 rounded-xl px-6 py-4" style={{ background: 'linear-gradient(90deg, rgba(224, 122, 95, 0.1) 0%, rgba(224, 122, 95, 0.05) 100%)', border: '1px solid rgba(224, 122, 95, 0.2)' }}>
-            <div className="flex items-center gap-3">
-              <Database className="w-5 h-5" style={{ color: '#E07A5F' }} />
-              <span className="text-white/80">
-                <span style={{ color: '#E07A5F' }} className="font-bold">Adapter Pattern</span> —troque de cloud sem reescrever código
+          <div className="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-4 rounded-xl px-4 sm:px-6 py-3 sm:py-4 mx-2 sm:mx-0" style={{ background: 'linear-gradient(90deg, rgba(224, 122, 95, 0.1) 0%, rgba(224, 122, 95, 0.05) 100%)', border: '1px solid rgba(224, 122, 95, 0.2)' }}>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Database className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" style={{ color: '#E07A5F' }} />
+              <span className="text-white/80 text-sm sm:text-base">
+                <span style={{ color: '#E07A5F' }} className="font-bold">Adapter Pattern</span> —troque de cloud sem reescrever
               </span>
             </div>
             <div className="hidden sm:block w-px h-6 bg-white/20" />
-            <span className="text-white/60 text-sm">
-              GCP hoje {'→ '}<span className="text-blue-400">AWS</span> ou <span className="text-cyan-400">Azure</span> amanhã
+            <span className="text-white/60 text-xs sm:text-sm">
+              GCP {'→ '}<span className="text-blue-400">AWS</span> ou <span className="text-cyan-400">Azure</span>
             </span>
           </div>
         </motion.div>

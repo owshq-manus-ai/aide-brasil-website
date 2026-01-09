@@ -197,7 +197,7 @@ const AudienceSection = memo(() => {
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>Você Se Encaixa?</span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
             3 Perfis que Vão{' '}
             <span
               className="inline-block bg-clip-text text-transparent"
@@ -212,13 +212,14 @@ const AudienceSection = memo(() => {
             {' '}com Agentes
           </h2>
 
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto px-2 sm:px-0">
             <span style={{ color: '#E07A5F' }} className="font-bold">Não precisa ser expert em IA.</span>{' '}
             Se você já trabalha com dados e código, tem tudo para sair do bootcamp operando sua própria frota de agentes.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        {/* Mobile: single column with smaller gap */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Target Audiences */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}

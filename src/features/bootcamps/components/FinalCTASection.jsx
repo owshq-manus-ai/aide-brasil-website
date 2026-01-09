@@ -133,8 +133,8 @@ const FinalCTASection = memo(() => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-6xl font-oswald font-bold text-white mb-6 leading-tight">
-            <span className="block text-2xl md:text-3xl text-white/50 mb-3">Daqui a 6 meses você vai estar...</span>
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-oswald font-bold text-white mb-6 leading-tight">
+            <span className="block text-lg sm:text-2xl md:text-3xl text-white/50 mb-2 sm:mb-3">Daqui a 6 meses você vai estar...</span>
             <span className="block mb-2">
               <span
                 className="inline-block bg-clip-text text-transparent"
@@ -150,10 +150,10 @@ const FinalCTASection = memo(() => {
             </span>
           </h2>
 
-          <p className="text-xl text-white/70 max-w-2xl mx-auto mb-10">
+          <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-8 sm:mb-10 px-2 sm:px-0">
             <span className="text-white font-bold">O mercado não vai esperar.</span>{' '}
             Enquanto você decide, outros já estão deployando sistemas com agentes autônomos.
-            <span className="block mt-3 font-semibold text-lg" style={{ color: '#E07A5F' }}>
+            <span className="block mt-2 sm:mt-3 font-semibold text-sm sm:text-lg" style={{ color: '#E07A5F' }}>
               A escolha é sua. O momento é agora.
             </span>
           </p>
@@ -166,9 +166,10 @@ const FinalCTASection = memo(() => {
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
+          {/* CTA Button: mobile-optimized with min touch target */}
           <motion.button
             onClick={handlePricingClick}
-            className="inline-flex items-center gap-3 px-12 py-6 rounded-2xl font-oswald font-bold uppercase tracking-wider text-xl text-white transition-all duration-300 relative overflow-hidden group"
+            className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-12 py-4 sm:py-6 min-h-[52px] rounded-xl sm:rounded-2xl font-oswald font-bold uppercase tracking-wider text-base sm:text-xl text-white transition-all duration-300 relative overflow-hidden group"
             whileHover={{
               scale: 1.05,
               boxShadow: "0 0 60px rgba(224, 122, 95, 0.6), 0 0 100px rgba(224, 122, 95, 0.4)"
@@ -190,9 +191,10 @@ const FinalCTASection = memo(() => {
               transition={shimmerTransition}
             />
 
-            <Bot className="w-6 h-6" />
-            <span>QUERO LIDERAR COM IA</span>
-            <ChevronRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+            <Bot className="w-5 h-5 sm:w-6 sm:h-6" />
+            <span className="hidden sm:inline">QUERO LIDERAR COM IA</span>
+            <span className="sm:hidden">LIDERAR COM IA</span>
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition-transform" />
           </motion.button>
 
           {/* Subtext with urgency */}
@@ -201,41 +203,41 @@ const FinalCTASection = memo(() => {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
             viewport={{ once: true }}
-            className="mt-6 space-y-2"
+            className="mt-4 sm:mt-6 space-y-1 sm:space-y-2"
           >
-            <p className="text-white/60 text-sm">
-              28-31 Janeiro 2026 * 12h de código * <span className="text-green-400 font-semibold">Garantia de 7 dias</span>
+            <p className="text-white/60 text-xs sm:text-sm">
+              28-31 Jan 2026 * 12h código * <span className="text-green-400 font-semibold">7 dias garantia</span>
             </p>
-            <p className="text-sm font-medium" style={{ color: 'rgba(224, 122, 95, 0.7)' }}>
-              Lote Decisão: R$ 1.197 (economize R$ 800)
+            <p className="text-xs sm:text-sm font-medium" style={{ color: 'rgba(224, 122, 95, 0.7)' }}>
+              Lote Decisão: R$ 1.197
             </p>
           </motion.div>
         </motion.div>
 
-        {/* Final tagline */}
+        {/* Final tagline - Mobile: smaller text, better spacing */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
           viewport={{ once: true }}
-          className="mt-16 pt-8 border-t border-white/10"
+          className="mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-white/10"
         >
-          <div className="flex flex-col items-center gap-4">
-            <p className="text-white/40 text-sm uppercase tracking-widest">A diferença entre quem usa IA e quem lidera com IA</p>
-            <p className="text-2xl md:text-3xl font-oswald text-white">
+          <div className="flex flex-col items-center gap-2 sm:gap-4">
+            <p className="text-white/40 text-xs sm:text-sm uppercase tracking-wider sm:tracking-widest text-center px-2">A diferença entre quem usa IA e quem lidera com IA</p>
+            <p className="text-lg sm:text-2xl md:text-3xl font-oswald text-white text-center">
               <span className="text-white/40 line-through">Vibe coding</span>
-              {' →'}
+              {' '}
               <span
                 className="bg-clip-text text-transparent font-bold"
                 style={{
                   backgroundImage: 'linear-gradient(90deg, #E07A5F, #F0A090)',
                 }}
               >
-                AI-Native Development Workflow
+                AI-Native Workflow
               </span>
             </p>
-            <p className="text-white/50 text-sm mt-2">
-              Zero prompts vagos. Zero copiar e colar. <span style={{ color: '#E07A5F' }} className="font-semibold">100% engenharia.</span>
+            <p className="text-white/50 text-xs sm:text-sm mt-1 sm:mt-2 text-center px-4">
+              Zero prompts vagos. <span style={{ color: '#E07A5F' }} className="font-semibold">100% engenharia.</span>
             </p>
           </div>
         </motion.div>

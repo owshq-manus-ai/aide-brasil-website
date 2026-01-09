@@ -31,6 +31,19 @@ export const webhookEndpoints = {
         product: 'python-fundamentals',
         price: 'R$ 997'
       }
+    },
+    'zero-prod-claude-code': {
+      url: import.meta.env.VITE_WEBHOOK_BOOTCAMP_CLAUDE_CODE ||
+           import.meta.env.VITE_N8N_WEBHOOK_URL ||
+           'https://primary-production-1ebc.up.railway.app/webhook-test/3a20f09c-24f1-4052-ae9c-a3617cf9ec57',
+      fields: ['name', 'email', 'phone'],
+      metadata: {
+        type: 'bootcamp',
+        product: 'zero-prod-claude-code',
+        price: 'R$ 1.197',
+        duration: '12 hours',
+        format: 'live'
+      }
     }
   },
 

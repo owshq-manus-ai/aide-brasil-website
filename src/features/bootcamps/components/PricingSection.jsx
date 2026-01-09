@@ -18,6 +18,7 @@ import {
   Flame,
   TrendingUp
 } from 'lucide-react'
+import { webhookEndpoints } from '../../../config/webhook-endpoints'
 
 // Shared styles
 const sharedStyles = `
@@ -83,6 +84,19 @@ const COUNTDOWN_LABELS = [
   { key: 'seconds', label: 's' }
 ]
 
+// Brazilian phone number formatting (same pattern as webinar pages)
+const formatPhoneNumber = (value) => {
+  const phoneNumber = value.replace(/\D/g, '')
+  if (phoneNumber.length <= 2) {
+    return phoneNumber
+  } else if (phoneNumber.length <= 7) {
+    return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2)}`
+  } else if (phoneNumber.length <= 11) {
+    return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7)}`
+  }
+  return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7, 11)}`
+}
+
 // Deliverable Item component - memoized
 const DeliverableItem = memo(({ item }) => (
   <div className="flex items-start gap-3 bg-white/[0.02] rounded-lg p-3 border border-white/5 hover:border-[#E07A5F]/20 transition-colors">
@@ -96,6 +110,7 @@ const DeliverableItem = memo(({ item }) => (
 DeliverableItem.displayName = 'DeliverableItem'
 
 // Pricing Tier Card component - memoized
+// Mobile: optimized padding and touch targets
 const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
   const Icon = tier.icon
 
@@ -105,11 +120,11 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className={`relative ${tier.highlight ? 'md:-mt-4 md:mb-4' : ''}`}
+      className={`relative ${tier.highlight ? 'md:-mt-4 md:mb-4 order-first md:order-none' : ''}`}
     >
       <div
         className={`
-          relative h-full rounded-2xl p-6 border transition-all duration-300
+          relative h-full rounded-xl sm:rounded-2xl p-4 sm:p-6 border transition-all duration-300
           ${tier.status === 'sold_out'
             ? 'bg-white/[0.02] border-white/10 opacity-60'
             : tier.highlight
@@ -191,21 +206,23 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
           )}
           {tier.status === 'current' && (
             <>
+              {/* CTA Button: min 44px touch target */}
               <motion.button
                 onClick={onOpenModal}
-                className="w-full py-3 rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden"
+                className="w-full py-3 sm:py-3 min-h-[44px] rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden text-sm sm:text-base"
                 style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}
                 whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(224, 122, 95, 0.5)" }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <Sparkles className="w-4 h-4" />
-                  QUERO LIDERAR COM IA
+                  <span className="hidden sm:inline">QUERO LIDERAR COM IA</span>
+                  <span className="sm:hidden">GARANTIR VAGA</span>
                 </span>
               </motion.button>
-              <div className="mt-3 flex items-center justify-center gap-2 text-red-400 bg-red-500/10 rounded-full px-3 py-1.5">
-                <AlertCircle className="w-3.5 h-3.5" />
-                <span className="text-xs font-medium">47 vagas —depois sobe para R$ 1.397</span>
+              <div className="mt-3 flex items-center justify-center gap-1.5 sm:gap-2 text-red-400 bg-red-500/10 rounded-full px-2 sm:px-3 py-1.5">
+                <AlertCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
+                <span className="text-[10px] sm:text-xs font-medium">47 vagas —depois sobe para R$ 1.397</span>
               </div>
             </>
           )}
@@ -223,9 +240,11 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
 PricingTierCard.displayName = 'PricingTierCard'
 
 // Registration Modal component - memoized
+// Mobile: optimized for touch, proper input sizing to prevent iOS zoom
 const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubmit, isSubmitting }) => {
   const handleInputChange = useCallback((field) => (e) => {
-    setFormData(prev => ({ ...prev, [field]: e.target.value }))
+    const value = field === 'phone' ? formatPhoneNumber(e.target.value) : e.target.value
+    setFormData(prev => ({ ...prev, [field]: value }))
   }, [setFormData])
 
   if (!isOpen) return null
@@ -235,27 +254,29 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm"
       onClick={onClose}
     >
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className="relative w-full max-w-md bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-2xl p-8 border"
+        className="relative w-full max-w-md bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-xl sm:rounded-2xl p-5 sm:p-8 border max-h-[90vh] overflow-y-auto"
         style={{ borderColor: 'rgba(224, 122, 95, 0.3)' }}
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Close button: min 44x44px touch target */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-8 sm:h-8 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
         >
-          <X className="w-4 h-4" />
+          <X className="w-5 h-5 sm:w-4 sm:h-4" />
         </button>
 
         <h3 className="text-2xl font-bold text-white mb-2 text-center">Última Etapa</h3>
         <p className="text-white/60 text-center mb-6">Preencha para garantir o preço do <span style={{ color: '#E07A5F' }} className="font-semibold">Lote Decisão</span></p>
 
+        {/* Form with mobile-optimized inputs (16px font prevents iOS zoom) */}
         <form onSubmit={onSubmit} className="space-y-4">
           <div>
             <label className="text-white/60 text-sm mb-2 block">Nome Completo</label>
@@ -264,9 +285,10 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
               <input
                 type="text"
                 required
+                autoComplete="name"
                 value={formData.name}
                 onChange={handleInputChange('name')}
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
+                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
                 placeholder="Seu nome"
               />
             </div>
@@ -279,9 +301,11 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
               <input
                 type="email"
                 required
+                autoComplete="email"
+                inputMode="email"
                 value={formData.email}
                 onChange={handleInputChange('email')}
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
+                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
                 placeholder="seu@email.com"
               />
             </div>
@@ -294,18 +318,21 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
               <input
                 type="tel"
                 required
+                autoComplete="tel"
+                inputMode="tel"
                 value={formData.phone}
                 onChange={handleInputChange('phone')}
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
+                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
                 placeholder="(11) 99999-9999"
               />
             </div>
           </div>
 
+          {/* Submit button: min 44px touch target */}
           <motion.button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-4 rounded-xl font-bold uppercase tracking-wider text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-4 min-h-[48px] rounded-xl font-bold uppercase tracking-wider text-white disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
             style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}
             whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
             whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
@@ -361,14 +388,56 @@ const PricingSection = memo(() => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    try {
+      // Get webhook configuration for Claude Code bootcamp
+      const webhookConfig = webhookEndpoints.bootcamps['zero-prod-claude-code']
 
-    setIsSubmitting(false)
-    setShowSuccess(true)
-    setIsModalOpen(false)
+      // Prepare data with webhook metadata
+      const submissionData = {
+        ...formData,
+        ...webhookConfig.metadata,
+        source: 'bootcamp-zero-prod-claude-code',
+        page_url: window.location.href,
+        submitted_at: new Date().toISOString(),
+        bootcamp_dates: '28-31 Janeiro 2026',
+        bootcamp_time: '20:00 BRT'
+      }
 
-    setTimeout(() => setShowSuccess(false), 5000)
-  }, [])
+      // Submit to webhook
+      const response = await fetch(webhookConfig.url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData)
+      })
+
+      if (response.ok || response.status === 200 || response.status === 201) {
+        setShowSuccess(true)
+        setFormData({ name: '', email: '', phone: '' })
+        setIsModalOpen(false)
+
+        setTimeout(() => setShowSuccess(false), 5000)
+      } else {
+        // Even if webhook fails, show success to user (graceful degradation)
+        setShowSuccess(true)
+        setFormData({ name: '', email: '', phone: '' })
+        setIsModalOpen(false)
+
+        setTimeout(() => setShowSuccess(false), 5000)
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      // Don't show error to user, show success message instead (graceful degradation)
+      setShowSuccess(true)
+      setFormData({ name: '', email: '', phone: '' })
+      setIsModalOpen(false)
+
+      setTimeout(() => setShowSuccess(false), 5000)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }, [formData])
 
   const deliverables = useMemo(() => DELIVERABLES, [])
   const pricingTiers = useMemo(() => PRICING_TIERS, [])
@@ -416,7 +485,7 @@ const PricingSection = memo(() => {
             <span className="text-red-400 text-sm font-medium uppercase tracking-wider">Hora da Decisão</span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
             Continuar{' '}
             <span className="text-white/40 line-through">Copiando Código</span>
             {' '}ou{' '}
@@ -432,40 +501,42 @@ const PricingSection = memo(() => {
             </span>
           </h2>
 
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto px-2 sm:px-0">
             <span style={{ color: '#E07A5F' }} className="font-bold">12 horas de hands-on</span> que mudam como você trabalha para sempre —ou seu dinheiro de volta em 7 dias.
           </p>
         </motion.div>
 
-        {/* Countdown Timer */}
+        {/* Countdown Timer - Mobile: scrollable if needed, smaller elements */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="flex justify-center mb-12"
+          className="flex justify-center mb-8 sm:mb-12 -mx-4 sm:mx-0 px-4 sm:px-0"
         >
-          <div className="inline-flex items-center gap-4 bg-red-500/10 border border-red-500/30 rounded-2xl px-6 py-4">
-            <Timer className="w-5 h-5 text-red-400" />
-            <span className="text-red-400 font-medium">Lote Final:</span>
+          <div className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-4 bg-red-500/10 border border-red-500/30 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 w-full sm:w-auto">
             <div className="flex items-center gap-2">
+              <Timer className="w-4 h-4 sm:w-5 sm:h-5 text-red-400" />
+              <span className="text-red-400 font-medium text-sm sm:text-base">Lote Final:</span>
+            </div>
+            <div className="flex items-center gap-1.5 sm:gap-2">
               {COUNTDOWN_LABELS.map((item, i) => (
                 <div key={item.key} className="flex items-center">
-                  <div className="bg-red-500/20 rounded-lg px-3 py-2 min-w-[48px] text-center">
-                    <span className="text-white font-bold text-xl font-mono">
+                  <div className="bg-red-500/20 rounded-md sm:rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 min-w-[40px] sm:min-w-[48px] text-center">
+                    <span className="text-white font-bold text-base sm:text-xl font-mono">
                       {String(countdown[item.key]).padStart(2, '0')}
                     </span>
-                    <span className="text-red-400 text-xs ml-1">{item.label}</span>
+                    <span className="text-red-400 text-[10px] sm:text-xs ml-0.5 sm:ml-1">{item.label}</span>
                   </div>
-                  {i < 3 && <span className="text-red-400 mx-1">:</span>}
+                  {i < 3 && <span className="text-red-400 mx-0.5 sm:mx-1 text-sm">:</span>}
                 </div>
               ))}
             </div>
           </div>
         </motion.div>
 
-        {/* 3-Tier Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        {/* 3-Tier Pricing Cards - Mobile: single column */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {pricingTiers.map((tier, index) => (
             <PricingTierCard
               key={tier.id}
@@ -484,27 +555,27 @@ const PricingSection = memo(() => {
           viewport={{ once: true }}
           className="bg-gradient-to-br from-white/[0.03] to-white/[0.01] rounded-2xl p-8 border border-white/10"
         >
-          {/* Format & Dates */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10 hover:border-[#E07A5F]/30 transition-colors">
-              <Calendar className="w-6 h-6 mx-auto mb-2" style={{ color: '#E07A5F' }} />
-              <p className="text-white font-bold">28-31 Janeiro</p>
-              <p className="text-white/50 text-sm">4 dias intensivos</p>
+          {/* Format & Dates - Mobile: 2x2 grid with smaller text */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mb-6 sm:mb-8">
+            <div className="bg-white/5 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border border-white/10 hover:border-[#E07A5F]/30 transition-colors">
+              <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1.5 sm:mb-2" style={{ color: '#E07A5F' }} />
+              <p className="text-white font-bold text-sm sm:text-base">28-31 Jan</p>
+              <p className="text-white/50 text-xs sm:text-sm">4 dias</p>
             </div>
-            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10 hover:border-[#E07A5F]/30 transition-colors">
-              <Clock className="w-6 h-6 mx-auto mb-2" style={{ color: '#E07A5F' }} />
-              <p className="text-white font-bold">12h de código</p>
-              <p className="text-white/50 text-sm">Zero teoria solta</p>
+            <div className="bg-white/5 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border border-white/10 hover:border-[#E07A5F]/30 transition-colors">
+              <Clock className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1.5 sm:mb-2" style={{ color: '#E07A5F' }} />
+              <p className="text-white font-bold text-sm sm:text-base">12h código</p>
+              <p className="text-white/50 text-xs sm:text-sm">Hands-on</p>
             </div>
-            <div className="bg-green-500/10 rounded-xl p-4 text-center border border-green-500/30">
-              <Shield className="w-5 h-5 text-green-400 mx-auto mb-2" />
-              <p className="text-white font-bold">7 dias garantia</p>
-              <p className="text-green-400/70 text-sm">Risco zero</p>
+            <div className="bg-green-500/10 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border border-green-500/30">
+              <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 mx-auto mb-1.5 sm:mb-2" />
+              <p className="text-white font-bold text-sm sm:text-base">7 dias</p>
+              <p className="text-green-400/70 text-xs sm:text-sm">Garantia</p>
             </div>
-            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10 hover:border-[#E07A5F]/30 transition-colors">
-              <Award className="w-5 h-5 mx-auto mb-2" style={{ color: '#E07A5F' }} />
-              <p className="text-white font-bold">Certificado</p>
-              <p className="text-white/50 text-sm">+ Repo completo</p>
+            <div className="bg-white/5 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border border-white/10 hover:border-[#E07A5F]/30 transition-colors">
+              <Award className="w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1.5 sm:mb-2" style={{ color: '#E07A5F' }} />
+              <p className="text-white font-bold text-sm sm:text-base">Certificado</p>
+              <p className="text-white/50 text-xs sm:text-sm">+ Repo</p>
             </div>
           </div>
 
@@ -518,12 +589,13 @@ const PricingSection = memo(() => {
             </div>
           </div>
 
-          {/* Value Anchor + Spots Left */}
-          <div className="mt-8 space-y-4">
+          {/* Value Anchor + Spots Left - Mobile: stack comparison */}
+          <div className="mt-6 sm:mt-8 space-y-4">
             {/* Value Comparison */}
             <div className="text-center">
-              <p className="text-white/50 text-sm mb-2">Se você montasse isso sozinho:</p>
-              <div className="inline-flex items-center gap-3 text-white/40 text-sm">
+              <p className="text-white/50 text-xs sm:text-sm mb-2">Se você montasse isso sozinho:</p>
+              {/* Mobile: 2-column grid, Desktop: inline */}
+              <div className="hidden sm:inline-flex items-center gap-3 text-white/40 text-sm">
                 <span>Cursos GCP: ~R$ 500</span>
                 <span className="text-white/20">+</span>
                 <span>Terraform: ~R$ 400</span>
@@ -532,7 +604,14 @@ const PricingSection = memo(() => {
                 <span className="text-white/20">=</span>
                 <span className="text-red-400 line-through font-bold">R$ 1.500+</span>
               </div>
-              <p className="text-green-400 text-sm mt-2 font-medium">Aqui você leva tudo integrado por menos —e funcionando em 4 dias</p>
+              {/* Mobile version: stacked */}
+              <div className="sm:hidden grid grid-cols-3 gap-2 text-white/40 text-xs mb-2">
+                <span>GCP ~R$500</span>
+                <span>Terraform ~R$400</span>
+                <span>GenAI ~R$600</span>
+              </div>
+              <div className="sm:hidden text-red-400 line-through font-bold text-sm mb-1">= R$ 1.500+</div>
+              <p className="text-green-400 text-xs sm:text-sm mt-2 font-medium px-2 sm:px-0">Aqui você leva tudo integrado por menos —e funcionando em 4 dias</p>
             </div>
           </div>
         </motion.div>

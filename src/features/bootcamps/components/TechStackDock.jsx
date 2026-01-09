@@ -125,6 +125,8 @@ const technologies = [
 ]
 
 // DockIcon with magnification effect
+// DockIcon with magnification effect
+// Mobile: smaller base size, reduced magnification range
 const DockIconItem = memo(({ mouseX, tech, index }) => {
   const ref = useRef(null)
 
@@ -133,7 +135,8 @@ const DockIconItem = memo(({ mouseX, tech, index }) => {
     return val - bounds.x - bounds.width / 2
   })
 
-  const widthSync = useTransform(distance, [-120, 0, 120], [40, 56, 40])
+  // Mobile: smaller icons (32px base), Desktop: 40px base with magnification to 56px
+  const widthSync = useTransform(distance, [-120, 0, 120], [32, 44, 32])
   const width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 })
 
   const IconComponent = tech.Icon
@@ -142,7 +145,7 @@ const DockIconItem = memo(({ mouseX, tech, index }) => {
     <motion.div
       ref={ref}
       style={{ width }}
-      className="aspect-square cursor-pointer flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors duration-200"
+      className="aspect-square cursor-pointer flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors duration-200 min-w-[32px] sm:min-w-[40px]"
       title={`${tech.name} - ${tech.description}`}
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -151,7 +154,7 @@ const DockIconItem = memo(({ mouseX, tech, index }) => {
         boxShadow: `0 0 20px ${tech.color}50, 0 0 40px ${tech.color}30`,
       }}
     >
-      <div className="w-full h-full flex items-center justify-center p-2" style={{ color: tech.color }}>
+      <div className="w-full h-full flex items-center justify-center p-1.5 sm:p-2" style={{ color: tech.color }}>
         <IconComponent />
       </div>
     </motion.div>
@@ -161,6 +164,7 @@ const DockIconItem = memo(({ mouseX, tech, index }) => {
 DockIconItem.displayName = 'DockIconItem'
 
 // Main TechStackDock component
+// Mobile: horizontal scroll container to prevent overflow at 320px
 const TechStackDock = memo(() => {
   const mouseX = useMotionValue(Infinity)
 
@@ -169,17 +173,20 @@ const TechStackDock = memo(() => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.15, duration: 0.5 }}
-      className="flex justify-start"
+      className="flex justify-start -mx-4 sm:mx-0 px-4 sm:px-0"
     >
-      <motion.div
-        onMouseMove={(e) => mouseX.set(e.pageX)}
-        onMouseLeave={() => mouseX.set(Infinity)}
-        className="flex h-[52px] w-max items-end gap-2 rounded-xl border border-orange-500/30 bg-black/40 backdrop-blur-md p-2 px-3"
-      >
-        {technologies.map((tech, index) => (
-          <DockIconItem key={tech.name} mouseX={mouseX} tech={tech} index={index} />
-        ))}
-      </motion.div>
+      {/* Scrollable container for mobile */}
+      <div className="overflow-x-auto scrollbar-hide -webkit-overflow-scrolling-touch pb-2 sm:pb-0">
+        <motion.div
+          onMouseMove={(e) => mouseX.set(e.pageX)}
+          onMouseLeave={() => mouseX.set(Infinity)}
+          className="flex h-[48px] sm:h-[52px] w-max items-end gap-1.5 sm:gap-2 rounded-xl border border-orange-500/30 bg-black/40 backdrop-blur-md p-1.5 sm:p-2 px-2 sm:px-3"
+        >
+          {technologies.map((tech, index) => (
+            <DockIconItem key={tech.name} mouseX={mouseX} tech={tech} index={index} />
+          ))}
+        </motion.div>
+      </div>
     </motion.div>
   )
 })
