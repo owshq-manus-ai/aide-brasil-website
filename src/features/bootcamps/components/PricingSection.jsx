@@ -23,20 +23,21 @@ import {
 } from 'lucide-react'
 
 const deliverables = [
-  'Repositório GitHub completo (production-ready)',
-  'Pipeline GenAI fim a fim em produção',
-  'Infra GCP provisionada via IaC',
-  'CI/CD funcional com GitHub Actions',
-  'Observabilidade de LLM com Langfuse',
-  'DataOps Autônomo com CrewAI Agents',
-  'Arquiteturas Multi-Cloud (Adapter Design)',
-  'Projeto forte para portfólio'
+  { text: 'Repositório GitHub production-ready', value: 'Clone e rode em 5 minutos' },
+  { text: 'Pipeline GenAI completo em produção', value: 'Invoice → BigQuery → Dashboard' },
+  { text: 'Infra GCP via Terraform', value: 'Destrua e recrie em 1 comando' },
+  { text: 'CI/CD com GitHub Actions', value: 'Push = Deploy automático' },
+  { text: 'Observabilidade com Langfuse', value: 'Custo, latência, qualidade' },
+  { text: 'DataOps com CrewAI Agents', value: 'Eles operam, você supervisiona' },
+  { text: 'Arquitetura Multi-Cloud', value: 'GCP hoje, AWS/Azure amanhã' },
+  { text: 'Projeto pronto para portfólio', value: 'Mostre em entrevistas' }
 ]
 
 const pricingTiers = [
   {
     id: 'lote1',
-    name: 'Lote Esgotado',
+    name: 'Early Birds',
+    subtitle: 'Quem chegou primeiro',
     price: '897',
     originalPrice: null,
     status: 'sold_out',
@@ -46,17 +47,20 @@ const pricingTiers = [
   },
   {
     id: 'lote2',
-    name: 'Lote Atual',
+    name: 'Lote Decisão',
+    subtitle: 'Última chance neste valor',
     price: '1.197',
     originalPrice: '1.997',
     status: 'current',
     highlight: true,
     icon: Flame,
-    color: 'orange'
+    color: 'orange',
+    savings: '800'
   },
   {
     id: 'lote3',
-    name: 'Próximo Lote',
+    name: 'Lote Final',
+    subtitle: 'Preço cheio',
     price: '1.397',
     originalPrice: null,
     status: 'upcoming',
@@ -148,14 +152,16 @@ const PricingSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/30 rounded-full px-4 py-2 mb-6"
           >
-            <Zap className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Investimento</span>
+            <Zap className="w-4 h-4 text-red-400" />
+            <span className="text-red-400 text-sm font-medium uppercase tracking-wider">Hora da Decisão</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            Garanta sua{' '}
+            Continuar{' '}
+            <span className="text-white/40 line-through">Copiando Código</span>
+            {' '}ou{' '}
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
@@ -164,9 +170,13 @@ const PricingSection = () => {
                 animation: 'subtle-metallic 6s ease-in-out infinite',
               }}
             >
-              Vaga
+              Liderar com IA?
             </span>
           </h2>
+
+          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+            <span className="text-orange-400 font-bold">12 horas de hands-on</span> que mudam como você trabalha para sempre — ou seu dinheiro de volta em 7 dias.
+          </p>
         </motion.div>
 
         {/* Countdown Timer */}
@@ -179,7 +189,7 @@ const PricingSection = () => {
         >
           <div className="inline-flex items-center gap-4 bg-red-500/10 border border-red-500/30 rounded-2xl px-6 py-4">
             <Timer className="w-5 h-5 text-red-400" />
-            <span className="text-red-400 font-medium">Bootcamp começa em:</span>
+            <span className="text-red-400 font-medium">Preço sobe em:</span>
             <div className="flex items-center gap-2">
               {[
                 { value: countdown.days, label: 'd' },
@@ -249,6 +259,11 @@ const PricingSection = () => {
                   <h3 className={`text-lg font-bold ${tier.status === 'sold_out' ? 'text-white/40' : 'text-white'}`}>
                     {tier.name}
                   </h3>
+                  {tier.subtitle && (
+                    <p className={`text-sm mt-1 ${tier.status === 'sold_out' ? 'text-white/30' : 'text-white/50'}`}>
+                      {tier.subtitle}
+                    </p>
+                  )}
                 </div>
 
                 {/* Price */}
@@ -276,7 +291,15 @@ const PricingSection = () => {
                     </span>
                   </div>
                   {tier.highlight && (
-                    <p className="text-orange-300 text-sm mt-2">ou 12x de R$ 119,63</p>
+                    <>
+                      <p className="text-orange-300 text-sm mt-2">ou 12x de R$ 119,63</p>
+                      {tier.savings && (
+                        <div className="inline-flex items-center gap-1 bg-green-500/20 text-green-400 text-xs font-bold rounded-full px-3 py-1 mt-2">
+                          <Gift className="w-3 h-3" />
+                          Economia de R$ {tier.savings}
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
 
@@ -299,7 +322,7 @@ const PricingSection = () => {
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2">
                         <Sparkles className="w-4 h-4" />
-                        GARANTIR VAGA
+                        QUERO LIDERAR COM IA
                       </span>
                     </motion.button>
                   )}
@@ -325,46 +348,67 @@ const PricingSection = () => {
         >
           {/* Format & Dates */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10 hover:border-orange-500/30 transition-colors">
               <Calendar className="w-6 h-6 text-orange-400 mx-auto mb-2" />
               <p className="text-white font-bold">28-31 Janeiro</p>
-              <p className="text-white/50 text-sm">2026</p>
+              <p className="text-white/50 text-sm">4 dias intensivos</p>
             </div>
-            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10 hover:border-orange-500/30 transition-colors">
               <Clock className="w-6 h-6 text-orange-400 mx-auto mb-2" />
-              <p className="text-white font-bold">12 horas</p>
-              <p className="text-white/50 text-sm">Hands-on</p>
+              <p className="text-white font-bold">12h de código</p>
+              <p className="text-white/50 text-sm">Zero teoria solta</p>
             </div>
-            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+            <div className="bg-green-500/10 rounded-xl p-4 text-center border border-green-500/30">
               <Shield className="w-5 h-5 text-green-400 mx-auto mb-2" />
-              <p className="text-white font-bold">7 dias</p>
-              <p className="text-white/50 text-sm">Garantia</p>
+              <p className="text-white font-bold">7 dias garantia</p>
+              <p className="text-green-400/70 text-sm">Risco zero</p>
             </div>
-            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10">
+            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10 hover:border-orange-500/30 transition-colors">
               <Award className="w-5 h-5 text-orange-400 mx-auto mb-2" />
               <p className="text-white font-bold">Certificado</p>
-              <p className="text-white/50 text-sm">Incluído</p>
+              <p className="text-white/50 text-sm">+ Repo completo</p>
             </div>
           </div>
 
           {/* Deliverables */}
           <div>
-            <p className="text-white/60 text-sm uppercase tracking-wider mb-4 text-center">O que você leva:</p>
+            <p className="text-orange-400 text-sm uppercase tracking-wider mb-4 text-center font-bold">8 Entregas Concretas — Não Promessas</p>
             <div className="grid md:grid-cols-2 gap-3">
               {deliverables.map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                  <span className="text-white/80 text-sm">{item}</span>
+                <div key={i} className="flex items-start gap-3 bg-white/[0.02] rounded-lg p-3 border border-white/5 hover:border-orange-500/20 transition-colors">
+                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-white font-medium text-sm block">{item.text}</span>
+                    <span className="text-orange-400/70 text-xs">{item.value}</span>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Spots Left */}
-          <div className="mt-8 text-center">
-            <div className="inline-flex items-center gap-2 text-red-400 bg-red-500/10 rounded-full px-4 py-2">
-              <AlertCircle className="w-4 h-4" />
-              <span className="text-sm font-medium">Apenas {spotsLeft} vagas restantes no lote atual</span>
+          {/* Value Anchor + Spots Left */}
+          <div className="mt-8 space-y-4">
+            {/* Value Comparison */}
+            <div className="text-center">
+              <p className="text-white/50 text-sm mb-2">Se você montasse isso sozinho:</p>
+              <div className="inline-flex items-center gap-3 text-white/40 text-sm">
+                <span>Cursos GCP: ~R$ 500</span>
+                <span className="text-white/20">+</span>
+                <span>Terraform: ~R$ 400</span>
+                <span className="text-white/20">+</span>
+                <span>GenAI: ~R$ 600</span>
+                <span className="text-white/20">=</span>
+                <span className="text-red-400 line-through font-bold">R$ 1.500+</span>
+              </div>
+              <p className="text-green-400 text-sm mt-2 font-medium">Aqui você leva tudo integrado por menos — e funcionando em 4 dias</p>
+            </div>
+
+            {/* Spots Left */}
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 text-red-400 bg-red-500/10 rounded-full px-4 py-2">
+                <AlertCircle className="w-4 h-4" />
+                <span className="text-sm font-medium">{spotsLeft} vagas restantes — depois sobe para R$ 1.397</span>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -393,8 +437,8 @@ const PricingSection = () => {
               <X className="w-4 h-4" />
             </button>
 
-            <h3 className="text-2xl font-bold text-white mb-2 text-center">Garanta sua Vaga</h3>
-            <p className="text-white/60 text-center mb-6">Preencha seus dados para reservar</p>
+            <h3 className="text-2xl font-bold text-white mb-2 text-center">Última Etapa</h3>
+            <p className="text-white/60 text-center mb-6">Preencha para garantir o preço do <span className="text-orange-400 font-semibold">Lote Decisão</span></p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -451,8 +495,11 @@ const PricingSection = () => {
                 whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                 whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
               >
-                {isSubmitting ? 'Processando...' : 'Confirmar Inscrição'}
+                {isSubmitting ? 'Processando...' : 'CONFIRMAR MINHA VAGA'}
               </motion.button>
+              <p className="text-white/40 text-xs text-center mt-3">
+                Garantia de 7 dias — se não gostar, devolvemos 100%
+              </p>
             </form>
           </motion.div>
         </motion.div>

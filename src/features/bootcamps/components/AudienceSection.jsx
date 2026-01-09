@@ -14,42 +14,45 @@ import {
 const targetAudiences = [
   {
     title: 'Data Engineers',
-    description: 'Que querem dominar GenAI em pipelines de produção',
+    description: 'Cansados de pipelines manuais — prontos para agentes que constroem e mantêm infraestrutura por você',
     icon: Database,
-    fit: 'perfect'
+    fit: 'perfect',
+    transformation: 'Script manual → Pipeline autônomo'
   },
   {
     title: 'Analytics Engineers',
-    description: 'Que buscam evoluir para AI-powered analytics',
+    description: 'Querem sair do dbt/SQL tradicional para analytics com extração inteligente e dashboards que se atualizam sozinhos',
     icon: BarChart3,
-    fit: 'perfect'
+    fit: 'perfect',
+    transformation: 'Relatório estático → Insight em tempo real'
   },
   {
     title: 'Software Engineers',
-    description: 'Migrando para Data/AI com fundamentos sólidos',
+    description: 'Já dominam código — agora querem multiplicar output com uma frota de agentes especializados',
     icon: Code2,
-    fit: 'good'
+    fit: 'good',
+    transformation: 'Solo coder → Time de IA'
   }
 ]
 
 const prerequisites = [
   {
-    requirement: 'SQL e Python básicos',
-    description: 'Conhecimento fundamental de queries e scripting',
+    requirement: 'SQL e Python',
+    description: 'SELECT, JOINs e funções básicas — se você já escreveu um script, está pronto',
     icon: Code2,
-    level: 'required'
+    level: 'basic'
   },
   {
-    requirement: 'Git',
-    description: 'Versionamento básico de código',
+    requirement: 'Git Básico',
+    description: 'git add, commit, push — o resto você aprende no bootcamp',
     icon: GitBranch,
-    level: 'required'
+    level: 'basic'
   },
   {
-    requirement: 'Assinatura do Claude Code',
-    description: 'Necessário para acompanhar as aulas práticas',
+    requirement: 'Claude Code Pro',
+    description: 'Sua arma principal — $20/mês que paga em 1 hora de produtividade',
     icon: Terminal,
-    level: 'required'
+    level: 'tool'
   }
 ]
 
@@ -92,11 +95,11 @@ const AudienceSection = () => {
             className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2 mb-6"
           >
             <Users className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Para Quem É</span>
+            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Você Se Encaixa?</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
-            Este Bootcamp é{' '}
+            3 Perfis que Vão{' '}
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
@@ -105,12 +108,14 @@ const AudienceSection = () => {
                 animation: 'subtle-metallic 6s ease-in-out infinite',
               }}
             >
-              Para Você?
+              10x Produtividade
             </span>
+            {' '}com Agentes
           </h2>
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            Profissionais de dados e engenharia que querem dominar GenAI em produção.
+            <span className="text-orange-400 font-bold">Não precisa ser expert em IA.</span>{' '}
+            Se você já trabalha com dados e código, tem tudo para sair do bootcamp operando sua própria frota de agentes.
           </p>
         </motion.div>
 
@@ -124,7 +129,7 @@ const AudienceSection = () => {
           >
             <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
               <CheckCircle className="w-6 h-6 text-green-400" />
-              Público-Alvo
+              Quem Vai Extrair Mais Valor
             </h3>
 
             <div className="space-y-4">
@@ -155,14 +160,19 @@ const AudienceSection = () => {
                     `}>
                       <audience.icon className={`w-6 h-6 ${audience.fit === 'perfect' ? 'text-green-400' : 'text-orange-400'}`} />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="text-lg font-bold text-white">{audience.title}</h4>
                         {audience.fit === 'perfect' && (
-                          <span className="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full">Fit Perfeito</span>
+                          <span className="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full">Ideal</span>
                         )}
                       </div>
-                      <p className="text-white/60 text-sm">{audience.description}</p>
+                      <p className="text-white/60 text-sm mb-2">{audience.description}</p>
+                      {audience.transformation && (
+                        <p className="text-xs text-orange-400 font-medium">
+                          {audience.transformation}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </motion.div>
@@ -179,7 +189,7 @@ const AudienceSection = () => {
           >
             <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
               <AlertCircle className="w-6 h-6 text-orange-400" />
-              Pré-requisitos
+              O Que Você Já Precisa Ter
             </h3>
 
             <div className="space-y-4">
@@ -196,10 +206,16 @@ const AudienceSection = () => {
                     <div className="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center flex-shrink-0">
                       <prereq.icon className="w-6 h-6 text-orange-400" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="text-lg font-bold text-white">{prereq.requirement}</h4>
-                        <span className="text-xs bg-red-500/20 text-red-400 px-2 py-0.5 rounded-full">Obrigatório</span>
+                        <span className={`text-xs px-2 py-0.5 rounded-full ${
+                          prereq.level === 'tool'
+                            ? 'bg-purple-500/20 text-purple-400'
+                            : 'bg-green-500/20 text-green-400'
+                        }`}>
+                          {prereq.level === 'tool' ? 'Ferramenta' : 'Básico'}
+                        </span>
                       </div>
                       <p className="text-white/60 text-sm">{prereq.description}</p>
                     </div>
@@ -214,10 +230,10 @@ const AudienceSection = () => {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
-              className="mt-6 p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl"
+              className="mt-6 p-4 bg-gradient-to-r from-green-500/10 to-orange-500/10 border border-green-500/30 rounded-xl"
             >
-              <p className="text-white/70 text-sm">
-                <span className="text-orange-400 font-semibold">💡 Dica:</span> Se você já trabalha com dados e tem familiaridade com Python, você está pronto para o bootcamp!
+              <p className="text-white/80 text-sm">
+                <span className="text-green-400 font-bold">Resumindo:</span> se você consegue escrever um SELECT e um loop em Python, <span className="text-white font-semibold">você já tem o necessário</span>. O resto a gente constrói junto.
               </p>
             </motion.div>
           </motion.div>

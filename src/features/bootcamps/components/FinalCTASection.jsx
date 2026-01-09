@@ -6,7 +6,10 @@ import {
   Rocket,
   Award,
   TrendingUp,
-  Clock
+  Clock,
+  Bot,
+  ArrowRight,
+  Zap
 } from 'lucide-react'
 
 const FinalCTASection = () => {
@@ -55,37 +58,33 @@ const FinalCTASection = () => {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 text-center">
-        {/* Stats Row */}
+        {/* Transformation Statement */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-8 mb-12"
+          className="mb-12"
         >
-          {[
-            { icon: Clock, value: '12h', label: 'Hands-on' },
-            { icon: Rocket, value: '8', label: 'Passos' },
-            { icon: Award, value: '100%', label: 'Prático' },
-            { icon: TrendingUp, value: '2026', label: 'Ready' }
-          ].map((stat, i) => (
+          {/* Before/After comparison */}
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 bg-gradient-to-r from-white/[0.03] to-white/[0.01] rounded-2xl px-8 py-6 border border-white/10">
+            <div className="text-center sm:text-right">
+              <p className="text-white/40 text-sm uppercase tracking-wider mb-1">Hoje</p>
+              <p className="text-white/60 text-lg">Copiando código do ChatGPT</p>
+            </div>
+
             <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-3"
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
             >
-              <div className="w-12 h-12 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center">
-                <stat.icon className="w-6 h-6 text-orange-400" />
-              </div>
-              <div className="text-left">
-                <div className="text-2xl font-oswald font-bold text-white">{stat.value}</div>
-                <div className="text-white/50 text-sm">{stat.label}</div>
-              </div>
+              <ArrowRight className="w-8 h-8 text-orange-400" />
             </motion.div>
-          ))}
+
+            <div className="text-center sm:text-left">
+              <p className="text-orange-400 text-sm uppercase tracking-wider mb-1 font-bold">Em 4 dias</p>
+              <p className="text-white text-lg font-bold">Operando uma frota de agentes</p>
+            </div>
+          </div>
         </motion.div>
 
         {/* Main CTA Message */}
@@ -96,8 +95,8 @@ const FinalCTASection = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-6xl font-oswald font-bold text-white mb-6 leading-tight">
+            <span className="block text-2xl md:text-3xl text-white/50 mb-3">Daqui a 6 meses você vai estar...</span>
             <span className="block mb-2">
-              Construa{' '}
               <span
                 className="inline-block bg-clip-text text-transparent"
                 style={{
@@ -106,19 +105,17 @@ const FinalCTASection = () => {
                   animation: 'subtle-metallic 6s ease-in-out infinite',
                 }}
               >
-                GenAI Real
+                Liderando com IA
               </span>
-            </span>
-            <span className="block text-3xl md:text-4xl text-white/80">
-              e se posicione como{' '}
-              <span className="text-orange-400 font-bold">AI Data Engineer</span>
+              {' '}ou Correndo Atrás?
             </span>
           </h2>
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto mb-10">
-            Pare de assistir tutoriais. Comece a construir sistemas que vão para produção.
-            <span className="block mt-2 text-orange-400 font-semibold">
-              Sua carreira agradece.
+            <span className="text-white font-bold">O mercado não vai esperar.</span>{' '}
+            Enquanto você decide, outros já estão deployando sistemas com agentes autônomos.
+            <span className="block mt-3 text-orange-400 font-semibold text-lg">
+              A escolha é sua. O momento é agora.
             </span>
           </p>
         </motion.div>
@@ -161,21 +158,26 @@ const FinalCTASection = () => {
               }}
             />
 
-            <Sparkles className="w-6 h-6" />
-            <span>QUERO GARANTIR MINHA VAGA</span>
+            <Bot className="w-6 h-6" />
+            <span>QUERO LIDERAR COM IA</span>
             <ChevronRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
           </motion.button>
 
-          {/* Subtext */}
-          <motion.p
+          {/* Subtext with urgency */}
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
             viewport={{ once: true }}
-            className="text-white/40 text-sm mt-6"
+            className="mt-6 space-y-2"
           >
-            28-31 Janeiro 2026 • 12h Hands-on • R$ 1.197
-          </motion.p>
+            <p className="text-white/60 text-sm">
+              28-31 Janeiro 2026 • 12h de código • <span className="text-green-400 font-semibold">Garantia de 7 dias</span>
+            </p>
+            <p className="text-orange-400/70 text-sm font-medium">
+              Lote Decisão: R$ 1.197 (economize R$ 800)
+            </p>
+          </motion.div>
         </motion.div>
 
         {/* Final tagline */}
@@ -186,10 +188,24 @@ const FinalCTASection = () => {
           viewport={{ once: true }}
           className="mt-16 pt-8 border-t border-white/10"
         >
-          <p className="text-white/50 text-lg font-oswald">
-            Não é curso de prompt. Não é demo.{' '}
-            <span className="text-orange-400">É engenharia aplicada com IA.</span>
-          </p>
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-white/40 text-sm uppercase tracking-widest">A diferença entre quem usa IA e quem lidera com IA</p>
+            <p className="text-2xl md:text-3xl font-oswald text-white">
+              <span className="text-white/40 line-through">Vibe coding</span>
+              {' '}→{' '}
+              <span
+                className="bg-clip-text text-transparent font-bold"
+                style={{
+                  backgroundImage: 'linear-gradient(90deg, #f97316, #fbbf24)',
+                }}
+              >
+                AI-Native Development Workflow
+              </span>
+            </p>
+            <p className="text-white/50 text-sm mt-2">
+              Zero prompts vagos. Zero copiar e colar. <span className="text-orange-400 font-semibold">100% engenharia.</span>
+            </p>
+          </div>
         </motion.div>
       </div>
 

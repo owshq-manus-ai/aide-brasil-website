@@ -17,54 +17,54 @@ import {
 const steps = [
   {
     number: 1,
-    title: 'Entendimento do Caso de Uso',
-    subtitle: 'Stakeholders → Requisitos',
-    description: 'Reunião com stakeholders, análise do processo de invoices, meeting summary e transformação de requisitos em contexto para IA.',
-    skills: ['Problem Framing', 'Requirement → Spec', 'Context Engineering'],
+    title: 'Traduzir Negócio em Contexto',
+    subtitle: 'Requisito Vago → Spec Precisa',
+    description: 'Transforme reuniões confusas em especificações que a IA entende. Você sai com um CLAUDE.md pronto para o projeto.',
+    skills: ['Problem Framing', 'Context Engineering', 'Requirement → Spec'],
     personas: ['AI Data Engineer', 'Tech Lead'],
     icon: Users
   },
   {
     number: 2,
-    title: 'Configurando Claude Code',
-    subtitle: 'AI-Assisted Engineering',
-    description: 'Setup completo do Claude Code: repo, configs, padrões, MCP, Context, KB, SubAgents, Commands e Skills.',
+    title: 'Ativar sua Frota de Agentes',
+    subtitle: 'Solo Coder → Time de IA',
+    description: 'Configure MCPs, SubAgents e Hooks. No final, você tem agentes especializados prontos para executar tarefas por você.',
     skills: ['AI-Native Workflow', 'Agent Orchestration', 'Context Management'],
     personas: ['Senior Engineer', 'Staff Engineer'],
     icon: Terminal
   },
   {
     number: 3,
-    title: 'Sandbox & Rapid Prototyping',
-    subtitle: 'Dev/Test Environment',
-    description: 'Ambiente local para prototipação: Python + chamadas LLM via OpenRouter, unit tests e validação de outputs.',
+    title: 'Prototipar em Minutos',
+    subtitle: 'Ideia → Código Funcionando',
+    description: 'Monte um sandbox local com Python + LLM. Valide hipóteses em minutos, não dias. Testes automatizados desde o início.',
     skills: ['Rapid Prototyping', 'Test-Driven GenAI', 'Local Dev Workflow'],
     personas: ['GenAI Engineer', 'Backend Engineer'],
     icon: FlaskConical
   },
   {
     number: 4,
-    title: 'Arquitetura Multi-Cloud',
-    subtitle: 'Adapter Pattern',
-    description: 'Desenho da arquitetura cloud-agnostic, service mapping GCP/AWS/Azure e discussão de trade-offs e lock-in.',
+    title: 'Desenhar sem Vendor Lock',
+    subtitle: 'GCP Hoje → Qualquer Cloud Amanhã',
+    description: 'Arquitetura com Adapter Pattern: mude de provider sem reescrever código. Você sai com um blueprint replicável.',
     skills: ['Cloud Architecture', 'Adapter Design', 'Systems Thinking'],
     personas: ['Cloud Architect', 'Platform Engineer'],
     icon: Cloud
   },
   {
     number: 5,
-    title: 'Infraestrutura no GCP',
-    subtitle: 'CLI → Terraform',
-    description: 'Criação de recursos com Google Cloud CLI (Dev) e Terraform + Terragrunt (Prod): IAM, buckets, BigQuery, Cloud Run.',
-    skills: ['IaC aplicado a GenAI', 'Environment Management', 'Cloud Security'],
+    title: 'Subir Infra como Código',
+    subtitle: 'Console Manual → Terraform Automatizado',
+    description: 'Provisione IAM, buckets, BigQuery e Cloud Run com Terraform. Destrua e recrie ambientes em um comando.',
+    skills: ['IaC para GenAI', 'Environment Management', 'Cloud Security'],
     personas: ['Platform Engineer', 'DevOps'],
     icon: Server
   },
   {
     number: 6,
-    title: 'GenAI em Produção',
-    subtitle: 'Core do Bootcamp',
-    description: 'Pipeline completo: GCS landing → Cloud Run processing → Gemini extraction → Langfuse observability → BigQuery → Hex dashboards.',
+    title: 'Colocar GenAI em Produção',
+    subtitle: 'Invoice → Dado Estruturado → Dashboard',
+    description: 'Pipeline completo funcionando: upload de invoice → extração com Gemini → BigQuery → Hex. Com observabilidade Langfuse.',
     skills: ['Production Pipelines', 'LLMOps', 'Data + GenAI Integration'],
     personas: ['AI Data Engineer', 'GenAI Engineer'],
     icon: Brain,
@@ -72,18 +72,18 @@ const steps = [
   },
   {
     number: 7,
-    title: 'CI/CD na Prática',
-    subtitle: 'GitHub Actions',
-    description: 'CI com testes, validações e schema checks. CD para Cloud Run e Infra. Versionamento de código e prompts.',
+    title: 'Automatizar Deploy',
+    subtitle: 'Push Manual → CI/CD Completo',
+    description: 'GitHub Actions rodando testes, validações e deploy automático. Versionamento de prompts incluído.',
     skills: ['CI/CD para GenAI', 'Quality Gates', 'Release Engineering'],
     personas: ['Software Engineer', 'DevOps'],
     icon: GitBranch
   },
   {
     number: 8,
-    title: 'DataOps Autônomo',
-    subtitle: 'CrewAI Agents',
-    description: 'Observabilidade via logs e métricas. CrewAI Agents para triagem, RCA, abertura de issues/PR e atualização de runbook.',
+    title: 'Operar com Agentes Autônomos',
+    subtitle: 'Você de Plantão → CrewAI de Plantão',
+    description: 'CrewAI Agents fazendo triagem, RCA e abrindo PRs automaticamente. Você supervisiona, não executa.',
     skills: ['Operational Excellence', 'Autonomous DataOps', 'Incident Response'],
     personas: ['DataOps', 'SRE for Data & AI'],
     icon: Bot
@@ -176,7 +176,7 @@ const StepCard = ({ step, index, isExpanded, onToggle }) => {
 
                 {/* Skills */}
                 <div className="mb-4">
-                  <p className="text-white/40 text-xs uppercase tracking-wider mb-2">Skills que você vai adquirir</p>
+                  <p className="text-white/40 text-xs uppercase tracking-wider mb-2">Você sai sabendo</p>
                   <div className="flex flex-wrap gap-2">
                     {step.skills.map((skill, i) => (
                       <span
@@ -192,7 +192,7 @@ const StepCard = ({ step, index, isExpanded, onToggle }) => {
 
                 {/* Personas */}
                 <div>
-                  <p className="text-white/40 text-xs uppercase tracking-wider mb-2">Personas</p>
+                  <p className="text-white/40 text-xs uppercase tracking-wider mb-2">Relevante para</p>
                   <div className="flex flex-wrap gap-2">
                     {step.personas.map((persona, i) => (
                       <span
@@ -248,11 +248,11 @@ const JourneyTimeline = () => {
             className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2 mb-6"
           >
             <GitBranch className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">O Caminho</span>
+            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Sua Jornada em 4 Dias</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
-            Do Zero à{' '}
+            8 Passos Para{' '}
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
@@ -261,13 +261,14 @@ const JourneyTimeline = () => {
                 animation: 'subtle-metallic 6s ease-in-out infinite',
               }}
             >
-              Produção
+              Sair do Zero
             </span>
+            {' '}e Entregar em Produção
           </h2>
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            8 passos práticos que te levam de requisitos de negócio a um sistema GenAI operando em produção.
-            <span className="block mt-2 text-orange-400 font-medium">É exatamente assim que times maduros trabalham.</span>
+            <span className="text-white font-semibold">Não é teoria.</span> Cada passo termina com algo funcionando — você vai do requisito ao deploy, construindo junto.
+            <span className="block mt-2 text-orange-400 font-medium">Clique em cada passo para ver os detalhes.</span>
           </p>
         </motion.div>
 

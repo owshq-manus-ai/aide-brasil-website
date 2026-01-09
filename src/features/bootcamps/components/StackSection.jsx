@@ -1,115 +1,122 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import {
-  Cloud,
-  Brain,
-  BarChart3,
-  GitBranch,
-  Bot,
-  Server,
   Layers,
-  Database,
-  Eye,
-  Code2
+  Database
 } from 'lucide-react'
+
+// Terraform SVG Icon component
+const TerraformIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+    <path d="M8.283 2v6.662l5.717 3.306v-6.66zM14.57 5.308v6.66l5.714-3.306V2zM2 5.308v6.66l5.715 3.307V8.614zM8.283 15.342L14 18.65V12l-5.717-3.306z"/>
+  </svg>
+)
 
 const stackCategories = [
   {
     category: 'Cloud',
-    description: 'Google Cloud Platform',
-    icon: Cloud,
+    description: 'Onde seu sistema roda',
+    image: '/images/logos/google-cloud-logo.png',
     items: [
-      { name: 'GCS', description: 'Landing Zone' },
-      { name: 'Cloud Run', description: 'Execution' },
-      { name: 'BigQuery', description: 'Warehouse' }
+      { name: 'GCS', description: 'Recebe arquivos' },
+      { name: 'Cloud Run', description: 'Processa dados' },
+      { name: 'BigQuery', description: 'Armazena tudo' }
     ],
-    color: 'blue'
+    color: 'gcp'
   },
   {
     category: 'GenAI',
-    description: 'LLM & Observability',
-    icon: Brain,
+    description: 'Extração inteligente',
+    image: '/images/logos/google-gemini-icon.webp',
     items: [
-      { name: 'Gemini', description: 'Vertex AI' },
-      { name: 'Langfuse', description: 'LLMOps' }
+      { name: 'Gemini', description: 'Extrai dados' },
+      { name: 'Langfuse', description: 'Monitora custo' }
     ],
-    color: 'purple'
+    color: 'gemini'
   },
   {
     category: 'Analytics',
-    description: 'Data Exploration',
-    icon: BarChart3,
+    description: 'Visualize resultados',
+    image: '/images/logos/hex-icon.png',
     items: [
-      { name: 'Hex', description: 'Dashboards' }
+      { name: 'Hex', description: 'Dashboards live' }
     ],
-    color: 'pink'
+    color: 'hex',
+    largeIcon: true
   },
   {
     category: 'CI/CD',
-    description: 'Automation Pipeline',
-    icon: GitBranch,
+    description: 'Deploy automático',
+    image: '/images/logos/github-icon.png',
     items: [
-      { name: 'GitHub Actions', description: 'Workflows' }
+      { name: 'GitHub Actions', description: 'Push → Produção' }
     ],
-    color: 'green'
+    color: 'github',
+    largeIcon: true
   },
   {
     category: 'DataOps',
-    description: 'Autonomous Operations',
-    icon: Bot,
+    description: 'Agentes trabalhando',
+    image: '/images/logos/crewai-icon.png',
     items: [
-      { name: 'CrewAI', description: 'Agents' }
+      { name: 'CrewAI', description: 'Opera sozinho' }
     ],
-    color: 'orange'
+    color: 'crewai'
   },
   {
     category: 'Infra',
-    description: 'Infrastructure as Code',
-    icon: Server,
+    description: 'Crie e destrua ambientes',
+    isTerraform: true,
     items: [
-      { name: 'Terraform', description: 'IaC' },
-      { name: 'Terragrunt', description: 'DRY Config' }
+      { name: 'Terraform', description: '1 comando' },
+      { name: 'Terragrunt', description: 'Sem repetição' }
     ],
-    color: 'cyan'
+    color: 'terraform'
   }
 ]
 
 const colorClasses = {
-  blue: {
-    bg: 'bg-blue-500/10',
-    border: 'border-blue-500/30',
-    text: 'text-blue-400',
-    glow: 'hover:shadow-blue-500/20'
+  gcp: {
+    bg: 'bg-[#4285f4]/10',
+    border: 'border-[#4285f4]/30',
+    text: 'text-[#4285f4]',
+    glow: 'hover:shadow-[#4285f4]/20',
+    iconBg: '#4285f4'
   },
-  purple: {
-    bg: 'bg-purple-500/10',
-    border: 'border-purple-500/30',
-    text: 'text-purple-400',
-    glow: 'hover:shadow-purple-500/20'
+  gemini: {
+    bg: 'bg-[#8e44ef]/10',
+    border: 'border-[#8e44ef]/30',
+    text: 'text-[#8e44ef]',
+    glow: 'hover:shadow-[#8e44ef]/20',
+    iconBg: '#8e44ef'
   },
-  pink: {
-    bg: 'bg-pink-500/10',
-    border: 'border-pink-500/30',
-    text: 'text-pink-400',
-    glow: 'hover:shadow-pink-500/20'
+  hex: {
+    bg: 'bg-[#ff6b6b]/10',
+    border: 'border-[#ff6b6b]/30',
+    text: 'text-[#ff6b6b]',
+    glow: 'hover:shadow-[#ff6b6b]/20',
+    iconBg: '#ff6b6b'
   },
-  green: {
-    bg: 'bg-green-500/10',
-    border: 'border-green-500/30',
-    text: 'text-green-400',
-    glow: 'hover:shadow-green-500/20'
+  github: {
+    bg: 'bg-white/10',
+    border: 'border-white/30',
+    text: 'text-white',
+    glow: 'hover:shadow-white/20',
+    iconBg: '#24292e'
   },
-  orange: {
-    bg: 'bg-orange-500/10',
-    border: 'border-orange-500/30',
-    text: 'text-orange-400',
-    glow: 'hover:shadow-orange-500/20'
+  crewai: {
+    bg: 'bg-[#ec4899]/10',
+    border: 'border-[#ec4899]/30',
+    text: 'text-[#ec4899]',
+    glow: 'hover:shadow-[#ec4899]/20',
+    iconBg: '#ec4899'
   },
-  cyan: {
-    bg: 'bg-cyan-500/10',
-    border: 'border-cyan-500/30',
-    text: 'text-cyan-400',
-    glow: 'hover:shadow-cyan-500/20'
+  terraform: {
+    bg: 'bg-[#7b42bc]/10',
+    border: 'border-[#7b42bc]/30',
+    text: 'text-[#7b42bc]',
+    glow: 'hover:shadow-[#7b42bc]/20',
+    iconBg: '#7b42bc'
   }
 }
 
@@ -155,11 +162,11 @@ const StackSection = () => {
             className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2 mb-6"
           >
             <Layers className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Stack Utilizada</span>
+            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Seu Toolkit de Produção</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
-            Tecnologias de{' '}
+            A Stack que{' '}
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
@@ -168,13 +175,14 @@ const StackSection = () => {
                 animation: 'subtle-metallic 6s ease-in-out infinite',
               }}
             >
-              Produção
+              Empresas Usam
             </span>
+            {' '}— Não Tutoriais
           </h2>
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            Stack moderna e battle-tested usada por empresas Fortune 500.
-            Multi-cloud por design, GCP na prática.
+            <span className="text-orange-400 font-bold">Ferramentas de Fortune 500.</span>{' '}
+            GCP na prática, mas com arquitetura portável — migre para AWS ou Azure quando quiser.
           </p>
         </motion.div>
 
@@ -182,7 +190,6 @@ const StackSection = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {stackCategories.map((category, index) => {
             const colors = colorClasses[category.color]
-            const Icon = category.icon
 
             return (
               <motion.div
@@ -199,8 +206,21 @@ const StackSection = () => {
               >
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-10 h-10 rounded-lg ${colors.bg} flex items-center justify-center`}>
-                    <Icon className={`w-5 h-5 ${colors.text}`} />
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center"
+                    style={{ backgroundColor: `${colors.iconBg}20` }}
+                  >
+                    {category.isTerraform ? (
+                      <div style={{ color: colors.iconBg }}>
+                        <TerraformIcon />
+                      </div>
+                    ) : (
+                      <img
+                        src={category.image}
+                        alt={category.category}
+                        className={`${category.largeIcon ? 'w-7 h-7' : 'w-6 h-6'} object-contain`}
+                      />
+                    )}
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-white">{category.category}</h3>
@@ -233,10 +253,16 @@ const StackSection = () => {
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500/10 to-amber-500/10 border border-orange-500/20 rounded-xl px-6 py-4">
-            <Database className="w-5 h-5 text-orange-400" />
-            <span className="text-white/80">
-              Arquitetura <span className="text-orange-400 font-semibold">Adapter Pattern</span> — portável para AWS e Azure
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-orange-500/10 to-amber-500/10 border border-orange-500/20 rounded-xl px-6 py-4">
+            <div className="flex items-center gap-3">
+              <Database className="w-5 h-5 text-orange-400" />
+              <span className="text-white/80">
+                <span className="text-orange-400 font-bold">Adapter Pattern</span> — troque de cloud sem reescrever código
+              </span>
+            </div>
+            <div className="hidden sm:block w-px h-6 bg-white/20" />
+            <span className="text-white/60 text-sm">
+              GCP hoje → <span className="text-blue-400">AWS</span> ou <span className="text-cyan-400">Azure</span> amanhã
             </span>
           </div>
         </motion.div>

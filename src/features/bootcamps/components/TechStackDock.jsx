@@ -99,8 +99,19 @@ const CrewAIIcon = memo(() => (
 ))
 CrewAIIcon.displayName = 'CrewAIIcon'
 
-// Technology stack configuration (10 technologies)
+// 11. Anthropic (image)
+const AnthropicIcon = memo(() => (
+  <img
+    src="/images/logos/anthropic-icon.webp"
+    alt="Anthropic"
+    className="w-6 h-6 object-contain"
+  />
+))
+AnthropicIcon.displayName = 'AnthropicIcon'
+
+// Technology stack configuration (11 technologies)
 const technologies = [
+  { name: 'Anthropic', description: 'AI Research Lab', Icon: AnthropicIcon, color: '#d4a574' },
   { name: 'Claude Code', description: 'AI Coding Agent', Icon: ClaudeIcon, color: '#f97316' },
   { name: 'Cursor IDE', description: 'AI-First Editor', Icon: CursorIcon, color: '#00d4ff' },
   { name: 'GitHub', description: 'Version Control', Icon: GitHubIcon, color: '#ffffff' },

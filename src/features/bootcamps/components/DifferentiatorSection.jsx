@@ -14,38 +14,38 @@ import {
 
 const differentiators = [
   {
-    title: 'Começa pelo Problema',
-    description: 'Não pela ferramenta. Você enfrenta um caso de negócio real desde o primeiro dia — invoice intelligence com extração de dados de notas fiscais reais.',
+    title: 'Problema Real, Não Demo',
+    description: 'Outros cursos: datasets de exemplo. Aqui: invoice intelligence — extraindo dados de notas fiscais reais desde o dia 1.',
     icon: Target,
     highlight: 'invoice intelligence'
   },
   {
-    title: 'Claude Code como Engenheiro',
-    description: 'IA não é autocomplete. Claude Code é seu par de programação que entende arquitetura, escreve código limpo e segue as melhores práticas do projeto.',
+    title: 'Agente, Não Autocomplete',
+    description: 'Outros cursos: ChatGPT como assistente. Aqui: Claude Code como seu par de programação — escreve, revisa e deploya código.',
     icon: Bot,
     highlight: 'par de programação'
   },
   {
-    title: 'Multi-Cloud Ready',
-    description: 'GCP na prática, mas com arquitetura 100% portável. Os conceitos e padrões aplicam para AWS, Azure ou qualquer provider cloud.',
+    title: 'Multi-Cloud, Não Vendor Lock',
+    description: 'Outros cursos: amarrados em um provider. Aqui: arquitetura 100% portável — GCP hoje, AWS ou Azure amanhã.',
     icon: Cloud,
     highlight: '100% portável'
   },
   {
-    title: 'LLMOps Completo',
-    description: 'Vai além de prompt engineering. Implementamos observabilidade com Langfuse, testes automatizados, monitoramento de drift e custos.',
+    title: 'LLMOps, Não Só Prompt',
+    description: 'Outros cursos: param no prompt. Aqui: observabilidade com Langfuse — custo, latência, qualidade e drift monitorados.',
     icon: BarChart3,
     highlight: 'observabilidade com Langfuse'
   },
   {
-    title: 'DataOps com Agents',
-    description: 'Fecha o ciclo de automação com CrewAI Agents. Operações de dados rodando autonomamente, com supervisão e alertas inteligentes.',
+    title: 'Autonomia, Não Manual',
+    description: 'Outros cursos: você executa tudo. Aqui: CrewAI Agents operando sozinhos — com supervisão e alertas inteligentes.',
     icon: Settings,
     highlight: 'CrewAI Agents'
   },
   {
-    title: 'Portfolio de Produção',
-    description: 'Ao final, você tem um sistema completo rodando — não um tutorial. Um projeto real para mostrar em entrevistas e no LinkedIn.',
+    title: 'Produção, Não Certificado',
+    description: 'Outros cursos: PDF no LinkedIn. Aqui: sistema completo rodando — projeto real para mostrar em entrevistas.',
     icon: Trophy,
     highlight: 'sistema completo rodando'
   }
@@ -90,11 +90,11 @@ const DifferentiatorSection = () => {
             className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2 mb-6"
           >
             <AlertTriangle className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Por que isso não é mais um curso</span>
+            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">O Que Faz a Diferença</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
-            Este Bootcamp é{' '}
+            6 Razões Para{' '}
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
@@ -103,14 +103,14 @@ const DifferentiatorSection = () => {
                 animation: 'subtle-metallic 6s ease-in-out infinite',
               }}
             >
-              Diferente
+              Nunca Mais
             </span>
+            {' '}Fazer Curso de Prompt
           </h2>
 
           <p className="text-xl text-white/70 max-w-3xl mx-auto">
-            Chega de cursos que ficam na teoria. Este bootcamp foi desenhado por quem{' '}
-            <span className="text-orange-400 font-semibold">constrói sistemas em produção</span> —
-            para quem quer fazer o mesmo.
+            <span className="text-orange-400 font-bold">Tutoriais te dão teoria.</span>{' '}
+            Aqui você sai com um <span className="text-white font-semibold">sistema funcionando em produção</span> — e a metodologia para replicar em qualquer projeto.
           </p>
         </motion.div>
 
@@ -160,11 +160,11 @@ const DifferentiatorSection = () => {
         >
           <div className="inline-block bg-gradient-to-r from-orange-500/10 to-amber-500/10 border border-orange-500/20 rounded-2xl px-8 py-6">
             <p className="text-2xl font-oswald text-white mb-2">
-              Não é curso de prompt.{' '}
-              <span className="text-orange-400">Não é demo.</span>
+              <span className="text-white/60">Outros ensinam</span>{' '}
+              <span className="text-red-400 line-through">ferramentas</span>.
             </p>
             <p className="text-xl text-white/80">
-              É <span className="text-orange-400 font-bold">engenharia aplicada</span> com IA.
+              Nós ensinamos a <span className="text-orange-400 font-bold">construir e operar sistemas</span> com elas.
             </p>
           </div>
         </motion.div>

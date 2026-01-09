@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Play, Brain, Sparkles, ChevronRight, BookOpen, X, Zap, Terminal, Bot, Rocket } from 'lucide-react'
+import { Play, Sparkles, ChevronRight, X, Terminal, Bot, Rocket } from 'lucide-react'
 
 const BootcampVideoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -63,12 +63,12 @@ const BootcampVideoSection = () => {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2 mb-6"
           >
-            <Terminal className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Entenda o Bootcamp</span>
+            <Play className="w-4 h-4 text-orange-400" />
+            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Veja em 3 Minutos</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-6xl font-oswald font-bold text-white mb-6">
-            <span className="block text-2xl md:text-3xl text-white/70 mb-2">Chega de Vibe Coding.</span>
+            <span className="block text-2xl md:text-3xl text-white/70 mb-2">Pare de Adivinhar.</span>
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
@@ -83,7 +83,7 @@ const BootcampVideoSection = () => {
                 filter: 'drop-shadow(0 0 30px rgba(251, 146, 60, 0.5))',
               }}
             >
-              Engenharia Real
+              Engenharia de Verdade
             </span>
             {' '}com{' '}
             <span
@@ -104,10 +104,10 @@ const BootcampVideoSection = () => {
             </span>
           </h2>
 
-          {/* Aggressive Copy from Briefing - 2 lines */}
+          {/* Aggressive Copy - Transformation promise */}
           <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-            <span className="text-orange-400 font-bold">Não é curso de prompt. Não é demo.</span>{' '}
-            É <span className="text-white font-bold">engenharia aplicada com IA</span> — construa e opere uma solução GenAI <span className="text-green-400 font-bold">fim a fim em produção</span>.
+            <span className="text-orange-400 font-bold">Não é tutorial. Não é demo.</span>{' '}
+            É o processo completo para <span className="text-white font-bold">transformar requisitos em código de produção</span> — com agentes que <span style={{ color: '#E07A5F' }} className="font-bold">executam, não sugerem</span>.
           </p>
 
           {/* Video Stats */}
@@ -118,16 +118,16 @@ const BootcampVideoSection = () => {
             className="flex flex-wrap items-center justify-center gap-6 mt-8"
           >
             <div className="flex items-center gap-2 bg-orange-500/10 rounded-full px-4 py-2">
+              <Terminal className="w-4 h-4 text-orange-400" />
+              <span className="text-white/80 text-sm">Metodologia Guiada</span>
+            </div>
+            <div className="flex items-center gap-2 bg-orange-500/10 rounded-full px-4 py-2">
               <Bot className="w-4 h-4 text-orange-400" />
-              <span className="text-white/80 text-sm">AI-Native Workflow</span>
+              <span className="text-white/80 text-sm">Agentes que Executam</span>
             </div>
             <div className="flex items-center gap-2 bg-orange-500/10 rounded-full px-4 py-2">
               <Rocket className="w-4 h-4 text-orange-400" />
-              <span className="text-white/80 text-sm">Do Requisito à Produção</span>
-            </div>
-            <div className="flex items-center gap-2 bg-orange-500/10 rounded-full px-4 py-2">
-              <Zap className="w-4 h-4 text-orange-400" />
-              <span className="text-white/80 text-sm">LLMOps + DataOps</span>
+              <span className="text-white/80 text-sm">Produção Real</span>
             </div>
           </motion.div>
         </motion.div>
@@ -151,11 +151,11 @@ const BootcampVideoSection = () => {
               >
                 {/* Video Cover Background with Hero Image */}
                 <div className="absolute inset-0">
-                  {/* Background Image */}
+                  {/* Background Image - Full screen, fills entire box */}
                   <img
-                    src="/images/backgrounds/dominando-chatgpt-agent-builder.png"
-                    alt="AI Data Engineer Bootcamp"
-                    className="w-full h-full object-cover"
+                    src="/images/team/luan-moreno-4.png"
+                    alt="Luan Moreno - AI Data Engineer"
+                    className="w-full h-full object-cover object-center"
                   />
 
                   {/* Orange Gradient Overlay */}
@@ -163,18 +163,18 @@ const BootcampVideoSection = () => {
                     className="absolute inset-0"
                     style={{
                       background: `linear-gradient(135deg,
-                        rgba(251, 146, 60, 0.3) 0%,
-                        rgba(10, 10, 10, 0.4) 40%,
-                        rgba(10, 10, 10, 0.7) 70%,
-                        rgba(10, 10, 10, 0.9) 100%)`,
+                        rgba(251, 146, 60, 0.2) 0%,
+                        rgba(10, 10, 10, 0.3) 40%,
+                        rgba(10, 10, 10, 0.5) 70%,
+                        rgba(10, 10, 10, 0.7) 100%)`,
                     }}
                   />
 
-                  {/* Dark vignette for better contrast */}
+                  {/* Subtle vignette for depth */}
                   <div
                     className="absolute inset-0"
                     style={{
-                      background: 'radial-gradient(circle at center, transparent 0%, rgba(10, 10, 10, 0.5) 100%)',
+                      background: 'radial-gradient(circle at center, transparent 30%, rgba(10, 10, 10, 0.4) 100%)',
                     }}
                   />
                 </div>
@@ -252,29 +252,6 @@ const BootcampVideoSection = () => {
                   </motion.div>
                 </div>
 
-                {/* Bottom Info */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="absolute bottom-8 left-0 right-0"
-                >
-                  <div className="text-center mb-4">
-                    <p className="text-white text-xl font-oswald mb-2">
-                      Entenda a proposta do Bootcamp
-                    </p>
-                    <div className="flex items-center justify-center gap-4 text-white/60 text-sm">
-                      <span className="flex items-center gap-1">
-                        <Play className="w-4 h-4" />
-                        Explicação Detalhada
-                      </span>
-                      <span>•</span>
-                      <span>Gratuito</span>
-                      <span>•</span>
-                      <span>HD Quality</span>
-                    </div>
-                  </div>
-                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>

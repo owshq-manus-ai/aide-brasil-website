@@ -16,63 +16,65 @@ import {
   Settings,
   Rocket,
   Shield,
-  Code2
+  Code2,
+  Mouse,
+  Bot
 } from 'lucide-react'
 
 const claudeCodeFeatures = [
   {
     icon: FileText,
     title: 'CLAUDE.md',
-    description: 'Configure o comportamento do Claude Code com contexto permanente do projeto',
+    description: 'Faça o Claude entender seu projeto inteiro com um único arquivo de contexto permanente',
     highlight: 'contexto permanente',
     color: 'orange'
   },
   {
     icon: Server,
     title: 'MCPs (Model Context Protocol)',
-    description: 'Conecte ferramentas externas via servidores MCP para expandir capacidades',
+    description: 'Conecte bancos, APIs e ferramentas externas — o Claude executa ações reais via servidores MCP',
     highlight: 'servidores MCP',
     color: 'purple'
   },
   {
     icon: BookOpen,
     title: 'Knowledge Base',
-    description: 'Alimente o Claude com documentação e padrões do seu projeto via KB',
+    description: 'Injete documentação e padrões do projeto para respostas precisas, não genéricas',
     highlight: 'documentação e padrões',
     color: 'blue'
   },
   {
     icon: Users,
     title: 'SubAgents',
-    description: 'Delegue tarefas complexas para agentes especializados automaticamente',
+    description: 'Delegue tarefas complexas para uma frota de agentes especializados que trabalham em paralelo',
     highlight: 'agentes especializados',
     color: 'green'
   },
   {
     icon: Terminal,
     title: 'Commands',
-    description: 'Crie comandos personalizados para automatizar workflows repetitivos',
+    description: 'Automatize workflows repetitivos com comandos personalizados — digite uma vez, execute sempre',
     highlight: 'comandos personalizados',
     color: 'cyan'
   },
   {
     icon: Webhook,
     title: 'Hooks',
-    description: 'Execute ações automaticamente em eventos específicos do Claude Code',
+    description: 'Dispare ações automaticamente em eventos do código — lint, test, deploy sem intervenção',
     highlight: 'ações automaticamente',
     color: 'pink'
   },
   {
     icon: Wand2,
     title: 'Skills',
-    description: 'Pacotes de capacidades reutilizáveis para tarefas específicas de projeto',
+    description: 'Empacote capacidades reutilizáveis que transformam o Claude em especialista do seu domínio',
     highlight: 'capacidades reutilizáveis',
     color: 'amber'
   },
   {
     icon: Settings,
     title: 'Prompts & Templates',
-    description: 'Crie prompts estruturados e templates para garantir outputs consistentes',
+    description: 'Garanta outputs consistentes com prompts estruturados — mesmo resultado, toda vez',
     highlight: 'outputs consistentes',
     color: 'red'
   }
@@ -171,11 +173,11 @@ const PromiseSection = () => {
             className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2 mb-6"
           >
             <Brain className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Domine Claude Code</span>
+            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Seu Arsenal Completo</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
-            Features do{' '}
+            8 Superpoderes do{' '}
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
@@ -186,11 +188,11 @@ const PromiseSection = () => {
             >
               Claude Code
             </span>
-            {' '}que você vai dominar
+            {' '}que Ninguém Ensina
           </h2>
 
           <p className="text-xl text-white/70 max-w-3xl mx-auto mb-6">
-            Aprenda as melhores práticas e recursos avançados para usar Claude Code como um engenheiro de verdade.
+            <span className="text-orange-400 font-bold">Esqueça tutoriais básicos.</span> Você vai configurar e operar cada recurso avançado — da setup inicial ao deploy automatizado.
           </p>
 
           {/* Key message about building with Claude Code */}
@@ -201,12 +203,20 @@ const PromiseSection = () => {
             viewport={{ once: true }}
             className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500/20 to-amber-500/20 border border-orange-500/40 rounded-xl px-6 py-3"
           >
-            <Code2 className="w-5 h-5 text-orange-400" />
+            <img
+              src="/images/logos/anthropic-icon.webp"
+              alt="Anthropic"
+              className="w-6 h-6 object-contain"
+            />
             <span className="text-white/90">
               <span className="text-orange-400 font-bold">100% do projeto</span> será construído usando Claude Code —{' '}
               <span className="text-amber-400 font-semibold">do requisito ao deploy</span>
             </span>
-            <Rocket className="w-5 h-5 text-amber-400" />
+            <img
+              src="/images/logos/claude-code-icon.png"
+              alt="Claude Code"
+              className="w-6 h-6 object-contain"
+            />
           </motion.div>
         </motion.div>
 
@@ -272,10 +282,10 @@ const PromiseSection = () => {
               <div className="flex flex-col md:flex-row items-center justify-center gap-6">
                 {/* Best Practices Badge */}
                 <div className="flex items-center gap-3 bg-green-500/20 border border-green-500/40 rounded-xl px-5 py-3">
-                  <CheckCircle className="w-7 h-7 text-green-400" />
+                  <Mouse className="w-7 h-7 text-green-400" />
                   <div className="text-left">
                     <span className="text-green-400 font-oswald text-xl font-bold block">Best Practices</span>
-                    <span className="text-white/60 text-sm">Padrões de produção</span>
+                    <span className="text-white/60 text-sm">Context Engineering + LLMOps + CI/CD</span>
                   </div>
                 </div>
 
@@ -289,12 +299,7 @@ const PromiseSection = () => {
 
                 {/* Engineering Result */}
                 <div className="flex items-center gap-3 bg-gradient-to-r from-orange-500/20 to-amber-500/20 border border-orange-500/40 rounded-xl px-5 py-3">
-                  <motion.div
-                    animate={{ rotate: [0, 10, -10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <Sparkles className="w-7 h-7 text-orange-400" />
-                  </motion.div>
+                  <Bot className="w-7 h-7 text-orange-400" />
                   <div className="text-left">
                     <span
                       className="font-oswald text-xl font-bold block bg-clip-text text-transparent"
@@ -304,9 +309,9 @@ const PromiseSection = () => {
                         animation: 'subtle-metallic 3s ease-in-out infinite',
                       }}
                     >
-                      Engenharia de Verdade com IA
+                      Frota de Agentes
                     </span>
-                    <span className="text-white/60 text-sm">Sem vibe coding, com resultados reais</span>
+                    <span className="text-white/60 text-sm">Código real em produção, não sugestões</span>
                   </div>
                   <Shield className="w-6 h-6 text-amber-400" />
                 </div>
