@@ -112,6 +112,7 @@ DeliverableItem.displayName = 'DeliverableItem'
 
 // Pricing Tier Card component - memoized
 // Mobile: optimized padding and touch targets
+// Mobile: natural order (Early Bird → Lote Decisão → Lote Final), no order manipulation
 const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
   const Icon = tier.icon
 
@@ -121,7 +122,7 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className={`relative ${tier.highlight ? 'md:-mt-4 md:mb-4 order-first md:order-none' : ''}`}
+      className={`relative ${tier.highlight ? 'md:-mt-4 md:mb-4' : ''}`}
     >
       <div
         className={`

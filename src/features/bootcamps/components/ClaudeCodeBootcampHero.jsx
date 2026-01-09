@@ -28,12 +28,13 @@ const sharedStyles = `
 `
 
 // Learning Item Component - Claude Code coral style with custom icons
+// Mobile: min-w-0 + break-words prevents text overflow on small screens
 const LearningItem = memo(({ text, delay, icon: Icon = CheckCircle }) => (
   <motion.div
     initial={{ opacity: 0, x: 20 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ delay, duration: 0.4 }}
-    className="flex items-start gap-2.5"
+    className="flex items-start gap-2.5 min-w-0"
   >
     <div
       className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
@@ -44,7 +45,7 @@ const LearningItem = memo(({ text, delay, icon: Icon = CheckCircle }) => (
     >
       <Icon className="w-3 h-3" style={{ color: '#E07A5F' }} />
     </div>
-    <span className="text-white/80 text-sm leading-relaxed">{text}</span>
+    <span className="text-white/80 text-sm leading-relaxed break-words min-w-0">{text}</span>
   </motion.div>
 ))
 LearningItem.displayName = 'LearningItem'
@@ -277,12 +278,12 @@ const ClaudeCodeBootcampHero = memo(() => {
             </motion.div>
 
             {/* Subtitle - Transformation promise with contrast */}
-            {/* Mobile: smaller text for readability */}
+            {/* Mobile: smaller text for readability, break-words prevents overflow */}
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-lg sm:text-xl md:text-2xl font-medium leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl font-medium leading-relaxed break-words"
               style={{ color: '#E07A5F' }}
             >
               Use Claude Code{' '}
@@ -391,20 +392,20 @@ const ClaudeCodeBootcampHero = memo(() => {
               }}
             />
 
-            <div className="relative bg-gradient-to-br from-[#1a1a1a]/95 to-[#151515]/95 backdrop-blur-md rounded-xl px-3 py-4 shadow-xl" style={{ border: '1px solid rgba(224, 122, 95, 0.2)' }}>
+            <div className="relative bg-gradient-to-br from-[#1a1a1a]/95 to-[#151515]/95 backdrop-blur-md rounded-xl px-3 sm:px-4 py-4 shadow-xl overflow-hidden" style={{ border: '1px solid rgba(224, 122, 95, 0.2)' }}>
               {/* Header with Claude Code logo */}
-              <div className="flex items-center gap-2.5 mb-3">
+              <div className="flex items-center gap-2.5 mb-3 min-w-0">
                 <img
                   src="/images/logos/claude-code-icon.png"
                   alt="Claude Code"
-                  className="w-8 h-8 rounded-lg object-contain"
+                  className="w-8 h-8 rounded-lg object-contain flex-shrink-0"
                   loading="eager"
                 />
-                <h3 className="text-lg font-oswald font-bold text-white">O que você vai aprender:</h3>
+                <h3 className="text-base sm:text-lg font-oswald font-bold text-white truncate sm:whitespace-normal">O que você vai aprender:</h3>
               </div>
 
               {/* Learning Points */}
-              <div className="space-y-2">
+              <div className="space-y-2 overflow-hidden">
                 {learningPoints.map((point, index) => (
                   <LearningItem
                     key={index}
