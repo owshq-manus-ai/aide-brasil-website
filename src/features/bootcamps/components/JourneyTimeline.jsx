@@ -106,8 +106,8 @@ const StepCard = ({ step, index, isExpanded, onToggle }) => {
           relative bg-gradient-to-br from-white/[0.05] to-white/[0.02] backdrop-blur-sm rounded-2xl p-6
           border transition-all duration-300 cursor-pointer
           ${step.isCore
-            ? 'border-orange-500/40 shadow-lg shadow-orange-500/10'
-            : 'border-white/10 hover:border-orange-500/30'
+            ? 'border-[#E07A5F]/40 shadow-lg shadow-[#E07A5F]/10'
+            : 'border-white/10 hover:border-[#E07A5F]/30'
           }
         `}
         onClick={onToggle}
@@ -115,7 +115,7 @@ const StepCard = ({ step, index, isExpanded, onToggle }) => {
         {/* Core Badge */}
         {step.isCore && (
           <div className="absolute -top-3 left-6">
-            <div className="inline-flex items-center gap-1 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full px-3 py-1">
+            <div className="inline-flex items-center gap-1 rounded-full px-3 py-1" style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}>
               <Sparkles className="w-3 h-3 text-white" />
               <span className="text-white text-xs font-bold uppercase">Core</span>
             </div>
@@ -126,13 +126,11 @@ const StepCard = ({ step, index, isExpanded, onToggle }) => {
         <div className="flex items-start gap-4">
           {/* Step Number */}
           <div
-            className={`
-              w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 font-oswald font-bold text-xl
-              ${step.isCore
-                ? 'bg-gradient-to-br from-orange-500 to-amber-500 text-white'
-                : 'bg-orange-500/20 text-orange-400 border border-orange-500/30'
-              }
-            `}
+            className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 font-oswald font-bold text-xl"
+            style={step.isCore
+              ? { background: 'linear-gradient(135deg, #E07A5F, #F0A090)', color: 'white' }
+              : { backgroundColor: 'rgba(224, 122, 95, 0.2)', color: '#E07A5F', border: '1px solid rgba(224, 122, 95, 0.3)' }
+            }
           >
             {step.number}
           </div>
@@ -140,13 +138,13 @@ const StepCard = ({ step, index, isExpanded, onToggle }) => {
           {/* Title & Subtitle */}
           <div className="flex-1">
             <h3 className="text-xl font-bold text-white mb-1">{step.title}</h3>
-            <p className="text-orange-400 text-sm font-medium">{step.subtitle}</p>
+            <p className="text-sm font-medium" style={{ color: '#E07A5F' }}>{step.subtitle}</p>
           </div>
 
           {/* Icon & Expand */}
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
-              <Icon className="w-5 h-5 text-orange-400" />
+              <Icon className="w-5 h-5" style={{ color: '#E07A5F' }} />
             </div>
             <motion.div
               animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -181,7 +179,8 @@ const StepCard = ({ step, index, isExpanded, onToggle }) => {
                     {step.skills.map((skill, i) => (
                       <span
                         key={i}
-                        className="inline-flex items-center gap-1 bg-orange-500/10 border border-orange-500/20 rounded-full px-3 py-1 text-orange-400 text-xs"
+                        className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs"
+                        style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)', border: '1px solid rgba(224, 122, 95, 0.2)', color: '#E07A5F' }}
                       >
                         <CheckCircle className="w-3 h-3" />
                         {skill}
@@ -224,8 +223,8 @@ const JourneyTimeline = () => {
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 800px 400px at 50% 20%, rgba(251, 146, 60, 0.06) 0%, transparent 50%),
-              radial-gradient(ellipse 600px 300px at 30% 80%, rgba(245, 158, 11, 0.04) 0%, transparent 50%)
+              radial-gradient(ellipse 800px 400px at 50% 20%, rgba(224, 122, 95, 0.06) 0%, transparent 50%),
+              radial-gradient(ellipse 600px 300px at 30% 80%, rgba(224, 122, 95, 0.04) 0%, transparent 50%)
             `,
           }}
         />
@@ -245,10 +244,11 @@ const JourneyTimeline = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
+            style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)', border: '1px solid rgba(224, 122, 95, 0.3)' }}
           >
-            <GitBranch className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Sua Jornada em 4 Dias</span>
+            <GitBranch className="w-4 h-4" style={{ color: '#E07A5F' }} />
+            <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>Sua Jornada em 4 Dias</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
@@ -256,7 +256,7 @@ const JourneyTimeline = () => {
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
-                backgroundImage: `linear-gradient(90deg, #f97316 0%, #fbbf24 50%, #f97316 100%)`,
+                backgroundImage: `linear-gradient(90deg, #E07A5F 0%, #F0A090 50%, #E07A5F 100%)`,
                 backgroundSize: '200% 100%',
                 animation: 'subtle-metallic 6s ease-in-out infinite',
               }}
@@ -268,14 +268,14 @@ const JourneyTimeline = () => {
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
             <span className="text-white font-semibold">Não é teoria.</span> Cada passo termina com algo funcionando — você vai do requisito ao deploy, construindo junto.
-            <span className="block mt-2 text-orange-400 font-medium">Clique em cada passo para ver os detalhes.</span>
+            <span className="block mt-2 font-medium" style={{ color: '#E07A5F' }}>Clique em cada passo para ver os detalhes.</span>
           </p>
         </motion.div>
 
         {/* Timeline */}
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-orange-500/50 via-orange-500/20 to-transparent hidden lg:block" />
+          <div className="absolute left-1/2 top-0 bottom-0 w-px hidden lg:block" style={{ background: 'linear-gradient(to bottom, rgba(224, 122, 95, 0.5), rgba(224, 122, 95, 0.2), transparent)' }} />
 
           {/* Steps */}
           <div className="space-y-6">

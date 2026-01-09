@@ -14,14 +14,14 @@ const BootcampVideoSection = () => {
 
   return (
     <section className="relative py-20 bg-[#0a0a0a] overflow-hidden">
-      {/* Background with Orange Theme */}
+      {/* Background with Coral Theme */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
             background: `linear-gradient(180deg,
               #0a0a0a 0%,
-              #1a0f0a 50%,
+              #120a08 50%,
               #0a0a0a 100%)`,
           }}
         />
@@ -30,8 +30,8 @@ const BootcampVideoSection = () => {
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 800px 400px at 20% 20%, rgba(251, 146, 60, 0.08) 0%, transparent 40%),
-              radial-gradient(ellipse 600px 300px at 80% 80%, rgba(245, 158, 11, 0.06) 0%, transparent 40%)`,
+              radial-gradient(ellipse 800px 400px at 20% 20%, rgba(224, 122, 95, 0.08) 0%, transparent 40%),
+              radial-gradient(ellipse 600px 300px at 80% 80%, rgba(224, 122, 95, 0.06) 0%, transparent 40%)`,
             filter: 'blur(60px)',
           }}
         />
@@ -40,8 +40,8 @@ const BootcampVideoSection = () => {
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(251, 146, 60, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(251, 146, 60, 0.1) 1px, transparent 1px)`,
+              linear-gradient(rgba(224, 122, 95, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(224, 122, 95, 0.1) 1px, transparent 1px)`,
             backgroundSize: '50px 50px',
           }}
         />
@@ -61,10 +61,11 @@ const BootcampVideoSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
+            style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)', border: '1px solid rgba(224, 122, 95, 0.3)' }}
           >
-            <Play className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Veja em 3 Minutos</span>
+            <Play className="w-4 h-4" style={{ color: '#E07A5F' }} />
+            <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>Veja em 3 Minutos</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-6xl font-oswald font-bold text-white mb-6">
@@ -73,14 +74,14 @@ const BootcampVideoSection = () => {
               className="inline-block bg-clip-text text-transparent"
               style={{
                 backgroundImage: `linear-gradient(90deg,
-                  #f97316 0%,
-                  #fbbf24 25%,
-                  #fef3c7 50%,
-                  #fbbf24 75%,
-                  #f97316 100%)`,
+                  #E07A5F 0%,
+                  #F0A090 25%,
+                  #F5C4B8 50%,
+                  #F0A090 75%,
+                  #E07A5F 100%)`,
                 backgroundSize: '200% 100%',
                 animation: 'subtle-metallic 6s ease-in-out infinite',
-                filter: 'drop-shadow(0 0 30px rgba(251, 146, 60, 0.5))',
+                filter: 'drop-shadow(0 0 30px rgba(224, 122, 95, 0.5))',
               }}
             >
               Engenharia de Verdade
@@ -90,14 +91,14 @@ const BootcampVideoSection = () => {
               className="inline-block bg-clip-text text-transparent"
               style={{
                 backgroundImage: `linear-gradient(90deg,
-                  #fb923c 0%,
-                  #fcd34d 25%,
-                  #fef9c3 50%,
-                  #fcd34d 75%,
-                  #fb923c 100%)`,
+                  #E07A5F 0%,
+                  #F0A090 25%,
+                  #F5C4B8 50%,
+                  #F0A090 75%,
+                  #E07A5F 100%)`,
                 backgroundSize: '200% 100%',
                 animation: 'subtle-metallic 6s ease-in-out infinite 1s',
-                filter: 'drop-shadow(0 0 30px rgba(251, 191, 36, 0.5))',
+                filter: 'drop-shadow(0 0 30px rgba(224, 122, 95, 0.5))',
               }}
             >
               Claude Code
@@ -106,7 +107,7 @@ const BootcampVideoSection = () => {
 
           {/* Aggressive Copy - Transformation promise */}
           <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-            <span className="text-orange-400 font-bold">Não é tutorial. Não é demo.</span>{' '}
+            <span style={{ color: '#E07A5F' }} className="font-bold">Não é tutorial. Não é demo.</span>{' '}
             É o processo completo para <span className="text-white font-bold">transformar requisitos em código de produção</span> — com agentes que <span style={{ color: '#E07A5F' }} className="font-bold">executam, não sugerem</span>.
           </p>
 
@@ -117,16 +118,16 @@ const BootcampVideoSection = () => {
             transition={{ delay: 0.3 }}
             className="flex flex-wrap items-center justify-center gap-6 mt-8"
           >
-            <div className="flex items-center gap-2 bg-orange-500/10 rounded-full px-4 py-2">
-              <Terminal className="w-4 h-4 text-orange-400" />
+            <div className="flex items-center gap-2 rounded-full px-4 py-2" style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)' }}>
+              <Terminal className="w-4 h-4" style={{ color: '#E07A5F' }} />
               <span className="text-white/80 text-sm">Metodologia Guiada</span>
             </div>
-            <div className="flex items-center gap-2 bg-orange-500/10 rounded-full px-4 py-2">
-              <Bot className="w-4 h-4 text-orange-400" />
+            <div className="flex items-center gap-2 rounded-full px-4 py-2" style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)' }}>
+              <Bot className="w-4 h-4" style={{ color: '#E07A5F' }} />
               <span className="text-white/80 text-sm">Agentes que Executam</span>
             </div>
-            <div className="flex items-center gap-2 bg-orange-500/10 rounded-full px-4 py-2">
-              <Rocket className="w-4 h-4 text-orange-400" />
+            <div className="flex items-center gap-2 rounded-full px-4 py-2" style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)' }}>
+              <Rocket className="w-4 h-4" style={{ color: '#E07A5F' }} />
               <span className="text-white/80 text-sm">Produção Real</span>
             </div>
           </motion.div>
@@ -138,7 +139,8 @@ const BootcampVideoSection = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-orange-500/20"
+          className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl"
+          style={{ border: '1px solid rgba(224, 122, 95, 0.2)' }}
         >
           <AnimatePresence>
             {!isPlaying && (
@@ -158,12 +160,12 @@ const BootcampVideoSection = () => {
                     className="w-full h-full object-cover object-center"
                   />
 
-                  {/* Orange Gradient Overlay */}
+                  {/* Coral Gradient Overlay */}
                   <div
                     className="absolute inset-0"
                     style={{
                       background: `linear-gradient(135deg,
-                        rgba(251, 146, 60, 0.2) 0%,
+                        rgba(224, 122, 95, 0.2) 0%,
                         rgba(10, 10, 10, 0.3) 40%,
                         rgba(10, 10, 10, 0.5) 70%,
                         rgba(10, 10, 10, 0.7) 100%)`,
@@ -184,12 +186,13 @@ const BootcampVideoSection = () => {
                   {[...Array(20)].map((_, i) => (
                     <motion.div
                       key={`particle-${i}`}
-                      className="absolute w-1 h-1 bg-orange-400/60 rounded-full"
+                      className="absolute w-1 h-1 rounded-full"
                       style={{
                         left: `${10 + Math.random() * 80}%`,
                         top: `${10 + Math.random() * 80}%`,
                         filter: 'blur(1px)',
-                        boxShadow: '0 0 6px rgba(251, 146, 60, 0.6)',
+                        backgroundColor: 'rgba(224, 122, 95, 0.6)',
+                        boxShadow: '0 0 6px rgba(224, 122, 95, 0.6)',
                       }}
                       animate={{
                         y: [-10, 10, -10],
@@ -237,9 +240,10 @@ const BootcampVideoSection = () => {
                     </motion.div>
 
                     {/* Play button in center */}
-                    <div className="relative w-24 h-24 bg-gradient-to-r from-orange-500 to-amber-500 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30 group-hover:from-orange-600 group-hover:to-amber-600 transition-all duration-300 shadow-2xl"
+                    <div className="relative w-24 h-24 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/30 transition-all duration-300 shadow-2xl"
                       style={{
-                        boxShadow: '0 0 40px rgba(251, 146, 60, 0.5), 0 0 80px rgba(245, 158, 11, 0.3)'
+                        background: 'linear-gradient(135deg, #E07A5F 0%, #C96A50 100%)',
+                        boxShadow: '0 0 40px rgba(224, 122, 95, 0.5), 0 0 80px rgba(224, 122, 95, 0.3)'
                       }}
                     >
                       <Play className="w-10 h-10 text-white ml-1" fill="white" />
@@ -295,13 +299,13 @@ const BootcampVideoSection = () => {
             onClick={() => scrollToSection('pricing')}
             whileHover={{
               scale: 1.05,
-              boxShadow: "0 0 40px rgba(251, 146, 60, 0.8), 0 0 80px rgba(245, 158, 11, 0.5)"
+              boxShadow: "0 0 40px rgba(224, 122, 95, 0.8), 0 0 80px rgba(224, 122, 95, 0.5)"
             }}
             whileTap={{ scale: 0.98 }}
-            className="group relative px-10 py-4 rounded-lg font-oswald font-bold uppercase tracking-wider
-                     bg-gradient-to-r from-orange-500 to-amber-500 text-white transition-all duration-300 overflow-hidden"
+            className="group relative px-10 py-4 rounded-lg font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 overflow-hidden"
             style={{
-              boxShadow: `0 0 30px rgba(251, 146, 60, 0.5), 0 0 60px rgba(245, 158, 11, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)`
+              background: 'linear-gradient(135deg, #E07A5F 0%, #C96A50 100%)',
+              boxShadow: `0 0 30px rgba(224, 122, 95, 0.5), 0 0 60px rgba(224, 122, 95, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)`
             }}
           >
             <motion.div

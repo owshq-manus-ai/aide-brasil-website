@@ -71,8 +71,8 @@ const AudienceSection = () => {
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 500px 250px at 30% 30%, rgba(251, 146, 60, 0.05) 0%, transparent 50%),
-              radial-gradient(ellipse 400px 200px at 70% 70%, rgba(245, 158, 11, 0.04) 0%, transparent 50%)
+              radial-gradient(ellipse 500px 250px at 30% 30%, rgba(224, 122, 95, 0.05) 0%, transparent 50%),
+              radial-gradient(ellipse 400px 200px at 70% 70%, rgba(224, 122, 95, 0.04) 0%, transparent 50%)
             `,
           }}
         />
@@ -92,10 +92,11 @@ const AudienceSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
+            style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)', border: '1px solid rgba(224, 122, 95, 0.3)' }}
           >
-            <Users className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Você Se Encaixa?</span>
+            <Users className="w-4 h-4" style={{ color: '#E07A5F' }} />
+            <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>Você Se Encaixa?</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
@@ -103,7 +104,7 @@ const AudienceSection = () => {
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
-                backgroundImage: `linear-gradient(90deg, #f97316 0%, #fbbf24 50%, #f97316 100%)`,
+                backgroundImage: `linear-gradient(90deg, #E07A5F 0%, #F0A090 50%, #E07A5F 100%)`,
                 backgroundSize: '200% 100%',
                 animation: 'subtle-metallic 6s ease-in-out infinite',
               }}
@@ -114,7 +115,7 @@ const AudienceSection = () => {
           </h2>
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            <span className="text-orange-400 font-bold">Não precisa ser expert em IA.</span>{' '}
+            <span style={{ color: '#E07A5F' }} className="font-bold">Não precisa ser expert em IA.</span>{' '}
             Se você já trabalha com dados e código, tem tudo para sair do bootcamp operando sua própria frota de agentes.
           </p>
         </motion.div>
@@ -146,7 +147,7 @@ const AudienceSection = () => {
                     border transition-all duration-300
                     ${audience.fit === 'perfect'
                       ? 'border-green-500/30 hover:border-green-500/50'
-                      : 'border-white/10 hover:border-orange-500/30'
+                      : 'border-white/10 hover:border-[#E07A5F]/30'
                     }
                   `}
                 >
@@ -155,10 +156,12 @@ const AudienceSection = () => {
                       w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0
                       ${audience.fit === 'perfect'
                         ? 'bg-green-500/20'
-                        : 'bg-orange-500/20'
+                        : ''
                       }
-                    `}>
-                      <audience.icon className={`w-6 h-6 ${audience.fit === 'perfect' ? 'text-green-400' : 'text-orange-400'}`} />
+                    `}
+                    style={audience.fit !== 'perfect' ? { backgroundColor: 'rgba(224, 122, 95, 0.2)' } : undefined}
+                    >
+                      <audience.icon className={`w-6 h-6 ${audience.fit === 'perfect' ? 'text-green-400' : ''}`} style={audience.fit !== 'perfect' ? { color: '#E07A5F' } : undefined} />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
@@ -169,7 +172,7 @@ const AudienceSection = () => {
                       </div>
                       <p className="text-white/60 text-sm mb-2">{audience.description}</p>
                       {audience.transformation && (
-                        <p className="text-xs text-orange-400 font-medium">
+                        <p className="text-xs font-medium" style={{ color: '#E07A5F' }}>
                           {audience.transformation}
                         </p>
                       )}
@@ -188,7 +191,7 @@ const AudienceSection = () => {
             viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-              <AlertCircle className="w-6 h-6 text-orange-400" />
+              <AlertCircle className="w-6 h-6" style={{ color: '#E07A5F' }} />
               O Que Você Já Precisa Ter
             </h3>
 
@@ -200,11 +203,12 @@ const AudienceSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="relative bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-xl p-5 border border-orange-500/20"
+                  className="relative bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-xl p-5 border"
+                  style={{ borderColor: 'rgba(224, 122, 95, 0.2)' }}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center flex-shrink-0">
-                      <prereq.icon className="w-6 h-6 text-orange-400" />
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(224, 122, 95, 0.2)' }}>
+                      <prereq.icon className="w-6 h-6" style={{ color: '#E07A5F' }} />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
@@ -230,7 +234,8 @@ const AudienceSection = () => {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
-              className="mt-6 p-4 bg-gradient-to-r from-green-500/10 to-orange-500/10 border border-green-500/30 rounded-xl"
+              className="mt-6 p-4 border border-green-500/30 rounded-xl"
+              style={{ background: 'linear-gradient(90deg, rgba(34, 197, 94, 0.1), rgba(224, 122, 95, 0.1))' }}
             >
               <p className="text-white/80 text-sm">
                 <span className="text-green-400 font-bold">Resumindo:</span> se você consegue escrever um SELECT e um loop em Python, <span className="text-white font-semibold">você já tem o necessário</span>. O resto a gente constrói junto.

@@ -54,8 +54,7 @@ const pricingTiers = [
     status: 'current',
     highlight: true,
     icon: Flame,
-    color: 'orange',
-    savings: '800'
+    color: 'orange'
   },
   {
     id: 'lote3',
@@ -77,11 +76,11 @@ const PricingSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
 
-  // Countdown timer - Fixed to 2026
+  // Countdown timer - Lote Final 18/01/2026
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
 
   useEffect(() => {
-    const targetDate = new Date('2026-01-28T00:00:00-03:00')
+    const targetDate = new Date('2026-01-18T00:00:00-03:00')
 
     const updateCountdown = () => {
       const now = new Date()
@@ -123,7 +122,7 @@ const PricingSection = () => {
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 800px 400px at 50% 50%, rgba(251, 146, 60, 0.1) 0%, transparent 50%)
+              radial-gradient(ellipse 800px 400px at 50% 50%, rgba(224, 122, 95, 0.1) 0%, transparent 50%)
             `,
           }}
         />
@@ -131,8 +130,8 @@ const PricingSection = () => {
           className="absolute inset-0 opacity-5"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(251, 146, 60, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(251, 146, 60, 0.1) 1px, transparent 1px)`,
+              linear-gradient(rgba(224, 122, 95, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(224, 122, 95, 0.1) 1px, transparent 1px)`,
             backgroundSize: '40px 40px',
           }}
         />
@@ -165,7 +164,7 @@ const PricingSection = () => {
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
-                backgroundImage: `linear-gradient(90deg, #f97316 0%, #fbbf24 50%, #f97316 100%)`,
+                backgroundImage: `linear-gradient(90deg, #E07A5F 0%, #F0A090 50%, #E07A5F 100%)`,
                 backgroundSize: '200% 100%',
                 animation: 'subtle-metallic 6s ease-in-out infinite',
               }}
@@ -175,7 +174,7 @@ const PricingSection = () => {
           </h2>
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            <span className="text-orange-400 font-bold">12 horas de hands-on</span> que mudam como você trabalha para sempre — ou seu dinheiro de volta em 7 dias.
+            <span style={{ color: '#E07A5F' }} className="font-bold">12 horas de hands-on</span> que mudam como você trabalha para sempre — ou seu dinheiro de volta em 7 dias.
           </p>
         </motion.div>
 
@@ -189,7 +188,7 @@ const PricingSection = () => {
         >
           <div className="inline-flex items-center gap-4 bg-red-500/10 border border-red-500/30 rounded-2xl px-6 py-4">
             <Timer className="w-5 h-5 text-red-400" />
-            <span className="text-red-400 font-medium">Preço sobe em:</span>
+            <span className="text-red-400 font-medium">Lote Final:</span>
             <div className="flex items-center gap-2">
               {[
                 { value: countdown.days, label: 'd' },
@@ -228,15 +227,15 @@ const PricingSection = () => {
                   ${tier.status === 'sold_out'
                     ? 'bg-white/[0.02] border-white/10 opacity-60'
                     : tier.highlight
-                      ? 'bg-gradient-to-br from-orange-500/15 to-amber-500/10 border-orange-500/40 shadow-lg shadow-orange-500/10'
-                      : 'bg-white/[0.03] border-white/10 hover:border-orange-500/30'
+                      ? 'bg-gradient-to-br from-[#E07A5F]/15 to-[#F0A090]/10 border-[#E07A5F]/40 shadow-lg shadow-[#E07A5F]/10'
+                      : 'bg-white/[0.03] border-white/10 hover:border-[#E07A5F]/30'
                   }
                 `}
               >
                 {/* Badge for current tier */}
                 {tier.highlight && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full px-3 py-1 shadow-lg">
+                    <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 shadow-lg" style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}>
                       <Flame className="w-3 h-3 text-white" />
                       <span className="text-white text-xs font-bold uppercase">Melhor Oferta</span>
                     </div>
@@ -245,15 +244,16 @@ const PricingSection = () => {
 
                 {/* Tier Header */}
                 <div className="text-center mb-6 pt-2">
-                  <div className={`
-                    w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center
-                    ${tier.status === 'sold_out'
-                      ? 'bg-white/10'
-                      : tier.highlight
-                        ? 'bg-gradient-to-br from-orange-500 to-amber-500'
-                        : 'bg-amber-500/20'
+                  <div
+                    className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center"
+                    style={
+                      tier.status === 'sold_out'
+                        ? { backgroundColor: 'rgba(255, 255, 255, 0.1)' }
+                        : tier.highlight
+                          ? { background: 'linear-gradient(135deg, #E07A5F, #F0A090)' }
+                          : { backgroundColor: 'rgba(224, 122, 95, 0.2)' }
                     }
-                  `}>
+                  >
                     <tier.icon className={`w-6 h-6 ${tier.status === 'sold_out' ? 'text-white/40' : 'text-white'}`} />
                   </div>
                   <h3 className={`text-lg font-bold ${tier.status === 'sold_out' ? 'text-white/40' : 'text-white'}`}>
@@ -272,7 +272,7 @@ const PricingSection = () => {
                     <div className="text-white/40 text-sm line-through mb-1">De R$ {tier.originalPrice}</div>
                   )}
                   <div className="flex items-baseline justify-center gap-1">
-                    <span className={`text-lg ${tier.status === 'sold_out' ? 'text-white/30' : 'text-orange-400'}`}>R$</span>
+                    <span className={`text-lg ${tier.status === 'sold_out' ? 'text-white/30' : ''}`} style={tier.status !== 'sold_out' ? { color: '#E07A5F' } : undefined}>R$</span>
                     <span
                       className={`
                         text-5xl font-oswald font-black
@@ -284,7 +284,7 @@ const PricingSection = () => {
                         }
                       `}
                       style={tier.highlight ? {
-                        backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #fbbf24 50%, #f97316 100%)',
+                        backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #F0A090 50%, #E07A5F 100%)',
                       } : undefined}
                     >
                       {tier.price}
@@ -292,7 +292,7 @@ const PricingSection = () => {
                   </div>
                   {tier.highlight && (
                     <>
-                      <p className="text-orange-300 text-sm mt-2">ou 12x de R$ 119,63</p>
+                      <p className="text-sm mt-2" style={{ color: '#F0A090' }}>ou 12x de R$ 119,63</p>
                       {tier.savings && (
                         <div className="inline-flex items-center gap-1 bg-green-500/20 text-green-400 text-xs font-bold rounded-full px-3 py-1 mt-2">
                           <Gift className="w-3 h-3" />
@@ -314,10 +314,9 @@ const PricingSection = () => {
                   {tier.status === 'current' && (
                     <motion.button
                       onClick={() => setIsModalOpen(true)}
-                      className="w-full py-3 rounded-xl font-oswald font-bold uppercase tracking-wider
-                               bg-gradient-to-r from-orange-500 to-amber-500 text-white transition-all duration-300
-                               relative overflow-hidden"
-                      whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(251, 146, 60, 0.5)" }}
+                      className="w-full py-3 rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden"
+                      style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}
+                      whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(224, 122, 95, 0.5)" }}
                       whileTap={{ scale: 0.98 }}
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2">
@@ -348,13 +347,13 @@ const PricingSection = () => {
         >
           {/* Format & Dates */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10 hover:border-orange-500/30 transition-colors">
-              <Calendar className="w-6 h-6 text-orange-400 mx-auto mb-2" />
+            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10 hover:border-[#E07A5F]/30 transition-colors">
+              <Calendar className="w-6 h-6 mx-auto mb-2" style={{ color: '#E07A5F' }} />
               <p className="text-white font-bold">28-31 Janeiro</p>
               <p className="text-white/50 text-sm">4 dias intensivos</p>
             </div>
-            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10 hover:border-orange-500/30 transition-colors">
-              <Clock className="w-6 h-6 text-orange-400 mx-auto mb-2" />
+            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10 hover:border-[#E07A5F]/30 transition-colors">
+              <Clock className="w-6 h-6 mx-auto mb-2" style={{ color: '#E07A5F' }} />
               <p className="text-white font-bold">12h de código</p>
               <p className="text-white/50 text-sm">Zero teoria solta</p>
             </div>
@@ -363,8 +362,8 @@ const PricingSection = () => {
               <p className="text-white font-bold">7 dias garantia</p>
               <p className="text-green-400/70 text-sm">Risco zero</p>
             </div>
-            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10 hover:border-orange-500/30 transition-colors">
-              <Award className="w-5 h-5 text-orange-400 mx-auto mb-2" />
+            <div className="bg-white/5 rounded-xl p-4 text-center border border-white/10 hover:border-[#E07A5F]/30 transition-colors">
+              <Award className="w-5 h-5 mx-auto mb-2" style={{ color: '#E07A5F' }} />
               <p className="text-white font-bold">Certificado</p>
               <p className="text-white/50 text-sm">+ Repo completo</p>
             </div>
@@ -372,14 +371,14 @@ const PricingSection = () => {
 
           {/* Deliverables */}
           <div>
-            <p className="text-orange-400 text-sm uppercase tracking-wider mb-4 text-center font-bold">8 Entregas Concretas — Não Promessas</p>
+            <p className="text-sm uppercase tracking-wider mb-4 text-center font-bold" style={{ color: '#E07A5F' }}>8 Entregas Concretas — Não Promessas</p>
             <div className="grid md:grid-cols-2 gap-3">
               {deliverables.map((item, i) => (
-                <div key={i} className="flex items-start gap-3 bg-white/[0.02] rounded-lg p-3 border border-white/5 hover:border-orange-500/20 transition-colors">
+                <div key={i} className="flex items-start gap-3 bg-white/[0.02] rounded-lg p-3 border border-white/5 hover:border-[#E07A5F]/20 transition-colors">
                   <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <span className="text-white font-medium text-sm block">{item.text}</span>
-                    <span className="text-orange-400/70 text-xs">{item.value}</span>
+                    <span className="text-xs" style={{ color: 'rgba(224, 122, 95, 0.7)' }}>{item.value}</span>
                   </div>
                 </div>
               ))}
@@ -427,7 +426,8 @@ const PricingSection = () => {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="relative w-full max-w-md bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-2xl p-8 border border-orange-500/30"
+            className="relative w-full max-w-md bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-2xl p-8 border"
+            style={{ borderColor: 'rgba(224, 122, 95, 0.3)' }}
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -438,7 +438,7 @@ const PricingSection = () => {
             </button>
 
             <h3 className="text-2xl font-bold text-white mb-2 text-center">Última Etapa</h3>
-            <p className="text-white/60 text-center mb-6">Preencha para garantir o preço do <span className="text-orange-400 font-semibold">Lote Decisão</span></p>
+            <p className="text-white/60 text-center mb-6">Preencha para garantir o preço do <span style={{ color: '#E07A5F' }} className="font-semibold">Lote Decisão</span></p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -450,7 +450,7 @@ const PricingSection = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange-500/50"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
                     placeholder="Seu nome"
                   />
                 </div>
@@ -465,7 +465,7 @@ const PricingSection = () => {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange-500/50"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
                     placeholder="seu@email.com"
                   />
                 </div>
@@ -480,7 +480,7 @@ const PricingSection = () => {
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange-500/50"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
                     placeholder="(11) 99999-9999"
                   />
                 </div>
@@ -489,9 +489,8 @@ const PricingSection = () => {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-xl font-bold uppercase tracking-wider
-                         bg-gradient-to-r from-orange-500 to-amber-500 text-white
-                         disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 rounded-xl font-bold uppercase tracking-wider text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}
                 whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                 whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
               >

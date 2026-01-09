@@ -129,8 +129,8 @@ const StackSection = () => {
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 600px 300px at 80% 20%, rgba(251, 146, 60, 0.05) 0%, transparent 50%),
-              radial-gradient(ellipse 500px 250px at 20% 80%, rgba(245, 158, 11, 0.04) 0%, transparent 50%)
+              radial-gradient(ellipse 600px 300px at 80% 20%, rgba(224, 122, 95, 0.05) 0%, transparent 50%),
+              radial-gradient(ellipse 500px 250px at 20% 80%, rgba(224, 122, 95, 0.04) 0%, transparent 50%)
             `,
           }}
         />
@@ -138,8 +138,8 @@ const StackSection = () => {
           className="absolute inset-0 opacity-5"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(251, 146, 60, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(251, 146, 60, 0.1) 1px, transparent 1px)`,
+              linear-gradient(rgba(224, 122, 95, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(224, 122, 95, 0.1) 1px, transparent 1px)`,
             backgroundSize: '80px 80px',
           }}
         />
@@ -159,10 +159,11 @@ const StackSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
+            style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)', border: '1px solid rgba(224, 122, 95, 0.3)' }}
           >
-            <Layers className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">Seu Toolkit de Produção</span>
+            <Layers className="w-4 h-4" style={{ color: '#E07A5F' }} />
+            <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>Seu Toolkit de Produção</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
@@ -170,7 +171,7 @@ const StackSection = () => {
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
-                backgroundImage: `linear-gradient(90deg, #f97316 0%, #fbbf24 50%, #f97316 100%)`,
+                backgroundImage: `linear-gradient(90deg, #E07A5F 0%, #F0A090 50%, #E07A5F 100%)`,
                 backgroundSize: '200% 100%',
                 animation: 'subtle-metallic 6s ease-in-out infinite',
               }}
@@ -181,7 +182,7 @@ const StackSection = () => {
           </h2>
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            <span className="text-orange-400 font-bold">Ferramentas de Fortune 500.</span>{' '}
+            <span style={{ color: '#E07A5F' }} className="font-bold">Ferramentas de Fortune 500.</span>{' '}
             GCP na prática, mas com arquitetura portável — migre para AWS ou Azure quando quiser.
           </p>
         </motion.div>
@@ -253,11 +254,11 @@ const StackSection = () => {
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-orange-500/10 to-amber-500/10 border border-orange-500/20 rounded-xl px-6 py-4">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 rounded-xl px-6 py-4" style={{ background: 'linear-gradient(90deg, rgba(224, 122, 95, 0.1) 0%, rgba(224, 122, 95, 0.05) 100%)', border: '1px solid rgba(224, 122, 95, 0.2)' }}>
             <div className="flex items-center gap-3">
-              <Database className="w-5 h-5 text-orange-400" />
+              <Database className="w-5 h-5" style={{ color: '#E07A5F' }} />
               <span className="text-white/80">
-                <span className="text-orange-400 font-bold">Adapter Pattern</span> — troque de cloud sem reescrever código
+                <span style={{ color: '#E07A5F' }} className="font-bold">Adapter Pattern</span> — troque de cloud sem reescrever código
               </span>
             </div>
             <div className="hidden sm:block w-px h-6 bg-white/20" />

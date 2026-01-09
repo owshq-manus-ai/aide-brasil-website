@@ -91,21 +91,23 @@ const NeonButton = memo(({ children, primary = false, onClick, className = "" })
       px-6 py-3 rounded-lg font-oswald font-bold uppercase tracking-wider
       transition-all duration-300 relative overflow-hidden whitespace-nowrap
       ${primary
-        ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white'
-        : 'bg-white/5 backdrop-blur-sm border border-orange-500/30 text-white'
+        ? 'text-white'
+        : 'bg-white/5 backdrop-blur-sm text-white'
       }
       ${className}
     `}
     whileHover={{
       scale: 1.03,
       boxShadow: primary
-        ? "0 0 30px rgba(251, 146, 60, 0.7), 0 0 60px rgba(245, 158, 11, 0.4)"
-        : "0 0 20px rgba(251, 146, 60, 0.5)"
+        ? "0 0 30px rgba(224, 122, 95, 0.7), 0 0 60px rgba(224, 122, 95, 0.4)"
+        : "0 0 20px rgba(224, 122, 95, 0.5)"
     }}
     whileTap={{ scale: 0.98 }}
     style={{
+      background: primary ? 'linear-gradient(135deg, #E07A5F 0%, #C96A50 100%)' : undefined,
+      border: primary ? undefined : '1px solid rgba(224, 122, 95, 0.3)',
       boxShadow: primary
-        ? `0 0 20px rgba(251, 146, 60, 0.5), 0 0 40px rgba(245, 158, 11, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)`
+        ? `0 0 20px rgba(224, 122, 95, 0.5), 0 0 40px rgba(224, 122, 95, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)`
         : undefined
     }}
   >
@@ -172,13 +174,13 @@ const ClaudeCodeBootcampHero = () => {
             WebkitMaskImage: 'linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0.6) 100%)',
           }}
         />
-        {/* Orange accent overlay */}
+        {/* Coral accent overlay */}
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 700px 500px at 70% 40%, rgba(251, 146, 60, 0.15) 0%, transparent 50%),
-              radial-gradient(ellipse 500px 400px at 80% 70%, rgba(245, 158, 11, 0.12) 0%, transparent 40%)`,
+              radial-gradient(ellipse 700px 500px at 70% 40%, rgba(224, 122, 95, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse 500px 400px at 80% 70%, rgba(224, 122, 95, 0.12) 0%, transparent 40%)`,
           }}
         />
         {/* Bottom gradient */}
@@ -220,13 +222,18 @@ const ClaudeCodeBootcampHero = () => {
               </div>
               {/* Tag 2: Inscritos */}
               <div className="flex items-center gap-2">
-                <Users className="w-3.5 h-3.5 text-orange-400" />
-                <span className="text-orange-300 text-sm font-medium">{spotsLeft} Inscritos</span>
+                <Users className="w-3.5 h-3.5" style={{ color: '#E07A5F' }} />
+                <span className="text-sm font-medium" style={{ color: '#F0A090' }}>{spotsLeft} Inscritos</span>
               </div>
               {/* Tag 3: Agentes */}
               <div className="flex items-center gap-2">
                 <Bot className="w-3.5 h-3.5 text-purple-400" />
                 <span className="text-purple-300 text-sm font-medium">Agentes</span>
+              </div>
+              {/* Tag 4: 12 Horas Hands-On */}
+              <div className="flex items-center gap-2">
+                <Clock className="w-3.5 h-3.5 text-green-400" />
+                <span className="text-green-300 text-sm font-medium">12 Horas Hands-On</span>
               </div>
             </motion.div>
 
@@ -245,11 +252,11 @@ const ClaudeCodeBootcampHero = () => {
                   className="inline-block bg-clip-text text-transparent"
                   style={{
                     backgroundImage: `linear-gradient(90deg,
-                      #f97316 0%,
-                      #fbbf24 25%,
-                      #fef3c7 50%,
-                      #fbbf24 75%,
-                      #f97316 100%)`,
+                      #E07A5F 0%,
+                      #F0A090 25%,
+                      #F5C4B8 50%,
+                      #F0A090 75%,
+                      #E07A5F 100%)`,
                     backgroundSize: '200% 100%',
                     animation: 'subtle-metallic 6s ease-in-out infinite',
                   }}
@@ -264,7 +271,8 @@ const ClaudeCodeBootcampHero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-xl md:text-2xl font-medium text-orange-400 leading-relaxed"
+              className="text-xl md:text-2xl font-medium leading-relaxed"
+              style={{ color: '#E07A5F' }}
             >
               Use Claude Code{' '}
               <span className="text-white font-bold">como seu time de engenharia</span> — com agentes que escrevem, revisam e deployam código por você
@@ -281,7 +289,7 @@ const ClaudeCodeBootcampHero = () => {
               <span
                 className="font-bold bg-clip-text text-transparent"
                 style={{
-                  backgroundImage: 'linear-gradient(90deg, #f97316, #fbbf24, #f97316)',
+                  backgroundImage: 'linear-gradient(90deg, #E07A5F, #F0A090, #E07A5F)',
                   backgroundSize: '200% 100%',
                   animation: 'subtle-metallic 3s ease-in-out infinite',
                 }}
@@ -365,11 +373,11 @@ const ClaudeCodeBootcampHero = () => {
             <div
               className="absolute -inset-0.5 rounded-xl blur-md opacity-20"
               style={{
-                background: 'linear-gradient(135deg, rgba(251, 146, 60, 0.4), rgba(245, 158, 11, 0.2))',
+                background: 'linear-gradient(135deg, rgba(224, 122, 95, 0.4), rgba(224, 122, 95, 0.2))',
               }}
             />
 
-            <div className="relative bg-gradient-to-br from-[#1a1a1a]/95 to-[#151515]/95 backdrop-blur-md rounded-xl border border-orange-500/20 px-3 py-4 shadow-xl">
+            <div className="relative bg-gradient-to-br from-[#1a1a1a]/95 to-[#151515]/95 backdrop-blur-md rounded-xl px-3 py-4 shadow-xl" style={{ border: '1px solid rgba(224, 122, 95, 0.2)' }}>
               {/* Header with Claude Code logo */}
               <div className="flex items-center gap-2.5 mb-3">
                 <img

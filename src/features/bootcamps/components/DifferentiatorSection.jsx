@@ -9,14 +9,15 @@ import {
   AlertTriangle,
   CheckCircle,
   Trophy,
-  Zap
+  Zap,
+  ArrowRight
 } from 'lucide-react'
 
 const differentiators = [
   {
     title: 'Problema Real, Não Demo',
     description: 'Outros cursos: datasets de exemplo. Aqui: invoice intelligence — extraindo dados de notas fiscais reais desde o dia 1.',
-    icon: Target,
+    icon: ArrowRight,
     highlight: 'invoice intelligence'
   },
   {
@@ -59,15 +60,15 @@ const DifferentiatorSection = () => {
         <div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(180deg, #0a0a0a 0%, #0f0a0a 50%, #0a0a0a 100%)`,
+            background: `linear-gradient(180deg, #0a0a0a 0%, #0c0908 50%, #0a0a0a 100%)`,
           }}
         />
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 500px 250px at 30% 30%, rgba(251, 146, 60, 0.05) 0%, transparent 50%),
-              radial-gradient(ellipse 400px 200px at 70% 70%, rgba(245, 158, 11, 0.04) 0%, transparent 50%)
+              radial-gradient(ellipse 500px 250px at 30% 30%, rgba(224, 122, 95, 0.05) 0%, transparent 50%),
+              radial-gradient(ellipse 400px 200px at 70% 70%, rgba(224, 122, 95, 0.04) 0%, transparent 50%)
             `,
           }}
         />
@@ -87,10 +88,11 @@ const DifferentiatorSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
+            style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)', border: '1px solid rgba(224, 122, 95, 0.3)' }}
           >
-            <AlertTriangle className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">O Que Faz a Diferença</span>
+            <AlertTriangle className="w-4 h-4" style={{ color: '#E07A5F' }} />
+            <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>O Que Faz a Diferença</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
@@ -98,7 +100,7 @@ const DifferentiatorSection = () => {
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
-                backgroundImage: `linear-gradient(90deg, #f97316 0%, #fbbf24 50%, #f97316 100%)`,
+                backgroundImage: `linear-gradient(90deg, #E07A5F 0%, #F0A090 50%, #E07A5F 100%)`,
                 backgroundSize: '200% 100%',
                 animation: 'subtle-metallic 6s ease-in-out infinite',
               }}
@@ -109,7 +111,7 @@ const DifferentiatorSection = () => {
           </h2>
 
           <p className="text-xl text-white/70 max-w-3xl mx-auto">
-            <span className="text-orange-400 font-bold">Tutoriais te dão teoria.</span>{' '}
+            <span style={{ color: '#E07A5F' }} className="font-bold">Tutoriais te dão teoria.</span>{' '}
             Aqui você sai com um <span className="text-white font-semibold">sistema funcionando em produção</span> — e a metodologia para replicar em qualquer projeto.
           </p>
         </motion.div>
@@ -124,22 +126,39 @@ const DifferentiatorSection = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -5, scale: 1.02 }}
-              className="relative group bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-xl p-6 border border-green-500/20 hover:border-green-500/40 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300"
+              className="relative group bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-xl p-6 border transition-all duration-300"
+              style={{
+                borderColor: 'rgba(224, 122, 95, 0.2)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(224, 122, 95, 0.4)'
+                e.currentTarget.style.boxShadow = '0 10px 40px rgba(224, 122, 95, 0.1)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(224, 122, 95, 0.2)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}
             >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-green-500/20 border border-green-500/30 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                  <item.icon className="w-6 h-6 text-green-400" />
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
+                  style={{
+                    backgroundColor: 'rgba(224, 122, 95, 0.2)',
+                    border: '1px solid rgba(224, 122, 95, 0.3)'
+                  }}
+                >
+                  <item.icon className="w-6 h-6" style={{ color: '#E07A5F' }} />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <h4 className="text-lg font-bold text-white">{item.title}</h4>
-                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <CheckCircle className="w-4 h-4" style={{ color: '#E07A5F' }} />
                   </div>
                   <p className="text-white/60 text-sm leading-relaxed">
                     {item.highlight ? (
                       <>
                         {item.description.split(item.highlight)[0]}
-                        <span className="text-green-400 font-semibold">{item.highlight}</span>
+                        <span style={{ color: '#E07A5F' }} className="font-semibold">{item.highlight}</span>
                         {item.description.split(item.highlight)[1]}
                       </>
                     ) : item.description}
@@ -158,13 +177,13 @@ const DifferentiatorSection = () => {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="inline-block bg-gradient-to-r from-orange-500/10 to-amber-500/10 border border-orange-500/20 rounded-2xl px-8 py-6">
+          <div className="inline-block rounded-2xl px-8 py-6" style={{ background: 'linear-gradient(90deg, rgba(224, 122, 95, 0.1) 0%, rgba(224, 122, 95, 0.05) 100%)', border: '1px solid rgba(224, 122, 95, 0.2)' }}>
             <p className="text-2xl font-oswald text-white mb-2">
               <span className="text-white/60">Outros ensinam</span>{' '}
               <span className="text-red-400 line-through">ferramentas</span>.
             </p>
             <p className="text-xl text-white/80">
-              Nós ensinamos a <span className="text-orange-400 font-bold">construir e operar sistemas</span> com elas.
+              Nós ensinamos a <span style={{ color: '#E07A5F' }} className="font-bold">construir e operar sistemas</span> com elas.
             </p>
           </div>
         </motion.div>
