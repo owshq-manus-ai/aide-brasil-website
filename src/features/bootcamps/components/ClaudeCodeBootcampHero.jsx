@@ -90,12 +90,12 @@ const shimmerTransition = {
 }
 
 // Neon Button Component - optimized with stable animation configs
-// Mobile: proper touch targets with balanced padding
+// Mobile: proper touch targets with balanced padding, w-auto prevents full-width expansion
 const NeonButton = memo(({ children, primary = false, onClick, className = "" }) => (
   <motion.button
     onClick={onClick}
     className={`
-      px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-oswald font-bold uppercase tracking-wider
+      w-auto flex-shrink-0 px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-oswald font-bold uppercase tracking-wider
       transition-all duration-300 relative overflow-hidden whitespace-nowrap text-sm sm:text-base
       ${primary
         ? 'text-white'
@@ -169,11 +169,11 @@ const ClaudeCodeBootcampHero = memo(() => {
 
   return (
     <section className="relative min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
-      {/* Background Image - Smooth blend like webinar page */}
+      {/* Background Image - Smooth blend like webinar page, hidden on mobile for better readability */}
       <div className="absolute inset-0">
-        {/* Background image with radial mask for seamless blend */}
+        {/* Background image with radial mask for seamless blend - hidden on mobile (sm:block) */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 hidden sm:block"
           style={{
             backgroundImage: 'url(/images/backgrounds/dominando-chatgpt-agent-builder.png)',
             backgroundSize: 'contain',
@@ -357,17 +357,17 @@ const ClaudeCodeBootcampHero = memo(() => {
             </motion.div>
 
             {/* CTA Buttons */}
-            {/* Mobile: stack vertically on very small screens, then row */}
+            {/* Mobile: side by side with smaller text, row layout always */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.5 }}
-              className="flex flex-col xs:flex-row gap-3 sm:gap-4 pt-2"
+              className="flex flex-row flex-wrap gap-3 sm:gap-4 pt-2"
             >
               <NeonButton primary onClick={handlePricingClick}>
                 <Sparkles className="w-4 h-4" />
-                <span className="hidden xs:inline">GARANTIR MINHA VAGA</span>
-                <span className="xs:hidden">GARANTIR VAGA</span>
+                <span className="hidden sm:inline">GARANTIR MINHA VAGA</span>
+                <span className="sm:hidden">GARANTIR VAGA</span>
               </NeonButton>
               <NeonButton onClick={handleJourneyClick}>
                 <Play className="w-4 h-4" />
