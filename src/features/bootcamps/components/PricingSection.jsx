@@ -1,4 +1,5 @@
 import React, { useState, useEffect, memo, useCallback, useMemo, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
 import {
   Calendar,
@@ -241,20 +242,34 @@ PricingTierCard.displayName = 'PricingTierCard'
 
 // Registration Modal component - memoized
 // Mobile: optimized for touch, proper input sizing to prevent iOS zoom
+// Uses createPortal to render at body level for proper centering
 const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubmit, isSubmitting }) => {
   const handleInputChange = useCallback((field) => (e) => {
     const value = field === 'phone' ? formatPhoneNumber(e.target.value) : e.target.value
     setFormData(prev => ({ ...prev, [field]: value }))
   }, [setFormData])
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalStyle = window.getComputedStyle(document.body).overflow
+      document.body.style.overflow = 'hidden'
+      return () => {
+        document.body.style.overflow = originalStyle
+      }
+    }
+  }, [isOpen])
+
   if (!isOpen) return null
 
-  return (
+  // Use createPortal to render modal at body level, ensuring proper centering
+  return createPortal(
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm"
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
       onClick={onClose}
     >
       <motion.div
@@ -344,7 +359,8 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
           </p>
         </form>
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body
   )
 })
 RegistrationModal.displayName = 'RegistrationModal'
