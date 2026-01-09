@@ -190,7 +190,7 @@ const BootcampVideoSection = memo(() => {
           {/* Aggressive Copy - Transformation promise */}
           <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
             <span style={{ color: '#E07A5F' }} className="font-bold">Não é tutorial. Não é demo.</span>{' '}
-            É o processo completo para <span className="text-white font-bold">transformar requisitos em código de produção</span> -- com agentes que <span style={{ color: '#E07A5F' }} className="font-bold">executam, não sugerem</span>.
+            É o processo completo para <span className="text-white font-bold">transformar requisitos em código de produção</span> —com agentes que <span style={{ color: '#E07A5F' }} className="font-bold">executam, não sugerem</span>.
           </p>
 
           {/* Video Stats */}

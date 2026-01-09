@@ -224,7 +224,7 @@ const FinalCTASection = memo(() => {
             <p className="text-white/40 text-sm uppercase tracking-widest">A diferença entre quem usa IA e quem lidera com IA</p>
             <p className="text-2xl md:text-3xl font-oswald text-white">
               <span className="text-white/40 line-through">Vibe coding</span>
-              {' -> '}
+              {' →'}
               <span
                 className="bg-clip-text text-transparent font-bold"
                 style={{

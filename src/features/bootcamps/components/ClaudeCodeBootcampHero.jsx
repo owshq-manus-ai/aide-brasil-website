@@ -158,7 +158,7 @@ const ClaudeCodeBootcampHero = memo(() => {
     { text: 'Setup profissional: CLAUDE.md, MCPs, SubAgents e Hooks', icon: Terminal },
     { text: 'Context Engineering: estruturar contexto para respostas precisas', icon: Brain },
     { text: 'Arquitetura Adapter: design multi-cloud (GCP, AWS, Azure)', icon: Server },
-    { text: 'Pipeline GenAI completo: extração com LLM -> BigQuery -> Hex', icon: Cpu },
+    { text: 'Pipeline GenAI completo: extração com LLM →BigQuery →Hex', icon: Cpu },
     { text: 'LLMOps com Langfuse: custo, latência e qualidade', icon: Gauge },
     { text: 'CI/CD para GenAI: GitHub Actions + quality gates', icon: Rocket }
   ], [])
@@ -283,7 +283,7 @@ const ClaudeCodeBootcampHero = memo(() => {
               style={{ color: '#E07A5F' }}
             >
               Use Claude Code{' '}
-              <span className="text-white font-bold">como seu time de engenharia</span> -- com agentes que escrevem, revisam e deployam código por você
+              <span className="text-white font-bold">como seu time de engenharia</span> —com agentes que escrevem, revisam e deployam código por você
             </motion.h2>
 
             {/* Description with AI-Native Development Workflow */}
@@ -304,7 +304,7 @@ const ClaudeCodeBootcampHero = memo(() => {
               >
                 AI-Native Development Workflow
               </span>
-              {' '}-- a metodologia para usar IA com contexto, padrões e controle total. Zero vibe coding.
+              {' '}— a metodologia para usar IA com contexto, padrões e controle total. Zero vibe coding.
             </motion.p>
 
             {/* 3 Value Props - Claude Code coral palette */}

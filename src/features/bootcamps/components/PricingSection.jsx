@@ -30,7 +30,7 @@ const sharedStyles = `
 // Static data - defined outside component
 const DELIVERABLES = [
   { text: 'Repositório GitHub production-ready', value: 'Clone e rode em 5 minutos' },
-  { text: 'Pipeline GenAI completo em produção', value: 'Invoice -> BigQuery -> Dashboard' },
+  { text: 'Pipeline GenAI completo em produção', value: 'Invoice →BigQuery →Dashboard' },
   { text: 'Infra GCP via Terraform', value: 'Destrua e recrie em 1 comando' },
   { text: 'CI/CD com GitHub Actions', value: 'Push = Deploy automático' },
   { text: 'Observabilidade com Langfuse', value: 'Custo, latência, qualidade' },
@@ -56,7 +56,7 @@ const PRICING_TIERS = [
     name: 'Lote Decisão',
     subtitle: 'Última chance neste valor',
     price: '1.197',
-    originalPrice: '1.997',
+    originalPrice: '1.397',
     status: 'current',
     highlight: true,
     icon: Flame,
@@ -190,18 +190,24 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
             </span>
           )}
           {tier.status === 'current' && (
-            <motion.button
-              onClick={onOpenModal}
-              className="w-full py-3 rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden"
-              style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}
-              whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(224, 122, 95, 0.5)" }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <Sparkles className="w-4 h-4" />
-                QUERO LIDERAR COM IA
-              </span>
-            </motion.button>
+            <>
+              <motion.button
+                onClick={onOpenModal}
+                className="w-full py-3 rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden"
+                style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}
+                whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(224, 122, 95, 0.5)" }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  QUERO LIDERAR COM IA
+                </span>
+              </motion.button>
+              <div className="mt-3 flex items-center justify-center gap-2 text-red-400 bg-red-500/10 rounded-full px-3 py-1.5">
+                <AlertCircle className="w-3.5 h-3.5" />
+                <span className="text-xs font-medium">47 vagas —depois sobe para R$ 1.397</span>
+              </div>
+            </>
           )}
           {tier.status === 'upcoming' && (
             <span className="inline-flex items-center gap-1.5 text-amber-400/60 text-sm">
@@ -307,7 +313,7 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
             {isSubmitting ? 'Processando...' : 'CONFIRMAR MINHA VAGA'}
           </motion.button>
           <p className="text-white/40 text-xs text-center mt-3">
-            Garantia de 7 dias -- se não gostar, devolvemos 100%
+            Garantia de 7 dias —se não gostar, devolvemos 100%
           </p>
         </form>
       </motion.div>
@@ -317,7 +323,6 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
 RegistrationModal.displayName = 'RegistrationModal'
 
 const PricingSection = memo(() => {
-  const spotsLeft = 47
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -428,7 +433,7 @@ const PricingSection = memo(() => {
           </h2>
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            <span style={{ color: '#E07A5F' }} className="font-bold">12 horas de hands-on</span> que mudam como você trabalha para sempre -- ou seu dinheiro de volta em 7 dias.
+            <span style={{ color: '#E07A5F' }} className="font-bold">12 horas de hands-on</span> que mudam como você trabalha para sempre —ou seu dinheiro de volta em 7 dias.
           </p>
         </motion.div>
 
@@ -505,7 +510,7 @@ const PricingSection = memo(() => {
 
           {/* Deliverables */}
           <div>
-            <p className="text-sm uppercase tracking-wider mb-4 text-center font-bold" style={{ color: '#E07A5F' }}>8 Entregas Concretas -- Não Promessas</p>
+            <p className="text-sm uppercase tracking-wider mb-4 text-center font-bold" style={{ color: '#E07A5F' }}>8 Entregas Concretas —Não Promessas</p>
             <div className="grid md:grid-cols-2 gap-3">
               {deliverables.map((item, i) => (
                 <DeliverableItem key={i} item={item} />
@@ -527,15 +532,7 @@ const PricingSection = memo(() => {
                 <span className="text-white/20">=</span>
                 <span className="text-red-400 line-through font-bold">R$ 1.500+</span>
               </div>
-              <p className="text-green-400 text-sm mt-2 font-medium">Aqui você leva tudo integrado por menos -- e funcionando em 4 dias</p>
-            </div>
-
-            {/* Spots Left */}
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 text-red-400 bg-red-500/10 rounded-full px-4 py-2">
-                <AlertCircle className="w-4 h-4" />
-                <span className="text-sm font-medium">{spotsLeft} vagas restantes -- depois sobe para R$ 1.397</span>
-              </div>
+              <p className="text-green-400 text-sm mt-2 font-medium">Aqui você leva tudo integrado por menos —e funcionando em 4 dias</p>
             </div>
           </div>
         </motion.div>

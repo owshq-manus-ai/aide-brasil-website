@@ -35,7 +35,7 @@ const CLAUDE_CODE_FEATURES = [
   {
     icon: Server,
     title: 'MCPs (Model Context Protocol)',
-    description: 'Conecte bancos, APIs e ferramentas externas -- o Claude executa ações reais via servidores MCP',
+    description: 'Conecte bancos, APIs e ferramentas externas —o Claude executa ações reais via servidores MCP',
     highlight: 'servidores MCP',
     color: 'purple'
   },
@@ -56,14 +56,14 @@ const CLAUDE_CODE_FEATURES = [
   {
     icon: Terminal,
     title: 'Commands',
-    description: 'Automatize workflows repetitivos com comandos personalizados -- digite uma vez, execute sempre',
+    description: 'Automatize workflows repetitivos com comandos personalizados —digite uma vez, execute sempre',
     highlight: 'comandos personalizados',
     color: 'cyan'
   },
   {
     icon: Webhook,
     title: 'Hooks',
-    description: 'Dispare ações automaticamente em eventos do código -- lint, test, deploy sem intervenção',
+    description: 'Dispare ações automaticamente em eventos do código —lint, test, deploy sem intervenção',
     highlight: 'ações automaticamente',
     color: 'pink'
   },
@@ -77,7 +77,7 @@ const CLAUDE_CODE_FEATURES = [
   {
     icon: Settings,
     title: 'Prompts & Templates',
-    description: 'Garanta outputs consistentes com prompts estruturados -- mesmo resultado, toda vez',
+    description: 'Garanta outputs consistentes com prompts estruturados —mesmo resultado, toda vez',
     highlight: 'outputs consistentes',
     color: 'red'
   }
@@ -242,7 +242,7 @@ const PromiseSection = memo(() => {
           </h2>
 
           <p className="text-xl text-white/70 max-w-3xl mx-auto mb-6">
-            <span style={{ color: '#E07A5F' }} className="font-bold">Esqueça tutoriais básicos.</span> Você vai configurar e operar cada recurso avançado -- da setup inicial ao deploy automatizado.
+            <span style={{ color: '#E07A5F' }} className="font-bold">Esqueça tutoriais básicos.</span> Você vai configurar e operar cada recurso avançado —do setup inicial ao deploy automatizado.
           </p>
 
           {/* Key message about building with Claude Code */}
@@ -261,7 +261,7 @@ const PromiseSection = memo(() => {
               loading="lazy"
             />
             <span className="text-white/90">
-              <span style={{ color: '#E07A5F' }} className="font-bold">100% do projeto</span> será construído usando Claude Code --{' '}
+              <span style={{ color: '#E07A5F' }} className="font-bold">100% do projeto</span> será construído usando Claude Code —{' '}
               <span style={{ color: '#F0A090' }} className="font-semibold">do requisito ao deploy</span>
             </span>
             <img

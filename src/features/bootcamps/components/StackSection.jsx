@@ -56,7 +56,7 @@ const STACK_CATEGORIES = [
     description: 'Deploy automático',
     image: '/images/logos/github-icon.png',
     items: [
-      { name: 'GitHub Actions', description: 'Push -> Produção' }
+      { name: 'GitHub Actions', description: 'Push →Produção' }
     ],
     color: 'github',
     largeIcon: true
@@ -230,7 +230,7 @@ const StackSection = memo(() => {
             style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)', border: '1px solid rgba(224, 122, 95, 0.3)' }}
           >
             <Layers className="w-4 h-4" style={{ color: '#E07A5F' }} />
-            <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>Seu Toolkit de Producao</span>
+            <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>Seu Toolkit de Produção</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
@@ -245,12 +245,12 @@ const StackSection = memo(() => {
             >
               Empresas Usam
             </span>
-            {' '}-- Não Tutoriais
+            {' '}— Não Tutoriais
           </h2>
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
             <span style={{ color: '#E07A5F' }} className="font-bold">Ferramentas de Fortune 500.</span>{' '}
-            GCP na prática, mas com arquitetura portável -- migre para AWS ou Azure quando quiser.
+            GCP na prática, mas com arquitetura portável —migre para AWS ou Azure quando quiser.
           </p>
         </motion.div>
 
@@ -273,12 +273,12 @@ const StackSection = memo(() => {
             <div className="flex items-center gap-3">
               <Database className="w-5 h-5" style={{ color: '#E07A5F' }} />
               <span className="text-white/80">
-                <span style={{ color: '#E07A5F' }} className="font-bold">Adapter Pattern</span> -- troque de cloud sem reescrever código
+                <span style={{ color: '#E07A5F' }} className="font-bold">Adapter Pattern</span> —troque de cloud sem reescrever código
               </span>
             </div>
             <div className="hidden sm:block w-px h-6 bg-white/20" />
             <span className="text-white/60 text-sm">
-              GCP hoje {'-> '}<span className="text-blue-400">AWS</span> ou <span className="text-cyan-400">Azure</span> amanhã
+              GCP hoje {'→ '}<span className="text-blue-400">AWS</span> ou <span className="text-cyan-400">Azure</span> amanhã
             </span>
           </div>
         </motion.div>

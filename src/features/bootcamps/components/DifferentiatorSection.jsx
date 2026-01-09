@@ -23,37 +23,37 @@ const sharedStyles = `
 const DIFFERENTIATORS = [
   {
     title: 'Problema Real, Não Demo',
-    description: 'Outros cursos: datasets de exemplo. Aqui: invoice intelligence -- extraindo dados de notas fiscais reais desde o dia 1.',
+    description: 'Outros cursos: datasets de exemplo. Aqui: invoice intelligence —extraindo dados de notas fiscais reais desde o dia 1.',
     icon: ArrowRight,
     highlight: 'invoice intelligence'
   },
   {
     title: 'Agente, Não Autocomplete',
-    description: 'Outros cursos: ChatGPT como assistente. Aqui: Claude Code como seu par de programação -- escreve, revisa e deploya código.',
+    description: 'Outros cursos: ChatGPT como assistente. Aqui: Claude Code como seu par de programação —escreve, revisa e deploya código.',
     icon: Bot,
     highlight: 'par de programação'
   },
   {
     title: 'Multi-Cloud, Não Vendor Lock',
-    description: 'Outros cursos: amarrados em um provider. Aqui: arquitetura 100% portável -- GCP hoje, AWS ou Azure amanhã.',
+    description: 'Outros cursos: amarrados em um provider. Aqui: arquitetura 100% portável —GCP hoje, AWS ou Azure amanhã.',
     icon: Cloud,
     highlight: '100% portável'
   },
   {
     title: 'LLMOps, Não Só Prompt',
-    description: 'Outros cursos: param no prompt. Aqui: observabilidade com Langfuse -- custo, latência, qualidade e drift monitorados.',
+    description: 'Outros cursos: param no prompt. Aqui: observabilidade com Langfuse —custo, latência, qualidade e drift monitorados.',
     icon: BarChart3,
     highlight: 'observabilidade com Langfuse'
   },
   {
     title: 'Autonomia, Não Manual',
-    description: 'Outros cursos: você executa tudo. Aqui: CrewAI Agents operando sozinhos -- com supervisão e alertas inteligentes.',
+    description: 'Outros cursos: você executa tudo. Aqui: CrewAI Agents operando sozinhos —com supervisão e alertas inteligentes.',
     icon: Settings,
     highlight: 'CrewAI Agents'
   },
   {
     title: 'Produção, Não Certificado',
-    description: 'Outros cursos: PDF no LinkedIn. Aqui: sistema completo rodando -- projeto real para mostrar em entrevistas.',
+    description: 'Outros cursos: PDF no LinkedIn. Aqui: sistema completo rodando —projeto real para mostrar em entrevistas.',
     icon: Trophy,
     highlight: 'sistema completo rodando'
   }
@@ -173,7 +173,7 @@ const DifferentiatorSection = memo(() => {
 
           <p className="text-xl text-white/70 max-w-3xl mx-auto">
             <span style={{ color: '#E07A5F' }} className="font-bold">Tutoriais te dão teoria.</span>{' '}
-            Aqui você sai com um <span className="text-white font-semibold">sistema funcionando em produção</span> -- e a metodologia para replicar em qualquer projeto.
+            Aqui você sai com um <span className="text-white font-semibold">sistema funcionando em produção</span> —e a metodologia para replicar em qualquer projeto.
           </p>
         </motion.div>
 

@@ -23,43 +23,43 @@ const sharedStyles = `
 const TARGET_AUDIENCES = [
   {
     title: 'Data Engineers',
-    description: 'Cansados de pipelines manuais -- prontos para agentes que constroem e mantêm infraestrutura por você',
+    description: 'Cansados de pipelines manuais —prontos para agentes que constroem e mantêm infraestrutura por você',
     icon: Database,
     fit: 'perfect',
-    transformation: 'Script manual -> Pipeline autônomo'
+    transformation: 'Script manual →Pipeline autônomo'
   },
   {
     title: 'Analytics Engineers',
     description: 'Querem sair do dbt/SQL tradicional para analytics com extração inteligente e dashboards que se atualizam sozinhos',
     icon: BarChart3,
     fit: 'perfect',
-    transformation: 'Relatório estático -> Insight em tempo real'
+    transformation: 'Relatório estático →Insight em tempo real'
   },
   {
     title: 'Software Engineers',
-    description: 'Já dominam código -- agora querem multiplicar output com uma frota de agentes especializados',
+    description: 'Já dominam código —agora querem multiplicar output com uma frota de agentes especializados',
     icon: Code2,
     fit: 'good',
-    transformation: 'Solo coder -> Time de IA'
+    transformation: 'Solo coder →Time de IA'
   }
 ]
 
 const PREREQUISITES = [
   {
     requirement: 'SQL e Python',
-    description: 'SELECT, JOINs e funções básicas -- se você já escreveu um script, está pronto',
+    description: 'SELECT, JOINs e funções básicas —se você já escreveu um script, está pronto',
     icon: Code2,
     level: 'basic'
   },
   {
-    requirement: 'Git Básico',
-    description: 'git add, commit, push -- o resto você aprende no bootcamp',
+    requirement: 'Git',
+    description: 'git add, commit, push —o resto você aprende no bootcamp',
     icon: GitBranch,
     level: 'basic'
   },
   {
     requirement: 'Claude Code Pro',
-    description: 'Sua arma principal -- $20/mês que paga em 1 hora de produtividade',
+    description: 'Sua arma principal —$20/mês que paga em 1 hora de produtividade',
     icon: Terminal,
     level: 'tool'
   }
@@ -207,7 +207,7 @@ const AudienceSection = memo(() => {
                 animation: 'subtle-metallic 6s ease-in-out infinite',
               }}
             >
-              10x Produtividade
+              Multiplicar Resultados
             </span>
             {' '}com Agentes
           </h2>
