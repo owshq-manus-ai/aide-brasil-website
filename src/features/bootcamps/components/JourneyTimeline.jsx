@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Users,
@@ -14,20 +14,29 @@ import {
   Sparkles
 } from 'lucide-react'
 
-const steps = [
+// Shared styles
+const sharedStyles = `
+  @keyframes subtle-metallic {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+`
+
+// Static data - defined outside component
+const STEPS = [
   {
     number: 1,
     title: 'Traduzir Negócio em Contexto',
-    subtitle: 'Requisito Vago → Spec Precisa',
+    subtitle: 'Requisito Vago -> Spec Precisa',
     description: 'Transforme reuniões confusas em especificações que a IA entende. Você sai com um CLAUDE.md pronto para o projeto.',
-    skills: ['Problem Framing', 'Context Engineering', 'Requirement → Spec'],
+    skills: ['Problem Framing', 'Context Engineering', 'Requirement -> Spec'],
     personas: ['AI Data Engineer', 'Tech Lead'],
     icon: Users
   },
   {
     number: 2,
     title: 'Ativar sua Frota de Agentes',
-    subtitle: 'Solo Coder → Time de IA',
+    subtitle: 'Solo Coder -> Time de IA',
     description: 'Configure MCPs, SubAgents e Hooks. No final, você tem agentes especializados prontos para executar tarefas por você.',
     skills: ['AI-Native Workflow', 'Agent Orchestration', 'Context Management'],
     personas: ['Senior Engineer', 'Staff Engineer'],
@@ -36,7 +45,7 @@ const steps = [
   {
     number: 3,
     title: 'Prototipar em Minutos',
-    subtitle: 'Ideia → Código Funcionando',
+    subtitle: 'Ideia -> Código Funcionando',
     description: 'Monte um sandbox local com Python + LLM. Valide hipóteses em minutos, não dias. Testes automatizados desde o início.',
     skills: ['Rapid Prototyping', 'Test-Driven GenAI', 'Local Dev Workflow'],
     personas: ['GenAI Engineer', 'Backend Engineer'],
@@ -45,7 +54,7 @@ const steps = [
   {
     number: 4,
     title: 'Desenhar sem Vendor Lock',
-    subtitle: 'GCP Hoje → Qualquer Cloud Amanhã',
+    subtitle: 'GCP Hoje -> Qualquer Cloud Amanhã',
     description: 'Arquitetura com Adapter Pattern: mude de provider sem reescrever código. Você sai com um blueprint replicável.',
     skills: ['Cloud Architecture', 'Adapter Design', 'Systems Thinking'],
     personas: ['Cloud Architect', 'Platform Engineer'],
@@ -54,7 +63,7 @@ const steps = [
   {
     number: 5,
     title: 'Subir Infra como Código',
-    subtitle: 'Console Manual → Terraform Automatizado',
+    subtitle: 'Console Manual -> Terraform Automático',
     description: 'Provisione IAM, buckets, BigQuery e Cloud Run com Terraform. Destrua e recrie ambientes em um comando.',
     skills: ['IaC para GenAI', 'Environment Management', 'Cloud Security'],
     personas: ['Platform Engineer', 'DevOps'],
@@ -63,8 +72,8 @@ const steps = [
   {
     number: 6,
     title: 'Colocar GenAI em Produção',
-    subtitle: 'Invoice → Dado Estruturado → Dashboard',
-    description: 'Pipeline completo funcionando: upload de invoice → extração com Gemini → BigQuery → Hex. Com observabilidade Langfuse.',
+    subtitle: 'Invoice -> Dado Estruturado -> Dashboard',
+    description: 'Pipeline completo funcionando: upload de invoice -> extração com Gemini -> BigQuery -> Hex. Com observabilidade Langfuse.',
     skills: ['Production Pipelines', 'LLMOps', 'Data + GenAI Integration'],
     personas: ['AI Data Engineer', 'GenAI Engineer'],
     icon: Brain,
@@ -73,7 +82,7 @@ const steps = [
   {
     number: 7,
     title: 'Automatizar Deploy',
-    subtitle: 'Push Manual → CI/CD Completo',
+    subtitle: 'Push Manual -> CI/CD Completo',
     description: 'GitHub Actions rodando testes, validações e deploy automático. Versionamento de prompts incluído.',
     skills: ['CI/CD para GenAI', 'Quality Gates', 'Release Engineering'],
     personas: ['Software Engineer', 'DevOps'],
@@ -82,7 +91,7 @@ const steps = [
   {
     number: 8,
     title: 'Operar com Agentes Autônomos',
-    subtitle: 'Você de Plantão → CrewAI de Plantão',
+    subtitle: 'Você de Plantão -> CrewAI de Plantão',
     description: 'CrewAI Agents fazendo triagem, RCA e abrindo PRs automaticamente. Você supervisiona, não executa.',
     skills: ['Operational Excellence', 'Autonomous DataOps', 'Incident Response'],
     personas: ['DataOps', 'SRE for Data & AI'],
@@ -90,7 +99,11 @@ const steps = [
   }
 ]
 
-const StepCard = ({ step, index, isExpanded, onToggle }) => {
+// Chevron rotation animation
+const chevronAnimation = { rotate: 180 }
+
+// StepCard component - memoized
+const StepCard = memo(({ step, index, isExpanded, onToggle }) => {
   const Icon = step.icon
 
   return (
@@ -147,7 +160,7 @@ const StepCard = ({ step, index, isExpanded, onToggle }) => {
               <Icon className="w-5 h-5" style={{ color: '#E07A5F' }} />
             </div>
             <motion.div
-              animate={{ rotate: isExpanded ? 180 : 0 }}
+              animate={isExpanded ? chevronAnimation : { rotate: 0 }}
               transition={{ duration: 0.3 }}
               className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"
             >
@@ -210,10 +223,17 @@ const StepCard = ({ step, index, isExpanded, onToggle }) => {
       </div>
     </motion.div>
   )
-}
+})
+StepCard.displayName = 'StepCard'
 
-const JourneyTimeline = () => {
+const JourneyTimeline = memo(() => {
   const [expandedStep, setExpandedStep] = useState(5) // Core step expanded by default
+
+  const steps = useMemo(() => STEPS, [])
+
+  const handleToggle = useCallback((index) => {
+    setExpandedStep(prev => prev === index ? null : index)
+  }, [])
 
   return (
     <section id="journey" className="relative py-24 bg-[#0a0a0a] overflow-hidden">
@@ -267,7 +287,7 @@ const JourneyTimeline = () => {
           </h2>
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            <span className="text-white font-semibold">Não é teoria.</span> Cada passo termina com algo funcionando — você vai do requisito ao deploy, construindo junto.
+            <span className="text-white font-semibold">Não é teoria.</span> Cada passo termina com algo funcionando -- você vai do requisito ao deploy, construindo junto.
             <span className="block mt-2 font-medium" style={{ color: '#E07A5F' }}>Clique em cada passo para ver os detalhes.</span>
           </p>
         </motion.div>
@@ -290,7 +310,7 @@ const JourneyTimeline = () => {
                       step={step}
                       index={index}
                       isExpanded={expandedStep === index}
-                      onToggle={() => setExpandedStep(expandedStep === index ? null : index)}
+                      onToggle={() => handleToggle(index)}
                     />
                     <div className="hidden lg:block" />
                   </>
@@ -301,7 +321,7 @@ const JourneyTimeline = () => {
                       step={step}
                       index={index}
                       isExpanded={expandedStep === index}
-                      onToggle={() => setExpandedStep(expandedStep === index ? null : index)}
+                      onToggle={() => handleToggle(index)}
                     />
                   </>
                 )}
@@ -311,14 +331,11 @@ const JourneyTimeline = () => {
         </div>
       </div>
 
-      <style>{`
-        @keyframes subtle-metallic {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-      `}</style>
+      <style>{sharedStyles}</style>
     </section>
   )
-}
+})
+
+JourneyTimeline.displayName = 'JourneyTimeline'
 
 export default JourneyTimeline

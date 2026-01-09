@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { memo, useMemo, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import {
-  Target,
   Bot,
   Cloud,
   BarChart3,
@@ -9,50 +8,112 @@ import {
   AlertTriangle,
   CheckCircle,
   Trophy,
-  Zap,
   ArrowRight
 } from 'lucide-react'
 
-const differentiators = [
+// Shared styles
+const sharedStyles = `
+  @keyframes subtle-metallic {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+`
+
+// Static data - defined outside component
+const DIFFERENTIATORS = [
   {
     title: 'Problema Real, Não Demo',
-    description: 'Outros cursos: datasets de exemplo. Aqui: invoice intelligence — extraindo dados de notas fiscais reais desde o dia 1.',
+    description: 'Outros cursos: datasets de exemplo. Aqui: invoice intelligence -- extraindo dados de notas fiscais reais desde o dia 1.',
     icon: ArrowRight,
     highlight: 'invoice intelligence'
   },
   {
     title: 'Agente, Não Autocomplete',
-    description: 'Outros cursos: ChatGPT como assistente. Aqui: Claude Code como seu par de programação — escreve, revisa e deploya código.',
+    description: 'Outros cursos: ChatGPT como assistente. Aqui: Claude Code como seu par de programação -- escreve, revisa e deploya código.',
     icon: Bot,
     highlight: 'par de programação'
   },
   {
     title: 'Multi-Cloud, Não Vendor Lock',
-    description: 'Outros cursos: amarrados em um provider. Aqui: arquitetura 100% portável — GCP hoje, AWS ou Azure amanhã.',
+    description: 'Outros cursos: amarrados em um provider. Aqui: arquitetura 100% portável -- GCP hoje, AWS ou Azure amanhã.',
     icon: Cloud,
     highlight: '100% portável'
   },
   {
     title: 'LLMOps, Não Só Prompt',
-    description: 'Outros cursos: param no prompt. Aqui: observabilidade com Langfuse — custo, latência, qualidade e drift monitorados.',
+    description: 'Outros cursos: param no prompt. Aqui: observabilidade com Langfuse -- custo, latência, qualidade e drift monitorados.',
     icon: BarChart3,
     highlight: 'observabilidade com Langfuse'
   },
   {
     title: 'Autonomia, Não Manual',
-    description: 'Outros cursos: você executa tudo. Aqui: CrewAI Agents operando sozinhos — com supervisão e alertas inteligentes.',
+    description: 'Outros cursos: você executa tudo. Aqui: CrewAI Agents operando sozinhos -- com supervisão e alertas inteligentes.',
     icon: Settings,
     highlight: 'CrewAI Agents'
   },
   {
     title: 'Produção, Não Certificado',
-    description: 'Outros cursos: PDF no LinkedIn. Aqui: sistema completo rodando — projeto real para mostrar em entrevistas.',
+    description: 'Outros cursos: PDF no LinkedIn. Aqui: sistema completo rodando -- projeto real para mostrar em entrevistas.',
     icon: Trophy,
     highlight: 'sistema completo rodando'
   }
 ]
 
-const DifferentiatorSection = () => {
+// Card hover styles - using CSS classes instead of inline event handlers
+const cardBaseStyle = {
+  borderColor: 'rgba(224, 122, 95, 0.2)',
+}
+
+// Differentiator Card component - memoized
+const DifferentiatorCard = memo(({ item, index }) => {
+  const Icon = item.icon
+
+  // Split description for highlighting
+  const parts = item.highlight
+    ? item.description.split(item.highlight)
+    : [item.description, '']
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="relative group bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-xl p-6 border border-[#E07A5F]/20 hover:border-[#E07A5F]/40 hover:shadow-lg hover:shadow-[#E07A5F]/10 transition-all duration-300"
+    >
+      <div className="flex items-start gap-4">
+        <div
+          className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
+          style={{
+            backgroundColor: 'rgba(224, 122, 95, 0.2)',
+            border: '1px solid rgba(224, 122, 95, 0.3)'
+          }}
+        >
+          <Icon className="w-6 h-6" style={{ color: '#E07A5F' }} />
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-2">
+            <h4 className="text-lg font-bold text-white">{item.title}</h4>
+            <CheckCircle className="w-4 h-4" style={{ color: '#E07A5F' }} />
+          </div>
+          <p className="text-white/60 text-sm leading-relaxed">
+            {parts[0]}
+            {item.highlight && (
+              <span style={{ color: '#E07A5F' }} className="font-semibold">{item.highlight}</span>
+            )}
+            {parts[1]}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  )
+})
+DifferentiatorCard.displayName = 'DifferentiatorCard'
+
+const DifferentiatorSection = memo(() => {
+  const differentiators = useMemo(() => DIFFERENTIATORS, [])
+
   return (
     <section id="differentiator" className="relative py-24 bg-[#0a0a0a] overflow-hidden">
       {/* Background */}
@@ -112,60 +173,14 @@ const DifferentiatorSection = () => {
 
           <p className="text-xl text-white/70 max-w-3xl mx-auto">
             <span style={{ color: '#E07A5F' }} className="font-bold">Tutoriais te dão teoria.</span>{' '}
-            Aqui você sai com um <span className="text-white font-semibold">sistema funcionando em produção</span> — e a metodologia para replicar em qualquer projeto.
+            Aqui você sai com um <span className="text-white font-semibold">sistema funcionando em produção</span> -- e a metodologia para replicar em qualquer projeto.
           </p>
         </motion.div>
 
         {/* Differentiators Grid - Same style as AudienceSection */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {differentiators.map((item, index) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className="relative group bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-xl p-6 border transition-all duration-300"
-              style={{
-                borderColor: 'rgba(224, 122, 95, 0.2)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(224, 122, 95, 0.4)'
-                e.currentTarget.style.boxShadow = '0 10px 40px rgba(224, 122, 95, 0.1)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(224, 122, 95, 0.2)'
-                e.currentTarget.style.boxShadow = 'none'
-              }}
-            >
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
-                  style={{
-                    backgroundColor: 'rgba(224, 122, 95, 0.2)',
-                    border: '1px solid rgba(224, 122, 95, 0.3)'
-                  }}
-                >
-                  <item.icon className="w-6 h-6" style={{ color: '#E07A5F' }} />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <h4 className="text-lg font-bold text-white">{item.title}</h4>
-                    <CheckCircle className="w-4 h-4" style={{ color: '#E07A5F' }} />
-                  </div>
-                  <p className="text-white/60 text-sm leading-relaxed">
-                    {item.highlight ? (
-                      <>
-                        {item.description.split(item.highlight)[0]}
-                        <span style={{ color: '#E07A5F' }} className="font-semibold">{item.highlight}</span>
-                        {item.description.split(item.highlight)[1]}
-                      </>
-                    ) : item.description}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+            <DifferentiatorCard key={item.title} item={item} index={index} />
           ))}
         </div>
 
@@ -189,14 +204,11 @@ const DifferentiatorSection = () => {
         </motion.div>
       </div>
 
-      <style>{`
-        @keyframes subtle-metallic {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-      `}</style>
+      <style>{sharedStyles}</style>
     </section>
   )
-}
+})
+
+DifferentiatorSection.displayName = 'DifferentiatorSection'
 
 export default DifferentiatorSection

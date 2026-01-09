@@ -1,37 +1,31 @@
-import React, { useState, memo } from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import {
   Rocket,
   CheckCircle,
-  Trophy,
   Clock,
   Users,
   ChevronRight,
   Sparkles,
   Brain,
-  Code2,
-  Database,
   Terminal,
   Cpu,
-  Zap,
-  Shield,
   Play,
   Calendar,
   Video,
-  BookOpen,
-  Layers,
-  GitBranch,
-  Activity,
-  FileText,
   Server,
-  Settings,
-  Eye,
   Bot,
-  Compass,
-  Gauge,
-  Target
+  Gauge
 } from 'lucide-react'
 import TechStackDock from './TechStackDock'
+
+// Shared CSS keyframes - extracted to reduce duplication
+const sharedStyles = `
+  @keyframes subtle-metallic {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+`
 
 // Learning Item Component - Claude Code coral style with custom icons
 const LearningItem = memo(({ text, delay, icon: Icon = CheckCircle }) => (
@@ -53,6 +47,7 @@ const LearningItem = memo(({ text, delay, icon: Icon = CheckCircle }) => (
     <span className="text-white/80 text-sm leading-relaxed">{text}</span>
   </motion.div>
 ))
+LearningItem.displayName = 'LearningItem'
 
 // Value Proposition Component - Claude Code exact coral (#E07A5F)
 const ValueProp = memo(({ icon: Icon, text, delay }) => (
@@ -82,8 +77,19 @@ const ValueProp = memo(({ icon: Icon, text, delay }) => (
     <span className="text-white text-base font-medium">{text}</span>
   </motion.div>
 ))
+ValueProp.displayName = 'ValueProp'
 
-// Neon Button Component
+// Optimized shimmer animation config - uses GPU-accelerated properties only
+const shimmerAnimation = {
+  backgroundPosition: ['200% 0%', '-200% 0%']
+}
+const shimmerTransition = {
+  duration: 3,
+  repeat: Infinity,
+  ease: "linear"
+}
+
+// Neon Button Component - optimized with stable animation configs
 const NeonButton = memo(({ children, primary = false, onClick, className = "" }) => (
   <motion.button
     onClick={onClick}
@@ -107,7 +113,7 @@ const NeonButton = memo(({ children, primary = false, onClick, className = "" })
       background: primary ? 'linear-gradient(135deg, #E07A5F 0%, #C96A50 100%)' : undefined,
       border: primary ? undefined : '1px solid rgba(224, 122, 95, 0.3)',
       boxShadow: primary
-        ? `0 0 20px rgba(224, 122, 95, 0.5), 0 0 40px rgba(224, 122, 95, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)`
+        ? '0 0 20px rgba(224, 122, 95, 0.5), 0 0 40px rgba(224, 122, 95, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)'
         : undefined
     }}
   >
@@ -118,14 +124,8 @@ const NeonButton = memo(({ children, primary = false, onClick, className = "" })
           background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.5) 50%, transparent 60%)',
           backgroundSize: '200% 200%',
         }}
-        animate={{
-          backgroundPosition: ['200% 0%', '-200% 0%']
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "linear"
-        }}
+        animate={shimmerAnimation}
+        transition={shimmerTransition}
       />
     )}
     <span className="relative z-10 flex items-center gap-2">
@@ -134,27 +134,37 @@ const NeonButton = memo(({ children, primary = false, onClick, className = "" })
     </span>
   </motion.button>
 ))
+NeonButton.displayName = 'NeonButton'
+
+// Pulse animation for online indicator - stable reference
+const pulseAnimation = {
+  boxShadow: ['0 0 0 0 rgba(34, 197, 94, 0.7)', '0 0 0 4px rgba(34, 197, 94, 0)', '0 0 0 0 rgba(34, 197, 94, 0)']
+}
+const pulseTransition = { duration: 2, repeat: Infinity }
 
 // Main Hero Component
-const ClaudeCodeBootcampHero = () => {
-  const [spotsLeft] = useState(185)
+const ClaudeCodeBootcampHero = memo(() => {
+  const spotsLeft = 185
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
-  }
+  }, [])
 
-  // Learning points with icons - Vibe Coding, Agents, LLMs theme
-  const learningPoints = [
+  // Memoized learning points to prevent recreation on re-renders
+  const learningPoints = useMemo(() => [
     { text: 'Setup profissional: CLAUDE.md, MCPs, SubAgents e Hooks', icon: Terminal },
     { text: 'Context Engineering: estruturar contexto para respostas precisas', icon: Brain },
     { text: 'Arquitetura Adapter: design multi-cloud (GCP, AWS, Azure)', icon: Server },
-    { text: 'Pipeline GenAI completo: extração com LLM → BigQuery → Hex', icon: Cpu },
+    { text: 'Pipeline GenAI completo: extração com LLM -> BigQuery -> Hex', icon: Cpu },
     { text: 'LLMOps com Langfuse: custo, latência e qualidade', icon: Gauge },
     { text: 'CI/CD para GenAI: GitHub Actions + quality gates', icon: Rocket }
-  ]
+  ], [])
+
+  const handlePricingClick = useCallback(() => scrollToSection('pricing'), [scrollToSection])
+  const handleJourneyClick = useCallback(() => scrollToSection('journey'), [scrollToSection])
 
   return (
     <section className="relative min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
@@ -213,10 +223,8 @@ const ClaudeCodeBootcampHero = () => {
               <div className="flex items-center gap-2">
                 <motion.div
                   className="w-2 h-2 rounded-full bg-green-500"
-                  animate={{
-                    boxShadow: ['0 0 0 0 rgba(34, 197, 94, 0.7)', '0 0 0 4px rgba(34, 197, 94, 0)', '0 0 0 0 rgba(34, 197, 94, 0)']
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  animate={pulseAnimation}
+                  transition={pulseTransition}
                 />
                 <span className="text-green-400 text-sm font-medium">Online</span>
               </div>
@@ -247,7 +255,7 @@ const ClaudeCodeBootcampHero = () => {
               transition={{ delay: 0.2, duration: 0.6 }}
             >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-oswald font-bold mb-3 leading-tight">
-                <span className="text-white">Do Zero à Produção </span>
+                <span className="text-white">Do Zero a Produção </span>
                 <span
                   className="inline-block bg-clip-text text-transparent"
                   style={{
@@ -275,7 +283,7 @@ const ClaudeCodeBootcampHero = () => {
               style={{ color: '#E07A5F' }}
             >
               Use Claude Code{' '}
-              <span className="text-white font-bold">como seu time de engenharia</span> — com agentes que escrevem, revisam e deployam código por você
+              <span className="text-white font-bold">como seu time de engenharia</span> -- com agentes que escrevem, revisam e deployam código por você
             </motion.h2>
 
             {/* Description with AI-Native Development Workflow */}
@@ -296,7 +304,7 @@ const ClaudeCodeBootcampHero = () => {
               >
                 AI-Native Development Workflow
               </span>
-              {' '}— a metodologia para usar IA com contexto, padrões e controle total. Zero vibe coding.
+              {' '}-- a metodologia para usar IA com contexto, padrões e controle total. Zero vibe coding.
             </motion.p>
 
             {/* 3 Value Props - Claude Code coral palette */}
@@ -351,11 +359,11 @@ const ClaudeCodeBootcampHero = () => {
               transition={{ delay: 0.9, duration: 0.5 }}
               className="flex flex-row gap-4 pt-2"
             >
-              <NeonButton primary onClick={() => scrollToSection('pricing')}>
+              <NeonButton primary onClick={handlePricingClick}>
                 <Sparkles className="w-4 h-4" />
                 GARANTIR MINHA VAGA
               </NeonButton>
-              <NeonButton onClick={() => scrollToSection('journey')}>
+              <NeonButton onClick={handleJourneyClick}>
                 <Play className="w-4 h-4" />
                 VER PROGRAMA
               </NeonButton>
@@ -384,6 +392,7 @@ const ClaudeCodeBootcampHero = () => {
                   src="/images/logos/claude-code-icon.png"
                   alt="Claude Code"
                   className="w-8 h-8 rounded-lg object-contain"
+                  loading="eager"
                 />
                 <h3 className="text-lg font-oswald font-bold text-white">O que você vai aprender:</h3>
               </div>
@@ -406,18 +415,11 @@ const ClaudeCodeBootcampHero = () => {
       </div>
 
       {/* CSS Animations */}
-      <style>{`
-        @keyframes subtle-metallic {
-          0%, 100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-      `}</style>
+      <style>{sharedStyles}</style>
     </section>
   )
-}
+})
+
+ClaudeCodeBootcampHero.displayName = 'ClaudeCodeBootcampHero'
 
 export default ClaudeCodeBootcampHero

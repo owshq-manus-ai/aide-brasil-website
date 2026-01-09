@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import {
   Users,
@@ -11,52 +11,150 @@ import {
   GitBranch
 } from 'lucide-react'
 
-const targetAudiences = [
+// Shared styles
+const sharedStyles = `
+  @keyframes subtle-metallic {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+`
+
+// Static data - defined outside component
+const TARGET_AUDIENCES = [
   {
     title: 'Data Engineers',
-    description: 'Cansados de pipelines manuais — prontos para agentes que constroem e mantêm infraestrutura por você',
+    description: 'Cansados de pipelines manuais -- prontos para agentes que constroem e mantêm infraestrutura por você',
     icon: Database,
     fit: 'perfect',
-    transformation: 'Script manual → Pipeline autônomo'
+    transformation: 'Script manual -> Pipeline autônomo'
   },
   {
     title: 'Analytics Engineers',
     description: 'Querem sair do dbt/SQL tradicional para analytics com extração inteligente e dashboards que se atualizam sozinhos',
     icon: BarChart3,
     fit: 'perfect',
-    transformation: 'Relatório estático → Insight em tempo real'
+    transformation: 'Relatório estático -> Insight em tempo real'
   },
   {
     title: 'Software Engineers',
-    description: 'Já dominam código — agora querem multiplicar output com uma frota de agentes especializados',
+    description: 'Já dominam código -- agora querem multiplicar output com uma frota de agentes especializados',
     icon: Code2,
     fit: 'good',
-    transformation: 'Solo coder → Time de IA'
+    transformation: 'Solo coder -> Time de IA'
   }
 ]
 
-const prerequisites = [
+const PREREQUISITES = [
   {
     requirement: 'SQL e Python',
-    description: 'SELECT, JOINs e funções básicas — se você já escreveu um script, está pronto',
+    description: 'SELECT, JOINs e funções básicas -- se você já escreveu um script, está pronto',
     icon: Code2,
     level: 'basic'
   },
   {
     requirement: 'Git Básico',
-    description: 'git add, commit, push — o resto você aprende no bootcamp',
+    description: 'git add, commit, push -- o resto você aprende no bootcamp',
     icon: GitBranch,
     level: 'basic'
   },
   {
     requirement: 'Claude Code Pro',
-    description: 'Sua arma principal — $20/mês que paga em 1 hora de produtividade',
+    description: 'Sua arma principal -- $20/mês que paga em 1 hora de produtividade',
     icon: Terminal,
     level: 'tool'
   }
 ]
 
-const AudienceSection = () => {
+// Audience Card component - memoized
+const AudienceCard = memo(({ audience, index }) => {
+  const Icon = audience.icon
+  const isPerfect = audience.fit === 'perfect'
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      whileHover={{ x: 5 }}
+      className={`
+        relative bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-xl p-5
+        border transition-all duration-300
+        ${isPerfect
+          ? 'border-green-500/30 hover:border-green-500/50'
+          : 'border-white/10 hover:border-[#E07A5F]/30'
+        }
+      `}
+    >
+      <div className="flex items-start gap-4">
+        <div className={`
+          w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0
+          ${isPerfect ? 'bg-green-500/20' : ''}
+        `}
+        style={!isPerfect ? { backgroundColor: 'rgba(224, 122, 95, 0.2)' } : undefined}
+        >
+          <Icon className={`w-6 h-6 ${isPerfect ? 'text-green-400' : ''}`} style={!isPerfect ? { color: '#E07A5F' } : undefined} />
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-1">
+            <h4 className="text-lg font-bold text-white">{audience.title}</h4>
+            {isPerfect && (
+              <span className="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full">Ideal</span>
+            )}
+          </div>
+          <p className="text-white/60 text-sm mb-2">{audience.description}</p>
+          {audience.transformation && (
+            <p className="text-xs font-medium" style={{ color: '#E07A5F' }}>
+              {audience.transformation}
+            </p>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  )
+})
+AudienceCard.displayName = 'AudienceCard'
+
+// Prerequisite Card component - memoized
+const PrerequisiteCard = memo(({ prereq, index }) => {
+  const Icon = prereq.icon
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className="relative bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-xl p-5 border"
+      style={{ borderColor: 'rgba(224, 122, 95, 0.2)' }}
+    >
+      <div className="flex items-start gap-4">
+        <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(224, 122, 95, 0.2)' }}>
+          <Icon className="w-6 h-6" style={{ color: '#E07A5F' }} />
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-1">
+            <h4 className="text-lg font-bold text-white">{prereq.requirement}</h4>
+            <span className={`text-xs px-2 py-0.5 rounded-full ${
+              prereq.level === 'tool'
+                ? 'bg-purple-500/20 text-purple-400'
+                : 'bg-green-500/20 text-green-400'
+            }`}>
+              {prereq.level === 'tool' ? 'Ferramenta' : 'Básico'}
+            </span>
+          </div>
+          <p className="text-white/60 text-sm">{prereq.description}</p>
+        </div>
+      </div>
+    </motion.div>
+  )
+})
+PrerequisiteCard.displayName = 'PrerequisiteCard'
+
+const AudienceSection = memo(() => {
+  const audiences = useMemo(() => TARGET_AUDIENCES, [])
+  const prerequisites = useMemo(() => PREREQUISITES, [])
+
   return (
     <section id="audience" className="relative py-24 bg-[#0a0a0a] overflow-hidden">
       {/* Background */}
@@ -134,51 +232,8 @@ const AudienceSection = () => {
             </h3>
 
             <div className="space-y-4">
-              {targetAudiences.map((audience, index) => (
-                <motion.div
-                  key={audience.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ x: 5 }}
-                  className={`
-                    relative bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-xl p-5
-                    border transition-all duration-300
-                    ${audience.fit === 'perfect'
-                      ? 'border-green-500/30 hover:border-green-500/50'
-                      : 'border-white/10 hover:border-[#E07A5F]/30'
-                    }
-                  `}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className={`
-                      w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0
-                      ${audience.fit === 'perfect'
-                        ? 'bg-green-500/20'
-                        : ''
-                      }
-                    `}
-                    style={audience.fit !== 'perfect' ? { backgroundColor: 'rgba(224, 122, 95, 0.2)' } : undefined}
-                    >
-                      <audience.icon className={`w-6 h-6 ${audience.fit === 'perfect' ? 'text-green-400' : ''}`} style={audience.fit !== 'perfect' ? { color: '#E07A5F' } : undefined} />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="text-lg font-bold text-white">{audience.title}</h4>
-                        {audience.fit === 'perfect' && (
-                          <span className="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full">Ideal</span>
-                        )}
-                      </div>
-                      <p className="text-white/60 text-sm mb-2">{audience.description}</p>
-                      {audience.transformation && (
-                        <p className="text-xs font-medium" style={{ color: '#E07A5F' }}>
-                          {audience.transformation}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
+              {audiences.map((audience, index) => (
+                <AudienceCard key={audience.title} audience={audience} index={index} />
               ))}
             </div>
           </motion.div>
@@ -197,34 +252,7 @@ const AudienceSection = () => {
 
             <div className="space-y-4">
               {prerequisites.map((prereq, index) => (
-                <motion.div
-                  key={prereq.requirement}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="relative bg-gradient-to-br from-white/[0.05] to-white/[0.02] rounded-xl p-5 border"
-                  style={{ borderColor: 'rgba(224, 122, 95, 0.2)' }}
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(224, 122, 95, 0.2)' }}>
-                      <prereq.icon className="w-6 h-6" style={{ color: '#E07A5F' }} />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="text-lg font-bold text-white">{prereq.requirement}</h4>
-                        <span className={`text-xs px-2 py-0.5 rounded-full ${
-                          prereq.level === 'tool'
-                            ? 'bg-purple-500/20 text-purple-400'
-                            : 'bg-green-500/20 text-green-400'
-                        }`}>
-                          {prereq.level === 'tool' ? 'Ferramenta' : 'Básico'}
-                        </span>
-                      </div>
-                      <p className="text-white/60 text-sm">{prereq.description}</p>
-                    </div>
-                  </div>
-                </motion.div>
+                <PrerequisiteCard key={prereq.requirement} prereq={prereq} index={index} />
               ))}
             </div>
 
@@ -245,14 +273,11 @@ const AudienceSection = () => {
         </div>
       </div>
 
-      <style>{`
-        @keyframes subtle-metallic {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-      `}</style>
+      <style>{sharedStyles}</style>
     </section>
   )
-}
+})
+
+AudienceSection.displayName = 'AudienceSection'
 
 export default AudienceSection

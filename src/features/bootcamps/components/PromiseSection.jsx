@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import {
   FileText,
@@ -8,20 +8,23 @@ import {
   Terminal,
   Webhook,
   Wand2,
-  Sparkles,
-  CheckCircle,
-  ArrowRight,
-  Zap,
   Brain,
   Settings,
-  Rocket,
-  Shield,
-  Code2,
-  Mouse,
-  Bot
+  ArrowRight,
+  Bot,
+  Shield
 } from 'lucide-react'
 
-const claudeCodeFeatures = [
+// Shared styles
+const sharedStyles = `
+  @keyframes subtle-metallic {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+`
+
+// Static data - defined outside component to prevent recreation
+const CLAUDE_CODE_FEATURES = [
   {
     icon: FileText,
     title: 'CLAUDE.md',
@@ -32,7 +35,7 @@ const claudeCodeFeatures = [
   {
     icon: Server,
     title: 'MCPs (Model Context Protocol)',
-    description: 'Conecte bancos, APIs e ferramentas externas — o Claude executa ações reais via servidores MCP',
+    description: 'Conecte bancos, APIs e ferramentas externas -- o Claude executa ações reais via servidores MCP',
     highlight: 'servidores MCP',
     color: 'purple'
   },
@@ -53,14 +56,14 @@ const claudeCodeFeatures = [
   {
     icon: Terminal,
     title: 'Commands',
-    description: 'Automatize workflows repetitivos com comandos personalizados — digite uma vez, execute sempre',
+    description: 'Automatize workflows repetitivos com comandos personalizados -- digite uma vez, execute sempre',
     highlight: 'comandos personalizados',
     color: 'cyan'
   },
   {
     icon: Webhook,
     title: 'Hooks',
-    description: 'Dispare ações automaticamente em eventos do código — lint, test, deploy sem intervenção',
+    description: 'Dispare ações automaticamente em eventos do código -- lint, test, deploy sem intervenção',
     highlight: 'ações automaticamente',
     color: 'pink'
   },
@@ -74,13 +77,13 @@ const claudeCodeFeatures = [
   {
     icon: Settings,
     title: 'Prompts & Templates',
-    description: 'Garanta outputs consistentes com prompts estruturados — mesmo resultado, toda vez',
+    description: 'Garanta outputs consistentes com prompts estruturados -- mesmo resultado, toda vez',
     highlight: 'outputs consistentes',
     color: 'red'
   }
 ]
 
-const colorClasses = {
+const COLOR_CLASSES = {
   orange: {
     bg: 'bg-orange-500/20',
     border: 'border-orange-500/30',
@@ -131,7 +134,53 @@ const colorClasses = {
   }
 }
 
-const PromiseSection = () => {
+// Arrow animation config
+const arrowAnimation = { x: [0, 5, 0] }
+const arrowTransition = { duration: 1.5, repeat: Infinity }
+
+// Feature Card component - memoized for performance
+const FeatureCard = memo(({ item, index }) => {
+  const colors = COLOR_CLASSES[item.color]
+  const Icon = item.icon
+
+  // Split description for highlighting
+  const parts = item.description.split(item.highlight)
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="relative group"
+    >
+      <div className={`relative h-full bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm rounded-2xl p-5 border ${colors.border} hover:border-opacity-60 transition-all duration-300 hover:shadow-lg ${colors.glow}`}>
+        {/* Icon */}
+        <div className={`w-12 h-12 rounded-xl ${colors.bg} border ${colors.border} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+          <Icon className={`w-6 h-6 ${colors.text}`} />
+        </div>
+
+        {/* Content */}
+        <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+        <p className="text-white/60 text-sm leading-relaxed">
+          {parts[0]}
+          <span className={`${colors.text} font-semibold`}>{item.highlight}</span>
+          {parts[1]}
+        </p>
+
+        {/* Hover glow */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+      </div>
+    </motion.div>
+  )
+})
+FeatureCard.displayName = 'FeatureCard'
+
+const PromiseSection = memo(() => {
+  // Memoize the features list to prevent re-renders
+  const features = useMemo(() => CLAUDE_CODE_FEATURES, [])
+
   return (
     <section id="promise" className="relative py-24 bg-[#0a0a0a] overflow-hidden">
       {/* Background */}
@@ -193,7 +242,7 @@ const PromiseSection = () => {
           </h2>
 
           <p className="text-xl text-white/70 max-w-3xl mx-auto mb-6">
-            <span style={{ color: '#E07A5F' }} className="font-bold">Esqueça tutoriais básicos.</span> Você vai configurar e operar cada recurso avançado — da setup inicial ao deploy automatizado.
+            <span style={{ color: '#E07A5F' }} className="font-bold">Esqueça tutoriais básicos.</span> Você vai configurar e operar cada recurso avançado -- da setup inicial ao deploy automatizado.
           </p>
 
           {/* Key message about building with Claude Code */}
@@ -209,54 +258,26 @@ const PromiseSection = () => {
               src="/images/logos/anthropic-icon.webp"
               alt="Anthropic"
               className="w-6 h-6 object-contain"
+              loading="lazy"
             />
             <span className="text-white/90">
-              <span style={{ color: '#E07A5F' }} className="font-bold">100% do projeto</span> será construído usando Claude Code —{' '}
+              <span style={{ color: '#E07A5F' }} className="font-bold">100% do projeto</span> será construído usando Claude Code --{' '}
               <span style={{ color: '#F0A090' }} className="font-semibold">do requisito ao deploy</span>
             </span>
             <img
               src="/images/logos/claude-code-icon.png"
               alt="Claude Code"
               className="w-6 h-6 object-contain"
+              loading="lazy"
             />
           </motion.div>
         </motion.div>
 
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mb-16">
-          {claudeCodeFeatures.map((item, index) => {
-            const colors = colorClasses[item.color]
-
-            return (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="relative group"
-              >
-                <div className={`relative h-full bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm rounded-2xl p-5 border ${colors.border} hover:border-opacity-60 transition-all duration-300 hover:shadow-lg ${colors.glow}`}>
-                  {/* Icon */}
-                  <div className={`w-12 h-12 rounded-xl ${colors.bg} border ${colors.border} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <item.icon className={`w-6 h-6 ${colors.text}`} />
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-white/60 text-sm leading-relaxed">
-                    {item.description.split(item.highlight)[0]}
-                    <span className={`${colors.text} font-semibold`}>{item.highlight}</span>
-                    {item.description.split(item.highlight)[1]}
-                  </p>
-
-                  {/* Hover glow */}
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-${item.color}-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity`} />
-                </div>
-              </motion.div>
-            )
-          })}
+          {features.map((item, index) => (
+            <FeatureCard key={item.title} item={item} index={index} />
+          ))}
         </div>
 
         {/* Bottom Highlight - Enhanced Best Practices */}
@@ -294,8 +315,8 @@ const PromiseSection = () => {
 
                 {/* Arrow with animation */}
                 <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
+                  animate={arrowAnimation}
+                  transition={arrowTransition}
                 >
                   <ArrowRight className="w-8 h-8" style={{ color: '#E07A5F' }} />
                 </motion.div>
@@ -324,14 +345,11 @@ const PromiseSection = () => {
         </motion.div>
       </div>
 
-      <style>{`
-        @keyframes subtle-metallic {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-      `}</style>
+      <style>{sharedStyles}</style>
     </section>
   )
-}
+})
+
+PromiseSection.displayName = 'PromiseSection'
 
 export default PromiseSection

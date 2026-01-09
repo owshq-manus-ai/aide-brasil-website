@@ -1,24 +1,81 @@
-import React from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import {
-  Sparkles,
   ChevronRight,
-  Rocket,
-  Award,
-  TrendingUp,
-  Clock,
   Bot,
-  ArrowRight,
-  Zap
+  ArrowRight
 } from 'lucide-react'
 
-const FinalCTASection = () => {
-  const scrollToSection = (sectionId) => {
+// Shared styles
+const sharedStyles = `
+  @keyframes subtle-metallic {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+`
+
+// Pre-generated particle positions - reduced from 20 to 6 for better performance
+const PARTICLE_POSITIONS = [
+  { left: '20%', top: '30%', duration: 4.5, delay: 0.2 },
+  { left: '80%', top: '25%', duration: 4.0, delay: 0.8 },
+  { left: '35%', top: '70%', duration: 3.8, delay: 0.5 },
+  { left: '65%', top: '60%', duration: 4.2, delay: 1.0 },
+  { left: '50%', top: '40%', duration: 3.5, delay: 0.3 },
+  { left: '15%', top: '55%', duration: 4.3, delay: 0.7 },
+]
+
+// Optimized shimmer animation config
+const shimmerAnimation = {
+  backgroundPosition: ['200% 0%', '-200% 0%']
+}
+const shimmerTransition = {
+  duration: 3,
+  repeat: Infinity,
+  ease: "linear"
+}
+
+// Arrow animation config
+const arrowAnimation = { x: [0, 5, 0] }
+const arrowTransition = { duration: 1.5, repeat: Infinity }
+
+// Memoized Particle component
+const Particle = memo(({ position }) => (
+  <motion.div
+    className="absolute w-1 h-1 rounded-full will-change-transform"
+    style={{
+      backgroundColor: 'rgba(224, 122, 95, 0.3)',
+      left: position.left,
+      top: position.top,
+    }}
+    animate={{
+      y: [-20, 20],
+      opacity: [0, 1, 0],
+    }}
+    transition={{
+      duration: position.duration,
+      delay: position.delay,
+      repeat: Infinity,
+    }}
+  />
+))
+Particle.displayName = 'Particle'
+
+const FinalCTASection = memo(() => {
+  const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
-  }
+  }, [])
+
+  const handlePricingClick = useCallback(() => scrollToSection('pricing'), [scrollToSection])
+
+  // Memoized particles render
+  const particles = useMemo(() =>
+    PARTICLE_POSITIONS.map((position, i) => (
+      <Particle key={i} position={position} />
+    )), []
+  )
 
   return (
     <section className="relative py-32 bg-[#0a0a0a] overflow-hidden">
@@ -35,27 +92,8 @@ const FinalCTASection = () => {
           }}
         />
 
-        {/* Animated particles */}
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full"
-            style={{
-              backgroundColor: 'rgba(224, 122, 95, 0.3)',
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [-20, 20],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              delay: Math.random() * 2,
-              repeat: Infinity,
-            }}
-          />
-        ))}
+        {/* Animated particles - optimized with fewer elements */}
+        {particles}
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 text-center">
@@ -75,8 +113,8 @@ const FinalCTASection = () => {
             </div>
 
             <motion.div
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
+              animate={arrowAnimation}
+              transition={arrowTransition}
             >
               <ArrowRight className="w-8 h-8" style={{ color: '#E07A5F' }} />
             </motion.div>
@@ -129,7 +167,7 @@ const FinalCTASection = () => {
           viewport={{ once: true }}
         >
           <motion.button
-            onClick={() => scrollToSection('pricing')}
+            onClick={handlePricingClick}
             className="inline-flex items-center gap-3 px-12 py-6 rounded-2xl font-oswald font-bold uppercase tracking-wider text-xl text-white transition-all duration-300 relative overflow-hidden group"
             whileHover={{
               scale: 1.05,
@@ -148,14 +186,8 @@ const FinalCTASection = () => {
                 background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.5) 50%, transparent 60%)',
                 backgroundSize: '200% 200%',
               }}
-              animate={{
-                backgroundPosition: ['200% 0%', '-200% 0%']
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "linear"
-              }}
+              animate={shimmerAnimation}
+              transition={shimmerTransition}
             />
 
             <Bot className="w-6 h-6" />
@@ -172,7 +204,7 @@ const FinalCTASection = () => {
             className="mt-6 space-y-2"
           >
             <p className="text-white/60 text-sm">
-              28-31 Janeiro 2026 • 12h de código • <span className="text-green-400 font-semibold">Garantia de 7 dias</span>
+              28-31 Janeiro 2026 * 12h de código * <span className="text-green-400 font-semibold">Garantia de 7 dias</span>
             </p>
             <p className="text-sm font-medium" style={{ color: 'rgba(224, 122, 95, 0.7)' }}>
               Lote Decisão: R$ 1.197 (economize R$ 800)
@@ -192,7 +224,7 @@ const FinalCTASection = () => {
             <p className="text-white/40 text-sm uppercase tracking-widest">A diferença entre quem usa IA e quem lidera com IA</p>
             <p className="text-2xl md:text-3xl font-oswald text-white">
               <span className="text-white/40 line-through">Vibe coding</span>
-              {' '}→{' '}
+              {' -> '}
               <span
                 className="bg-clip-text text-transparent font-bold"
                 style={{
@@ -209,14 +241,11 @@ const FinalCTASection = () => {
         </motion.div>
       </div>
 
-      <style>{`
-        @keyframes subtle-metallic {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-      `}</style>
+      <style>{sharedStyles}</style>
     </section>
   )
-}
+})
+
+FinalCTASection.displayName = 'FinalCTASection'
 
 export default FinalCTASection

@@ -1,18 +1,25 @@
-import React from 'react'
+import React, { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import {
-  Layers,
-  Database
-} from 'lucide-react'
+import { Layers, Database } from 'lucide-react'
 
-// Terraform SVG Icon component
-const TerraformIcon = () => (
+// Shared styles
+const sharedStyles = `
+  @keyframes subtle-metallic {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+`
+
+// Terraform SVG Icon component - memoized
+const TerraformIcon = memo(() => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
     <path d="M8.283 2v6.662l5.717 3.306v-6.66zM14.57 5.308v6.66l5.714-3.306V2zM2 5.308v6.66l5.715 3.307V8.614zM8.283 15.342L14 18.65V12l-5.717-3.306z"/>
   </svg>
-)
+))
+TerraformIcon.displayName = 'TerraformIcon'
 
-const stackCategories = [
+// Static data - defined outside component
+const STACK_CATEGORIES = [
   {
     category: 'Cloud',
     description: 'Onde seu sistema roda',
@@ -49,7 +56,7 @@ const stackCategories = [
     description: 'Deploy automático',
     image: '/images/logos/github-icon.png',
     items: [
-      { name: 'GitHub Actions', description: 'Push → Produção' }
+      { name: 'GitHub Actions', description: 'Push -> Produção' }
     ],
     color: 'github',
     largeIcon: true
@@ -75,7 +82,7 @@ const stackCategories = [
   }
 ]
 
-const colorClasses = {
+const COLOR_CLASSES = {
   gcp: {
     bg: 'bg-[#4285f4]/10',
     border: 'border-[#4285f4]/30',
@@ -120,7 +127,67 @@ const colorClasses = {
   }
 }
 
-const StackSection = () => {
+// Stack Card component - memoized
+const StackCard = memo(({ category, index }) => {
+  const colors = COLOR_CLASSES[category.color]
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -5 }}
+      className={`
+        relative bg-gradient-to-br from-white/[0.05] to-white/[0.02] backdrop-blur-sm rounded-2xl p-6
+        border ${colors.border} transition-all duration-300 hover:shadow-lg ${colors.glow}
+      `}
+    >
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-4">
+        <div
+          className="w-10 h-10 rounded-lg flex items-center justify-center"
+          style={{ backgroundColor: `${colors.iconBg}20` }}
+        >
+          {category.isTerraform ? (
+            <div style={{ color: colors.iconBg }}>
+              <TerraformIcon />
+            </div>
+          ) : (
+            <img
+              src={category.image}
+              alt={category.category}
+              className={`${category.largeIcon ? 'w-7 h-7' : 'w-6 h-6'} object-contain`}
+              loading="lazy"
+            />
+          )}
+        </div>
+        <div>
+          <h3 className="text-lg font-bold text-white">{category.category}</h3>
+          <p className="text-white/50 text-sm">{category.description}</p>
+        </div>
+      </div>
+
+      {/* Items */}
+      <div className="space-y-2">
+        {category.items.map((item, i) => (
+          <div
+            key={i}
+            className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-2"
+          >
+            <span className="text-white font-medium">{item.name}</span>
+            <span className={`text-sm ${colors.text}`}>{item.description}</span>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  )
+})
+StackCard.displayName = 'StackCard'
+
+const StackSection = memo(() => {
+  const categories = useMemo(() => STACK_CATEGORIES, [])
+
   return (
     <section id="stack" className="relative py-24 bg-[#0a0a0a] overflow-hidden">
       {/* Background */}
@@ -163,7 +230,7 @@ const StackSection = () => {
             style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)', border: '1px solid rgba(224, 122, 95, 0.3)' }}
           >
             <Layers className="w-4 h-4" style={{ color: '#E07A5F' }} />
-            <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>Seu Toolkit de Produção</span>
+            <span className="text-sm font-medium uppercase tracking-wider" style={{ color: '#E07A5F' }}>Seu Toolkit de Producao</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-oswald font-bold text-white mb-6">
@@ -178,72 +245,20 @@ const StackSection = () => {
             >
               Empresas Usam
             </span>
-            {' '}— Não Tutoriais
+            {' '}-- Não Tutoriais
           </h2>
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
             <span style={{ color: '#E07A5F' }} className="font-bold">Ferramentas de Fortune 500.</span>{' '}
-            GCP na prática, mas com arquitetura portável — migre para AWS ou Azure quando quiser.
+            GCP na prática, mas com arquitetura portável -- migre para AWS ou Azure quando quiser.
           </p>
         </motion.div>
 
         {/* Stack Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {stackCategories.map((category, index) => {
-            const colors = colorClasses[category.color]
-
-            return (
-              <motion.div
-                key={category.category}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-                className={`
-                  relative bg-gradient-to-br from-white/[0.05] to-white/[0.02] backdrop-blur-sm rounded-2xl p-6
-                  border ${colors.border} transition-all duration-300 hover:shadow-lg ${colors.glow}
-                `}
-              >
-                {/* Header */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center"
-                    style={{ backgroundColor: `${colors.iconBg}20` }}
-                  >
-                    {category.isTerraform ? (
-                      <div style={{ color: colors.iconBg }}>
-                        <TerraformIcon />
-                      </div>
-                    ) : (
-                      <img
-                        src={category.image}
-                        alt={category.category}
-                        className={`${category.largeIcon ? 'w-7 h-7' : 'w-6 h-6'} object-contain`}
-                      />
-                    )}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white">{category.category}</h3>
-                    <p className="text-white/50 text-sm">{category.description}</p>
-                  </div>
-                </div>
-
-                {/* Items */}
-                <div className="space-y-2">
-                  {category.items.map((item, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-2"
-                    >
-                      <span className="text-white font-medium">{item.name}</span>
-                      <span className={`text-sm ${colors.text}`}>{item.description}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            )
-          })}
+          {categories.map((category, index) => (
+            <StackCard key={category.category} category={category} index={index} />
+          ))}
         </div>
 
         {/* Architecture Note */}
@@ -258,25 +273,22 @@ const StackSection = () => {
             <div className="flex items-center gap-3">
               <Database className="w-5 h-5" style={{ color: '#E07A5F' }} />
               <span className="text-white/80">
-                <span style={{ color: '#E07A5F' }} className="font-bold">Adapter Pattern</span> — troque de cloud sem reescrever código
+                <span style={{ color: '#E07A5F' }} className="font-bold">Adapter Pattern</span> -- troque de cloud sem reescrever código
               </span>
             </div>
             <div className="hidden sm:block w-px h-6 bg-white/20" />
             <span className="text-white/60 text-sm">
-              GCP hoje → <span className="text-blue-400">AWS</span> ou <span className="text-cyan-400">Azure</span> amanhã
+              GCP hoje {'-> '}<span className="text-blue-400">AWS</span> ou <span className="text-cyan-400">Azure</span> amanhã
             </span>
           </div>
         </motion.div>
       </div>
 
-      <style>{`
-        @keyframes subtle-metallic {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-      `}</style>
+      <style>{sharedStyles}</style>
     </section>
   )
-}
+})
+
+StackSection.displayName = 'StackSection'
 
 export default StackSection

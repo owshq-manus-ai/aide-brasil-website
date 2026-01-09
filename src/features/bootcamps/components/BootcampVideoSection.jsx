@@ -1,16 +1,99 @@
-import React, { useState } from 'react'
+import React, { useState, memo, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Play, Sparkles, ChevronRight, X, Terminal, Bot, Rocket } from 'lucide-react'
 
-const BootcampVideoSection = () => {
+// Shared styles - extracted to module level
+const sharedStyles = `
+  @keyframes subtle-metallic {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+`
+
+// Optimized shimmer animation config
+const shimmerAnimation = {
+  backgroundPosition: ['200% 0%', '-200% 0%']
+}
+const shimmerTransition = {
+  duration: 3,
+  repeat: Infinity,
+  ease: "linear"
+}
+
+// Pre-generated particle positions to avoid recalculation on re-renders
+// Reduced from 20 to 8 particles for better performance while maintaining visual effect
+const PARTICLE_POSITIONS = [
+  { left: '15%', top: '20%', duration: 4.2, delay: 0.3 },
+  { left: '75%', top: '15%', duration: 3.8, delay: 0.8 },
+  { left: '25%', top: '70%', duration: 4.5, delay: 0.1 },
+  { left: '85%', top: '65%', duration: 3.5, delay: 1.2 },
+  { left: '45%', top: '30%', duration: 4.0, delay: 0.6 },
+  { left: '60%', top: '80%', duration: 3.9, delay: 0.9 },
+  { left: '35%', top: '50%', duration: 4.3, delay: 0.4 },
+  { left: '70%', top: '40%', duration: 3.7, delay: 1.0 },
+]
+
+// Memoized Particle component with GPU-accelerated animations
+const Particle = memo(({ position }) => (
+  <motion.div
+    className="absolute w-1 h-1 rounded-full will-change-transform"
+    style={{
+      left: position.left,
+      top: position.top,
+      backgroundColor: 'rgba(224, 122, 95, 0.6)',
+      boxShadow: '0 0 6px rgba(224, 122, 95, 0.6)',
+    }}
+    animate={{
+      y: [-10, 10, -10],
+      opacity: [0.3, 0.8, 0.3],
+    }}
+    transition={{
+      duration: position.duration,
+      delay: position.delay,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  />
+))
+Particle.displayName = 'Particle'
+
+// Memoized rotating text animation
+const rotatingTextAnimation = { rotate: 360 }
+const rotatingTextTransition = { duration: 15, repeat: Infinity, ease: "linear" }
+
+// Pulse animation for play button
+const pulseAnimation = { scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }
+const pulseTransition = { duration: 2, repeat: Infinity }
+
+// Video Stats Badge component
+const StatBadge = memo(({ icon: Icon, text }) => (
+  <div className="flex items-center gap-2 rounded-full px-4 py-2" style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)' }}>
+    <Icon className="w-4 h-4" style={{ color: '#E07A5F' }} />
+    <span className="text-white/80 text-sm">{text}</span>
+  </div>
+))
+StatBadge.displayName = 'StatBadge'
+
+const BootcampVideoSection = memo(() => {
   const [isPlaying, setIsPlaying] = useState(false)
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
-  }
+  }, [])
+
+  const handlePlayClick = useCallback(() => setIsPlaying(true), [])
+  const handleCloseClick = useCallback(() => setIsPlaying(false), [])
+  const handlePricingClick = useCallback(() => scrollToSection('pricing'), [scrollToSection])
+
+  // Memoized particles render
+  const particles = useMemo(() =>
+    PARTICLE_POSITIONS.map((position, i) => (
+      <Particle key={i} position={position} />
+    )), []
+  )
 
   return (
     <section className="relative py-20 bg-[#0a0a0a] overflow-hidden">
@@ -32,7 +115,6 @@ const BootcampVideoSection = () => {
             background: `
               radial-gradient(ellipse 800px 400px at 20% 20%, rgba(224, 122, 95, 0.08) 0%, transparent 40%),
               radial-gradient(ellipse 600px 300px at 80% 80%, rgba(224, 122, 95, 0.06) 0%, transparent 40%)`,
-            filter: 'blur(60px)',
           }}
         />
 
@@ -108,7 +190,7 @@ const BootcampVideoSection = () => {
           {/* Aggressive Copy - Transformation promise */}
           <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
             <span style={{ color: '#E07A5F' }} className="font-bold">Não é tutorial. Não é demo.</span>{' '}
-            É o processo completo para <span className="text-white font-bold">transformar requisitos em código de produção</span> — com agentes que <span style={{ color: '#E07A5F' }} className="font-bold">executam, não sugerem</span>.
+            É o processo completo para <span className="text-white font-bold">transformar requisitos em código de produção</span> -- com agentes que <span style={{ color: '#E07A5F' }} className="font-bold">executam, não sugerem</span>.
           </p>
 
           {/* Video Stats */}
@@ -118,18 +200,9 @@ const BootcampVideoSection = () => {
             transition={{ delay: 0.3 }}
             className="flex flex-wrap items-center justify-center gap-6 mt-8"
           >
-            <div className="flex items-center gap-2 rounded-full px-4 py-2" style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)' }}>
-              <Terminal className="w-4 h-4" style={{ color: '#E07A5F' }} />
-              <span className="text-white/80 text-sm">Metodologia Guiada</span>
-            </div>
-            <div className="flex items-center gap-2 rounded-full px-4 py-2" style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)' }}>
-              <Bot className="w-4 h-4" style={{ color: '#E07A5F' }} />
-              <span className="text-white/80 text-sm">Agentes que Executam</span>
-            </div>
-            <div className="flex items-center gap-2 rounded-full px-4 py-2" style={{ backgroundColor: 'rgba(224, 122, 95, 0.1)' }}>
-              <Rocket className="w-4 h-4" style={{ color: '#E07A5F' }} />
-              <span className="text-white/80 text-sm">Produção Real</span>
-            </div>
+            <StatBadge icon={Terminal} text="Metodologia Guiada" />
+            <StatBadge icon={Bot} text="Agentes que Executam" />
+            <StatBadge icon={Rocket} text="Produção Real" />
           </motion.div>
         </motion.div>
 
@@ -149,7 +222,7 @@ const BootcampVideoSection = () => {
                 exit={{ opacity: 0, scale: 1.05 }}
                 transition={{ duration: 0.5 }}
                 className="absolute inset-0 cursor-pointer group"
-                onClick={() => setIsPlaying(true)}
+                onClick={handlePlayClick}
               >
                 {/* Video Cover Background with Hero Image */}
                 <div className="absolute inset-0">
@@ -158,6 +231,8 @@ const BootcampVideoSection = () => {
                     src="/images/team/luan-moreno-4.png"
                     alt="Luan Moreno - AI Data Engineer"
                     className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
                   />
 
                   {/* Coral Gradient Overlay */}
@@ -181,31 +256,9 @@ const BootcampVideoSection = () => {
                   />
                 </div>
 
-                {/* Floating Particles Effect */}
+                {/* Floating Particles Effect - Optimized with fewer, pre-positioned particles */}
                 <div className="absolute inset-0">
-                  {[...Array(20)].map((_, i) => (
-                    <motion.div
-                      key={`particle-${i}`}
-                      className="absolute w-1 h-1 rounded-full"
-                      style={{
-                        left: `${10 + Math.random() * 80}%`,
-                        top: `${10 + Math.random() * 80}%`,
-                        filter: 'blur(1px)',
-                        backgroundColor: 'rgba(224, 122, 95, 0.6)',
-                        boxShadow: '0 0 6px rgba(224, 122, 95, 0.6)',
-                      }}
-                      animate={{
-                        y: [-10, 10, -10],
-                        opacity: [0.3, 0.8, 0.3],
-                      }}
-                      transition={{
-                        duration: 3 + Math.random() * 2,
-                        delay: Math.random() * 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    />
-                  ))}
+                  {particles}
                 </div>
 
                 {/* Play Button with Rotating Text */}
@@ -217,9 +270,9 @@ const BootcampVideoSection = () => {
                   >
                     {/* Rotating ASSISTA AGORA text */}
                     <motion.div
-                      className="absolute w-44 h-44"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                      className="absolute w-44 h-44 will-change-transform"
+                      animate={rotatingTextAnimation}
+                      transition={rotatingTextTransition}
                     >
                       <svg className="w-full h-full" viewBox="0 0 180 180">
                         <defs>
@@ -233,7 +286,7 @@ const BootcampVideoSection = () => {
                         </defs>
                         <text fill="white" fontSize="13" fontWeight="bold" letterSpacing="3" className="uppercase">
                           <textPath href="#circle-video" startOffset="0%">
-                            ASSISTA AGORA • ASSISTA AGORA •
+                            ASSISTA AGORA * ASSISTA AGORA *
                           </textPath>
                         </text>
                       </svg>
@@ -249,8 +302,8 @@ const BootcampVideoSection = () => {
                       <Play className="w-10 h-10 text-white ml-1" fill="white" />
                       <motion.div
                         className="absolute inset-0 rounded-full border-2 border-white/30"
-                        animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }}
-                        transition={{ duration: 2, repeat: Infinity }}
+                        animate={pulseAnimation}
+                        transition={pulseTransition}
                       />
                     </div>
                   </motion.div>
@@ -271,14 +324,15 @@ const BootcampVideoSection = () => {
               <iframe
                 className="absolute inset-0 w-full h-full"
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0"
-                title="AI Data Engineer Bootcamp - Zero à Produção"
+                title="AI Data Engineer Bootcamp - Zero a Produção"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
               />
 
               <button
-                onClick={() => setIsPlaying(false)}
+                onClick={handleCloseClick}
                 className="absolute top-4 right-4 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
               >
                 <X className="w-5 h-5" />
@@ -296,7 +350,7 @@ const BootcampVideoSection = () => {
           className="flex justify-center mt-12"
         >
           <motion.button
-            onClick={() => scrollToSection('pricing')}
+            onClick={handlePricingClick}
             whileHover={{
               scale: 1.05,
               boxShadow: "0 0 40px rgba(224, 122, 95, 0.8), 0 0 80px rgba(224, 122, 95, 0.5)"
@@ -305,7 +359,7 @@ const BootcampVideoSection = () => {
             className="group relative px-10 py-4 rounded-lg font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 overflow-hidden"
             style={{
               background: 'linear-gradient(135deg, #E07A5F 0%, #C96A50 100%)',
-              boxShadow: `0 0 30px rgba(224, 122, 95, 0.5), 0 0 60px rgba(224, 122, 95, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)`
+              boxShadow: '0 0 30px rgba(224, 122, 95, 0.5), 0 0 60px rgba(224, 122, 95, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)'
             }}
           >
             <motion.div
@@ -314,14 +368,8 @@ const BootcampVideoSection = () => {
                 background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.5) 50%, transparent 60%)',
                 backgroundSize: '200% 200%',
               }}
-              animate={{
-                backgroundPosition: ['200% 0%', '-200% 0%']
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "linear"
-              }}
+              animate={shimmerAnimation}
+              transition={shimmerTransition}
             />
 
             <span className="relative z-10 flex items-center gap-3 text-lg">
@@ -333,21 +381,11 @@ const BootcampVideoSection = () => {
         </motion.div>
       </div>
 
-      <style>{`
-        @keyframes subtle-metallic {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-      `}</style>
+      <style>{sharedStyles}</style>
     </section>
   )
-}
+})
+
+BootcampVideoSection.displayName = 'BootcampVideoSection'
 
 export default BootcampVideoSection

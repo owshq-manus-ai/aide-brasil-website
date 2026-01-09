@@ -41,15 +41,28 @@
       '  transition-duration: 0s !important;',
       '  transition-delay: 0s !important;',
       '}',
-      '.mobile-no-animations [style*="opacity: 0"] {',
+      // Force ALL motion elements to be visible - more robust selectors
+      '.mobile-no-animations [style] {',
       '  opacity: 1 !important;',
+      '  transform: none !important;',
+      '  visibility: visible !important;',
       '}',
+      // Target Framer Motion components specifically
+      '.mobile-no-animations [data-framer-appear-id],',
+      '.mobile-no-animations [data-projection-id],',
+      '.mobile-no-animations [style*="opacity"],',
       '.mobile-no-animations [style*="transform"] {',
-      '  transform: none !important;',
-      '}',
-      '.mobile-no-animations [data-framer-appear-id] {',
       '  opacity: 1 !important;',
       '  transform: none !important;',
+      '  visibility: visible !important;',
+      '}',
+      // Ensure all sections and containers are visible
+      '.mobile-no-animations section,',
+      '.mobile-no-animations div,',
+      '.mobile-no-animations main,',
+      '.mobile-no-animations article {',
+      '  opacity: 1 !important;',
+      '  visibility: visible !important;',
       '}'
     ].join('\n');
     document.head.appendChild(style);

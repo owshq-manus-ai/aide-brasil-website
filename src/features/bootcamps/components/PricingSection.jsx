@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo, useCallback, useMemo, useRef } from 'react'
 import { motion } from 'framer-motion'
 import {
   Calendar,
   Clock,
-  Users,
   CheckCircle,
   Sparkles,
-  ChevronRight,
   Timer,
   Shield,
   Award,
   Zap,
-  Gift,
   AlertCircle,
   Phone,
   Mail,
@@ -22,9 +19,18 @@ import {
   TrendingUp
 } from 'lucide-react'
 
-const deliverables = [
+// Shared styles
+const sharedStyles = `
+  @keyframes subtle-metallic {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+`
+
+// Static data - defined outside component
+const DELIVERABLES = [
   { text: 'Repositório GitHub production-ready', value: 'Clone e rode em 5 minutos' },
-  { text: 'Pipeline GenAI completo em produção', value: 'Invoice → BigQuery → Dashboard' },
+  { text: 'Pipeline GenAI completo em produção', value: 'Invoice -> BigQuery -> Dashboard' },
   { text: 'Infra GCP via Terraform', value: 'Destrua e recrie em 1 comando' },
   { text: 'CI/CD com GitHub Actions', value: 'Push = Deploy automático' },
   { text: 'Observabilidade com Langfuse', value: 'Custo, latência, qualidade' },
@@ -33,7 +39,7 @@ const deliverables = [
   { text: 'Projeto pronto para portfólio', value: 'Mostre em entrevistas' }
 ]
 
-const pricingTiers = [
+const PRICING_TIERS = [
   {
     id: 'lote1',
     name: 'Early Birds',
@@ -69,15 +75,257 @@ const pricingTiers = [
   }
 ]
 
-const PricingSection = () => {
-  const [spotsLeft] = useState(47)
+// Countdown timer labels
+const COUNTDOWN_LABELS = [
+  { key: 'days', label: 'd' },
+  { key: 'hours', label: 'h' },
+  { key: 'minutes', label: 'm' },
+  { key: 'seconds', label: 's' }
+]
+
+// Deliverable Item component - memoized
+const DeliverableItem = memo(({ item }) => (
+  <div className="flex items-start gap-3 bg-white/[0.02] rounded-lg p-3 border border-white/5 hover:border-[#E07A5F]/20 transition-colors">
+    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+    <div>
+      <span className="text-white font-medium text-sm block">{item.text}</span>
+      <span className="text-xs" style={{ color: 'rgba(224, 122, 95, 0.7)' }}>{item.value}</span>
+    </div>
+  </div>
+))
+DeliverableItem.displayName = 'DeliverableItem'
+
+// Pricing Tier Card component - memoized
+const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
+  const Icon = tier.icon
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className={`relative ${tier.highlight ? 'md:-mt-4 md:mb-4' : ''}`}
+    >
+      <div
+        className={`
+          relative h-full rounded-2xl p-6 border transition-all duration-300
+          ${tier.status === 'sold_out'
+            ? 'bg-white/[0.02] border-white/10 opacity-60'
+            : tier.highlight
+              ? 'bg-gradient-to-br from-[#E07A5F]/15 to-[#F0A090]/10 border-[#E07A5F]/40 shadow-lg shadow-[#E07A5F]/10'
+              : 'bg-white/[0.03] border-white/10 hover:border-[#E07A5F]/30'
+          }
+        `}
+      >
+        {/* Badge for current tier */}
+        {tier.highlight && (
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+            <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 shadow-lg" style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}>
+              <Flame className="w-3 h-3 text-white" />
+              <span className="text-white text-xs font-bold uppercase">Melhor Oferta</span>
+            </div>
+          </div>
+        )}
+
+        {/* Tier Header */}
+        <div className="text-center mb-6 pt-2">
+          <div
+            className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center"
+            style={
+              tier.status === 'sold_out'
+                ? { backgroundColor: 'rgba(255, 255, 255, 0.1)' }
+                : tier.highlight
+                  ? { background: 'linear-gradient(135deg, #E07A5F, #F0A090)' }
+                  : { backgroundColor: 'rgba(224, 122, 95, 0.2)' }
+            }
+          >
+            <Icon className={`w-6 h-6 ${tier.status === 'sold_out' ? 'text-white/40' : 'text-white'}`} />
+          </div>
+          <h3 className={`text-lg font-bold ${tier.status === 'sold_out' ? 'text-white/40' : 'text-white'}`}>
+            {tier.name}
+          </h3>
+          {tier.subtitle && (
+            <p className={`text-sm mt-1 ${tier.status === 'sold_out' ? 'text-white/30' : 'text-white/50'}`}>
+              {tier.subtitle}
+            </p>
+          )}
+        </div>
+
+        {/* Price */}
+        <div className="text-center mb-6">
+          {tier.originalPrice && (
+            <div className="text-white/40 text-sm line-through mb-1">De R$ {tier.originalPrice}</div>
+          )}
+          <div className="flex items-baseline justify-center gap-1">
+            <span className={`text-lg ${tier.status === 'sold_out' ? 'text-white/30' : ''}`} style={tier.status !== 'sold_out' ? { color: '#E07A5F' } : undefined}>R$</span>
+            <span
+              className={`
+                text-5xl font-oswald font-black
+                ${tier.status === 'sold_out'
+                  ? 'text-white/30 line-through'
+                  : tier.highlight
+                    ? 'bg-clip-text text-transparent'
+                    : 'text-white'
+                }
+              `}
+              style={tier.highlight ? {
+                backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #F0A090 50%, #E07A5F 100%)',
+              } : undefined}
+            >
+              {tier.price}
+            </span>
+          </div>
+          {tier.highlight && (
+            <p className="text-sm mt-2" style={{ color: '#F0A090' }}>ou 12x de R$ 119,63</p>
+          )}
+        </div>
+
+        {/* Status indicator */}
+        <div className="text-center">
+          {tier.status === 'sold_out' && (
+            <span className="inline-flex items-center gap-1.5 text-white/40 text-sm">
+              <Lock className="w-4 h-4" />
+              Esgotado
+            </span>
+          )}
+          {tier.status === 'current' && (
+            <motion.button
+              onClick={onOpenModal}
+              className="w-full py-3 rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden"
+              style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}
+              whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(224, 122, 95, 0.5)" }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <Sparkles className="w-4 h-4" />
+                QUERO LIDERAR COM IA
+              </span>
+            </motion.button>
+          )}
+          {tier.status === 'upcoming' && (
+            <span className="inline-flex items-center gap-1.5 text-amber-400/60 text-sm">
+              <TrendingUp className="w-4 h-4" />
+              Em breve
+            </span>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  )
+})
+PricingTierCard.displayName = 'PricingTierCard'
+
+// Registration Modal component - memoized
+const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubmit, isSubmitting }) => {
+  const handleInputChange = useCallback((field) => (e) => {
+    setFormData(prev => ({ ...prev, [field]: e.target.value }))
+  }, [setFormData])
+
+  if (!isOpen) return null
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        className="relative w-full max-w-md bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-2xl p-8 border"
+        style={{ borderColor: 'rgba(224, 122, 95, 0.3)' }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+        >
+          <X className="w-4 h-4" />
+        </button>
+
+        <h3 className="text-2xl font-bold text-white mb-2 text-center">Última Etapa</h3>
+        <p className="text-white/60 text-center mb-6">Preencha para garantir o preço do <span style={{ color: '#E07A5F' }} className="font-semibold">Lote Decisão</span></p>
+
+        <form onSubmit={onSubmit} className="space-y-4">
+          <div>
+            <label className="text-white/60 text-sm mb-2 block">Nome Completo</label>
+            <div className="relative">
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+              <input
+                type="text"
+                required
+                value={formData.name}
+                onChange={handleInputChange('name')}
+                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
+                placeholder="Seu nome"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="text-white/60 text-sm mb-2 block">E-mail</label>
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+              <input
+                type="email"
+                required
+                value={formData.email}
+                onChange={handleInputChange('email')}
+                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
+                placeholder="seu@email.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="text-white/60 text-sm mb-2 block">WhatsApp</label>
+            <div className="relative">
+              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+              <input
+                type="tel"
+                required
+                value={formData.phone}
+                onChange={handleInputChange('phone')}
+                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
+                placeholder="(11) 99999-9999"
+              />
+            </div>
+          </div>
+
+          <motion.button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full py-4 rounded-xl font-bold uppercase tracking-wider text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}
+            whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+            whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+          >
+            {isSubmitting ? 'Processando...' : 'CONFIRMAR MINHA VAGA'}
+          </motion.button>
+          <p className="text-white/40 text-xs text-center mt-3">
+            Garantia de 7 dias -- se não gostar, devolvemos 100%
+          </p>
+        </form>
+      </motion.div>
+    </motion.div>
+  )
+})
+RegistrationModal.displayName = 'RegistrationModal'
+
+const PricingSection = memo(() => {
+  const spotsLeft = 47
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
 
-  // Countdown timer - Lote Final 18/01/2026
+  // Countdown timer - optimized with ref for interval
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+  const intervalRef = useRef(null)
 
   useEffect(() => {
     const targetDate = new Date('2026-01-18T00:00:00-03:00')
@@ -97,11 +345,14 @@ const PricingSection = () => {
     }
 
     updateCountdown()
-    const interval = setInterval(updateCountdown, 1000)
-    return () => clearInterval(interval)
+    intervalRef.current = setInterval(updateCountdown, 1000)
+    return () => clearInterval(intervalRef.current)
   }, [])
 
-  const handleSubmit = async (e) => {
+  const handleOpenModal = useCallback(() => setIsModalOpen(true), [])
+  const handleCloseModal = useCallback(() => setIsModalOpen(false), [])
+
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
 
@@ -112,7 +363,10 @@ const PricingSection = () => {
     setIsModalOpen(false)
 
     setTimeout(() => setShowSuccess(false), 5000)
-  }
+  }, [])
+
+  const deliverables = useMemo(() => DELIVERABLES, [])
+  const pricingTiers = useMemo(() => PRICING_TIERS, [])
 
   return (
     <section id="pricing" className="relative py-24 bg-[#0a0a0a] overflow-hidden">
@@ -174,7 +428,7 @@ const PricingSection = () => {
           </h2>
 
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            <span style={{ color: '#E07A5F' }} className="font-bold">12 horas de hands-on</span> que mudam como você trabalha para sempre — ou seu dinheiro de volta em 7 dias.
+            <span style={{ color: '#E07A5F' }} className="font-bold">12 horas de hands-on</span> que mudam como você trabalha para sempre -- ou seu dinheiro de volta em 7 dias.
           </p>
         </motion.div>
 
@@ -190,16 +444,11 @@ const PricingSection = () => {
             <Timer className="w-5 h-5 text-red-400" />
             <span className="text-red-400 font-medium">Lote Final:</span>
             <div className="flex items-center gap-2">
-              {[
-                { value: countdown.days, label: 'd' },
-                { value: countdown.hours, label: 'h' },
-                { value: countdown.minutes, label: 'm' },
-                { value: countdown.seconds, label: 's' }
-              ].map((item, i) => (
-                <div key={i} className="flex items-center">
+              {COUNTDOWN_LABELS.map((item, i) => (
+                <div key={item.key} className="flex items-center">
                   <div className="bg-red-500/20 rounded-lg px-3 py-2 min-w-[48px] text-center">
                     <span className="text-white font-bold text-xl font-mono">
-                      {String(item.value).padStart(2, '0')}
+                      {String(countdown[item.key]).padStart(2, '0')}
                     </span>
                     <span className="text-red-400 text-xs ml-1">{item.label}</span>
                   </div>
@@ -213,127 +462,12 @@ const PricingSection = () => {
         {/* 3-Tier Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {pricingTiers.map((tier, index) => (
-            <motion.div
+            <PricingTierCard
               key={tier.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className={`relative ${tier.highlight ? 'md:-mt-4 md:mb-4' : ''}`}
-            >
-              <div
-                className={`
-                  relative h-full rounded-2xl p-6 border transition-all duration-300
-                  ${tier.status === 'sold_out'
-                    ? 'bg-white/[0.02] border-white/10 opacity-60'
-                    : tier.highlight
-                      ? 'bg-gradient-to-br from-[#E07A5F]/15 to-[#F0A090]/10 border-[#E07A5F]/40 shadow-lg shadow-[#E07A5F]/10'
-                      : 'bg-white/[0.03] border-white/10 hover:border-[#E07A5F]/30'
-                  }
-                `}
-              >
-                {/* Badge for current tier */}
-                {tier.highlight && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 shadow-lg" style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}>
-                      <Flame className="w-3 h-3 text-white" />
-                      <span className="text-white text-xs font-bold uppercase">Melhor Oferta</span>
-                    </div>
-                  </div>
-                )}
-
-                {/* Tier Header */}
-                <div className="text-center mb-6 pt-2">
-                  <div
-                    className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center"
-                    style={
-                      tier.status === 'sold_out'
-                        ? { backgroundColor: 'rgba(255, 255, 255, 0.1)' }
-                        : tier.highlight
-                          ? { background: 'linear-gradient(135deg, #E07A5F, #F0A090)' }
-                          : { backgroundColor: 'rgba(224, 122, 95, 0.2)' }
-                    }
-                  >
-                    <tier.icon className={`w-6 h-6 ${tier.status === 'sold_out' ? 'text-white/40' : 'text-white'}`} />
-                  </div>
-                  <h3 className={`text-lg font-bold ${tier.status === 'sold_out' ? 'text-white/40' : 'text-white'}`}>
-                    {tier.name}
-                  </h3>
-                  {tier.subtitle && (
-                    <p className={`text-sm mt-1 ${tier.status === 'sold_out' ? 'text-white/30' : 'text-white/50'}`}>
-                      {tier.subtitle}
-                    </p>
-                  )}
-                </div>
-
-                {/* Price */}
-                <div className="text-center mb-6">
-                  {tier.originalPrice && (
-                    <div className="text-white/40 text-sm line-through mb-1">De R$ {tier.originalPrice}</div>
-                  )}
-                  <div className="flex items-baseline justify-center gap-1">
-                    <span className={`text-lg ${tier.status === 'sold_out' ? 'text-white/30' : ''}`} style={tier.status !== 'sold_out' ? { color: '#E07A5F' } : undefined}>R$</span>
-                    <span
-                      className={`
-                        text-5xl font-oswald font-black
-                        ${tier.status === 'sold_out'
-                          ? 'text-white/30 line-through'
-                          : tier.highlight
-                            ? 'bg-clip-text text-transparent'
-                            : 'text-white'
-                        }
-                      `}
-                      style={tier.highlight ? {
-                        backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #F0A090 50%, #E07A5F 100%)',
-                      } : undefined}
-                    >
-                      {tier.price}
-                    </span>
-                  </div>
-                  {tier.highlight && (
-                    <>
-                      <p className="text-sm mt-2" style={{ color: '#F0A090' }}>ou 12x de R$ 119,63</p>
-                      {tier.savings && (
-                        <div className="inline-flex items-center gap-1 bg-green-500/20 text-green-400 text-xs font-bold rounded-full px-3 py-1 mt-2">
-                          <Gift className="w-3 h-3" />
-                          Economia de R$ {tier.savings}
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-
-                {/* Status indicator */}
-                <div className="text-center">
-                  {tier.status === 'sold_out' && (
-                    <span className="inline-flex items-center gap-1.5 text-white/40 text-sm">
-                      <Lock className="w-4 h-4" />
-                      Esgotado
-                    </span>
-                  )}
-                  {tier.status === 'current' && (
-                    <motion.button
-                      onClick={() => setIsModalOpen(true)}
-                      className="w-full py-3 rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden"
-                      style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}
-                      whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(224, 122, 95, 0.5)" }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <span className="relative z-10 flex items-center justify-center gap-2">
-                        <Sparkles className="w-4 h-4" />
-                        QUERO LIDERAR COM IA
-                      </span>
-                    </motion.button>
-                  )}
-                  {tier.status === 'upcoming' && (
-                    <span className="inline-flex items-center gap-1.5 text-amber-400/60 text-sm">
-                      <TrendingUp className="w-4 h-4" />
-                      Em breve
-                    </span>
-                  )}
-                </div>
-              </div>
-            </motion.div>
+              tier={tier}
+              index={index}
+              onOpenModal={handleOpenModal}
+            />
           ))}
         </div>
 
@@ -371,16 +505,10 @@ const PricingSection = () => {
 
           {/* Deliverables */}
           <div>
-            <p className="text-sm uppercase tracking-wider mb-4 text-center font-bold" style={{ color: '#E07A5F' }}>8 Entregas Concretas — Não Promessas</p>
+            <p className="text-sm uppercase tracking-wider mb-4 text-center font-bold" style={{ color: '#E07A5F' }}>8 Entregas Concretas -- Não Promessas</p>
             <div className="grid md:grid-cols-2 gap-3">
               {deliverables.map((item, i) => (
-                <div key={i} className="flex items-start gap-3 bg-white/[0.02] rounded-lg p-3 border border-white/5 hover:border-[#E07A5F]/20 transition-colors">
-                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-white font-medium text-sm block">{item.text}</span>
-                    <span className="text-xs" style={{ color: 'rgba(224, 122, 95, 0.7)' }}>{item.value}</span>
-                  </div>
-                </div>
+                <DeliverableItem key={i} item={item} />
               ))}
             </div>
           </div>
@@ -399,14 +527,14 @@ const PricingSection = () => {
                 <span className="text-white/20">=</span>
                 <span className="text-red-400 line-through font-bold">R$ 1.500+</span>
               </div>
-              <p className="text-green-400 text-sm mt-2 font-medium">Aqui você leva tudo integrado por menos — e funcionando em 4 dias</p>
+              <p className="text-green-400 text-sm mt-2 font-medium">Aqui você leva tudo integrado por menos -- e funcionando em 4 dias</p>
             </div>
 
             {/* Spots Left */}
             <div className="text-center">
               <div className="inline-flex items-center gap-2 text-red-400 bg-red-500/10 rounded-full px-4 py-2">
                 <AlertCircle className="w-4 h-4" />
-                <span className="text-sm font-medium">{spotsLeft} vagas restantes — depois sobe para R$ 1.397</span>
+                <span className="text-sm font-medium">{spotsLeft} vagas restantes -- depois sobe para R$ 1.397</span>
               </div>
             </div>
           </div>
@@ -414,95 +542,14 @@ const PricingSection = () => {
       </div>
 
       {/* Registration Modal */}
-      {isModalOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-          onClick={() => setIsModalOpen(false)}
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            className="relative w-full max-w-md bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-2xl p-8 border"
-            style={{ borderColor: 'rgba(224, 122, 95, 0.3)' }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
-            <h3 className="text-2xl font-bold text-white mb-2 text-center">Última Etapa</h3>
-            <p className="text-white/60 text-center mb-6">Preencha para garantir o preço do <span style={{ color: '#E07A5F' }} className="font-semibold">Lote Decisão</span></p>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="text-white/60 text-sm mb-2 block">Nome Completo</label>
-                <div className="relative">
-                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
-                    placeholder="Seu nome"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="text-white/60 text-sm mb-2 block">E-mail</label>
-                <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
-                    placeholder="seu@email.com"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="text-white/60 text-sm mb-2 block">WhatsApp</label>
-                <div className="relative">
-                  <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
-                  <input
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
-                    placeholder="(11) 99999-9999"
-                  />
-                </div>
-              </div>
-
-              <motion.button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 rounded-xl font-bold uppercase tracking-wider text-white disabled:opacity-50 disabled:cursor-not-allowed"
-                style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}
-                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-              >
-                {isSubmitting ? 'Processando...' : 'CONFIRMAR MINHA VAGA'}
-              </motion.button>
-              <p className="text-white/40 text-xs text-center mt-3">
-                Garantia de 7 dias — se não gostar, devolvemos 100%
-              </p>
-            </form>
-          </motion.div>
-        </motion.div>
-      )}
+      <RegistrationModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        formData={formData}
+        setFormData={setFormData}
+        onSubmit={handleSubmit}
+        isSubmitting={isSubmitting}
+      />
 
       {/* Success Toast */}
       {showSuccess && (
@@ -517,14 +564,11 @@ const PricingSection = () => {
         </motion.div>
       )}
 
-      <style>{`
-        @keyframes subtle-metallic {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-      `}</style>
+      <style>{sharedStyles}</style>
     </section>
   )
-}
+})
+
+PricingSection.displayName = 'PricingSection'
 
 export default PricingSection

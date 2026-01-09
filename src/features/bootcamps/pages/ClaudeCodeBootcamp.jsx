@@ -1,45 +1,63 @@
-import React from 'react'
-import ClaudeCodeBootcampHero from '../components/ClaudeCodeBootcampHero'
-import BootcampVideoSection from '../components/BootcampVideoSection'
-import PromiseSection from '../components/PromiseSection'
-import DifferentiatorSection from '../components/DifferentiatorSection'
-import JourneyTimeline from '../components/JourneyTimeline'
-import StackSection from '../components/StackSection'
-import AudienceSection from '../components/AudienceSection'
-import PricingSection from '../components/PricingSection'
-import FinalCTASection from '../components/FinalCTASection'
+import React, { lazy, Suspense, memo } from 'react'
 
-const ClaudeCodeBootcamp = () => {
+// Critical above-fold component - load immediately
+import ClaudeCodeBootcampHero from '../components/ClaudeCodeBootcampHero'
+
+// Lazy load below-fold components for better LCP
+const BootcampVideoSection = lazy(() => import('../components/BootcampVideoSection'))
+const PromiseSection = lazy(() => import('../components/PromiseSection'))
+const DifferentiatorSection = lazy(() => import('../components/DifferentiatorSection'))
+const JourneyTimeline = lazy(() => import('../components/JourneyTimeline'))
+const StackSection = lazy(() => import('../components/StackSection'))
+const AudienceSection = lazy(() => import('../components/AudienceSection'))
+const PricingSection = lazy(() => import('../components/PricingSection'))
+const FinalCTASection = lazy(() => import('../components/FinalCTASection'))
+
+// Minimal loading placeholder to prevent CLS
+const SectionLoader = memo(() => (
+  <div
+    className="min-h-[400px] bg-[#0a0a0a]"
+    aria-hidden="true"
+  />
+))
+SectionLoader.displayName = 'SectionLoader'
+
+const ClaudeCodeBootcamp = memo(() => {
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Section 1: Hero */}
+      {/* Section 1: Hero - Critical, loaded immediately */}
       <ClaudeCodeBootcampHero />
 
-      {/* Section 2: Video Explanation */}
-      <BootcampVideoSection />
+      {/* Below-fold sections - lazy loaded */}
+      <Suspense fallback={<SectionLoader />}>
+        {/* Section 2: Video Explanation */}
+        <BootcampVideoSection />
 
-      {/* Section 3: A Promessa - What You'll Build */}
-      <PromiseSection />
+        {/* Section 3: A Promessa - What You'll Build */}
+        <PromiseSection />
 
-      {/* Section 3: Por que Diferente */}
-      <DifferentiatorSection />
+        {/* Section 3: Por que Diferente */}
+        <DifferentiatorSection />
 
-      {/* Section 4: O Storytelling - 8-Step Journey */}
-      <JourneyTimeline />
+        {/* Section 4: O Storytelling - 8-Step Journey */}
+        <JourneyTimeline />
 
-      {/* Section 5: Stack */}
-      <StackSection />
+        {/* Section 5: Stack */}
+        <StackSection />
 
-      {/* Section 6: Para Quem É */}
-      <AudienceSection />
+        {/* Section 6: Para Quem E */}
+        <AudienceSection />
 
-      {/* Section 7: Formato, Datas e Preço */}
-      <PricingSection />
+        {/* Section 7: Formato, Datas e Preco */}
+        <PricingSection />
 
-      {/* Section 8: CTA Final */}
-      <FinalCTASection />
+        {/* Section 8: CTA Final */}
+        <FinalCTASection />
+      </Suspense>
     </div>
   )
-}
+})
+
+ClaudeCodeBootcamp.displayName = 'ClaudeCodeBootcamp'
 
 export default ClaudeCodeBootcamp
