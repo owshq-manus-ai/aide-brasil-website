@@ -1,10 +1,18 @@
 import React, { lazy, Suspense, memo } from 'react'
 
+// =============================================================================
+// FEATURE FLAGS - Easy toggle for sections
+// =============================================================================
+const ENABLE_VIDEO_SECTION = false  // Set to true when video is ready
+// =============================================================================
+
 // Critical above-fold component - load immediately
 import ClaudeCodeBootcampHero from '../components/ClaudeCodeBootcampHero'
 
 // Lazy load below-fold components for better LCP
-const BootcampVideoSection = lazy(() => import('../components/BootcampVideoSection'))
+const BootcampVideoSection = ENABLE_VIDEO_SECTION
+  ? lazy(() => import('../components/BootcampVideoSection'))
+  : null
 const PromiseSection = lazy(() => import('../components/PromiseSection'))
 const DifferentiatorSection = lazy(() => import('../components/DifferentiatorSection'))
 const JourneyTimeline = lazy(() => import('../components/JourneyTimeline'))
@@ -30,8 +38,8 @@ const ClaudeCodeBootcamp = memo(() => {
 
       {/* Below-fold sections - lazy loaded */}
       <Suspense fallback={<SectionLoader />}>
-        {/* Section 2: Video Explanation */}
-        <BootcampVideoSection />
+        {/* Section 2: Video Explanation - Toggle via ENABLE_VIDEO_SECTION flag */}
+        {ENABLE_VIDEO_SECTION && BootcampVideoSection && <BootcampVideoSection />}
 
         {/* Section 3: A Promessa - What You'll Build */}
         <PromiseSection />
