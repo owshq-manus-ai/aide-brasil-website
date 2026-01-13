@@ -405,20 +405,22 @@ const PricingSection = memo(() => {
   const EDUZZ_CHECKOUT_URL = 'https://sun.eduzz.com/39YDP2YJ9O'
 
   // Build Eduzz redirect URL with pre-filled form data
+  // Field mapping:
+  // - Nome Completo (form) → name (Eduzz)
+  // - E-mail (form) → email + email_confirmation (Eduzz)
+  // - WhatsApp (form) → cellphone (Eduzz)
   const buildEduzzUrl = useCallback((data) => {
     // Extract phone digits only (remove formatting)
     const phoneDigits = data.phone.replace(/\D/g, '')
-    // Brazilian phone: first 2 digits are DDD (area code), rest is the number
-    const celular = phoneDigits.length > 2 ? phoneDigits.slice(2) : phoneDigits
 
-    // Build URL with pre-filled parameters
+    // Build URL with pre-filled parameters matching Eduzz fields
     const params = new URLSearchParams({
       utm_source: 'landingpage',
       utm_medium: 'direta',
       name: data.name,
       email: data.email,
-      ddi: '55', // Brazil country code
-      cellphone: celular
+      email_confirmation: data.email, // Same email for confirmation
+      cellphone: phoneDigits // Full phone number with DDD
     })
 
     return `${EDUZZ_CHECKOUT_URL}?${params.toString()}`
