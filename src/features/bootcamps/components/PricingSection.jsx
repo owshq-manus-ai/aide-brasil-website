@@ -408,10 +408,13 @@ const PricingSection = memo(() => {
   // Field mapping:
   // - Nome Completo (form) → name (Eduzz)
   // - E-mail (form) → email + email_confirmation (Eduzz)
-  // - WhatsApp (form) → cellphone (Eduzz)
+  // - WhatsApp (form) → celular (Eduzz) - Portuguese field name
   const buildEduzzUrl = useCallback((data) => {
     // Extract phone digits only (remove formatting)
     const phoneDigits = data.phone.replace(/\D/g, '')
+    // Split DDD (area code) and number for Eduzz format
+    const ddd = phoneDigits.slice(0, 2)
+    const celularNum = phoneDigits.slice(2)
 
     // Build URL with pre-filled parameters matching Eduzz fields
     const params = new URLSearchParams({
@@ -419,8 +422,12 @@ const PricingSection = memo(() => {
       utm_medium: 'direta',
       name: data.name,
       email: data.email,
-      email_confirmation: data.email, // Same email for confirmation
-      cellphone: phoneDigits // Full phone number with DDD
+      email_confirmation: data.email,
+      ddi: '55',
+      ddd: ddd,
+      celular: celularNum,
+      phone: phoneDigits,
+      cellphone: phoneDigits
     })
 
     return `${EDUZZ_CHECKOUT_URL}?${params.toString()}`
