@@ -1,44 +1,52 @@
-import React, { memo, useRef } from 'react'
+import React, { memo, useRef, useState, useEffect } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 // Technology icons - using images for some, SVGs for others
 
-// 1. Claude Code (image)
+// 1. Claude Code (optimized WebP - 2KB vs 30KB original)
 const ClaudeIcon = memo(() => (
   <img
-    src="/images/logos/claude-code-icon.png"
+    src="/images/logos/claude-code-icon.webp"
     alt="Claude Code"
     className="w-6 h-6 object-contain"
+    loading="lazy"
+    decoding="async"
   />
 ))
 ClaudeIcon.displayName = 'ClaudeIcon'
 
-// 2. Cursor IDE (image)
+// 2. Cursor IDE (optimized WebP - 1.2KB vs 97KB original)
 const CursorIcon = memo(() => (
   <img
-    src="/images/logos/cursor-icon.png"
+    src="/images/logos/cursor-icon.webp"
     alt="Cursor IDE"
     className="w-7 h-7 object-contain"
+    loading="lazy"
+    decoding="async"
   />
 ))
 CursorIcon.displayName = 'CursorIcon'
 
-// 3. GitHub (image)
+// 3. GitHub (optimized WebP - 2.2KB vs 480KB original)
 const GitHubIcon = memo(() => (
   <img
-    src="/images/logos/github-icon.png"
+    src="/images/logos/github-icon.webp"
     alt="GitHub"
     className="w-7 h-7 object-contain"
+    loading="lazy"
+    decoding="async"
   />
 ))
 GitHubIcon.displayName = 'GitHubIcon'
 
-// 4. Python (image)
+// 4. Python (optimized WebP - 1.1KB vs 166KB original)
 const PythonIcon = memo(() => (
   <img
-    src="/images/logos/python-logo.png"
+    src="/images/logos/python-logo.webp"
     alt="Python"
     className="w-6 h-6 object-contain"
+    loading="lazy"
+    decoding="async"
   />
 ))
 PythonIcon.displayName = 'PythonIcon'
@@ -51,12 +59,14 @@ const TerraformIcon = memo(() => (
 ))
 TerraformIcon.displayName = 'TerraformIcon'
 
-// 6. Google Cloud (image)
+// 6. Google Cloud (optimized WebP - 2.7KB vs 358KB original)
 const GCPIcon = memo(() => (
   <img
-    src="/images/logos/google-cloud-logo.png"
+    src="/images/logos/google-cloud-logo.webp"
     alt="Google Cloud"
     className="w-6 h-6 object-contain"
+    loading="lazy"
+    decoding="async"
   />
 ))
 GCPIcon.displayName = 'GCPIcon'
@@ -79,22 +89,26 @@ const AzureIcon = memo(() => (
 ))
 AzureIcon.displayName = 'AzureIcon'
 
-// 9. Amazon AWS (image)
+// 9. Amazon AWS (optimized WebP - 1KB vs 5.8KB original)
 const AWSIcon = memo(() => (
   <img
-    src="/images/logos/aws-icon.png"
+    src="/images/logos/aws-icon.webp"
     alt="Amazon AWS"
     className="w-6 h-6 object-contain"
+    loading="lazy"
+    decoding="async"
   />
 ))
 AWSIcon.displayName = 'AWSIcon'
 
-// 10. CrewAI (image)
+// 10. CrewAI (optimized WebP - 2.1KB vs 5.2KB original)
 const CrewAIIcon = memo(() => (
   <img
-    src="/images/logos/crewai-icon.png"
+    src="/images/logos/crewai-icon.webp"
     alt="CrewAI"
     className="w-6 h-6 object-contain"
+    loading="lazy"
+    decoding="async"
   />
 ))
 CrewAIIcon.displayName = 'CrewAIIcon'
@@ -110,19 +124,22 @@ const AnthropicIcon = memo(() => (
 AnthropicIcon.displayName = 'AnthropicIcon'
 
 // Technology stack configuration (11 technologies)
+// Order matters: most important/recognizable first for mobile truncation
 const technologies = [
   { name: 'Anthropic', description: 'AI Research Lab', Icon: AnthropicIcon, color: '#d4a574' },
   { name: 'Claude Code', description: 'AI Coding Agent', Icon: ClaudeIcon, color: '#f97316' },
   { name: 'Cursor IDE', description: 'AI-First Editor', Icon: CursorIcon, color: '#00d4ff' },
   { name: 'GitHub', description: 'Version Control', Icon: GitHubIcon, color: '#ffffff' },
   { name: 'Python', description: 'Programming Language', Icon: PythonIcon, color: '#3776ab' },
-  { name: 'Terraform', description: 'Infrastructure as Code', Icon: TerraformIcon, color: '#7b42bc' },
   { name: 'Google Cloud', description: 'Cloud Platform', Icon: GCPIcon, color: '#4285f4' },
   { name: 'Gemini', description: 'Google AI Model', Icon: GeminiIcon, color: '#8e44ef' },
-  { name: 'Azure', description: 'Microsoft Cloud', Icon: AzureIcon, color: '#0078d4' },
   { name: 'AWS', description: 'Amazon Cloud', Icon: AWSIcon, color: '#ff9900' },
+  { name: 'Azure', description: 'Microsoft Cloud', Icon: AzureIcon, color: '#0078d4' },
   { name: 'CrewAI', description: 'Autonomous Agents', Icon: CrewAIIcon, color: '#ec4899' },
 ]
+
+// Mobile shows 8 icons max for proper fit without overflow
+const MOBILE_TECH_LIMIT = 8
 
 // DockIcon with magnification effect
 // DockIcon with magnification effect
@@ -164,29 +181,39 @@ const DockIconItem = memo(({ mouseX, tech, index }) => {
 DockIconItem.displayName = 'DockIconItem'
 
 // Main TechStackDock component
-// Mobile: horizontal scroll container to prevent overflow at 320px
+// Mobile: shows limited icons that fit perfectly without scroll/overflow
 const TechStackDock = memo(() => {
   const mouseX = useMotionValue(Infinity)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Limit icons on mobile for perfect fit without overflow
+  const visibleTechnologies = isMobile
+    ? technologies.slice(0, MOBILE_TECH_LIMIT)
+    : technologies
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.15, duration: 0.5 }}
-      className="flex justify-start -mx-4 sm:mx-0 px-4 sm:px-0"
+      className="flex justify-start"
     >
-      {/* Scrollable container for mobile */}
-      <div className="overflow-x-auto scrollbar-hide -webkit-overflow-scrolling-touch pb-2 sm:pb-0">
-        <motion.div
-          onMouseMove={(e) => mouseX.set(e.pageX)}
-          onMouseLeave={() => mouseX.set(Infinity)}
-          className="flex h-[48px] sm:h-[52px] w-max items-end gap-1.5 sm:gap-2 rounded-xl border border-orange-500/30 bg-black/40 backdrop-blur-md p-1.5 sm:p-2 px-2 sm:px-3"
-        >
-          {technologies.map((tech, index) => (
-            <DockIconItem key={tech.name} mouseX={mouseX} tech={tech} index={index} />
-          ))}
-        </motion.div>
-      </div>
+      <motion.div
+        onMouseMove={(e) => mouseX.set(e.pageX)}
+        onMouseLeave={() => mouseX.set(Infinity)}
+        className="flex h-[48px] sm:h-[52px] items-end gap-1 sm:gap-2 rounded-xl border border-orange-500/30 bg-black/40 backdrop-blur-md p-1.5 sm:p-2 px-2 sm:px-3"
+      >
+        {visibleTechnologies.map((tech, index) => (
+          <DockIconItem key={tech.name} mouseX={mouseX} tech={tech} index={index} />
+        ))}
+      </motion.div>
     </motion.div>
   )
 })

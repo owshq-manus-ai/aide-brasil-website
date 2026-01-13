@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import React, { memo, useCallback, useMemo, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   Rocket,
@@ -34,18 +34,18 @@ const LearningItem = memo(({ text, delay, icon: Icon = CheckCircle }) => (
     initial={{ opacity: 0, x: 20 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ delay, duration: 0.4 }}
-    className="flex items-start gap-2.5 min-w-0"
+    className="flex items-start gap-2 sm:gap-2.5 min-w-0"
   >
     <div
-      className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+      className="w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
       style={{
         backgroundColor: 'rgba(224, 122, 95, 0.2)',
         border: '1px solid rgba(224, 122, 95, 0.4)'
       }}
     >
-      <Icon className="w-3 h-3" style={{ color: '#E07A5F' }} />
+      <Icon className="w-2.5 h-2.5 sm:w-3 sm:h-3" style={{ color: '#E07A5F' }} />
     </div>
-    <span className="text-white/80 text-sm leading-relaxed break-words min-w-0">{text}</span>
+    <span className="text-white/80 text-xs sm:text-sm leading-relaxed break-words min-w-0">{text}</span>
   </motion.div>
 ))
 LearningItem.displayName = 'LearningItem'
@@ -147,6 +147,15 @@ const pulseTransition = { duration: 2, repeat: Infinity }
 // Main Hero Component
 const ClaudeCodeBootcampHero = memo(() => {
   const spotsLeft = 185
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect mobile for performance optimizations
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId)
@@ -205,7 +214,8 @@ const ClaudeCodeBootcampHero = memo(() => {
       </div>
 
       {/* Content Container - Two Column Layout */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 pt-20 pb-16">
+      {/* Mobile: px-4 gives 16px breathing room on each side */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 sm:pb-16">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
           {/* Left Column - Main Content */}
@@ -378,30 +388,32 @@ const ClaudeCodeBootcampHero = memo(() => {
           </motion.div>
 
           {/* Right Column - O que voce vai aprender */}
+          {/* Mobile: mt-4 adds separation, proper padding prevents edge cutoff */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="relative lg:mt-2"
+            className="relative mt-4 lg:mt-2"
           >
-            {/* Glow effect behind the card */}
+            {/* Glow effect behind the card - hidden on mobile for performance */}
             <div
-              className="absolute -inset-0.5 rounded-xl blur-md opacity-20"
+              className="absolute -inset-0.5 rounded-xl blur-md opacity-20 hidden sm:block"
               style={{
                 background: 'linear-gradient(135deg, rgba(224, 122, 95, 0.4), rgba(224, 122, 95, 0.2))',
               }}
             />
 
-            <div className="relative bg-gradient-to-br from-[#1a1a1a]/95 to-[#151515]/95 backdrop-blur-md rounded-xl px-3 sm:px-4 py-4 shadow-xl overflow-hidden" style={{ border: '1px solid rgba(224, 122, 95, 0.2)' }}>
+            {/* Card with proper mobile padding: px-4 (16px) ensures content doesn't touch edges */}
+            <div className="relative bg-gradient-to-br from-[#1a1a1a]/95 to-[#151515]/95 backdrop-blur-md rounded-xl px-4 sm:px-5 py-4 shadow-xl overflow-hidden" style={{ border: '1px solid rgba(224, 122, 95, 0.2)' }}>
               {/* Header with Claude Code logo */}
               <div className="flex items-center gap-2.5 mb-3 min-w-0">
                 <img
-                  src="/images/logos/claude-code-icon.png"
+                  src="/images/logos/claude-code-icon.webp"
                   alt="Claude Code"
-                  className="w-8 h-8 rounded-lg object-contain flex-shrink-0"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg object-contain flex-shrink-0"
                   loading="eager"
                 />
-                <h3 className="text-base sm:text-lg font-oswald font-bold text-white truncate sm:whitespace-normal">O que você vai aprender:</h3>
+                <h3 className="text-sm sm:text-lg font-oswald font-bold text-white">O que você vai aprender:</h3>
               </div>
 
               {/* Learning Points */}

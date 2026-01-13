@@ -263,7 +263,7 @@ const PromiseSection = memo(() => {
                 loading="lazy"
               />
               <img
-                src="/images/logos/claude-code-icon.png"
+                src="/images/logos/claude-code-icon.webp"
                 alt="Claude Code"
                 className="w-5 h-5 object-contain"
                 loading="lazy"
@@ -280,7 +280,7 @@ const PromiseSection = memo(() => {
               <span style={{ color: '#F0A090' }} className="font-semibold">do requisito ao deploy</span>
             </span>
             <img
-              src="/images/logos/claude-code-icon.png"
+              src="/images/logos/claude-code-icon.webp"
               alt="Claude Code"
               className="hidden sm:block w-6 h-6 object-contain"
               loading="lazy"
