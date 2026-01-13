@@ -408,7 +408,7 @@ const ClaudeCodeBootcampHero = memo(() => {
               {/* Header with Claude Code logo */}
               <div className="flex items-center gap-2.5 mb-3 min-w-0">
                 <img
-                  src="/images/logos/claude-code-icon.webp"
+                  src="/images/logos/claude-code-icon.png"
                   alt="Claude Code"
                   className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg object-contain flex-shrink-0"
                   loading="eager"

@@ -3,50 +3,46 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 // Technology icons - using images for some, SVGs for others
 
-// 1. Claude Code (optimized WebP - 2KB vs 30KB original)
+// 1. Claude Code (original PNG)
 const ClaudeIcon = memo(() => (
   <img
-    src="/images/logos/claude-code-icon.webp"
+    src="/images/logos/claude-code-icon.png"
     alt="Claude Code"
     className="w-6 h-6 object-contain"
     loading="lazy"
-    decoding="async"
   />
 ))
 ClaudeIcon.displayName = 'ClaudeIcon'
 
-// 2. Cursor IDE (optimized WebP - 1.2KB vs 97KB original)
+// 2. Cursor IDE (original PNG)
 const CursorIcon = memo(() => (
   <img
-    src="/images/logos/cursor-icon.webp"
+    src="/images/logos/cursor-icon.png"
     alt="Cursor IDE"
     className="w-7 h-7 object-contain"
     loading="lazy"
-    decoding="async"
   />
 ))
 CursorIcon.displayName = 'CursorIcon'
 
-// 3. GitHub (optimized WebP - 2.2KB vs 480KB original)
+// 3. GitHub (original PNG)
 const GitHubIcon = memo(() => (
   <img
-    src="/images/logos/github-icon.webp"
+    src="/images/logos/github-icon.png"
     alt="GitHub"
     className="w-7 h-7 object-contain"
     loading="lazy"
-    decoding="async"
   />
 ))
 GitHubIcon.displayName = 'GitHubIcon'
 
-// 4. Python (optimized WebP - 1.1KB vs 166KB original)
+// 4. Python (original PNG)
 const PythonIcon = memo(() => (
   <img
-    src="/images/logos/python-logo.webp"
+    src="/images/logos/python-logo.png"
     alt="Python"
     className="w-6 h-6 object-contain"
     loading="lazy"
-    decoding="async"
   />
 ))
 PythonIcon.displayName = 'PythonIcon'
@@ -59,14 +55,13 @@ const TerraformIcon = memo(() => (
 ))
 TerraformIcon.displayName = 'TerraformIcon'
 
-// 6. Google Cloud (optimized WebP - 2.7KB vs 358KB original)
+// 6. Google Cloud (original PNG)
 const GCPIcon = memo(() => (
   <img
-    src="/images/logos/google-cloud-logo.webp"
+    src="/images/logos/google-cloud-logo.png"
     alt="Google Cloud"
     className="w-6 h-6 object-contain"
     loading="lazy"
-    decoding="async"
   />
 ))
 GCPIcon.displayName = 'GCPIcon'
@@ -89,26 +84,24 @@ const AzureIcon = memo(() => (
 ))
 AzureIcon.displayName = 'AzureIcon'
 
-// 9. Amazon AWS (optimized WebP - 1KB vs 5.8KB original)
+// 9. Amazon AWS (original PNG)
 const AWSIcon = memo(() => (
   <img
-    src="/images/logos/aws-icon.webp"
+    src="/images/logos/aws-icon.png"
     alt="Amazon AWS"
     className="w-6 h-6 object-contain"
     loading="lazy"
-    decoding="async"
   />
 ))
 AWSIcon.displayName = 'AWSIcon'
 
-// 10. CrewAI (optimized WebP - 2.1KB vs 5.2KB original)
+// 10. CrewAI (original PNG)
 const CrewAIIcon = memo(() => (
   <img
-    src="/images/logos/crewai-icon.webp"
+    src="/images/logos/crewai-icon.png"
     alt="CrewAI"
     className="w-6 h-6 object-contain"
     loading="lazy"
-    decoding="async"
   />
 ))
 CrewAIIcon.displayName = 'CrewAIIcon'
