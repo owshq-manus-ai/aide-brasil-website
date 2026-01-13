@@ -377,7 +377,7 @@ const PricingSection = memo(() => {
   const intervalRef = useRef(null)
 
   useEffect(() => {
-    const targetDate = new Date('2026-01-18T00:00:00-03:00')
+    const targetDate = new Date('2026-01-24T00:00:00-03:00')
 
     const updateCountdown = () => {
       const now = new Date()
@@ -401,6 +401,29 @@ const PricingSection = memo(() => {
   const handleOpenModal = useCallback(() => setIsModalOpen(true), [])
   const handleCloseModal = useCallback(() => setIsModalOpen(false), [])
 
+  // Eduzz payment gateway URL
+  const EDUZZ_CHECKOUT_URL = 'https://sun.eduzz.com/39YDP2YJ9O'
+
+  // Build Eduzz redirect URL with pre-filled form data
+  const buildEduzzUrl = useCallback((data) => {
+    // Extract phone digits only (remove formatting)
+    const phoneDigits = data.phone.replace(/\D/g, '')
+    // Brazilian phone: first 2 digits are DDD (area code), rest is the number
+    const celular = phoneDigits.length > 2 ? phoneDigits.slice(2) : phoneDigits
+
+    // Build URL with pre-filled parameters
+    const params = new URLSearchParams({
+      utm_source: 'landingpage',
+      utm_medium: 'direta',
+      name: data.name,
+      email: data.email,
+      ddi: '55', // Brazil country code
+      cellphone: celular
+    })
+
+    return `${EDUZZ_CHECKOUT_URL}?${params.toString()}`
+  }, [])
+
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -420,41 +443,34 @@ const PricingSection = memo(() => {
         bootcamp_time: '20:00 BRT'
       }
 
-      // Submit to webhook
-      const response = await fetch(webhookConfig.url, {
+      // Submit to webhook (fire and forget - don't block redirect)
+      fetch(webhookConfig.url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(submissionData)
-      })
+      }).catch(err => console.error('Webhook error:', err))
 
-      if (response.ok || response.status === 200 || response.status === 201) {
-        setShowSuccess(true)
-        setFormData({ name: '', email: '', phone: '' })
-        setIsModalOpen(false)
+      // Build Eduzz URL with pre-filled data and redirect
+      const eduzzUrl = buildEduzzUrl(formData)
 
-        setTimeout(() => setShowSuccess(false), 5000)
-      } else {
-        // Even if webhook fails, show success to user (graceful degradation)
-        setShowSuccess(true)
-        setFormData({ name: '', email: '', phone: '' })
-        setIsModalOpen(false)
-
-        setTimeout(() => setShowSuccess(false), 5000)
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error)
-      // Don't show error to user, show success message instead (graceful degradation)
-      setShowSuccess(true)
+      // Clear form and close modal
       setFormData({ name: '', email: '', phone: '' })
       setIsModalOpen(false)
 
-      setTimeout(() => setShowSuccess(false), 5000)
+      // Redirect to Eduzz payment gateway
+      window.location.href = eduzzUrl
+
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      // Even on error, redirect to Eduzz (graceful degradation)
+      const eduzzUrl = buildEduzzUrl(formData)
+      window.location.href = eduzzUrl
     } finally {
       setIsSubmitting(false)
     }
-  }, [formData])
+  }, [formData, buildEduzzUrl])
 
   const deliverables = useMemo(() => DELIVERABLES, [])
   const pricingTiers = useMemo(() => PRICING_TIERS, [])

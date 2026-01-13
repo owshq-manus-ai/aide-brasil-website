@@ -390,6 +390,33 @@ const ClaudeCodeBootcampHero = memo(() => {
                 VER PROGRAMA
               </NeonButton>
             </motion.div>
+
+            {/* APRESENTADO POR - EDA Branding */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1, duration: 0.5 }}
+              className="flex items-center gap-3 pt-6 sm:pt-8"
+            >
+              <span className="text-white/40 text-xs sm:text-sm font-medium uppercase tracking-widest">Apresentado por</span>
+              <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-white/30 to-transparent" />
+              <a
+                href="https://engenhariadadosacademy.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-100 transition-opacity"
+              >
+                <img
+                  src="/images/logos/engenharia-dados-academy.png"
+                  alt="Engenharia de Dados Academy"
+                  width={28}
+                  height={28}
+                  className="w-6 h-6 sm:w-7 sm:h-7 object-contain opacity-80 hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </motion.div>
           </motion.div>
 
           {/* Right Column - O que voce vai aprender */}
