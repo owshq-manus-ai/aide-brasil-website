@@ -81,6 +81,7 @@ const ValueProp = memo(({ icon: Icon, text, delay }) => (
 ValueProp.displayName = 'ValueProp'
 
 // Optimized shimmer animation config - uses GPU-accelerated properties only
+// Mobile: disabled for better performance
 const shimmerAnimation = {
   backgroundPosition: ['200% 0%', '-200% 0%']
 }
@@ -89,10 +90,14 @@ const shimmerTransition = {
   repeat: Infinity,
   ease: "linear"
 }
+// Static fallback for mobile (no animation)
+const noAnimation = {}
+const noTransition = { duration: 0 }
 
 // Neon Button Component - optimized with stable animation configs
 // Mobile: proper touch targets with balanced padding, w-auto prevents full-width expansion
-const NeonButton = memo(({ children, primary = false, onClick, className = "" }) => (
+// isMobile prop disables expensive shimmer animation for better performance
+const NeonButton = memo(({ children, primary = false, onClick, className = "", disableShimmer = false }) => (
   <motion.button
     onClick={onClick}
     className={`
@@ -119,7 +124,7 @@ const NeonButton = memo(({ children, primary = false, onClick, className = "" })
         : undefined
     }}
   >
-    {primary && (
+    {primary && !disableShimmer && (
       <motion.div
         className="absolute inset-0 opacity-30"
         style={{
@@ -375,7 +380,7 @@ const ClaudeCodeBootcampHero = memo(() => {
               transition={{ delay: 0.9, duration: 0.5 }}
               className="flex flex-row flex-wrap gap-3 sm:gap-4 pt-2"
             >
-              <NeonButton primary onClick={handlePricingClick}>
+              <NeonButton primary onClick={handlePricingClick} disableShimmer={isMobile}>
                 <Sparkles className="w-4 h-4" />
                 <span className="hidden sm:inline">GARANTIR MINHA VAGA</span>
                 <span className="sm:hidden">GARANTIR VAGA</span>
@@ -410,8 +415,11 @@ const ClaudeCodeBootcampHero = memo(() => {
                 <img
                   src="/images/logos/claude-code-icon.png"
                   alt="Claude Code"
+                  width={32}
+                  height={32}
                   className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg object-contain flex-shrink-0"
                   loading="eager"
+                  fetchPriority="high"
                 />
                 <h3 className="text-sm sm:text-lg font-oswald font-bold text-white">O que você vai aprender:</h3>
               </div>

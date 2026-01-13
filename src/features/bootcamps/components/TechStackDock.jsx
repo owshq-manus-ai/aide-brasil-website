@@ -3,13 +3,16 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 // Technology icons - using images for some, SVGs for others
 
-// 1. Claude Code (original PNG)
+// 1. Claude Code (original PNG) - width/height prevent CLS
 const ClaudeIcon = memo(() => (
   <img
     src="/images/logos/claude-code-icon.png"
     alt="Claude Code"
+    width={24}
+    height={24}
     className="w-6 h-6 object-contain"
     loading="lazy"
+    decoding="async"
   />
 ))
 ClaudeIcon.displayName = 'ClaudeIcon'
@@ -19,8 +22,11 @@ const CursorIcon = memo(() => (
   <img
     src="/images/logos/cursor-icon.png"
     alt="Cursor IDE"
+    width={28}
+    height={28}
     className="w-7 h-7 object-contain"
     loading="lazy"
+    decoding="async"
   />
 ))
 CursorIcon.displayName = 'CursorIcon'
@@ -30,8 +36,11 @@ const GitHubIcon = memo(() => (
   <img
     src="/images/logos/github-icon.png"
     alt="GitHub"
+    width={28}
+    height={28}
     className="w-7 h-7 object-contain"
     loading="lazy"
+    decoding="async"
   />
 ))
 GitHubIcon.displayName = 'GitHubIcon'
@@ -41,8 +50,11 @@ const PythonIcon = memo(() => (
   <img
     src="/images/logos/python-logo.png"
     alt="Python"
+    width={24}
+    height={24}
     className="w-6 h-6 object-contain"
     loading="lazy"
+    decoding="async"
   />
 ))
 PythonIcon.displayName = 'PythonIcon'
@@ -60,8 +72,11 @@ const GCPIcon = memo(() => (
   <img
     src="/images/logos/google-cloud-logo.png"
     alt="Google Cloud"
+    width={24}
+    height={24}
     className="w-6 h-6 object-contain"
     loading="lazy"
+    decoding="async"
   />
 ))
 GCPIcon.displayName = 'GCPIcon'
@@ -71,14 +86,18 @@ const GeminiIcon = memo(() => (
   <img
     src="/images/logos/google-gemini-icon.webp"
     alt="Google Gemini"
+    width={24}
+    height={24}
     className="w-6 h-6 object-contain"
+    loading="lazy"
+    decoding="async"
   />
 ))
 GeminiIcon.displayName = 'GeminiIcon'
 
 // 8. Microsoft Azure (SVG)
 const AzureIcon = memo(() => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6" aria-hidden="true">
     <path d="M5.483 21.3H24L14.025 4.013l-3.038 8.347 5.836 6.938L5.483 21.3zM13.23 2.7L6.105 8.677 0 19.253h5.505v.014L13.23 2.7z"/>
   </svg>
 ))
@@ -89,8 +108,11 @@ const AWSIcon = memo(() => (
   <img
     src="/images/logos/aws-icon.png"
     alt="Amazon AWS"
+    width={24}
+    height={24}
     className="w-6 h-6 object-contain"
     loading="lazy"
+    decoding="async"
   />
 ))
 AWSIcon.displayName = 'AWSIcon'
@@ -100,8 +122,11 @@ const CrewAIIcon = memo(() => (
   <img
     src="/images/logos/crewai-icon.png"
     alt="CrewAI"
+    width={24}
+    height={24}
     className="w-6 h-6 object-contain"
     loading="lazy"
+    decoding="async"
   />
 ))
 CrewAIIcon.displayName = 'CrewAIIcon'
@@ -111,7 +136,11 @@ const AnthropicIcon = memo(() => (
   <img
     src="/images/logos/anthropic-icon.webp"
     alt="Anthropic"
+    width={24}
+    height={24}
     className="w-6 h-6 object-contain"
+    loading="lazy"
+    decoding="async"
   />
 ))
 AnthropicIcon.displayName = 'AnthropicIcon'
