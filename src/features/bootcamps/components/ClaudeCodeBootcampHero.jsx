@@ -178,7 +178,7 @@ const ClaudeCodeBootcampHero = memo(() => {
   const handleJourneyClick = useCallback(() => scrollToSection('journey'), [scrollToSection])
 
   return (
-    <section className="relative min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
+    <section data-section="bootcamp-hero" className="relative min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
       {/* Background Image - Smooth blend like webinar page, hidden on mobile for better readability */}
       <div className="absolute inset-0">
         {/* Background image with radial mask for seamless blend - hidden on mobile (sm:block) */}
