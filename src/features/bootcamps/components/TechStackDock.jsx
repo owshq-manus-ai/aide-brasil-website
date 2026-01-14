@@ -224,9 +224,9 @@ const TechStackDock = memo(() => {
 
   return (
     <motion.div
-      initial={isMobile ? { opacity: 1 } : { opacity: 0, y: 20 }}
+      initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={isMobile ? { duration: 0 } : { delay: 0.15, duration: 0.5 }}
+      transition={isMobile ? { duration: 0 } : { delay: 0.1, duration: 0.3 }}
       className="flex justify-start"
     >
       <motion.div

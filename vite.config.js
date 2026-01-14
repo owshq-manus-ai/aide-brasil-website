@@ -54,9 +54,17 @@ export default defineConfig({
             // Group other smaller dependencies
             return 'vendor';
           }
-          // Split page components
+          // Split page components for better caching
           if (id.includes('src/pages/HomePage')) {
             return 'home';
+          }
+          // Bootcamp pages
+          if (id.includes('src/features/bootcamps')) {
+            return 'bootcamps';
+          }
+          // Webinar pages
+          if (id.includes('src/features/webinars')) {
+            return 'webinars';
           }
         },
         // Use content hash for better caching

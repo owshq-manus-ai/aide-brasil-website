@@ -230,17 +230,19 @@ const ClaudeCodeBootcampHero = memo(() => {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
           {/* Left Column - Main Content */}
+          {/* Mobile: instant render for LCP, Desktop: subtle fade */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.5 }}
             className="space-y-6"
           >
             {/* Status Badges - Online + Inscritos + Agentes */}
-            {/* Mobile: smaller gaps, better wrapping */}
+            {/* Mobile: instant render, smaller gaps, better wrapping */}
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
+              transition={isMobile ? { duration: 0 } : { duration: 0.3 }}
               className="inline-flex items-center gap-2 sm:gap-4 flex-wrap"
             >
               {/* Tag 1: Online */}
@@ -272,12 +274,8 @@ const ClaudeCodeBootcampHero = memo(() => {
             {/* Tech Stack Dock - Interactive technology showcase */}
             <TechStackDock />
 
-            {/* Main Headline */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
+            {/* Main Headline - LCP Element: No animation delay for instant render */}
+            <div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-oswald font-bold mb-3 leading-tight">
                 <span className="text-white">Do Zero a Produção </span>
                 <span
@@ -290,32 +288,30 @@ const ClaudeCodeBootcampHero = memo(() => {
                       #F0A090 75%,
                       #E07A5F 100%)`,
                     backgroundSize: '200% 100%',
-                    animation: 'subtle-metallic 6s ease-in-out infinite',
+                    animation: isMobile ? 'none' : 'subtle-metallic 6s ease-in-out infinite',
                   }}
                 >
                   Claude Code
                 </span>
               </h1>
-            </motion.div>
+            </div>
 
             {/* Subtitle - Transformation promise with contrast */}
-            {/* Mobile: smaller text for readability, break-words prevents overflow */}
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
+            {/* Mobile: no animation for faster LCP, break-words prevents overflow */}
+            <h2
               className="text-lg sm:text-xl md:text-2xl font-medium leading-relaxed break-words"
               style={{ color: '#E07A5F' }}
             >
               Use Claude Code{' '}
               <span className="text-white font-bold">como seu time de engenharia</span> —com agentes que escrevem, revisam e deployam código por você
-            </motion.h2>
+            </h2>
 
             {/* Description with AI-Native Development Workflow */}
+            {/* Mobile: no animation delay for faster paint */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
+              transition={isMobile ? { duration: 0 } : { delay: 0.2, duration: 0.4 }}
               className="text-white/70 text-base leading-relaxed max-w-xl"
             >
               Aprenda o{' '}
@@ -324,7 +320,7 @@ const ClaudeCodeBootcampHero = memo(() => {
                 style={{
                   backgroundImage: 'linear-gradient(90deg, #E07A5F, #F0A090, #E07A5F)',
                   backgroundSize: '200% 100%',
-                  animation: 'subtle-metallic 3s ease-in-out infinite',
+                  animation: isMobile ? 'none' : 'subtle-metallic 3s ease-in-out infinite',
                 }}
               >
                 AI-Native Development Workflow
@@ -333,35 +329,39 @@ const ClaudeCodeBootcampHero = memo(() => {
             </motion.p>
 
             {/* 3 Value Props - Claude Code coral palette */}
+            {/* Mobile: instant render, Desktop: staggered animation */}
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
+              transition={isMobile ? { duration: 0 } : { delay: 0.3, duration: 0.4 }}
               className="space-y-3 pt-2"
             >
               <ValueProp
                 icon={Bot}
                 text="Orquestre uma frota de agentes que escrevem código por você"
-                delay={0.5}
+                delay={isMobile ? 0 : 0.3}
+                isMobile={isMobile}
               />
               <ValueProp
                 icon={Terminal}
                 text="Processo guiado: do requisito ao deploy, sem vibe coding"
-                delay={0.6}
+                delay={isMobile ? 0 : 0.4}
+                isMobile={isMobile}
               />
               <ValueProp
                 icon={Rocket}
                 text="Sistema real em produção com observabilidade completa"
-                delay={0.7}
+                delay={isMobile ? 0 : 0.5}
+                isMobile={isMobile}
               />
             </motion.div>
 
             {/* Date/Time Info */}
-            {/* Mobile: wrap on small screens, smaller gaps */}
+            {/* Mobile: instant render, wrap on small screens, smaller gaps */}
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
+              transition={isMobile ? { duration: 0 } : { delay: 0.4, duration: 0.3 }}
               className="flex flex-wrap items-center gap-3 sm:gap-6 pt-2 text-white/60 text-xs sm:text-sm"
             >
               <div className="flex items-center gap-1.5 sm:gap-2">
@@ -379,11 +379,11 @@ const ClaudeCodeBootcampHero = memo(() => {
             </motion.div>
 
             {/* CTA Buttons */}
-            {/* Mobile: side by side with smaller text, row layout always */}
+            {/* Mobile: instant render, side by side with smaller text, row layout always */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.5 }}
+              transition={isMobile ? { duration: 0 } : { delay: 0.5, duration: 0.3 }}
               className="flex flex-row flex-wrap gap-3 sm:gap-4 pt-2"
             >
               <NeonButton primary onClick={handlePricingClick} disableShimmer={isMobile}>
@@ -398,10 +398,11 @@ const ClaudeCodeBootcampHero = memo(() => {
             </motion.div>
 
             {/* APRESENTADO POR - EDA Branding */}
+            {/* Mobile: instant render */}
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.1, duration: 0.5 }}
+              transition={isMobile ? { duration: 0 } : { delay: 0.6, duration: 0.3 }}
               className="flex items-center gap-3 pt-6 sm:pt-8"
             >
               <span className="text-white/40 text-xs sm:text-sm font-medium uppercase tracking-widest">Apresentado por</span>
@@ -426,11 +427,11 @@ const ClaudeCodeBootcampHero = memo(() => {
           </motion.div>
 
           {/* Right Column - O que voce vai aprender */}
-          {/* Mobile: mt-4 adds separation, proper padding prevents edge cutoff */}
+          {/* Mobile: instant render, mt-4 adds separation, proper padding prevents edge cutoff */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            transition={isMobile ? { duration: 0 } : { delay: 0.2, duration: 0.5 }}
             className="relative mt-4 lg:mt-2"
           >
             {/* Glow effect behind the card - hidden on mobile for performance */}
