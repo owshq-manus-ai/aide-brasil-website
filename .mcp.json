@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "lighthouse": {
+      "command": "npx",
+      "args": ["lighthouse-mcp"],
+      "disabled": false,
+      "autoApprove": ["run_audit", "get_performance_score"]
+    }
+  }
+}

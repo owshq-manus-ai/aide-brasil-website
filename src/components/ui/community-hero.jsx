@@ -157,7 +157,7 @@ const CommunityHero = ({ className }) => {
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
                   <img
-                    src="/images/logos/engenharia-dados-academy.png"
+                    src="/images/logos/engenharia-dados-academy.webp"
                     alt="Engenharia de Dados Academy"
                     className="h-7 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 rounded-full"
                     style={{

@@ -23,7 +23,7 @@ const STACK_CATEGORIES = [
   {
     category: 'Cloud',
     description: 'Onde seu sistema roda',
-    image: '/images/logos/google-cloud-logo.png',
+    image: '/images/logos/google-cloud-logo.webp',
     items: [
       { name: 'GCS', description: 'Recebe arquivos' },
       { name: 'Cloud Run', description: 'Processa dados' },
@@ -44,7 +44,7 @@ const STACK_CATEGORIES = [
   {
     category: 'Analytics',
     description: 'Visualize resultados',
-    image: '/images/logos/hex-icon.png',
+    image: '/images/logos/hex-icon.webp',
     items: [
       { name: 'Hex', description: 'Dashboards live' }
     ],
@@ -54,7 +54,7 @@ const STACK_CATEGORIES = [
   {
     category: 'CI/CD',
     description: 'Deploy automático',
-    image: '/images/logos/github-icon.png',
+    image: '/images/logos/github-icon.webp',
     items: [
       { name: 'GitHub Actions', description: 'Push →Produção' }
     ],
@@ -64,7 +64,7 @@ const STACK_CATEGORIES = [
   {
     category: 'DataOps',
     description: 'Agentes trabalhando',
-    image: '/images/logos/crewai-icon.png',
+    image: '/images/logos/crewai-icon.webp',
     items: [
       { name: 'CrewAI', description: 'Opera sozinho' }
     ],

@@ -27,13 +27,18 @@ const sharedStyles = `
   }
 `
 
+// Mobile animation optimization: skip staggered delays on mobile to reduce main-thread work
+// On mobile, items appear instantly; on desktop, they stagger for visual polish
+const mobileAnimProps = { initial: { opacity: 1 }, animate: { opacity: 1 }, transition: { duration: 0 } }
+
 // Learning Item Component - Claude Code coral style with custom icons
 // Mobile: min-w-0 + break-words prevents text overflow on small screens
-const LearningItem = memo(({ text, delay, icon: Icon = CheckCircle }) => (
+// Mobile: skip stagger animations to reduce TBT (Total Blocking Time)
+const LearningItem = memo(({ text, delay, icon: Icon = CheckCircle, isMobile = false }) => (
   <motion.div
-    initial={{ opacity: 0, x: 20 }}
+    initial={isMobile ? { opacity: 1 } : { opacity: 0, x: 20 }}
     animate={{ opacity: 1, x: 0 }}
-    transition={{ delay, duration: 0.4 }}
+    transition={isMobile ? { duration: 0 } : { delay, duration: 0.4 }}
     className="flex items-start gap-2 sm:gap-2.5 min-w-0"
   >
     <div
@@ -51,13 +56,14 @@ const LearningItem = memo(({ text, delay, icon: Icon = CheckCircle }) => (
 LearningItem.displayName = 'LearningItem'
 
 // Value Proposition Component - Claude Code exact coral (#E07A5F)
-const ValueProp = memo(({ icon: Icon, text, delay }) => (
+// Mobile: disable hover effects and stagger animations
+const ValueProp = memo(({ icon: Icon, text, delay, isMobile = false }) => (
   <motion.div
-    initial={{ opacity: 0, x: -20 }}
+    initial={isMobile ? { opacity: 1 } : { opacity: 0, x: -20 }}
     animate={{ opacity: 1, x: 0 }}
-    transition={{ delay, duration: 0.5 }}
+    transition={isMobile ? { duration: 0 } : { delay, duration: 0.5 }}
     className="flex items-center gap-4 group"
-    whileHover={{ x: 5 }}
+    whileHover={isMobile ? undefined : { x: 5 }}
   >
     {/* Icon container with glow effect */}
     <div className="relative">
@@ -407,7 +413,7 @@ const ClaudeCodeBootcampHero = memo(() => {
                 className="hover:opacity-100 transition-opacity"
               >
                 <img
-                  src="/images/logos/engenharia-dados-academy.png"
+                  src="/images/logos/engenharia-dados-academy.webp"
                   alt="Engenharia de Dados Academy"
                   width={28}
                   height={28}
@@ -440,7 +446,7 @@ const ClaudeCodeBootcampHero = memo(() => {
               {/* Header with Claude Code logo */}
               <div className="flex items-center gap-2.5 mb-3 min-w-0">
                 <img
-                  src="/images/logos/claude-code-icon.png"
+                  src="/images/logos/claude-code-icon.webp"
                   alt="Claude Code"
                   width={32}
                   height={32}
@@ -451,7 +457,7 @@ const ClaudeCodeBootcampHero = memo(() => {
                 <h3 className="text-sm sm:text-lg font-oswald font-bold text-white">O que você vai aprender:</h3>
               </div>
 
-              {/* Learning Points */}
+              {/* Learning Points - Mobile: instant render, Desktop: staggered animation */}
               <div className="space-y-2 overflow-hidden">
                 {learningPoints.map((point, index) => (
                   <LearningItem
@@ -459,6 +465,7 @@ const ClaudeCodeBootcampHero = memo(() => {
                     text={point.text}
                     icon={point.icon}
                     delay={0.5 + index * 0.06}
+                    isMobile={isMobile}
                   />
                 ))}
               </div>

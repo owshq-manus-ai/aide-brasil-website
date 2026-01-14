@@ -3,10 +3,10 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 // Technology icons - using images for some, SVGs for others
 
-// 1. Claude Code (original PNG) - width/height prevent CLS
+// 1. Claude Code (WebP - 2KB vs 30KB PNG) - width/height prevent CLS
 const ClaudeIcon = memo(() => (
   <img
-    src="/images/logos/claude-code-icon.png"
+    src="/images/logos/claude-code-icon.webp"
     alt="Claude Code"
     width={24}
     height={24}
@@ -17,10 +17,10 @@ const ClaudeIcon = memo(() => (
 ))
 ClaudeIcon.displayName = 'ClaudeIcon'
 
-// 2. Cursor IDE (original PNG)
+// 2. Cursor IDE (WebP - 1.2KB vs 97KB PNG)
 const CursorIcon = memo(() => (
   <img
-    src="/images/logos/cursor-icon.png"
+    src="/images/logos/cursor-icon.webp"
     alt="Cursor IDE"
     width={28}
     height={28}
@@ -31,10 +31,10 @@ const CursorIcon = memo(() => (
 ))
 CursorIcon.displayName = 'CursorIcon'
 
-// 3. GitHub (original PNG)
+// 3. GitHub (WebP - 2.2KB vs 480KB PNG)
 const GitHubIcon = memo(() => (
   <img
-    src="/images/logos/github-icon.png"
+    src="/images/logos/github-icon.webp"
     alt="GitHub"
     width={28}
     height={28}
@@ -45,10 +45,10 @@ const GitHubIcon = memo(() => (
 ))
 GitHubIcon.displayName = 'GitHubIcon'
 
-// 4. Python (original PNG)
+// 4. Python (WebP - 1.1KB vs 166KB PNG)
 const PythonIcon = memo(() => (
   <img
-    src="/images/logos/python-logo.png"
+    src="/images/logos/python-logo.webp"
     alt="Python"
     width={24}
     height={24}
@@ -67,10 +67,10 @@ const TerraformIcon = memo(() => (
 ))
 TerraformIcon.displayName = 'TerraformIcon'
 
-// 6. Google Cloud (original PNG)
+// 6. Google Cloud (WebP - 2.7KB vs 358KB PNG)
 const GCPIcon = memo(() => (
   <img
-    src="/images/logos/google-cloud-logo.png"
+    src="/images/logos/google-cloud-logo.webp"
     alt="Google Cloud"
     width={24}
     height={24}
@@ -103,10 +103,10 @@ const AzureIcon = memo(() => (
 ))
 AzureIcon.displayName = 'AzureIcon'
 
-// 9. Amazon AWS (original PNG)
+// 9. Amazon AWS (WebP - 978B vs 5.8KB PNG)
 const AWSIcon = memo(() => (
   <img
-    src="/images/logos/aws-icon.png"
+    src="/images/logos/aws-icon.webp"
     alt="Amazon AWS"
     width={24}
     height={24}
@@ -117,10 +117,10 @@ const AWSIcon = memo(() => (
 ))
 AWSIcon.displayName = 'AWSIcon'
 
-// 10. CrewAI (original PNG)
+// 10. CrewAI (WebP - 2KB vs 5.2KB PNG)
 const CrewAIIcon = memo(() => (
   <img
-    src="/images/logos/crewai-icon.png"
+    src="/images/logos/crewai-icon.webp"
     alt="CrewAI"
     width={24}
     height={24}
@@ -164,18 +164,20 @@ const technologies = [
 const MOBILE_TECH_LIMIT = 8
 
 // DockIcon with magnification effect
-// DockIcon with magnification effect
-// Mobile: smaller base size, reduced magnification range
-const DockIconItem = memo(({ mouseX, tech, index }) => {
+// Mobile: skip staggered animations and complex transforms to reduce TBT
+// Desktop: full magnification effect with spring physics
+const DockIconItem = memo(({ mouseX, tech, index, isMobile = false }) => {
   const ref = useRef(null)
 
+  // Only compute transforms on desktop for performance
   const distance = useTransform(mouseX, (val) => {
+    if (isMobile) return Infinity // Skip calculation on mobile
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
     return val - bounds.x - bounds.width / 2
   })
 
-  // Mobile: smaller icons (32px base), Desktop: 40px base with magnification to 56px
-  const widthSync = useTransform(distance, [-120, 0, 120], [32, 44, 32])
+  // Mobile: fixed width (no magnification), Desktop: dynamic magnification
+  const widthSync = useTransform(distance, [-120, 0, 120], isMobile ? [32, 32, 32] : [32, 44, 32])
   const width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 })
 
   const IconComponent = tech.Icon
@@ -183,13 +185,13 @@ const DockIconItem = memo(({ mouseX, tech, index }) => {
   return (
     <motion.div
       ref={ref}
-      style={{ width }}
+      style={isMobile ? { width: 32 } : { width }}
       className="aspect-square cursor-pointer flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors duration-200 min-w-[32px] sm:min-w-[40px]"
       title={`${tech.name} - ${tech.description}`}
-      initial={{ opacity: 0, scale: 0.5 }}
+      initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 0.2 + index * 0.05, duration: 0.3 }}
-      whileHover={{
+      transition={isMobile ? { duration: 0 } : { delay: 0.2 + index * 0.05, duration: 0.3 }}
+      whileHover={isMobile ? undefined : {
         boxShadow: `0 0 20px ${tech.color}50, 0 0 40px ${tech.color}30`,
       }}
     >
@@ -222,18 +224,18 @@ const TechStackDock = memo(() => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={isMobile ? { opacity: 1 } : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.15, duration: 0.5 }}
+      transition={isMobile ? { duration: 0 } : { delay: 0.15, duration: 0.5 }}
       className="flex justify-start"
     >
       <motion.div
-        onMouseMove={(e) => mouseX.set(e.pageX)}
-        onMouseLeave={() => mouseX.set(Infinity)}
+        onMouseMove={isMobile ? undefined : (e) => mouseX.set(e.pageX)}
+        onMouseLeave={isMobile ? undefined : () => mouseX.set(Infinity)}
         className="flex h-[48px] sm:h-[52px] items-end gap-1 sm:gap-2 rounded-xl border border-orange-500/30 bg-black/40 backdrop-blur-md p-1.5 sm:p-2 px-2 sm:px-3"
       >
         {visibleTechnologies.map((tech, index) => (
-          <DockIconItem key={tech.name} mouseX={mouseX} tech={tech} index={index} />
+          <DockIconItem key={tech.name} mouseX={mouseX} tech={tech} index={index} isMobile={isMobile} />
         ))}
       </motion.div>
     </motion.div>
