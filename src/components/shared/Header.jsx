@@ -107,6 +107,18 @@ const Header = () => {
         shadow: 'hover:shadow-gray-400/30',
         headerBg: 'bg-gradient-to-r from-gray-900/10 via-[#030303]/95 to-gray-800/10'
       }
+    } else if (location.pathname === '/bootcamp/zero-prod-chatgpt-codex') {
+      // ChatGPT Codex bootcamp - Gray/White/Black metallic theme
+      return {
+        from: 'from-gray-500/20',
+        to: 'to-gray-400/20',
+        hoverFrom: 'hover:from-gray-500/30',
+        hoverTo: 'hover:to-gray-400/30',
+        border: 'border-gray-500/30',
+        hoverBorder: 'hover:border-gray-400/50',
+        shadow: 'hover:shadow-gray-400/30',
+        headerBg: 'bg-gradient-to-r from-gray-900/10 via-[#030303]/95 to-gray-800/10'
+      }
     } else {
       // Home page - Metallic green theme
       return {

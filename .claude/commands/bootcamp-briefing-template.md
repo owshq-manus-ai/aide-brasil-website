@@ -1,6 +1,7 @@
 # Bootcamp Briefing Template
 
-> **Copy this template, fill in all fields, and paste to `/bootcamp` command**
+> **Copy this template, fill in all fields, and save to `/briefings/bootcamps/bootcamp-[slug].md`**
+> Then run: `/bootcamp briefings/bootcamps/bootcamp-[slug].md`
 
 ---
 
@@ -12,31 +13,31 @@
 # ============================================
 
 # BASIC INFO (Required)
-name: "Zero a Producao com Apache Kafka"           # Full bootcamp name
-slug: "zero-prod-apache-kafka"                      # URL slug (kebab-case)
-component_name: "KafkaBootcamp"                     # React component name (PascalCase)
-title_highlight: "Apache Kafka"                     # Word with gradient effect
-subtitle: "Use Kafka como sua plataforma de streaming - com pipelines que processam milhoes de eventos por segundo"
-date_range: "15-18 Mar 2026"                        # Format: "DD-DD Mon YYYY"
-time: "20:00 BRT"                                   # Daily start time
-duration: "12 horas"                                # Total hours (typically 12h for 4-day bootcamp)
-total_days: 4                                       # Number of days
+name: "Do Zero a Produção com [Technology]"    # Full bootcamp name
+slug: "zero-prod-[slug]"                        # URL slug (kebab-case)
+component_name: "[Name]Bootcamp"                # React component name (PascalCase)
+title_highlight: "[Technology]"                 # Word with gradient effect in title
+subtitle: "Use [Tech] como [benefit] — com [specific outcome that sells]"
+date_range: "DD-DD Mon YYYY"                    # Example: "15-18 Mar 2026"
+time: "20:00 BRT"                               # Daily start time
+duration: "12 horas"                            # Total hours
+total_days: 4                                   # Number of days
 
-# THEME (Required)
-# Primary color for the bootcamp (used throughout)
-# Options: coral (#E07A5F), purple, blue, green, orange
-# Note: coral is the default bootcamp theme
+# THEME (Required) - Pick ONE that matches the technology brand
+# Options: coral, gray, purple, blue, green, orange
 theme: "coral"
-primary_color: "#E07A5F"        # Main accent color
-secondary_color: "#F0A090"      # Lighter variant
+primary_color: "#E07A5F"      # See color table below
+secondary_color: "#F0A090"
+accent_color: "#B85A47"
+light_color: "#F5C4B8"
 
 # PRICING (Required)
 pricing:
   early_bird:
     price: "897"
-    status: "sold_out"          # sold_out | current | upcoming
+    status: "sold_out"        # sold_out | current | upcoming
   current:
-    name: "Lote Decisao"
+    name: "Lote Decisão"
     price: "1.197"
     original_price: "1.397"
     installments: "12x de R$ 119,63"
@@ -47,432 +48,438 @@ pricing:
     status: "upcoming"
 
 # PAYMENT GATEWAY (Required)
-eduzz_checkout_url: "https://sun.eduzz.com/XXXXXXXX"   # Eduzz product URL
-countdown_target: "2026-03-10T00:00:00-03:00"          # Countdown end date
+eduzz_checkout_url: "https://sun.eduzz.com/XXXXXXXX"
+countdown_target: "2026-XX-XXT00:00:00-03:00"  # Countdown end date
 
 # HERO SECTION (Required)
 hero:
-  headline: "Do Zero a Producao"                       # Main headline (before highlight)
-  transformation_promise: "Use Kafka como sua plataforma de streaming - com pipelines que escalam automaticamente"
+  headline: "Do Zero a Produção"
+  transformation_promise: "Use [Tech] como [benefit] — com [specific outcome]"
 
-  # Status badges shown in hero
+  # Status badges (4 items)
   badges:
     - label: "Online"
       color: "green"
-    - label: "185 Inscritos"
-      color: "coral"
-    - label: "Streaming"
+    - label: "XXX Inscritos"
+      color: "theme"          # Uses primary theme color
+    - label: "[Category]"
       color: "purple"
     - label: "12 Horas Hands-On"
       color: "green"
 
-  # Learning points in right card (6 items)
+  # Learning points in right card - EXACTLY 6 items
+  # Format: "[Topic]: [specific skill or outcome]"
   learning_points:
-    - text: "Arquitetura Kafka: brokers, partitions, replication e consumer groups"
-      icon: "Server"
-    - text: "Producers & Consumers: batching, acknowledgments e error handling"
+    - text: "[Topic]: [specific skill]"
+      icon: "Server"          # Lucide icon name
+    - text: "[Topic]: [specific skill]"
       icon: "Terminal"
-    - text: "Kafka Streams: processamento real-time com windowing e aggregations"
+    - text: "[Topic]: [specific skill]"
       icon: "Brain"
-    - text: "Connect & Schema Registry: integracoes enterprise type-safe"
+    - text: "[Topic]: [specific skill]"
       icon: "Database"
-    - text: "Monitoring com Prometheus & Grafana: metricas que importam"
+    - text: "[Topic]: [specific skill]"
       icon: "Gauge"
-    - text: "Deploy em Producao: Docker, Kubernetes e estrategias de escala"
+    - text: "[Topic]: [specific skill]"
       icon: "Rocket"
 
-  # Value propositions (3 items)
+  # Value propositions - EXACTLY 3 items
   value_props:
     - icon: "Bot"
-      text: "Construa pipelines que processam milhoes de eventos em tempo real"
+      text: "[Transformation promise - what they'll build]"
     - icon: "Terminal"
-      text: "Processo guiado: do cluster local ao deploy em producao"
+      text: "[Process promise - how they'll learn]"
     - icon: "Rocket"
-      text: "Sistema real funcionando com monitoramento completo"
+      text: "[Outcome promise - what they'll have at the end]"
 
-# PROMISE SECTION - 8 Superpowers (Required)
+# PROMISE SECTION - EXACTLY 8 Features (Required)
+# Each feature MUST have a DIFFERENT color for visual variety
 promise:
-  section_badge: "Seu Arsenal Completo"
+  section_badge: "SEU ARSENAL COMPLETO"
   section_title: "8 Superpoderes do"
-  section_title_highlight: "Apache Kafka"
-  section_title_suffix: "que Ninguem Ensina"
+  section_title_highlight: "[Technology]"
+  section_title_suffix: "que Ninguém Ensina"
 
   features:
-    - title: "Cluster Architecture"
-      description: "Configure um cluster Kafka production-ready com replication e fault tolerance automaticos"
-      highlight: "production-ready"
-      color: "orange"
-      icon: "Server"
+    - title: "[Feature 1]"
+      description: "[Description] — [highlight keyword]"
+      highlight: "[keyword to highlight]"
+      color: "blue"           # blue|purple|green|cyan|orange|pink|amber|red
+      icon: "Server"          # Lucide icon name
 
-    - title: "Producer Patterns"
-      description: "Domine patterns de producao - batching, compression, idempotency e exactly-once semantics"
-      highlight: "exactly-once semantics"
+    - title: "[Feature 2]"
+      description: "[Description] — [highlight keyword]"
+      highlight: "[keyword]"
       color: "purple"
       icon: "FileText"
 
-    - title: "Consumer Groups"
-      description: "Escale consumers horizontalmente com rebalancing automatico e offset management"
-      highlight: "rebalancing automatico"
-      color: "blue"
+    - title: "[Feature 3]"
+      description: "[Description] — [highlight keyword]"
+      highlight: "[keyword]"
+      color: "green"
       icon: "Users"
 
-    - title: "Kafka Streams"
-      description: "Processe streams em tempo real com joins, aggregations e windowing sem cluster Flink/Spark"
-      highlight: "sem cluster Flink/Spark"
-      color: "green"
+    - title: "[Feature 4]"
+      description: "[Description] — [highlight keyword]"
+      highlight: "[keyword]"
+      color: "cyan"
       icon: "Brain"
 
-    - title: "Schema Registry"
-      description: "Garanta compatibilidade de schemas com Avro/Protobuf e evolucao segura de contratos"
-      highlight: "evolucao segura"
-      color: "cyan"
+    - title: "[Feature 5]"
+      description: "[Description] — [highlight keyword]"
+      highlight: "[keyword]"
+      color: "orange"
       icon: "Shield"
 
-    - title: "Kafka Connect"
-      description: "Integre com 200+ sistemas usando conectores prontos - CDC, S3, Elasticsearch e mais"
-      highlight: "200+ sistemas"
+    - title: "[Feature 6]"
+      description: "[Description] — [highlight keyword]"
+      highlight: "[keyword]"
       color: "pink"
       icon: "Webhook"
 
-    - title: "Observability"
-      description: "Monitore lag, throughput e latencia com dashboards Grafana production-ready"
-      highlight: "dashboards Grafana"
+    - title: "[Feature 7]"
+      description: "[Description] — [highlight keyword]"
+      highlight: "[keyword]"
       color: "amber"
       icon: "BarChart3"
 
-    - title: "Production Deploy"
-      description: "Deploy em Kubernetes com operators, auto-scaling e disaster recovery configurado"
-      highlight: "disaster recovery"
+    - title: "[Feature 8]"
+      description: "[Description] — [highlight keyword]"
+      highlight: "[keyword]"
       color: "red"
       icon: "Rocket"
 
-# DIFFERENTIATORS - 6 Reasons (Required)
+# DIFFERENTIATORS - EXACTLY 6 Reasons (Required)
+# Pattern: "Outros cursos: [what they do]. Aqui: [what we do]."
 differentiators:
-  section_badge: "O Que Faz a Diferenca"
-  section_title: "6 Razoes Para"
+  section_badge: "O QUE FAZ A DIFERENÇA"
+  section_title: "6 Razões Para"
   section_title_highlight: "Nunca Mais"
-  section_title_suffix: "Fazer Curso de Streaming"
+  section_title_suffix: "Fazer Curso de [Topic]"
+
+  # Bottom statement (strikethrough pattern)
+  bottom_statement:
+    others_teach: "prompts"           # What others teach (will be strikethrough)
+    we_teach: "operar agentes autônomos"  # What we teach
 
   items:
-    - title: "Problema Real, Nao Demo"
-      description: "Outros cursos: datasets de exemplo. Aqui: event-driven architecture - processando eventos reais desde o dia 1."
-      highlight: "event-driven architecture"
+    - title: "[Differentiator 1]"
+      description: "Outros cursos: [X]. Aqui: [Y] — [highlight]."
+      highlight: "[keyword]"
       icon: "ArrowRight"
 
-    - title: "Producao, Nao Tutorial"
-      description: "Outros cursos: cluster local. Aqui: deploy em Kubernetes com monitoramento e alertas funcionando."
-      highlight: "Kubernetes com monitoramento"
+    - title: "[Differentiator 2]"
+      description: "Outros cursos: [X]. Aqui: [Y] — [highlight]."
+      highlight: "[keyword]"
       icon: "Cloud"
 
-    - title: "Streams, Nao Apenas Topics"
-      description: "Outros cursos: param no consumer. Aqui: Kafka Streams processando e transformando dados em real-time."
-      highlight: "Kafka Streams"
+    - title: "[Differentiator 3]"
+      description: "Outros cursos: [X]. Aqui: [Y] — [highlight]."
+      highlight: "[keyword]"
       icon: "Brain"
 
-    - title: "Schema Evolution, Nao Breaking Changes"
-      description: "Outros cursos: ignoram schemas. Aqui: Schema Registry com compatibilidade e contratos versionados."
-      highlight: "contratos versionados"
+    - title: "[Differentiator 4]"
+      description: "Outros cursos: [X]. Aqui: [Y] — [highlight]."
+      highlight: "[keyword]"
       icon: "Shield"
 
-    - title: "Observability, Nao Apenas Logs"
-      description: "Outros cursos: println debug. Aqui: Prometheus + Grafana com metricas de negocio e alertas inteligentes."
-      highlight: "metricas de negocio"
+    - title: "[Differentiator 5]"
+      description: "Outros cursos: [X]. Aqui: [Y] — [highlight]."
+      highlight: "[keyword]"
       icon: "BarChart3"
 
-    - title: "Portfolio, Nao Certificado"
-      description: "Outros cursos: PDF no LinkedIn. Aqui: sistema completo no GitHub para mostrar em entrevistas."
-      highlight: "sistema completo no GitHub"
+    - title: "[Differentiator 6]"
+      description: "Outros cursos: [X]. Aqui: [Y] — [highlight]."
+      highlight: "[keyword]"
       icon: "Trophy"
 
-# JOURNEY - 8 Steps (Required)
+# JOURNEY - EXACTLY 8 Steps (Required)
+# This creates an EXPANDABLE ACCORDION with zigzag layout
 journey:
-  section_badge: "Sua Jornada em 4 Dias"
+  section_badge: "SUA JORNADA EM 4 DIAS"
   section_title: "8 Passos Para"
   section_title_highlight: "Sair do Zero"
-  section_title_suffix: "e Entregar em Producao"
+  section_title_suffix: "e Entregar em Produção"
 
   steps:
     - number: 1
-      title: "Entender Event-Driven"
-      subtitle: "Request-Response -> Event Streaming"
-      description: "Transforme sua mentalidade de APIs sincronas para arquiteturas event-driven. Voce sai entendendo quando usar Kafka."
-      skills: ["Event Sourcing", "CQRS Basics", "Use Case Analysis"]
-      personas: ["Software Engineer", "Architect"]
+      title: "[Step 1 Title]"
+      subtitle: "[Before] → [After]"        # Transformation pattern
+      description: "[What happens in this step. End with: 'Você sai sabendo [skill].']"
+      skills: ["[Skill 1]", "[Skill 2]", "[Skill 3]"]
+      personas: ["[Role 1]", "[Role 2]"]
       icon: "Users"
+      is_core: false
 
     - number: 2
-      title: "Subir Cluster Local"
-      subtitle: "Docker Compose -> Kafka Running"
-      description: "Configure um cluster Kafka completo com Zookeeper, brokers e ferramentas. Em 30 minutos voce tem um ambiente funcional."
-      skills: ["Docker Compose", "Kafka Configuration", "Local Development"]
-      personas: ["Developer", "DevOps"]
+      title: "[Step 2 Title]"
+      subtitle: "[Before] → [After]"
+      description: "[Description]"
+      skills: ["[Skill 1]", "[Skill 2]", "[Skill 3]"]
+      personas: ["[Role 1]", "[Role 2]"]
       icon: "Terminal"
+      is_core: false
 
     - number: 3
-      title: "Dominar Producers"
-      subtitle: "Fire-and-Forget -> Guaranteed Delivery"
-      description: "Implemente producers com acks, retries e idempotency. Seus eventos chegam exatamente uma vez."
-      skills: ["Producer API", "Serialization", "Error Handling"]
-      personas: ["Backend Engineer", "Data Engineer"]
+      title: "[Step 3 Title]"
+      subtitle: "[Before] → [After]"
+      description: "[Description]"
+      skills: ["[Skill 1]", "[Skill 2]", "[Skill 3]"]
+      personas: ["[Role 1]", "[Role 2]"]
       icon: "FileText"
+      is_core: false
 
     - number: 4
-      title: "Escalar Consumers"
-      subtitle: "Single Consumer -> Consumer Group"
-      description: "Configure consumer groups com rebalancing, offset commit e error recovery. Escale horizontalmente sem perder mensagens."
-      skills: ["Consumer API", "Offset Management", "Partition Assignment"]
-      personas: ["Backend Engineer", "Platform Engineer"]
+      title: "[Step 4 Title]"
+      subtitle: "[Before] → [After]"
+      description: "[Description]"
+      skills: ["[Skill 1]", "[Skill 2]", "[Skill 3]"]
+      personas: ["[Role 1]", "[Role 2]"]
       icon: "Users"
+      is_core: false
 
     - number: 5
-      title: "Processar com Streams"
-      subtitle: "Poll Loop -> Stream Processing"
-      description: "Use Kafka Streams para joins, aggregations e windowing. Processe milhoes de eventos sem cluster separado."
-      skills: ["Kafka Streams API", "Stateful Processing", "Windowing"]
-      personas: ["Data Engineer", "ML Engineer"]
+      title: "[Step 5 Title - CORE MODULE]"
+      subtitle: "[Before] → [After]"
+      description: "[Description]"
+      skills: ["[Skill 1]", "[Skill 2]", "[Skill 3]"]
+      personas: ["[Role 1]", "[Role 2]"]
       icon: "Brain"
-      is_core: true
+      is_core: true             # This is the CORE module - expanded by default
 
     - number: 6
-      title: "Garantir Schemas"
-      subtitle: "JSON Chaos -> Schema Registry"
-      description: "Implemente Schema Registry com Avro. Evolua schemas sem quebrar consumers existentes."
-      skills: ["Avro", "Schema Evolution", "Compatibility Modes"]
-      personas: ["Data Engineer", "Platform Engineer"]
+      title: "[Step 6 Title]"
+      subtitle: "[Before] → [After]"
+      description: "[Description]"
+      skills: ["[Skill 1]", "[Skill 2]", "[Skill 3]"]
+      personas: ["[Role 1]", "[Role 2]"]
       icon: "Shield"
+      is_core: false
 
     - number: 7
-      title: "Monitorar Tudo"
-      subtitle: "Logs -> Observability Stack"
-      description: "Configure Prometheus e Grafana com dashboards de lag, throughput e latencia. Alertas antes dos problemas."
-      skills: ["JMX Metrics", "Grafana Dashboards", "Alerting"]
-      personas: ["SRE", "DevOps"]
+      title: "[Step 7 Title]"
+      subtitle: "[Before] → [After]"
+      description: "[Description]"
+      skills: ["[Skill 1]", "[Skill 2]", "[Skill 3]"]
+      personas: ["[Role 1]", "[Role 2]"]
       icon: "BarChart3"
+      is_core: false
 
     - number: 8
-      title: "Deployar em Producao"
-      subtitle: "Local -> Kubernetes"
-      description: "Deploy com Strimzi operator, configuracoes de producao e disaster recovery. Sistema pronto para escalar."
-      skills: ["Kubernetes", "Strimzi Operator", "Production Config"]
-      personas: ["Platform Engineer", "SRE"]
+      title: "[Step 8 Title]"
+      subtitle: "[Before] → [After]"
+      description: "[Description]"
+      skills: ["[Skill 1]", "[Skill 2]", "[Skill 3]"]
+      personas: ["[Role 1]", "[Role 2]"]
       icon: "Rocket"
+      is_core: false
 
-# TECH STACK (Required)
-# Logos displayed in the dock component
+# TECH STACK - EXACTLY 6 Categories (Required)
+# Each category can have multiple technologies
 tech_stack:
-  - name: "Apache Kafka"
-    logo: "/images/logos/kafka-icon.webp"
-  - name: "Docker"
-    logo: "/images/logos/docker-icon.webp"
-  - name: "Kubernetes"
-    logo: "/images/logos/kubernetes-icon.webp"
-  - name: "Prometheus"
-    logo: "/images/logos/prometheus-icon.webp"
-  - name: "Grafana"
-    logo: "/images/logos/grafana-icon.webp"
-  - name: "Python"
-    logo: "/images/logos/python-icon.webp"
+  section_title: "Tecnologias que Você Vai Dominar"
+  section_description: "Stack completo para [what they'll build]"
+
+  categories:
+    - name: "[Category 1]"
+      items: ["Tech 1", "Tech 2"]
+      icon: "Bot"
+      color: "blue"
+
+    - name: "[Category 2]"
+      items: ["Tech 1", "Tech 2"]
+      icon: "Terminal"
+      color: "purple"
+
+    - name: "[Category 3]"
+      items: ["Tech 1", "Tech 2"]
+      icon: "Database"
+      color: "green"
+
+    - name: "[Category 4]"
+      items: ["Tech 1", "Tech 2"]
+      icon: "Cloud"
+      color: "cyan"
+
+    - name: "[Category 5]"
+      items: ["Tech 1", "Tech 2"]
+      icon: "BarChart3"
+      color: "orange"
+
+    - name: "[Category 6]"
+      items: ["Tech 1", "Tech 2"]
+      icon: "Rocket"
+      color: "pink"
 
 # AUDIENCE SECTION (Required)
+# Two-column layout: Profiles (left) + Prerequisites (right)
 audience:
-  section_badge: "Voce Se Encaixa?"
-  section_title: "3 Perfis que Vao"
+  section_badge: "VOCÊ SE ENCAIXA?"
+  section_title: "3 Perfis que Vão"
   section_title_highlight: "Multiplicar Resultados"
-  section_title_suffix: "com Streaming"
+  section_title_suffix: "com [Technology]"
 
-  # Target profiles (3 items)
+  # Target profiles - EXACTLY 3 items
   profiles:
-    - title: "Data Engineers"
-      description: "Cansados de batch pipelines - prontos para streaming que processa eventos em millisegundos"
-      transformation: "Batch hourly -> Real-time streaming"
-      fit: "perfect"
+    - title: "[Profile 1 - e.g., Data Engineers]"
+      description: "[Pain point] — [what they'll get]"
+      transformation: "[Before] → [After]"
+      fit: "perfect"          # perfect | good
       icon: "Database"
 
-    - title: "Backend Engineers"
-      description: "Querem sair de REST sincrono para arquiteturas event-driven que escalam horizontalmente"
-      transformation: "Sync APIs -> Async events"
+    - title: "[Profile 2 - e.g., Backend Engineers]"
+      description: "[Pain point] — [what they'll get]"
+      transformation: "[Before] → [After]"
       fit: "perfect"
       icon: "Code2"
 
-    - title: "Platform Engineers"
-      description: "Ja dominam infra - agora querem adicionar streaming como servico para os times"
-      transformation: "Ad-hoc setup -> Platform service"
+    - title: "[Profile 3 - e.g., Platform Engineers]"
+      description: "[Pain point] — [what they'll get]"
+      transformation: "[Before] → [After]"
       fit: "good"
       icon: "Server"
 
-  # Prerequisites (3 items)
+  # Prerequisites - EXACTLY 3 items
   prerequisites:
-    - requirement: "Docker e Linux"
-      description: "docker run e comandos basicos de terminal - se voce ja usou containers, esta pronto"
-      level: "basic"
+    - requirement: "[Prerequisite 1]"
+      description: "[What they need to know - reassure them]"
+      level: "basic"          # basic | tool | mindset
       icon: "Terminal"
 
-    - requirement: "Python ou Java"
-      description: "Uma das duas linguagens para os clients - escolha a que voce prefere"
+    - requirement: "[Prerequisite 2]"
+      description: "[What they need - reassure them]"
       level: "basic"
       icon: "Code2"
 
     - requirement: "Vontade de Aprender"
-      description: "Kafka tem curva de aprendizado - mas em 4 dias voce domina o essencial"
+      description: "[Reassurance] — mas em 4 dias você domina o essencial"
       level: "mindset"
       icon: "Brain"
 
-# DELIVERABLES (Required - 8 items)
+  # Bottom note
+  bottom_note: "Não é sobre ser expert — é sobre estar pronto para acelerar. Se você já [basic skill], você está pronto."
+
+# DELIVERABLES - EXACTLY 8 Items (Required)
 deliverables:
-  - text: "Cluster Kafka multi-broker funcionando"
-    value: "Docker ou Kubernetes"
-  - text: "Pipeline producer-consumer completo"
-    value: "Com error handling e retries"
-  - text: "Aplicacao Kafka Streams"
-    value: "Joins, aggregations, windowing"
-  - text: "Schema Registry configurado"
-    value: "Avro + compatibility modes"
-  - text: "Stack de observability"
-    value: "Prometheus + Grafana dashboards"
-  - text: "Deploy Kubernetes production-ready"
-    value: "Strimzi operator + configs"
-  - text: "Repositorio GitHub completo"
-    value: "Clone e rode em 5 minutos"
-  - text: "Certificado de conclusao"
-    value: "Para seu LinkedIn"
+  - text: "[Deliverable 1]"
+    value: "[Specific detail]"
+  - text: "[Deliverable 2]"
+    value: "[Specific detail]"
+  - text: "[Deliverable 3]"
+    value: "[Specific detail]"
+  - text: "[Deliverable 4]"
+    value: "[Specific detail]"
+  - text: "[Deliverable 5]"
+    value: "[Specific detail]"
+  - text: "[Deliverable 6]"
+    value: "[Specific detail]"
+  - text: "[Deliverable 7]"
+    value: "[Specific detail]"
+  - text: "Projeto portfólio"
+    value: "Mostre em entrevistas"
+
+# FINAL CTA (Required)
+final_cta:
+  today_state: "[What they do today - pain point]"
+  future_state: "[What they'll do after - benefit]"
+  headline: "[Transformation verb] com [Tech]"
+  subheadline: "ou [Alternative - pain of not acting]?"
+  tagline_strikethrough: "[What others do]"
+  tagline_highlight: "[What graduates do]"
+  bottom_text: "Zero [pain]. 100% [benefit]."
 
 # INSTRUCTOR (Optional - defaults to Luan Moreno)
 instructor:
   name: "Luan Moreno"
   title: "Principal AI & Autonomous Systems Engineer"
   company: "@Pythian"
-  bio: "Especialista em arquiteturas de streaming e sistemas distribuidos, com experiencia implementando Kafka em ambientes enterprise de alta escala."
   photo: "/images/team/luan-moreno-5.png"
   achievements:
-    - "Implementou Kafka em +30 projetos enterprise"
-    - "Processou +500 milhoes de eventos/dia em producao"
-    - "Treinou +300 engenheiros em streaming"
-    - "Arquitetou pipelines para Fortune 500"
+    - "[Achievement 1 relevant to this bootcamp]"
+    - "[Achievement 2]"
+    - "[Achievement 3]"
+    - "[Achievement 4]"
 ```
 
 ---
 
-## HOW TO USE
+## THEME COLOR REFERENCE
 
-### Option 1: File Path (Recommended)
-
-1. Save your filled briefing as `briefings/bootcamp-[slug].md`
-2. Run: `/bootcamp briefings/bootcamp-zero-prod-apache-kafka.md`
-
-### Option 2: Inline YAML
-
-1. Copy the entire YAML block above
-2. Fill in all your values
-3. Run: `/bootcamp` and paste the YAML
+| Theme | Primary | Secondary | Accent | Light | Use For |
+|-------|---------|-----------|--------|-------|---------|
+| coral | #E07A5F | #F0A090 | #B85A47 | #F5C4B8 | Claude Code (default) |
+| gray | #6b7280 | #9ca3af | #374151 | #d1d5db | ChatGPT Codex, professional tools |
+| purple | #8B5CF6 | #A78BFA | #7C3AED | #C4B5FD | AI/ML focused |
+| blue | #3B82F6 | #60A5FA | #2563EB | #93C5FD | Cloud/Data |
+| green | #22C55E | #4ADE80 | #16A34A | #86EFAC | DevOps/Automation |
+| orange | #F97316 | #FB923C | #EA580C | #FDBA74 | Intensive workshops |
 
 ---
 
-## THEME REFERENCE
+## LUCIDE ICON REFERENCE
 
-| Theme | Primary Color | Use For |
-|-------|---------------|---------|
-| `coral` | #E07A5F | Default bootcamp theme |
-| `purple` | #8B5CF6 | AI/ML focused bootcamps |
-| `blue` | #3B82F6 | Cloud/Data bootcamps |
-| `green` | #22C55E | DevOps/Automation |
-| `orange` | #F97316 | Intensive workshops |
+Common icons used in bootcamps:
 
----
-
-## SECTION STRUCTURE
-
-A bootcamp consists of 8 sections (modular components):
-
-```
-1. Hero Section
-   - ClaudeCodeBootcampHero.jsx
-   - Status badges, headline, learning points, CTAs
-
-2. Promise Section
-   - PromiseSection.jsx
-   - 8 superpowers/features grid
-
-3. Differentiator Section
-   - DifferentiatorSection.jsx
-   - 6 reasons why different
-
-4. Journey Timeline
-   - JourneyTimeline.jsx
-   - 8-step expandable timeline
-
-5. Stack Section
-   - StackSection.jsx
-   - Tech logos carousel
-
-6. Audience Section
-   - AudienceSection.jsx
-   - 3 profiles + 3 prerequisites
-
-7. Pricing Section
-   - PricingSection.jsx
-   - 3-tier pricing + deliverables
-
-8. Final CTA Section
-   - FinalCTASection.jsx
-   - Last call to action
-```
+| Category | Icons |
+|----------|-------|
+| Tech/Code | Terminal, Code2, FileCode, Braces, GitBranch |
+| Data | Database, BarChart3, PieChart, TrendingUp, Gauge |
+| AI/ML | Brain, Bot, Sparkles, Zap, Cpu |
+| Cloud | Cloud, Server, Globe, Webhook, Layers |
+| Security | Shield, Lock, Key, Eye, Fingerprint |
+| Actions | Rocket, Play, Search, Settings, RefreshCw |
+| People | Users, User, UserCheck, Lightbulb |
+| Misc | CheckCircle, AlertCircle, Trophy, Package, FolderOpen |
 
 ---
 
-## FILE NAMING CONVENTION
+## OUTPUT: 9 Component Files
+
+When you run `/bootcamp` with this briefing, it creates:
 
 ```
-Page Component:       [Name]Bootcamp.jsx
-Hero Component:       [Name]BootcampHero.jsx
-Other Components:     [Section]Section.jsx (shared)
-
-Example for "Kafka":
-  - KafkaBootcamp.jsx
-  - KafkaBootcampHero.jsx
-  - (shared sections from ClaudeCodeBootcamp)
+src/features/bootcamps/
+├── pages/
+│   └── [Name]Bootcamp.jsx              # Main page (lazy loading)
+└── components/
+    ├── [Name]BootcampHero.jsx          # Hero + TechDock
+    ├── [Name]PromiseSection.jsx        # 8 features (COLOR_CLASSES)
+    ├── [Name]DifferentiatorSection.jsx # 6 reasons + bottom statement
+    ├── [Name]JourneyTimeline.jsx       # 8 steps (EXPANDABLE ACCORDION)
+    ├── [Name]StackSection.jsx          # 6 tech categories
+    ├── [Name]AudienceSection.jsx       # 3 profiles + 3 prerequisites
+    ├── [Name]PricingSection.jsx        # 3 tiers + countdown + modal
+    └── [Name]FinalCTASection.jsx       # Before/After + final CTA
 ```
-
----
-
-## CONTENT GUIDELINES
-
-### Title Pattern
-**"Do Zero a Producao [Technology]"** or **"[Technology]: Do Zero a Producao"**
-
-### Subtitle
-One transformation promise (max 120 chars).
-Pattern: **"Use [Tech] como [benefit] - com [specific outcome]"**
-
-### Learning Points (6 items)
-Format: **"[Topic]: [specific skill or outcome]"**
-
-### Journey Steps (8 items)
-Each step must have:
-- **subtitle**: Before → After transformation
-- **skills**: 3 specific skills learned
-- **personas**: 2 relevant job titles
-- **is_core**: true for the main module (usually step 5 or 6)
-
-### Deliverables (8 items)
-Concrete outputs, not promises.
-Format: **{ text: "What they get", value: "Specific detail" }**
 
 ---
 
 ## CHECKLIST BEFORE SUBMITTING
 
-- [ ] All 6 hero learning points filled
-- [ ] All 8 promise features with icons and colors
-- [ ] All 6 differentiators with highlights
-- [ ] All 8 journey steps with skills and personas
-- [ ] All 6 tech stack logos with paths
-- [ ] All 3 audience profiles with transformations
-- [ ] All 3 prerequisites with levels
-- [ ] All 8 deliverables with values
+- [ ] All text in Brazilian Portuguese with proper accents (é, ê, ã, ç, ó)
+- [ ] Theme colors filled (primary, secondary, accent, light)
+- [ ] 6 hero learning points with Lucide icon names
+- [ ] 3 value propositions
+- [ ] 8 promise features with VARIED colors (not all the same!)
+- [ ] 6 differentiators with "Outros cursos: X. Aqui: Y" pattern
+- [ ] 8 journey steps with skills, personas, and ONE `is_core: true`
+- [ ] 6 tech stack categories
+- [ ] 3 audience profiles with fit levels
+- [ ] 3 prerequisites with levels
+- [ ] 8 deliverables with specific values
+- [ ] Final CTA messaging filled
 - [ ] Eduzz checkout URL configured
 - [ ] Countdown target date set
-- [ ] Pricing tiers configured
 
 ---
 
-_This template ensures your bootcamp matches the exact pattern of the Claude Code bootcamp._
+## EXAMPLE BRIEFINGS
+
+See existing briefings for reference:
+
+- `/briefings/bootcamps/bootcamp-zero-prod-chatgpt-codex.md` (gray theme)
+- Claude Code is the reference implementation (coral theme)
+
+---
+
+_This template creates bootcamp-specific components that match the Claude Code and ChatGPT Codex patterns._

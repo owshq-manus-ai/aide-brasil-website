@@ -44,6 +44,19 @@ export const webhookEndpoints = {
         duration: '12 hours',
         format: 'live'
       }
+    },
+    'zero-prod-chatgpt-codex': {
+      url: import.meta.env.VITE_WEBHOOK_BOOTCAMP_CHATGPT_CODEX ||
+           import.meta.env.VITE_N8N_WEBHOOK_URL ||
+           'https://primary-production-1ebc.up.railway.app/webhook-test/3a20f09c-24f1-4052-ae9c-a3617cf9ec57',
+      fields: ['name', 'email', 'phone'],
+      metadata: {
+        type: 'bootcamp',
+        product: 'zero-prod-chatgpt-codex',
+        price: 'R$ 897',
+        duration: '12 hours',
+        format: 'live'
+      }
     }
   },
 
