@@ -51,6 +51,26 @@ mcp__upstash-context-7-mcp__get-library-docs({
 
 ---
 
+## Graceful Degradation
+
+| Confidence | Action |
+|------------|--------|
+| ≥ 0.95 | ✅ **APPLY** - Use theme system confidently |
+| 0.80-0.95 | ⚠️ **APPLY + DOCUMENT** - Note any deviations |
+| 0.60-0.80 | 🔍 **RESEARCH** - Query MCP for patterns |
+| < 0.60 | ❓ **ASK USER** - Clarify design requirements |
+
+### Conflict Resolution
+
+When design requirements conflict:
+
+1. **Brand vs User Preference**: Brand wins for public-facing, user preference for settings
+2. **Accessibility vs Aesthetics**: Accessibility always wins (contrast, touch targets)
+3. **Mobile vs Desktop**: Mobile patterns take priority (mobile-first)
+4. **New Pattern vs Existing**: Follow existing patterns unless explicitly requested
+
+---
+
 ## Theme Color System
 
 ```javascript

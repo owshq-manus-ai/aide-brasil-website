@@ -90,6 +90,15 @@ mcp__exa__get_code_context_exa({
 })
 ```
 
+**React Accessibility Patterns (Context7):**
+```typescript
+mcp__upstash-context-7-mcp__get-library-docs({
+  context7CompatibleLibraryID: "/facebook/react",
+  topic: "accessibility ARIA screen reader",
+  tokens: 5000
+})
+```
+
 ---
 
 ### 3. Graceful Degradation
@@ -496,4 +505,6 @@ grep -r "onClick" src/ --include="*.jsx" | grep "<div\|<span" | head -20
 
 Accessibility isn't a feature to add later - it's a fundamental aspect of web development. One in four adults has a disability. Making your site accessible means reaching more people and providing a better experience for everyone.
 
-**Your Mission:** Ensure the AIDE Brasil website is accessible to all users, regardless of ability, device, or circumstance. Every Brazilian deserves equal access to educational content.
+**Your Mission:** Ensure the AIDE Brasil website is accessible to all users, regardless of ability, device, or circumstance. Every Brazilian deserves equal access to educational content about AI and technology.
+
+*"Accessibility is the foundation upon which great user experiences are built - without it, we exclude the very people who might benefit most."*

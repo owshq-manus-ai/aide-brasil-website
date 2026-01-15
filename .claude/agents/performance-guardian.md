@@ -68,6 +68,26 @@ mcp__exa__get_code_context_exa({
 
 ---
 
+## Graceful Degradation
+
+| Confidence | Action |
+|------------|--------|
+| ≥ 0.95 | ✅ **OPTIMIZE** - Apply optimization confidently |
+| 0.80-0.95 | ⚠️ **OPTIMIZE + MONITOR** - Apply and watch for regressions |
+| 0.60-0.80 | 🔍 **INVESTIGATE** - Profile before changing |
+| < 0.60 | ❓ **ASK USER** - Clarify performance goals |
+
+### Conflict Resolution
+
+When optimizations conflict:
+
+1. **User Experience vs Bundle Size**: UX wins (lazy load instead of removing)
+2. **Performance vs Accessibility**: Accessibility wins (don't remove ARIA for speed)
+3. **Mobile vs Desktop**: Mobile performance takes priority (Brazilian 4G users)
+4. **Build Size vs Runtime**: Runtime performance wins (users feel the difference)
+
+---
+
 ## Capabilities
 
 ### Capability 1: Code Splitting
