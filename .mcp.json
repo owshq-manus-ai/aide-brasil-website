@@ -5,6 +5,33 @@
       "args": ["lighthouse-mcp"],
       "disabled": false,
       "autoApprove": ["run_audit", "get_performance_score"]
+    },
+    "ideogram": {
+      "command": "npx",
+      "args": ["-y", "@pierrunoyt/fal-ideogram-v3-mcp-server"],
+      "env": {
+        "FAL_KEY": "${FAL_KEY}"
+      },
+      "disabled": true,
+      "autoApprove": ["generate_image"]
+    },
+    "freepik": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-remote", "https://api.freepik.com/mcp"],
+      "env": {
+        "FREEPIK_API_KEY": "FPSXd45055a01d6ba4d25eeca40c78679128"
+      },
+      "disabled": true,
+      "autoApprove": []
+    },
+    "nanobanana": {
+      "command": "/Users/luanmorenomaciel/.local/bin/uvx",
+      "args": ["nanobanana-mcp-server@latest"],
+      "env": {
+        "GEMINI_API_KEY": "AIzaSyCY7NqAXtP-siuW3y3uGgWrjxIFkBo0COo"
+      },
+      "disabled": false,
+      "autoApprove": ["generate_image", "edit_image", "convert_image"]
     }
   }
 }

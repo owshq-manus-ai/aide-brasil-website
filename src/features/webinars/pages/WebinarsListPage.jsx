@@ -142,6 +142,24 @@ const webinars = [
     spots: 500,
     exclusive: false,
     popular: true
+  },
+  {
+    id: 6,
+    slug: 'dominando-context-engineering',
+    title: 'Dominando Context Engineering',
+    subtitle: 'Construa contextos perfeitos para LLMs e multiplique a qualidade da sua IA',
+    date: '5 Fev 2025',
+    time: '20:00',
+    duration: '2h',
+    attendees: 312,
+    description: 'Aprenda as técnicas avançadas de Context Engineering usadas pelos melhores engenheiros de IA. Do prompt design ao RAG optimization.',
+    topics: ['Prompt Architecture', 'RAG Optimization', 'Token Efficiency'],
+    gradient: 'from-emerald-600 to-green-600',
+    icon: Brain,
+    level: 'Intermediário',
+    spots: 500,
+    exclusive: false,
+    popular: true
   }
 ]
 
@@ -369,6 +387,8 @@ function WebinarsPage() {
                             ? 'bg-orange-500/10 text-orange-400 border-orange-500/30'
                             : webinar.slug === 'dominando-dify-ai'
                             ? 'bg-blue-500/10 text-blue-400 border-blue-500/30'
+                            : webinar.slug === 'dominando-context-engineering'
+                            ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                             : webinar.level === 'Expert'
                             ? 'bg-red-500/10 text-red-400 border-red-500/30'
                             : webinar.level === 'Avançado'
@@ -390,6 +410,8 @@ function WebinarsPage() {
                             ? 'bg-orange-500/10 text-orange-400 border-orange-500/30'
                             : webinar.slug === 'dominando-dify-ai'
                             ? 'bg-blue-500/10 text-blue-400 border-blue-500/30'
+                            : webinar.slug === 'dominando-context-engineering'
+                            ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                             : 'bg-green-500/10 text-green-400 border-green-500/30'
                         }`}>
                           {webinar.spots} vagas
@@ -413,6 +435,8 @@ function WebinarsPage() {
                           ? 'text-orange-400'
                           : webinar.slug === 'dominando-dify-ai'
                           ? 'text-blue-400'
+                          : webinar.slug === 'dominando-context-engineering'
+                          ? 'text-emerald-400'
                           : 'text-gray-400'
                       }`}>
                         {webinar.subtitle}
@@ -436,6 +460,8 @@ function WebinarsPage() {
                               ? 'text-orange-400'
                               : webinar.slug === 'dominando-dify-ai'
                               ? 'text-blue-400'
+                              : webinar.slug === 'dominando-context-engineering'
+                              ? 'text-emerald-400'
                               : 'text-gray-400'
                           }`} />
                           <span className="text-white/70">{webinar.date}</span>
@@ -452,6 +478,8 @@ function WebinarsPage() {
                               ? 'text-orange-400'
                               : webinar.slug === 'dominando-dify-ai'
                               ? 'text-blue-400'
+                              : webinar.slug === 'dominando-context-engineering'
+                              ? 'text-emerald-400'
                               : 'text-gray-400'
                           }`} />
                           <span className="text-white/70">{webinar.time} • {webinar.duration}</span>
@@ -468,6 +496,8 @@ function WebinarsPage() {
                               ? 'text-orange-400'
                               : webinar.slug === 'dominando-dify-ai'
                               ? 'text-blue-400'
+                              : webinar.slug === 'dominando-context-engineering'
+                              ? 'text-emerald-400'
                               : 'text-gray-400'
                           }`} />
                           <span className="text-white/70">
@@ -482,6 +512,8 @@ function WebinarsPage() {
                                 ? 'text-orange-400'
                                 : webinar.slug === 'dominando-dify-ai'
                                 ? 'text-blue-400'
+                                : webinar.slug === 'dominando-context-engineering'
+                                ? 'text-emerald-400'
                                 : 'text-white'
                             }`}>{webinar.attendees}</span> inscritos
                           </span>

@@ -83,6 +83,18 @@ const Header = () => {
         shadow: 'hover:shadow-blue-500/30',
         headerBg: 'bg-gradient-to-r from-blue-900/10 via-[#030303]/95 to-cyan-900/10'
       }
+    } else if (location.pathname === '/webinars/dominando-context-engineering') {
+      // Context Engineering webinar - Emerald/green metallic theme
+      return {
+        from: 'from-emerald-500/20',
+        to: 'to-green-500/20',
+        hoverFrom: 'hover:from-emerald-500/30',
+        hoverTo: 'hover:to-green-500/30',
+        border: 'border-emerald-500/30',
+        hoverBorder: 'hover:border-emerald-500/50',
+        shadow: 'hover:shadow-emerald-500/30',
+        headerBg: 'bg-gradient-to-r from-emerald-900/10 via-[#030303]/95 to-green-900/10'
+      }
     } else if (location.pathname.startsWith('/webinars/')) {
       // Other webinar pages - default to metallic gray
       return {

@@ -23,6 +23,7 @@ const AutonomousAgentsWebinar = lazy(() => import('./features/webinars/pages/Aut
 const CrewAIWebinar = lazy(() => import('./features/webinars/pages/CrewAIWebinar'))
 const ChatGPTAgentBuilderWebinar = lazy(() => import('./features/webinars/pages/ChatGPTAgentBuilderWebinar'))
 const DifyAIWebinar = lazy(() => import('./features/webinars/pages/DifyAIWebinar'))
+const ContextEngineeringWebinar = lazy(() => import('./features/webinars/pages/ContextEngineeringWebinar'))
 
 // Feature: Bootcamps
 const AIDataEngineerBootcamp = lazy(() => import('./features/bootcamps/pages/AIDataEngineerBootcamp'))
@@ -64,6 +65,7 @@ const AppContent = () => {
           <Route path="/webinars/dominando-crewai-agents" element={<CrewAIWebinar />} />
           <Route path="/webinars/dominando-chatgpt-agent-builder" element={<ChatGPTAgentBuilderWebinar />} />
           <Route path="/webinars/dominando-dify-ai" element={<DifyAIWebinar />} />
+          <Route path="/webinars/dominando-context-engineering" element={<ContextEngineeringWebinar />} />
           <Route path="/bootcamp/ai-data-engineer" element={<AIDataEngineerBootcamp />} />
           <Route path="/bootcamp/zero-prod-claude-code" element={<ClaudeCodeBootcamp />} />
           <Route path="/academy" element={<AcademyLandingPage />} />
