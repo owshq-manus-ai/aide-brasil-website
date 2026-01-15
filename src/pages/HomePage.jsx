@@ -2824,7 +2824,7 @@ function HomePage() {
               >
                 1% dos profissionais
               </motion.span>
-              {' '}dominarão IA em 2025. Você será um deles?
+              {' '}dominarão IA. Você será um deles?
             </motion.p>
             
             <motion.p
