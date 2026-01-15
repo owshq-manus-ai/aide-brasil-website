@@ -1,110 +1,23 @@
-# AI Data Engineering Brasil - Official Website
+# AI Data Engineering Brasil
 
 <div align="center">
-  <img src="public/favicon.png" alt="AIDE Brasil Logo" width="120"/>
+  <img src="public/favicon.png" alt="AIDE Brasil Logo" width="80"/>
+  <p><strong>The Premier Brazilian Community for AI & Data Engineering</strong></p>
 
-  <h3>The Premier Brazilian Community for AI & Data Engineering</h3>
-
-  <p>A modern, high-performance educational platform built with React 19 and Vite 6</p>
-
-  [![Live Site](https://img.shields.io/badge/Live-aide--brasil.ai-00C853?style=for-the-badge&logo=vercel)](https://aide-brasil-website.vercel.app)
-  [![React](https://img.shields.io/badge/React-19.1.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
-  [![Vite](https://img.shields.io/badge/Vite-6.3.5-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
-  [![Tailwind](https://img.shields.io/badge/Tailwind-4.1.7-38B2AC?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
-  [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+  [![Live](https://img.shields.io/badge/Live-aide--brasil.ai-00C853?style=flat-square&logo=vercel)](https://aide-brasil.ai)
+  [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
+  [![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
 </div>
 
 ---
 
-## Table of Contents
+## Quick Start
 
-- [Overview](#overview)
-- [Live Site](#live-site)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Architecture](#architecture)
-- [Routes & Pages](#routes--pages)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Environment Variables](#environment-variables)
-- [Webhook Integration](#webhook-integration)
-- [GTM Tracking](#gtm-tracking)
-- [Performance Optimizations](#performance-optimizations)
-- [Build & Deployment](#build--deployment)
-- [Contributing](#contributing)
-- [Team & Support](#team--support)
-
----
-
-## Overview
-
-AI Data Engineering Brasil (AIDE Brasil) is the first Brazilian community dedicated to the convergence of Data Engineering and Generative AI. This repository contains the official website - a modern educational platform featuring:
-
-- **Webinar Landing Pages** - 5 active webinars on cutting-edge AI tools
-- **Bootcamp Registration** - AI Data Engineer bootcamp with lead capture
-- **Academy Section** - Comprehensive learning paths
-- **Community Hub** - Premium and free membership tiers
-- **Lead Generation** - Webhook-based lead capture via n8n
-- **Analytics** - Multi-container GTM setup with comprehensive tracking
-
-The platform serves 10,000+ community members with a focus on performance, accessibility, and conversion optimization.
-
----
-
-## Live Site
-
-| Environment | URL | Status |
-|-------------|-----|--------|
-| **Production** | [aide-brasil-website.vercel.app](https://aide-brasil-website.vercel.app) | Active |
-| **Custom Domain** | [aide-brasil.ai](https://aide-brasil.ai) | Active |
-
----
-
-## Tech Stack
-
-### Core Framework
-
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| React | 19.1.0 | UI Framework with Concurrent Features |
-| Vite | 6.3.5 | Build Tool & Dev Server |
-| React Router | 7.9.1 | Client-Side Routing |
-| Tailwind CSS | 4.1.7 | Utility-First Styling |
-
-### UI Components & Animation
-
-| Library | Version | Purpose |
-|---------|---------|---------|
-| Radix UI | Latest | Headless Accessible Components |
-| Framer Motion | 12.15.0 | Declarative Animations |
-| Lucide React | 0.510.0 | Icon Library |
-| shadcn/ui | Custom | Pre-built UI Components |
-| class-variance-authority | 0.7.1 | Component Variants |
-| tailwind-merge | 3.3.0 | Tailwind Class Merging |
-
-### Forms & Validation
-
-| Library | Version | Purpose |
-|---------|---------|---------|
-| React Hook Form | 7.56.3 | Form State Management |
-| Zod | 3.24.4 | Schema Validation |
-| @hookform/resolvers | 5.0.1 | Form Validation Resolvers |
-
-### Analytics & Tracking
-
-| Technology | Purpose |
-|------------|---------|
-| Google Tag Manager | Multi-container analytics setup |
-| Web Vitals | 5.1.0 | Core Web Vitals monitoring |
-| Custom GTM Library | Event tracking, dataLayer management |
-
-### Development Tools
-
-| Tool | Version | Purpose |
-|------|---------|---------|
-| ESLint | 9.25.0 | Code Linting |
-| Terser | 5.44.0 | JavaScript Minification |
-| Puppeteer | 24.24.1 | E2E Testing & Screenshots |
+```bash
+npm install --legacy-peer-deps
+cp .env.example .env.local
+npm run dev
+```
 
 ---
 
@@ -112,673 +25,107 @@ The platform serves 10,000+ community members with a focus on performance, acces
 
 ```
 aide-brasil-website/
-|
-+-- public/                      # Static assets
-|   +-- anti-flicker.js          # GTM anti-flicker snippet
-|   +-- manifest.json            # PWA manifest
-|   +-- sw.js                    # Service Worker
-|   +-- robots.txt               # SEO robots configuration
-|   +-- images/                  # Optimized images
-|
-+-- src/
-|   +-- components/
-|   |   +-- shared/              # Shared components
-|   |   |   +-- Header.jsx       # Navigation header
-|   |   |   +-- ScrollToTop.jsx  # Scroll restoration
-|   |   |   +-- WebhookForm.jsx  # Lead capture form
-|   |   |   +-- LazyImage.jsx    # Lazy-loaded images
-|   |   |   +-- LazySection.jsx  # Code-split sections
-|   |   |   +-- OptimizedBackground.jsx
-|   |   |   +-- MobileMotion.jsx # Mobile-optimized animations
-|   |   |   +-- ScrollMotion.jsx # Scroll-based animations
-|   |   |
-|   |   +-- ui/                  # shadcn/ui components
-|   |       +-- button.jsx
-|   |       +-- dialog.jsx
-|   |       +-- form.jsx
-|   |       +-- input.jsx
-|   |       +-- (20+ components)
-|   |
-|   +-- config/
-|   |   +-- webhooks.js          # Webhook configuration & submission
-|   |   +-- webhook-endpoints.js # Endpoint definitions by page type
-|   |
-|   +-- features/                # Feature-based architecture
-|   |   +-- webinars/
-|   |   |   +-- pages/
-|   |   |   |   +-- WebinarsListPage.jsx
-|   |   |   |   +-- ClaudeCodeWebinar.jsx
-|   |   |   |   +-- AutonomousAgentsWebinar.jsx
-|   |   |   |   +-- CrewAIWebinar.jsx
-|   |   |   |   +-- ChatGPTAgentBuilderWebinar.jsx
-|   |   |   |   +-- DifyAIWebinar.jsx
-|   |   |   +-- index.js
-|   |   |
-|   |   +-- bootcamps/
-|   |   |   +-- pages/
-|   |   |   |   +-- AIDataEngineerBootcamp.jsx
-|   |   |   +-- components/
-|   |   |   |   +-- AIDataEngineerHero.jsx
-|   |   |   |   +-- VideoSection.jsx
-|   |   |   +-- index.js
-|   |   |
-|   |   +-- academy/
-|   |       +-- pages/
-|   |           +-- AcademyLandingPage.jsx
-|   |
-|   +-- hooks/
-|   |   +-- useWebhook.js        # Webhook submission hook
-|   |   +-- useGTMTracking.js    # GTM event tracking hooks
-|   |   +-- useMobileOptimizations.js
-|   |   +-- use-mobile.js        # Mobile detection
-|   |
-|   +-- lib/
-|   |   +-- utils.js             # Utility functions (cn)
-|   |   +-- gtm/                  # GTM integration
-|   |       +-- index.js         # GTM initialization
-|   |       +-- events.js        # Event tracking functions
-|   |       +-- dataLayer.js     # DataLayer management
-|   |       +-- cookies.js       # Lead data storage
-|   |       +-- consent.js       # Consent management
-|   |       +-- debug.js         # Debug utilities
-|   |
-|   +-- pages/
-|   |   +-- HomePage.jsx         # Main landing page
-|   |
-|   +-- styles/
-|   |   +-- mobile-optimizations.css
-|   |   +-- mobile-enhancements.css
-|   |   +-- mobile-specific-fixes.css
-|   |   +-- mobile-scroll-fix.css
-|   |   +-- anti-flicker.css
-|   |   +-- performance-fixes.css
-|   |   +-- desktop-fixes.css
-|   |
-|   +-- utils/
-|   |   +-- performance.js       # Web Vitals & metrics
-|   |   +-- mobile-performance.js
-|   |   +-- motionConfig.js      # Animation configuration
-|   |   +-- validation.js        # Form validation
-|   |
-|   +-- App.jsx                  # Root component with routing
-|   +-- main.jsx                 # Application entry point
-|   +-- index.css                # Global styles
-|   +-- App.css                  # App-specific styles
-|
-+-- .env.example                 # Environment template
-+-- index.html                   # HTML entry with GTM
-+-- vite.config.js               # Vite configuration
-+-- vercel.json                  # Vercel deployment config
-+-- package.json                 # Dependencies & scripts
+├── .claude/              # Claude Code agents (AI-assisted development)
+│   └── agents/           # Specialized agents for webinars, components, etc.
+├── briefings/            # Business documents & PDFs
+├── public/               # Static assets (images, favicon, manifest)
+├── scripts/              # Setup utilities (npm run setup)
+└── src/
+    ├── components/
+    │   ├── shared/       # Reusable components (Header, WebhookForm, etc.)
+    │   └── ui/           # shadcn/ui components (20+ primitives)
+    ├── config/           # Webhook configuration
+    ├── features/         # Feature-based architecture
+    │   ├── webinars/     # Webinar pages (5 active)
+    │   ├── bootcamps/    # Bootcamp pages
+    │   └── academy/      # Academy landing
+    ├── hooks/            # Custom hooks (useWebhook, useGTMTracking)
+    ├── lib/              # Utilities & GTM integration
+    ├── pages/            # Main pages (HomePage)
+    ├── styles/           # CSS files (mobile, desktop, performance)
+    └── utils/            # Performance & validation utilities
 ```
 
 ---
 
-## Architecture
+## Key Features
 
-### Application Flow
-
-```
-+------------------+     +------------------+     +------------------+
-|                  |     |                  |     |                  |
-|   index.html     |---->|    main.jsx      |---->|     App.jsx      |
-|   (GTM init)     |     |  (GTM + Perf)    |     |   (Router)       |
-|                  |     |                  |     |                  |
-+------------------+     +------------------+     +--------+---------+
-                                                          |
-                         +--------------------------------+
-                         |
-    +--------------------+--------------------+--------------------+
-    |                    |                    |                    |
-    v                    v                    v                    v
-+--------+          +--------+          +--------+          +--------+
-|  Home  |          |Webinars|          |Bootcamp|          |Academy |
-|  Page  |          |  List  |          |  Page  |          |  Page  |
-+--------+          +--------+          +--------+          +--------+
-                         |
-    +--------------------+--------------------+--------------------+
-    |                    |                    |                    |
-    v                    v                    v                    v
-+--------+          +--------+          +--------+          +--------+
-| Claude |          | Crew   |          |ChatGPT |          | Dify   |
-| Code   |          | AI     |          | Agent  |          | AI     |
-+--------+          +--------+          +--------+          +--------+
-```
-
-### Data Flow: Lead Capture
-
-```
-+-------------+     +-------------+     +-------------+     +-------------+
-|             |     |             |     |             |     |             |
-|  User Form  |---->|  useWebhook |---->|   n8n       |---->|    CRM      |
-|  Submission |     |    Hook     |     |  Webhook    |     |  (HubSpot)  |
-|             |     |             |     |             |     |             |
-+-------------+     +------+------+     +-------------+     +-------------+
-                          |
-                          v
-                   +-------------+
-                   |             |
-                   |  GTM Event  |
-                   |  Tracking   |
-                   |             |
-                   +------+------+
-                          |
-          +---------------+---------------+
-          |               |               |
-          v               v               v
-    +---------+     +---------+     +---------+
-    | DataLayer|    | Cookies |     |   JS    |
-    |  Push   |     | Storage |     |Variables|
-    +---------+     +---------+     +---------+
-```
+| Feature | Description |
+|---------|-------------|
+| **Webinars** | 5 landing pages with registration forms |
+| **Bootcamps** | AI Data Engineer bootcamp with video sections |
+| **Lead Capture** | n8n webhooks with UTM tracking |
+| **Analytics** | GTM dual-container (web + server) |
+| **Performance** | Code splitting, lazy loading, service worker |
 
 ---
 
-## Routes & Pages
+## Tech Stack
 
-| Route | Page | Description |
-|-------|------|-------------|
-| `/` | HomePage | Main landing with community info |
-| `/webinars` | WebinarsListPage | All webinars catalog |
-| `/webinars/dominando-claude-code` | ClaudeCodeWebinar | Claude Code webinar |
-| `/webinars/dominando-autonomous-code-agents` | AutonomousAgentsWebinar | Autonomous agents comparison |
-| `/webinars/dominando-crewai-agents` | CrewAIWebinar | CrewAI multi-agent systems |
-| `/webinars/dominando-chatgpt-agent-builder` | ChatGPTAgentBuilderWebinar | OpenAI Agent Builder |
-| `/webinars/dominando-dify-ai` | DifyAIWebinar | Dify AI LLMOps platform |
-| `/bootcamp/ai-data-engineer` | AIDataEngineerBootcamp | AI Data Engineer bootcamp |
-| `/academy` | AcademyLandingPage | Learning paths & courses |
+**Core:** React 19, Vite 6, React Router 7, Tailwind CSS 4
+**UI:** shadcn/ui, Radix UI, Framer Motion, Lucide Icons
+**Forms:** React Hook Form, Zod validation
+**Analytics:** GTM, Web Vitals
 
 ---
 
-## Features
+## Routes
 
-### Webinar System
-- 5 active webinar landing pages with unique themes
-- Animated counters and metallic UI effects
-- Registration forms with webhook integration
-- Responsive design with mobile optimizations
-
-### Lead Capture
-- Multi-field forms (name, email, phone)
-- UTM parameter tracking
-- Device and viewport tracking
-- Webhook-based submission to n8n
-
-### Analytics
-- Multi-container GTM setup (Web + Server)
-- Page view tracking on route changes
-- Scroll depth tracking
-- Video interaction tracking
-- Form submission events
-- CTA click tracking
-
-### Performance
-- Code splitting by route
-- Lazy loading for pages
-- Optimized vendor chunks
-- Mobile-specific optimizations
-- Service Worker for caching
-- Critical CSS inlining
-
-### Design System
-- Dark metallic theme
-- Oswald font family
-- Glassmorphism effects
-- Framer Motion animations
-- Responsive breakpoints
+| Route | Page |
+|-------|------|
+| `/` | Home |
+| `/webinars` | Webinar catalog |
+| `/webinars/dominando-*` | Individual webinars |
+| `/bootcamp/ai-data-engineer` | Bootcamp |
+| `/academy` | Academy |
 
 ---
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18.x or higher
-- npm 9.x or pnpm 10.x
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/owshq-manus-ai/aide-brasil-website.git
-cd aide-brasil-website
-
-# Install dependencies (--legacy-peer-deps required for react-day-picker)
-npm install --legacy-peer-deps
-
-# Copy environment template
-cp .env.example .env.local
-
-# Start development server
-npm run dev
-```
-
-The development server will start at `http://localhost:5173`
-
-### Available Scripts
+## Scripts
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start development server on port 5173 |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build locally |
-| `npm run lint` | Run ESLint |
-| `npm run setup` | Run environment setup script |
-| `npm run setup:vercel` | Pull Vercel environment variables |
+| `npm run dev` | Start dev server |
+| `npm run build` | Production build |
+| `npm run preview` | Preview build |
+| `npm run setup` | Environment setup wizard |
 
 ---
 
 ## Environment Variables
 
-Create a `.env.local` file based on `.env.example`:
-
-### Google Tag Manager
+See `.env.example` for all options. Key variables:
 
 ```bash
-# GTM Container IDs
-VITE_GTM_WEB_ID=GTM-XXXXXXX           # Web container ID
-VITE_GTM_SERVER_ID=GTM-XXXXXXX        # Server container ID (optional)
-VITE_GTM_SERVER_URL=                   # Server-side GTM URL (optional)
-
-# GTM Behavior
-VITE_GTM_ENABLED_IN_DEV=false         # Enable GTM in development
-VITE_GTM_DEBUG=false                   # Enable debug logging
-```
-
-### Webhook Configuration
-
-```bash
-# n8n Webhook Endpoints
-VITE_N8N_WEBHOOK_URL=https://your-n8n-instance/webhook/xxx
-VITE_N8N_WEBHOOK_PREMIUM=https://your-n8n-instance/webhook/premium
-VITE_N8N_WEBHOOK_FREE=https://your-n8n-instance/webhook/free
-VITE_N8N_WEBHOOK_NEWSLETTER=https://your-n8n-instance/webhook/newsletter
-
-# Webhook Behavior
-VITE_N8N_ENABLED=true                  # Enable webhook submissions
-VITE_TRACK_EVENTS=true                 # Track events in GTM
-VITE_TRACK_UTM=true                    # Track UTM parameters
-VITE_TRACK_DEVICE=true                 # Track device info
-```
-
-### Feature Flags
-
-```bash
-VITE_ENABLE_ANALYTICS=false            # Enable analytics
-VITE_ENABLE_DEBUG=false                # Enable debug mode
-VITE_LOG_ERRORS=true                   # Log errors to console
-VITE_SHOW_ERRORS=false                 # Show errors to users
-```
-
-**Important:** All `VITE_` prefixed variables are exposed to the client. Never put secrets in these variables.
-
----
-
-## Webhook Integration
-
-### Architecture
-
-The webhook system uses n8n for lead capture and automation:
-
-```javascript
-// src/config/webhook-endpoints.js
-export const webhookEndpoints = {
-  webinars: {
-    'dominando-claude-code': {
-      url: process.env.VITE_WEBHOOK_WEBINAR_CLAUDE,
-      fields: ['name', 'email', 'phone'],
-      metadata: {
-        type: 'webinar',
-        product: 'claude-code-mastery',
-        duration: '60 minutes',
-        format: 'live'
-      }
-    }
-    // ... more webinars
-  },
-  bootcamps: { /* ... */ },
-  newsletter: { /* ... */ }
-}
-```
-
-### Using the useWebhook Hook
-
-```javascript
-import { useWebhook } from '@/hooks/useWebhook'
-
-function RegistrationForm() {
-  const { submit, loading, error, success } = useWebhook('webinar-dominando-claude-code')
-
-  const handleSubmit = async (formData) => {
-    const result = await submit({
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone
-    })
-
-    if (result.success) {
-      // Handle success
-    }
-  }
-
-  return (/* form JSX */)
-}
-```
-
-### Data Enrichment
-
-All webhook submissions are automatically enriched with:
-
-| Field | Description |
-|-------|-------------|
-| `timestamp` | ISO 8601 submission time |
-| `page_url` | Full URL of the page |
-| `user_agent` | Browser user agent |
-| `language` | Browser language |
-| `referrer` | Referring URL |
-| `utm_source` | UTM source parameter |
-| `utm_medium` | UTM medium parameter |
-| `utm_campaign` | UTM campaign parameter |
-| `utm_term` | UTM term parameter |
-| `utm_content` | UTM content parameter |
-| `screen_resolution` | Device screen size |
-| `viewport_size` | Browser viewport size |
-
----
-
-## GTM Tracking
-
-### Configuration
-
-GTM is initialized in `main.jsx` and configured via environment variables:
-
-```javascript
-// src/lib/gtm/index.js
-export const GTM_CONFIG = {
-  webId: import.meta.env.VITE_GTM_WEB_ID,
-  serverId: import.meta.env.VITE_GTM_SERVER_ID,
-  serverUrl: import.meta.env.VITE_GTM_SERVER_URL,
-  enabled: import.meta.env.VITE_GTM_ENABLED_IN_DEV === 'true' || import.meta.env.PROD,
-  debug: import.meta.env.VITE_GTM_DEBUG === 'true',
-}
-```
-
-### Available Tracking Functions
-
-```javascript
-import {
-  trackPageView,
-  trackEvent,
-  trackFormSubmission,
-  trackWebinarRegistration,
-  trackCTAClick,
-  trackVideoInteraction,
-  trackScrollDepth
-} from '@/lib/gtm'
-
-// Track page view
-trackPageView({
-  page_path: '/webinars/dominando-claude-code',
-  page_title: 'Claude Code Webinar'
-})
-
-// Track form submission
-trackFormSubmission({
-  formId: 'webinar-registration',
-  formName: 'Claude Code Registration',
-  formType: 'lead',
-  name: 'John Doe',
-  email: 'john@example.com',
-  phone: '(11) 99999-9999'
-})
-
-// Track CTA click
-trackCTAClick({
-  ctaId: 'register-now',
-  ctaText: 'Quero Participar',
-  ctaLocation: 'hero-section',
-  destinationUrl: '#registration'
-})
-```
-
-### React Hooks for Tracking
-
-```javascript
-import {
-  usePageTracking,      // Auto-tracks page views on route change
-  useGTMTracking,       // Returns tracking functions
-  useScrollTracking,    // Tracks scroll depth
-  useTimeTracking,      // Tracks time on page
-  useVideoTracking      // Tracks video interactions
-} from '@/hooks/useGTMTracking'
-
-function WebinarPage() {
-  usePageTracking()  // Automatically tracks page views
-  useScrollTracking([25, 50, 75, 100])  // Track scroll milestones
-  useTimeTracking(30)  // Track time every 30 seconds
-
-  const { trackCTA, trackForm } = useGTMTracking()
-
-  return (/* page content */)
-}
-```
-
-### Debug Tools
-
-GTM debug tools are available in the browser console:
-
-```javascript
-// Run GTM integration test
-window.gtmDebug.test()
-
-// Show full dataLayer contents
-window.gtmDebug.debug()
-
-// Check stored lead data
-window.gtmDebug.checkLeads()
-
-// Monitor new events in real-time
-window.gtmDebug.monitor()
+VITE_GTM_WEB_ID=GTM-XXXXXXX        # GTM container
+VITE_N8N_WEBHOOK_URL=https://...   # Lead capture webhook
+VITE_N8N_ENABLED=true              # Enable webhooks
 ```
 
 ---
 
-## Performance Optimizations
+## Deployment
 
-### Build Configuration
-
-The `vite.config.js` includes extensive optimizations:
-
-**Code Splitting Strategy:**
-```javascript
-manualChunks: (id) => {
-  if (id.includes('react') || id.includes('react-dom')) return 'react'
-  if (id.includes('framer-motion')) return 'animation'
-  if (id.includes('lucide-react')) return 'icons'
-  if (id.includes('@radix-ui')) return 'ui'
-  if (id.includes('recharts') || id.includes('d3')) return 'charts'
-  if (id.includes('react-router')) return 'router'
-  if (id.includes('react-hook-form') || id.includes('zod')) return 'forms'
-  return 'vendor'
-}
-```
-
-**Terser Minification:**
-- 3-pass compression
-- Console removal in production
-- Dead code elimination
-- Property mangling
-
-**Asset Optimization:**
-- Assets under 8KB are inlined
-- Content hashing for cache busting
-- CSS code splitting
-- Modern ES2020 target
-
-### Runtime Optimizations
-
-| Optimization | Implementation |
-|--------------|----------------|
-| Lazy Loading | All pages use `React.lazy()` |
-| Mobile Detection | Reduces animations on low-end devices |
-| Web Vitals | Monitors CLS, FID, FCP, LCP, TTFB |
-| Service Worker | Caches static assets |
-| Critical CSS | Inlined in `index.html` |
-| Font Preloading | Oswald font preloaded |
-| Image Optimization | WebP format with lazy loading |
-
-### Performance Metrics
-
-| Metric | Target | Measured |
-|--------|--------|----------|
-| Bundle Size (gzipped) | < 800KB | ~775KB |
-| First Contentful Paint | < 1.5s | ~1.2s |
-| Time to Interactive | < 3s | ~2.5s |
-| Lighthouse Score | > 90 | TBD |
-
----
-
-## Build & Deployment
-
-### Production Build
+Auto-deploys to Vercel on push to `main`.
 
 ```bash
-# Build for production
-npm run build
-
-# Preview production build locally
-npm run preview
-```
-
-The build output is in the `dist/` directory.
-
-### Vercel Deployment
-
-The project auto-deploys to Vercel on every push to `main`:
-
-```bash
-# Deploy preview
-vercel
-
-# Deploy to production
 vercel --prod
 ```
 
-### Vercel Configuration
-
-```json
-{
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "installCommand": "npm install --legacy-peer-deps",
-  "framework": "vite",
-  "rewrites": [
-    { "source": "/webinars/:path*", "destination": "/index.html" },
-    { "source": "/bootcamp/:path*", "destination": "/index.html" },
-    { "source": "/academy/:path*", "destination": "/index.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/assets/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
-    }
-  ]
-}
-```
-
 ---
 
-## Contributing
+## AI-Assisted Development
 
-### Branch Strategy
+This project uses Claude Code agents (`.claude/agents/`) for:
+- Webinar page generation
+- Component building
+- Code review
+- Performance optimization
 
-| Branch | Purpose |
-|--------|---------|
-| `main` | Production branch (auto-deploys) |
-| `develop` | Development integration |
-| `feature/*` | New features |
-| `fix/*` | Bug fixes |
-
-### Commit Convention
-
-```
-type(scope): description
-
-Types:
-- feat: New feature
-- fix: Bug fix
-- docs: Documentation
-- style: Formatting
-- refactor: Code restructuring
-- perf: Performance improvement
-- test: Tests
-- chore: Maintenance
-```
-
-### Pull Request Process
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Code Quality
-
-- ESLint for code linting
-- Prettier for code formatting
-- No console.logs in production
-- TypeScript-style JSDoc comments encouraged
-
----
-
-## Known Issues
-
-| Issue | Workaround |
-|-------|------------|
-| `react-day-picker` peer dependency | Use `--legacy-peer-deps` flag |
-| Large HomePage bundle | Code splitting implemented |
-| Mobile animation jank | Animations reduced on mobile |
-
----
-
-## Team & Support
-
-### Organization
-
-**AI Data Engineering Brasil**
-- Website: [aide-brasil.ai](https://aide-brasil.ai)
-- GitHub: [owshq-manus-ai](https://github.com/owshq-manus-ai)
-
-### Maintainer
-
-**Luan Moreno Medeiros Maciel**
-- Role: Community Lead & Platform Architect
-
-### Get Support
-
-| Channel | Link |
-|---------|------|
-| GitHub Issues | [Open an Issue](https://github.com/owshq-manus-ai/aide-brasil-website/issues) |
-| Discord | [Join Community](https://discord.gg/aidebrasil) |
-| LinkedIn | [AIDE Brasil](https://linkedin.com/company/ai-data-engineering-brasil) |
+Agents read live code patterns - no static documentation drift.
 
 ---
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-<div align="center">
-  <p>
-    <strong>Built with passion for the Brazilian AI & Data Engineering Community</strong>
-  </p>
-  <p>
-    <sub>Transforming Data into Intelligence since 2024</sub>
-  </p>
-</div>
+MIT - [AI Data Engineering Brasil](https://aide-brasil.ai)

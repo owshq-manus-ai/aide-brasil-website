@@ -566,7 +566,7 @@ function ContextEngineeringWebinar() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url(/images/team/luan-moreno-4.png)',
+                  backgroundImage: 'url(/images/webinars/context-engineering/luan-moreno-style-6.png)',
                   backgroundSize: 'contain',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
@@ -987,7 +987,7 @@ function ContextEngineeringWebinar() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url(/images/team/luan-moreno-4.png)',
+                  backgroundImage: 'url(/images/webinars/context-engineering/luan-moreno-style-6.png)',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
@@ -1016,7 +1016,7 @@ function ContextEngineeringWebinar() {
                   {/* Main photo with effects */}
                   <div className="relative overflow-hidden rounded-2xl">
                     <img
-                      src="/images/team/luan-moreno-4.png"
+                      src="/images/webinars/context-engineering/luan-moreno-style-6.png"
                       alt={webinar.instructor.name}
                       className="w-full relative z-1"
                       style={{
@@ -1208,7 +1208,7 @@ function ContextEngineeringWebinar() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url(/images/team/luan-moreno-4.png)',
+                  backgroundImage: 'url(/images/webinars/context-engineering/luan-moreno-style-6.png)',
                   backgroundSize: 'cover',
                   backgroundPosition: 'right center',
                   backgroundRepeat: 'no-repeat',

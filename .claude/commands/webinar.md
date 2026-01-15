@@ -7,8 +7,8 @@ Generate a complete webinar landing page that **EXACTLY matches** the pattern of
 
 ### Option 1: File Path (Recommended)
 ```bash
-/webinar /briefings/dominando-apache-kafka.md
-/webinar briefings/my-webinar.md
+/webinar /briefings/webinars/dominando-apache-kafka.md
+/webinar briefings/webinars/my-webinar.md
 ```
 
 ### Option 2: Inline YAML
@@ -22,7 +22,7 @@ Generate a complete webinar landing page that **EXACTLY matches** the pattern of
 
 **CRITICAL**: Before anything else, determine the input type:
 
-### If argument looks like a file path (contains `.md`, `/briefings/`, or starts with path):
+### If argument looks like a file path (contains `.md`, `/briefings/webinars/`, or starts with path):
 ```bash
 # Read the briefing file FIRST
 cat [file_path]
