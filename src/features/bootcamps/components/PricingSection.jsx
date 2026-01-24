@@ -633,11 +633,11 @@ const PricingSection = memo(() => {
 
           {/* Value Anchor + Spots Left - Mobile: stack comparison */}
           <div className="mt-6 sm:mt-8 space-y-4">
-            {/* Value Comparison */}
+            {/* Value Comparison - Single responsive layout */}
             <div className="text-center">
               <p className="text-white/50 text-xs sm:text-sm mb-2">Se você montasse isso sozinho:</p>
-              {/* Desktop: centered flex row */}
-              <div className="hidden sm:flex items-center justify-center gap-3 text-white/40 text-sm flex-wrap">
+              {/* Responsive: wraps on mobile, inline on desktop */}
+              <div className="flex items-center justify-center gap-2 sm:gap-3 text-white/40 text-xs sm:text-sm flex-wrap">
                 <span>Cursos GCP: ~R$ 500</span>
                 <span className="text-white/20">+</span>
                 <span>Terraform: ~R$ 400</span>
@@ -646,13 +646,6 @@ const PricingSection = memo(() => {
                 <span className="text-white/20">=</span>
                 <span className="text-red-400 line-through font-bold">R$ 1.500+</span>
               </div>
-              {/* Mobile version: stacked with centered items */}
-              <div className="sm:hidden grid grid-cols-3 gap-2 text-white/40 text-xs mb-2 text-center">
-                <span>Cursos GCP: ~R$ 500</span>
-                <span>Terraform: ~R$ 400</span>
-                <span>GenAI: ~R$ 600</span>
-              </div>
-              <div className="sm:hidden text-red-400 line-through font-bold text-sm mb-1">= R$ 1.500+</div>
               <p className="text-green-400 text-xs sm:text-sm mt-2 font-medium px-2 sm:px-0">Aqui você leva tudo integrado por menos —e funcionando em 4 dias</p>
             </div>
           </div>
