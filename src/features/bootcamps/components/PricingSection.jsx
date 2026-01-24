@@ -377,7 +377,7 @@ const PricingSection = memo(() => {
   const intervalRef = useRef(null)
 
   useEffect(() => {
-    const targetDate = new Date('2026-01-24T00:00:00-03:00')
+    const targetDate = new Date('2026-01-26T00:00:00-03:00')
 
     const updateCountdown = () => {
       const now = new Date()
@@ -646,11 +646,11 @@ const PricingSection = memo(() => {
                 <span className="text-white/20">=</span>
                 <span className="text-red-400 line-through font-bold">R$ 1.500+</span>
               </div>
-              {/* Mobile version: stacked */}
-              <div className="sm:hidden grid grid-cols-3 gap-2 text-white/40 text-xs mb-2">
-                <span>GCP ~R$500</span>
-                <span>Terraform ~R$400</span>
-                <span>GenAI ~R$600</span>
+              {/* Mobile version: stacked with centered items */}
+              <div className="sm:hidden grid grid-cols-3 gap-2 text-white/40 text-xs mb-2 text-center">
+                <span>Cursos GCP: ~R$ 500</span>
+                <span>Terraform: ~R$ 400</span>
+                <span>GenAI: ~R$ 600</span>
               </div>
               <div className="sm:hidden text-red-400 line-through font-bold text-sm mb-1">= R$ 1.500+</div>
               <p className="text-green-400 text-xs sm:text-sm mt-2 font-medium px-2 sm:px-0">Aqui você leva tudo integrado por menos —e funcionando em 4 dias</p>
