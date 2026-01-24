@@ -636,8 +636,8 @@ const PricingSection = memo(() => {
             {/* Value Comparison */}
             <div className="text-center">
               <p className="text-white/50 text-xs sm:text-sm mb-2">Se você montasse isso sozinho:</p>
-              {/* Mobile: 2-column grid, Desktop: inline */}
-              <div className="hidden sm:inline-flex items-center gap-3 text-white/40 text-sm">
+              {/* Desktop: centered flex row */}
+              <div className="hidden sm:flex items-center justify-center gap-3 text-white/40 text-sm flex-wrap">
                 <span>Cursos GCP: ~R$ 500</span>
                 <span className="text-white/20">+</span>
                 <span>Terraform: ~R$ 400</span>
