@@ -224,7 +224,7 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
               </motion.button>
               <div className="mt-3 flex items-center justify-center gap-1.5 sm:gap-2 text-red-400 bg-red-500/10 rounded-full px-2 sm:px-3 py-1.5">
                 <AlertCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
-                <span className="text-[10px] sm:text-xs font-medium">47 vagas —depois sobe para R$ 1.397</span>
+                <span className="text-[10px] sm:text-xs font-medium">27 vagas —depois sobe para R$ 1.397</span>
               </div>
             </>
           )}
