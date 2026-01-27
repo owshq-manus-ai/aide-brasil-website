@@ -377,7 +377,7 @@ const PricingSection = memo(() => {
   const intervalRef = useRef(null)
 
   useEffect(() => {
-    const targetDate = new Date('2026-01-26T00:00:00-03:00')
+    const targetDate = new Date('2026-01-28T00:00:00-03:00')
 
     const updateCountdown = () => {
       const now = new Date()
