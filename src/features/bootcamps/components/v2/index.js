@@ -1,0 +1,10 @@
+// V2 Components - Terminal/Bento Aesthetic
+export { default as ClaudeCodeBootcampHeroV2 } from '../ClaudeCodeBootcampHeroV2'
+export { default as PromiseSectionV2 } from './PromiseSectionV2'
+export { default as DifferentiatorSectionV2 } from './DifferentiatorSectionV2'
+export { default as SpecDrivenSectionV2 } from './SpecDrivenSectionV2'
+export { default as DeliverablesSectionV2 } from './DeliverablesSectionV2'
+export { default as JourneyTimelineV2 } from './JourneyTimelineV2'
+export { default as StackSectionV2 } from './StackSectionV2'
+export { default as AudienceSectionV2 } from './AudienceSectionV2'
+export { default as FinalCTASectionV2 } from './FinalCTASectionV2'

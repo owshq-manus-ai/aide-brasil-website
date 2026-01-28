@@ -272,61 +272,6 @@ const ClaudeCodeBootcampHero = memo(() => {
               </div>
             </motion.div>
 
-            {/* Urgency Banner - GOLDEN YELLOW - High visibility */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, type: "spring", stiffness: 200 }}
-              className="relative inline-flex items-center gap-3 rounded-xl px-4 sm:px-6 py-3 overflow-hidden"
-              style={{
-                background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%)',
-                boxShadow: '0 0 30px rgba(251, 191, 36, 0.5), 0 4px 20px rgba(0, 0, 0, 0.3)'
-              }}
-            >
-              {/* Animated shimmer effect */}
-              <motion.div
-                className="absolute inset-0"
-                style={{
-                  background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%)',
-                  backgroundSize: '200% 200%',
-                }}
-                animate={{ backgroundPosition: ['200% 0%', '-200% 0%'] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              />
-              {/* Pulsing glow border */}
-              <motion.div
-                className="absolute inset-0 rounded-xl"
-                animate={{
-                  boxShadow: [
-                    '0 0 20px rgba(251, 191, 36, 0.6)',
-                    '0 0 40px rgba(251, 191, 36, 0.9)',
-                    '0 0 20px rgba(251, 191, 36, 0.6)'
-                  ]
-                }}
-                transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
-              />
-              {/* Zap icon with bounce */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  rotate: [0, -10, 10, 0]
-                }}
-                transition={{ duration: 0.8, repeat: Infinity, repeatDelay: 0.5 }}
-                className="relative z-10"
-              >
-                <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-black fill-black" />
-              </motion.div>
-              {/* Text content */}
-              <div className="relative z-10 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-2">
-                <span className="font-oswald font-black text-sm sm:text-lg text-black uppercase tracking-wide">
-                  LOTE VIRA HOJE
-                </span>
-                <span className="text-black/70 text-xs sm:text-sm font-medium">
-                  — últimas horas!
-                </span>
-              </div>
-            </motion.div>
-
             {/* Tech Stack Dock - Interactive technology showcase */}
             <TechStackDock />
 

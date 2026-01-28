@@ -56,24 +56,24 @@ const PRICING_TIERS = [
   {
     id: 'lote2',
     name: 'Lote Decisão',
-    subtitle: 'Última chance neste valor',
+    subtitle: 'Encerrado',
     price: '1.197',
-    originalPrice: '1.397',
-    status: 'current',
-    highlight: true,
-    icon: Flame,
-    color: 'orange'
+    originalPrice: null,
+    status: 'sold_out',
+    highlight: false,
+    icon: Lock,
+    color: 'gray'
   },
   {
     id: 'lote3',
     name: 'Lote Final',
-    subtitle: 'Preço cheio',
+    subtitle: 'Últimas vagas',
     price: '1.397',
     originalPrice: null,
-    status: 'upcoming',
-    highlight: false,
-    icon: TrendingUp,
-    color: 'amber'
+    status: 'current',
+    highlight: true,
+    icon: Flame,
+    color: 'orange'
   }
 ]
 
@@ -208,23 +208,24 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
           )}
           {tier.status === 'current' && (
             <>
-              {/* CTA Button: min 44px touch target */}
-              <motion.button
-                onClick={onOpenModal}
-                className="w-full py-3 sm:py-3 min-h-[44px] rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden text-sm sm:text-base"
-                style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}
-                whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(224, 122, 95, 0.5)" }}
+              {/* CTA Button: min 44px touch target - WhatsApp link to sales team */}
+              <motion.a
+                href="https://wa.me/5531984241779?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Bootcamp%20Zero%20to%20Prod%20com%20Claude%20Code%20-%20Lote%20Final"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 sm:py-3 min-h-[44px] rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden text-sm sm:text-base block text-center"
+                style={{ background: 'linear-gradient(90deg, #25D366, #128C7E)' }}
+                whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(37, 211, 102, 0.5)" }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
-                  <Sparkles className="w-4 h-4" />
-                  <span className="hidden sm:inline">QUERO LIDERAR COM IA</span>
-                  <span className="sm:hidden">GARANTIR VAGA</span>
+                  <Phone className="w-4 h-4" />
+                  <span>FALE COM TIME COMERCIAL</span>
                 </span>
-              </motion.button>
-              <div className="mt-3 flex items-center justify-center gap-1.5 sm:gap-2 text-red-400 bg-red-500/10 rounded-full px-2 sm:px-3 py-1.5">
+              </motion.a>
+              <div className="mt-3 flex items-center justify-center gap-1.5 sm:gap-2 text-amber-400 bg-amber-500/10 rounded-full px-2 sm:px-3 py-1.5">
                 <AlertCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
-                <span className="text-[10px] sm:text-xs font-medium">27 vagas —depois sobe para R$ 1.397</span>
+                <span className="text-[10px] sm:text-xs font-medium">Últimas vagas disponíveis</span>
               </div>
             </>
           )}
@@ -290,7 +291,7 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
         </button>
 
         <h3 className="text-2xl font-bold text-white mb-2 text-center">Última Etapa</h3>
-        <p className="text-white/60 text-center mb-6">Preencha para garantir o preço do <span style={{ color: '#E07A5F' }} className="font-semibold">Lote Decisão</span></p>
+        <p className="text-white/60 text-center mb-6">Preencha para garantir sua vaga no <span style={{ color: '#E07A5F' }} className="font-semibold">Lote Final</span></p>
 
         {/* Form with mobile-optimized inputs (16px font prevents iOS zoom) */}
         <form onSubmit={onSubmit} className="space-y-4">
@@ -559,7 +560,7 @@ const PricingSection = memo(() => {
           <div className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-4 bg-red-500/10 border border-red-500/30 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 w-full sm:w-auto">
             <div className="flex items-center gap-2">
               <Timer className="w-4 h-4 sm:w-5 sm:h-5 text-red-400" />
-              <span className="text-red-400 font-medium text-sm sm:text-base">Lote Final:</span>
+              <span className="text-red-400 font-medium text-sm sm:text-base">Início do Bootcamp:</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2">
               {COUNTDOWN_LABELS.map((item, i) => (

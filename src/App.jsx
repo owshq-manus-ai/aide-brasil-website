@@ -28,6 +28,7 @@ const ContextEngineeringWebinar = lazy(() => import('./features/webinars/pages/C
 // Feature: Bootcamps
 const AIDataEngineerBootcamp = lazy(() => import('./features/bootcamps/pages/AIDataEngineerBootcamp'))
 const ClaudeCodeBootcamp = lazy(() => import('./features/bootcamps/pages/ClaudeCodeBootcamp'))
+const ClaudeCodeBootcampV2Preview = lazy(() => import('./features/bootcamps/pages/ClaudeCodeBootcampV2Preview'))
 const ChatGPTCodexBootcamp = lazy(() => import('./features/bootcamps/pages/ChatGPTCodexBootcamp'))
 
 // Feature: Academy
@@ -69,6 +70,7 @@ const AppContent = () => {
           <Route path="/webinars/dominando-context-engineering" element={<ContextEngineeringWebinar />} />
           <Route path="/bootcamp/ai-data-engineer" element={<AIDataEngineerBootcamp />} />
           <Route path="/bootcamp/zero-prod-claude-code" element={<ClaudeCodeBootcamp />} />
+          <Route path="/bootcamp/zero-prod-claude-code-v2" element={<ClaudeCodeBootcampV2Preview />} />
           <Route path="/bootcamp/zero-prod-chatgpt-codex" element={<ChatGPTCodexBootcamp />} />
           <Route path="/academy" element={<AcademyLandingPage />} />
         </Routes>
