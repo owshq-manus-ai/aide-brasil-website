@@ -11,46 +11,41 @@ import {
   Check,
   AlertTriangle
 } from 'lucide-react'
+import { V2_COLORS, V2_SURFACES } from './theme'
 
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
-
-const TERMINAL = {
-  green: '#7ee787',
-  red: '#f85149',
-}
+const CORAL = V2_COLORS.coral
+const TERMINAL = V2_COLORS.terminal
+const NEUTRAL = V2_COLORS.neutral
 
 const DIFFERENTIATORS = [
   {
-    before: 'Datasets de exemplo',
-    after: 'Invoice intelligence real',
+    before: 'Prompt solto',
+    after: 'Spec + critérios de aceite',
     icon: ArrowRight,
   },
   {
-    before: 'ChatGPT como assistente',
-    after: 'Claude Code como par de programação',
+    before: 'Dataset toy',
+    after: 'Pipeline invoice-intelligence',
     icon: Bot,
   },
   {
-    before: 'Amarrado em um provider',
-    after: 'Arquitetura 100% portável',
+    before: 'Sem observabilidade',
+    after: 'Langfuse com custo/latência',
     icon: Cloud,
   },
   {
-    before: 'Param no prompt',
-    after: 'Observabilidade com Langfuse',
+    before: '1 cloud apenas',
+    after: 'Adapter multi-cloud',
     icon: BarChart3,
   },
   {
     before: 'Você executa tudo',
-    after: 'CrewAI Agents operando sozinhos',
+    after: 'Agentes com runbooks',
     icon: Settings,
   },
   {
-    before: 'PDF no LinkedIn',
-    after: 'Sistema completo rodando',
+    before: 'Certificado genérico',
+    after: 'Repo pronto para entrevistas',
     icon: Trophy,
   }
 ]
@@ -67,10 +62,9 @@ const DifferentiatorCard = memo(({ item, index }) => {
       className="group"
     >
       <div
-        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
+        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.01] v2-card-soft"
         style={{
-          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
-          border: '1px solid rgba(48, 54, 61, 0.8)',
+          border: `1px solid ${NEUTRAL.border}`,
         }}
       >
         {/* Before (crossed out) */}
@@ -102,15 +96,15 @@ const DifferentiatorSectionV2 = memo(() => {
   const differentiators = useMemo(() => DIFFERENTIATORS, [])
 
   return (
-    <section id="differentiator" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
+    <section id="differentiator" className="relative py-20 sm:py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 500px 250px at 30% 30%, ${CORAL.primary}08 0%, transparent 50%),
-              radial-gradient(ellipse 400px 200px at 70% 70%, ${CORAL.primary}05 0%, transparent 50%)
+              radial-gradient(ellipse 520px 260px at 25% 20%, ${CORAL.subtle} 0%, transparent 55%),
+              radial-gradient(ellipse 420px 220px at 70% 75%, rgba(180, 140, 255, 0.12) 0%, transparent 55%)
             `
           }}
         />
@@ -131,19 +125,20 @@ const DifferentiatorSectionV2 = memo(() => {
           >
             <AlertTriangle className="w-4 h-4" style={{ color: CORAL.primary }} />
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: CORAL.primary }}>
-              O Que Faz a Diferença
+              O Que Muda o Jogo
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
             6 Razões Para{' '}
-            <span style={{ color: CORAL.primary }}>Nunca Mais</span>
-            {' '}Fazer Curso de Prompt
+            <span style={{ color: CORAL.primary }}>Não Ser</span>
+            {' '}Apenas Mais Um Curso
           </h2>
 
           <p className="text-base sm:text-lg text-white/60 max-w-2xl mx-auto">
-            Tutoriais te dão teoria. Aqui você sai com um{' '}
+            Aqui você sai com um{' '}
             <span className="text-white font-semibold">sistema funcionando em produção</span>
+            {' '}— não apenas com prompts.
           </p>
         </motion.div>
 
@@ -165,15 +160,15 @@ const DifferentiatorSectionV2 = memo(() => {
           <div
             className="inline-block rounded-xl px-6 py-4"
             style={{
-              background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
-              border: `1px solid ${CORAL.primary}20`,
+              background: V2_SURFACES.panel,
+              border: `1px solid ${NEUTRAL.borderStrong}`,
             }}
           >
             <p className="text-lg sm:text-xl font-oswald text-white">
               <span className="text-white/50">Outros ensinam</span>{' '}
-              <span className="text-red-400 line-through">ferramentas</span>.
-              {' '}Nós ensinamos a{' '}
-              <span style={{ color: CORAL.primary }} className="font-bold">construir sistemas</span>.
+              <span className="text-red-400 line-through">promessas</span>.
+              {' '}Nós entregamos{' '}
+              <span style={{ color: CORAL.primary }} className="font-bold">sistemas reais</span>.
             </p>
           </div>
         </motion.div>

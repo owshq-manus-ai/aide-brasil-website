@@ -16,42 +16,35 @@ import {
   Briefcase,
   Code2
 } from 'lucide-react'
+import { V2_COLORS, V2_SURFACES } from './theme'
 
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
-
-const TERMINAL = {
-  green: '#7ee787',
-  blue: '#79c0ff',
-  purple: '#d2a8ff',
-  border: '#30363d',
-}
+const CORAL = V2_COLORS.coral
+const TERMINAL = V2_COLORS.terminal
+const NEUTRAL = V2_COLORS.neutral
 
 const HIGHLIGHTS = [
   {
     icon: Calendar,
     value: '28-31 Jan',
-    label: '4 dias intensivos',
+    label: '4 noites ao vivo',
     color: TERMINAL.blue
   },
   {
     icon: Clock,
     value: '12h',
-    label: 'Código hands-on',
+    label: 'Hands-on real',
     color: TERMINAL.purple
   },
   {
     icon: Shield,
     value: '7 dias',
-    label: 'Garantia total',
+    label: 'Risco zero',
     color: TERMINAL.green
   },
   {
     icon: Award,
-    value: 'Certificado',
-    label: '+ Repo completo',
+    value: 'Repo + Cert',
+    label: 'Portfólio pronto',
     color: CORAL.primary
   }
 ]
@@ -59,49 +52,49 @@ const HIGHLIGHTS = [
 const DELIVERABLES = [
   {
     title: 'Repositório GitHub production-ready',
-    description: 'Clone e rode em 5 minutos',
+    description: 'Docs, testes e deploy prontos',
     icon: GitBranch,
     category: 'Code'
   },
   {
-    title: 'Pipeline GenAI completo em produção',
+    title: 'Pipeline GenAI em produção',
     description: 'Invoice → BigQuery → Dashboard',
     icon: Rocket,
     category: 'GenAI'
   },
   {
     title: 'Infra GCP via Terraform',
-    description: 'Destrua e recrie em 1 comando',
+    description: 'Ambientes reproduzíveis',
     icon: Server,
     category: 'IaC'
   },
   {
-    title: 'CI/CD com GitHub Actions',
-    description: 'Push = Deploy automático',
+    title: 'CI/CD com gates de qualidade',
+    description: 'Push = deploy com validação',
     icon: Package,
     category: 'DevOps'
   },
   {
     title: 'Observabilidade com Langfuse',
-    description: 'Custo, latência, qualidade',
+    description: 'Custo, latência e qualidade',
     icon: Eye,
     category: 'LLMOps'
   },
   {
-    title: 'DataOps com CrewAI Agents',
-    description: 'Eles operam, você supervisiona',
+    title: 'Agentes operando com runbooks',
+    description: 'Você supervisiona, eles executam',
     icon: BarChart3,
     category: 'Agents'
   },
   {
-    title: 'Arquitetura Multi-Cloud',
+    title: 'Arquitetura multi-cloud',
     description: 'GCP hoje, AWS/Azure amanhã',
     icon: Cloud,
     category: 'Arch'
   },
   {
     title: 'Projeto pronto para portfólio',
-    description: 'Mostre em entrevistas',
+    description: 'Mostre em entrevistas e cases',
     icon: Briefcase,
     category: 'Career'
   }
@@ -119,10 +112,9 @@ const HighlightCard = memo(({ item, index }) => {
       className="relative group"
     >
       <div
-        className="relative h-full rounded-xl p-5 text-center transition-all duration-300 hover:scale-[1.03]"
+        className="relative h-full rounded-xl p-5 text-center transition-all duration-300 hover:scale-[1.02] v2-card-soft"
         style={{
-          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.8) 100%)',
-          border: `1px solid ${item.color}30`,
+          border: `1px solid ${item.color}35`,
         }}
       >
         {/* Glow on hover */}
@@ -166,10 +158,9 @@ const DeliverableItem = memo(({ item, index }) => {
       className="group"
     >
       <div
-        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
+        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.01] v2-card-soft"
         style={{
-          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
-          border: `1px solid ${TERMINAL.border}`,
+          border: `1px solid ${NEUTRAL.border}`,
         }}
       >
         <div className="flex items-start gap-3">
@@ -208,15 +199,15 @@ const DeliverablesSectionV2 = memo(() => {
   const deliverables = useMemo(() => DELIVERABLES, [])
 
   return (
-    <section id="deliverables" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
+    <section id="deliverables" className="relative py-20 sm:py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 600px 300px at 50% 20%, ${CORAL.primary}08 0%, transparent 50%),
-              radial-gradient(ellipse 400px 200px at 80% 80%, ${TERMINAL.green}05 0%, transparent 50%)
+              radial-gradient(ellipse 640px 320px at 50% 15%, ${CORAL.subtle} 0%, transparent 55%),
+              radial-gradient(ellipse 420px 240px at 85% 80%, rgba(126, 231, 135, 0.12) 0%, transparent 60%)
             `
           }}
         />
@@ -252,7 +243,7 @@ const DeliverablesSectionV2 = memo(() => {
           >
             <Code2 className="w-4 h-4" style={{ color: TERMINAL.green }} />
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: TERMINAL.green }}>
-              8 Entregas Concretas
+              Entregas que Você Mostra
             </span>
           </div>
 
@@ -284,8 +275,8 @@ const DeliverablesSectionV2 = memo(() => {
           <div
             className="inline-block rounded-xl p-5 sm:p-6"
             style={{
-              background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.8) 100%)',
-              border: `1px solid ${CORAL.primary}20`,
+              background: V2_SURFACES.panel,
+              border: `1px solid ${NEUTRAL.borderStrong}`,
             }}
           >
             <p className="text-white/50 text-sm mb-3">Se você montasse isso sozinho:</p>

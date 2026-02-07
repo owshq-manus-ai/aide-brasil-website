@@ -3,83 +3,126 @@ import { motion } from 'framer-motion'
 import {
   FileText,
   CheckCircle,
-  ArrowRight,
   Sparkles,
   Code2,
-  Settings,
-  Target,
   Layers,
-  Zap,
-  Brain
+  Brain,
+  Github,
+  Rocket,
+  Repeat2,
+  ArrowRight
 } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { V2_COLORS } from './theme'
 
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
+const CORAL = V2_COLORS.coral
+const TERMINAL = V2_COLORS.terminal
+const NEUTRAL = V2_COLORS.neutral
 
-const TERMINAL = {
-  green: '#7ee787',
-  blue: '#79c0ff',
-  purple: '#d2a8ff',
-  bg: '#0D1117',
-  border: '#30363d',
-}
-
-const SPEC_PHASES = [
+const SDD_PHASES = [
   {
     phase: '01',
-    title: 'Contexto',
-    subtitle: 'CLAUDE.md',
-    description: 'Definição do projeto, stack e regras de negócio',
+    command: '/specify',
+    title: 'Frame de contexto',
+    subtitle: 'problema, metas, restricoes',
+    description: 'Define contexto e metrica de sucesso com AgentSpec.',
     icon: FileText,
     color: TERMINAL.blue,
-    example: '# project: invoice-intelligence\n# stack: python, bigquery, terraform'
+    artifact: 'agentspec/spec.md'
   },
   {
     phase: '02',
-    title: 'Comportamento',
-    subtitle: 'Padrões',
-    description: 'Como o agente deve agir, decidir e comunicar',
-    icon: Settings,
+    command: '/plan',
+    title: 'Plano tecnico',
+    subtitle: 'arquitetura e trade-offs',
+    description: 'Transforma spec em arquitetura e estrategia de entrega.',
+    icon: Layers,
     color: TERMINAL.purple,
-    example: '- always use type hints\n- prefer composition over inheritance'
+    artifact: 'agentspec/plan.md'
   },
   {
     phase: '03',
-    title: 'Entrega',
-    subtitle: 'Specs',
-    description: 'O que precisa ser construído com critérios claros',
-    icon: Target,
+    command: '/tasks',
+    title: 'Backlog executavel',
+    subtitle: 'tarefas com criterios',
+    description: 'Quebra o plano em tarefas pequenas, testaveis e rastreaveis.',
+    icon: CheckCircle,
     color: CORAL.primary,
-    example: '## Task: Build extraction pipeline\nAcceptance: tests pass, <2s latency'
+    artifact: 'agentspec/tasks/*.md'
+  },
+  {
+    phase: '04',
+    command: '/execute',
+    title: 'Entrega em lote',
+    subtitle: 'codigo + testes + deploy',
+    description: 'Executa as tasks com gates de qualidade e padrao de producao.',
+    icon: Rocket,
+    color: TERMINAL.green,
+    artifact: 'commits + CI/CD'
+  },
+  {
+    phase: '05',
+    command: '/iterate',
+    title: 'Aprendizado continuo',
+    subtitle: 'feedback e melhoria',
+    description: 'Fecha o loop com metricas, ajustes de spec e nova iteracao.',
+    icon: Repeat2,
+    color: CORAL.light,
+    artifact: 'agentspec/iterate.md'
   }
 ]
 
-const WHY_SPEC_DRIVEN = [
+const WHY_AGENTSPEC_WORKS = [
   {
-    traditional: 'Prompt vago → resultado imprevisível',
-    specDriven: 'Spec estruturada → output determinístico',
-    icon: Target
+    title: 'Fonte unica de verdade',
+    description: 'Spec, plano e tarefas vivem no mesmo sistema. Menos ruido, menos retrabalho.',
+    accent: 'Consistencia',
+    icon: FileText,
+    color: TERMINAL.blue
   },
   {
-    traditional: 'Contexto se perde entre sessões',
-    specDriven: 'CLAUDE.md mantém memória persistente',
-    icon: Brain
+    title: 'Ritmo de engenharia',
+    description: 'Cada fase tem entrada, saida e criterio de pronto. Trabalho fica previsivel.',
+    accent: 'Previsibilidade',
+    icon: Layers,
+    color: TERMINAL.purple
   },
   {
-    traditional: 'Cada resposta é um novo começo',
-    specDriven: 'Agente conhece todo o projeto',
-    icon: Layers
+    title: 'Qualidade embutida',
+    description: 'Tasks testaveis e execucao com gates reduzem bug e risco de producao.',
+    accent: 'Qualidade',
+    icon: CheckCircle,
+    color: TERMINAL.green
   },
   {
-    traditional: 'Você corrige manualmente',
-    specDriven: 'Padrões garantem consistência',
-    icon: CheckCircle
+    title: 'Iteracao orientada a dados',
+    description: 'Com /iterate, cada ciclo melhora com sinais reais de custo, latencia e valor.',
+    accent: 'Evolucao continua',
+    icon: Brain,
+    color: CORAL.primary
   }
 ]
 
-const PhaseCard = memo(({ phase, index }) => {
+const SDD_GUARDRAILS = [
+  {
+    label: 'Context Engineering',
+    detail: 'Spec, plano e tarefas carregam o mesmo contexto em todo ciclo.'
+  },
+  {
+    label: 'SonarCloud = Local',
+    detail: 'Qualidade e manutencao validadas antes do push.'
+  },
+  {
+    label: 'Snyk = Local',
+    detail: 'Risco de dependencia e vulnerabilidade bloqueado antes do deploy.'
+  },
+  {
+    label: 'Measurement Loop',
+    detail: 'O /iterate fecha custo, latencia e valor em cada release.'
+  }
+]
+
+const FlowPhaseCard = memo(({ phase, index }) => {
   const Icon = phase.icon
 
   return (
@@ -88,25 +131,35 @@ const PhaseCard = memo(({ phase, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="group"
+      className="relative group"
     >
       <div
-        className="relative h-full rounded-xl p-5 transition-all duration-300 hover:scale-[1.02]"
+        className="relative h-full rounded-2xl p-4 transition-all duration-300 hover:scale-[1.01] border backdrop-blur-sm"
         style={{
-          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.8) 100%)',
-          border: `1px solid ${phase.color}30`,
+          borderColor: `${phase.color}45`,
+          background: `linear-gradient(155deg, ${phase.color}14 0%, rgba(255,255,255,0.02) 100%)`
         }}
       >
-        {/* Phase number */}
         <div
-          className="absolute -top-3 -left-1 text-4xl font-oswald font-black opacity-10"
-          style={{ color: phase.color }}
+          className="absolute inset-0 opacity-40"
+          style={{ background: `linear-gradient(120deg, transparent 0%, ${phase.color}1f 42%, transparent 100%)` }}
+        />
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          className="relative z-10 h-7 rounded-full text-[11px] font-mono font-semibold gap-1.5 px-2.5 mb-3 pointer-events-none"
+          style={{
+            color: phase.color,
+            borderColor: `${phase.color}55`,
+            backgroundColor: `${phase.color}14`
+          }}
         >
-          {phase.phase}
-        </div>
+          <span>{phase.phase}</span>
+          <span>{phase.command}</span>
+        </Button>
 
-        {/* Header */}
-        <div className="flex items-center gap-3 mb-4">
+        <div className="relative z-10 flex items-center gap-3 mb-3">
           <div
             className="w-10 h-10 rounded-lg flex items-center justify-center"
             style={{ backgroundColor: `${phase.color}20`, border: `1px solid ${phase.color}40` }}
@@ -114,100 +167,88 @@ const PhaseCard = memo(({ phase, index }) => {
             <Icon className="w-5 h-5" style={{ color: phase.color }} />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-white">{phase.title}</h3>
-            <p className="text-xs font-mono" style={{ color: phase.color }}>{phase.subtitle}</p>
+            <h3 className="text-base font-bold text-white leading-tight">{phase.title}</h3>
+            <p className="text-[11px] text-white/55">{phase.subtitle}</p>
           </div>
         </div>
 
-        {/* Description */}
-        <p className="text-white/60 text-sm mb-4">{phase.description}</p>
-
-        {/* Code example */}
+        <p className="relative z-10 text-white/70 text-sm leading-relaxed mb-3">{phase.description}</p>
         <div
-          className="font-mono text-xs p-3 rounded-lg"
-          style={{ backgroundColor: 'rgba(0,0,0,0.4)', borderLeft: `2px solid ${phase.color}` }}
+          className="relative z-10 font-mono text-[11px] px-2.5 py-2 rounded-md border"
+          style={{ borderColor: `${phase.color}45`, color: phase.color, backgroundColor: 'rgba(0,0,0,0.32)' }}
         >
-          {phase.example.split('\n').map((line, i) => (
-            <div key={i} style={{ color: phase.color }} className="opacity-80">
-              {line}
-            </div>
-          ))}
+          artifact: {phase.artifact}
         </div>
       </div>
     </motion.div>
   )
 })
-PhaseCard.displayName = 'PhaseCard'
+FlowPhaseCard.displayName = 'FlowPhaseCard'
 
-const ComparisonRow = memo(({ item, index }) => {
-  const Icon = item.icon
+const WhyPointCard = memo(({ point, index }) => {
+  const Icon = point.icon
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.08 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
       viewport={{ once: true }}
-      className="grid grid-cols-[1fr_auto_1fr] gap-3 items-center"
+      className="relative rounded-xl border p-4 overflow-hidden"
+      style={{ borderColor: `${point.color}45`, background: `linear-gradient(145deg, ${point.color}16 0%, rgba(255,255,255,0.02) 100%)` }}
     >
-      {/* Traditional */}
       <div
-        className="rounded-lg p-3 text-sm"
-        style={{ backgroundColor: 'rgba(248, 81, 73, 0.1)', border: '1px solid rgba(248, 81, 73, 0.2)' }}
-      >
-        <span className="text-white/50 line-through">{item.traditional}</span>
-      </div>
-
-      {/* Arrow */}
-      <div className="flex items-center justify-center">
-        <motion.div
-          animate={{ x: [0, 4, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <ArrowRight className="w-4 h-4" style={{ color: CORAL.primary }} />
-        </motion.div>
-      </div>
-
-      {/* Spec-Driven */}
-      <div
-        className="rounded-lg p-3 text-sm flex items-center gap-2"
-        style={{ backgroundColor: `${TERMINAL.green}10`, border: `1px solid ${TERMINAL.green}20` }}
-      >
-        <Icon className="w-4 h-4 flex-shrink-0" style={{ color: TERMINAL.green }} />
-        <span className="text-white font-medium">{item.specDriven}</span>
+        className="absolute inset-0 opacity-35"
+        style={{ background: `linear-gradient(120deg, transparent 0%, ${point.color}22 45%, transparent 100%)` }}
+      />
+      <div className="relative z-10">
+        <div className="flex items-center gap-2 mb-2">
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center border"
+            style={{ borderColor: `${point.color}45`, backgroundColor: `${point.color}24` }}
+          >
+            <Icon className="w-4 h-4" style={{ color: point.color }} />
+          </div>
+          <span className="text-[10px] uppercase tracking-[0.15em] font-semibold" style={{ color: point.color }}>
+            {point.accent}
+          </span>
+        </div>
+        <h4 className="text-white font-semibold text-sm mb-1">{point.title}</h4>
+        <p className="text-white/65 text-xs leading-relaxed">{point.description}</p>
       </div>
     </motion.div>
   )
 })
-ComparisonRow.displayName = 'ComparisonRow'
+WhyPointCard.displayName = 'WhyPointCard'
 
 const SpecDrivenSectionV2 = memo(() => {
-  const phases = useMemo(() => SPEC_PHASES, [])
-  const comparisons = useMemo(() => WHY_SPEC_DRIVEN, [])
+  const phases = useMemo(() => SDD_PHASES, [])
+  const whyPoints = useMemo(() => WHY_AGENTSPEC_WORKS, [])
+  const guardrails = useMemo(() => SDD_GUARDRAILS, [])
 
   return (
-    <section id="spec-driven" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
+    <section id="spec-driven" className="relative py-20 sm:py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 600px 300px at 20% 30%, ${CORAL.primary}08 0%, transparent 50%),
-              radial-gradient(ellipse 500px 250px at 80% 70%, ${TERMINAL.purple}05 0%, transparent 50%)
+              radial-gradient(ellipse 620px 320px at 20% 30%, ${CORAL.subtle} 0%, transparent 55%),
+              radial-gradient(ellipse 520px 260px at 85% 70%, rgba(180, 140, 255, 0.12) 0%, transparent 55%)
             `
           }}
         />
         {/* Code pattern */}
         <div
-          className="absolute inset-0 opacity-[0.015]"
+          className="absolute inset-0 opacity-[0.01]"
           style={{
             backgroundImage: `repeating-linear-gradient(
               0deg,
               transparent,
               transparent 30px,
-              ${CORAL.primary} 30px,
-              ${CORAL.primary} 31px
+              rgba(255, 122, 92, 0.4) 30px,
+              rgba(255, 122, 92, 0.4) 31px
             )`
           }}
         />
@@ -228,30 +269,57 @@ const SpecDrivenSectionV2 = memo(() => {
           >
             <Code2 className="w-4 h-4" style={{ color: CORAL.primary }} />
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: CORAL.primary }}>
-              A Metodologia
+              5-Phase SDD Workflow
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            <span style={{ color: CORAL.primary }}>Spec-Driven</span> Development
+            <span style={{ color: CORAL.primary }}>AgentSpec</span> + SDD
           </h2>
 
-          <p className="text-base sm:text-lg text-white/60 max-w-2xl mx-auto">
-            A diferença entre{' '}
-            <span className="text-white/40 line-through">pedir ajuda ao ChatGPT</span>
-            {' '}e{' '}
-            <span className="text-white font-semibold">operar um time de agentes</span>
+          <p className="text-base sm:text-lg text-white/60 max-w-2xl mx-auto mb-4">
+            Um fluxo completo de especificacao para entrega continua:
+            /specify, /plan, /tasks, /execute e /iterate.
           </p>
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+            className="rounded-full border text-xs font-mono text-white/80 hover:text-white bg-white/[0.03]"
+            style={{ borderColor: `${NEUTRAL.borderStrong}` }}
+          >
+            <a href="https://github.com/luanmorenommaciel/agentspec" target="_blank" rel="noopener noreferrer">
+              <Github className="w-3.5 h-3.5" />
+              github.com/luanmorenommaciel/agentspec
+            </a>
+          </Button>
         </motion.div>
 
-        {/* Three Phases */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-16">
-          {phases.map((phase, index) => (
-            <PhaseCard key={phase.phase} phase={phase} index={index} />
-          ))}
+        {/* 5-Phase Flow */}
+        <div className="relative mb-16">
+          <div
+            className="hidden md:block absolute left-[8%] right-[8%] top-[38px] h-px"
+            style={{ background: `linear-gradient(90deg, ${TERMINAL.blue}40 0%, ${CORAL.primary}40 100%)` }}
+          />
+          <div
+            className="md:hidden absolute left-[22px] top-6 bottom-6 w-px"
+            style={{ background: `linear-gradient(180deg, ${TERMINAL.blue}40 0%, ${CORAL.primary}40 100%)` }}
+          />
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {phases.map((phase, index) => (
+              <div key={phase.phase} className="relative">
+                <FlowPhaseCard phase={phase} index={index} />
+                {index < phases.length - 1 && (
+                  <div className="hidden md:flex absolute -right-2 top-9 z-20 w-4 h-4 items-center justify-center">
+                    <ArrowRight className="w-3.5 h-3.5 text-white/35" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Comparison Section */}
+        {/* Why It Works */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -261,23 +329,56 @@ const SpecDrivenSectionV2 = memo(() => {
         >
           <div className="text-center mb-8">
             <h3 className="text-xl sm:text-2xl font-oswald font-bold text-white mb-2">
-              Por Que <span style={{ color: TERMINAL.green }}>Funciona</span>
+              Por Que Isso <span style={{ color: TERMINAL.green }}>Escala Melhor</span>
             </h3>
             <p className="text-white/50 text-sm">
-              Vibe coding vs. desenvolvimento estruturado
+              SDD com AgentSpec transforma tentativa-e-erro em sistema de engenharia.
             </p>
           </div>
 
           <div
-            className="rounded-xl p-5 sm:p-6 space-y-3"
-            style={{
-              background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
-              border: `1px solid ${TERMINAL.border}`,
-            }}
+            className="relative rounded-2xl p-5 sm:p-6 v2-panel overflow-hidden"
+            style={{ border: `1px solid ${NEUTRAL.borderStrong}` }}
           >
-            {comparisons.map((item, index) => (
-              <ComparisonRow key={index} item={item} index={index} />
-            ))}
+            <div
+              className="absolute inset-0 opacity-40"
+              style={{
+                backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
+                backgroundSize: '28px 28px'
+              }}
+            />
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-3">
+              {whyPoints.map((point, index) => (
+                <WhyPointCard key={point.title} point={point} index={index} />
+              ))}
+            </div>
+            <div className="relative z-10 mt-4 rounded-xl border p-4" style={{ borderColor: `${NEUTRAL.borderStrong}`, backgroundColor: 'rgba(0,0,0,0.24)' }}>
+              <p className="text-[11px] uppercase tracking-[0.18em] font-semibold mb-2" style={{ color: CORAL.light }}>
+                Production Guardrails
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {guardrails.map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-lg border px-3 py-2.5"
+                    style={{ borderColor: `${NEUTRAL.borderStrong}`, backgroundColor: 'rgba(255,255,255,0.02)' }}
+                  >
+                    <p className="text-xs font-semibold text-white">{item.label}</p>
+                    <p className="text-[11px] text-white/60 mt-0.5 leading-relaxed">{item.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div
+              className="relative z-10 mt-4 rounded-xl border p-4"
+              style={{ borderColor: `${CORAL.primary}45`, background: 'linear-gradient(145deg, rgba(255,122,92,0.14) 0%, rgba(255,255,255,0.02) 100%)' }}
+            >
+              <p className="text-sm text-white/80 leading-relaxed">
+                <span className="font-semibold" style={{ color: CORAL.light }}>Resumo tecnico:</span>{' '}
+                com AgentSpec, cada iteracao herda contexto, plano e criterios. Isso reduz retrabalho,
+                aumenta a qualidade do codigo e acelera o tempo de entrega em producao.
+              </p>
+            </div>
           </div>
         </motion.div>
 
@@ -292,8 +393,8 @@ const SpecDrivenSectionV2 = memo(() => {
           <div
             className="inline-flex items-center gap-4 rounded-xl px-6 py-4"
             style={{
-              background: `linear-gradient(135deg, ${CORAL.primary}15 0%, ${TERMINAL.purple}10 100%)`,
-              border: `1px solid ${CORAL.primary}30`,
+              background: `linear-gradient(135deg, ${CORAL.subtle} 0%, rgba(180, 140, 255, 0.16) 100%)`,
+              border: `1px solid ${NEUTRAL.borderStrong}`,
             }}
           >
             <Sparkles className="w-5 h-5" style={{ color: CORAL.primary }} />

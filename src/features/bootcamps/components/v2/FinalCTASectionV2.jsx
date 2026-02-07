@@ -6,11 +6,10 @@ import {
   ArrowRight,
   Terminal
 } from 'lucide-react'
+import { V2_COLORS } from './theme'
 
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
+const CORAL = V2_COLORS.coral
+const TERMINAL = V2_COLORS.terminal
 
 const sharedStyles = `
   @keyframes subtle-metallic {
@@ -28,15 +27,15 @@ const FinalCTASectionV2 = memo(() => {
   const handlePricingClick = useCallback(() => scrollToSection('pricing'), [scrollToSection])
 
   return (
-    <section className="relative py-24 sm:py-32 bg-[#0a0a0a] overflow-hidden">
+    <section className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 1000px 500px at 50% 50%, ${CORAL.primary}15 0%, transparent 60%),
-              radial-gradient(ellipse 600px 300px at 30% 70%, ${CORAL.primary}10 0%, transparent 50%)
+              radial-gradient(ellipse 1000px 520px at 50% 45%, ${CORAL.subtle} 0%, transparent 60%),
+              radial-gradient(ellipse 600px 320px at 20% 75%, rgba(70, 199, 255, 0.12) 0%, transparent 55%)
             `
           }}
         />
@@ -71,15 +70,12 @@ const FinalCTASectionV2 = memo(() => {
           className="mb-10"
         >
           <div
-            className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 rounded-xl px-6 py-5"
-            style={{
-              background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
-              border: '1px solid rgba(48, 54, 61, 0.8)',
-            }}
+            className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 rounded-xl px-6 py-5 v2-panel"
+            style={{ border: '1px solid rgba(255,255,255,0.12)' }}
           >
             <div className="text-center sm:text-right">
               <p className="text-white/40 text-xs uppercase tracking-wider mb-1">Hoje</p>
-              <p className="text-white/50">Copiando código do ChatGPT</p>
+              <p className="text-white/50">Juntando prompts soltos</p>
             </div>
 
             <motion.div
@@ -93,7 +89,7 @@ const FinalCTASectionV2 = memo(() => {
               <p className="text-xs uppercase tracking-wider mb-1 font-bold" style={{ color: CORAL.primary }}>
                 Em 4 dias
               </p>
-              <p className="text-white font-bold">Operando uma frota de agentes</p>
+              <p className="text-white font-bold">Sistema em produção</p>
             </div>
           </div>
         </motion.div>
@@ -119,11 +115,11 @@ const FinalCTASectionV2 = memo(() => {
             >
               Liderando com IA
             </span>
-            {' '}ou Correndo Atrás?
+            {' '}ou Apagando Incêndios?
           </h2>
 
           <p className="text-base sm:text-lg text-white/60 max-w-xl mx-auto mb-8">
-            O mercado não vai esperar. Enquanto você decide, outros já estão deployando sistemas com agentes autônomos.
+            O mercado não vai esperar. Enquanto você decide, outros já estão operando sistemas com agentes.
           </p>
         </motion.div>
 
@@ -138,13 +134,13 @@ const FinalCTASectionV2 = memo(() => {
             onClick={handlePricingClick}
             className="inline-flex items-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-xl font-oswald font-bold uppercase tracking-wider text-base sm:text-lg text-white transition-all duration-300 relative overflow-hidden group"
             whileHover={{
-              scale: 1.05,
-              boxShadow: `0 0 60px ${CORAL.primary}60`
+              y: -2,
+              boxShadow: `0 24px 60px ${CORAL.glow}`
             }}
             whileTap={{ scale: 0.98 }}
             style={{
-              background: `linear-gradient(135deg, ${CORAL.primary}, ${CORAL.light})`,
-              boxShadow: `0 0 40px ${CORAL.primary}50`
+              background: `linear-gradient(135deg, ${CORAL.primary}, ${CORAL.dark})`,
+              boxShadow: `0 18px 45px ${CORAL.glow}`
             }}
           >
             {/* Shimmer */}
@@ -159,14 +155,14 @@ const FinalCTASectionV2 = memo(() => {
             />
 
             <Bot className="w-5 h-5 sm:w-6 sm:h-6" />
-            <span>QUERO LIDERAR COM IA</span>
+            <span>QUERO OPERAR EM PRODUÇÃO</span>
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition-transform" />
           </motion.button>
 
           {/* Subtext */}
           <div className="mt-6 space-y-1">
             <p className="text-white/50 text-sm">
-              28-31 Jan 2026 • 12h código • <span className="text-green-400">7 dias garantia</span>
+              28-31 Jan 2026 • 12h código • <span style={{ color: TERMINAL.green }}>7 dias garantia</span>
             </p>
             <p className="text-sm" style={{ color: CORAL.light }}>
               Lote Decisão: R$ 1.197

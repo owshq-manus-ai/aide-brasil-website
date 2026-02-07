@@ -29,7 +29,7 @@ SectionLoader.displayName = 'SectionLoader'
  */
 const ClaudeCodeBootcampV2Preview = memo(() => {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bootcamp-v2">
       {/* Section 1: Hero V2 - Terminal with live typing */}
       <ClaudeCodeBootcampHeroV2 />
 
@@ -57,7 +57,7 @@ const ClaudeCodeBootcampV2Preview = memo(() => {
         <AudienceSectionV2 />
 
         {/* Section 9: Pricing - Using original (complex modal logic) */}
-        <PricingSection />
+        <PricingSection variant="v2" />
 
         {/* Section 10: Final CTA */}
         <FinalCTASectionV2 />

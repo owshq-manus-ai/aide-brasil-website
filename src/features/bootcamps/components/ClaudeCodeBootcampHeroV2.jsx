@@ -15,37 +15,19 @@ import {
   Brain,
   Cpu,
   Users,
-  Zap,
   CheckCircle2,
   Circle,
-  Minus,
-  X,
   Command,
   CornerDownLeft
 } from 'lucide-react'
+import { V2_COLORS } from './v2/theme'
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// THEME - Claude Code Coral Palette (matching V1)
+// THEME - Cinematic Terminal Studio
 // ═══════════════════════════════════════════════════════════════════════════════
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-  lighter: '#F5C4B8',
-  dark: '#C96A50',
-  glow: 'rgba(224, 122, 95, 0.5)',
-  subtle: 'rgba(224, 122, 95, 0.15)',
-}
-
-const TERMINAL = {
-  bg: '#0D1117',
-  border: '#30363d',
-  headerBg: '#161b22',
-  green: '#7ee787',
-  blue: '#79c0ff',
-  purple: '#d2a8ff',
-  yellow: '#fbbf24',
-  comment: '#8b949e',
-}
+const CORAL = V2_COLORS.coral
+const TERMINAL = V2_COLORS.terminal
+const NEUTRAL = V2_COLORS.neutral
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // SHARED STYLES - CSS Keyframes
@@ -100,20 +82,19 @@ const useTypingEffect = (texts, typingSpeed = 50, pauseBetween = 2500) => {
 // ═══════════════════════════════════════════════════════════════════════════════
 const TerminalWindow = memo(({ isMobile }) => {
   const commands = useMemo(() => [
-    'claude "Crie um pipeline ETL com BigQuery"',
-    'claude "Deploy na GCP com Terraform"',
-    'claude "Configure observabilidade com Langfuse"',
-    'claude "Implemente CI/CD com GitHub Actions"',
+    'claude "Escreva a spec de invoice-intelligence"',
+    'claude "Gere pipeline BigQuery + Hex"',
+    'claude "Terraform: GCS + Cloud Run"',
+    'claude "Adicione observabilidade Langfuse"',
   ], [])
 
   const { displayedText, isTyping } = useTypingEffect(commands, 40, 2800)
 
   const outputLines = useMemo(() => [
-    { type: 'comment', text: '# Claude Code está trabalhando...' },
-    { type: 'success', text: '✓ Analisando requisitos do projeto' },
-    { type: 'success', text: '✓ Gerando arquitetura multi-cloud' },
-    { type: 'success', text: '✓ Escrevendo código production-ready' },
-    { type: 'info', text: '→ Criando testes automatizados...' },
+    { type: 'comment', text: '# Specs carregadas com critérios de aceite' },
+    { type: 'success', text: '✓ Arquitetura multi-cloud definida' },
+    { type: 'success', text: '✓ Pipeline GenAI em produção' },
+    { type: 'info', text: '→ Testes e runbooks prontos' },
   ], [])
 
   return (
@@ -125,8 +106,8 @@ const TerminalWindow = memo(({ isMobile }) => {
     >
       {/* Glow effect */}
       <div
-        className="absolute -inset-3 rounded-2xl blur-2xl opacity-25 hidden sm:block"
-        style={{ background: `radial-gradient(circle, ${CORAL.primary}60, transparent 70%)` }}
+        className="absolute -inset-3 rounded-2xl blur-2xl opacity-30 hidden sm:block"
+        style={{ background: `radial-gradient(circle, ${CORAL.glow} 0%, transparent 70%)` }}
       />
 
       {/* Terminal container */}
@@ -135,7 +116,7 @@ const TerminalWindow = memo(({ isMobile }) => {
         style={{
           backgroundColor: TERMINAL.bg,
           border: `1px solid ${TERMINAL.border}`,
-          boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px ${TERMINAL.border}`
+          boxShadow: `0 30px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px ${TERMINAL.border}`
         }}
       >
         {/* Title bar */}
@@ -251,13 +232,7 @@ const BentoCard = memo(({ children, className = '', delay = 0, isMobile = false 
       style={{ backgroundColor: CORAL.primary }}
     />
     {/* Card */}
-    <div
-      className="relative h-full rounded-xl p-4 sm:p-5 backdrop-blur-sm overflow-hidden"
-      style={{
-        background: 'linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(21, 21, 21, 0.95) 100%)',
-        border: `1px solid ${CORAL.primary}20`,
-      }}
-    >
+    <div className="relative h-full rounded-xl p-4 sm:p-5 backdrop-blur-sm overflow-hidden v2-card">
       {/* Subtle gradient */}
       <div
         className="absolute inset-0 opacity-30"
@@ -276,31 +251,21 @@ const NeonButton = memo(({ children, primary = false, onClick, className = '', i
   <motion.button
     onClick={onClick}
     className={`
-      px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-oswald font-bold uppercase tracking-wider
+      px-6 sm:px-7 py-2.5 sm:py-3 rounded-xl font-oswald font-bold uppercase tracking-wider
       transition-all duration-300 relative overflow-hidden text-sm sm:text-base
-      ${primary ? 'text-white' : 'bg-white/5 backdrop-blur-sm text-white'}
+      ${primary ? 'text-white' : 'text-white/80 backdrop-blur-sm'}
       ${className}
     `}
-    whileHover={{ scale: 1.03, boxShadow: primary ? `0 0 30px ${CORAL.glow}` : `0 0 20px ${CORAL.primary}40` }}
+    whileHover={{ y: -1, boxShadow: primary ? `0 20px 40px ${CORAL.glow}` : `0 12px 24px rgba(0,0,0,0.35)` }}
     whileTap={{ scale: 0.98 }}
     style={{
-      background: primary ? `linear-gradient(135deg, ${CORAL.primary} 0%, ${CORAL.dark} 100%)` : undefined,
-      border: primary ? undefined : `1px solid ${CORAL.primary}30`,
-      boxShadow: primary ? `0 0 20px ${CORAL.glow}, inset 0 0 20px rgba(255,255,255,0.1)` : undefined
+      background: primary
+        ? `linear-gradient(135deg, ${CORAL.primary} 0%, ${CORAL.dark} 100%)`
+        : 'rgba(255,255,255,0.03)',
+      border: primary ? `1px solid ${CORAL.primary}80` : `1px solid ${NEUTRAL.border}`,
+      boxShadow: primary ? `0 18px 45px ${CORAL.glow}` : undefined
     }}
   >
-    {/* Shimmer */}
-    {primary && !isMobile && (
-      <motion.div
-        className="absolute inset-0 opacity-30"
-        style={{
-          background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.5) 50%, transparent 60%)',
-          backgroundSize: '200% 200%',
-        }}
-        animate={{ backgroundPosition: ['200% 0%', '-200% 0%'] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-      />
-    )}
     <span className="relative z-10 flex items-center gap-2">
       {children}
       {primary && <ChevronRight className="w-4 h-4" />}
@@ -310,27 +275,66 @@ const NeonButton = memo(({ children, primary = false, onClick, className = '', i
 NeonButton.displayName = 'NeonButton'
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// STATUS BADGE - Pill style badge
+// STATUS BADGE - Glass pill inspired by shadcn badge patterns
 // ═══════════════════════════════════════════════════════════════════════════════
 const StatusBadge = memo(({ icon: Icon, text, color = CORAL.primary, pulse = false }) => (
   <div
-    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium"
-    style={{ backgroundColor: `${color}15`, border: `1px solid ${color}40`, color }}
+    className="relative inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs sm:text-sm font-medium border backdrop-blur-md overflow-hidden"
+    style={{
+      background: `linear-gradient(145deg, ${color}20 0%, rgba(255,255,255,0.03) 100%)`,
+      borderColor: `${color}55`,
+      color,
+      boxShadow: `inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 20px rgba(0,0,0,0.25)`
+    }}
   >
-    {pulse ? (
-      <motion.div
-        className="w-2 h-2 rounded-full"
-        style={{ backgroundColor: color }}
-        animate={{ boxShadow: [`0 0 0 0 ${color}70`, `0 0 0 4px ${color}00`] }}
-        transition={{ duration: 1.5, repeat: Infinity }}
-      />
-    ) : (
-      <Icon className="w-3.5 h-3.5" />
-    )}
-    <span>{text}</span>
+    <div
+      className="absolute inset-0 opacity-50"
+      style={{ background: `linear-gradient(90deg, transparent 0%, ${color}20 45%, transparent 100%)` }}
+    />
+    <span className="relative z-10 flex items-center gap-2">
+      {pulse ? (
+        <motion.div
+          className="w-2 h-2 rounded-full"
+          style={{ backgroundColor: color }}
+          animate={{ boxShadow: [`0 0 0 0 ${color}75`, `0 0 0 5px ${color}00`] }}
+          transition={{ duration: 1.4, repeat: Infinity }}
+        />
+      ) : (
+        <Icon className="w-3.5 h-3.5" />
+      )}
+      <span>{text}</span>
+    </span>
   </div>
 ))
 StatusBadge.displayName = 'StatusBadge'
+
+const MetaTag = memo(({ icon: Icon, title, subtitle, color }) => (
+  <div
+    className="relative rounded-xl px-3 py-2.5 border backdrop-blur-sm overflow-hidden"
+    style={{
+      background: `linear-gradient(160deg, ${color}1f 0%, rgba(255,255,255,0.02) 100%)`,
+      borderColor: `${color}50`
+    }}
+  >
+    <div
+      className="absolute inset-0 opacity-40"
+      style={{ background: `linear-gradient(120deg, transparent 0%, ${color}25 40%, transparent 100%)` }}
+    />
+    <div className="relative z-10 flex items-start gap-2.5">
+      <div
+        className="w-7 h-7 rounded-md flex items-center justify-center mt-0.5"
+        style={{ backgroundColor: `${color}25`, border: `1px solid ${color}45` }}
+      >
+        <Icon className="w-3.5 h-3.5" style={{ color }} />
+      </div>
+      <div>
+        <p className="text-xs font-semibold text-white leading-tight">{title}</p>
+        <p className="text-[10px] text-white/55 leading-tight mt-0.5">{subtitle}</p>
+      </div>
+    </div>
+  </div>
+))
+MetaTag.displayName = 'MetaTag'
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // LEARNING ITEM - Checklist style
@@ -357,7 +361,7 @@ LearningItem.displayName = 'LearningItem'
 // MAIN HERO COMPONENT V2
 // ═══════════════════════════════════════════════════════════════════════════════
 const ClaudeCodeBootcampHeroV2 = memo(() => {
-  const spotsLeft = 185
+  const spotsLeft = 210
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -376,48 +380,45 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
   const handleJourneyClick = useCallback(() => scrollToSection('journey'), [scrollToSection])
 
   const learningPoints = useMemo(() => [
-    { text: 'Setup: CLAUDE.md, MCPs, SubAgents e Hooks', icon: Terminal },
-    { text: 'Context Engineering para respostas precisas', icon: Brain },
-    { text: 'Arquitetura multi-cloud (GCP, AWS, Azure)', icon: Server },
+    { text: 'Spec completa: contexto, padrões e critérios', icon: Terminal },
+    { text: 'Orquestração de MCP + SubAgents na prática', icon: Brain },
+    { text: 'Arquitetura multi-cloud com Adapter Pattern', icon: Server },
     { text: 'Pipeline GenAI: LLM → BigQuery → Hex', icon: Cpu },
-    { text: 'LLMOps com Langfuse: custo e qualidade', icon: Gauge },
-    { text: 'CI/CD com GitHub Actions', icon: Rocket }
+    { text: 'Observabilidade com Langfuse (custo/qualidade)', icon: Gauge },
+    { text: 'CI/CD e qualidade com GitHub Actions', icon: Rocket }
   ], [])
 
   return (
-    <section className="relative min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
+    <section className="relative min-h-screen text-white overflow-hidden">
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* BACKGROUND - Matching V1 style                                      */}
+      {/* BACKGROUND - Cinematic Studio                                      */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <div className="absolute inset-0">
-        {/* Grid pattern */}
+      <div className="absolute inset-0 v2-noise">
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0"
           style={{
-            backgroundImage: `
-              linear-gradient(rgba(224, 122, 95, 0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(224, 122, 95, 0.3) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px'
+            background: 'linear-gradient(180deg, #07090E 0%, #0B0F18 48%, #07090E 100%)'
           }}
         />
-
-        {/* Coral gradient orbs */}
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 800px 600px at 75% 35%, ${CORAL.subtle} 0%, transparent 50%),
-              radial-gradient(ellipse 600px 400px at 85% 75%, ${CORAL.primary}10 0%, transparent 40%),
-              radial-gradient(ellipse 400px 300px at 20% 80%, ${CORAL.primary}08 0%, transparent 50%)
+              radial-gradient(ellipse 900px 520px at 80% 15%, ${CORAL.subtle} 0%, transparent 60%),
+              radial-gradient(ellipse 700px 420px at 15% 85%, rgba(70, 199, 255, 0.12) 0%, transparent 55%),
+              radial-gradient(ellipse 420px 260px at 50% 10%, rgba(126, 231, 135, 0.12) 0%, transparent 60%)
             `
           }}
         />
-
-        {/* Bottom fade */}
         <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(to bottom, transparent 70%, rgba(10, 10, 10, 0.95) 100%)' }}
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px)
+            `,
+            backgroundSize: '90px 90px'
+          }}
         />
       </div>
 
@@ -433,10 +434,10 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
           transition={{ duration: 0.3 }}
           className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6 sm:mb-8"
         >
-          <StatusBadge text="Online" color={TERMINAL.green} pulse />
-          <StatusBadge icon={Users} text={`${spotsLeft} Inscritos`} color={CORAL.light} />
-          <StatusBadge icon={Bot} text="Agentes" color={TERMINAL.purple} />
-          <StatusBadge icon={Clock} text="12h Hands-On" color={TERMINAL.green} />
+          <StatusBadge text="Gravado" color={TERMINAL.green} pulse />
+          <StatusBadge icon={Users} text={`${spotsLeft} Pessoas`} color={CORAL.light} />
+          <StatusBadge icon={Bot} text="Projeto Real" color={TERMINAL.purple} />
+          <StatusBadge icon={Clock} text="12h Implementação" color={TERMINAL.green} />
         </motion.div>
 
         {/* Main grid */}
@@ -469,11 +470,11 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
               </h1>
 
               <h2 className="text-lg sm:text-xl md:text-2xl font-medium leading-relaxed max-w-2xl">
-                <span style={{ color: CORAL.light }}>Use Claude Code</span>
+                <span style={{ color: CORAL.light }}>Saia com um sistema real</span>
                 {' '}
-                <span className="text-white font-bold">como seu time de engenharia</span>
+                <span className="text-white font-bold">em produção</span>
                 {' '}
-                <span className="text-white/60">— agentes que escrevem, revisam e deployam código por você</span>
+                <span className="text-white/60">— pipeline GenAI, observabilidade e CI/CD prontos</span>
               </h2>
             </motion.div>
 
@@ -489,12 +490,12 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
             >
               <NeonButton primary onClick={handlePricingClick} isMobile={isMobile}>
                 <Sparkles className="w-4 h-4" />
-                <span className="hidden sm:inline">GARANTIR MINHA VAGA</span>
-                <span className="sm:hidden">GARANTIR VAGA</span>
+                <span className="hidden sm:inline">GARANTIR MEU LUGAR</span>
+                <span className="sm:hidden">GARANTIR LUGAR</span>
               </NeonButton>
               <NeonButton onClick={handleJourneyClick} isMobile={isMobile}>
                 <Play className="w-4 h-4" />
-                VER PROGRAMA
+                VER ENTREGAS
               </NeonButton>
             </motion.div>
 
@@ -563,35 +564,35 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
 
               {/* Date/Time Card - Enhanced */}
               <BentoCard delay={0.35} isMobile={isMobile}>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-white/80">
-                    <Calendar className="w-4 h-4" style={{ color: TERMINAL.blue }} />
-                    <div>
-                      <span className="text-sm font-bold text-white">28-31 Jan 2026</span>
-                      <p className="text-[10px] text-white/50">Quarta a Sábado</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3 text-white/80">
-                    <Clock className="w-4 h-4" style={{ color: TERMINAL.green }} />
-                    <div>
-                      <span className="text-sm font-bold text-white">20:00 BRT • 4 noites</span>
-                      <p className="text-[10px] text-white/50">3h por sessão = 12h total</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3 text-white/80">
-                    <Video className="w-4 h-4" style={{ color: TERMINAL.purple }} />
-                    <div>
-                      <span className="text-sm font-bold text-white">Online + Replay</span>
-                      <p className="text-[10px] text-white/50">Acesso por 12 meses</p>
-                    </div>
-                  </div>
+                <div className="space-y-2.5">
+                  <MetaTag
+                    icon={Calendar}
+                    title="28-31 Jan 2026"
+                    subtitle="Quarta a Sábado"
+                    color={TERMINAL.blue}
+                  />
+                  <MetaTag
+                    icon={Clock}
+                    title="20:00 BRT • 4 noites"
+                    subtitle="3h por sessão = 12h total"
+                    color={TERMINAL.green}
+                  />
+                  <MetaTag
+                    icon={Video}
+                    title="Online + Replay"
+                    subtitle="Acesso por 12 meses"
+                    color={TERMINAL.purple}
+                  />
                   {/* Guarantee badge */}
                   <div
-                    className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg mt-2"
-                    style={{ backgroundColor: `${TERMINAL.green}15`, border: `1px solid ${TERMINAL.green}30` }}
+                    className="flex items-center justify-center gap-2 px-3 py-2 rounded-lg mt-2 border"
+                    style={{
+                      background: `linear-gradient(145deg, ${TERMINAL.green}1f 0%, rgba(255,255,255,0.02) 100%)`,
+                      borderColor: `${TERMINAL.green}55`
+                    }}
                   >
                     <CheckCircle2 className="w-3.5 h-3.5" style={{ color: TERMINAL.green }} />
-                    <span className="text-xs font-medium" style={{ color: TERMINAL.green }}>
+                    <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: TERMINAL.green }}>
                       7 dias de garantia
                     </span>
                   </div>
@@ -607,12 +608,12 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                       className="text-lg sm:text-xl font-bold font-mono leading-tight mb-2"
                       style={{ color: CORAL.primary }}
                     >
-                      AI-Native
+                      Spec-Driven
                       <br />
-                      Development
+                      Delivery
                     </div>
                     <p className="text-white/70 text-sm leading-relaxed">
-                      Zero vibe coding. Contexto, padrões e controle total.
+                      Sem prompt solto. Specs, critérios e execução previsível.
                     </p>
                   </div>
                   {/* Method tags */}
@@ -621,7 +622,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                       className="text-[10px] px-2 py-1 rounded"
                       style={{ backgroundColor: `${CORAL.primary}15`, color: CORAL.light }}
                     >
-                      Spec-Driven
+                      Specs
                     </span>
                     <span
                       className="text-[10px] px-2 py-1 rounded"
@@ -639,6 +640,52 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                 </div>
               </BentoCard>
             </div>
+
+            {/* Proof Artifact */}
+            <BentoCard delay={0.5} isMobile={isMobile}>
+              <div className="flex items-center justify-between mb-3">
+                <div>
+                  <div className="text-[10px] uppercase tracking-wider text-white/40">Snapshot</div>
+                  <div className="text-base font-bold text-white">Production Metrics</div>
+                </div>
+                <div
+                  className="text-[10px] px-2 py-1 rounded"
+                  style={{ backgroundColor: `${TERMINAL.green}15`, color: TERMINAL.green }}
+                >
+                  SLA OK
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-3 text-xs">
+                <div className="space-y-1">
+                  <div className="text-white/50">Latência p95</div>
+                  <div className="text-white text-lg font-bold">1.7s</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-white/50">Custo /1k</div>
+                  <div className="text-white text-lg font-bold">R$ 2,90</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-white/50">Cobertura</div>
+                  <div className="text-white text-lg font-bold">92%</div>
+                </div>
+              </div>
+              <div className="mt-3 flex items-end gap-1 h-10">
+                {[20, 28, 18, 32, 26, 36, 24, 30].map((value, i) => (
+                  <div
+                    key={i}
+                    className="flex-1 rounded-sm"
+                    style={{
+                      height: `${value}px`,
+                      background: `linear-gradient(180deg, ${TERMINAL.blue}, ${CORAL.primary})`,
+                      opacity: 0.8
+                    }}
+                  />
+                ))}
+              </div>
+              <div className="mt-2 text-[10px] text-white/40">
+                Pipeline invoice-intelligence rodando em produção
+              </div>
+            </BentoCard>
           </div>
         </div>
       </div>

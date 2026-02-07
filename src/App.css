@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./styles/bootcamp-v2-theme.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -475,7 +476,6 @@
 .animate-shimmer {
   animation: shimmer 3s linear infinite;
 }
-
 
 
 

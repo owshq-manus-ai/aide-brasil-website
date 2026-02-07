@@ -10,33 +10,28 @@ import {
   Terminal,
   GitBranch
 } from 'lucide-react'
+import { V2_COLORS } from './theme'
 
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
-
-const TERMINAL = {
-  green: '#7ee787',
-  purple: '#d2a8ff',
-}
+const CORAL = V2_COLORS.coral
+const TERMINAL = V2_COLORS.terminal
+const NEUTRAL = V2_COLORS.neutral
 
 const TARGET_AUDIENCES = [
   {
     title: 'Data Engineers',
-    description: 'Pipelines manuais → Agentes autônomos',
+    description: 'Pipelines manuais → sistemas operáveis',
     icon: Database,
     fit: 'perfect',
   },
   {
     title: 'Analytics Engineers',
-    description: 'SQL tradicional → Extração inteligente',
+    description: 'SQL tradicional → extração inteligente',
     icon: BarChart3,
     fit: 'perfect',
   },
   {
     title: 'Software Engineers',
-    description: 'Solo coder → Time de IA',
+    description: 'Solo coder → time de IA',
     icon: Code2,
     fit: 'good',
   }
@@ -45,7 +40,7 @@ const TARGET_AUDIENCES = [
 const PREREQUISITES = [
   {
     requirement: 'SQL + Python',
-    description: 'SELECT, JOINs, funções básicas',
+    description: 'SELECT, JOINs e funções básicas',
     icon: Code2,
   },
   {
@@ -55,7 +50,7 @@ const PREREQUISITES = [
   },
   {
     requirement: 'Claude Code Pro',
-    description: '$20/mês — sua arma principal',
+    description: '$20/mês — sua ferramenta principal',
     icon: Terminal,
   }
 ]
@@ -73,10 +68,9 @@ const AudienceCard = memo(({ audience, index }) => {
       className="group"
     >
       <div
-        className="relative rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
+        className="relative rounded-xl p-4 transition-all duration-300 hover:scale-[1.01] v2-card-soft"
         style={{
-          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
-          border: `1px solid ${isPerfect ? TERMINAL.green + '40' : 'rgba(48, 54, 61, 0.8)'}`,
+          border: `1px solid ${isPerfect ? TERMINAL.green + '55' : NEUTRAL.border}`,
         }}
       >
         <div className="flex items-center gap-3">
@@ -118,10 +112,9 @@ const PrerequisiteCard = memo(({ prereq, index }) => {
       viewport={{ once: true }}
     >
       <div
-        className="relative rounded-xl p-4 transition-all duration-300"
+        className="relative rounded-xl p-4 transition-all duration-300 v2-card-soft"
         style={{
-          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
-          border: `1px solid ${CORAL.primary}20`,
+          border: `1px solid ${NEUTRAL.border}`,
         }}
       >
         <div className="flex items-center gap-3">
@@ -147,15 +140,15 @@ const AudienceSectionV2 = memo(() => {
   const prerequisites = useMemo(() => PREREQUISITES, [])
 
   return (
-    <section id="audience" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
+    <section id="audience" className="relative py-20 sm:py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 500px 250px at 30% 30%, ${CORAL.primary}05 0%, transparent 50%),
-              radial-gradient(ellipse 400px 200px at 70% 70%, ${CORAL.primary}05 0%, transparent 50%)
+              radial-gradient(ellipse 520px 260px at 30% 30%, ${CORAL.subtle} 0%, transparent 55%),
+              radial-gradient(ellipse 420px 220px at 70% 70%, rgba(180, 140, 255, 0.1) 0%, transparent 55%)
             `
           }}
         />
@@ -225,8 +218,8 @@ const AudienceSectionV2 = memo(() => {
               viewport={{ once: true }}
               className="mt-4 p-4 rounded-xl"
               style={{
-                background: `linear-gradient(90deg, ${TERMINAL.green}10, ${CORAL.primary}10)`,
-                border: `1px solid ${TERMINAL.green}30`
+                background: `linear-gradient(90deg, ${TERMINAL.green}14, ${CORAL.subtle})`,
+                border: `1px solid ${NEUTRAL.borderStrong}`
               }}
             >
               <p className="text-white/80 text-sm">
@@ -234,6 +227,9 @@ const AudienceSectionV2 = memo(() => {
                 SELECT + loop em Python = <span className="text-white font-semibold">você está pronto</span>
               </p>
             </motion.div>
+            <div className="mt-3 text-xs text-white/40">
+              Não é para iniciantes em programação.
+            </div>
           </div>
         </div>
       </div>
