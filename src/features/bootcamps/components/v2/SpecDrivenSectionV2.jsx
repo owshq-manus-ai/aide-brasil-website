@@ -53,7 +53,7 @@ const SDD_PHASES = [
   {
     phase: '04',
     command: '/execute',
-    title: 'Entrega em lote',
+    title: 'Entrega estruturada',
     subtitle: 'codigo + testes + deploy',
     description: 'Executa as tasks com gates de qualidade e padrao de producao.',
     icon: Rocket,

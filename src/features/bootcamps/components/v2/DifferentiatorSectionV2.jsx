@@ -130,15 +130,13 @@ const DifferentiatorSectionV2 = memo(() => {
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            6 Razões Para{' '}
-            <span style={{ color: CORAL.primary }}>Não Ser</span>
-            {' '}Apenas Mais Um Curso
+            Não é Mais Um Curso.
+            {' '}
+            <span style={{ color: CORAL.primary }}>É Virada de Nível.</span>
           </h2>
 
           <p className="text-base sm:text-lg text-white/60 max-w-2xl mx-auto">
-            Aqui você sai com um{' '}
-            <span className="text-white font-semibold">sistema funcionando em produção</span>
-            {' '}— não apenas com prompts.
+            Cada bloco foi pensado para converter conhecimento em ativo técnico que você usa em produção.
           </p>
         </motion.div>
 
@@ -165,9 +163,9 @@ const DifferentiatorSectionV2 = memo(() => {
             }}
           >
             <p className="text-lg sm:text-xl font-oswald text-white">
-              <span className="text-white/50">Outros ensinam</span>{' '}
-              <span className="text-red-400 line-through">promessas</span>.
-              {' '}Nós entregamos{' '}
+              <span className="text-white/50">Outros vendem</span>{' '}
+              <span className="text-red-400 line-through">efeito wow</span>.
+              {' '}Aqui você constrói{' '}
               <span style={{ color: CORAL.primary }} className="font-bold">sistemas reais</span>.
             </p>
           </div>

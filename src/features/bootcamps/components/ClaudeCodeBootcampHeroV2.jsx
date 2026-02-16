@@ -437,7 +437,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
           <StatusBadge text="Gravado" color={TERMINAL.green} pulse />
           <StatusBadge icon={Users} text={`${spotsLeft} Pessoas`} color={CORAL.light} />
           <StatusBadge icon={Bot} text="Projeto Real" color={TERMINAL.purple} />
-          <StatusBadge icon={Clock} text="12h Implementação" color={TERMINAL.green} />
+          <StatusBadge icon={Clock} text="Acesso Completo" color={TERMINAL.green} />
         </motion.div>
 
         {/* Main grid */}
@@ -470,11 +470,11 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
               </h1>
 
               <h2 className="text-lg sm:text-xl md:text-2xl font-medium leading-relaxed max-w-2xl">
-                <span style={{ color: CORAL.light }}>Saia com um sistema real</span>
+                <span style={{ color: CORAL.light }}>Transforme requisito em sistema operável</span>
                 {' '}
-                <span className="text-white font-bold">em produção</span>
+                <span className="text-white font-bold">com padrão de engenharia</span>
                 {' '}
-                <span className="text-white/60">— pipeline GenAI, observabilidade e CI/CD prontos</span>
+                <span className="text-white/60">— pipeline GenAI, observabilidade e CI/CD no mesmo fluxo</span>
               </h2>
             </motion.div>
 
@@ -567,20 +567,20 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                 <div className="space-y-2.5">
                   <MetaTag
                     icon={Calendar}
-                    title="28-31 Jan 2026"
-                    subtitle="Quarta a Sábado"
+                    title="Acesso Completo"
+                    subtitle="Conteúdo completo liberado"
                     color={TERMINAL.blue}
                   />
                   <MetaTag
                     icon={Clock}
-                    title="20:00 BRT • 4 noites"
-                    subtitle="3h por sessão = 12h total"
+                    title="Ritmo Próprio"
+                    subtitle="Implemente no contexto do seu projeto"
                     color={TERMINAL.green}
                   />
                   <MetaTag
                     icon={Video}
                     title="Online + Replay"
-                    subtitle="Acesso por 12 meses"
+                    subtitle="Atualizações contínuas da trilha"
                     color={TERMINAL.purple}
                   />
                   {/* Guarantee badge */}
@@ -593,7 +593,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                   >
                     <CheckCircle2 className="w-3.5 h-3.5" style={{ color: TERMINAL.green }} />
                     <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: TERMINAL.green }}>
-                      7 dias de garantia
+                      Garantia total
                     </span>
                   </div>
                 </div>

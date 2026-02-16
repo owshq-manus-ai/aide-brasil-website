@@ -176,9 +176,9 @@ const PromiseSectionV2 = memo(() => {
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            Pare de Brincar com IA.
+            Pare de Promptar no Escuro.
             <br />
-            <span className="text-white/80">Domine as 8 Peças do </span>
+            <span className="text-white/80">Construa sua Máquina de Entrega com </span>
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
@@ -192,7 +192,7 @@ const PromiseSectionV2 = memo(() => {
           </h2>
 
           <p className="text-base sm:text-lg text-white/60 max-w-2xl mx-auto">
-            Saia do modo tutorial. Em 4 dias voce configura, valida e entrega com padrao de producao.
+            Você sai com método, padrões e ativos reutilizáveis para entregar com previsibilidade em qualquer projeto.
           </p>
         </motion.div>
 
@@ -221,7 +221,7 @@ const PromiseSectionV2 = memo(() => {
             <div className="flex items-center gap-3">
               <Bot className="w-6 h-6" style={{ color: CORAL.primary }} />
               <span className="text-white font-medium">
-                <span style={{ color: CORAL.primary }} className="font-bold">100% do projeto</span> construído com Claude Code
+                <span style={{ color: CORAL.primary }} className="font-bold">100% do sistema</span> nasce com Claude Code e governança humana
               </span>
             </div>
             <motion.div

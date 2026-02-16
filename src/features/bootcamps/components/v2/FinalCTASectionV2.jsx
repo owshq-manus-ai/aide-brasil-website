@@ -74,8 +74,8 @@ const FinalCTASectionV2 = memo(() => {
             style={{ border: '1px solid rgba(255,255,255,0.12)' }}
           >
             <div className="text-center sm:text-right">
-              <p className="text-white/40 text-xs uppercase tracking-wider mb-1">Hoje</p>
-              <p className="text-white/50">Juntando prompts soltos</p>
+              <p className="text-white/40 text-xs uppercase tracking-wider mb-1">Estado atual</p>
+              <p className="text-white/50">Prompts isolados e retrabalho</p>
             </div>
 
             <motion.div
@@ -87,9 +87,9 @@ const FinalCTASectionV2 = memo(() => {
 
             <div className="text-center sm:text-left">
               <p className="text-xs uppercase tracking-wider mb-1 font-bold" style={{ color: CORAL.primary }}>
-                Em 4 dias
+                Estado de elite
               </p>
-              <p className="text-white font-bold">Sistema em produção</p>
+              <p className="text-white font-bold">Sistema operável e escalável</p>
             </div>
           </div>
         </motion.div>
@@ -102,9 +102,6 @@ const FinalCTASectionV2 = memo(() => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-oswald font-bold text-white mb-6 leading-tight">
-            <span className="block text-lg sm:text-xl md:text-2xl text-white/40 mb-2">
-              Daqui a 6 meses você vai estar...
-            </span>
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
@@ -113,13 +110,15 @@ const FinalCTASectionV2 = memo(() => {
                 animation: 'subtle-metallic 5s ease-in-out infinite',
               }}
             >
-              Liderando com IA
+              A decisão técnica
             </span>
-            {' '}ou Apagando Incêndios?
+            {' '}é simples:
+            <br />
+            <span className="text-white">liderar com IA ou continuar apagando incêndios.</span>
           </h2>
 
           <p className="text-base sm:text-lg text-white/60 max-w-xl mx-auto mb-8">
-            O mercado não vai esperar. Enquanto você decide, outros já estão operando sistemas com agentes.
+            Seu próximo projeto pode nascer com previsibilidade, qualidade e padrão de engenharia desde a primeira task.
           </p>
         </motion.div>
 
@@ -162,10 +161,10 @@ const FinalCTASectionV2 = memo(() => {
           {/* Subtext */}
           <div className="mt-6 space-y-1">
             <p className="text-white/50 text-sm">
-              28-31 Jan 2026 • 12h código • <span style={{ color: TERMINAL.green }}>7 dias garantia</span>
+              Acesso total • implementação aplicada • <span style={{ color: TERMINAL.green }}>garantia de satisfação</span>
             </p>
             <p className="text-sm" style={{ color: CORAL.light }}>
-              Lote Decisão: R$ 1.197
+              Investimento atual: R$ 1.397 ou 12x de R$ 119,63
             </p>
           </div>
         </motion.div>

@@ -1,23 +1,16 @@
-import React, { useState, useEffect, memo, useCallback, useMemo, useRef } from 'react'
+import React, { useState, useEffect, memo, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
 import {
-  Calendar,
-  Clock,
   CheckCircle,
   Sparkles,
-  Timer,
   Shield,
   Award,
   Zap,
-  AlertCircle,
   Phone,
   Mail,
   User,
   X,
-  Lock,
-  Flame,
-  TrendingUp
 } from 'lucide-react'
 import { webhookEndpoints } from '../../../config/webhook-endpoints'
 
@@ -31,13 +24,13 @@ const sharedStyles = `
 
 // Static data - defined outside component
 const DELIVERABLES = [
-  { text: 'Repositório GitHub production-ready', value: 'Clone e rode em 5 minutos' },
+  { text: 'Repositório GitHub production-ready', value: 'Clone e rode com um comando' },
   { text: 'Pipeline GenAI completo em produção', value: 'Invoice →BigQuery →Dashboard' },
   { text: 'Infra GCP via Terraform', value: 'Destrua e recrie em 1 comando' },
   { text: 'CI/CD com GitHub Actions', value: 'Push = Deploy automático' },
   { text: 'Observabilidade com Langfuse', value: 'Custo, latência, qualidade' },
   { text: 'DataOps com CrewAI Agents', value: 'Eles operam, você supervisiona' },
-  { text: 'Arquitetura Multi-Cloud', value: 'GCP hoje, AWS/Azure amanhã' },
+  { text: 'Arquitetura Multi-Cloud', value: 'Portável entre GCP, AWS e Azure' },
   { text: 'Projeto pronto para portfólio', value: 'Mostre em entrevistas' }
 ]
 
@@ -60,58 +53,50 @@ const DELIVERY_LAYER_FLOW = [
 ]
 
 const DELIVERY_BLUEPRINT = [
-  { title: 'Repositório GitHub production-ready', value: 'Clone e rode em 5 minutos', layer: 'Build', color: '#46C7FF' },
+  { title: 'Repositório GitHub production-ready', value: 'Clone e rode com um comando', layer: 'Build', color: '#46C7FF' },
   { title: 'Pipeline GenAI completo em produção', value: 'Invoice -> BigQuery -> Dashboard', layer: 'Build', color: '#46C7FF' },
   { title: 'Infra GCP via Terraform', value: 'Destrua e recrie em 1 comando', layer: 'Build', color: '#46C7FF' },
   { title: 'CI/CD com GitHub Actions', value: 'Push = Deploy automático', layer: 'Operate', color: '#7EE787' },
   { title: 'Observabilidade com Langfuse', value: 'Custo, latência e qualidade', layer: 'Operate', color: '#7EE787' },
   { title: 'DataOps com CrewAI Agents', value: 'Eles operam, você supervisiona', layer: 'Operate', color: '#7EE787' },
-  { title: 'Arquitetura Multi-Cloud', value: 'GCP hoje, AWS/Azure amanhã', layer: 'Career', color: '#FFB199' },
+  { title: 'Arquitetura Multi-Cloud', value: 'Portável entre GCP, AWS e Azure', layer: 'Career', color: '#FFB199' },
   { title: 'Projeto pronto para portfólio', value: 'Mostre em entrevistas', layer: 'Career', color: '#FFB199' }
 ]
 
 const PRICING_TIERS = [
   {
-    id: 'lote1',
-    name: 'Early Birds',
-    subtitle: 'Quem chegou primeiro',
+    id: 'starter',
+    name: 'Plano Starter',
+    subtitle: 'Base técnica',
     price: '897',
     originalPrice: null,
-    status: 'sold_out',
+    status: 'available',
     highlight: false,
-    icon: Lock,
-    color: 'gray'
+    icon: Sparkles,
+    color: 'blue'
   },
   {
-    id: 'lote2',
-    name: 'Lote Decisão',
-    subtitle: 'Encerrado',
+    id: 'pro',
+    name: 'Plano Pro',
+    subtitle: 'Arquitetura + operação',
     price: '1.197',
     originalPrice: null,
-    status: 'sold_out',
-    highlight: false,
-    icon: Lock,
-    color: 'gray'
+    status: 'available',
+    highlight: true,
+    icon: Zap,
+    color: 'orange'
   },
   {
-    id: 'lote3',
-    name: 'Lote Final',
-    subtitle: 'Últimas vagas',
+    id: 'scale',
+    name: 'Plano Scale',
+    subtitle: 'Implementação completa',
     price: '1.397',
     originalPrice: null,
-    status: 'current',
-    highlight: true,
-    icon: Flame,
+    status: 'available',
+    highlight: false,
+    icon: Award,
     color: 'orange'
   }
-]
-
-// Countdown timer labels
-const COUNTDOWN_LABELS = [
-  { key: 'days', label: 'd' },
-  { key: 'hours', label: 'h' },
-  { key: 'minutes', label: 'm' },
-  { key: 'seconds', label: 's' }
 ]
 
 // Brazilian phone number formatting (same pattern as webinar pages)
@@ -144,7 +129,7 @@ DeliverableItem.displayName = 'DeliverableItem'
 
 // Pricing Tier Card component - memoized
 // Mobile: optimized padding and touch targets
-// Mobile: natural order (Early Bird → Lote Decisão → Lote Final), no order manipulation
+// Mobile: natural order (Starter → Pro → Scale), no order manipulation
 const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
   const Icon = tier.icon
 
@@ -159,14 +144,12 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
       <div
         className={`
           relative h-full rounded-xl sm:rounded-2xl p-4 sm:p-6 border transition-all duration-300
-          ${tier.status === 'sold_out' ? 'opacity-60' : 'hover:border-white/20'}
+          hover:border-white/20
         `}
         style={{
-          background: tier.status === 'sold_out'
-            ? 'var(--pricing-surface-soft)'
-            : tier.highlight
-              ? 'linear-gradient(135deg, var(--pricing-primary-glow) 0%, rgba(255,255,255,0.02) 100%)'
-              : 'var(--pricing-surface)',
+          background: tier.highlight
+            ? 'linear-gradient(135deg, var(--pricing-primary-glow) 0%, rgba(255,255,255,0.02) 100%)'
+            : 'var(--pricing-surface)',
           borderColor: tier.highlight ? 'var(--pricing-primary)' : 'var(--pricing-border)',
           boxShadow: tier.highlight ? '0 16px 40px var(--pricing-primary-glow)' : undefined
         }}
@@ -178,8 +161,8 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
               className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 shadow-lg"
               style={{ background: 'linear-gradient(90deg, var(--pricing-primary), var(--pricing-primary-light))' }}
             >
-              <Flame className="w-3 h-3 text-white" />
-              <span className="text-white text-xs font-bold uppercase">Melhor Oferta</span>
+              <Zap className="w-3 h-3 text-white" />
+              <span className="text-white text-xs font-bold uppercase">Plano Recomendado</span>
             </div>
           </div>
         )}
@@ -189,22 +172,16 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
           <div
             className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center"
             style={
-              tier.status === 'sold_out'
-                ? { backgroundColor: 'rgba(255, 255, 255, 0.1)' }
-                : tier.highlight
-                  ? { background: 'linear-gradient(135deg, var(--pricing-primary), var(--pricing-primary-light))' }
-                  : { backgroundColor: 'var(--pricing-primary-soft)' }
+              tier.highlight
+                ? { background: 'linear-gradient(135deg, var(--pricing-primary), var(--pricing-primary-light))' }
+                : { backgroundColor: 'var(--pricing-primary-soft)' }
             }
           >
-            <Icon className={`w-6 h-6 ${tier.status === 'sold_out' ? 'text-white/40' : 'text-white'}`} />
+            <Icon className="w-6 h-6 text-white" />
           </div>
-          <h3 className={`text-lg font-bold ${tier.status === 'sold_out' ? 'text-white/40' : 'text-white'}`}>
-            {tier.name}
-          </h3>
+          <h3 className="text-lg font-bold text-white">{tier.name}</h3>
           {tier.subtitle && (
-            <p className={`text-sm mt-1 ${tier.status === 'sold_out' ? 'text-white/30' : 'text-white/50'}`}>
-              {tier.subtitle}
-            </p>
+            <p className="text-sm mt-1 text-white/50">{tier.subtitle}</p>
           )}
         </div>
 
@@ -214,16 +191,11 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
             <div className="text-white/40 text-sm line-through mb-1">De R$ {tier.originalPrice}</div>
           )}
           <div className="flex items-baseline justify-center gap-1">
-            <span className={`text-lg ${tier.status === 'sold_out' ? 'text-white/30' : ''}`} style={tier.status !== 'sold_out' ? { color: 'var(--pricing-primary)' } : undefined}>R$</span>
+            <span className="text-lg" style={{ color: 'var(--pricing-primary)' }}>R$</span>
             <span
               className={`
                 text-5xl font-oswald font-black
-                ${tier.status === 'sold_out'
-                  ? 'text-white/30 line-through'
-                  : tier.highlight
-                    ? 'bg-clip-text text-transparent'
-                    : 'text-white'
-                }
+                ${tier.highlight ? 'bg-clip-text text-transparent' : 'text-white'}
               `}
               style={tier.highlight ? {
                 backgroundImage: 'linear-gradient(180deg, #ffffff 0%, var(--pricing-primary-light) 50%, var(--pricing-primary) 100%)',
@@ -239,41 +211,23 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
 
         {/* Status indicator */}
         <div className="text-center">
-          {tier.status === 'sold_out' && (
-            <span className="inline-flex items-center gap-1.5 text-white/40 text-sm">
-              <Lock className="w-4 h-4" />
-              Esgotado
+          <motion.a
+            href={`https://wa.me/5531984241779?text=${encodeURIComponent(`Olá! Tenho interesse no Bootcamp Zero to Prod com Claude Code - ${tier.name}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-3 sm:py-3 min-h-[44px] rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden text-sm sm:text-base block text-center"
+            style={{ background: 'linear-gradient(90deg, #25D366, #128C7E)' }}
+            whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(37, 211, 102, 0.5)" }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              <Phone className="w-4 h-4" />
+              <span>FALAR COM O TIME</span>
             </span>
-          )}
-          {tier.status === 'current' && (
-            <>
-              {/* CTA Button: min 44px touch target - WhatsApp link to sales team */}
-              <motion.a
-                href="https://wa.me/5531984241779?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Bootcamp%20Zero%20to%20Prod%20com%20Claude%20Code%20-%20Lote%20Final"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3 sm:py-3 min-h-[44px] rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden text-sm sm:text-base block text-center"
-                style={{ background: 'linear-gradient(90deg, #25D366, #128C7E)' }}
-                whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(37, 211, 102, 0.5)" }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  <span>FALE COM TIME COMERCIAL</span>
-                </span>
-              </motion.a>
-              <div className="mt-3 flex items-center justify-center gap-1.5 sm:gap-2 text-amber-400 bg-amber-500/10 rounded-full px-2 sm:px-3 py-1.5">
-                <AlertCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
-                <span className="text-[10px] sm:text-xs font-medium">Últimas vagas disponíveis</span>
-              </div>
-            </>
-          )}
-          {tier.status === 'upcoming' && (
-            <span className="inline-flex items-center gap-1.5 text-amber-400/60 text-sm">
-              <TrendingUp className="w-4 h-4" />
-              Em breve
-            </span>
-          )}
+          </motion.a>
+          <div className="mt-3 text-[10px] sm:text-xs text-white/55">
+            Acesso liberado após confirmação de pagamento.
+          </div>
         </div>
       </div>
     </motion.div>
@@ -329,8 +283,8 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
           <X className="w-5 h-5 sm:w-4 sm:h-4" />
         </button>
 
-        <h3 className="text-2xl font-bold text-white mb-2 text-center">Última Etapa</h3>
-        <p className="text-white/60 text-center mb-6">Preencha para garantir sua vaga no <span style={{ color: '#FF7A5C' }} className="font-semibold">Lote Final</span></p>
+        <h3 className="text-2xl font-bold text-white mb-2 text-center">Próxima Etapa</h3>
+        <p className="text-white/60 text-center mb-6">Preencha para avançar com seu acesso ao bootcamp.</p>
 
         {/* Form with mobile-optimized inputs (16px font prevents iOS zoom) */}
         <form onSubmit={onSubmit} className="space-y-4">
@@ -396,7 +350,7 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
             {isSubmitting ? 'Processando...' : 'CONFIRMAR MINHA VAGA'}
           </motion.button>
           <p className="text-white/40 text-xs text-center mt-3">
-            Garantia de 7 dias —se não gostar, devolvemos 100%
+            Garantia de satisfação: se não fizer sentido para você, devolvemos 100%
           </p>
         </form>
       </motion.div>
@@ -411,32 +365,6 @@ const PricingSection = memo(({ variant = 'default' }) => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
-
-  // Countdown timer - optimized with ref for interval
-  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-  const intervalRef = useRef(null)
-
-  useEffect(() => {
-    const targetDate = new Date('2026-01-28T00:00:00-03:00')
-
-    const updateCountdown = () => {
-      const now = new Date()
-      const diff = targetDate - now
-
-      if (diff > 0) {
-        setCountdown({
-          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((diff % (1000 * 60)) / 1000)
-        })
-      }
-    }
-
-    updateCountdown()
-    intervalRef.current = setInterval(updateCountdown, 1000)
-    return () => clearInterval(intervalRef.current)
-  }, [])
 
   const handleOpenModal = useCallback(() => setIsModalOpen(true), [])
   const handleCloseModal = useCallback(() => setIsModalOpen(false), [])
@@ -488,8 +416,7 @@ const PricingSection = memo(({ variant = 'default' }) => {
         source: 'bootcamp-zero-prod-claude-code',
         page_url: window.location.href,
         submitted_at: new Date().toISOString(),
-        bootcamp_dates: '28-31 Janeiro 2026',
-        bootcamp_time: '20:00 BRT'
+        offer_model: 'evergreen-perpetual'
       }
 
       // Submit to webhook (fire and forget - don't block redirect)
@@ -625,11 +552,11 @@ const PricingSection = memo(({ variant = 'default' }) => {
           </h2>
 
           <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto px-2 sm:px-0">
-            <span style={{ color: 'var(--pricing-primary)' }} className="font-bold">12 horas de hands-on</span> para sair com pipeline, observabilidade e CI/CD funcionando.
+            Plano evergreen com acesso contínuo para construir pipeline, observabilidade e CI/CD em padrão de produção.
           </p>
         </motion.div>
 
-        {/* Countdown Timer - Mobile: scrollable if needed, smaller elements */}
+        {/* Evergreen Positioning */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -642,24 +569,13 @@ const PricingSection = memo(({ variant = 'default' }) => {
             style={{ backgroundColor: 'var(--pricing-danger-soft)', border: '1px solid var(--pricing-danger)' }}
           >
             <div className="flex items-center gap-2">
-              <Timer className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: 'var(--pricing-danger)' }} />
-              <span className="font-medium text-sm sm:text-base" style={{ color: 'var(--pricing-danger)' }}>Início do Bootcamp:</span>
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: 'var(--pricing-danger)' }} />
+              <span className="font-medium text-sm sm:text-base" style={{ color: 'var(--pricing-danger)' }}>
+                Oferta Perpétua
+              </span>
             </div>
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              {COUNTDOWN_LABELS.map((item, i) => (
-                <div key={item.key} className="flex items-center">
-                  <div
-                    className="rounded-md sm:rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 min-w-[40px] sm:min-w-[48px] text-center"
-                    style={{ backgroundColor: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.08)' }}
-                  >
-                    <span className="text-white font-bold text-base sm:text-xl font-mono">
-                      {String(countdown[item.key]).padStart(2, '0')}
-                    </span>
-                    <span className="text-[10px] sm:text-xs ml-0.5 sm:ml-1" style={{ color: 'var(--pricing-danger)' }}>{item.label}</span>
-                  </div>
-                  {i < 3 && <span className="mx-0.5 sm:mx-1 text-sm" style={{ color: 'var(--pricing-danger)' }}>:</span>}
-                </div>
-              ))}
+            <div className="text-sm text-white/75 text-center sm:text-left">
+              Conteúdo gravado, acesso total e atualização contínua.
             </div>
           </div>
         </motion.div>
@@ -685,39 +601,39 @@ const PricingSection = memo(({ variant = 'default' }) => {
           className="rounded-2xl p-8 border"
           style={{ background: 'var(--pricing-surface)', borderColor: 'var(--pricing-border)' }}
         >
-          {/* Format & Dates - Mobile: 2x2 grid with smaller text */}
+          {/* Evergreen Highlights */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mb-6 sm:mb-8">
             <div
               className="rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border transition-colors"
               style={{ background: 'var(--pricing-surface-soft)', borderColor: 'var(--pricing-border)' }}
             >
-              <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1.5 sm:mb-2" style={{ color: 'var(--pricing-primary)' }} />
-              <p className="text-white font-bold text-sm sm:text-base">28-31 Jan</p>
-              <p className="text-white/50 text-xs sm:text-sm">4 dias</p>
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1.5 sm:mb-2" style={{ color: 'var(--pricing-primary)' }} />
+              <p className="text-white font-bold text-sm sm:text-base">Acesso Total</p>
+              <p className="text-white/50 text-xs sm:text-sm">Conteúdo completo</p>
             </div>
             <div
               className="rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border transition-colors"
               style={{ background: 'var(--pricing-surface-soft)', borderColor: 'var(--pricing-border)' }}
             >
-              <Clock className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1.5 sm:mb-2" style={{ color: 'var(--pricing-primary)' }} />
-              <p className="text-white font-bold text-sm sm:text-base">12h código</p>
-              <p className="text-white/50 text-xs sm:text-sm">Hands-on</p>
+              <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1.5 sm:mb-2" style={{ color: 'var(--pricing-primary)' }} />
+              <p className="text-white font-bold text-sm sm:text-base">Implementação Guiada</p>
+              <p className="text-white/50 text-xs sm:text-sm">Fluxo de ponta a ponta</p>
             </div>
             <div
               className="rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border"
               style={{ background: 'var(--pricing-success-soft)', borderColor: 'var(--pricing-success)' }}
             >
               <Shield className="w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1.5 sm:mb-2" style={{ color: 'var(--pricing-success)' }} />
-              <p className="text-white font-bold text-sm sm:text-base">7 dias</p>
-              <p className="text-white/60 text-xs sm:text-sm">Garantia</p>
+              <p className="text-white font-bold text-sm sm:text-base">Garantia</p>
+              <p className="text-white/60 text-xs sm:text-sm">Satisfação total</p>
             </div>
             <div
               className="rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border transition-colors"
               style={{ background: 'var(--pricing-surface-soft)', borderColor: 'var(--pricing-border)' }}
             >
               <Award className="w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1.5 sm:mb-2" style={{ color: 'var(--pricing-primary)' }} />
-              <p className="text-white font-bold text-sm sm:text-base">Certificado</p>
-              <p className="text-white/50 text-xs sm:text-sm">+ Repo</p>
+              <p className="text-white font-bold text-sm sm:text-base">Certificado + Repo</p>
+              <p className="text-white/50 text-xs sm:text-sm">Prova técnica</p>
             </div>
           </div>
 
@@ -846,7 +762,7 @@ const PricingSection = memo(({ variant = 'default' }) => {
                   <span className="line-through font-bold" style={{ color: 'var(--pricing-danger)' }}>R$ 1.500+</span>
                 </div>
                 <p className="text-sm mt-1.5 font-semibold" style={{ color: 'var(--pricing-success)' }}>
-                  Aqui voce leva tudo integrado por menos e funcionando em 4 dias.
+                  Aqui você leva tudo integrado por menos e pronto para operar.
                 </p>
               </div>
             </div>

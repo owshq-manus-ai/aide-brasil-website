@@ -50,7 +50,7 @@ const PREREQUISITES = [
   },
   {
     requirement: 'Claude Code Pro',
-    description: '$20/mês — sua ferramenta principal',
+    description: 'Plano Pro ativo para executar todo o fluxo',
     icon: Terminal,
   }
 ]
@@ -174,12 +174,12 @@ const AudienceSectionV2 = memo(() => {
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            3 Perfis que Vão{' '}
-            <span style={{ color: CORAL.primary }}>Multiplicar Resultados</span>
+            Perfis que Escalam com{' '}
+            <span style={{ color: CORAL.primary }}>Agentic Engineering</span>
           </h2>
 
           <p className="text-base sm:text-lg text-white/60 max-w-xl mx-auto">
-            Se você trabalha com dados e código, tem tudo para operar sua própria frota de agentes
+            Se você já constrói com dados e código, este bootcamp vira sua vantagem competitiva de execução.
           </p>
         </motion.div>
 
@@ -224,7 +224,7 @@ const AudienceSectionV2 = memo(() => {
             >
               <p className="text-white/80 text-sm">
                 <span style={{ color: TERMINAL.green }} className="font-bold">Resumindo:</span>{' '}
-                SELECT + loop em Python = <span className="text-white font-semibold">você está pronto</span>
+                SQL + Python + Git = <span className="text-white font-semibold">base suficiente para acelerar com método</span>
               </p>
             </motion.div>
             <div className="mt-3 text-xs text-white/40">

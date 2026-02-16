@@ -23,7 +23,7 @@ const STEPS = [
   {
     number: 1,
     title: 'Mapear requisito em Spec',
-    subtitle: 'Dia 1 • Contexto',
+    subtitle: 'Fase Contexto',
     command: 'claude init --spec invoice',
     skills: ['Context Engineering', 'Acceptance Criteria'],
     icon: Users
@@ -31,7 +31,7 @@ const STEPS = [
   {
     number: 2,
     title: 'Conectar dados reais',
-    subtitle: 'Dia 1 • MCPs',
+    subtitle: 'Fase Dados',
     command: 'mcp connect bigquery',
     skills: ['MCP Setup', 'Data Access'],
     icon: Terminal
@@ -39,7 +39,7 @@ const STEPS = [
   {
     number: 3,
     title: 'Prototipar o pipeline GenAI',
-    subtitle: 'Dia 2 • Pipeline',
+    subtitle: 'Fase Pipeline',
     command: 'claude "build extraction pipeline"',
     skills: ['Rapid Prototyping', 'Test-Driven GenAI'],
     icon: FlaskConical
@@ -47,7 +47,7 @@ const STEPS = [
   {
     number: 4,
     title: 'Desenhar multi-cloud',
-    subtitle: 'Dia 2 • Arquitetura',
+    subtitle: 'Fase Arquitetura',
     command: 'claude "add adapter pattern"',
     skills: ['Cloud Architecture', 'Adapter Design'],
     icon: Cloud
@@ -55,7 +55,7 @@ const STEPS = [
   {
     number: 5,
     title: 'Infra como código',
-    subtitle: 'Dia 3 • Terraform',
+    subtitle: 'Fase Infra',
     command: 'terraform apply -auto-approve',
     skills: ['IaC', 'Environment Management'],
     icon: Server
@@ -63,7 +63,7 @@ const STEPS = [
   {
     number: 6,
     title: 'Observabilidade e LLMOps',
-    subtitle: 'Dia 3 • Langfuse',
+    subtitle: 'Fase LLMOps',
     command: 'langfuse init --env prod',
     skills: ['LLMOps', 'Cost & Quality'],
     icon: Brain
@@ -71,7 +71,7 @@ const STEPS = [
   {
     number: 7,
     title: 'CI/CD com gates',
-    subtitle: 'Dia 4 • Deploy',
+    subtitle: 'Fase Release',
     command: 'git push origin main # auto-deploy',
     skills: ['GitHub Actions', 'Quality Gates'],
     icon: GitBranch
@@ -79,7 +79,7 @@ const STEPS = [
   {
     number: 8,
     title: 'Operar com agentes',
-    subtitle: 'Dia 4 • Runbooks',
+    subtitle: 'Fase Operação',
     command: 'crewai start --mode autonomous',
     skills: ['CrewAI', 'DataOps'],
     icon: Bot
@@ -236,12 +236,12 @@ const JourneyTimelineV2 = memo(() => {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            8 Passos Para{' '}
-            <span style={{ color: CORAL.primary }}>Produção</span>
+            Sequência de{' '}
+            <span style={{ color: CORAL.primary }}>Entrega Operável</span>
           </h2>
 
           <p className="text-base sm:text-lg text-white/60 max-w-xl mx-auto">
-            Cada passo termina com algo funcionando.{' '}
+            Cada passo gera um ativo real no repositório.{' '}
             <span style={{ color: CORAL.primary }}>Toque para ver os detalhes.</span>
           </p>
         </motion.div>

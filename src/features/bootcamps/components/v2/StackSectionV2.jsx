@@ -151,12 +151,12 @@ const StackSectionV2 = memo(() => {
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            A Stack que{' '}
-            <span style={{ color: CORAL.primary }}>Empresas Usam</span>
+            Stack AI-Native de{' '}
+            <span style={{ color: CORAL.primary }}>Produção</span>
           </h2>
 
           <p className="text-base sm:text-lg text-white/60 max-w-xl mx-auto">
-            GCP na prática, com arquitetura portável — migre para AWS ou Azure quando quiser
+            Arquitetura portável para crescer sem reescrever o núcleo do sistema.
           </p>
         </motion.div>
 
@@ -185,7 +185,7 @@ const StackSectionV2 = memo(() => {
             <Database className="w-5 h-5" style={{ color: CORAL.primary }} />
             <span className="text-white/80 text-sm">
               <span style={{ color: CORAL.primary }} className="font-bold">Adapter Pattern</span>
-              {' '}— troque de cloud sem reescrever
+              {' '}— troque provider sem quebrar o core
             </span>
           </div>
         </motion.div>

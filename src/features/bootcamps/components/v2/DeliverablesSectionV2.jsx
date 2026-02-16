@@ -1,8 +1,6 @@
 import React, { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import {
-  Calendar,
-  Clock,
   Shield,
   Award,
   CheckCircle,
@@ -24,27 +22,27 @@ const NEUTRAL = V2_COLORS.neutral
 
 const HIGHLIGHTS = [
   {
-    icon: Calendar,
-    value: '28-31 Jan',
-    label: '4 noites ao vivo',
+    icon: Rocket,
+    value: 'Acesso Total',
+    label: 'Conteúdo completo liberado',
     color: TERMINAL.blue
   },
   {
-    icon: Clock,
-    value: '12h',
-    label: 'Hands-on real',
-    color: TERMINAL.purple
-  },
-  {
     icon: Shield,
-    value: '7 dias',
-    label: 'Risco zero',
+    value: 'Garantia de Satisfação',
+    label: 'Risco técnico reduzido',
     color: TERMINAL.green
   },
   {
     icon: Award,
-    value: 'Repo + Cert',
-    label: 'Portfólio pronto',
+    value: 'Portfólio Estratégico',
+    label: 'Projeto que comprova senioridade',
+    color: CORAL.primary
+  },
+  {
+    icon: Package,
+    value: 'Arquitetura Aplicada',
+    label: 'Do requisito ao deploy',
     color: CORAL.primary
   }
 ]
@@ -52,7 +50,7 @@ const HIGHLIGHTS = [
 const DELIVERABLES = [
   {
     title: 'Repositório GitHub production-ready',
-    description: 'Docs, testes e deploy prontos',
+    description: 'Clone e rode com um comando',
     icon: GitBranch,
     category: 'Code'
   },
@@ -88,7 +86,7 @@ const DELIVERABLES = [
   },
   {
     title: 'Arquitetura multi-cloud',
-    description: 'GCP hoje, AWS/Azure amanhã',
+    description: 'Portável entre GCP, AWS e Azure',
     icon: Cloud,
     category: 'Arch'
   },
@@ -243,17 +241,17 @@ const DeliverablesSectionV2 = memo(() => {
           >
             <Code2 className="w-4 h-4" style={{ color: TERMINAL.green }} />
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: TERMINAL.green }}>
-              Entregas que Você Mostra
+              Entregas que Viram Ativo
             </span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-oswald font-bold text-white mb-2">
-            Não Promessas —{' '}
-            <span style={{ color: CORAL.primary }}>Entregas Reais</span>
+            Prova Técnica,{' '}
+            <span style={{ color: CORAL.primary }}>Não Promessa Comercial</span>
           </h2>
 
           <p className="text-white/50 text-sm sm:text-base">
-            Cada item você leva funcionando no final do bootcamp
+            Cada módulo vira um ativo executável e auditável no seu portfólio.
           </p>
         </motion.div>
 
@@ -292,7 +290,7 @@ const DeliverablesSectionV2 = memo(() => {
             </div>
 
             <p className="text-sm" style={{ color: TERMINAL.green }}>
-              Aqui você leva tudo integrado por menos — e funcionando em 4 dias
+              Aqui você leva tudo integrado por menos, com arquitetura pronta para escalar.
             </p>
           </div>
         </motion.div>
