@@ -6,11 +6,16 @@ name = "aide-brasil-website"
 script = ""
 
 [[actions]]
-name = "Run"
-icon = "run"
-command = "init localhost so we can test"
-
-[[actions]]
 name = "init dev env"
 icon = "run"
 command = "nohup npm run dev -- --host 0.0.0.0 --port 5174 > /tmp/bootcamp-v2.log 2>&1 &"
+
+[[actions]]
+name = "kill session"
+icon = "run"
+command = "ids=$(lsof -tiTCP:5174 -sTCP:LISTEN); [ -n \"$ids\" ] && kill $ids"
+
+[[actions]]
+name = "mcp list"
+icon = "tool"
+command = "codex mcp list"
