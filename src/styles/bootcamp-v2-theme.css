@@ -1,0 +1,96 @@
+@layer base {
+  .bootcamp-v2 {
+    --v2-bg: #07090e;
+    --v2-bg-2: #0a0e16;
+    --v2-surface: rgba(15, 18, 27, 0.96);
+    --v2-surface-soft: rgba(15, 18, 27, 0.86);
+    --v2-surface-strong: rgba(21, 26, 38, 0.94);
+    --v2-border: rgba(255, 255, 255, 0.08);
+    --v2-border-strong: rgba(255, 255, 255, 0.16);
+    --v2-text: #e6e9f0;
+    --v2-muted: #97a0b3;
+    --v2-primary: #ff7a5c;
+    --v2-primary-light: #ffb199;
+    --v2-primary-lighter: #ffd4c6;
+    --v2-primary-dark: #e05a3d;
+    --v2-primary-glow: rgba(255, 122, 92, 0.45);
+    --v2-secondary: #7ee787;
+    --v2-accent: #46c7ff;
+    --v2-violet: #b48cff;
+    --v2-warning: #f6c177;
+    --v2-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+    background-color: var(--v2-bg);
+    color: var(--v2-text);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  .bootcamp-v2 h1,
+  .bootcamp-v2 h2,
+  .bootcamp-v2 h3,
+  .bootcamp-v2 h4,
+  .bootcamp-v2 h5,
+  .bootcamp-v2 h6,
+  .bootcamp-v2 .font-oswald,
+  .bootcamp-v2 .section-title,
+  .bootcamp-v2 .section-subtitle {
+    font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  .bootcamp-v2 .font-mono {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+}
+
+@layer utilities {
+  .bootcamp-v2 .v2-card {
+    background: linear-gradient(180deg, var(--v2-surface) 0%, rgba(9, 11, 17, 0.94) 100%);
+    border: 1px solid var(--v2-border);
+    box-shadow: var(--v2-shadow);
+  }
+
+  .bootcamp-v2 .v2-card-soft {
+    background: linear-gradient(180deg, var(--v2-surface-soft) 0%, rgba(9, 11, 17, 0.88) 100%);
+    border: 1px solid var(--v2-border);
+  }
+
+  .bootcamp-v2 .v2-panel {
+    background: linear-gradient(180deg, var(--v2-surface-strong) 0%, rgba(10, 13, 20, 0.95) 100%);
+    border: 1px solid var(--v2-border-strong);
+  }
+
+  .bootcamp-v2 .v2-chip {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--v2-border);
+    color: var(--v2-muted);
+  }
+
+  .bootcamp-v2 .v2-divider {
+    border-color: var(--v2-border);
+  }
+
+  .bootcamp-v2 .v2-soft-text {
+    color: var(--v2-muted);
+  }
+
+  .bootcamp-v2 .v2-primary-text {
+    color: var(--v2-primary);
+  }
+
+  .bootcamp-v2 .v2-accent-text {
+    color: var(--v2-accent);
+  }
+
+  .bootcamp-v2 .v2-noise {
+    position: relative;
+  }
+
+  .bootcamp-v2 .v2-noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+    opacity: 0.25;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+  }
+}

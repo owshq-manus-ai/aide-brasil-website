@@ -1,23 +1,16 @@
-import React, { useState, useEffect, memo, useCallback, useMemo, useRef } from 'react'
+import React, { useState, useEffect, memo, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
 import {
-  Calendar,
-  Clock,
   CheckCircle,
   Sparkles,
-  Timer,
   Shield,
   Award,
   Zap,
-  AlertCircle,
   Phone,
   Mail,
   User,
   X,
-  Lock,
-  Flame,
-  TrendingUp
 } from 'lucide-react'
 import { webhookEndpoints } from '../../../config/webhook-endpoints'
 
@@ -31,58 +24,79 @@ const sharedStyles = `
 
 // Static data - defined outside component
 const DELIVERABLES = [
-  { text: 'Repositório GitHub production-ready', value: 'Clone e rode em 5 minutos' },
+  { text: 'Repositório GitHub production-ready', value: 'Clone e rode com um comando' },
   { text: 'Pipeline GenAI completo em produção', value: 'Invoice →BigQuery →Dashboard' },
   { text: 'Infra GCP via Terraform', value: 'Destrua e recrie em 1 comando' },
   { text: 'CI/CD com GitHub Actions', value: 'Push = Deploy automático' },
   { text: 'Observabilidade com Langfuse', value: 'Custo, latência, qualidade' },
   { text: 'DataOps com CrewAI Agents', value: 'Eles operam, você supervisiona' },
-  { text: 'Arquitetura Multi-Cloud', value: 'GCP hoje, AWS/Azure amanhã' },
+  { text: 'Arquitetura Multi-Cloud', value: 'Portável entre GCP, AWS e Azure' },
   { text: 'Projeto pronto para portfólio', value: 'Mostre em entrevistas' }
+]
+
+const DELIVERY_LAYER_FLOW = [
+  {
+    title: 'Build Layer',
+    detail: 'Repo, pipeline e infraestrutura como codigo.',
+    color: '#46C7FF'
+  },
+  {
+    title: 'Operate Layer',
+    detail: 'Deploy, observabilidade e DataOps em rotina.',
+    color: '#7EE787'
+  },
+  {
+    title: 'Career Layer',
+    detail: 'Projeto pronto para portfolio e entrevistas.',
+    color: '#FFB199'
+  }
+]
+
+const DELIVERY_BLUEPRINT = [
+  { title: 'Repositório GitHub production-ready', value: 'Clone e rode com um comando', layer: 'Build', color: '#46C7FF' },
+  { title: 'Pipeline GenAI completo em produção', value: 'Invoice -> BigQuery -> Dashboard', layer: 'Build', color: '#46C7FF' },
+  { title: 'Infra GCP via Terraform', value: 'Destrua e recrie em 1 comando', layer: 'Build', color: '#46C7FF' },
+  { title: 'CI/CD com GitHub Actions', value: 'Push = Deploy automático', layer: 'Operate', color: '#7EE787' },
+  { title: 'Observabilidade com Langfuse', value: 'Custo, latência e qualidade', layer: 'Operate', color: '#7EE787' },
+  { title: 'DataOps com CrewAI Agents', value: 'Eles operam, você supervisiona', layer: 'Operate', color: '#7EE787' },
+  { title: 'Arquitetura Multi-Cloud', value: 'Portável entre GCP, AWS e Azure', layer: 'Career', color: '#FFB199' },
+  { title: 'Projeto pronto para portfólio', value: 'Mostre em entrevistas', layer: 'Career', color: '#FFB199' }
 ]
 
 const PRICING_TIERS = [
   {
-    id: 'lote1',
-    name: 'Early Birds',
-    subtitle: 'Quem chegou primeiro',
+    id: 'starter',
+    name: 'Plano Starter',
+    subtitle: 'Base técnica',
     price: '897',
     originalPrice: null,
-    status: 'sold_out',
+    status: 'available',
     highlight: false,
-    icon: Lock,
-    color: 'gray'
+    icon: Sparkles,
+    color: 'blue'
   },
   {
-    id: 'lote2',
-    name: 'Lote Decisão',
-    subtitle: 'Encerrado',
+    id: 'pro',
+    name: 'Plano Pro',
+    subtitle: 'Arquitetura + operação',
     price: '1.197',
     originalPrice: null,
-    status: 'sold_out',
-    highlight: false,
-    icon: Lock,
-    color: 'gray'
+    status: 'available',
+    highlight: true,
+    icon: Zap,
+    color: 'orange'
   },
   {
-    id: 'lote3',
-    name: 'Lote Final',
-    subtitle: 'Últimas vagas',
+    id: 'scale',
+    name: 'Plano Scale',
+    subtitle: 'Implementação completa',
     price: '1.397',
     originalPrice: null,
-    status: 'current',
-    highlight: true,
-    icon: Flame,
+    status: 'available',
+    highlight: false,
+    icon: Award,
     color: 'orange'
   }
-]
-
-// Countdown timer labels
-const COUNTDOWN_LABELS = [
-  { key: 'days', label: 'd' },
-  { key: 'hours', label: 'h' },
-  { key: 'minutes', label: 'm' },
-  { key: 'seconds', label: 's' }
 ]
 
 // Brazilian phone number formatting (same pattern as webinar pages)
@@ -100,11 +114,14 @@ const formatPhoneNumber = (value) => {
 
 // Deliverable Item component - memoized
 const DeliverableItem = memo(({ item }) => (
-  <div className="flex items-start gap-3 bg-white/[0.02] rounded-lg p-3 border border-white/5 hover:border-[#E07A5F]/20 transition-colors">
-    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+  <div
+    className="flex items-start gap-3 rounded-lg p-3 border transition-colors"
+    style={{ background: 'var(--pricing-surface-soft)', borderColor: 'var(--pricing-border)' }}
+  >
+    <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: 'var(--pricing-success)' }} />
     <div>
       <span className="text-white font-medium text-sm block">{item.text}</span>
-      <span className="text-xs" style={{ color: 'rgba(224, 122, 95, 0.7)' }}>{item.value}</span>
+      <span className="text-xs" style={{ color: 'var(--pricing-primary-light)' }}>{item.value}</span>
     </div>
   </div>
 ))
@@ -112,7 +129,7 @@ DeliverableItem.displayName = 'DeliverableItem'
 
 // Pricing Tier Card component - memoized
 // Mobile: optimized padding and touch targets
-// Mobile: natural order (Early Bird → Lote Decisão → Lote Final), no order manipulation
+// Mobile: natural order (Starter → Pro → Scale), no order manipulation
 const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
   const Icon = tier.icon
 
@@ -127,20 +144,25 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
       <div
         className={`
           relative h-full rounded-xl sm:rounded-2xl p-4 sm:p-6 border transition-all duration-300
-          ${tier.status === 'sold_out'
-            ? 'bg-white/[0.02] border-white/10 opacity-60'
-            : tier.highlight
-              ? 'bg-gradient-to-br from-[#E07A5F]/15 to-[#F0A090]/10 border-[#E07A5F]/40 shadow-lg shadow-[#E07A5F]/10'
-              : 'bg-white/[0.03] border-white/10 hover:border-[#E07A5F]/30'
-          }
+          hover:border-white/20
         `}
+        style={{
+          background: tier.highlight
+            ? 'linear-gradient(135deg, var(--pricing-primary-glow) 0%, rgba(255,255,255,0.02) 100%)'
+            : 'var(--pricing-surface)',
+          borderColor: tier.highlight ? 'var(--pricing-primary)' : 'var(--pricing-border)',
+          boxShadow: tier.highlight ? '0 16px 40px var(--pricing-primary-glow)' : undefined
+        }}
       >
         {/* Badge for current tier */}
         {tier.highlight && (
           <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-            <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 shadow-lg" style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}>
-              <Flame className="w-3 h-3 text-white" />
-              <span className="text-white text-xs font-bold uppercase">Melhor Oferta</span>
+            <div
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 shadow-lg"
+              style={{ background: 'linear-gradient(90deg, var(--pricing-primary), var(--pricing-primary-light))' }}
+            >
+              <Zap className="w-3 h-3 text-white" />
+              <span className="text-white text-xs font-bold uppercase">Plano Recomendado</span>
             </div>
           </div>
         )}
@@ -150,22 +172,16 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
           <div
             className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center"
             style={
-              tier.status === 'sold_out'
-                ? { backgroundColor: 'rgba(255, 255, 255, 0.1)' }
-                : tier.highlight
-                  ? { background: 'linear-gradient(135deg, #E07A5F, #F0A090)' }
-                  : { backgroundColor: 'rgba(224, 122, 95, 0.2)' }
+              tier.highlight
+                ? { background: 'linear-gradient(135deg, var(--pricing-primary), var(--pricing-primary-light))' }
+                : { backgroundColor: 'var(--pricing-primary-soft)' }
             }
           >
-            <Icon className={`w-6 h-6 ${tier.status === 'sold_out' ? 'text-white/40' : 'text-white'}`} />
+            <Icon className="w-6 h-6 text-white" />
           </div>
-          <h3 className={`text-lg font-bold ${tier.status === 'sold_out' ? 'text-white/40' : 'text-white'}`}>
-            {tier.name}
-          </h3>
+          <h3 className="text-lg font-bold text-white">{tier.name}</h3>
           {tier.subtitle && (
-            <p className={`text-sm mt-1 ${tier.status === 'sold_out' ? 'text-white/30' : 'text-white/50'}`}>
-              {tier.subtitle}
-            </p>
+            <p className="text-sm mt-1 text-white/50">{tier.subtitle}</p>
           )}
         </div>
 
@@ -175,66 +191,43 @@ const PricingTierCard = memo(({ tier, index, onOpenModal }) => {
             <div className="text-white/40 text-sm line-through mb-1">De R$ {tier.originalPrice}</div>
           )}
           <div className="flex items-baseline justify-center gap-1">
-            <span className={`text-lg ${tier.status === 'sold_out' ? 'text-white/30' : ''}`} style={tier.status !== 'sold_out' ? { color: '#E07A5F' } : undefined}>R$</span>
+            <span className="text-lg" style={{ color: 'var(--pricing-primary)' }}>R$</span>
             <span
               className={`
                 text-5xl font-oswald font-black
-                ${tier.status === 'sold_out'
-                  ? 'text-white/30 line-through'
-                  : tier.highlight
-                    ? 'bg-clip-text text-transparent'
-                    : 'text-white'
-                }
+                ${tier.highlight ? 'bg-clip-text text-transparent' : 'text-white'}
               `}
               style={tier.highlight ? {
-                backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #F0A090 50%, #E07A5F 100%)',
+                backgroundImage: 'linear-gradient(180deg, #ffffff 0%, var(--pricing-primary-light) 50%, var(--pricing-primary) 100%)',
               } : undefined}
             >
               {tier.price}
             </span>
           </div>
           {tier.highlight && (
-            <p className="text-sm mt-2" style={{ color: '#F0A090' }}>ou 12x de R$ 119,63</p>
+            <p className="text-sm mt-2" style={{ color: 'var(--pricing-primary-light)' }}>ou 12x de R$ 119,63</p>
           )}
         </div>
 
         {/* Status indicator */}
         <div className="text-center">
-          {tier.status === 'sold_out' && (
-            <span className="inline-flex items-center gap-1.5 text-white/40 text-sm">
-              <Lock className="w-4 h-4" />
-              Esgotado
+          <motion.a
+            href={`https://wa.me/5531984241779?text=${encodeURIComponent(`Olá! Tenho interesse no Bootcamp Zero to Prod com Claude Code - ${tier.name}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-3 sm:py-3 min-h-[44px] rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden text-sm sm:text-base block text-center"
+            style={{ background: 'linear-gradient(90deg, #25D366, #128C7E)' }}
+            whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(37, 211, 102, 0.5)" }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              <Phone className="w-4 h-4" />
+              <span>FALAR COM O TIME</span>
             </span>
-          )}
-          {tier.status === 'current' && (
-            <>
-              {/* CTA Button: min 44px touch target - WhatsApp link to sales team */}
-              <motion.a
-                href="https://wa.me/5531984241779?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Bootcamp%20Zero%20to%20Prod%20com%20Claude%20Code%20-%20Lote%20Final"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3 sm:py-3 min-h-[44px] rounded-xl font-oswald font-bold uppercase tracking-wider text-white transition-all duration-300 relative overflow-hidden text-sm sm:text-base block text-center"
-                style={{ background: 'linear-gradient(90deg, #25D366, #128C7E)' }}
-                whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(37, 211, 102, 0.5)" }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  <span>FALE COM TIME COMERCIAL</span>
-                </span>
-              </motion.a>
-              <div className="mt-3 flex items-center justify-center gap-1.5 sm:gap-2 text-amber-400 bg-amber-500/10 rounded-full px-2 sm:px-3 py-1.5">
-                <AlertCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
-                <span className="text-[10px] sm:text-xs font-medium">Últimas vagas disponíveis</span>
-              </div>
-            </>
-          )}
-          {tier.status === 'upcoming' && (
-            <span className="inline-flex items-center gap-1.5 text-amber-400/60 text-sm">
-              <TrendingUp className="w-4 h-4" />
-              Em breve
-            </span>
-          )}
+          </motion.a>
+          <div className="mt-3 text-[10px] sm:text-xs text-white/55">
+            Acesso liberado após confirmação de pagamento.
+          </div>
         </div>
       </div>
     </motion.div>
@@ -290,8 +283,8 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
           <X className="w-5 h-5 sm:w-4 sm:h-4" />
         </button>
 
-        <h3 className="text-2xl font-bold text-white mb-2 text-center">Última Etapa</h3>
-        <p className="text-white/60 text-center mb-6">Preencha para garantir sua vaga no <span style={{ color: '#E07A5F' }} className="font-semibold">Lote Final</span></p>
+        <h3 className="text-2xl font-bold text-white mb-2 text-center">Próxima Etapa</h3>
+        <p className="text-white/60 text-center mb-6">Preencha para avançar com seu acesso ao bootcamp.</p>
 
         {/* Form with mobile-optimized inputs (16px font prevents iOS zoom) */}
         <form onSubmit={onSubmit} className="space-y-4">
@@ -305,7 +298,7 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
                 autoComplete="name"
                 value={formData.name}
                 onChange={handleInputChange('name')}
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
+                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#FF7A5C]/50"
                 placeholder="Seu nome"
               />
             </div>
@@ -322,7 +315,7 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
                 inputMode="email"
                 value={formData.email}
                 onChange={handleInputChange('email')}
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
+                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#FF7A5C]/50"
                 placeholder="seu@email.com"
               />
             </div>
@@ -339,7 +332,7 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
                 inputMode="tel"
                 value={formData.phone}
                 onChange={handleInputChange('phone')}
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#E07A5F]/50"
+                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-base text-white placeholder:text-white/30 focus:outline-none focus:border-[#FF7A5C]/50"
                 placeholder="(11) 99999-9999"
               />
             </div>
@@ -350,14 +343,14 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
             type="submit"
             disabled={isSubmitting}
             className="w-full py-4 min-h-[48px] rounded-xl font-bold uppercase tracking-wider text-white disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
-            style={{ background: 'linear-gradient(90deg, #E07A5F, #F0A090)' }}
+            style={{ background: 'linear-gradient(90deg, #FF7A5C, #FFB199)' }}
             whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
             whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
           >
             {isSubmitting ? 'Processando...' : 'CONFIRMAR MINHA VAGA'}
           </motion.button>
           <p className="text-white/40 text-xs text-center mt-3">
-            Garantia de 7 dias —se não gostar, devolvemos 100%
+            Garantia de satisfação: se não fizer sentido para você, devolvemos 100%
           </p>
         </form>
       </motion.div>
@@ -367,37 +360,11 @@ const RegistrationModal = memo(({ isOpen, onClose, formData, setFormData, onSubm
 })
 RegistrationModal.displayName = 'RegistrationModal'
 
-const PricingSection = memo(() => {
+const PricingSection = memo(({ variant = 'default' }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
-
-  // Countdown timer - optimized with ref for interval
-  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-  const intervalRef = useRef(null)
-
-  useEffect(() => {
-    const targetDate = new Date('2026-01-28T00:00:00-03:00')
-
-    const updateCountdown = () => {
-      const now = new Date()
-      const diff = targetDate - now
-
-      if (diff > 0) {
-        setCountdown({
-          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((diff % (1000 * 60)) / 1000)
-        })
-      }
-    }
-
-    updateCountdown()
-    intervalRef.current = setInterval(updateCountdown, 1000)
-    return () => clearInterval(intervalRef.current)
-  }, [])
 
   const handleOpenModal = useCallback(() => setIsModalOpen(true), [])
   const handleCloseModal = useCallback(() => setIsModalOpen(false), [])
@@ -449,8 +416,7 @@ const PricingSection = memo(() => {
         source: 'bootcamp-zero-prod-claude-code',
         page_url: window.location.href,
         submitted_at: new Date().toISOString(),
-        bootcamp_dates: '28-31 Janeiro 2026',
-        bootcamp_time: '20:00 BRT'
+        offer_model: 'evergreen-perpetual'
       }
 
       // Submit to webhook (fire and forget - don't block redirect)
@@ -483,17 +449,57 @@ const PricingSection = memo(() => {
   }, [formData, buildEduzzUrl])
 
   const deliverables = useMemo(() => DELIVERABLES, [])
+  const deliveryLayerFlow = useMemo(() => DELIVERY_LAYER_FLOW, [])
+  const deliveryBlueprint = useMemo(() => DELIVERY_BLUEPRINT, [])
   const pricingTiers = useMemo(() => PRICING_TIERS, [])
+  const pricingVars = useMemo(() => {
+    if (variant === 'v2') {
+      return {
+        '--pricing-primary': 'var(--v2-primary)',
+        '--pricing-primary-light': 'var(--v2-primary-light)',
+        '--pricing-primary-soft': 'rgba(255, 122, 92, 0.18)',
+        '--pricing-primary-glow': 'rgba(255, 122, 92, 0.16)',
+        '--pricing-primary-glow-strong': 'rgba(255, 122, 92, 0.3)',
+        '--pricing-border': 'var(--v2-border)',
+        '--pricing-border-strong': 'var(--v2-border-strong)',
+        '--pricing-surface': 'rgba(15, 18, 27, 0.92)',
+        '--pricing-surface-soft': 'rgba(15, 18, 27, 0.8)',
+        '--pricing-muted': 'var(--v2-muted)',
+        '--pricing-danger': '#F97066',
+        '--pricing-danger-soft': 'rgba(249, 112, 102, 0.12)',
+        '--pricing-success': 'var(--v2-secondary)',
+        '--pricing-success-soft': 'rgba(126, 231, 135, 0.14)',
+        '--pricing-grid': 'rgba(255, 255, 255, 0.06)'
+      }
+    }
+    return {
+      '--pricing-primary': '#E07A5F',
+      '--pricing-primary-light': '#F0A090',
+      '--pricing-primary-soft': 'rgba(224, 122, 95, 0.2)',
+      '--pricing-primary-glow': 'rgba(224, 122, 95, 0.12)',
+      '--pricing-primary-glow-strong': 'rgba(224, 122, 95, 0.25)',
+      '--pricing-border': 'rgba(255, 255, 255, 0.1)',
+      '--pricing-border-strong': 'rgba(255, 255, 255, 0.2)',
+      '--pricing-surface': 'rgba(255, 255, 255, 0.03)',
+      '--pricing-surface-soft': 'rgba(255, 255, 255, 0.02)',
+      '--pricing-muted': 'rgba(255, 255, 255, 0.6)',
+      '--pricing-danger': '#F85149',
+      '--pricing-danger-soft': 'rgba(248, 81, 73, 0.12)',
+      '--pricing-success': '#4ADE80',
+      '--pricing-success-soft': 'rgba(74, 222, 128, 0.15)',
+      '--pricing-grid': 'rgba(224, 122, 95, 0.1)'
+    }
+  }, [variant])
 
   return (
-    <section id="pricing" className="relative py-24 bg-[#0a0a0a] overflow-hidden">
+    <section id="pricing" className="relative py-24 overflow-hidden" style={pricingVars}>
       {/* Background */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 800px 400px at 50% 50%, rgba(224, 122, 95, 0.1) 0%, transparent 50%)
+              radial-gradient(ellipse 800px 400px at 50% 45%, var(--pricing-primary-glow) 0%, transparent 55%)
             `,
           }}
         />
@@ -501,8 +507,8 @@ const PricingSection = memo(() => {
           className="absolute inset-0 opacity-5"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(224, 122, 95, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(224, 122, 95, 0.1) 1px, transparent 1px)`,
+              linear-gradient(var(--pricing-grid) 1px, transparent 1px),
+              linear-gradient(90deg, var(--pricing-grid) 1px, transparent 1px)`,
             backgroundSize: '40px 40px',
           }}
         />
@@ -522,10 +528,11 @@ const PricingSection = memo(() => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/30 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
+            style={{ backgroundColor: 'var(--pricing-danger-soft)', border: '1px solid var(--pricing-danger)' }}
           >
-            <Zap className="w-4 h-4 text-red-400" />
-            <span className="text-red-400 text-sm font-medium uppercase tracking-wider">Hora da Decisão</span>
+            <Zap className="w-4 h-4" style={{ color: 'var(--pricing-danger)' }} />
+            <span className="text-sm font-medium uppercase tracking-wider" style={{ color: 'var(--pricing-danger)' }}>Hora da Decisão</span>
           </motion.div>
 
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
@@ -535,21 +542,21 @@ const PricingSection = memo(() => {
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
-                backgroundImage: `linear-gradient(90deg, #E07A5F 0%, #F0A090 50%, #E07A5F 100%)`,
+                backgroundImage: 'linear-gradient(90deg, var(--pricing-primary) 0%, var(--pricing-primary-light) 50%, var(--pricing-primary) 100%)',
                 backgroundSize: '200% 100%',
                 animation: 'subtle-metallic 6s ease-in-out infinite',
               }}
             >
-              Liderar com IA?
+              Operar em Produção?
             </span>
           </h2>
 
           <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto px-2 sm:px-0">
-            <span style={{ color: '#E07A5F' }} className="font-bold">12 horas de hands-on</span> que mudam como você trabalha para sempre —ou seu dinheiro de volta em 7 dias.
+            Plano evergreen com acesso contínuo para construir pipeline, observabilidade e CI/CD em padrão de produção.
           </p>
         </motion.div>
 
-        {/* Countdown Timer - Mobile: scrollable if needed, smaller elements */}
+        {/* Evergreen Positioning */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -557,23 +564,18 @@ const PricingSection = memo(() => {
           viewport={{ once: true }}
           className="flex justify-center mb-8 sm:mb-12 -mx-4 sm:mx-0 px-4 sm:px-0"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-4 bg-red-500/10 border border-red-500/30 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 w-full sm:w-auto">
+          <div
+            className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-4 rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 w-full sm:w-auto"
+            style={{ backgroundColor: 'var(--pricing-danger-soft)', border: '1px solid var(--pricing-danger)' }}
+          >
             <div className="flex items-center gap-2">
-              <Timer className="w-4 h-4 sm:w-5 sm:h-5 text-red-400" />
-              <span className="text-red-400 font-medium text-sm sm:text-base">Início do Bootcamp:</span>
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: 'var(--pricing-danger)' }} />
+              <span className="font-medium text-sm sm:text-base" style={{ color: 'var(--pricing-danger)' }}>
+                Oferta Perpétua
+              </span>
             </div>
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              {COUNTDOWN_LABELS.map((item, i) => (
-                <div key={item.key} className="flex items-center">
-                  <div className="bg-red-500/20 rounded-md sm:rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 min-w-[40px] sm:min-w-[48px] text-center">
-                    <span className="text-white font-bold text-base sm:text-xl font-mono">
-                      {String(countdown[item.key]).padStart(2, '0')}
-                    </span>
-                    <span className="text-red-400 text-[10px] sm:text-xs ml-0.5 sm:ml-1">{item.label}</span>
-                  </div>
-                  {i < 3 && <span className="text-red-400 mx-0.5 sm:mx-1 text-sm">:</span>}
-                </div>
-              ))}
+            <div className="text-sm text-white/75 text-center sm:text-left">
+              Conteúdo gravado, acesso total e atualização contínua.
             </div>
           </div>
         </motion.div>
@@ -596,35 +598,81 @@ const PricingSection = memo(() => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-br from-white/[0.03] to-white/[0.01] rounded-2xl p-8 border border-white/10"
+          className="rounded-2xl p-8 border"
+          style={{ background: 'var(--pricing-surface)', borderColor: 'var(--pricing-border)' }}
         >
-          {/* Format & Dates - Mobile: 2x2 grid with smaller text */}
+          {/* Evergreen Highlights */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mb-6 sm:mb-8">
-            <div className="bg-white/5 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border border-white/10 hover:border-[#E07A5F]/30 transition-colors">
-              <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1.5 sm:mb-2" style={{ color: '#E07A5F' }} />
-              <p className="text-white font-bold text-sm sm:text-base">28-31 Jan</p>
-              <p className="text-white/50 text-xs sm:text-sm">4 dias</p>
+            <div
+              className="rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border transition-colors"
+              style={{ background: 'var(--pricing-surface-soft)', borderColor: 'var(--pricing-border)' }}
+            >
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1.5 sm:mb-2" style={{ color: 'var(--pricing-primary)' }} />
+              <p className="text-white font-bold text-sm sm:text-base">Acesso Total</p>
+              <p className="text-white/50 text-xs sm:text-sm">Conteúdo completo</p>
             </div>
-            <div className="bg-white/5 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border border-white/10 hover:border-[#E07A5F]/30 transition-colors">
-              <Clock className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1.5 sm:mb-2" style={{ color: '#E07A5F' }} />
-              <p className="text-white font-bold text-sm sm:text-base">12h código</p>
-              <p className="text-white/50 text-xs sm:text-sm">Hands-on</p>
+            <div
+              className="rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border transition-colors"
+              style={{ background: 'var(--pricing-surface-soft)', borderColor: 'var(--pricing-border)' }}
+            >
+              <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1.5 sm:mb-2" style={{ color: 'var(--pricing-primary)' }} />
+              <p className="text-white font-bold text-sm sm:text-base">Implementação Guiada</p>
+              <p className="text-white/50 text-xs sm:text-sm">Fluxo de ponta a ponta</p>
             </div>
-            <div className="bg-green-500/10 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border border-green-500/30">
-              <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 mx-auto mb-1.5 sm:mb-2" />
-              <p className="text-white font-bold text-sm sm:text-base">7 dias</p>
-              <p className="text-green-400/70 text-xs sm:text-sm">Garantia</p>
+            <div
+              className="rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border"
+              style={{ background: 'var(--pricing-success-soft)', borderColor: 'var(--pricing-success)' }}
+            >
+              <Shield className="w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1.5 sm:mb-2" style={{ color: 'var(--pricing-success)' }} />
+              <p className="text-white font-bold text-sm sm:text-base">Garantia</p>
+              <p className="text-white/60 text-xs sm:text-sm">Satisfação total</p>
             </div>
-            <div className="bg-white/5 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border border-white/10 hover:border-[#E07A5F]/30 transition-colors">
-              <Award className="w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1.5 sm:mb-2" style={{ color: '#E07A5F' }} />
-              <p className="text-white font-bold text-sm sm:text-base">Certificado</p>
-              <p className="text-white/50 text-xs sm:text-sm">+ Repo</p>
+            <div
+              className="rounded-lg sm:rounded-xl p-3 sm:p-4 text-center border transition-colors"
+              style={{ background: 'var(--pricing-surface-soft)', borderColor: 'var(--pricing-border)' }}
+            >
+              <Award className="w-4 h-4 sm:w-5 sm:h-5 mx-auto mb-1.5 sm:mb-2" style={{ color: 'var(--pricing-primary)' }} />
+              <p className="text-white font-bold text-sm sm:text-base">Certificado + Repo</p>
+              <p className="text-white/50 text-xs sm:text-sm">Prova técnica</p>
             </div>
           </div>
 
           {/* Deliverables */}
           <div>
-            <p className="text-sm uppercase tracking-wider mb-4 text-center font-bold" style={{ color: '#E07A5F' }}>8 Entregas Concretas —Não Promessas</p>
+            <div
+              className="relative rounded-2xl border px-4 sm:px-5 py-4 mb-4 overflow-hidden"
+              style={{ borderColor: 'var(--pricing-border-strong)', background: 'linear-gradient(145deg, var(--pricing-primary-glow) 0%, rgba(255,255,255,0.02) 100%)' }}
+            >
+              <div
+                className="absolute inset-0 opacity-40"
+                style={{
+                  backgroundImage: 'linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)',
+                  backgroundSize: '26px 26px'
+                }}
+              />
+              <div className="relative z-10">
+                <p className="text-[11px] uppercase tracking-[0.2em] font-semibold mb-2" style={{ color: 'var(--pricing-primary-light)' }}>
+                  Build Artifacts
+                </p>
+                <h3 className="text-lg sm:text-xl font-oswald font-bold text-white leading-tight">
+                  8 Entregas Concretas. <span style={{ color: 'var(--pricing-primary)' }}>Zero Promessa Vazia.</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-white/65 mt-1">
+                  Sistemas, operacao e carreira no mesmo pacote de implementacao.
+                </p>
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {['Code', 'GenAI', 'IaC', 'DevOps', 'LLMOps', 'Career'].map(tag => (
+                    <span
+                      key={tag}
+                      className="text-[10px] px-2 py-1 rounded-md border font-mono"
+                      style={{ borderColor: 'var(--pricing-border-strong)', backgroundColor: 'rgba(255,255,255,0.03)', color: 'var(--pricing-primary-light)' }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
             <div className="grid md:grid-cols-2 gap-3">
               {deliverables.map((item, i) => (
                 <DeliverableItem key={i} item={item} />
@@ -632,22 +680,91 @@ const PricingSection = memo(() => {
             </div>
           </div>
 
-          {/* Value Anchor + Spots Left - Mobile: stack comparison */}
-          <div className="mt-6 sm:mt-8 space-y-4">
-            {/* Value Comparison - Single responsive layout */}
-            <div className="text-center">
-              <p className="text-white/50 text-xs sm:text-sm mb-2">Se você montasse isso sozinho:</p>
-              {/* Responsive: wraps on mobile, inline on desktop */}
-              <div className="flex items-center justify-center gap-2 sm:gap-3 text-white/40 text-xs sm:text-sm flex-wrap">
-                <span>Cursos GCP: ~R$ 500</span>
-                <span className="text-white/20">+</span>
-                <span>Terraform: ~R$ 400</span>
-                <span className="text-white/20">+</span>
-                <span>GenAI: ~R$ 600</span>
-                <span className="text-white/20">=</span>
-                <span className="text-red-400 line-through font-bold">R$ 1.500+</span>
+          {/* Value Explanation Box */}
+          <div
+            className="relative mt-6 sm:mt-8 rounded-2xl border p-5 sm:p-6 overflow-hidden"
+            style={{
+              borderColor: 'var(--pricing-border-strong)',
+              background: 'linear-gradient(150deg, rgba(255,122,92,0.14) 0%, rgba(70,199,255,0.1) 52%, rgba(255,255,255,0.02) 100%)'
+            }}
+          >
+            <div
+              className="absolute inset-0 opacity-35"
+              style={{
+                backgroundImage: 'linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)',
+                backgroundSize: '30px 30px'
+              }}
+            />
+            <div className="relative z-10">
+              <p className="text-[11px] uppercase tracking-[0.2em] font-semibold mb-2" style={{ color: 'var(--pricing-primary-light)' }}>
+                Architecture Explained
+              </p>
+              <h4 className="text-xl sm:text-2xl font-oswald font-bold text-white leading-tight">
+                Um Sistema Completo.
+                {' '}
+                <span style={{ color: 'var(--pricing-primary)' }}>Nao 8 Itens Soltos.</span>
+              </h4>
+              <p className="text-sm text-white/70 mt-2 max-w-3xl">
+                O mapa abaixo traduz a imagem em arquitetura de valor: cada entrega encaixa em uma camada do sistema,
+                do build ao operate e ao impacto de carreira.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 mt-4">
+                {deliveryLayerFlow.map((layer, index) => (
+                  <div
+                    key={layer.title}
+                    className="relative rounded-xl border px-3 py-2.5"
+                    style={{ borderColor: `${layer.color}55`, backgroundColor: `${layer.color}18` }}
+                  >
+                    {index < deliveryLayerFlow.length - 1 && (
+                      <span className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 text-white/45 text-sm">
+                        {'->'}
+                      </span>
+                    )}
+                    <p className="text-[11px] uppercase tracking-[0.18em] font-semibold" style={{ color: layer.color }}>
+                      {layer.title}
+                    </p>
+                    <p className="text-xs text-white/70 mt-1 leading-relaxed">{layer.detail}</p>
+                  </div>
+                ))}
               </div>
-              <p className="text-green-400 text-xs sm:text-sm mt-2 font-medium px-2 sm:px-0">Aqui você leva tudo integrado por menos —e funcionando em 4 dias</p>
+
+              <div className="grid md:grid-cols-2 gap-2.5 mt-4">
+                {deliveryBlueprint.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-xl border p-3"
+                    style={{ borderColor: `${item.color}45`, backgroundColor: `${item.color}12` }}
+                  >
+                    <div className="flex items-start gap-2.5">
+                      <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: item.color }} />
+                      <div>
+                        <p className="text-sm text-white font-semibold leading-tight">{item.title}</p>
+                        <p className="text-xs mt-0.5 leading-relaxed" style={{ color: item.color }}>
+                          {item.value}
+                        </p>
+                        <p className="text-[10px] uppercase tracking-[0.14em] text-white/45 mt-1">{item.layer}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-4 rounded-xl border px-4 py-3" style={{ borderColor: 'var(--pricing-border-strong)', backgroundColor: 'rgba(0,0,0,0.22)' }}>
+                <p className="text-xs sm:text-sm text-white/65 mb-1">Se voce montasse isso sozinho:</p>
+                <div className="flex items-center flex-wrap gap-x-2 gap-y-1 text-sm">
+                  <span className="text-white/70">Cursos GCP ~R$ 500</span>
+                  <span className="text-white/30">+</span>
+                  <span className="text-white/70">Terraform ~R$ 400</span>
+                  <span className="text-white/30">+</span>
+                  <span className="text-white/70">GenAI ~R$ 600</span>
+                  <span className="text-white/30">=</span>
+                  <span className="line-through font-bold" style={{ color: 'var(--pricing-danger)' }}>R$ 1.500+</span>
+                </div>
+                <p className="text-sm mt-1.5 font-semibold" style={{ color: 'var(--pricing-success)' }}>
+                  Aqui você leva tudo integrado por menos e pronto para operar.
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>

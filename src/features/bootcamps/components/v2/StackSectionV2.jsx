@@ -1,11 +1,10 @@
 import React, { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Layers, Database } from 'lucide-react'
+import { V2_COLORS, V2_SURFACES } from './theme'
 
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
+const CORAL = V2_COLORS.coral
+const NEUTRAL = V2_COLORS.neutral
 
 const STACK_CATEGORIES = [
   {
@@ -63,10 +62,9 @@ const StackCard = memo(({ category, index }) => (
     className="group"
   >
     <div
-      className="relative h-full rounded-xl p-4 transition-all duration-300"
+      className="relative h-full rounded-xl p-4 transition-all duration-300 v2-card-soft"
       style={{
-        background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
-        border: `1px solid ${category.color}30`,
+        border: `1px solid ${category.color}35`,
       }}
     >
       {/* Hover glow */}
@@ -118,17 +116,17 @@ const StackSectionV2 = memo(() => {
   const categories = useMemo(() => STACK_CATEGORIES, [])
 
   return (
-    <section id="stack" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
+    <section id="stack" className="relative py-20 sm:py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 opacity-[0.02]"
+          className="absolute inset-0 opacity-[0.015]"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(224, 122, 95, 0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(224, 122, 95, 0.3) 1px, transparent 1px)
+              linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px)
             `,
-            backgroundSize: '80px 80px'
+            backgroundSize: '120px 120px'
           }}
         />
       </div>
@@ -148,17 +146,17 @@ const StackSectionV2 = memo(() => {
           >
             <Layers className="w-4 h-4" style={{ color: CORAL.primary }} />
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: CORAL.primary }}>
-              Production Stack
+              Stack de Produção
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            A Stack que{' '}
-            <span style={{ color: CORAL.primary }}>Empresas Usam</span>
+            Stack AI-Native de{' '}
+            <span style={{ color: CORAL.primary }}>Produção</span>
           </h2>
 
           <p className="text-base sm:text-lg text-white/60 max-w-xl mx-auto">
-            GCP na prática, mas com arquitetura portável — migre para AWS ou Azure quando quiser
+            Arquitetura portável para crescer sem reescrever o núcleo do sistema.
           </p>
         </motion.div>
 
@@ -180,14 +178,14 @@ const StackSectionV2 = memo(() => {
           <div
             className="inline-flex items-center gap-3 rounded-xl px-5 py-3"
             style={{
-              background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
-              border: `1px solid ${CORAL.primary}20`,
+              background: V2_SURFACES.panel,
+              border: `1px solid ${NEUTRAL.borderStrong}`,
             }}
           >
             <Database className="w-5 h-5" style={{ color: CORAL.primary }} />
             <span className="text-white/80 text-sm">
               <span style={{ color: CORAL.primary }} className="font-bold">Adapter Pattern</span>
-              {' '}— troque de cloud sem reescrever
+              {' '}— troque provider sem quebrar o core
             </span>
           </div>
         </motion.div>
