@@ -70,14 +70,14 @@ const AppContent = () => {
           <Route path="/webinars/dominando-context-engineering" element={<ContextEngineeringWebinar />} />
           <Route path="/bootcamp/ai-data-engineer" element={<AIDataEngineerBootcamp />} />
           <Route path="/bootcamp/zero-prod-claude-code" element={<ClaudeCodeBootcamp />} />
-          <Route path="/bootcamp/zero-prod-claude-code-v1" element={<ClaudeCodeBootcampV2Preview />} />
+          <Route path="/bootcamp/zero-prod-claude-code-evergreen-v1" element={<ClaudeCodeBootcampV2Preview />} />
           <Route
-            path="/bootcamp/zero-prod-claude-code-evergreen-v1"
-            element={<Navigate to="/bootcamp/zero-prod-claude-code-v1" replace />}
+            path="/bootcamp/zero-prod-claude-code-v1"
+            element={<Navigate to="/bootcamp/zero-prod-claude-code-evergreen-v1" replace />}
           />
           <Route
             path="/bootcamp/zero-prod-claude-code-v2"
-            element={<Navigate to="/bootcamp/zero-prod-claude-code-v1" replace />}
+            element={<Navigate to="/bootcamp/zero-prod-claude-code-evergreen-v1" replace />}
           />
           <Route path="/bootcamp/zero-prod-chatgpt-codex" element={<ChatGPTCodexBootcamp />} />
           <Route path="/academy" element={<AcademyLandingPage />} />

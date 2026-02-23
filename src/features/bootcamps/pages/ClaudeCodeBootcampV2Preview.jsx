@@ -24,7 +24,7 @@ SectionLoader.displayName = 'SectionLoader'
  * ClaudeCodeBootcamp V2 - Complete Page
  * Terminal/Bento aesthetic throughout
  *
- * Route: /bootcamp/zero-prod-claude-code-v1
+ * Route: /bootcamp/zero-prod-claude-code-evergreen-v1
  */
 const ClaudeCodeBootcampV2Preview = memo(() => {
   return (
