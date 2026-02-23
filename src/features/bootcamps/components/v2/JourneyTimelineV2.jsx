@@ -13,73 +13,81 @@ import {
   CheckCircle,
   Sparkles
 } from 'lucide-react'
-import { V2_COLORS } from './theme'
 
-const CORAL = V2_COLORS.coral
-const TERMINAL = V2_COLORS.terminal
-const NEUTRAL = V2_COLORS.neutral
+const CORAL = {
+  primary: '#E07A5F',
+  light: '#F0A090',
+}
+
+const TERMINAL = {
+  green: '#7ee787',
+  blue: '#79c0ff',
+  purple: '#d2a8ff',
+  bg: '#0D1117',
+  border: '#30363d',
+}
 
 const STEPS = [
   {
     number: 1,
-    title: 'Mapear requisito em Spec',
-    subtitle: 'Fase Contexto',
-    command: 'claude init --spec invoice',
-    skills: ['Context Engineering', 'Acceptance Criteria'],
+    title: 'Traduzir Negócio em Contexto',
+    subtitle: 'Requisito →Spec',
+    command: 'claude init --project invoice',
+    skills: ['Problem Framing', 'Context Engineering'],
     icon: Users
   },
   {
     number: 2,
-    title: 'Conectar dados reais',
-    subtitle: 'Fase Dados',
-    command: 'mcp connect bigquery',
-    skills: ['MCP Setup', 'Data Access'],
+    title: 'Ativar Frota de Agentes',
+    subtitle: 'Solo →Time de IA',
+    command: 'mcp connect --all && agent spawn',
+    skills: ['Agent Orchestration', 'MCP Setup'],
     icon: Terminal
   },
   {
     number: 3,
-    title: 'Prototipar o pipeline GenAI',
-    subtitle: 'Fase Pipeline',
+    title: 'Prototipar em Minutos',
+    subtitle: 'Ideia →Código',
     command: 'claude "build extraction pipeline"',
     skills: ['Rapid Prototyping', 'Test-Driven GenAI'],
     icon: FlaskConical
   },
   {
     number: 4,
-    title: 'Desenhar multi-cloud',
-    subtitle: 'Fase Arquitetura',
+    title: 'Desenhar Multi-Cloud',
+    subtitle: 'GCP →Qualquer Cloud',
     command: 'claude "add adapter pattern"',
     skills: ['Cloud Architecture', 'Adapter Design'],
     icon: Cloud
   },
   {
     number: 5,
-    title: 'Infra como código',
-    subtitle: 'Fase Infra',
+    title: 'Subir Infra como Código',
+    subtitle: 'Console →Terraform',
     command: 'terraform apply -auto-approve',
     skills: ['IaC', 'Environment Management'],
     icon: Server
   },
   {
     number: 6,
-    title: 'Observabilidade e LLMOps',
-    subtitle: 'Fase LLMOps',
-    command: 'langfuse init --env prod',
-    skills: ['LLMOps', 'Cost & Quality'],
+    title: 'GenAI em Produção',
+    subtitle: 'Invoice →Dashboard',
+    command: 'deploy --pipeline genai --env prod',
+    skills: ['LLMOps', 'Langfuse'],
     icon: Brain
   },
   {
     number: 7,
-    title: 'CI/CD com gates',
-    subtitle: 'Fase Release',
+    title: 'Automatizar Deploy',
+    subtitle: 'Push →CI/CD',
     command: 'git push origin main # auto-deploy',
     skills: ['GitHub Actions', 'Quality Gates'],
     icon: GitBranch
   },
   {
     number: 8,
-    title: 'Operar com agentes',
-    subtitle: 'Fase Operação',
+    title: 'Operar com Agentes',
+    subtitle: 'Manual →Autônomo',
     command: 'crewai start --mode autonomous',
     skills: ['CrewAI', 'DataOps'],
     icon: Bot
@@ -102,11 +110,11 @@ const StepCard = memo(({ step, index, isExpanded, onToggle }) => {
         className={`
           relative rounded-xl p-4 cursor-pointer transition-all duration-300
           ${step.isCore ? 'ring-2' : 'hover:scale-[1.01]'}
-          v2-card-soft
         `}
         style={{
-          border: `1px solid ${step.isCore ? CORAL.primary + '80' : NEUTRAL.border}`,
-          boxShadow: step.isCore ? `0 0 0 1px ${CORAL.primary}40` : undefined,
+          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
+          border: `1px solid ${step.isCore ? CORAL.primary + '60' : TERMINAL.border}`,
+          ringColor: step.isCore ? CORAL.primary + '40' : 'transparent',
         }}
       >
         {/* Core Badge */}
@@ -153,7 +161,7 @@ const StepCard = memo(({ step, index, isExpanded, onToggle }) => {
               animate={isExpanded ? { rotate: 180 } : { rotate: 0 }}
               transition={{ duration: 0.2 }}
               className="w-8 h-8 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: 'rgba(255,255,255,0.04)' }}
+              style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}
             >
               <ChevronDown className="w-4 h-4 text-white/50" />
             </motion.div>
@@ -174,7 +182,7 @@ const StepCard = memo(({ step, index, isExpanded, onToggle }) => {
                 {/* Command */}
                 <div
                   className="font-mono text-sm px-3 py-2 rounded-lg mb-3"
-                  style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
+                  style={{ backgroundColor: 'rgba(0,0,0,0.3)' }}
                 >
                   <span style={{ color: TERMINAL.green }}>$</span>{' '}
                   <span className="text-white/80">{step.command}</span>
@@ -212,16 +220,13 @@ const JourneyTimelineV2 = memo(() => {
   }, [])
 
   return (
-    <section id="journey" className="relative py-20 sm:py-24 overflow-hidden">
+    <section id="journey" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
-            background: `
-              radial-gradient(ellipse 820px 420px at 50% 15%, ${CORAL.subtle} 0%, transparent 55%),
-              radial-gradient(ellipse 520px 320px at 85% 80%, rgba(70, 199, 255, 0.12) 0%, transparent 60%)
-            `
+            background: `radial-gradient(ellipse 800px 400px at 50% 20%, ${CORAL.primary}08 0%, transparent 50%)`
           }}
         />
       </div>
@@ -235,13 +240,23 @@ const JourneyTimelineV2 = memo(() => {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16"
         >
+          <div
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
+            style={{ backgroundColor: `${CORAL.primary}15`, border: `1px solid ${CORAL.primary}30` }}
+          >
+            <GitBranch className="w-4 h-4" style={{ color: CORAL.primary }} />
+            <span className="text-sm font-medium uppercase tracking-wider" style={{ color: CORAL.primary }}>
+              Blueprint de Implementação
+            </span>
+          </div>
+
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            Sequência de{' '}
-            <span style={{ color: CORAL.primary }}>Entrega Operável</span>
+            8 Passos Para{' '}
+            <span style={{ color: CORAL.primary }}>Produção</span>
           </h2>
 
           <p className="text-base sm:text-lg text-white/60 max-w-xl mx-auto">
-            Cada passo gera um ativo real no repositório.{' '}
+            Cada passo termina com artefato real de engenharia.{' '}
             <span style={{ color: CORAL.primary }}>Toque para ver os detalhes.</span>
           </p>
         </motion.div>

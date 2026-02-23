@@ -1,10 +1,11 @@
 import React, { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { Layers, Database } from 'lucide-react'
-import { V2_COLORS, V2_SURFACES } from './theme'
+import { Layers, Database, ShieldCheck, Activity } from 'lucide-react'
 
-const CORAL = V2_COLORS.coral
-const NEUTRAL = V2_COLORS.neutral
+const CORAL = {
+  primary: '#E07A5F',
+  light: '#F0A090',
+}
 
 const STACK_CATEGORIES = [
   {
@@ -15,7 +16,7 @@ const STACK_CATEGORIES = [
   },
   {
     category: 'GenAI',
-    items: ['Gemini', 'Langfuse'],
+    items: ['Claude Code', 'Langfuse'],
     image: '/images/logos/google-gemini-icon.webp',
     color: '#8e44ef'
   },
@@ -42,6 +43,18 @@ const STACK_CATEGORIES = [
     items: ['Terraform', 'Terragrunt'],
     isTerraform: true,
     color: '#7b42bc'
+  },
+  {
+    category: 'Quality',
+    items: ['SonarCloud (local)', 'Snyk (local)'],
+    icon: ShieldCheck,
+    color: '#22c55e'
+  },
+  {
+    category: 'Measurement',
+    items: ['Tracing', 'Cost & latency'],
+    icon: Activity,
+    color: '#f97316'
   }
 ]
 
@@ -62,9 +75,10 @@ const StackCard = memo(({ category, index }) => (
     className="group"
   >
     <div
-      className="relative h-full rounded-xl p-4 transition-all duration-300 v2-card-soft"
+      className="relative h-full rounded-xl p-4 transition-all duration-300"
       style={{
-        border: `1px solid ${category.color}35`,
+        background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
+        border: `1px solid ${category.color}30`,
       }}
     >
       {/* Hover glow */}
@@ -83,6 +97,8 @@ const StackCard = memo(({ category, index }) => (
             <div style={{ color: category.color }}>
               <TerraformIcon />
             </div>
+          ) : category.icon ? (
+            <category.icon className="w-6 h-6" style={{ color: category.color }} />
           ) : (
             <img
               src={category.image}
@@ -116,17 +132,17 @@ const StackSectionV2 = memo(() => {
   const categories = useMemo(() => STACK_CATEGORIES, [])
 
   return (
-    <section id="stack" className="relative py-20 sm:py-24 overflow-hidden">
+    <section id="stack" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 opacity-[0.015]"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px)
+              linear-gradient(rgba(224, 122, 95, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(224, 122, 95, 0.3) 1px, transparent 1px)
             `,
-            backgroundSize: '120px 120px'
+            backgroundSize: '80px 80px'
           }}
         />
       </div>
@@ -146,22 +162,22 @@ const StackSectionV2 = memo(() => {
           >
             <Layers className="w-4 h-4" style={{ color: CORAL.primary }} />
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: CORAL.primary }}>
-              Stack de Produção
+              Production Stack
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            Stack AI-Native de{' '}
-            <span style={{ color: CORAL.primary }}>Produção</span>
+            A Stack que{' '}
+            <span style={{ color: CORAL.primary }}>Empresas Usam</span>
           </h2>
 
           <p className="text-base sm:text-lg text-white/60 max-w-xl mx-auto">
-            Arquitetura portável para crescer sem reescrever o núcleo do sistema.
+            Pipeline de dados com qualidade e observabilidade desde o início — portável para qualquer cloud.
           </p>
         </motion.div>
 
         {/* Stack Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
           {categories.map((category, index) => (
             <StackCard key={category.category} category={category} index={index} />
           ))}
@@ -178,14 +194,14 @@ const StackSectionV2 = memo(() => {
           <div
             className="inline-flex items-center gap-3 rounded-xl px-5 py-3"
             style={{
-              background: V2_SURFACES.panel,
-              border: `1px solid ${NEUTRAL.borderStrong}`,
+              background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
+              border: `1px solid ${CORAL.primary}20`,
             }}
           >
             <Database className="w-5 h-5" style={{ color: CORAL.primary }} />
             <span className="text-white/80 text-sm">
               <span style={{ color: CORAL.primary }} className="font-bold">Adapter Pattern</span>
-              {' '}— troque provider sem quebrar o core
+              {' '}— troque de cloud sem reescrever
             </span>
           </div>
         </motion.div>

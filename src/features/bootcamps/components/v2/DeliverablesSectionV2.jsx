@@ -12,37 +12,46 @@ import {
   Eye,
   Cloud,
   Briefcase,
-  Code2
+  Code2,
+  Users,
+  MessageCircle
 } from 'lucide-react'
-import { V2_COLORS, V2_SURFACES } from './theme'
 
-const CORAL = V2_COLORS.coral
-const TERMINAL = V2_COLORS.terminal
-const NEUTRAL = V2_COLORS.neutral
+const CORAL = {
+  primary: '#E07A5F',
+  light: '#F0A090',
+}
+
+const TERMINAL = {
+  green: '#7ee787',
+  blue: '#79c0ff',
+  purple: '#d2a8ff',
+  border: '#30363d',
+}
 
 const HIGHLIGHTS = [
   {
-    icon: Rocket,
-    value: 'Acesso Total',
-    label: 'Conteúdo completo liberado',
+    icon: Users,
+    value: '210+',
+    label: 'Profissionais impactados',
     color: TERMINAL.blue
   },
   {
+    icon: Code2,
+    value: '08',
+    label: 'Entregas reais de engenharia',
+    color: TERMINAL.purple
+  },
+  {
     icon: Shield,
-    value: 'Garantia de Satisfação',
-    label: 'Risco técnico reduzido',
+    value: '100%',
+    label: 'Projeto orientado por specs',
     color: TERMINAL.green
   },
   {
-    icon: Award,
-    value: 'Portfólio Estratégico',
-    label: 'Projeto que comprova senioridade',
-    color: CORAL.primary
-  },
-  {
-    icon: Package,
-    value: 'Arquitetura Aplicada',
-    label: 'Do requisito ao deploy',
+    icon: MessageCircle,
+    value: 'WhatsApp',
+    label: 'Fechamento consultivo com vendas',
     color: CORAL.primary
   }
 ]
@@ -50,49 +59,49 @@ const HIGHLIGHTS = [
 const DELIVERABLES = [
   {
     title: 'Repositório GitHub production-ready',
-    description: 'Clone e rode com um comando',
+    description: 'Onboarding técnico com estrutura profissional',
     icon: GitBranch,
     category: 'Code'
   },
   {
-    title: 'Pipeline GenAI em produção',
+    title: 'Pipeline GenAI completo em produção',
     description: 'Invoice → BigQuery → Dashboard',
     icon: Rocket,
     category: 'GenAI'
   },
   {
     title: 'Infra GCP via Terraform',
-    description: 'Ambientes reproduzíveis',
+    description: 'Infra reproduzível com governança',
     icon: Server,
     category: 'IaC'
   },
   {
-    title: 'CI/CD com gates de qualidade',
-    description: 'Push = deploy com validação',
+    title: 'CI/CD com GitHub Actions',
+    description: 'Push validado com pipeline automatizada',
     icon: Package,
     category: 'DevOps'
   },
   {
     title: 'Observabilidade com Langfuse',
-    description: 'Custo, latência e qualidade',
+    description: 'Custo, latência, qualidade',
     icon: Eye,
     category: 'LLMOps'
   },
   {
-    title: 'Agentes operando com runbooks',
-    description: 'Você supervisiona, eles executam',
+    title: 'DataOps com CrewAI Agents',
+    description: 'Eles operam, você supervisiona',
     icon: BarChart3,
     category: 'Agents'
   },
   {
-    title: 'Arquitetura multi-cloud',
-    description: 'Portável entre GCP, AWS e Azure',
+    title: 'Arquitetura Multi-Cloud',
+    description: 'GCP hoje, AWS/Azure amanhã',
     icon: Cloud,
     category: 'Arch'
   },
   {
     title: 'Projeto pronto para portfólio',
-    description: 'Mostre em entrevistas e cases',
+    description: 'Demonstração de senioridade em entrevistas',
     icon: Briefcase,
     category: 'Career'
   }
@@ -110,9 +119,10 @@ const HighlightCard = memo(({ item, index }) => {
       className="relative group"
     >
       <div
-        className="relative h-full rounded-xl p-5 text-center transition-all duration-300 hover:scale-[1.02] v2-card-soft"
+        className="relative h-full rounded-xl p-5 text-center transition-all duration-300 hover:scale-[1.03]"
         style={{
-          border: `1px solid ${item.color}35`,
+          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.8) 100%)',
+          border: `1px solid ${item.color}30`,
         }}
       >
         {/* Glow on hover */}
@@ -156,9 +166,10 @@ const DeliverableItem = memo(({ item, index }) => {
       className="group"
     >
       <div
-        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.01] v2-card-soft"
+        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
         style={{
-          border: `1px solid ${NEUTRAL.border}`,
+          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
+          border: `1px solid ${TERMINAL.border}`,
         }}
       >
         <div className="flex items-start gap-3">
@@ -197,15 +208,15 @@ const DeliverablesSectionV2 = memo(() => {
   const deliverables = useMemo(() => DELIVERABLES, [])
 
   return (
-    <section id="deliverables" className="relative py-20 sm:py-24 overflow-hidden">
+    <section id="deliverables" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 640px 320px at 50% 15%, ${CORAL.subtle} 0%, transparent 55%),
-              radial-gradient(ellipse 420px 240px at 85% 80%, rgba(126, 231, 135, 0.12) 0%, transparent 60%)
+              radial-gradient(ellipse 600px 300px at 50% 20%, ${CORAL.primary}08 0%, transparent 50%),
+              radial-gradient(ellipse 400px 200px at 80% 80%, ${TERMINAL.green}05 0%, transparent 50%)
             `
           }}
         />
@@ -241,17 +252,18 @@ const DeliverablesSectionV2 = memo(() => {
           >
             <Code2 className="w-4 h-4" style={{ color: TERMINAL.green }} />
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: TERMINAL.green }}>
-              Entregas que Viram Ativo
+              Pacote de Implementação
             </span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-oswald font-bold text-white mb-2">
-            Prova Técnica,{' '}
-            <span style={{ color: CORAL.primary }}>Não Promessa Comercial</span>
+            Você Não Compra Aula.
+            {' '}
+            <span style={{ color: CORAL.primary }}>Compra Ativos Técnicos</span>
           </h2>
 
-          <p className="text-white/50 text-sm sm:text-base">
-            Cada módulo vira um ativo executável e auditável no seu portfólio.
+          <p className="text-white/60 text-sm sm:text-base max-w-2xl mx-auto">
+            Cada bloco abaixo vira evidência de execução para portfólio, promoção e novas oportunidades.
           </p>
         </motion.div>
 
@@ -271,26 +283,26 @@ const DeliverablesSectionV2 = memo(() => {
           className="text-center"
         >
           <div
-            className="inline-block rounded-xl p-5 sm:p-6"
+            className="rounded-2xl p-5 sm:p-6 max-w-4xl mx-auto"
             style={{
-              background: V2_SURFACES.panel,
-              border: `1px solid ${NEUTRAL.borderStrong}`,
+              background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.96) 0%, rgba(13, 17, 23, 0.8) 100%)',
+              border: `1px solid ${CORAL.primary}30`,
             }}
           >
-            <p className="text-white/50 text-sm mb-3">Se você montasse isso sozinho:</p>
+            <p className="text-white/65 text-sm mb-3">Valor percebido quando você teria que montar tudo separado:</p>
 
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/70 mb-4">
-              <span>Cursos GCP: ~R$ 500</span>
+              <span>Cloud & Data: ~R$ 500</span>
               <span className="text-white/30">+</span>
-              <span>Terraform: ~R$ 400</span>
+              <span>Terraform & CI/CD: ~R$ 400</span>
               <span className="text-white/30">+</span>
-              <span>GenAI: ~R$ 600</span>
+              <span>GenAI & Agents: ~R$ 600</span>
               <span className="text-white/30">=</span>
-              <span className="text-lg font-bold" style={{ color: CORAL.primary }}>R$ 1.500+</span>
+              <span className="text-lg font-bold text-red-400 line-through">R$ 1.500+</span>
             </div>
 
             <p className="text-sm" style={{ color: TERMINAL.green }}>
-              Aqui você leva tudo integrado por menos, com arquitetura pronta para escalar.
+              Aqui você leva tudo integrado, com blueprint técnico único e pronto para operação.
             </p>
           </div>
         </motion.div>

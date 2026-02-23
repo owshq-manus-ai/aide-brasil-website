@@ -10,28 +10,33 @@ import {
   Terminal,
   GitBranch
 } from 'lucide-react'
-import { V2_COLORS } from './theme'
 
-const CORAL = V2_COLORS.coral
-const TERMINAL = V2_COLORS.terminal
-const NEUTRAL = V2_COLORS.neutral
+const CORAL = {
+  primary: '#E07A5F',
+  light: '#F0A090',
+}
+
+const TERMINAL = {
+  green: '#7ee787',
+  purple: '#d2a8ff',
+}
 
 const TARGET_AUDIENCES = [
   {
     title: 'Data Engineers',
-    description: 'Pipelines manuais → sistemas operáveis',
+    description: 'Trocam scripts frágeis por fluxo de entrega assistido por agentes',
     icon: Database,
     fit: 'perfect',
   },
   {
     title: 'Analytics Engineers',
-    description: 'SQL tradicional → extração inteligente',
+    description: 'Evoluem de SQL isolado para produto analítico com governança',
     icon: BarChart3,
     fit: 'perfect',
   },
   {
     title: 'Software Engineers',
-    description: 'Solo coder → time de IA',
+    description: 'Aceleram backlog sem perder padrão de qualidade',
     icon: Code2,
     fit: 'good',
   }
@@ -40,7 +45,7 @@ const TARGET_AUDIENCES = [
 const PREREQUISITES = [
   {
     requirement: 'SQL + Python',
-    description: 'SELECT, JOINs e funções básicas',
+    description: 'SELECT, JOINs, funções básicas',
     icon: Code2,
   },
   {
@@ -50,7 +55,7 @@ const PREREQUISITES = [
   },
   {
     requirement: 'Claude Code Pro',
-    description: 'Plano Pro ativo para executar todo o fluxo',
+    description: 'Conta ativa para operar os agentes',
     icon: Terminal,
   }
 ]
@@ -68,9 +73,10 @@ const AudienceCard = memo(({ audience, index }) => {
       className="group"
     >
       <div
-        className="relative rounded-xl p-4 transition-all duration-300 hover:scale-[1.01] v2-card-soft"
+        className="relative rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
         style={{
-          border: `1px solid ${isPerfect ? TERMINAL.green + '55' : NEUTRAL.border}`,
+          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
+          border: `1px solid ${isPerfect ? TERMINAL.green + '40' : 'rgba(48, 54, 61, 0.8)'}`,
         }}
       >
         <div className="flex items-center gap-3">
@@ -112,9 +118,10 @@ const PrerequisiteCard = memo(({ prereq, index }) => {
       viewport={{ once: true }}
     >
       <div
-        className="relative rounded-xl p-4 transition-all duration-300 v2-card-soft"
+        className="relative rounded-xl p-4 transition-all duration-300"
         style={{
-          border: `1px solid ${NEUTRAL.border}`,
+          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
+          border: `1px solid ${CORAL.primary}20`,
         }}
       >
         <div className="flex items-center gap-3">
@@ -140,15 +147,15 @@ const AudienceSectionV2 = memo(() => {
   const prerequisites = useMemo(() => PREREQUISITES, [])
 
   return (
-    <section id="audience" className="relative py-20 sm:py-24 overflow-hidden">
+    <section id="audience" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 520px 260px at 30% 30%, ${CORAL.subtle} 0%, transparent 55%),
-              radial-gradient(ellipse 420px 220px at 70% 70%, rgba(180, 140, 255, 0.1) 0%, transparent 55%)
+              radial-gradient(ellipse 500px 250px at 30% 30%, ${CORAL.primary}05 0%, transparent 50%),
+              radial-gradient(ellipse 400px 200px at 70% 70%, ${CORAL.primary}05 0%, transparent 50%)
             `
           }}
         />
@@ -169,17 +176,17 @@ const AudienceSectionV2 = memo(() => {
           >
             <Users className="w-4 h-4" style={{ color: CORAL.primary }} />
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: CORAL.primary }}>
-              Você Se Encaixa?
+              Perfil Ideal
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            Perfis que Escalam com{' '}
-            <span style={{ color: CORAL.primary }}>Agentic Engineering</span>
+            Para Quem Quer{' '}
+            <span style={{ color: CORAL.primary }}>Executar em Alto Nível</span>
           </h2>
 
           <p className="text-base sm:text-lg text-white/60 max-w-xl mx-auto">
-            Se você já constrói com dados e código, este bootcamp vira sua vantagem competitiva de execução.
+            Se você trabalha com dados, analytics ou software, este fluxo encaixa direto no seu dia a dia técnico.
           </p>
         </motion.div>
 
@@ -218,18 +225,15 @@ const AudienceSectionV2 = memo(() => {
               viewport={{ once: true }}
               className="mt-4 p-4 rounded-xl"
               style={{
-                background: `linear-gradient(90deg, ${TERMINAL.green}14, ${CORAL.subtle})`,
-                border: `1px solid ${NEUTRAL.borderStrong}`
+                background: `linear-gradient(90deg, ${TERMINAL.green}10, ${CORAL.primary}10)`,
+                border: `1px solid ${TERMINAL.green}30`
               }}
             >
               <p className="text-white/80 text-sm">
                 <span style={{ color: TERMINAL.green }} className="font-bold">Resumindo:</span>{' '}
-                SQL + Python + Git = <span className="text-white font-semibold">base suficiente para acelerar com método</span>
+                Base de SQL + Python + Git = <span className="text-white font-semibold">você está pronto para aplicar</span>
               </p>
             </motion.div>
-            <div className="mt-3 text-xs text-white/40">
-              Não é para iniciantes em programação.
-            </div>
           </div>
         </div>
       </div>

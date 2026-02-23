@@ -9,44 +9,70 @@ import {
   ArrowRight,
   X,
   Check,
-  AlertTriangle
+  AlertTriangle,
+  ShieldCheck,
+  Gauge,
+  GitBranch
 } from 'lucide-react'
-import { V2_COLORS, V2_SURFACES } from './theme'
 
-const CORAL = V2_COLORS.coral
-const TERMINAL = V2_COLORS.terminal
-const NEUTRAL = V2_COLORS.neutral
+const CORAL = {
+  primary: '#E07A5F',
+  light: '#F0A090',
+}
+
+const TERMINAL = {
+  green: '#7ee787',
+  red: '#f85149',
+}
 
 const DIFFERENTIATORS = [
   {
-    before: 'Prompt solto',
-    after: 'Spec + critérios de aceite',
+    before: 'Datasets de exemplo',
+    after: 'Invoice intelligence real',
     icon: ArrowRight,
   },
   {
-    before: 'Dataset toy',
-    after: 'Pipeline invoice-intelligence',
+    before: 'ChatGPT como assistente',
+    after: 'Claude Code como par de programação',
     icon: Bot,
   },
   {
-    before: 'Sem observabilidade',
-    after: 'Langfuse com custo/latência',
+    before: 'Amarrado em um provider',
+    after: 'Arquitetura 100% portável',
     icon: Cloud,
   },
   {
-    before: '1 cloud apenas',
-    after: 'Adapter multi-cloud',
+    before: 'Param no prompt',
+    after: 'Observabilidade com Langfuse',
     icon: BarChart3,
   },
   {
     before: 'Você executa tudo',
-    after: 'Agentes com runbooks',
+    after: 'CrewAI Agents operando sozinhos',
     icon: Settings,
   },
   {
-    before: 'Certificado genérico',
-    after: 'Repo pronto para entrevistas',
+    before: 'PDF no LinkedIn',
+    after: 'Sistema completo rodando',
     icon: Trophy,
+  }
+]
+
+const PRODUCTION_PILLARS = [
+  {
+    icon: ShieldCheck,
+    title: 'Qualidade por padrão',
+    detail: 'Checkpoints com testes, segurança e revisão técnica'
+  },
+  {
+    icon: Gauge,
+    title: 'Measurement contínuo',
+    detail: 'Custo, latência e qualidade monitorados na operação'
+  },
+  {
+    icon: GitBranch,
+    title: 'Escala de time',
+    detail: 'Fluxo reproduzível para manter ritmo de entrega'
   }
 ]
 
@@ -62,9 +88,10 @@ const DifferentiatorCard = memo(({ item, index }) => {
       className="group"
     >
       <div
-        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.01] v2-card-soft"
+        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
         style={{
-          border: `1px solid ${NEUTRAL.border}`,
+          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
+          border: '1px solid rgba(48, 54, 61, 0.8)',
         }}
       >
         {/* Before (crossed out) */}
@@ -94,17 +121,18 @@ DifferentiatorCard.displayName = 'DifferentiatorCard'
 
 const DifferentiatorSectionV2 = memo(() => {
   const differentiators = useMemo(() => DIFFERENTIATORS, [])
+  const pillars = useMemo(() => PRODUCTION_PILLARS, [])
 
   return (
-    <section id="differentiator" className="relative py-20 sm:py-24 overflow-hidden">
+    <section id="differentiator" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 520px 260px at 25% 20%, ${CORAL.subtle} 0%, transparent 55%),
-              radial-gradient(ellipse 420px 220px at 70% 75%, rgba(180, 140, 255, 0.12) 0%, transparent 55%)
+              radial-gradient(ellipse 500px 250px at 30% 30%, ${CORAL.primary}08 0%, transparent 50%),
+              radial-gradient(ellipse 400px 200px at 70% 70%, ${CORAL.primary}05 0%, transparent 50%)
             `
           }}
         />
@@ -125,20 +153,47 @@ const DifferentiatorSectionV2 = memo(() => {
           >
             <AlertTriangle className="w-4 h-4" style={{ color: CORAL.primary }} />
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: CORAL.primary }}>
-              O Que Muda o Jogo
+              Diferencial de Produção
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            Não é Mais Um Curso.
-            {' '}
-            <span style={{ color: CORAL.primary }}>É Virada de Nível.</span>
+            Diferencial de Produção de Verdade.
+            <br />
+            É um{' '}
+            <span style={{ color: CORAL.primary }}>playbook técnico para entrega confiável</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-white/60 max-w-2xl mx-auto">
-            Cada bloco foi pensado para converter conhecimento em ativo técnico que você usa em produção.
+          <p className="text-base sm:text-lg text-white/65 max-w-3xl mx-auto leading-relaxed">
+            Aqui você aprende a operar uma rotina completa de engenharia:
+            {' '}contexto versionado, agentes com papel definido, quality gates e visibilidade de operação.
           </p>
         </motion.div>
+
+        {/* Pillars */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+          {pillars.map((pillar, index) => {
+            const Icon = pillar.icon
+
+            return (
+              <motion.div
+                key={pillar.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="rounded-xl p-4"
+                style={{ backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.12)' }}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <Icon className="w-4 h-4" style={{ color: CORAL.primary }} />
+                  <h4 className="text-sm font-semibold text-white">{pillar.title}</h4>
+                </div>
+                <p className="text-sm text-white/65 leading-relaxed">{pillar.detail}</p>
+              </motion.div>
+            )
+          })}
+        </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
@@ -156,17 +211,17 @@ const DifferentiatorSectionV2 = memo(() => {
           className="text-center"
         >
           <div
-            className="inline-block rounded-xl px-6 py-4"
+            className="inline-block rounded-xl px-6 py-4 max-w-3xl"
             style={{
-              background: V2_SURFACES.panel,
-              border: `1px solid ${NEUTRAL.borderStrong}`,
+              background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
+              border: `1px solid ${CORAL.primary}20`,
             }}
           >
             <p className="text-lg sm:text-xl font-oswald text-white">
-              <span className="text-white/50">Outros vendem</span>{' '}
-              <span className="text-red-400 line-through">efeito wow</span>.
-              {' '}Aqui você constrói{' '}
-              <span style={{ color: CORAL.primary }} className="font-bold">sistemas reais</span>.
+              <span className="text-white/50">Outros ensinam</span>{' '}
+              <span className="text-red-400 line-through">ferramentas</span>.
+              {' '}Aqui você aprende a{' '}
+              <span style={{ color: CORAL.primary }} className="font-bold">entregar sistemas auditáveis</span>.
             </p>
           </div>
         </motion.div>

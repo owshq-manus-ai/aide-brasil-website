@@ -14,12 +14,19 @@ import {
   Shield,
   ArrowRight
 } from 'lucide-react'
-import { V2_COLORS, V2_SURFACES } from './theme'
 
 // Theme constants - shared across V2 components
-const CORAL = V2_COLORS.coral
-const TERMINAL = V2_COLORS.terminal
-const NEUTRAL = V2_COLORS.neutral
+const CORAL = {
+  primary: '#E07A5F',
+  light: '#F0A090',
+  dark: '#C96A50',
+}
+
+const TERMINAL = {
+  green: '#7ee787',
+  blue: '#79c0ff',
+  purple: '#d2a8ff',
+}
 
 const sharedStyles = `
   @keyframes subtle-metallic {
@@ -33,57 +40,57 @@ const CLAUDE_CODE_FEATURES = [
   {
     icon: FileText,
     title: 'CLAUDE.md',
-    description: 'Brief técnico permanente',
-    command: 'claude init --spec',
+    description: 'Contexto permanente do projeto',
+    command: 'claude init',
     color: TERMINAL.green
   },
   {
     icon: Server,
     title: 'MCPs',
-    description: 'Conexões reais com dados',
-    command: 'mcp connect bigquery',
+    description: 'Conecte bancos e APIs',
+    command: 'mcp connect db',
     color: TERMINAL.blue
   },
   {
     icon: BookOpen,
     title: 'Knowledge',
-    description: 'Docs vivos no agente',
+    description: 'Injete documentação',
     command: 'claude learn docs/',
     color: TERMINAL.purple
   },
   {
     icon: Users,
     title: 'SubAgents',
-    description: 'Time especializado por tarefa',
-    command: 'agent spawn --role qa',
+    description: 'Delegue para agentes',
+    command: 'agent spawn --task',
     color: CORAL.primary
   },
   {
     icon: Terminal,
     title: 'Commands',
-    description: 'Runbooks e automações',
+    description: 'Automatize workflows',
     command: '/deploy --prod',
     color: TERMINAL.green
   },
   {
     icon: Webhook,
     title: 'Hooks',
-    description: 'Qualidade a cada commit',
+    description: 'Dispare em eventos',
     command: 'on:commit → test',
     color: TERMINAL.blue
   },
   {
     icon: Wand2,
     title: 'Skills',
-    description: 'Boas práticas reutilizáveis',
+    description: 'Capacidades reutilizáveis',
     command: 'skill install @review',
     color: TERMINAL.purple
   },
   {
     icon: Settings,
     title: 'Templates',
-    description: 'Entrega padronizada',
-    command: 'template use pipeline',
+    description: 'Outputs consistentes',
+    command: 'template use api',
     color: CORAL.light
   }
 ]
@@ -98,13 +105,14 @@ const FeatureCard = memo(({ item, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
       viewport={{ once: true }}
-      whileHover={{ y: -3, scale: 1.01 }}
+      whileHover={{ y: -3, scale: 1.02 }}
       className="relative group"
     >
       <div
-        className="relative h-full rounded-xl p-4 transition-all duration-300 v2-card-soft"
+        className="relative h-full rounded-xl p-4 transition-all duration-300"
         style={{
-          border: `1px solid ${NEUTRAL.border}`,
+          background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
+          border: '1px solid rgba(48, 54, 61, 0.8)',
         }}
       >
         {/* Hover glow */}
@@ -128,7 +136,7 @@ const FeatureCard = memo(({ item, index }) => {
         {/* Command preview */}
         <div
           className="font-mono text-xs px-2 py-1.5 rounded"
-          style={{ backgroundColor: 'rgba(0,0,0,0.35)', color: item.color }}
+          style={{ backgroundColor: 'rgba(0,0,0,0.3)', color: item.color }}
         >
           <span className="text-white/30">$</span> {item.command}
         </div>
@@ -142,16 +150,23 @@ const PromiseSectionV2 = memo(() => {
   const features = useMemo(() => CLAUDE_CODE_FEATURES, [])
 
   return (
-    <section id="promise" className="relative py-20 sm:py-24 overflow-hidden">
+    <section id="promise" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(224, 122, 95, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(224, 122, 95, 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }}
+        />
+        <div
           className="absolute inset-0"
           style={{
-            background: `
-              radial-gradient(ellipse 600px 320px at 50% 0%, ${CORAL.subtle} 0%, transparent 55%),
-              radial-gradient(ellipse 420px 240px at 10% 80%, rgba(70, 199, 255, 0.12) 0%, transparent 60%)
-            `
+            background: `radial-gradient(ellipse 600px 300px at 50% 0%, ${CORAL.primary}10 0%, transparent 50%)`
           }}
         />
       </div>
@@ -171,14 +186,14 @@ const PromiseSectionV2 = memo(() => {
           >
             <Brain className="w-4 h-4" style={{ color: CORAL.primary }} />
             <span className="text-sm font-medium uppercase tracking-wider" style={{ color: CORAL.primary }}>
-              Seu Kit de Produção
+              Infra de Performance
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            Pare de Promptar no Escuro.
+            Pare de Brigar com Prompt.
             <br />
-            <span className="text-white/80">Construa sua Máquina de Entrega com </span>
+            <span className="text-white">Ative os</span>{' '}
             <span
               className="inline-block bg-clip-text text-transparent"
               style={{
@@ -187,12 +202,13 @@ const PromiseSectionV2 = memo(() => {
                 animation: 'subtle-metallic 5s ease-in-out infinite',
               }}
             >
-              Claude Code
+              8 Módulos do Claude Code
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-white/60 max-w-2xl mx-auto">
-            Você sai com método, padrões e ativos reutilizáveis para entregar com previsibilidade em qualquer projeto.
+          <p className="text-base sm:text-lg text-white/70 max-w-3xl mx-auto leading-relaxed">
+            Você domina um fluxo que produz código auditável, pronto para deploy e acompanhado por métricas.
+            {' '}Não é conteúdo raso: é execução técnica com padrão de equipe de produto.
           </p>
         </motion.div>
 
@@ -214,14 +230,14 @@ const PromiseSectionV2 = memo(() => {
           <div
             className="inline-flex flex-col sm:flex-row items-center gap-4 rounded-xl px-6 py-4"
             style={{
-              background: V2_SURFACES.panel,
-              border: `1px solid ${NEUTRAL.borderStrong}`,
+              background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
+              border: `1px solid ${CORAL.primary}30`,
             }}
           >
             <div className="flex items-center gap-3">
               <Bot className="w-6 h-6" style={{ color: CORAL.primary }} />
               <span className="text-white font-medium">
-                <span style={{ color: CORAL.primary }} className="font-bold">100% do sistema</span> nasce com Claude Code e governança humana
+                <span style={{ color: CORAL.primary }} className="font-bold">100% do projeto</span> guiado por AgentSpec + Claude Code
               </span>
             </div>
             <motion.div
@@ -233,7 +249,7 @@ const PromiseSectionV2 = memo(() => {
             </motion.div>
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5" style={{ color: TERMINAL.green }} />
-              <span className="text-white/70 text-sm">Do requisito ao deploy</span>
+              <span className="text-white/70 text-sm">Do requisito ao deploy com rastreabilidade</span>
             </div>
           </div>
         </motion.div>
