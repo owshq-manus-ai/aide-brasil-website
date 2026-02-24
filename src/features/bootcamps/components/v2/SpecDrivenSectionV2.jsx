@@ -1,9 +1,8 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { motion } from 'framer-motion'
 import {
   Search,
   Layers,
-  ClipboardCheck,
   Rocket,
   RefreshCw,
   Code2,
@@ -13,93 +12,74 @@ import {
   Gauge,
   Workflow,
 } from 'lucide-react'
-
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
-
-const TERMINAL = {
-  green: '#7ee787',
-  blue: '#79c0ff',
-  purple: '#d2a8ff',
-}
+import { CORAL, TERMINAL } from '../../theme'
 
 const SPEC_PHASES = [
   {
     phase: '01',
-    title: 'Discovery',
-    subtitle: 'Mapeie contexto, risco e objetivo',
-    command: '/discover',
+    title: 'Define',
+    subtitle: 'Requisitos, contexto e restrições do problema',
+    command: '/define',
     icon: Search,
     color: TERMINAL.blue,
-    output: 'Context map + constraints + fontes'
+    output: 'DEFINE_*.md — escopo, critérios de aceite e limites'
   },
   {
     phase: '02',
     title: 'Design',
-    subtitle: 'Defina arquitetura e contratos',
+    subtitle: 'Arquitetura, contratos e decisões técnicas',
     command: '/design',
     icon: Layers,
     color: TERMINAL.purple,
-    output: 'ADR, interfaces e limites claros'
+    output: 'DESIGN_*.md — ADR, interfaces e file manifest'
   },
   {
     phase: '03',
-    title: 'Specify',
-    subtitle: 'Detalhe specs testáveis',
-    command: '/specify',
-    icon: ClipboardCheck,
+    title: 'Build',
+    subtitle: 'Implementação com routing inteligente de agentes',
+    command: '/build',
+    icon: Code2,
     color: CORAL.primary,
-    output: 'Critérios de aceite + tasks atômicas'
+    output: 'BUILD_REPORT_*.md — código, testes e validação'
   },
   {
     phase: '04',
-    title: 'Deliver',
-    subtitle: 'Implemente com padrão',
-    command: '/deliver',
+    title: 'Ship',
+    subtitle: 'Archive com lessons learned e documentação',
+    command: '/ship',
     icon: Rocket,
     color: TERMINAL.green,
-    output: 'Código, testes e pipeline executável'
-  },
-  {
-    phase: '05',
-    title: 'Iterate',
-    subtitle: 'Melhore por evidência',
-    command: '/iterate',
-    icon: RefreshCw,
-    color: CORAL.light,
-    output: 'Qualidade contínua em produção'
+    output: 'SHIPPED_*.md — decisões preservadas para próximos ciclos'
   }
 ]
 
 const SDD_PROOFS = [
   {
     icon: Brain,
-    title: 'Contexto persistente',
-    description: 'CLAUDE.md e artefatos mantêm memória técnica do projeto.',
-    command: 'source: CLAUDE.md',
+    title: 'Artefatos persistentes por fase',
+    description: 'DEFINE, DESIGN, BUILD_REPORT e SHIPPED — cada fase gera documentos versionados que preservam decisões entre sessões e onboarding de novos membros.',
+    command: 'ls .claude/sdd/features/',
     color: TERMINAL.blue,
   },
   {
     icon: Workflow,
-    title: 'Decisão antes do código',
-    description: 'Design e specify definem limites e aceites antes de implementar.',
-    command: '/design -> /specify',
+    title: 'Cascade automático downstream',
+    description: 'Mudança em /define propaga para /design e depois para /build automaticamente. Sem retrabalho manual — consistência garantida pelo fluxo.',
+    command: '/iterate --cascade',
     color: TERMINAL.purple,
   },
   {
     icon: ShieldCheck,
-    title: 'Qualidade integrada',
-    description: 'Snyk local, Sonar local e testes entram no fluxo de entrega.',
-    command: 'check: security + quality',
+    title: 'Quality gates integrados no /build',
+    description: 'Snyk, SonarCloud e testes automatizados entram no pipeline. Código avança apenas se passar nos gates de segurança e qualidade.',
+    command: 'check: security + quality + tests',
     color: TERMINAL.green,
   },
   {
     icon: Gauge,
-    title: 'Iteração com métricas',
-    description: '/iterate usa telemetria para evoluir sem perder padrão.',
-    command: '/iterate --with-metrics',
+    title: 'Agent routing inteligente',
+    description: '17+ agentes especializados selecionados automaticamente com base no conteúdo do DESIGN. Menciona Pydantic? python-developer. pytest? test-generator.',
+    command: '/build --auto-route agents',
     color: CORAL.primary,
   }
 ]
@@ -177,7 +157,7 @@ const ProofCard = memo(({ item, index }) => {
         </div>
 
         <h4 className="text-sm font-bold text-white mb-1.5">{item.title}</h4>
-        <p className="text-xs text-white/65 leading-relaxed mb-3">{item.description}</p>
+        <p className="text-xs text-white/70 leading-relaxed mb-3">{item.description}</p>
 
         <div className="font-mono text-xs rounded-md px-2 py-1.5" style={{ backgroundColor: 'rgba(0,0,0,0.35)' }}>
           <span className="text-white/35 mr-1">$</span>
@@ -190,8 +170,8 @@ const ProofCard = memo(({ item, index }) => {
 ProofCard.displayName = 'ProofCard'
 
 const SpecDrivenSectionV2 = memo(() => {
-  const phases = useMemo(() => SPEC_PHASES, [])
-  const proofs = useMemo(() => SDD_PROOFS, [])
+  const phases = SPEC_PHASES
+  const proofs = SDD_PROOFS
 
   return (
     <section id="spec-driven" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
@@ -236,12 +216,12 @@ const SpecDrivenSectionV2 = memo(() => {
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-oswald font-bold text-white mb-4">
-            Fluxo SDD em 5 Fases
+            Fluxo SDD em 4 Fases
             {' '}
-            <span style={{ color: CORAL.primary }}>com iteração contínua em produção</span>
+            <span style={{ color: CORAL.primary }}>com iteração contínua entre elas</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-white/65 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-white/70 max-w-3xl mx-auto leading-relaxed">
             Baseado no projeto
             {' '}
             <a
@@ -252,15 +232,39 @@ const SpecDrivenSectionV2 = memo(() => {
             >
               AgentSpec
             </a>
-            {', este método converte contexto em entrega previsível com padrão técnico reutilizável.'}
+            {' — cada fase gera artefatos persistentes que preservam contexto, e '}
+            <span className="font-mono font-semibold" style={{ color: CORAL.light }}>/iterate</span>
+            {' conecta todas elas em um ciclo contínuo de melhoria.'}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4">
           {phases.map((item, index) => (
             <PhaseCard key={item.phase} item={item} index={index} />
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, delay: 0.25 }}
+          viewport={{ once: true }}
+          className="flex items-center gap-3 rounded-lg px-4 py-2.5 mb-10"
+          style={{
+            background: `linear-gradient(90deg, ${CORAL.light}06 0%, ${CORAL.light}12 50%, ${CORAL.light}06 100%)`,
+            border: `1px dashed ${CORAL.light}35`,
+          }}
+        >
+          <RefreshCw className="w-4 h-4 flex-shrink-0" style={{ color: CORAL.light }} />
+          <p className="text-sm text-white/80">
+            <span className="font-mono font-bold" style={{ color: CORAL.light }}>/iterate</span>
+            {' — aplica-se a qualquer fase. Mudanças < 30% dos requisitos cascateiam automaticamente de Define '}
+            <span className="text-white/40">{'\u2192'}</span>
+            {' Design '}
+            <span className="text-white/40">{'\u2192'}</span>
+            {' Build.'}
+          </p>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 22 }}
@@ -287,7 +291,7 @@ const SpecDrivenSectionV2 = memo(() => {
           </div>
 
           <div
-            className="mt-5 rounded-xl px-4 py-3"
+            className="mt-5 w-fit rounded-lg px-3 py-2"
             style={{ backgroundColor: `${TERMINAL.green}10`, border: `1px solid ${TERMINAL.green}30` }}
           >
             <p className="text-sm text-white/85">

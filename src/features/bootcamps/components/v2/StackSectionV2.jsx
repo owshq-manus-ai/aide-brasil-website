@@ -1,11 +1,7 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { motion } from 'framer-motion'
 import { Layers, Database, ShieldCheck, Activity } from 'lucide-react'
-
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
+import { CORAL } from '../../theme'
 
 const STACK_CATEGORIES = [
   {
@@ -17,7 +13,7 @@ const STACK_CATEGORIES = [
   {
     category: 'GenAI',
     items: ['Claude Code', 'Langfuse'],
-    image: '/images/logos/google-gemini-icon.webp',
+    image: '/images/logos/claude-code-icon.webp',
     color: '#8e44ef'
   },
   {
@@ -129,7 +125,7 @@ const StackCard = memo(({ category, index }) => (
 StackCard.displayName = 'StackCard'
 
 const StackSectionV2 = memo(() => {
-  const categories = useMemo(() => STACK_CATEGORIES, [])
+  const categories = STACK_CATEGORIES
 
   return (
     <section id="stack" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">

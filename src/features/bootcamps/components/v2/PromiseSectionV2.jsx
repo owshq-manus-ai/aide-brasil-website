@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { motion } from 'framer-motion'
 import {
   FileText,
@@ -14,26 +14,7 @@ import {
   Shield,
   ArrowRight
 } from 'lucide-react'
-
-// Theme constants - shared across V2 components
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-  dark: '#C96A50',
-}
-
-const TERMINAL = {
-  green: '#7ee787',
-  blue: '#79c0ff',
-  purple: '#d2a8ff',
-}
-
-const sharedStyles = `
-  @keyframes subtle-metallic {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-`
+import { CORAL, TERMINAL, sharedKeyframes } from '../../theme'
 
 // Claude Code Features Data
 const CLAUDE_CODE_FEATURES = [
@@ -131,7 +112,7 @@ const FeatureCard = memo(({ item, index }) => {
 
         {/* Content */}
         <h3 className="text-base font-bold text-white mb-1">{item.title}</h3>
-        <p className="text-white/50 text-sm mb-3">{item.description}</p>
+        <p className="text-white/70 text-sm mb-3">{item.description}</p>
 
         {/* Command preview */}
         <div
@@ -147,7 +128,7 @@ const FeatureCard = memo(({ item, index }) => {
 FeatureCard.displayName = 'FeatureCard'
 
 const PromiseSectionV2 = memo(() => {
-  const features = useMemo(() => CLAUDE_CODE_FEATURES, [])
+  const features = CLAUDE_CODE_FEATURES
 
   return (
     <section id="promise" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
@@ -240,13 +221,9 @@ const PromiseSectionV2 = memo(() => {
                 <span style={{ color: CORAL.primary }} className="font-bold">100% do projeto</span> guiado por AgentSpec + Claude Code
               </span>
             </div>
-            <motion.div
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="hidden sm:block"
-            >
+            <div className="hidden sm:block">
               <ArrowRight className="w-5 h-5" style={{ color: CORAL.primary }} />
-            </motion.div>
+            </div>
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5" style={{ color: TERMINAL.green }} />
               <span className="text-white/70 text-sm">Do requisito ao deploy com rastreabilidade</span>
@@ -255,7 +232,7 @@ const PromiseSectionV2 = memo(() => {
         </motion.div>
       </div>
 
-      <style>{sharedStyles}</style>
+      <style>{sharedKeyframes}</style>
     </section>
   )
 })

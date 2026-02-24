@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { motion } from 'framer-motion'
 import {
   Bot,
@@ -14,16 +14,7 @@ import {
   Gauge,
   GitBranch
 } from 'lucide-react'
-
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
-
-const TERMINAL = {
-  green: '#7ee787',
-  red: '#f85149',
-}
+import { CORAL, TERMINAL } from '../../theme'
 
 const DIFFERENTIATORS = [
   {
@@ -97,7 +88,7 @@ const DifferentiatorCard = memo(({ item, index }) => {
         {/* Before (crossed out) */}
         <div className="flex items-center gap-2 mb-3 opacity-60">
           <X className="w-4 h-4" style={{ color: TERMINAL.red }} />
-          <span className="text-white/50 text-sm line-through">{item.before}</span>
+          <span className="text-white/70 text-sm line-through">{item.before}</span>
         </div>
 
         {/* After (highlighted) */}
@@ -120,8 +111,8 @@ const DifferentiatorCard = memo(({ item, index }) => {
 DifferentiatorCard.displayName = 'DifferentiatorCard'
 
 const DifferentiatorSectionV2 = memo(() => {
-  const differentiators = useMemo(() => DIFFERENTIATORS, [])
-  const pillars = useMemo(() => PRODUCTION_PILLARS, [])
+  const differentiators = DIFFERENTIATORS
+  const pillars = PRODUCTION_PILLARS
 
   return (
     <section id="differentiator" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
@@ -164,7 +155,7 @@ const DifferentiatorSectionV2 = memo(() => {
             <span style={{ color: CORAL.primary }}>playbook técnico para entrega confiável</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-white/65 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-white/70 max-w-3xl mx-auto leading-relaxed">
             Aqui você aprende a operar uma rotina completa de engenharia:
             {' '}contexto versionado, agentes com papel definido, quality gates e visibilidade de operação.
           </p>
@@ -189,7 +180,7 @@ const DifferentiatorSectionV2 = memo(() => {
                   <Icon className="w-4 h-4" style={{ color: CORAL.primary }} />
                   <h4 className="text-sm font-semibold text-white">{pillar.title}</h4>
                 </div>
-                <p className="text-sm text-white/65 leading-relaxed">{pillar.detail}</p>
+                <p className="text-sm text-white/70 leading-relaxed">{pillar.detail}</p>
               </motion.div>
             )
           })}
@@ -218,7 +209,7 @@ const DifferentiatorSectionV2 = memo(() => {
             }}
           >
             <p className="text-lg sm:text-xl font-oswald text-white">
-              <span className="text-white/50">Outros ensinam</span>{' '}
+              <span className="text-white/70">Outros ensinam</span>{' '}
               <span className="text-red-400 line-through">ferramentas</span>.
               {' '}Aqui você aprende a{' '}
               <span style={{ color: CORAL.primary }} className="font-bold">entregar sistemas auditáveis</span>.

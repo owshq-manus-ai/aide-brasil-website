@@ -1,21 +1,9 @@
 import React, { memo } from 'react'
 import { motion } from 'framer-motion'
 import { MessageCircle, ArrowRight, Terminal, ShieldCheck, Sparkles } from 'lucide-react'
+import { CORAL, WHATSAPP, sharedKeyframes } from '../../theme'
 
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
-
-const WHATSAPP_URL =
-  'https://wa.me/556196776328?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20o%20Bootcamp%20Zero%20ao%20Prod%20Claude%20Code.'
-
-const sharedStyles = `
-  @keyframes subtle-metallic {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-`
+const WHATSAPP_URL = WHATSAPP.buildUrl('Olá! Quero conversar sobre o Bootcamp Zero ao Prod Claude Code.')
 
 const FinalCTASectionV2 = memo(() => {
   return (
@@ -48,8 +36,8 @@ const FinalCTASectionV2 = memo(() => {
             }}
           >
             <div className="text-center sm:text-right">
-              <p className="text-white/40 text-xs uppercase tracking-wider mb-1">Hoje</p>
-              <p className="text-white/55">Execução manual, sem previsibilidade</p>
+              <p className="text-white/50 text-xs uppercase tracking-wider mb-1">Hoje</p>
+              <p className="text-white/70">Execução manual, sem previsibilidade</p>
             </div>
 
             <ArrowRight className="w-5 h-5" style={{ color: CORAL.primary }} />
@@ -84,7 +72,7 @@ const FinalCTASectionV2 = memo(() => {
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-white/65 max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-base sm:text-lg text-white/70 max-w-2xl mx-auto mb-8 leading-relaxed">
             O próximo passo é simples: conversar com o comercial, validar seu momento e receber o caminho certo para sua entrada.
           </p>
         </motion.div>
@@ -99,7 +87,7 @@ const FinalCTASectionV2 = memo(() => {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-xl font-oswald font-bold uppercase tracking-wider text-base sm:text-lg text-white transition-all duration-300 relative overflow-hidden group"
+            className="inline-flex items-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-xl font-oswald font-bold uppercase tracking-wider text-base sm:text-lg text-white transition-all duration-300 relative overflow-hidden group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] focus-visible:ring-white/50"
             style={{
               background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
               boxShadow: '0 0 45px rgba(37, 211, 102, 0.35)',
@@ -137,7 +125,7 @@ const FinalCTASectionV2 = memo(() => {
           <div className="flex flex-col items-center gap-2">
             <div className="flex items-center gap-2">
               <Terminal className="w-4 h-4" style={{ color: CORAL.primary }} />
-              <span className="text-white/40 text-xs uppercase tracking-wider">Mindset</span>
+              <span className="text-white/50 text-xs uppercase tracking-wider">Mindset</span>
             </div>
             <p className="text-xl sm:text-2xl font-oswald text-white">
               <span className="text-white/35 line-through">Vibe coding</span>
@@ -153,7 +141,7 @@ const FinalCTASectionV2 = memo(() => {
         </motion.div>
       </div>
 
-      <style>{sharedStyles}</style>
+      <style>{sharedKeyframes}</style>
     </section>
   )
 })

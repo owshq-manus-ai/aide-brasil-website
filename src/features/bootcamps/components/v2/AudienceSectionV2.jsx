@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { motion } from 'framer-motion'
 import {
   Users,
@@ -10,16 +10,7 @@ import {
   Terminal,
   GitBranch
 } from 'lucide-react'
-
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
-
-const TERMINAL = {
-  green: '#7ee787',
-  purple: '#d2a8ff',
-}
+import { CORAL, TERMINAL } from '../../theme'
 
 const TARGET_AUDIENCES = [
   {
@@ -98,7 +89,7 @@ const AudienceCard = memo(({ audience, index }) => {
                 </span>
               )}
             </div>
-            <p className="text-white/50 text-sm">{audience.description}</p>
+            <p className="text-white/70 text-sm">{audience.description}</p>
           </div>
         </div>
       </div>
@@ -133,7 +124,7 @@ const PrerequisiteCard = memo(({ prereq, index }) => {
           </div>
           <div>
             <h4 className="text-base font-bold text-white">{prereq.requirement}</h4>
-            <p className="text-white/50 text-sm">{prereq.description}</p>
+            <p className="text-white/70 text-sm">{prereq.description}</p>
           </div>
         </div>
       </div>
@@ -143,8 +134,8 @@ const PrerequisiteCard = memo(({ prereq, index }) => {
 PrerequisiteCard.displayName = 'PrerequisiteCard'
 
 const AudienceSectionV2 = memo(() => {
-  const audiences = useMemo(() => TARGET_AUDIENCES, [])
-  const prerequisites = useMemo(() => PREREQUISITES, [])
+  const audiences = TARGET_AUDIENCES
+  const prerequisites = PREREQUISITES
 
   return (
     <section id="audience" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">

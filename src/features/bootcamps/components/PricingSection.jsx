@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { motion } from 'framer-motion'
 import {
   CheckCircle,
@@ -8,23 +8,13 @@ import {
   ArrowRight,
   BadgeCheck
 } from 'lucide-react'
-
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
-
-const TERMINAL = {
-  green: '#7ee787',
-}
-
-const SALES_PHONE = '556196776328'
+import { CORAL, TERMINAL, WHATSAPP } from '../theme'
 
 const PRIMARY_OFFER = {
   name: 'Acesso Completo',
   subtitle: 'Implementação guiada para Data + Analytics Engineers',
-  price: '1.197',
-  installment: 'ou 12x de R$ 119,63',
+  price: '1.997',
+  installment: '12x R$ 206,54',
   highlights: [
     'Acesso completo ao bootcamp',
     'Playbook AgentSpec + SDD para produção',
@@ -56,8 +46,8 @@ const DeliverableItem = memo(({ item }) => (
 DeliverableItem.displayName = 'DeliverableItem'
 
 const PricingSection = memo(({ variant = 'default' }) => {
-  const deliverables = useMemo(() => DELIVERABLES, [])
-  const whatsAppMessage = encodeURIComponent(
+  const deliverables = DELIVERABLES
+  const whatsAppUrl = WHATSAPP.buildUrl(
     `Olá! Quero conversar sobre o ${PRIMARY_OFFER.name} do Bootcamp Zero ao Prod Claude Code.`
   )
 
@@ -150,11 +140,11 @@ const PricingSection = memo(({ variant = 'default' }) => {
             </div>
 
             <div className="lg:col-span-7 w-full lg:max-w-[620px] lg:justify-self-end">
-              <div className="space-y-2.5">
+              <div className="space-y-1.5">
                 {PRIMARY_OFFER.highlights.map((feature) => (
                   <div
                     key={feature}
-                    className="w-full flex items-center gap-2.5 rounded-[24px] px-4 py-2.5 min-h-[52px]"
+                    className="w-fit flex items-center gap-2.5 rounded-full px-4 py-2 min-h-[42px]"
                     style={{ backgroundColor: 'rgba(10,20,38,0.72)', border: '1px solid rgba(255,255,255,0.18)' }}
                   >
                     <BadgeCheck className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
@@ -165,10 +155,10 @@ const PricingSection = memo(({ variant = 'default' }) => {
 
               <div className="mt-5 w-full flex lg:justify-start">
                 <a
-                  href={`https://wa.me/${SALES_PHONE}?text=${whatsAppMessage}`}
+                  href={whatsAppUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-[22px] px-7 py-3.5 min-h-[56px] font-oswald font-bold uppercase tracking-wider text-white"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-[22px] px-7 py-3.5 min-h-[56px] font-oswald font-bold uppercase tracking-wider text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] focus-visible:ring-white/50"
                   style={{
                     background: 'linear-gradient(135deg, #22c55e 0%, #14b8a6 100%)',
                     boxShadow: '0 0 34px rgba(34,197,94,0.42)',
@@ -196,7 +186,7 @@ const PricingSection = memo(({ variant = 'default' }) => {
           }}
         >
           <div className="mb-5 max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.14em] text-white/45 mb-2">Pacote Técnico</p>
+            <p className="text-xs uppercase tracking-[0.14em] text-white/60 mb-2">Pacote Técnico</p>
             <h3 className="text-2xl sm:text-3xl font-oswald font-bold text-white leading-tight">
               8 Entregas Concretas
               <br />
@@ -214,7 +204,7 @@ const PricingSection = memo(({ variant = 'default' }) => {
             className="rounded-lg px-4 py-4 text-center"
             style={{ backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.10)' }}
           >
-            <p className="text-sm text-white/55 mb-2">Se você montasse isso separadamente:</p>
+            <p className="text-sm text-white/70 mb-2">Se você montasse isso separadamente:</p>
             <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-white/75 mb-2">
               <span>Cloud/Data ~R$ 500</span>
               <span className="text-white/25">+</span>

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo, useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import {
   Sparkles,
   Terminal,
@@ -21,55 +21,21 @@ import {
   Command,
   CornerDownLeft
 } from 'lucide-react'
+import { CORAL, TERMINAL, sharedKeyframes } from '../theme'
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// THEME - Claude Code Coral Palette (matching V1)
-// ═══════════════════════════════════════════════════════════════════════════════
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-  lighter: '#F5C4B8',
-  dark: '#C96A50',
-  glow: 'rgba(224, 122, 95, 0.5)',
-  subtle: 'rgba(224, 122, 95, 0.15)',
-}
-
-const TERMINAL = {
-  bg: '#0D1117',
-  border: '#30363d',
-  headerBg: '#161b22',
-  green: '#7ee787',
-  blue: '#79c0ff',
-  purple: '#d2a8ff',
-  yellow: '#fbbf24',
-  comment: '#8b949e',
-}
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// SHARED STYLES - CSS Keyframes
-// ═══════════════════════════════════════════════════════════════════════════════
-const sharedStyles = `
-  @keyframes subtle-metallic {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-  @keyframes terminal-cursor {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-`
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// TYPING EFFECT HOOK - Natural typing simulation
-// ═══════════════════════════════════════════════════════════════════════════════
 const useTypingEffect = (texts, typingSpeed = 50, pauseBetween = 2500) => {
   const [displayedText, setDisplayedText] = useState('')
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTyping, setIsTyping] = useState(true)
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
+    if (prefersReducedMotion) {
+      setDisplayedText(texts[currentIndex])
+      setIsTyping(true)
+      return
+    }
     const currentText = texts[currentIndex]
-
     if (isTyping) {
       if (displayedText.length < currentText.length) {
         const timeout = setTimeout(() => {
@@ -88,14 +54,11 @@ const useTypingEffect = (texts, typingSpeed = 50, pauseBetween = 2500) => {
       }, 400)
       return () => clearTimeout(timeout)
     }
-  }, [displayedText, currentIndex, isTyping, texts, typingSpeed, pauseBetween])
+  }, [displayedText, currentIndex, isTyping, texts, typingSpeed, pauseBetween, prefersReducedMotion])
 
   return { displayedText, isTyping }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// TERMINAL WINDOW COMPONENT - macOS-style with live typing
-// ═══════════════════════════════════════════════════════════════════════════════
 const TerminalWindow = memo(({ isMobile }) => {
   const commands = useMemo(() => [
     'claude "Crie um pipeline ETL com BigQuery"',
@@ -141,11 +104,10 @@ const TerminalWindow = memo(({ isMobile }) => {
           className="flex items-center justify-between px-4 py-2.5"
           style={{ backgroundColor: TERMINAL.headerBg, borderBottom: `1px solid ${TERMINAL.border}` }}
         >
-          {/* Traffic lights */}
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#ff5f56] hover:brightness-110 transition-all cursor-pointer" />
-            <div className="w-3 h-3 rounded-full bg-[#ffbd2e] hover:brightness-110 transition-all cursor-pointer" />
-            <div className="w-3 h-3 rounded-full bg-[#27c93f] hover:brightness-110 transition-all cursor-pointer" />
+          <div className="flex items-center gap-2" aria-hidden="true">
+            <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+            <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+            <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
           </div>
 
           {/* Title */}
@@ -220,7 +182,7 @@ const TerminalWindow = memo(({ isMobile }) => {
               <Circle className="w-2 h-2 fill-green-500 text-green-500" />
               Conectado
             </span>
-            <span>claude-4.6-opus</span>
+            <span>Claude Code</span>
           </div>
           <div className="flex items-center gap-1.5 text-white/30">
             <CornerDownLeft className="w-3 h-3" />
@@ -233,9 +195,6 @@ const TerminalWindow = memo(({ isMobile }) => {
 })
 TerminalWindow.displayName = 'TerminalWindow'
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// BENTO CARD - Glass card with glow effect
-// ═══════════════════════════════════════════════════════════════════════════════
 const BentoCard = memo(({ children, className = '', delay = 0, isMobile = false }) => (
   <motion.div
     initial={isMobile ? { opacity: 1 } : { opacity: 0, y: 15 }}
@@ -267,15 +226,13 @@ const BentoCard = memo(({ children, className = '', delay = 0, isMobile = false 
 ))
 BentoCard.displayName = 'BentoCard'
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// NEON BUTTON - Matching V1 style
-// ═══════════════════════════════════════════════════════════════════════════════
 const NeonButton = memo(({ children, primary = false, onClick, className = '', isMobile = false }) => (
   <motion.button
     onClick={onClick}
     className={`
       px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-oswald font-bold uppercase tracking-wider
-      transition-all duration-300 relative overflow-hidden text-sm sm:text-base
+      transition-all duration-300 relative overflow-hidden text-sm sm:text-base min-h-[44px]
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] focus-visible:ring-white/50
       ${primary ? 'text-white' : 'bg-white/5 backdrop-blur-sm text-white'}
       ${className}
     `}
@@ -307,9 +264,6 @@ const NeonButton = memo(({ children, primary = false, onClick, className = '', i
 ))
 NeonButton.displayName = 'NeonButton'
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// STATUS BADGE - Pill style badge
-// ═══════════════════════════════════════════════════════════════════════════════
 const StatusBadge = memo(({ icon: Icon, text, color = CORAL.primary, pulse = false }) => (
   <div
     className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium"
@@ -330,9 +284,6 @@ const StatusBadge = memo(({ icon: Icon, text, color = CORAL.primary, pulse = fal
 ))
 StatusBadge.displayName = 'StatusBadge'
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// LEARNING ITEM - Checklist style
-// ═══════════════════════════════════════════════════════════════════════════════
 const LearningItem = memo(({ text, icon: Icon = CheckCircle2, delay = 0, isMobile = false }) => (
   <motion.div
     initial={isMobile ? { opacity: 1 } : { opacity: 0, x: 10 }}
@@ -351,11 +302,7 @@ const LearningItem = memo(({ text, icon: Icon = CheckCircle2, delay = 0, isMobil
 ))
 LearningItem.displayName = 'LearningItem'
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// MAIN HERO COMPONENT V2
-// ═══════════════════════════════════════════════════════════════════════════════
 const ClaudeCodeBootcampHeroV2 = memo(() => {
-  const peopleCount = 210
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -432,7 +379,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
           className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6 sm:mb-8"
         >
           <StatusBadge text="Gravado" color={TERMINAL.green} pulse />
-          <StatusBadge icon={Users} text={`${peopleCount} Pessoas`} color={CORAL.light} />
+          <StatusBadge icon={Users} text="200+ Profissionais" color={CORAL.light} />
           <StatusBadge icon={Bot} text="Agentes" color={TERMINAL.purple} />
           <StatusBadge icon={Layers} text="Acesso imediato" color={TERMINAL.blue} />
         </motion.div>
@@ -471,7 +418,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                 {' '}
                 <span className="text-white font-bold">com padrão de engenharia real</span>
                 {' '}
-                <span className="text-white/60">— menos improviso, mais previsibilidade de entrega</span>
+                <span className="text-white/70">— menos improviso, mais previsibilidade de entrega</span>
               </h2>
             </motion.div>
 
@@ -487,8 +434,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
             >
               <NeonButton primary onClick={handlePricingClick} isMobile={isMobile}>
                 <Sparkles className="w-4 h-4" />
-                <span className="hidden sm:inline">VER INVESTIMENTO</span>
-                <span className="sm:hidden">VER INVESTIMENTO</span>
+                VER INVESTIMENTO
               </NeonButton>
               <NeonButton onClick={handleJourneyClick} isMobile={isMobile}>
                 <Play className="w-4 h-4" />
@@ -503,7 +449,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
               transition={{ duration: 0.3, delay: 0.6 }}
               className="flex items-center gap-3 pt-4 sm:pt-6"
             >
-              <span className="text-white/40 text-xs uppercase tracking-widest">Apresentado por</span>
+              <span className="text-white/50 text-xs uppercase tracking-widest">Apresentado por</span>
               <div className="h-px w-8 bg-gradient-to-r from-white/30 to-transparent" />
               <a
                 href="https://engenhariadadosacademy.com.br/"
@@ -566,45 +512,44 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                     <ShieldCheck className="w-4 h-4" style={{ color: TERMINAL.green }} />
                     <div>
                       <span className="text-sm font-bold text-white">Formato gravado</span>
-                      <p className="text-[10px] text-white/50">Acesso imediato + revisão no seu ritmo</p>
+                      <p className="text-xs text-white/60">Acesso imediato + revisao no seu ritmo</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 text-white/80">
                     <Layers className="w-4 h-4" style={{ color: TERMINAL.blue }} />
                     <div>
                       <span className="text-sm font-bold text-white">Fluxo completo e contínuo</span>
-                      <p className="text-[10px] text-white/50">Da spec ao deploy com observabilidade</p>
+                      <p className="text-xs text-white/60">Da spec ao deploy com observabilidade</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 text-white/80">
                     <MessageCircle className="w-4 h-4" style={{ color: TERMINAL.purple }} />
                     <div>
                       <span className="text-sm font-bold text-white">Comercial via WhatsApp</span>
-                      <p className="text-[10px] text-white/50">Atendimento consultivo para seu cenário</p>
+                      <p className="text-xs text-white/60">Atendimento consultivo para seu cenario</p>
                     </div>
                   </div>
-                  {/* shadcn-like tags */}
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     <span
-                      className="text-[10px] px-2 py-1 rounded-md"
+                      className="text-xs px-2.5 py-1 rounded-md"
                       style={{ backgroundColor: `${TERMINAL.green}15`, border: `1px solid ${TERMINAL.green}35`, color: TERMINAL.green }}
                     >
                       Gravado
                     </span>
                     <span
-                      className="text-[10px] px-2 py-1 rounded-md"
+                      className="text-xs px-2.5 py-1 rounded-md"
                       style={{ backgroundColor: `${TERMINAL.blue}15`, border: `1px solid ${TERMINAL.blue}35`, color: TERMINAL.blue }}
                     >
-                      Atualizações contínuas
+                      Atualizacoes
                     </span>
                     <span
-                      className="text-[10px] px-2 py-1 rounded-md"
+                      className="text-xs px-2.5 py-1 rounded-md"
                       style={{ backgroundColor: `${CORAL.primary}15`, border: `1px solid ${CORAL.primary}35`, color: CORAL.light }}
                     >
                       Prova real
                     </span>
                     <span
-                      className="text-[10px] px-2 py-1 rounded-md"
+                      className="text-xs px-2.5 py-1 rounded-md"
                       style={{ backgroundColor: `${TERMINAL.purple}15`, border: `1px solid ${TERMINAL.purple}35`, color: TERMINAL.purple }}
                     >
                       Context Engineering
@@ -613,11 +558,10 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                 </div>
               </BentoCard>
 
-              {/* Methodology Card - Enhanced */}
               <BentoCard delay={0.4} isMobile={isMobile}>
                 <div className="h-full flex flex-col justify-between">
                   <div>
-                    <div className="text-[10px] uppercase tracking-wider text-white/40 mb-1">Metodologia</div>
+                    <div className="text-xs uppercase tracking-wider text-white/50 mb-1">Metodologia</div>
                     <div
                       className="text-lg sm:text-xl font-bold font-mono leading-tight mb-2"
                       style={{ color: CORAL.primary }}
@@ -628,22 +572,21 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                       Especificação como contrato técnico para produção previsível.
                     </p>
                   </div>
-                  {/* Method tags */}
                   <div className="flex flex-wrap gap-1.5 mt-3">
                     <span
-                      className="text-[10px] px-2 py-1 rounded"
+                      className="text-xs px-2.5 py-1 rounded"
                       style={{ backgroundColor: `${CORAL.primary}15`, color: CORAL.light }}
                     >
                       Spec-Driven
                     </span>
                     <span
-                      className="text-[10px] px-2 py-1 rounded"
+                      className="text-xs px-2.5 py-1 rounded"
                       style={{ backgroundColor: `${TERMINAL.blue}15`, color: TERMINAL.blue }}
                     >
                       Context Engine
                     </span>
                     <span
-                      className="text-[10px] px-2 py-1 rounded"
+                      className="text-xs px-2.5 py-1 rounded"
                       style={{ backgroundColor: `${TERMINAL.green}15`, color: TERMINAL.green }}
                     >
                       /iterate
@@ -670,8 +613,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
         </div>
       </div>
 
-      {/* CSS */}
-      <style>{sharedStyles}</style>
+      <style>{sharedKeyframes}</style>
     </section>
   )
 })

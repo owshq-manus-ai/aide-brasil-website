@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { motion } from 'framer-motion'
 import {
   Shield,
@@ -16,23 +16,12 @@ import {
   Users,
   MessageCircle
 } from 'lucide-react'
-
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
-
-const TERMINAL = {
-  green: '#7ee787',
-  blue: '#79c0ff',
-  purple: '#d2a8ff',
-  border: '#30363d',
-}
+import { CORAL, TERMINAL } from '../../theme'
 
 const HIGHLIGHTS = [
   {
     icon: Users,
-    value: '210+',
+    value: '200+',
     label: 'Profissionais impactados',
     color: TERMINAL.blue
   },
@@ -145,7 +134,7 @@ const HighlightCard = memo(({ item, index }) => {
         </div>
 
         {/* Label */}
-        <div className="relative text-sm text-white/50">
+        <div className="relative text-sm text-white/70">
           {item.label}
         </div>
       </div>
@@ -191,7 +180,7 @@ const DeliverableItem = memo(({ item, index }) => {
 
           {/* Category badge */}
           <span
-            className="text-[10px] px-2 py-1 rounded font-mono flex-shrink-0"
+            className="text-xs px-2.5 py-1 rounded font-mono flex-shrink-0"
             style={{ backgroundColor: `${CORAL.primary}15`, color: CORAL.primary }}
           >
             {item.category}
@@ -204,8 +193,8 @@ const DeliverableItem = memo(({ item, index }) => {
 DeliverableItem.displayName = 'DeliverableItem'
 
 const DeliverablesSectionV2 = memo(() => {
-  const highlights = useMemo(() => HIGHLIGHTS, [])
-  const deliverables = useMemo(() => DELIVERABLES, [])
+  const highlights = HIGHLIGHTS
+  const deliverables = DELIVERABLES
 
   return (
     <section id="deliverables" className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
@@ -289,7 +278,7 @@ const DeliverablesSectionV2 = memo(() => {
               border: `1px solid ${CORAL.primary}30`,
             }}
           >
-            <p className="text-white/65 text-sm mb-3">Valor percebido quando você teria que montar tudo separado:</p>
+            <p className="text-white/70 text-sm mb-3">Valor percebido quando você teria que montar tudo separado:</p>
 
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/70 mb-4">
               <span>Cloud & Data: ~R$ 500</span>

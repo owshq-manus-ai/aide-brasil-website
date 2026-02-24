@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback, useMemo } from 'react'
+import React, { useState, memo, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Users,
@@ -10,22 +10,9 @@ import {
   GitBranch,
   Bot,
   ChevronDown,
-  CheckCircle,
-  Sparkles
+  CheckCircle
 } from 'lucide-react'
-
-const CORAL = {
-  primary: '#E07A5F',
-  light: '#F0A090',
-}
-
-const TERMINAL = {
-  green: '#7ee787',
-  blue: '#79c0ff',
-  purple: '#d2a8ff',
-  bg: '#0D1117',
-  border: '#30363d',
-}
+import { CORAL, TERMINAL } from '../../theme'
 
 const STEPS = [
   {
@@ -107,38 +94,19 @@ const StepCard = memo(({ step, index, isExpanded, onToggle }) => {
     >
       <div
         onClick={onToggle}
-        className={`
-          relative rounded-xl p-4 cursor-pointer transition-all duration-300
-          ${step.isCore ? 'ring-2' : 'hover:scale-[1.01]'}
-        `}
+        className="relative rounded-xl p-4 cursor-pointer transition-all duration-300 hover:scale-[1.01]"
         style={{
           background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
-          border: `1px solid ${step.isCore ? CORAL.primary + '60' : TERMINAL.border}`,
-          ringColor: step.isCore ? CORAL.primary + '40' : 'transparent',
+          border: `1px solid ${TERMINAL.border}`,
         }}
       >
-        {/* Core Badge */}
-        {step.isCore && (
-          <div className="absolute -top-2.5 left-4">
-            <div
-              className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-bold"
-              style={{ background: `linear-gradient(90deg, ${CORAL.primary}, ${CORAL.light})` }}
-            >
-              <Sparkles className="w-3 h-3 text-white" />
-              <span className="text-white">CORE</span>
-            </div>
-          </div>
-        )}
 
         {/* Header */}
         <div className="flex items-center gap-3">
           {/* Step Number */}
           <div
             className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 font-oswald font-bold text-lg"
-            style={step.isCore
-              ? { background: `linear-gradient(135deg, ${CORAL.primary}, ${CORAL.light})`, color: 'white' }
-              : { backgroundColor: `${CORAL.primary}20`, color: CORAL.primary, border: `1px solid ${CORAL.primary}30` }
-            }
+            style={{ backgroundColor: `${CORAL.primary}20`, color: CORAL.primary, border: `1px solid ${CORAL.primary}30` }}
           >
             {step.number}
           </div>
@@ -213,7 +181,7 @@ StepCard.displayName = 'StepCard'
 
 const JourneyTimelineV2 = memo(() => {
   const [expandedStep, setExpandedStep] = useState(5) // Core step
-  const steps = useMemo(() => STEPS, [])
+  const steps = STEPS
 
   const handleToggle = useCallback((index) => {
     setExpandedStep(prev => prev === index ? null : index)
