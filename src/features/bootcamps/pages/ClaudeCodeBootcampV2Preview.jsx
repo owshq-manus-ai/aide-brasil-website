@@ -52,7 +52,7 @@ const StickyBottomCTA = memo(() => {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-300 ${visible ? 'translate-y-0' : 'translate-y-full'}`}
+      className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-300 hidden sm:block ${visible ? 'translate-y-0' : 'translate-y-full'}`}
       role="complementary"
       aria-label="Atalho de contato"
     >
