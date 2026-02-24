@@ -492,7 +492,7 @@ const AIDataEngineerHero = () => {
                 >
                   <Award className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-white text-base">Certificação internacional + portfolio com 10 projetos reais</span>
+                <span className="text-white text-base">Certificação internacional + portfólio com 10 projetos reais</span>
               </motion.div>
             </div>
 
@@ -643,7 +643,7 @@ const AIDataEngineerHero = () => {
                   </div>
                   <div>
                     <div className="text-purple-400 font-bold text-sm mb-1">Dia 5: Projeto Final Completo</div>
-                    <div className="text-white/70 text-sm">Construa um pipeline end-to-end com IA, deploy em cloud, apresentação do portfolio</div>
+                    <div className="text-white/70 text-sm">Construa um pipeline end-to-end com IA, deploy em cloud, apresentação do portfólio</div>
                   </div>
                 </motion.div>
               </div>

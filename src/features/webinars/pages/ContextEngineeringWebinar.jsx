@@ -127,39 +127,39 @@ function ContextEngineeringWebinar() {
   const webinar = {
     title: 'Dominando Context Engineering',
     highlightWord: 'Context Engineering',
-    subtitle: 'Domine a arte de construir contextos perfeitos para LLMs e multiplique a qualidade das suas aplicacoes de IA',
+    subtitle: 'Domine a arte de construir contextos perfeitos para LLMs e multiplique a qualidade das suas aplicações de IA',
     date: '5 Fev 2025',
     time: '20:00 BRT',
     duration: '2 horas',
     gradient: 'from-emerald-600 to-green-600',
-    description: 'Aprenda as tecnicas avancadas de Context Engineering usadas pelos melhores engenheiros de IA. Do prompt design ao RAG optimization, descubra como criar contextos que transformam LLMs em ferramentas precisas e confiaveis.',
+    description: 'Aprenda as técnicas avançadas de Context Engineering usadas pelos melhores engenheiros de IA. Do prompt design ao RAG optimization, descubra como criar contextos que transformam LLMs em ferramentas precisas e confiáveis.',
 
     whatYouLearn: [
-      'Fundamentos de Context Engineering: A ciencia por tras dos prompts eficientes',
-      'Context Window Optimization: Maximize o uso dos tokens disponiveis',
+      'Fundamentos de Context Engineering: A ciência por trás dos prompts eficientes',
+      'Context Window Optimization: Maximize o uso dos tokens disponíveis',
       'RAG Context Design: Construa pipelines de retrieval que entregam contexto relevante',
-      'Multi-Shot & Few-Shot: Tecnicas avancadas de exemplos em contexto',
-      'Production Patterns: Estrategias de context management em escala enterprise'
+      'Multi-Shot & Few-Shot: Técnicas avançadas de exemplos em contexto',
+      'Production Patterns: Estratégias de context management em escala enterprise'
     ],
 
     agenda: [
       {
         time: '20:00',
-        module: 'Inicio',
+        module: 'Início',
         topic: 'Context Engineering Foundations',
-        description: 'Entenda os principios fundamentais - como LLMs processam contexto, attention mechanisms e por que o posicionamento importa',
+        description: 'Entenda os princípios fundamentais - como LLMs processam contexto, attention mechanisms e por que o posicionamento importa',
         icon: Brain
       },
       {
         time: '20:30',
-        module: 'Modulo 1',
+        module: 'Módulo 1',
         topic: 'Prompt Architecture & Design',
-        description: 'Construa prompts estruturados - system prompts, user context, few-shot examples e tecnicas de chain-of-thought',
+        description: 'Construa prompts estruturados - system prompts, user context, few-shot examples e técnicas de chain-of-thought',
         icon: FileText
       },
       {
         time: '21:00',
-        module: 'Modulo 2',
+        module: 'Módulo 2',
         topic: 'RAG & Retrieval Optimization',
         description: 'Otimize seus pipelines RAG - chunking strategies, embedding selection, reranking e context compression',
         icon: Search
@@ -186,7 +186,7 @@ function ContextEngineeringWebinar() {
         title: 'RAG Optimization',
         description: 'Retrieval que entrega contexto relevante',
         duration: '25 min',
-        level: 'Avancado'
+        level: 'Avançado'
       },
       {
         icon: Gauge,
@@ -205,16 +205,16 @@ function ContextEngineeringWebinar() {
       {
         icon: Code2,
         title: 'Hands-On Demo',
-        description: 'Tecnicas aplicadas ao vivo',
+        description: 'Técnicas aplicadas ao vivo',
         duration: '30 min',
-        level: 'Pratico'
+        level: 'Prático'
       },
       {
         icon: BarChart3,
         title: 'Quality Metrics',
-        description: 'Meca e melhore seus contextos',
+        description: 'Meça e melhore seus contextos',
         duration: '10 min',
-        level: 'Avancado'
+        level: 'Avançado'
       }
     ],
 
@@ -222,7 +222,7 @@ function ContextEngineeringWebinar() {
       name: 'Luan Moreno',
       title: 'Principal AI & Autonomous Systems Engineer',
       company: '@Pythian',
-      bio: 'Especialista em LLM optimization e context engineering, com experiencia implementando sistemas de IA em producao para empresas globais. Pioneiro em tecnicas de RAG e prompt engineering no Brasil.',
+      bio: 'Especialista em LLM optimization e context engineering, com experiência implementando sistemas de IA em produção para empresas globais. Pioneiro em técnicas de RAG e prompt engineering no Brasil.',
       photo: '/images/team/luan-moreno-5.png',
       linkedin: 'https://www.linkedin.com/in/luanmoreno/',
       instagram: 'https://www.instagram.com/luanmorenomaciel/',
@@ -259,7 +259,7 @@ function ContextEngineeringWebinar() {
         icon: Shield,
         value: 90,
         suffix: '%',
-        label: 'Reducao de Erros',
+        label: 'Redução de Erros',
         description: 'Com few-shot examples',
         color: 'green-500',
         secondaryColor: 'emerald-500',
@@ -269,8 +269,8 @@ function ContextEngineeringWebinar() {
         icon: Rocket,
         value: 10,
         suffix: 'x',
-        label: 'Mais Rapido',
-        description: 'Do experimento a producao',
+        label: 'Mais Rápido',
+        description: 'Do experimento à produção',
         color: 'emerald-500',
         secondaryColor: 'green-500',
         progress: '88%'
@@ -278,7 +278,7 @@ function ContextEngineeringWebinar() {
     ],
 
     testimonial: {
-      quote: 'Context Engineering mudou completamente como desenvolvemos com LLMs. Reduzimos custos em 60% e aumentamos a precisao das respostas. O framework apresentado no webinar e exatamente o que faltava na nossa stack.',
+      quote: 'Context Engineering mudou completamente como desenvolvemos com LLMs. Reduzimos custos em 60% e aumentamos a precisão das respostas. O framework apresentado no webinar é exatamente o que faltava na nossa stack.',
       author: 'Fernando Oliveira',
       role: 'ML Engineer @DataTech Brasil'
     },
@@ -291,8 +291,8 @@ function ContextEngineeringWebinar() {
       },
       {
         icon: Trophy,
-        title: 'Acesso Vitalicio',
-        description: 'Gravacao disponivel por 30 dias'
+        title: 'Acesso Vitalício',
+        description: 'Gravação disponível por 30 dias'
       },
       {
         icon: Heart,
@@ -555,7 +555,7 @@ function ContextEngineeringWebinar() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Video className="w-5 h-5 text-emerald-500" />
-                  <span>Sessao no Zoom</span>
+                  <span>Sessão no Zoom</span>
                 </div>
               </div>
             </div>
@@ -597,7 +597,7 @@ function ContextEngineeringWebinar() {
               >
                 <div className="flex items-center gap-2 mb-4">
                   <BookOpen className="w-5 h-5 text-emerald-500" />
-                  <h3 className="text-lg font-bold text-white">O que voce vai aprender:</h3>
+                  <h3 className="text-lg font-bold text-white">O que você vai aprender:</h3>
                 </div>
                 <ul className="space-y-3">
                   {webinar.whatYouLearn.map((item, index) => (
@@ -729,13 +729,13 @@ function ContextEngineeringWebinar() {
                     className="text-center py-8"
                   >
                     <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-                    <p className="text-xl font-bold text-white mb-2">Inscricao Confirmada!</p>
+                    <p className="text-xl font-bold text-white mb-2">Inscrição Confirmada!</p>
                     <p className="text-gray-400">Verifique seu email e WhatsApp</p>
                   </motion.div>
                 )}
 
                 <p className="text-xs text-white/50 text-center mt-4">
-                  Seus dados estao seguros. Nao enviamos spam.
+                  Seus dados estão seguros. Não enviamos spam.
                 </p>
               </motion.div>
             </div>
@@ -785,14 +785,14 @@ function ContextEngineeringWebinar() {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-white/70">RAG que retorna lixo irrelevante</span>
-                  <span className="text-red-400 font-bold">Baixa precisao</span>
+                  <span className="text-red-400 font-bold">Baixa precisão</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-white/70">Custos de API fora de controle</span>
                   <span className="text-red-400 font-bold">Budget estourado</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-white/70">Outputs que precisam de revisao manual</span>
+                  <span className="text-white/70">Outputs que precisam de revisão manual</span>
                   <span className="text-red-400 font-bold">Retrabalho</span>
                 </div>
                 <div className="flex justify-between text-sm">
@@ -802,7 +802,7 @@ function ContextEngineeringWebinar() {
               </div>
 
               <div className="pt-4 border-t border-red-500/20">
-                <p className="text-red-400 font-semibold">Resultado: IA imprevisivel que nao entrega valor em producao</p>
+                <p className="text-red-400 font-semibold">Resultado: IA imprevisível que não entrega valor em produção</p>
               </div>
             </div>
 
@@ -849,8 +849,8 @@ function ContextEngineeringWebinar() {
                     <span className="text-emerald-400 font-bold">Eficiente</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-white/70">RAG que entrega exatamente o necessario</span>
-                    <span className="text-emerald-400 font-bold">90% precisao</span>
+                    <span className="text-white/70">RAG que entrega exatamente o necessário</span>
+                    <span className="text-emerald-400 font-bold">90% precisão</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-white/70">Custos de API reduzidos drasticamente</span>
@@ -861,13 +861,13 @@ function ContextEngineeringWebinar() {
                     <span className="text-emerald-400 font-bold">Zero retrabalho</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-white/70">Metodologia escalavel para enterprise</span>
+                    <span className="text-white/70">Metodologia escalável para enterprise</span>
                     <span className="text-emerald-400 font-bold">Production-ready</span>
                   </div>
                 </div>
 
                 <div className="pt-4 border-t border-emerald-500/20">
-                  <p className="text-emerald-400 font-semibold">Resultado: IA precisa e confiavel que entrega valor real</p>
+                  <p className="text-emerald-400 font-semibold">Resultado: IA precisa e confiável que entrega valor real</p>
                 </div>
               </div>
             </div>
@@ -879,11 +879,11 @@ function ContextEngineeringWebinar() {
       <section className="py-20 bg-gradient-to-b from-transparent via-emerald-900/5 to-transparent px-6">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
-            Aprenda na <span className="bg-gradient-to-r from-white via-emerald-500/80 to-white bg-clip-text text-transparent">Pratica</span>
+            Aprenda na <span className="bg-gradient-to-r from-white via-emerald-500/80 to-white bg-clip-text text-transparent">Prática</span>
           </h2>
           <p className="text-xl text-white/60 mb-16 text-center max-w-4xl mx-auto">
-            Do conceito basico ate producao enterprise. Voce vai sair deste webinar com conhecimento completo sobre Context Engineering
-            e pronto para transformar a qualidade das suas aplicacoes de IA.
+            Do conceito básico até produção enterprise. Você vai sair deste webinar com conhecimento completo sobre Context Engineering
+            e pronto para transformar a qualidade das suas aplicações de IA.
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -929,8 +929,8 @@ function ContextEngineeringWebinar() {
             </span>
           </h2>
           <p className="text-xl text-white/60 text-center mb-16 max-w-4xl mx-auto">
-            Uma jornada estruturada do basico ao avancado. Cada modulo e cuidadosamente planejado para construir
-            seu conhecimento de forma progressiva, com demonstracoes praticas e exemplos reais de implementacao.
+            Uma jornada estruturada do básico ao avançado. Cada módulo é cuidadosamente planejado para construir
+            seu conhecimento de forma progressiva, com demonstrações práticas e exemplos reais de implementação.
           </p>
 
           <div className="space-y-6 max-w-4xl mx-auto">
@@ -978,7 +978,7 @@ function ContextEngineeringWebinar() {
             Seu <span className="bg-gradient-to-r from-white via-emerald-500/80 to-white bg-clip-text text-transparent">Instrutor</span>
           </h2>
           <p className="text-xl text-white/60 text-center mb-16 max-w-3xl mx-auto">
-            Aprenda com quem esta na linha de frente da implementacao de Context Engineering em ambientes enterprise
+            Aprenda com quem está na linha de frente da implementação de Context Engineering em ambientes enterprise
           </p>
 
           <div className="max-w-4xl mx-auto">
@@ -1101,8 +1101,8 @@ function ContextEngineeringWebinar() {
             Resultados <span className="bg-gradient-to-r from-emerald-500 via-white to-emerald-500 bg-clip-text text-transparent">Comprovados</span>
           </h2>
           <p className="text-xl text-white/60 text-center mb-16 max-w-3xl mx-auto">
-            Metricas reais de empresas e desenvolvedores apos dominar Context Engineering. Numeros que comprovam
-            a transformacao na capacidade de criar aplicacoes LLM precisas e eficientes.
+            Métricas reais de empresas e desenvolvedores após dominar Context Engineering. Números que comprovam
+            a transformação na capacidade de criar aplicações LLM precisas e eficientes.
           </p>
 
           {/* 4 stat boxes with icons and progress bars */}
@@ -1264,8 +1264,8 @@ function ContextEngineeringWebinar() {
 
               {/* Description */}
               <p className="text-xl text-white/70 text-center mb-12 max-w-3xl mx-auto">
-                Este webinario e <span className="text-green-400 font-semibold">completamente gratuito</span>, mas as vagas sao limitadas.
-                Garantimos que voce tera acesso a <span className="text-green-400 font-semibold">2 horas de conteudo transformador</span> sobre a ciencia por tras dos contextos perfeitos para LLMs.
+                Este webinário é <span className="text-green-400 font-semibold">completamente gratuito</span>, mas as vagas são limitadas.
+                Garantimos que você terá acesso a <span className="text-green-400 font-semibold">2 horas de conteúdo transformador</span> sobre a ciência por trás dos contextos perfeitos para LLMs.
               </p>
 
               {/* 3 guarantee items */}
@@ -1294,9 +1294,9 @@ function ContextEngineeringWebinar() {
             </span>
           </h2>
           <p className="text-xl text-white/70 text-center mb-12 max-w-4xl mx-auto">
-            Reserve sua vaga gratuita agora e domine a ciencia por tras dos prompts perfeitos.
-            Apenas 500 desenvolvedores terao acesso a este conteudo exclusivo que vai transformar
-            a qualidade das suas aplicacoes de IA.
+            Reserve sua vaga gratuita agora e domine a ciência por trás dos prompts perfeitos.
+            Apenas 500 desenvolvedores terão acesso a este conteúdo exclusivo que vai transformar
+            a qualidade das suas aplicações de IA.
           </p>
 
           <div className="max-w-2xl mx-auto">
@@ -1349,7 +1349,7 @@ function ContextEngineeringWebinar() {
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-6 p-4 bg-green-500/20 border border-green-500 rounded-lg text-green-400 text-center"
                 >
-                  Inscricao realizada com sucesso! Verifique seu e-mail.
+                  Inscrição realizada com sucesso! Verifique seu e-mail.
                 </motion.div>
               )}
 

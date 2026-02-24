@@ -512,7 +512,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                     <ShieldCheck className="w-4 h-4" style={{ color: TERMINAL.green }} />
                     <div>
                       <span className="text-sm font-bold text-white">Formato gravado</span>
-                      <p className="text-xs text-white/60">Acesso imediato + revisao no seu ritmo</p>
+                      <p className="text-xs text-white/60">Acesso imediato + revisão no seu ritmo</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 text-white/80">
@@ -526,7 +526,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                     <MessageCircle className="w-4 h-4" style={{ color: TERMINAL.purple }} />
                     <div>
                       <span className="text-sm font-bold text-white">Comercial via WhatsApp</span>
-                      <p className="text-xs text-white/60">Atendimento consultivo para seu cenario</p>
+                      <p className="text-xs text-white/60">Atendimento consultivo para seu cenário</p>
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-1.5 mt-2">
@@ -540,7 +540,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                       className="text-xs px-2.5 py-1 rounded-md"
                       style={{ backgroundColor: `${TERMINAL.blue}15`, border: `1px solid ${TERMINAL.blue}35`, color: TERMINAL.blue }}
                     >
-                      Atualizacoes
+                      Atualizações
                     </span>
                     <span
                       className="text-xs px-2.5 py-1 rounded-md"

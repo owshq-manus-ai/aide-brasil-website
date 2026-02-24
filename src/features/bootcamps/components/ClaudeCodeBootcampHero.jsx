@@ -427,7 +427,7 @@ const ClaudeCodeBootcampHero = memo(() => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - O que voce vai aprender */}
+          {/* Right Column - O que você vai aprender */}
           {/* Mobile: instant render, mt-4 adds separation, proper padding prevents edge cutoff */}
           <motion.div
             initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
