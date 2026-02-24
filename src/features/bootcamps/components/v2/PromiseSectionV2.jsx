@@ -99,7 +99,7 @@ const FeatureCard = memo(({ item, index }) => {
       >
         {/* Hover glow */}
         <div
-          className="absolute -inset-0.5 rounded-xl opacity-0 group-hover:opacity-30 transition-opacity blur-lg"
+          className="absolute -inset-0.5 rounded-xl opacity-0 group-hover:opacity-30 transition-opacity blur-lg hidden sm:block"
           style={{ backgroundColor: item.color }}
         />
 
@@ -136,7 +136,7 @@ const PromiseSectionV2 = memo(() => {
       {/* Background */}
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 opacity-[0.02]"
+          className="absolute inset-0 opacity-[0.02] hidden sm:block"
           style={{
             backgroundImage: `
               linear-gradient(rgba(224, 122, 95, 0.3) 1px, transparent 1px),

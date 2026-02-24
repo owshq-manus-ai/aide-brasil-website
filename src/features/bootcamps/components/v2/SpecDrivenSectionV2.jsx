@@ -186,7 +186,7 @@ const SpecDrivenSectionV2 = memo(() => {
           }}
         />
         <div
-          className="absolute inset-0 opacity-[0.02]"
+          className="absolute inset-0 opacity-[0.02] hidden sm:block"
           style={{
             backgroundImage: `
               linear-gradient(rgba(224,122,95,0.25) 1px, transparent 1px),

@@ -64,7 +64,7 @@ const PricingSection = memo(({ variant = 'default' }) => {
           }}
         />
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.03] hidden sm:block"
           style={{
             backgroundImage: `
               linear-gradient(rgba(224,122,95,0.25) 1px, transparent 1px),

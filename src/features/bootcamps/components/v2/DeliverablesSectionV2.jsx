@@ -108,7 +108,7 @@ const HighlightCard = memo(({ item, index }) => {
       className="relative group"
     >
       <div
-        className="relative h-full rounded-xl p-4 sm:p-5 text-center transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
+        className="relative h-full rounded-xl p-4 sm:p-5 text-center transition-all duration-300 sm:hover:scale-[1.03] active:scale-[0.98]"
         style={{
           background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.8) 100%)',
           border: `1px solid ${item.color}30`,
@@ -116,7 +116,7 @@ const HighlightCard = memo(({ item, index }) => {
       >
         {/* Glow on hover */}
         <div
-          className="absolute -inset-0.5 rounded-xl opacity-0 group-hover:opacity-15 transition-opacity blur-lg"
+          className="absolute -inset-0.5 rounded-xl opacity-0 group-hover:opacity-15 transition-opacity blur-lg hidden sm:block"
           style={{ backgroundColor: item.color }}
         />
 
@@ -155,7 +155,7 @@ const DeliverableItem = memo(({ item, index }) => {
       className="group"
     >
       <div
-        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.99]"
+        className="relative h-full rounded-xl p-4 transition-all duration-300 sm:hover:scale-[1.02] active:scale-[0.99]"
         style={{
           background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
           border: `1px solid ${TERMINAL.border}`,
