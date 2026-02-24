@@ -96,7 +96,7 @@ const PhaseCard = memo(({ item, index }) => {
       className="group"
     >
       <div
-        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:-translate-y-1"
+        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:-translate-y-1 active:scale-[0.99]"
         style={{
           background: 'linear-gradient(160deg, rgba(13,17,23,0.96) 0%, rgba(13,17,23,0.72) 100%)',
           border: `1px solid ${item.color}45`,
@@ -228,7 +228,7 @@ const SpecDrivenSectionV2 = memo(() => {
               href="https://github.com/luanmorenommaciel/agentspec/tree/main"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white underline decoration-white/25 hover:decoration-white/60 transition-colors"
+              className="text-white underline decoration-white/25 hover:decoration-white/60 active:decoration-white/60 transition-colors py-1"
             >
               AgentSpec
             </a>

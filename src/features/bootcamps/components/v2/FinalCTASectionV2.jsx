@@ -7,7 +7,7 @@ const WHATSAPP_URL = WHATSAPP.buildUrl('Olá! Quero conversar sobre o Bootcamp Z
 
 const FinalCTASectionV2 = memo(() => {
   return (
-    <section className="relative py-24 sm:py-32 bg-[#0a0a0a] overflow-hidden">
+    <section className="relative py-16 sm:py-24 lg:py-32 bg-[#0a0a0a] overflow-hidden">
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"

@@ -140,21 +140,21 @@
 @media (max-width: 768px) and (hover: none) {
   /* Touch devices only */
 
-  /* Disable hover effects on mobile */
-  *:hover {
+  /* Disable hover effects on mobile — except scoped pages */
+  *:not([data-page] *):hover {
     transform: none !important;
     box-shadow: none !important;
   }
 
-  /* Simplify transitions */
-  * {
+  /* Simplify transitions — except scoped pages */
+  *:not([data-page] *) {
     transition-duration: 0.2s !important;
   }
 
-  /* Disable backdrop filters on low-end */
-  .backdrop-blur-sm,
-  .backdrop-blur-md,
-  .backdrop-blur-lg {
+  /* Disable backdrop filters on low-end — except scoped pages */
+  .backdrop-blur-sm:not([data-page] *),
+  .backdrop-blur-md:not([data-page] *),
+  .backdrop-blur-lg:not([data-page] *) {
     backdrop-filter: none !important;
     background-color: rgba(3, 3, 3, 0.95) !important;
   }

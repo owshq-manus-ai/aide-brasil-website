@@ -150,19 +150,19 @@
 
 /* Performance mode for low-end devices */
 @media (max-width: 768px) and (max-resolution: 2dppx) {
-  /* Further reduce effects for low-end phones */
-  .blur-sm,
-  .blur-md,
-  .blur-lg,
-  .blur-xl {
+  /* Further reduce effects for low-end phones — except scoped pages */
+  .blur-sm:not([data-page] *),
+  .blur-md:not([data-page] *),
+  .blur-lg:not([data-page] *),
+  .blur-xl:not([data-page] *) {
     filter: none !important;
     backdrop-filter: none !important;
   }
 
-  /* Disable gradients on low-end devices */
-  .bg-gradient-to-r,
-  .bg-gradient-to-b,
-  .bg-gradient-to-br {
+  /* Disable gradients on low-end devices — except scoped pages */
+  .bg-gradient-to-r:not([data-page] *),
+  .bg-gradient-to-b:not([data-page] *),
+  .bg-gradient-to-br:not([data-page] *) {
     background: #030303 !important;
   }
 }

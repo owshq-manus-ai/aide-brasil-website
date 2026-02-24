@@ -209,7 +209,7 @@ const BentoCard = memo(({ children, className = '', delay = 0, isMobile = false 
     />
     {/* Card */}
     <div
-      className="relative h-full rounded-xl p-4 sm:p-5 backdrop-blur-sm overflow-hidden"
+      className="relative h-full rounded-xl p-4 sm:p-5 overflow-hidden"
       style={{
         background: 'linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(21, 21, 21, 0.95) 100%)',
         border: `1px solid ${CORAL.primary}20`,
@@ -233,7 +233,7 @@ const NeonButton = memo(({ children, primary = false, onClick, className = '', i
       px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-oswald font-bold uppercase tracking-wider
       transition-all duration-300 relative overflow-hidden text-sm sm:text-base min-h-[44px]
       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] focus-visible:ring-white/50
-      ${primary ? 'text-white' : 'bg-white/5 backdrop-blur-sm text-white'}
+      ${primary ? 'text-white' : 'bg-white/5 text-white'}
       ${className}
     `}
     whileHover={{ scale: 1.03, boxShadow: primary ? `0 0 30px ${CORAL.glow}` : `0 0 20px ${CORAL.primary}40` }}
@@ -330,7 +330,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
   ], [])
 
   return (
-    <section className="relative min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
+    <section className="relative min-h-[100dvh] bg-[#0a0a0a] text-white overflow-hidden">
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/* BACKGROUND - Matching V1 style                                      */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
@@ -455,7 +455,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                 href="https://engenhariadadosacademy.com.br/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="opacity-70 hover:opacity-100 transition-opacity"
+                className="opacity-70 hover:opacity-100 active:opacity-100 transition-opacity p-2 -m-2"
               >
                 <img
                   src="/images/logos/engenharia-dados-academy.webp"
@@ -596,7 +596,7 @@ const ClaudeCodeBootcampHeroV2 = memo(() => {
                     href="https://github.com/luanmorenommaciel/agentspec/tree/main"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 mt-3 text-xs px-2.5 py-1.5 rounded-md transition-colors"
+                    className="inline-flex items-center gap-2 mt-3 text-xs px-3 py-2 min-h-[44px] rounded-md transition-colors active:opacity-80"
                     style={{
                       backgroundColor: 'rgba(255,255,255,0.04)',
                       border: '1px solid rgba(255,255,255,0.12)',

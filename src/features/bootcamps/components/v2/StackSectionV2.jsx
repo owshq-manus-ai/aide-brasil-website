@@ -71,7 +71,7 @@ const StackCard = memo(({ category, index }) => (
     className="group"
   >
     <div
-      className="relative h-full rounded-xl p-4 transition-all duration-300"
+      className="relative h-full rounded-xl p-3 sm:p-4 transition-all duration-300"
       style={{
         background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
         border: `1px solid ${category.color}30`,
@@ -112,7 +112,7 @@ const StackCard = memo(({ category, index }) => (
         {category.items.map((item, i) => (
           <span
             key={i}
-            className="px-2.5 py-1 rounded text-sm font-medium"
+            className="px-2 sm:px-2.5 py-1 rounded text-xs sm:text-sm font-medium"
             style={{ backgroundColor: `${category.color}15`, color: category.color }}
           >
             {item}
@@ -173,7 +173,7 @@ const StackSectionV2 = memo(() => {
         </motion.div>
 
         {/* Stack Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-10">
           {categories.map((category, index) => (
             <StackCard key={category.category} category={category} index={index} />
           ))}

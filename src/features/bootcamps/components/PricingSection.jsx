@@ -38,8 +38,8 @@ const DeliverableItem = memo(({ item }) => (
   <div className="flex items-start gap-2.5 rounded-lg p-2.5" style={{ backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.10)' }}>
     <CheckCircle className="w-3.5 h-3.5 text-green-400 mt-0.5 flex-shrink-0" />
     <div>
-      <p className="text-white font-medium text-[13px] leading-snug">{item.text}</p>
-      <p className="text-[11px] mt-0.5 leading-snug" style={{ color: CORAL.light }}>{item.value}</p>
+      <p className="text-white font-medium text-xs sm:text-[13px] leading-snug">{item.text}</p>
+      <p className="text-xs mt-0.5 leading-snug" style={{ color: CORAL.light }}>{item.value}</p>
     </div>
   </div>
 ))
@@ -52,7 +52,7 @@ const PricingSection = memo(({ variant = 'default' }) => {
   )
 
   return (
-    <section id="pricing" className="relative py-24 bg-[#0a0a0a] overflow-hidden">
+    <section id="pricing" className="relative py-16 sm:py-24 bg-[#0a0a0a] overflow-hidden">
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
@@ -124,7 +124,7 @@ const PricingSection = memo(({ variant = 'default' }) => {
           />
 
           <div className="relative grid gap-6 lg:gap-8 lg:grid-cols-12 lg:items-center">
-            <div className="lg:col-span-5 min-w-[220px]">
+            <div className="lg:col-span-5">
               <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold uppercase mb-3" style={{ backgroundColor: 'rgba(255,255,255,0.12)' }}>
                 <Sparkles className="w-3 h-3 text-white" />
                 <span className="text-white">Acesso único</span>
@@ -134,7 +134,7 @@ const PricingSection = memo(({ variant = 'default' }) => {
 
               <div className="flex items-baseline gap-1 mb-2">
                 <span className="text-lg" style={{ color: CORAL.primary }}>R$</span>
-                <span className="text-5xl font-oswald font-black text-white">{PRIMARY_OFFER.price}</span>
+                <span className="text-4xl sm:text-5xl font-oswald font-black text-white">{PRIMARY_OFFER.price}</span>
               </div>
               <p className="text-sm" style={{ color: CORAL.light }}>{PRIMARY_OFFER.installment}</p>
             </div>
@@ -144,7 +144,7 @@ const PricingSection = memo(({ variant = 'default' }) => {
                 {PRIMARY_OFFER.highlights.map((feature) => (
                   <div
                     key={feature}
-                    className="w-fit flex items-center gap-2.5 rounded-full px-4 py-2 min-h-[42px]"
+                    className="w-fit flex items-center gap-2.5 rounded-full px-4 py-2 min-h-[44px]"
                     style={{ backgroundColor: 'rgba(10,20,38,0.72)', border: '1px solid rgba(255,255,255,0.18)' }}
                   >
                     <BadgeCheck className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />

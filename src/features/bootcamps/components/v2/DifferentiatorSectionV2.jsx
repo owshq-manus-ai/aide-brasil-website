@@ -79,7 +79,7 @@ const DifferentiatorCard = memo(({ item, index }) => {
       className="group"
     >
       <div
-        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
+        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.99]"
         style={{
           background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
           border: '1px solid rgba(48, 54, 61, 0.8)',

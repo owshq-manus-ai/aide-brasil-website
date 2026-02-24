@@ -22,32 +22,12 @@ export const getMotionProps = (isMobile, props = {}) => {
 };
 
 export const disableScrollAnimations = () => {
-  // Disable all Framer Motion scroll-triggered animations
+  // Add class hint for CSS-based animation control.
+  // Actual visibility is handled by scoped CSS rules in mobile-scroll-fix.css
+  // (forces opacity:1 / transform:none for non-[data-page] elements).
+  // IntersectionObserver is NOT patched — scoped pages (bootcamp etc.)
+  // rely on IO for whileInView animations.
   if (typeof window !== 'undefined') {
-    // Add class to disable animations
     document.documentElement.classList.add('disable-scroll-animations');
-
-    // Override Framer Motion config
-    if (window.FramerMotionConfig) {
-      window.FramerMotionConfig = {
-        ...window.FramerMotionConfig,
-        reducedMotion: 'always'
-      };
-    }
-
-    // Disable IntersectionObserver for animations
-    const originalIntersectionObserver = window.IntersectionObserver;
-    window.IntersectionObserver = function(callback, options) {
-      // If this is likely for animations (checking for threshold), disable it
-      if (options && (options.threshold || options.rootMargin)) {
-        return {
-          observe: () => {},
-          unobserve: () => {},
-          disconnect: () => {},
-          takeRecords: () => []
-        };
-      }
-      return new originalIntersectionObserver(callback, options);
-    };
   }
 };

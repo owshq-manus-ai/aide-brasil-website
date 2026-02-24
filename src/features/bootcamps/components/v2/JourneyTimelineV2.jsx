@@ -94,7 +94,7 @@ const StepCard = memo(({ step, index, isExpanded, onToggle }) => {
     >
       <div
         onClick={onToggle}
-        className="relative rounded-xl p-4 cursor-pointer transition-all duration-300 hover:scale-[1.01]"
+        className="relative rounded-xl p-4 cursor-pointer transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
         style={{
           background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
           border: `1px solid ${TERMINAL.border}`,
@@ -149,7 +149,7 @@ const StepCard = memo(({ step, index, isExpanded, onToggle }) => {
               <div className="pt-4 mt-4 border-t border-white/10">
                 {/* Command */}
                 <div
-                  className="font-mono text-sm px-3 py-2 rounded-lg mb-3"
+                  className="font-mono text-sm px-3 py-2 rounded-lg mb-3 overflow-x-auto"
                   style={{ backgroundColor: 'rgba(0,0,0,0.3)' }}
                 >
                   <span style={{ color: TERMINAL.green }}>$</span>{' '}

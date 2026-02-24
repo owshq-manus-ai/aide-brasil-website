@@ -2,21 +2,21 @@
 
 /* Targeted mobile optimizations without breaking functionality */
 @media (max-width: 768px) {
-  /* Reduce complex animations on mobile */
-  .motion-safe\:animate-pulse,
-  .motion-safe\:animate-bounce,
-  .motion-safe\:animate-spin {
+  /* Reduce complex animations on mobile — except scoped pages */
+  .motion-safe\:animate-pulse:not([data-page] *),
+  .motion-safe\:animate-bounce:not([data-page] *),
+  .motion-safe\:animate-spin:not([data-page] *) {
     animation: none !important;
   }
-  
-  /* Reduce blur effects on mobile for performance */
-  .blur-3xl {
+
+  /* Reduce blur effects on mobile for performance — except scoped pages */
+  .blur-3xl:not([data-page] *) {
     filter: blur(10px) !important;
   }
-  
-  /* Optimize shadows for mobile */
-  .shadow-lg,
-  .shadow-xl {
+
+  /* Optimize shadows for mobile — except scoped pages */
+  .shadow-lg:not([data-page] *),
+  .shadow-xl:not([data-page] *) {
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1) !important;
   }
   

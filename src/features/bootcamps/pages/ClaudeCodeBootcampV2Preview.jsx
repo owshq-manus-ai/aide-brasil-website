@@ -43,8 +43,8 @@ const StickyBottomCTA = memo(() => {
       aria-label="Atalho de contato"
     >
       <div
-        className="backdrop-blur-md border-t px-4 py-3"
-        style={{ backgroundColor: 'rgba(10, 10, 10, 0.92)', borderColor: `${CORAL.primary}30` }}
+        className="border-t px-4 py-3"
+        style={{ backgroundColor: 'rgba(10, 10, 10, 0.92)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', borderColor: `${CORAL.primary}30`, paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
       >
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
           <p className="text-white/80 text-sm hidden sm:block">
@@ -78,7 +78,7 @@ StickyBottomCTA.displayName = 'StickyBottomCTA'
  */
 const ClaudeCodeBootcampV2Preview = memo(() => {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#0a0a0a]" data-page="bootcamp-v2">
       <ClaudeCodeBootcampHeroV2 />
 
       <Suspense fallback={<SectionLoader />}>

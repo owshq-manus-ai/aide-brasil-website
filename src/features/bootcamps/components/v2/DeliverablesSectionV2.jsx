@@ -108,7 +108,7 @@ const HighlightCard = memo(({ item, index }) => {
       className="relative group"
     >
       <div
-        className="relative h-full rounded-xl p-5 text-center transition-all duration-300 hover:scale-[1.03]"
+        className="relative h-full rounded-xl p-4 sm:p-5 text-center transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
         style={{
           background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.8) 100%)',
           border: `1px solid ${item.color}30`,
@@ -148,14 +148,14 @@ const DeliverableItem = memo(({ item, index }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
       viewport={{ once: true }}
       className="group"
     >
       <div
-        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
+        className="relative h-full rounded-xl p-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.99]"
         style={{
           background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
           border: `1px solid ${TERMINAL.border}`,

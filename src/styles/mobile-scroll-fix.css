@@ -1,8 +1,8 @@
 /* Mobile Scroll Flicker Fix */
 
-/* Complete animation disable for mobile */
-.mobile-no-animations *,
-.disable-framer-motion * {
+/* Complete animation disable for mobile — except scoped pages */
+.mobile-no-animations *:not([data-page] *),
+.disable-framer-motion *:not([data-page] *) {
   animation: none !important;
   animation-duration: 0s !important;
   animation-delay: 0s !important;
@@ -19,12 +19,12 @@
     overflow-scrolling: touch;
   }
 
-  /* Completely disable Framer Motion animations */
-  [data-framer-appear-id],
-  [data-framer-motion-id],
-  [style*="opacity: 0"],
-  [style*="transform"],
-  [style*="will-change"] {
+  /* Completely disable Framer Motion animations — except scoped pages */
+  [data-framer-appear-id]:not([data-page] *),
+  [data-framer-motion-id]:not([data-page] *),
+  [style*="opacity: 0"]:not([data-page] *),
+  [style*="transform"]:not([data-page] *),
+  [style*="will-change"]:not([data-page] *) {
     opacity: 1 !important;
     transform: none !important;
     will-change: auto !important;
@@ -32,11 +32,11 @@
     animation: none !important;
   }
 
-  /* Disable all motion divs */
-  div[style*="opacity"],
-  div[style*="transform"],
-  section[style*="opacity"],
-  section[style*="transform"] {
+  /* Disable all motion divs — except scoped pages */
+  div[style*="opacity"]:not([data-page] *),
+  div[style*="transform"]:not([data-page] *),
+  section[style*="opacity"]:not([data-page] *),
+  section[style*="transform"]:not([data-page] *) {
     opacity: 1 !important;
     transform: none !important;
   }
@@ -72,8 +72,8 @@
   }
 }
 
-/* Disable scroll animations when class is present */
-.no-scroll-animations * {
+/* Disable scroll animations when class is present — except scoped pages */
+.no-scroll-animations *:not([data-page] *) {
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;
@@ -99,8 +99,8 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Disable all animations on iOS */
-  * {
+  /* Disable animations on iOS — except scoped pages (bootcamp etc.) */
+  *:not([data-page] *) {
     -webkit-animation: none !important;
     animation: none !important;
   }

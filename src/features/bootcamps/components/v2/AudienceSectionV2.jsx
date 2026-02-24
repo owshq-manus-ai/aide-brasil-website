@@ -57,14 +57,14 @@ const AudienceCard = memo(({ audience, index }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
       viewport={{ once: true }}
       className="group"
     >
       <div
-        className="relative rounded-xl p-4 transition-all duration-300 hover:scale-[1.02]"
+        className="relative rounded-xl p-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.99]"
         style={{
           background: 'linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.7) 100%)',
           border: `1px solid ${isPerfect ? TERMINAL.green + '40' : 'rgba(48, 54, 61, 0.8)'}`,
@@ -103,8 +103,8 @@ const PrerequisiteCard = memo(({ prereq, index }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
       viewport={{ once: true }}
     >

@@ -87,6 +87,7 @@ const FeatureCard = memo(({ item, index }) => {
       transition={{ duration: 0.4, delay: index * 0.05 }}
       viewport={{ once: true }}
       whileHover={{ y: -3, scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       className="relative group"
     >
       <div
@@ -194,7 +195,7 @@ const PromiseSectionV2 = memo(() => {
         </motion.div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-12">
           {features.map((item, index) => (
             <FeatureCard key={item.title} item={item} index={index} />
           ))}
