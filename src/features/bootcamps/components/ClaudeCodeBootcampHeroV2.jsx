@@ -142,34 +142,36 @@ const TerminalWindow = memo(({ isMobile }) => {
             </span>
           </div>
 
-          {/* Output */}
-          <AnimatePresence>
-            {!isTyping && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-1.5 pt-3 border-t border-white/10"
-              >
-                {outputLines.map((line, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.12 }}
-                    style={{
-                      color: line.type === 'comment' ? TERMINAL.comment :
-                             line.type === 'success' ? TERMINAL.green :
-                             TERMINAL.blue
-                    }}
-                  >
-                    {line.text}
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* Output — desktop only to avoid layout shift on mobile */}
+          {!isMobile && (
+            <AnimatePresence>
+              {!isTyping && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-1.5 pt-3 border-t border-white/10"
+                >
+                  {outputLines.map((line, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.12 }}
+                      style={{
+                        color: line.type === 'comment' ? TERMINAL.comment :
+                               line.type === 'success' ? TERMINAL.green :
+                               TERMINAL.blue
+                      }}
+                    >
+                      {line.text}
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          )}
         </div>
 
         {/* Status bar */}

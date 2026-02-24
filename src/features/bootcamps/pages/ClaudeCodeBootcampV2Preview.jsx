@@ -25,15 +25,29 @@ const StickyBottomCTA = memo(() => {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
+    let rafId = null
+    let lastVisible = false
+
     const handleScroll = () => {
-      const scrollY = window.scrollY
-      const heroHeight = window.innerHeight
-      const pricingEl = document.getElementById('pricing')
-      const pricingTop = pricingEl ? pricingEl.offsetTop - window.innerHeight * 0.5 : Infinity
-      setVisible(scrollY > heroHeight && scrollY < pricingTop)
+      if (rafId) return
+      rafId = requestAnimationFrame(() => {
+        rafId = null
+        const scrollY = window.scrollY
+        const heroHeight = window.innerHeight
+        const pricingEl = document.getElementById('pricing')
+        const pricingTop = pricingEl ? pricingEl.offsetTop - window.innerHeight * 0.5 : Infinity
+        const shouldShow = scrollY > heroHeight && scrollY < pricingTop
+        if (shouldShow !== lastVisible) {
+          lastVisible = shouldShow
+          setVisible(shouldShow)
+        }
+      })
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, [])
 
   return (
