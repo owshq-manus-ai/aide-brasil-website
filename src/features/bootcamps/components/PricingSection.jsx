@@ -204,18 +204,18 @@ const PricingSection = memo(({ variant = 'default' }) => {
             className="rounded-lg px-4 py-4 text-center"
             style={{ backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.10)' }}
           >
-            <p className="text-sm text-white/70 mb-2">Se você montasse isso separadamente:</p>
+            <p className="text-sm text-white/70 mb-2">O que você domina com um único investimento:</p>
             <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-white/75 mb-2">
-              <span>Cloud/Data ~R$ 500</span>
+              <span>Cloud & Data Architecture</span>
               <span className="text-white/25">+</span>
-              <span>Terraform/CI-CD ~R$ 400</span>
+              <span>Terraform & CI/CD</span>
               <span className="text-white/25">+</span>
-              <span>GenAI/Agents ~R$ 600</span>
+              <span>GenAI & Agents</span>
               <span className="text-white/25">=</span>
-              <span className="text-red-400 line-through font-bold">R$ 1.500+</span>
+              <span className="font-bold" style={{ color: TERMINAL.green }}>8 entregas prontas</span>
             </div>
             <p className="text-sm" style={{ color: TERMINAL.green }}>
-              Aqui você leva tudo integrado com padrão técnico consistente.
+              Tudo integrado, com padrão técnico consistente e aplicável no trabalho desde o dia 1.
             </p>
           </div>
 

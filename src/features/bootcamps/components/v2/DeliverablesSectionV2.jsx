@@ -40,7 +40,7 @@ const HIGHLIGHTS = [
   {
     icon: MessageCircle,
     value: 'WhatsApp',
-    label: 'Fechamento consultivo com vendas',
+    label: 'Fechamento consultivo que gera resultado real',
     color: CORAL.primary
   }
 ]
@@ -278,16 +278,14 @@ const DeliverablesSectionV2 = memo(() => {
               border: `1px solid ${CORAL.primary}30`,
             }}
           >
-            <p className="text-white/70 text-sm mb-3">Valor percebido quando você teria que montar tudo separado:</p>
+            <p className="text-white/70 text-sm mb-3">O que você precisaria dominar sozinho para chegar nesse resultado:</p>
 
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/70 mb-4">
-              <span>Cloud & Data: ~R$ 500</span>
+              <span>Cloud & Data Architecture <span className="text-red-400">→ meses de tentativa e erro</span></span>
               <span className="text-white/30">+</span>
-              <span>Terraform & CI/CD: ~R$ 400</span>
+              <span>Terraform & CI/CD <span className="text-red-400">→ semanas configurando</span></span>
               <span className="text-white/30">+</span>
-              <span>GenAI & Agents: ~R$ 600</span>
-              <span className="text-white/30">=</span>
-              <span className="text-lg font-bold text-red-400 line-through">R$ 1.500+</span>
+              <span>GenAI & Agents <span className="text-red-400">→ curva de aprendizado íngreme</span></span>
             </div>
 
             <p className="text-sm" style={{ color: TERMINAL.green }}>
